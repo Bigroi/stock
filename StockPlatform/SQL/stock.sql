@@ -40,15 +40,15 @@ CREATE TABLE IF NOT EXISTS `archive` (
   `saler` bigint(20) DEFAULT '0',
   `customer` bigint(20) DEFAULT '0',
   `product` bigint(20) DEFAULT '0',
-  `price` bigint(20) DEFAULT '0',
+  `price` decimal(10,0) DEFAULT '0',
   `tms_tmp` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_archive_company` (`saler`),
   KEY `FK_archive_company_2` (`customer`),
   KEY `FK_archive_product` (`product`),
-  CONSTRAINT `FK_archive_product` FOREIGN KEY (`product`) REFERENCES `product` (`id`),
   CONSTRAINT `FK_archive_company` FOREIGN KEY (`saler`) REFERENCES `company` (`id`),
-  CONSTRAINT `FK_archive_company_2` FOREIGN KEY (`customer`) REFERENCES `company` (`id`)
+  CONSTRAINT `FK_archive_company_2` FOREIGN KEY (`customer`) REFERENCES `company` (`id`),
+  CONSTRAINT `FK_archive_product` FOREIGN KEY (`product`) REFERENCES `product` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Дамп данных таблицы stock.archive: ~0 rows (приблизительно)
