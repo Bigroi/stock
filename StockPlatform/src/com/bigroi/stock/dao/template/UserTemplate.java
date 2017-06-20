@@ -1,24 +1,19 @@
-/*package com.bigroi.stock.dao.template;
+package com.bigroi.stock.dao.template;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.sql.DataSource;
-
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-
 import com.bigroi.stock.bean.User;
-import com.bigroi.stock.controller.AppContext;
 import com.bigroi.stock.dao.crud.UserInterface;
 import com.bigroi.stock.dao.exceptions.DaoExeptions;
 import com.bigroi.stock.dao.sqlQueries.UserSQLQueries;
 
 public class UserTemplate implements UserSQLQueries, UserInterface {
 
-	private DataSource datasource = (DataSource) AppContext.getContext().getBean("userDAO");
+	private DataSource datasource;
 
 	public DataSource getDatasource() {
 		return datasource;
@@ -31,20 +26,17 @@ public class UserTemplate implements UserSQLQueries, UserInterface {
 	
 	@Override
 	public List<User> getAll() throws DaoExeptions {
-		JdbcTemplate template = new JdbcTemplate(datasource);
 		
+		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(SELECT_ALL_USER, new RowMapper<User>() {
-
 			@Override
 			public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 				User user = new User();
-				user = (User) AppContext.getContext().getBean("userDAO");
 				user.setId(rs.getLong("id"));
 				user.setLogin(rs.getString("login"));
 				user.setPassword(rs.getString("password"));
 				return user;
 			}
-
 		});
 	}
 
@@ -78,4 +70,3 @@ public class UserTemplate implements UserSQLQueries, UserInterface {
 	}
 
 }
-*/
