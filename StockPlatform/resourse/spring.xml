@@ -33,5 +33,9 @@
 	<bean id="testUser" class="com.bigroi.stock.bean.User">
 		<property name="login" value="45454545" />
 	</bean>
+	
+	<bean id="userDAO" class="com.bigroi.stock.dao.template.UserTemplate">
+		<property name="datasource" ref="datasource"></property>
+	</bean>
 
 </beans>
