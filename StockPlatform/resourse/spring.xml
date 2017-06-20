@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" 
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
@@ -10,12 +9,29 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
- 
-	<context:component-scan 
-	base-package="com.bigroi.stock.controler" />
 
-	<bean id="testUser" class="com.bigroi.stock.bean.User">
-		<property name="login" value="45454545"/>	
+	<context:component-scan base-package="com.bigroi.stock.controler" />
+	<context:component-scan base-package="com.bigroi.stock.dao" />
+
+	<bean id="property"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:datasourse.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="datasource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="${data.db.url}" />
+		<property name="username" value="${data.db.name}" />
+		<property name="password" value="${data.db.pass}" />
 	</bean>
 	
+	<bean id="testUser" class="com.bigroi.stock.bean.User">
+		<property name="login" value="45454545" />
+	</bean>
+
 </beans>
