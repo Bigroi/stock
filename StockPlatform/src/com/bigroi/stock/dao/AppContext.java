@@ -1,4 +1,4 @@
-package com.bigroi.stock.controller;
+package com.bigroi.stock.dao;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
