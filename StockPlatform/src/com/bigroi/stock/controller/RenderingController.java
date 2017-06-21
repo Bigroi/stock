@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.User;
-import com.bigroi.stock.dao.template.UserTemplate;
+import com.bigroi.stock.dao.DaoFactory;
 
 @Controller
 public class RenderingController {
@@ -43,7 +43,8 @@ public class RenderingController {
 	}
 
 	@RequestMapping("/Registation.spr")
-	public ModelAndView registration(@RequestParam("login") String login, 
+	public ModelAndView registration(
+			@RequestParam("login") String login, 
 			@RequestParam("password") String password,
 			@RequestParam("passwordRepeat") String passwordRepeat, 
 			@RequestParam("name") String name,
@@ -64,28 +65,29 @@ public class RenderingController {
 	}
 
 	private User getUser(String login) {
+		return DaoFactory.getUserDao().getByLogin(login);
 		// TODO «¿√À”ÿ ¿
-		if ("Admin".equals(login)) {
-			User user = new User();
-			user.setLogin("Admin");
-			user.setPassword("1");
-			return user;
-		} else {
-			return null;
-		}
+//		if ("Admin".equals(login)) {
+//			User user = new User();
+//			user.setLogin("Admin");
+//			user.setPassword("1");
+//			return user;
+//		} else {
+//			return null;
+//		}
 
 	}
 
 	private User getUser(String login, String password) {
-		// return UserTemplate.getLoginPassword(login, password);
-		if ("Admin".equals(login) && "1".equals(password)) {
-			User user = new User();
-			user.setLogin(login);
-			user.setPassword(password);
-			return user;
-		} else {
-			return null;
-		}
+		return DaoFactory.getUserDao().getByLoginAndPassword(login, password);
+//		if ("Admin".equals(login) && "1".equals(password)) {
+//			User user = new User();
+//			user.setLogin(login);
+//			user.setPassword(password);
+//			return user;
+//		} else {
+//			return null;
+//		}
 	}
 
 }

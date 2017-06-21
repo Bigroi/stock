@@ -1,4 +1,4 @@
-package com.bigroi.stock.dao.exceptions;
+package com.bigroi.stock.dao;
 
 public class DaoExeptions extends Exception {
 

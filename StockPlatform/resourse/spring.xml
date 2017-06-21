@@ -29,11 +29,7 @@
 		<property name="password" value="${data.db.pass}" />
 	</bean>
 	
-	<bean id="testUser" class="com.bigroi.stock.bean.User">
-		<property name="login" value="45454545" />
-	</bean>
-	
-	<bean id="userDAO" class="com.bigroi.stock.dao.template.UserTemplate">
+	<bean id="userDao" class="com.bigroi.stock.dao.db.UserDaoImpl">
 		<property name="datasource" ref="datasource"></property>
 	</bean>
 

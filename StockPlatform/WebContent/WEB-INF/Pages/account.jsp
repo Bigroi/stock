@@ -9,7 +9,7 @@
 <body>
 <form action="#" method="post">
 		
-		<input type="hidden"  value="${user.id}">
+		<input type="hidden" name="id" value="${user.id}">
 		
 		 name <input name="тame" ><br>
 		 email <input name="email" ><br>

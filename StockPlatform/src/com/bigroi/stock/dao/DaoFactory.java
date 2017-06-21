@@ -3,17 +3,14 @@ package com.bigroi.stock.dao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.bigroi.stock.dao.template.UserTemplate;
-
-public class AppContext {
+public class DaoFactory {
 	private static final ApplicationContext CONTEX = new ClassPathXmlApplicationContext("spring.xml");
 	
-	public static ApplicationContext getContext(){		
-		return CONTEX;	
+	public static UserDao getUserDao(){
+		return (UserDao) CONTEX.getBean("userDao");
 	}
-	
-	public static UserTemplate getUserDAO(){
-		return (UserTemplate) CONTEX.getBean("userDAO");
-		
+
+	public static ApplicationContext getContext() {
+		return CONTEX;
 	}
 }
