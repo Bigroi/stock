@@ -16,4 +16,9 @@ public class RenderingController {
 	public ModelAndView goToLoginPage(){
 		return new ModelAndView("login");		
 	}
+	
+	@RequestMapping("/Registration.spr")
+	public ModelAndView goToRegistrationPage(){
+		return new ModelAndView("registration");		
+	}
 }

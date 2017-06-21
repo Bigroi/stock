@@ -9,5 +9,6 @@
 <body>
    <p> WELCOME !!!</p>
    <p><a href="Login.spr">LOGIN</a> </p>
+    <p><a href="Registration.spr">Registration</a> </p>
 </body>
 </html>
