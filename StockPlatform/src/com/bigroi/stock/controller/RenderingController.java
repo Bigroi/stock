@@ -13,15 +13,8 @@ import com.bigroi.stock.bean.User;
 public class RenderingController {
 
 	@RequestMapping("/Index.spr")
-	public ModelAndView goToWelcomePage(HttpSession session) {
-		User user = (User) session.getAttribute("user");
-		String login;
-		if (user != null) {
-			login = user.getLogin();
-		} else {
-			login = "Anonymous";
-		}
-		return new ModelAndView("welcome", "login", login);
+	public ModelAndView goToWelcomePage() {
+			return new ModelAndView("welcome");
 	}
 
 	@RequestMapping("/Login.spr")
@@ -41,7 +34,7 @@ public class RenderingController {
 		user = getUser(login, password);
 		if (user != null) {
 			session.setAttribute("user", user);
-			return goToWelcomePage(session);
+			return goToWelcomePage();
 		} else {
 			return goToLoginPage("Wrong password");
 		}
