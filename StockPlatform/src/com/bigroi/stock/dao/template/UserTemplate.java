@@ -2,33 +2,34 @@ package com.bigroi.stock.dao.template;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+
 import javax.sql.DataSource;
+
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+
 import com.bigroi.stock.bean.User;
-import com.bigroi.stock.dao.crud.UserInterface;
-import com.bigroi.stock.dao.exceptions.DaoExeptions;
-import com.bigroi.stock.dao.sqlQueries.UserSQLQueries;
 
-public class UserTemplate implements UserSQLQueries, UserInterface {
 
-	private DataSource datasource;
+public class UserTemplate {
 
-	public DataSource getDatasource() {
+	private static DataSource datasource;
+
+	
+
+	public static DataSource getDatasource() {
 		return datasource;
 	}
 
-	public void setDatasource(DataSource datasource) {
-		this.datasource = datasource;
+	public static void setDatasource(DataSource datasource) {
+		UserTemplate.datasource = datasource;
 	}
 
+	public User getUser() {
 	
-	@Override
-	public List<User> getAll() throws DaoExeptions {
-		
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(SELECT_ALL_USER, new RowMapper<User>() {
+		User user = (User) template.query("SELECT * FROM user", new RowMapper<User>() {
 			@Override
 			public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 				User user = new User();
@@ -38,35 +39,27 @@ public class UserTemplate implements UserSQLQueries, UserInterface {
 				return user;
 			}
 		});
+		return user;
 	}
 
-	@Override
-	public User getId(long id) throws DaoExeptions {
-		// TODO Auto-generated method stub
-		return null;
+	public static User getUser(String login, String password) {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		User user = template.queryForObject("SELECT * FROM user WHERE login = ?", new Object[] { login, password },
+				new BeanPropertyRowMapper<User>(User.class));
+		return user;
 	}
 
-	@Override
-	public void update(long id, User user) throws DaoExeptions {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void delete(long id) throws DaoExeptions {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void add(User user) throws DaoExeptions {
-		// TODO Auto-generated method stub
+	public static User getLoginPassword(String login, String password) {
+		User user = getUser(login, password);
+		if ((login != null && login.equals(user.getLogin()))
+				&& (password != null && password.equals(user.getPassword()))) {
+			return user;
+		} else {
+			return null;
+		}
 
 	}
 
-	@Override
-	public String toString() {
-		return "UserTemplate [datasource=" + datasource + "]";
-	}
+	
 
 }

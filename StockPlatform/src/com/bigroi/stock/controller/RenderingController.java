@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.User;
+import com.bigroi.stock.dao.template.UserTemplate;
 
 @Controller
 public class RenderingController {
@@ -76,7 +77,7 @@ public class RenderingController {
 	}
 
 	private User getUser(String login, String password) {
-		// TODO «¿√À”ÿ ¿
+		// return UserTemplate.getLoginPassword(login, password);
 		if ("Admin".equals(login) && "1".equals(password)) {
 			User user = new User();
 			user.setLogin(login);
