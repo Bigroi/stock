@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="#" method="post">
+<p>${message}</p>
+<p>Для проверки: Admin - 1</p>
+<form action="Authenticate.spr" method="post">
 		Login:<input name="login"><br> 
 		Password:<input type="password" name="password"><br> 
 			<input type="submit" value="LOGIN">

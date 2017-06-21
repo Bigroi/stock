@@ -7,7 +7,7 @@
 <title>Welcome page</title>
 </head>
 <body>
-   <p> WELCOME !!!</p>
+   <p> WELCOME ! ${login}</p>
    <p><a href="Login.spr">LOGIN</a> </p>
     <p><a href="Registration.spr">Registration</a> </p>
 </body>
