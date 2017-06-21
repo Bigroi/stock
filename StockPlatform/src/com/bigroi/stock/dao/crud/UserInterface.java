@@ -1,4 +1,5 @@
-/*package com.bigroi.stock.dao.crud;
+package com.bigroi.stock.dao.crud;
+
 
 import java.util.List;
 
@@ -17,4 +18,3 @@ public interface UserInterface {
 
 	public void add(User user) throws DaoExeptions;
 }
-*/
