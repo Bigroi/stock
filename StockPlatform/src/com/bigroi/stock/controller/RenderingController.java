@@ -8,8 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class RenderingController {
 	
 	@RequestMapping("/Index.spr")
-	public ModelAndView goToWelcome(){
-		return new ModelAndView("welcome");
-		
+	public ModelAndView goToWelcomePage(){
+		return new ModelAndView("welcome");		
+	}
+	
+	@RequestMapping("/Login.spr")
+	public ModelAndView goToLoginPage(){
+		return new ModelAndView("login");		
 	}
 }

@@ -7,6 +7,7 @@
 <title>Welcome page</title>
 </head>
 <body>
-    WELCOME !!!
+   <p> WELCOME !!!</p>
+   <p><a href="Login.spr">LOGIN</a> </p>
 </body>
 </html>
