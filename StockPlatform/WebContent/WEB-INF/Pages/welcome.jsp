@@ -8,7 +8,7 @@
 </head>
 <body>
    <p> WELCOME !!! ${user.login}</p>
-   <p><a href="Login.spr">LOGIN</a> </p>
-    <p><a href="Registration.spr">Registration</a> </p>
+   <p><a href="LoginPage.spr">LOGIN</a> </p>
+    <p><a href="RegistrationPage.spr">Registration</a> </p>
 </body>
 </html>

@@ -14,15 +14,15 @@ public class RenderingController {
 
 	@RequestMapping("/Index.spr")
 	public ModelAndView goToWelcomePage() {
-			return new ModelAndView("welcome");
+		return new ModelAndView("welcome");
 	}
 
-	@RequestMapping("/Login.spr")
+	@RequestMapping("/LoginPage.spr")
 	public ModelAndView goToLoginPage(String message) {
 		return new ModelAndView("login", "message", message);
 	}
 
-	@RequestMapping("/Registration.spr")
+	@RequestMapping("/RegistrationPage.spr")
 	public ModelAndView goToRegistrationPage() {
 		return new ModelAndView("registration");
 	}
@@ -41,6 +41,40 @@ public class RenderingController {
 
 	}
 
+	@RequestMapping("/Registation.spr")
+	public ModelAndView registration(@RequestParam("login") String login, 
+			@RequestParam("password") String password,
+			@RequestParam("passwordRepeat") String passwordRepeat, 
+			@RequestParam("name") String name,
+			@RequestParam("email") String email, 
+			@RequestParam("phone") String phone,
+			@RequestParam("regNumber") String regNumber, 
+			@RequestParam("country") String country,
+			@RequestParam("city") String city) {
+				
+		if (getUser(login) != null) {
+			return new ModelAndView("registration","message", "Login is used" );
+		}
+		if (!password.equals(passwordRepeat)) {
+			return new ModelAndView("registration","message", "Passwords do not match" );		
+		}
+		//TODO Сохранение компании(и юзера) в базу
+		return new ModelAndView("welcome");
+	}
+
+	private User getUser(String login) {
+		// TODO ЗАГЛУШКА
+		if ("Admin".equals(login)) {
+			User user = new User();
+			user.setLogin("Admin");
+			user.setPassword("1");
+			return user;
+		} else {
+			return null;
+		}
+
+	}
+
 	private User getUser(String login, String password) {
 		// TODO ЗАГЛУШКА
 		if ("Admin".equals(login) && "1".equals(password)) {
@@ -52,4 +86,5 @@ public class RenderingController {
 			return null;
 		}
 	}
+
 }

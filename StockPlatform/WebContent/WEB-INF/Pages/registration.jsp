@@ -9,13 +9,14 @@
 <link href="Style/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<form action="#" method="post">
+	<p>${message}</p>
+	<form action="Registation.spr" method="post">
 	
 		 Login:<input name="login"><br> 
 		 Password:<input type="password" name="password"><br> 
 		 Repeat Password:<input type="password" name="passwordRepeat"><br> 
 		
-		 name <input name="fName" ><br>
+		 name <input name="name" ><br>
 		 email <input name="email" ><br>
 		 phone <input name="phone" ><br>
 		 reg_number <input name="regNumber" ><br>
@@ -24,7 +25,7 @@
 		
 		
 		
-		<input type="submit" value="LOGIN">
+		<input type="submit" value="Save">
 
 	</form>
 
