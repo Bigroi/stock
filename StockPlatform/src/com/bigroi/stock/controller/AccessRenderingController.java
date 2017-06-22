@@ -11,22 +11,7 @@ import com.bigroi.stock.bean.User;
 import com.bigroi.stock.dao.DaoFactory;
 
 @Controller
-public class RenderingController {
-
-	@RequestMapping("/Index.spr")
-	public ModelAndView goToWelcomePage() {
-		return new ModelAndView("welcome");
-	}
-
-	@RequestMapping("/LoginPage.spr")
-	public ModelAndView goToLoginPage(String message) {
-		return new ModelAndView("login", "message", message);
-	}
-
-	@RequestMapping("/RegistrationPage.spr")
-	public ModelAndView goToRegistrationPage() {
-		return new ModelAndView("registration");
-	}
+public class AccessRenderingController {
 
 	@RequestMapping("/Authenticate.spr")
 	public ModelAndView Authenticate(@RequestParam("login") String login, @RequestParam("password") String password,
@@ -35,11 +20,10 @@ public class RenderingController {
 		user = getUser(login, password);
 		if (user != null) {
 			session.setAttribute("user", user);
-			return goToWelcomePage();
+			return new ModelAndView("welcome");
 		} else {
-			return goToLoginPage("Wrong password");
+			return new ModelAndView("login", "message", "Wrong password");
 		}
-
 	}
 
 	@RequestMapping("/Registation.spr")
@@ -66,7 +50,6 @@ public class RenderingController {
 
 	private User getUser(String login) {
 		return DaoFactory.getUserDao().getByLogin(login);
-		// TODO «¿√À”ÿ ¿
 //		if ("Admin".equals(login)) {
 //			User user = new User();
 //			user.setLogin("Admin");
@@ -75,7 +58,6 @@ public class RenderingController {
 //		} else {
 //			return null;
 //		}
-
 	}
 
 	private User getUser(String login, String password) {
@@ -89,5 +71,4 @@ public class RenderingController {
 //			return null;
 //		}
 	}
-
 }

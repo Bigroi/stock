@@ -6,7 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
-		${user.login}
+<body>		
+		${datasourse.url}<br>
+		${datasourse.username}<br>
+		${datasourse.password}<br>
 </body>
 </html>
