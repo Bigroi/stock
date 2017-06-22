@@ -16,9 +16,9 @@
 		
 		description <input name="description" value="${lot.description}"><br>
 		product <input name="product" value="${lot.product}"><br>
-		min_price
-	    long saler
-	    Date exp_date
+		min_price  <input name="min_price" value="${lot.min_price}"><br>
+	    saler  <input name="saler" value="${lot.saler}"><br>
+	    exp_date  <input name="exp_date" value="${lot.exp_date}"><br>
 		
 
 		<input type="submit" name="save" value="SAVE"><br> 
