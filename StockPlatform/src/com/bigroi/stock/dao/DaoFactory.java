@@ -9,6 +9,10 @@ public class DaoFactory {
 	public static UserDao getUserDao(){
 		return (UserDao) CONTEX.getBean("userDao");
 	}
+	
+	public static ProductDao getProductDao(){
+		return (ProductDao) CONTEX.getBean("productDao");
+	}
 
 	public static ApplicationContext getContext() {
 		return CONTEX;

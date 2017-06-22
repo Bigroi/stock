@@ -20,20 +20,17 @@ import com.mysql.jdbc.Statement;
 
 public class UserDaoImpl implements UserDao {
 
-	private static final String GET_USER_BY_LOGIN = "SELECT id, login, password FROM user " 
-	        + "WHERE login = ?";
+	private static final String GET_USER_BY_LOGIN = "SELECT id, login, password FROM user " + "WHERE login = ?";
 
 	private static final String GET_ALL_USERS = "SELECT id, login, password FROM user";
 
 	private static final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT id, login, password FROM user "
 			+ "WHERE login = ? AND password = ?";
-	private static final String ADD_USERS_BY_ID = "INSERT INTO user (id,login,password) "
-			+ "VALUES (?,?,?)";
-	
+	private static final String ADD_USERS_BY_ID = "INSERT INTO user (id,login,password) " + "VALUES (?,?,?)";
+
 	private static final String DELETE_USERS_BY_ID = "DELETE FROM user WHERE id = ?";
-	
-	private static final String UPDATE_USERS_BY_ID = "UPDATE user SET id = ?, login = ?, password = ? "
-			+ "WHERE id= ?";
+
+	private static final String UPDATE_USERS_BY_ID = "UPDATE user SET id = ?, login = ?, password = ? " + "WHERE id= ?";
 
 	private DataSource datasource;
 
@@ -92,16 +89,16 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void delete(Long id) throws DaoException {
+	public void delete(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(DELETE_USERS_BY_ID,id);
-		
+		template.update(DELETE_USERS_BY_ID, id);
+
 	}
 
 	@Override
 	public void update(long id, User user) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_USERS_BY_ID,user.getId(),user.getLogin(),user.getPassword(),id);
+		template.update(UPDATE_USERS_BY_ID, user.getId(), user.getLogin(), user.getPassword(), id);
 	}
-	
+
 }
