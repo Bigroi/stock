@@ -11,7 +11,7 @@
 		
 		<input type="hidden" name="id" value="${user.id}">
 		
-		 name <input name="тame" ><br>
+		 name <input name="name" ><br>
 		 email <input name="email" ><br>
 		 phone <input name="phone" ><br>
 		 reg_number <input name="regNumber" ><br>
@@ -25,8 +25,8 @@
 	<input type="button" name="back" value="BACK" onclick="document.location = '# ">
 	
 	 <ul>
-        <li><a href="MyLotList.spr">MyLotList</a></li><br>
-        <li><a href="MyAplicatioList.spr">MyAplicatioList</a></li><br>
+        <li><a href="MyLotList.spr">MyLotList</a></li>
+        <li><a href="MyAplicatioList.spr">MyAplicatioList</a></li>
 	</ul>
 </body>
 </html> 

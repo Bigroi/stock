@@ -14,7 +14,13 @@ import com.bigroi.stock.dao.DaoFactory;
 public class TestControler {
 		
 	@RequestMapping("/test.spr")
-	public ModelAndView listGroups() {
+	public ModelAndView test() {
+		DriverManagerDataSource datasourse =  (DriverManagerDataSource) DaoFactory.getContext().getBean("datasource");
+		return new ModelAndView("test", "datasourse", datasourse);
+	}
+	
+	@RequestMapping("/testAuth.spr")
+	public ModelAndView authTesr() {
 		DriverManagerDataSource datasourse =  (DriverManagerDataSource) DaoFactory.getContext().getBean("datasource");
 		return new ModelAndView("test", "datasourse", datasourse);
 	}
