@@ -21,7 +21,6 @@ public class TestControler {
 	
 	@RequestMapping("/testAuth.spr")
 	public ModelAndView authTesr() {
-		DriverManagerDataSource datasourse =  (DriverManagerDataSource) DaoFactory.getContext().getBean("datasource");
-		return new ModelAndView("test", "datasourse", datasourse);
+		return test();
 	}
 }
