@@ -6,7 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bigroi.stock.bean.User;
-import com.bigroi.stock.dao.DaoExeptions;
+import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
 public class UserUpdate {
@@ -20,7 +20,7 @@ public class UserUpdate {
 		user.setPassword("123");
 	}
 	@Test
-	public void update() throws DaoExeptions {
+	public void update() throws DaoException {
 	
 	DaoFactory.getUserDao().update(user.getId(),user);
 		Assert.assertNotNull(user);

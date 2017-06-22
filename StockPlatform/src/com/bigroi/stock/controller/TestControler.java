@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.bigroi.stock.bean.User;
-import com.bigroi.stock.dao.DaoExeptions;
+import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
 
@@ -27,7 +27,7 @@ public class TestControler {
 		return test();
 	}
 	@RequestMapping("/getAllUser.spr")
-	public ModelAndView getAll() throws DaoExeptions{
+	public ModelAndView getAll() throws DaoException{
 		List<User> users =DaoFactory.getUserDao().getAllUser();
 		System.out.println(users);
 		return new ModelAndView("test","UserofList",users);

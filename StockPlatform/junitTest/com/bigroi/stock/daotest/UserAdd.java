@@ -6,7 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bigroi.stock.bean.User;
-import com.bigroi.stock.dao.DaoExeptions;
+import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
 public class UserAdd {
@@ -22,12 +22,12 @@ public class UserAdd {
 	}
 	
 	@Test
-	public void add() throws DaoExeptions{
+	public void add() throws DaoException{
 		DaoFactory.getUserDao().add(user);
 		Assert.assertNotNull(user);
 	}
 	@After
-	public void delete()throws DaoExeptions{
+	public void delete()throws DaoException{
 		DaoFactory.getUserDao().delete(user.getId());
 	}
 }

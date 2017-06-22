@@ -14,7 +14,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.bigroi.stock.bean.User;
-import com.bigroi.stock.dao.DaoExeptions;
+import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserDao;
 import com.mysql.jdbc.Statement;
 
@@ -51,7 +51,7 @@ public class UserDaoImpl implements UserDao {
 		return users;
 	}
 
-	public User getByLoginAndPassword(String login, String password) throws DaoExeptions {
+	public User getByLoginAndPassword(String login, String password) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<User> users = template.query(GET_USER_BY_LOGIN_AND_PASSWORD, new BeanPropertyRowMapper<User>(User.class),
 				login, password);
@@ -63,7 +63,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User getByLogin(String login) throws DaoExeptions {
+	public User getByLogin(String login) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<User> users = template.query(GET_USER_BY_LOGIN, new BeanPropertyRowMapper<User>(User.class), login);
 		if (users.size() == 0) {
@@ -74,7 +74,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void add(User user) throws DaoExeptions {
+	public void add(User user) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -92,14 +92,14 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void delete(Long id) throws DaoExeptions {
+	public void delete(Long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(DELETE_USERS_BY_ID,id);
 		
 	}
 
 	@Override
-	public void update(long id, User user) throws DaoExeptions {
+	public void update(long id, User user) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(UPDATE_USERS_BY_ID,user.getId(),user.getLogin(),user.getPassword(),id);
 	}

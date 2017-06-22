@@ -14,4 +14,8 @@ public class DaoFactory {
 		return CONTEX;
 	}
 	
+	public static StubDao getStubDao(Class<?> clazz){
+		return new StubDao(clazz);
+	}
+	
 }
