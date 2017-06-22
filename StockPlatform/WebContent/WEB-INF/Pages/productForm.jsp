@@ -13,7 +13,7 @@
 
 	<form action="ProductSave.do">
 	
-		<input type="hidden" <c:set var="Id" value="ProductID" />> <br>
+		<input type="hidden" name="id" value="${product.id}"> <br>
 		
 		name <input name="name" value="${product.name}"><br>
 		
@@ -21,9 +21,9 @@
 		
 
 		<input type="submit" name="save" value="SAVE"><br> 
-		<input type="button" name="back" value="BACK" onclick="document.location = 'ProductList.do'">
+		<input type="button" name="back" value="BACK" onclick="document.location = 'Index.spr'">
 	</form>
-	<form action="welcome.jsp">
+	<form action="Index.spr">
 		<input type="submit" value="Back">
 	</form>
 

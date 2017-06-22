@@ -21,6 +21,4 @@ public class CommonRenderingController {
 	public ModelAndView goToRegistrationPage() {
 		return new ModelAndView("registration");
 	}
-
-	
 }

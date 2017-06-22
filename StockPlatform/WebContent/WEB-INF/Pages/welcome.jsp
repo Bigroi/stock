@@ -9,6 +9,11 @@
 <body>
    <p> WELCOME !!! ${user.login}</p>
    <p><a href="LoginPage.spr">LOGIN</a> </p>
-    <p><a href="RegistrationPage.spr">Registration</a> </p>
-</body>
+   <p><a href="RegistrationPage.spr">Registration</a> </p>
+   
+  <form action="ProductForm.spr">
+		<input type="hidden" name="id" value="-1" />
+		<input type="submit" value="Add product">
+	</form>
+  </body>
 </html>
