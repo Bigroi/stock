@@ -16,7 +16,7 @@ public class UserAdd {
 	@BeforeClass
 	public static void init(){
 		user = new User();
-		user.setId(22);
+		user.setId(26);
 		user.setLogin("evgen");
 		user.setPassword("123");
 	}
@@ -27,7 +27,7 @@ public class UserAdd {
 		Assert.assertNotNull(user);
 	}
 	@After
-	public void delete() throws DaoExeptions{
+	public void delete()throws DaoExeptions{
 		DaoFactory.getUserDao().delete(user.getId());
 	}
 }

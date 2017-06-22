@@ -76,17 +76,19 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void add(User user) throws DaoExeptions {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(ADD_USERS_BY_ID,user.getId(),user.getLogin(),user.getPassword());//vremenno
-		/*KeyHolder keyHolder = new GeneratedKeyHolder();
+		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(ADD_USERS_BY_ID, Statement.RETURN_GENERATED_KEYS);
+				ps.setLong(1, user.getId());
+				ps.setString(2, user.getLogin());
+				ps.setString(3, user.getPassword());
 				return ps;
 			}
 		}, keyHolder);
 		long id = keyHolder.getKey().longValue();
-		user.setId(id);*/
+		user.setId(id);
 	}
 
 	@Override
