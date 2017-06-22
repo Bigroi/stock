@@ -13,4 +13,5 @@ public class DaoFactory {
 	public static ApplicationContext getContext() {
 		return CONTEX;
 	}
+	
 }

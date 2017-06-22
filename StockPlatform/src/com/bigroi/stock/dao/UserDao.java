@@ -9,7 +9,13 @@ public interface UserDao {
 	
 	List<User> getAllUser() throws DaoExeptions;
 
-	User getByLoginAndPassword(String login, String password);
+	User getByLoginAndPassword(String login, String password) throws DaoExeptions;
 
-	User getByLogin(String login);
+	User getByLogin(String login) throws DaoExeptions;
+	
+	void add(User user)throws DaoExeptions;
+	
+	void delete (Long id) throws DaoExeptions;
+	
+	void update(long id, User user) throws DaoExeptions;
 }

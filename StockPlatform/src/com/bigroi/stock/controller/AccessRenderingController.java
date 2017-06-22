@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.User;
+import com.bigroi.stock.dao.DaoExeptions;
 import com.bigroi.stock.dao.DaoFactory;
 
 @Controller
@@ -15,7 +16,7 @@ public class AccessRenderingController {
 
 	@RequestMapping("/Authenticate.spr")
 	public ModelAndView Authenticate(@RequestParam("login") String login, @RequestParam("password") String password,
-			HttpSession session) {
+			HttpSession session) throws DaoExeptions {
 		User user;
 		user = getUser(login, password);
 		if (user != null) {
@@ -36,7 +37,7 @@ public class AccessRenderingController {
 			@RequestParam("phone") String phone,
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
-			@RequestParam("city") String city) {
+			@RequestParam("city") String city) throws DaoExeptions {
 				
 		if (getUser(login) != null) {
 			return new ModelAndView("registration","message", "Login is used" );
@@ -48,8 +49,9 @@ public class AccessRenderingController {
 		return new ModelAndView("welcome");
 	}
 
-	private User getUser(String login) {
+	private User getUser(String login) throws DaoExeptions {
 		return DaoFactory.getUserDao().getByLogin(login);
+		
 //		if ("Admin".equals(login)) {
 //			User user = new User();
 //			user.setLogin("Admin");
@@ -60,7 +62,7 @@ public class AccessRenderingController {
 //		}
 	}
 
-	private User getUser(String login, String password) {
+	private User getUser(String login, String password) throws DaoExeptions {
 		return DaoFactory.getUserDao().getByLoginAndPassword(login, password);
 //		if ("Admin".equals(login) && "1".equals(password)) {
 //			User user = new User();

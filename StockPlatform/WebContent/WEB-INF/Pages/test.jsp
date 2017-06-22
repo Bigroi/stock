@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,5 +11,14 @@
 		${datasourse.url}<br>
 		${datasourse.username}<br>
 		${datasourse.password}<br>
+	<!-- -------------------------------------------------------------	 -->
+		<h3>Test  getAllUser() </h3>
+		<c:forEach var="user" items="${UserofList}">
+		userID = ${user.id },
+		userLogin = ${user.login },
+		userPas = ${user.password }<br>
+		</c:forEach>
+	<!-- -------------------------------------------------------------	 -->
+		
 </body>
 </html>
