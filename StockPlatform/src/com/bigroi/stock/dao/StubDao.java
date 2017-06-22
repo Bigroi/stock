@@ -3,8 +3,6 @@ package com.bigroi.stock.dao;
 import java.lang.reflect.Field;
 import java.util.Random;
 
-import com.bigroi.stock.bean.User;
-
 public class StubDao {
 
 	private static final Random RANDOM = new Random();
