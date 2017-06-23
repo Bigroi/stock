@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.User;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
@@ -18,7 +19,7 @@ public class AccessRenderingController {
 	public ModelAndView Authenticate(@RequestParam("login") String login, @RequestParam("password") String password,
 			HttpSession session) throws DaoException {
 		User user;
-		user = getUser(login, password);
+		user = DaoFactory.getUserDao().getByLoginAndPassword(login, password);
 		if (user != null) {
 			session.setAttribute("user", user);
 			return new ModelAndView("welcome");
@@ -34,7 +35,7 @@ public class AccessRenderingController {
 			@RequestParam("passwordRepeat") String passwordRepeat, 
 			@RequestParam("name") String name,
 			@RequestParam("email") String email, 
-			@RequestParam("phone") String phone,
+			@RequestParam("phone") int phone,
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
 			@RequestParam("city") String city) throws DaoException {
@@ -45,32 +46,24 @@ public class AccessRenderingController {
 		if (!password.equals(passwordRepeat)) {
 			return new ModelAndView("registration","message", "Passwords do not match" );		
 		}
-		//TODO Сохранение компании(и юзера) в базу
+		//TODO Здесь будет одна транзакция
+		User user = new User();
+		user.setLogin(login);
+		user.setPassword(password);
+		DaoFactory.getUserDao().add(user);
+		Company company = new Company();
+		company.setUserId(user.getId());
+		company.setName(name);
+		company.setEmail(email);
+		company.setPhone(phone);
+		company.setRegNumber(regNumber);
+		company.setCountry(country);
+		company.setCity(city);
+		DaoFactory.getCompanyDao().add(company);
 		return new ModelAndView("welcome");
 	}
 
 	private User getUser(String login) throws DaoException {
 		return DaoFactory.getUserDao().getByLogin(login);
-		
-//		if ("Admin".equals(login)) {
-//			User user = new User();
-//			user.setLogin("Admin");
-//			user.setPassword("1");
-//			return user;
-//		} else {
-//			return null;
-//		}
-	}
-
-	private User getUser(String login, String password) throws DaoException {
-		return DaoFactory.getUserDao().getByLoginAndPassword(login, password);
-//		if ("Admin".equals(login) && "1".equals(password)) {
-//			User user = new User();
-//			user.setLogin(login);
-//			user.setPassword(password);
-//			return user;
-//		} else {
-//			return null;
-//		}
 	}
 }

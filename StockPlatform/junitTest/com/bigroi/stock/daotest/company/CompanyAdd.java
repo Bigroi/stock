@@ -1,6 +1,5 @@
 package com.bigroi.stock.daotest.company;
 
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
