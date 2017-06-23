@@ -16,13 +16,12 @@ import com.bigroi.stock.dao.DaoFactory;
 public class AccessRenderingController {
 
 	@RequestMapping("/Authenticate.spr")
-	public ModelAndView Authenticate(@RequestParam("login") String login, @RequestParam("password") String password,
+	public ModelAndView authenticate(@RequestParam("login") String login, @RequestParam("password") String password,
 			HttpSession session) throws DaoException {
-		User user;
-		user = DaoFactory.getUserDao().getByLoginAndPassword(login, password);
+		User user = DaoFactory.getUserDao().getByLoginAndPassword(login, password);
 		if (user != null) {
 			session.setAttribute("user", user);
-			return new ModelAndView("welcome");
+			return new ModelAndView("welcome", "user", user);
 		} else {
 			return new ModelAndView("login", "message", "Wrong password");
 		}
@@ -38,7 +37,8 @@ public class AccessRenderingController {
 			@RequestParam("phone") int phone,
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
-			@RequestParam("city") String city) throws DaoException {
+			@RequestParam("city") String city,
+			HttpSession session) throws DaoException {
 				
 		if (getUser(login) != null) {
 			return new ModelAndView("registration","message", "Login is used" );
@@ -60,10 +60,14 @@ public class AccessRenderingController {
 		company.setCountry(country);
 		company.setCity(city);
 		DaoFactory.getCompanyDao().add(company);
-		return new ModelAndView("welcome");
+		session.setAttribute("user", user);
+		return new ModelAndView("welcome", "user", user);
 	}
 
 	private User getUser(String login) throws DaoException {
 		return DaoFactory.getUserDao().getByLogin(login);
 	}
+	
+	
+	
 }
