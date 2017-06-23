@@ -36,5 +36,9 @@
 	<bean id="productDao" class="com.bigroi.stock.dao.db.ProductDaoImpl">
 		<property name="datasource" ref="datasource"></property>
 	</bean>
+	
+	<bean id="companyDao" class="com.bigroi.stock.dao.db.CompanyDaoImpl">
+		<property name="datasource" ref="datasource"></property>
+	</bean>
 
 </beans>
