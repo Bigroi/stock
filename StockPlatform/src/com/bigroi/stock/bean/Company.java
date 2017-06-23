@@ -5,7 +5,7 @@ public class Company {
 	private long id;
 	private String name;
 	private String email;
-	private int phone;
+	private String phone;
 	private String regNumber;
 	private String country;
 	private String city;
@@ -35,11 +35,11 @@ public class Company {
 		this.email = email;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

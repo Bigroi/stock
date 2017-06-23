@@ -17,7 +17,7 @@ private static Company company;
 		company.setId(13);
 		company.setName("JAVA");
 		company.setEmail("emailJAVA");
-		company.setPhone(165);
+		company.setPhone("165");
 		company.setRegNumber("JAVA");
 		company.setCountry("JAVA");
 		company.setCity("JAVA");

@@ -17,7 +17,7 @@ private static Company company;
 		company.setId(4);
 		company.setName("eee");
 		company.setEmail("email");
-		company.setPhone(165);
+		company.setPhone("165");
 		company.setRegNumber("sdfsdf");
 		company.setCountry("bel");
 		company.setCity("min");

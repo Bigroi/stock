@@ -55,7 +55,7 @@ public class AccessRenderingController {
 		company.setUserId(user.getId());
 		company.setName(name);
 		company.setEmail(email);
-		company.setPhone(phone);
+		//TODO company.setPhone(phone);
 		company.setRegNumber(regNumber);
 		company.setCountry(country);
 		company.setCity(city);

@@ -62,7 +62,7 @@ public class CompanyDaoImpl implements CompanyDao {
 				ps.setLong(1, company.getId());
 				ps.setString(2, company.getName());
 				ps.setString(3, company.getEmail());
-				ps.setInt(4, company.getPhone());
+				ps.setString(4, company.getPhone());
 				ps.setString(5, company.getRegNumber());
 				ps.setString(6, company.getCountry());
 				ps.setString(7, company.getCity());
