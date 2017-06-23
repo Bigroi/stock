@@ -10,6 +10,7 @@
    <p> WELCOME !!! ${user.login}</p>
    <p><a href="LoginPage.spr">LOGIN</a> </p>
    <p><a href="RegistrationPage.spr">Registration</a> </p>
+   <p><a href="ProductListPage.spr">Proluct list</a> </p>
    
   <form action="ProductForm.spr">
 		<input type="hidden" name="id" value="-1" />

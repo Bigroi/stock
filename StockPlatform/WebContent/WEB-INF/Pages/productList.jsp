@@ -10,7 +10,7 @@
 <title>Product list</title>
 </head>
 <body>
-	<table>
+	<table border="1">
 		<thead>
 			<tr>
 				<td>name</td>
@@ -20,17 +20,22 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="product" items="${ProductsofList}">
+			<c:forEach var="product" items="${listOfProducts}">
 				<tr>
 					<td>${product.name}</td>
 					<td>${product.description}</td>
-					<td>${product.lotcount}</td>
-					<td>${product.applicationcount}</td>
+	<!--НЕСООТВЕТСТВИЕ с бином и базой 			 -->	
+					<td><%-- ${product.lotСount} --%></td>
+					<td><%-- ${product.applicationСount} --%></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<form action="welcome.jsp">
+	 <form action="ProductForm.spr">
+		<input type="hidden" name="id" value="-1" />
+		<input type="submit" value="Add product">
+	</form>
+	<form action="Index.spr">
 		<input type="submit" value="Back">
 	</form>
 </body>

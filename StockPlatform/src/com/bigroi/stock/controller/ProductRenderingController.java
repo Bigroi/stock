@@ -1,5 +1,7 @@
 package com.bigroi.stock.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +46,13 @@ public class ProductRenderingController {
 			DaoFactory.getProductDao().update(product.getId(), product);
 		}
 		return productEdit(id);
+	}
+	
+	@RequestMapping("/ProductListPage.spr")
+	public ModelAndView listOfProducts() throws DaoException {
+//TODO  Õ≈—ŒŒ“¬≈“—“¬»≈ Ò ProductForm.jsp -- product.lot—ount Ë product.application—ount		
+		List<Product> products = DaoFactory.getProductDao().getAllProduct();
+		return new ModelAndView("productList", "listOfProducts", products);
 	}
 
 }
