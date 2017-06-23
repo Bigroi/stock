@@ -8,7 +8,6 @@
 </head>
 <body>
 <p>${message}</p>
-<p>Для проверки: Admin - 1</p>
 <form action="Authenticate.spr" method="post">
 		Login:<input name="login"><br> 
 		Password:<input type="password" name="password"><br> 

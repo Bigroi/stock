@@ -8,8 +8,8 @@
 </head>
 <body>
 <form action="#" method="post">
-		
-		<input type="hidden" name="id" value="${user.id}">
+		<p>${user.login}</p>
+		<%-- <input type="hidden" name="id" value="${user.id}"> --%>
 		
 		 name <input name="name" ><br>
 		 email <input name="email" ><br>
@@ -22,7 +22,7 @@
 
 	</form>
 	
-	<input type="button" name="back" value="BACK" onclick="document.location = '# ">
+	<input type="button" name="back" value="BACK" onclick="document.location = 'Index.spr'">
 	
 	 <ul>
         <li><a href="MyLotList.spr">MyLotList</a></li>
