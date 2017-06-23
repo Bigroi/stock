@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Product;
+import com.bigroi.stock.dao.DaoException;
+import com.bigroi.stock.dao.DaoFactory;
 
 @Controller
 public class ProductRenderingController {
@@ -34,18 +36,17 @@ public class ProductRenderingController {
 	@RequestMapping("/ProductSave.spr")
 	public ModelAndView productSave(@RequestParam("id") long id, 
 			@RequestParam("name") String name,			
-			@RequestParam("description") String description) {
+			@RequestParam("description") String description) throws DaoException {
 
 		Product product = new Product();
 		product.setId(id);
 		product.setName(name);
 		product.setDescription(description);
-		if ((id == 0) || (id == -1)) {
-//TODO ЗАГЛУШКА Добавление продукта в базу и возврат id добавленного продукта
-			id = 5; //Заглушка		
-//end			
+		if (id == -1) {
+	DaoFactory.getProductDao().add(product);
+			id = product.getId();
 		} else {
-//TODO Обновление (Update) продукта в базе
+			DaoFactory.getProductDao().update(product.getId(), product);
 		}
 		return productEdit(id);
 	}
