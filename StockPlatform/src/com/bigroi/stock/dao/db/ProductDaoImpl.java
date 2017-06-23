@@ -29,6 +29,8 @@ public class ProductDaoImpl implements ProductDao {
 	private static final String UPDATE_PRODUCTS_BY_ID = "UPDATE product SET id = ?, name = ?,"
 			+ " description = ? WHERE id = ?";
 
+	private static final String SELECT_PRODUCTS_BY_ID = "SELECT *  FROM product WHERE id = ?";
+
 	private DataSource datasource;
 
 	public DataSource getDatasource() {
@@ -74,5 +76,13 @@ public class ProductDaoImpl implements ProductDao {
 	public void update(long id, Product product) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(UPDATE_PRODUCTS_BY_ID, product.getId(), product.getName(), product.getDescription(), id);
+	}
+
+	@Override
+	public Product getById(long id) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		Product product = template.queryForObject(SELECT_PRODUCTS_BY_ID, new Object[] { id },
+				new BeanPropertyRowMapper<Product>(Product.class));
+		return product;
 	}
 }

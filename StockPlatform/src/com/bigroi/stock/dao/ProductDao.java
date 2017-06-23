@@ -13,5 +13,6 @@ public interface ProductDao {
 	void delete(long id) throws DaoException;
 	
 	void update(long id, Product product) throws DaoException;
-
+	
+	Product getById(long id) throws DaoException;
 }
