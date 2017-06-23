@@ -4,9 +4,9 @@ public class Application {
 
 	private long id;
 	private String description;
-	private long product;
+	private long productId;
 	private double maxPrice;
-	private long customer;
+	private long customerId;
 
 	public long getId() {
 		return id;
@@ -24,14 +24,7 @@ public class Application {
 		this.description = description;
 	}
 
-	public long getProduct() {
-		return product;
-	}
-
-	public void setProduct(long product) {
-		this.product = product;
-	}
-
+	
 	public double getMaxPrice() {
 		return maxPrice;
 	}
@@ -40,18 +33,28 @@ public class Application {
 		this.maxPrice = maxPrice;
 	}
 
-	public long getCustomer() {
-		return customer;
+	
+
+	public long getProductId() {
+		return productId;
 	}
 
-	public void setCustomer(long customer) {
-		this.customer = customer;
+	public void setProductId(long productId) {
+		this.productId = productId;
+	}
+
+	public long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
 	}
 
 	@Override
 	public String toString() {
-		return "Application [id=" + id + ", description=" + description + ", product=" + product + ", maxPrice="
-				+ maxPrice + ", customer=" + customer + "]";
+		return "Application [id=" + id + ", description=" + description + ", product=" + productId + ", maxPrice="
+				+ maxPrice + ", customer=" + customerId + "]";
 	}
 
 }
