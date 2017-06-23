@@ -5,6 +5,7 @@ public class Blacklist {
 	private long id;
 	private  long appId;
 	private long lotId;
+	
 	public long getId() {
 		return id;
 	}

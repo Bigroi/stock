@@ -6,9 +6,9 @@ public class Lot {
 	
 	private long id;
 	private String description;
-	private long poduct;
+	private long poductId;
 	private double min_price;
-	private long saler;
+	private long salerId;
 	private Date exp_date;
 
 	public long getId() {
@@ -27,28 +27,12 @@ public class Lot {
 		this.description = description;
 	}
 
-	public long getPoduct() {
-		return poduct;
-	}
-
-	public void setPoduct(long poduct) {
-		this.poduct = poduct;
-	}
-
 	public double getMin_price() {
 		return min_price;
 	}
 
 	public void setMin_price(double min_price) {
 		this.min_price = min_price;
-	}
-
-	public long getSaler() {
-		return saler;
-	}
-
-	public void setSaler(long saler) {
-		this.saler = saler;
 	}
 
 	public Date getExp_date() {
@@ -59,10 +43,26 @@ public class Lot {
 		this.exp_date = exp_date;
 	}
 
+	public long getPoductId() {
+		return poductId;
+	}
+
+	public void setPoductId(long poductId) {
+		this.poductId = poductId;
+	}
+
+	public long getSalerId() {
+		return salerId;
+	}
+
+	public void setSalerId(long salerId) {
+		this.salerId = salerId;
+	}
+
 	@Override
 	public String toString() {
-		return "Lot [id=" + id + ", description=" + description + ", poduct=" + poduct + ", min_price=" + min_price
-				+ ", saler=" + saler + ", exp_date=" + exp_date + "]";
+		return "Lot [id=" + id + ", description=" + description + ", poduct=" + poductId + ", min_price=" + min_price
+				+ ", saler=" + salerId + ", exp_date=" + exp_date + "]";
 	}
 
 }
