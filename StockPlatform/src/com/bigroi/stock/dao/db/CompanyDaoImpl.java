@@ -19,19 +19,19 @@ import com.mysql.jdbc.Statement;
 
 public class CompanyDaoImpl implements CompanyDao {
 
-	private static final String SELECT_COMPANY_BY_ID = "SELECT id,name,email,phone,"
-			+ "reg_number,country,city,status FROM company WHERE id = ?";
+	private static final String SELECT_COMPANY_BY_ID = "SELECT id, name, email, phone,"
+			+ "reg_number, country, city, status FROM company WHERE id = ?";
 
 	private static final String DELETE_COMPANY_BY_ID = "DELETE FROM company " 
 	        + "WHERE id = ?";
 
 	private static final String ADD_COMPANY_BY_ID = "INSERT INTO company"
-			+ " (id,name,email,phone,reg_number,country,city,status) " 
-			+ "VALUES(?,?,?,?,?,?,?,?)";
+			+ " (id, name, email, phone, reg_number, country, city,status) " 
+			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String UPDATE_COMPANY_BY_ID = "UPDATE company SET "
-			+ "id=?,name=?,email=?,phone=?,reg_number=?,country=?,city=?,status=?" 
-			+ " WHERE id =?";
+			+ "id = ?, name = ?,email = ?, phone = ?, reg_number = ?, "
+			+ "country = ?, city = ?, status = ? WHERE id = ?";
 
 	private DataSource datasource;
 

@@ -20,16 +20,18 @@ import com.mysql.jdbc.Statement;
 
 public class ProductDaoImpl implements ProductDao {
 
-	private static final String GET_ALL_PRODUCTS = "SELECT * FROM product";
+	private static final String GET_ALL_PRODUCTS = "SELECT id, name, description FROM product";
 
-	private static final String ADD_PRODUCTS_BY_ID = "INSERT INTO product (id,name,description) " + "VALUES (?,?,?)";
+	private static final String ADD_PRODUCTS_BY_ID = "INSERT INTO product (id, name, description) " 
+	        + "VALUES (?, ?, ?)";
 
 	private static final String DELETE_PRODUCTS_BY_ID = "DELETE FROM product WHERE id = ?";
 
 	private static final String UPDATE_PRODUCTS_BY_ID = "UPDATE product SET id = ?, name = ?,"
 			+ " description = ? WHERE id = ?";
 
-	private static final String SELECT_PRODUCTS_BY_ID = "SELECT *  FROM product WHERE id = ?";
+	private static final String SELECT_PRODUCTS_BY_ID = "SELECT id, name, description "
+			+ " FROM product WHERE id = ?";
 
 	private DataSource datasource;
 

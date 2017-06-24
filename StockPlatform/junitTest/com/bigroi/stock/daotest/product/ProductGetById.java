@@ -14,7 +14,7 @@ public class ProductGetById {
 	@BeforeClass
 	public static void init(){
 		product = new Product();
-		product.setId(5);
+		product.setId(1);
 	}
 	@Test
 	public  void getAll() throws DaoException{

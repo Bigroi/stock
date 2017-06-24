@@ -31,8 +31,8 @@ public class UserDaoImpl implements UserDao {
 	private static final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT id, login, password FROM user "
 			+ "WHERE login = ? AND password = ?";
 	
-	private static final String ADD_USERS_BY_ID = "INSERT INTO user (id,login, password, companyId)"
-			+ " VALUES (?, ?, ?,?)";
+	private static final String ADD_USERS_BY_ID = "INSERT INTO user (id, login, password, companyId)"
+			+ " VALUES (?, ?, ?, ?)";
 			
 	private static final String DELETE_USERS_BY_ID = "DELETE FROM user WHERE id = ?";
 
