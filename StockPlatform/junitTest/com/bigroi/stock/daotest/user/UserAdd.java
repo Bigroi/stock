@@ -16,9 +16,10 @@ public class UserAdd {
 	@BeforeClass
 	public static void init(){
 		user = new User();
-		user.setId(26);
+		user.setId(28);
 		user.setLogin("evgen");
 		user.setPassword("123");
+		user.setCompanyId(4);
 	}
 	
 	@Test

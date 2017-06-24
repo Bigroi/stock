@@ -1,7 +1,7 @@
 package com.bigroi.stock.bean;
 
 public class Company {
-	
+
 	private long id;
 	private String name;
 	private String email;
@@ -9,7 +9,7 @@ public class Company {
 	private String regNumber;
 	private String country;
 	private String city;
-	private long userId;
+	private byte status;
 
 	public long getId() {
 		return id;
@@ -67,18 +67,18 @@ public class Company {
 		this.city = city;
 	}
 
-	public long getUserId() {
-		return userId;
+	public byte getStatus() {
+		return status;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setStatus(byte status) {
+		this.status = status;
 	}
 
 	@Override
 	public String toString() {
 		return "Company [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", regNumber="
-				+ regNumber + ", country=" + country + ", city=" + city + ", userId=" + userId + "]";
+				+ regNumber + ", country=" + country + ", city=" + city + ", status=" + status + "]";
 	}
 
 }

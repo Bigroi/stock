@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -19,18 +20,24 @@ import com.bigroi.stock.dao.UserDao;
 import com.mysql.jdbc.Statement;
 
 public class UserDaoImpl implements UserDao {
+	
+	private static final Logger lOG = Logger.getLogger(UserDaoImpl.class);
+	
+	private static final String GET_USER_BY_LOGIN = "SELECT id, login, password, companyId FROM user "
+	        + "WHERE login = ?";
 
-	private static final String GET_USER_BY_LOGIN = "SELECT id, login, password FROM user " + "WHERE login = ?";
-
-	private static final String GET_ALL_USERS = "SELECT id, login, password FROM user";
+	private static final String GET_ALL_USERS = "SELECT id, login, password, companyId FROM user";
 
 	private static final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT id, login, password FROM user "
 			+ "WHERE login = ? AND password = ?";
-	private static final String ADD_USERS_BY_ID = "INSERT INTO user (id,login,password) " + "VALUES (?,?,?)";
-
+	
+	private static final String ADD_USERS_BY_ID = "INSERT INTO user (id,login, password, companyId)"
+			+ " VALUES (?, ?, ?,?)";
+			
 	private static final String DELETE_USERS_BY_ID = "DELETE FROM user WHERE id = ?";
 
-	private static final String UPDATE_USERS_BY_ID = "UPDATE user SET id = ?, login = ?, password = ? " + "WHERE id= ?";
+	private static final String UPDATE_USERS_BY_ID = "UPDATE user SET id = ?, login = ?, password = ?, "
+			+ "companyId = ? WHERE id= ?";
 
 	private DataSource datasource;
 
@@ -45,6 +52,7 @@ public class UserDaoImpl implements UserDao {
 	public List<User> getAllUser() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<User> users = template.query(GET_ALL_USERS, new BeanPropertyRowMapper<User>(User.class));
+		lOG.info(users); //TODO разобраться с log4j
 		return users;
 	}
 
@@ -81,6 +89,7 @@ public class UserDaoImpl implements UserDao {
 				ps.setLong(1, user.getId());
 				ps.setString(2, user.getLogin());
 				ps.setString(3, user.getPassword());
+				ps.setLong(4, user.getCompanyId());
 				return ps;
 			}
 		}, keyHolder);
@@ -98,7 +107,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void update(long id, User user) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_USERS_BY_ID, user.getId(), user.getLogin(), user.getPassword(), id);
+		template.update(UPDATE_USERS_BY_ID, user.getId(), user.getLogin(), user.getPassword(), user.getCompanyId(), id);
 	}
 
 }

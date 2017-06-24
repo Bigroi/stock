@@ -20,18 +20,18 @@ import com.mysql.jdbc.Statement;
 public class CompanyDaoImpl implements CompanyDao {
 
 	private static final String SELECT_COMPANY_BY_ID = "SELECT id,name,email,phone,"
-			+ "reg_number,country,city,user_id  FROM company WHERE id = ?";
+			+ "reg_number,country,city,status FROM company WHERE id = ?";
 
 	private static final String DELETE_COMPANY_BY_ID = "DELETE FROM company " 
 	        + "WHERE id = ?";
 
 	private static final String ADD_COMPANY_BY_ID = "INSERT INTO company"
-			+ " (id,name,email,phone,reg_number,country,city,user_id) " 
+			+ " (id,name,email,phone,reg_number,country,city,status) " 
 			+ "VALUES(?,?,?,?,?,?,?,?)";
 
 	private static final String UPDATE_COMPANY_BY_ID = "UPDATE company SET "
-			+ "id=?,name=?,email=?,phone=?,reg_number=?,country=?,city=?," 
-			+ "user_id=? WHERE id =?";
+			+ "id=?,name=?,email=?,phone=?,reg_number=?,country=?,city=?,status=?" 
+			+ " WHERE id =?";
 
 	private DataSource datasource;
 
@@ -66,7 +66,7 @@ public class CompanyDaoImpl implements CompanyDao {
 				ps.setString(5, company.getRegNumber());
 				ps.setString(6, company.getCountry());
 				ps.setString(7, company.getCity());
-				ps.setLong(8, company.getUserId());
+				ps.setByte(8, company.getStatus());
 				return ps;
 			}
 		}, keyHolder);
@@ -83,9 +83,10 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
 	public void update(long id, Company company) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_COMPANY_BY_ID, company.getId(), company.getName(), company.getEmail(),
-				company.getPhone(), company.getRegNumber(), company.getCountry(), company.getCity(),
-				company.getUserId(), id);
+		template.update(UPDATE_COMPANY_BY_ID, company.getId(), 
+				company.getName(), company.getEmail(),company.getPhone(), 
+				company.getRegNumber(), company.getCountry(), company.getCity(),
+				company.getStatus(), id);
 	}
 
 }

@@ -15,9 +15,10 @@ public class UserUpdate {
 	@BeforeClass
 	public static void init(){
 		user = new User();
-		user.setId(26);
+		user.setId(29);
 		user.setLogin("evgen");
 		user.setPassword("123");
+		user.setCompanyId(4);
 	}
 	@Test
 	public void update() throws DaoException {

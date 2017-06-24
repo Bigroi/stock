@@ -52,7 +52,7 @@ public class AccessRenderingController {
 		user.setPassword(password);
 		DaoFactory.getUserDao().add(user);
 		Company company = new Company();
-		company.setUserId(user.getId());
+		//TODO company.setUserId(user.getId());
 		company.setName(name);
 		company.setEmail(email);
 		//TODO company.setPhone(phone);

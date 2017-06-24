@@ -5,6 +5,7 @@ public class User {
 	private long id;
 	private String login;
 	private String password;
+	private long companyId;
 	
 	public long getId() {
 		return id;
@@ -30,8 +31,17 @@ public class User {
 		this.password = password;
 	}
 	
+	public long getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		this.companyId = companyId;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", login=" + login + ", password=" + password + "]";
+		return "User [id=" + id + ", login=" + login + ", password=" + password + ", companyId=" + companyId + "]";
 	}
+
 }
