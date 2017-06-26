@@ -40,5 +40,9 @@
 	<bean id="companyDao" class="com.bigroi.stock.dao.db.CompanyDaoImpl">
 		<property name="datasource" ref="datasource"></property>
 	</bean>
+	
+	<bean id="lotDao" class="com.bigroi.stock.dao.db.LotDaoImpl">
+		<property name="datasource" ref="datasource"></property>
+	</bean>
 
 </beans>

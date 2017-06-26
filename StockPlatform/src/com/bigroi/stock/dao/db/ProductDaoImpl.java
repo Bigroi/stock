@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -19,6 +20,8 @@ import com.bigroi.stock.dao.ProductDao;
 import com.mysql.jdbc.Statement;
 
 public class ProductDaoImpl implements ProductDao {
+	
+	private static final Logger lOG = Logger.getLogger(ProductDaoImpl.class);
 
 	private static final String GET_ALL_PRODUCTS = "SELECT id, name, description FROM product";
 
@@ -47,6 +50,12 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> getAllProduct() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Product> products = template.query(GET_ALL_PRODUCTS, new BeanPropertyRowMapper<Product>(Product.class));
+		lOG.info(products);
+		//TODO ‰Ó·‡‚ËÎ setLot—ount, setApplication—ount
+		for(int i = 0; i < products.size(); i++){
+			((Product) products).setLot—ount(555);
+			((Product) products).setApplication—ount(777);
+		}
 		return products;
 	}
 

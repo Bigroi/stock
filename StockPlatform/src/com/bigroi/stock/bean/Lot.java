@@ -1,15 +1,36 @@
 package com.bigroi.stock.bean;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Lot {
 	
+	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
+	
 	private long id;
 	private String description;
 	private long poductId;
-	private double min_price;
+	private double minPrice;
 	private long salerId;
-	private Date exp_date;
+	private Date expDate = new Date();
+	private byte status;
+	
+	public Date getDate() {
+		return expDate;
+	}
+	
+	public void setDate(Date expDate) {
+		this.expDate = expDate;
+	}
+	
+	public String getDateStr(){
+		return FORMATTER.format(expDate);
+	}
+	
+	public void setDateStr(String dateStr) throws ParseException{
+		expDate = FORMATTER.parse(dateStr);
+	}
 
 	public long getId() {
 		return id;
@@ -27,28 +48,20 @@ public class Lot {
 		this.description = description;
 	}
 
-	public double getMin_price() {
-		return min_price;
-	}
-
-	public void setMin_price(double min_price) {
-		this.min_price = min_price;
-	}
-
-	public Date getExp_date() {
-		return exp_date;
-	}
-
-	public void setExp_date(Date exp_date) {
-		this.exp_date = exp_date;
-	}
-
 	public long getPoductId() {
 		return poductId;
 	}
 
 	public void setPoductId(long poductId) {
 		this.poductId = poductId;
+	}
+
+	public double getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMinPrice(double minPrice) {
+		this.minPrice = minPrice;
 	}
 
 	public long getSalerId() {
@@ -59,10 +72,28 @@ public class Lot {
 		this.salerId = salerId;
 	}
 
-	@Override
-	public String toString() {
-		return "Lot [id=" + id + ", description=" + description + ", poduct=" + poductId + ", min_price=" + min_price
-				+ ", saler=" + salerId + ", exp_date=" + exp_date + "]";
+	public Date getExpDate() {
+		return expDate;
 	}
 
+	public void setExpDate(Date expDate) {
+		this.expDate = expDate;
+	}
+
+	public byte getStatus() {
+		return status;
+	}
+
+	public void setStatus(byte status) {
+		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "Lot [id=" + id + ", description=" + description + ", poductId=" + poductId + ", minPrice=" + minPrice
+				+ ", salerId=" + salerId + ", expDate=" + expDate + ", status=" + status + "]";
+	}
+
+	
+	
 }

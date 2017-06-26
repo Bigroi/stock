@@ -1,5 +1,6 @@
 package com.bigroi.stock.daotest.company;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,13 +16,14 @@ private static Company company;
 	@BeforeClass
 	public static void init(){
 		company = new Company();
-		company.setId(8);
+		company.setId(10);
 		company.setName("eee");
 		company.setEmail("email");
 		company.setPhone("165");
 		company.setRegNumber("sdfsdf");
 		company.setCountry("bel");
 		company.setCity("min");
+		company.setStatus((byte) 0);
 		
 	}
 	@Test
@@ -30,7 +32,7 @@ private static Company company;
 		Assert.assertNotNull(company);
 	}
 	
-	@BeforeClass
+	@After
 	public static void delete() throws DaoException{
 		DaoFactory.getCompanyDao().delete(company.getId());
 		

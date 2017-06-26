@@ -57,23 +57,24 @@ CREATE TABLE IF NOT EXISTS `company` (
   `city` varchar(50) NOT NULL DEFAULT '0',
   `status` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.lot
 CREATE TABLE IF NOT EXISTS `lot` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(1000) DEFAULT NULL,
-  `poduct` bigint(20) DEFAULT NULL,
+  `poductId` bigint(20) DEFAULT NULL,
   `min_price` decimal(10,0) DEFAULT NULL,
-  `saler` bigint(20) DEFAULT NULL,
+  `salerId` bigint(20) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
   `exp_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `saler` (`saler`),
-  KEY `product` (`poduct`),
-  CONSTRAINT `product` FOREIGN KEY (`poduct`) REFERENCES `product` (`id`),
-  CONSTRAINT `saler` FOREIGN KEY (`saler`) REFERENCES `company` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `saler` (`salerId`),
+  KEY `product` (`poductId`),
+  CONSTRAINT `FK_lot_company` FOREIGN KEY (`salerId`) REFERENCES `company` (`id`),
+  CONSTRAINT `FK_lot_product` FOREIGN KEY (`poductId`) REFERENCES `product` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.product
@@ -82,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `name` varchar(50) DEFAULT NULL,
   `description` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.tender
@@ -92,6 +93,8 @@ CREATE TABLE IF NOT EXISTS `tender` (
   `product` bigint(20) NOT NULL DEFAULT '0',
   `max_price` decimal(10,0) NOT NULL DEFAULT '0',
   `customer` bigint(20) NOT NULL DEFAULT '0',
+  `status` tinyint(4) DEFAULT NULL,
+  `exp_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_application_product` (`product`),
   KEY `FK_application_company` (`customer`),
