@@ -34,7 +34,7 @@ public class AccessRenderingController {
 			@RequestParam("passwordRepeat") String passwordRepeat, 
 			@RequestParam("name") String name,
 			@RequestParam("email") String email, 
-			@RequestParam("phone") int phone,
+			@RequestParam("phone") String phone,
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
 			@RequestParam("city") String city,
@@ -47,19 +47,19 @@ public class AccessRenderingController {
 			return new ModelAndView("registration","message", "Passwords do not match" );		
 		}
 		//TODO Здесь будет одна транзакция
-		User user = new User();
-		user.setLogin(login);
-		user.setPassword(password);
-		DaoFactory.getUserDao().add(user);
 		Company company = new Company();
-		//TODO company.setUserId(user.getId());
 		company.setName(name);
 		company.setEmail(email);
-		//TODO company.setPhone(phone);
+		company.setPhone(phone);
 		company.setRegNumber(regNumber);
 		company.setCountry(country);
 		company.setCity(city);
-		DaoFactory.getCompanyDao().add(company);
+		DaoFactory.getCompanyDao().add(company);		
+		User user = new User();
+		user.setLogin(login);
+		user.setPassword(password);
+		user.setCompanyId(company.getId());
+		DaoFactory.getUserDao().add(user);		
 		session.setAttribute("user", user);
 		return new ModelAndView("welcome", "user", user);
 	}

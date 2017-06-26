@@ -10,7 +10,7 @@
 <form action="#" method="post">
 		<p>${user.login}</p>
 		<%-- <input type="hidden" name="id" value="${user.id}"> --%>
-		
+		 <p>password <input name="password" value="${user.password}"></p>
 		 name <input name="name" ><br>
 		 email <input name="email" ><br>
 		 phone <input name="phone" ><br>
