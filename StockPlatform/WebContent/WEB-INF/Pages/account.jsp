@@ -7,16 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="#" method="post">
+<form action="AccountChangeAuth.spr" method="post">
 		<p>${user.login}</p>
-		<%-- <input type="hidden" name="id" value="${user.id}"> --%>
+		<%-- <input type="hidden" name="id" value="${id}"> --%>
 		 <p>password <input name="password" value="${user.password}"></p>
-		 name <input name="name" ><br>
-		 email <input name="email" ><br>
-		 phone <input name="phone" ><br>
-		 reg_number <input name="regNumber" ><br>
-		 country <input name="country" ><br>
-		 city <input name="city" ><br>
+		 name <input name="name" value="${company.name}"><br>
+		 email <input name="email" value="${company.email}"><br>
+		 phone <input name="phone" value="${company.phone}"><br>
+		 reg_number <input name="regNumber" value="${company.regNumber}"><br>
+		 country <input name="country" value="${company.country}"><br>
+		 city <input name="city" value="${company.city}"><br>
 		
 		<input type="submit" value="MODIFY">
 

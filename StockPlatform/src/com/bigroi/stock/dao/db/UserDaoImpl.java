@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
 
 	private static final String GET_ALL_USERS = "SELECT id, login, password, companyId FROM user";
 
-	private static final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT id, login, password FROM user "
+	private static final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT id, login, password, companyId FROM user "
 			+ "WHERE login = ? AND password = ?";
 	
 	private static final String ADD_USERS_BY_ID = "INSERT INTO user (id, login, password, companyId)"
