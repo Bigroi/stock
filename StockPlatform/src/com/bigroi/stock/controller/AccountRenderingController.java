@@ -27,7 +27,7 @@ public class AccountRenderingController {
 	}
 	
 	@RequestMapping("/AccountChangeAuth.spr")
-	public ModelAndView registration(
+	public ModelAndView editAccount(
 			@RequestParam("password") String password,
 			@RequestParam("name") String name,
 			@RequestParam("email") String email, 
