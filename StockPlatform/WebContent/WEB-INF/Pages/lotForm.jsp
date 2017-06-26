@@ -10,27 +10,22 @@
 </head>
 <body>
 
-	<form action="lotSave.do">
+	<form action="#">
 	
-		<input type="hidden" <c:set var="Id" value="lotID" />> <br>
+		<input type="hidden" <c:set var="Id" value="${id}"/>> <br>
 		
 		description <input name="description" value="${lot.description}"><br>
-		product <input name="product" value="${lot.product}"><br>
+		product <input name="product" value="${lot.poductId}"><br>
 		min_price  <input name="min_price" value="${lot.min_price}"><br>
 	    saler  <input name="saler" value="${lot.saler}"><br>
 	    exp_date  <input name="exp_date" value="${lot.exp_date}"><br>
 		
 
 		<input type="submit" name="save" value="SAVE"><br> 
-		<input type="button" name="back" value="BACK" onclick="document.location = 'LotList.do'">
+		<input type="button" name="back" value="Welcome page" onclick="document.location = 'Index.spr'">
 	</form>
-	
-	<form action="account.jsp">
-		<input type="submit" value="Back">
-	</form>
-	
 	<form action="myLotList.jsp">
-		<input type="submit" value="Back">
+		<input type="submit" value="My list of lots">
 	</form>
 
 </body>

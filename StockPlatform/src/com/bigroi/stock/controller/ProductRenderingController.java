@@ -45,7 +45,8 @@ public class ProductRenderingController {
 			product.setId(id);
 			DaoFactory.getProductDao().update(product.getId(), product);
 		}
-		return productEdit(id);
+//		return productEdit(id);
+		return listOfProducts();
 	}
 	
 	@RequestMapping("/ProductListPage.spr")

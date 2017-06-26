@@ -13,9 +13,13 @@
    <p><a href="AccounPageAuth.spr">Edit account</a> </p>
    <p><a href="ProductListPage.spr">Proluct list</a> </p>
    
-  <form action="ProductForm.spr">
+  	<form action="ProductForm.spr">
 		<input type="hidden" name="id" value="-1" />
 		<input type="submit" value="Add product">
+	</form>
+	<form action="LotFormAuth.spr">
+		<input type="hidden" name="id" value="-1" />
+		<p><input type="submit" value="Add lot"></p>
 	</form>
   </body>
 </html>

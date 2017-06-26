@@ -21,10 +21,10 @@
 		
 
 		<input type="submit" name="save" value="SAVE"><br> 
-		<input type="button" name="back" value="Back to welcome page" onclick="document.location = 'Index.spr'">
+		<input type="button" name="back" value="Welcome page" onclick="document.location = 'Index.spr'">
 	</form>
 	<form action="ProductListPage.spr">
-		<input type="submit" value="Back to list of products">
+		<input type="submit" value="List of products">
 	</form>
 
 </body>
