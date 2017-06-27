@@ -25,9 +25,9 @@
 		
 
 		<input type="submit" name="save" value="SAVE"><br> 
-		<input type="button" name="back" value="Welcome page" onclick="document.location = 'Index.spr'">
+		<input type="button" name="back" value="Welcome page" onclick="document.location = 'Index.spr'">		
 	</form>
-	<form action="myLotList.jsp">
+	<form action="MyLotListAuth.spr">
 		<input type="submit" value="My list of lots">
 	</form>
 

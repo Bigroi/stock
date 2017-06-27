@@ -21,5 +21,9 @@
 		<input type="hidden" name="id" value="-1" />
 		<p><input type="submit" value="Add lot"></p>
 	</form>
+	<form action="TenderFormAuth.spr">
+		<input type="hidden" name="id" value="-1" />
+		<p><input type="submit" value="Add tender"></p>
+	</form>
   </body>
 </html>

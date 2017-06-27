@@ -1,6 +1,7 @@
 package com.bigroi.stock.controller;
 
 import java.text.ParseException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -37,7 +38,7 @@ public class LotRenderingController {
 	}
 	
 	@RequestMapping("/LotSaveAuth.spr")
-	public ModelAndView productSave(@RequestParam("id") long id, 
+	public ModelAndView lotSave(@RequestParam("id") long id, 
 			@RequestParam("description") String description,			
 			@RequestParam("productId") long productId,
 			@RequestParam("minPrice") double minPrice,
@@ -63,6 +64,14 @@ public class LotRenderingController {
 		}
 		return lotEdit(id, session);
 //		return listOfProducts();
+	}
+	
+	@RequestMapping("/MyLotListAuth.spr")
+	public ModelAndView myLotList() throws DaoException {
+//TODO нет SQL и jsp
+//		List<Product> products = DaoFactory.getProductDao().getAllProduct();
+		List<Lot> lots = null;
+		return new ModelAndView("myLotList", "listOfLots", lots);
 	}
 
 }
