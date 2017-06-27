@@ -1,6 +1,8 @@
 package com.bigroi.stock.daotest.lot;
 
-import java.util.Date;
+
+
+import java.sql.Date;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -18,13 +20,13 @@ public class LotAdd {
 	@BeforeClass
 	public static void init(){
 		lot = new Lot();
-		lot.setId(24);
+		lot.setId(26);
 		lot.setDescription("evgen");
 		lot.setPoductId(1);
 		lot.setMinPrice(10);
 		lot.setSalerId(1);
 		lot.setStatus((byte) 2);
-		lot.setExpDate(new java.sql.Date(lot.getExpDate().getTime()));
+		lot.setExpDate(new Date(lot.getExpDate().getTime()));
 	}
 	
 	@Test
