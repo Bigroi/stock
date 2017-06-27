@@ -24,9 +24,8 @@
 				<tr>
 					<td>${product.name}</td>
 					<td>${product.description}</td>
-	<!--НЕСООТВЕТСТВИЕ с бином и базой 			 -->	
-					<td><%-- ${product.lotСount} --%></td>
-					<td><%-- ${product.applicationСount} --%></td>
+					<td>${product.lotСount}</td>
+					<td>${product.applicationСount}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -19,7 +19,7 @@ public class LotRenderingController {
 			lot = new Lot();
 			model.addAttribute("id", -1);
 		} else {
-//TODO getById			lot = DaoFactory.
+//TODO getById     lot = DaoFactory.
 //			model.addAttribute("id", lot.getId());
 		}		
 //		model.addAttribute("lot", lot);

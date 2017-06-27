@@ -51,10 +51,10 @@ public class ProductDaoImpl implements ProductDao {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Product> products = template.query(GET_ALL_PRODUCTS, new BeanPropertyRowMapper<Product>(Product.class));
 		lOG.info(products);
-		//TODO ‰Ó·‡‚ËÎ setLot—ount, setApplication—ount
-		for(int i = 0; i < products.size(); i++){
-			((Product) products).setLot—ount(555);
-			((Product) products).setApplication—ount(777);
+		//TODO «¿√À”ÿ ¿ setLot—ount, setApplication—ount
+		for (Product product : products) {
+			   product.setApplication—ount(555);
+			   product.setLot—ount(777);
 		}
 		return products;
 	}
@@ -94,6 +94,9 @@ public class ProductDaoImpl implements ProductDao {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		Product product = template.queryForObject(SELECT_PRODUCTS_BY_ID, new Object[] { id },
 				new BeanPropertyRowMapper<Product>(Product.class));
+		//TODO «¿√À”ÿ ¿ setLot—ount, setApplication—ount
+		product.setApplication—ount(555);
+		product.setLot—ount(777);
 		return product;
 	}
 }
