@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -28,6 +29,9 @@ public class LotDaoImpl implements LotDao {
 	private static final String UPDATE_LOTS_BY_ID = "UPDATE lot SET id = ?,"
 			+ "description = ?, poductId = ?, min_price = ?, salerId = ?, " 
 			+ "status = ?, exp_date = ? WHERE id = ?";
+	
+	private static final String SELECT_LOTS_BY_ID = "SELECT id, description, poductId,"
+			+ " min_price, salerId, status, exp_date FROM lot WHERE id = ?";
 
 	private DataSource datasource;
 
@@ -75,6 +79,14 @@ public class LotDaoImpl implements LotDao {
 				lot.getPoductId(), lot.getMinPrice(),
 				lot.getSalerId(), lot.getStatus(), lot.getExpDate(), id);
 
+	}
+
+	@Override
+	public Lot getById(long id) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		Lot lot = template.queryForObject(SELECT_LOTS_BY_ID, new Object[] { id },
+				new BeanPropertyRowMapper<Lot>(Lot.class));
+		return lot;
 	}
 
 }

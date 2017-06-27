@@ -9,5 +9,7 @@ public interface LotDao {
 	void delete(long id) throws DaoException;
 	
 	void update(long id, Lot lot) throws DaoException;
+	
+	Lot getById(long id) throws DaoException;
 
 }

@@ -94,7 +94,6 @@ public class ProductDaoImpl implements ProductDao {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		Product product = template.queryForObject(SELECT_PRODUCTS_BY_ID, new Object[] { id },
 				new BeanPropertyRowMapper<Product>(Product.class));
-		//TODO «¿√À”ÿ ¿ setLot—ount, setApplication—ount
 		product.setApplication—ount(555);
 		product.setLot—ount(777);
 		return product;
