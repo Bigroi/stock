@@ -13,7 +13,7 @@ public class Archive {
 	private long customerId;
 	private long productId;
 	private double price;
-	private Date tmsTmp;
+	private Date tmsTmp = new Date();
 	
 	public String getDateStr(){
 		return FORMATTER.format(tmsTmp);
