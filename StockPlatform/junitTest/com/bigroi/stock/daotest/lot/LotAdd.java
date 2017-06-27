@@ -20,7 +20,7 @@ public class LotAdd {
 	@BeforeClass
 	public static void init(){
 		lot = new Lot();
-		lot.setId(26);
+		lot.setId(27);
 		lot.setDescription("evgen");
 		lot.setPoductId(1);
 		lot.setMinPrice(10);

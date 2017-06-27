@@ -25,6 +25,10 @@ public class DaoFactory {
 	public static TenderDao getTenderDao(){
 		return (TenderDao) CONTEX.getBean("tenderDao");
 	}
+	
+	public static ArchiveDao getArchiveDao(){
+		return (ArchiveDao) CONTEX.getBean("archiveDao");
+	}
 
 	public static ApplicationContext getContext() {
 		return CONTEX;

@@ -18,7 +18,7 @@ public class TenderAdd {
 	@BeforeClass
 	public static void init(){
 		tender = new Tender();
-		tender.setId(13);
+		tender.setId(17);
 		tender.setDescription("test");
 		tender.setProductId(1);
 		tender.setMaxPrice(4);

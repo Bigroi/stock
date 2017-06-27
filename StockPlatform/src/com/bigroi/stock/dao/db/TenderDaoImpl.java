@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -28,6 +29,9 @@ public class TenderDaoImpl implements TenderDao{
 	private static final String UPDATE_TENDER_BY_ID = "UPDATE tender SET id = ?, description = ?, "
 			+ "productId = ?, max_price = ?, customerId = ?, status = ?, exp_date = ? "
 			+ "WHERE id = ?";
+	
+	private static final String SELECT_TENDER_BY_ID = "SELECT id, description, productId,"
+			+ " max_price, customerId, status, exp_date FROM tender WHERE id = ?";
 	
 	private DataSource datasource;
 
@@ -72,5 +76,13 @@ public class TenderDaoImpl implements TenderDao{
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(UPDATE_TENDER_BY_ID, tender.getId(), tender.getDescription(), tender.getProductId(),
 				tender.getMaxPrice(), tender.getCustomerId(), tender.getStatus(), tender.getExpData(), id);
+	}
+
+	@Override
+	public Tender getById(long id) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		Tender tender = template.queryForObject(SELECT_TENDER_BY_ID, new Object[] {id}, 
+				new BeanPropertyRowMapper<Tender>(Tender.class));
+		return tender;
 	}
 }

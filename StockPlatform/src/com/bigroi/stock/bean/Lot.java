@@ -16,14 +16,6 @@ public class Lot {
 	private Date expDate = new Date();
 	private byte status;
 	
-	public Date getExpData() {
-		return expDate;
-	}
-	
-	public void setExpData(Date expDate) {
-		this.expDate = expDate;
-	}
-	
 	public String getDateStr(){
 		return FORMATTER.format(expDate);
 	}

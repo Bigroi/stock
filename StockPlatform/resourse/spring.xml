@@ -48,5 +48,9 @@
 	<bean id="tenderDao" class="com.bigroi.stock.dao.db.TenderDaoImpl">
 		<property name="datasource" ref="datasource"></property>
 	</bean>
+	
+	<!-- <bean id="archiveDao" class="com.bigroi.stock.dao.db.ArchiveDaoImpl">
+		<property name="datasource" ref="datasource"></property>
+	</bean> -->
 
 </beans>

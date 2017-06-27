@@ -80,14 +80,6 @@ public class Tender {
 		this.status = status;
 	}
 
-	public Date getExpDate() {
-		return expDate;
-	}
-
-	public void setExpDate(Date expDate) {
-		this.expDate = expDate;
-	}
-
 	@Override
 	public String toString() {
 		return "Tender [id=" + id + ", description=" + description + ", productId=" + productId + ", maxPrice="

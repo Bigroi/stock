@@ -18,18 +18,18 @@ USE `stock`;
 -- Дамп структуры для таблица stock.archive
 CREATE TABLE IF NOT EXISTS `archive` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `saler` bigint(20) DEFAULT NULL,
-  `customer` bigint(20) DEFAULT NULL,
-  `product` bigint(20) DEFAULT NULL,
-  `price` decimal(10,4) DEFAULT NULL,
+  `salerId` bigint(20) DEFAULT NULL,
+  `customerId` bigint(20) DEFAULT NULL,
+  `productId` bigint(20) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
   `tms_tmp` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_archive_company` (`saler`),
-  KEY `FK_archive_company_2` (`customer`),
-  KEY `FK_archive_product` (`product`),
-  CONSTRAINT `FK_archive_company` FOREIGN KEY (`saler`) REFERENCES `company` (`id`),
-  CONSTRAINT `FK_archive_company_2` FOREIGN KEY (`customer`) REFERENCES `company` (`id`),
-  CONSTRAINT `FK_archive_product` FOREIGN KEY (`product`) REFERENCES `product` (`id`)
+  KEY `FK_archive_company` (`salerId`),
+  KEY `FK_archive_company_2` (`customerId`),
+  KEY `FK_archive_product` (`productId`),
+  CONSTRAINT `FK_archive_company` FOREIGN KEY (`salerId`) REFERENCES `company` (`id`),
+  CONSTRAINT `FK_archive_company_2` FOREIGN KEY (`customerId`) REFERENCES `company` (`id`),
+  CONSTRAINT `FK_archive_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `lot` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(1000) DEFAULT NULL,
   `poductId` bigint(20) DEFAULT NULL,
-  `min_price` decimal(10,4) DEFAULT NULL,
+  `min_price` decimal(10,2) DEFAULT NULL,
   `salerId` bigint(20) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `exp_date` date DEFAULT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `lot` (
   KEY `product` (`poductId`),
   CONSTRAINT `FK_lot_company` FOREIGN KEY (`salerId`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_lot_product` FOREIGN KEY (`poductId`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.product
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `tender` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(1000) DEFAULT NULL,
   `productId` bigint(20) DEFAULT NULL,
-  `max_price` decimal(10,4) DEFAULT NULL,
+  `max_price` decimal(10,2) DEFAULT NULL,
   `customerId` bigint(20) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `exp_date` date DEFAULT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `tender` (
   KEY `FK_application_company` (`customerId`),
   CONSTRAINT `FK_tender_company` FOREIGN KEY (`customerId`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_tender_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.user
