@@ -10,15 +10,18 @@
 </head>
 <body>
 
-	<form action="#">
+	<form action="LotSaveAuth.spr">
 	
-		<input type="hidden" <c:set var="Id" value="${id}"/>> <br>
+		<input type="hidden" name="id" value="${id}"> 
+		<input type="hidden" name="salerId" value="${lot.salerId}">
+		<input type="hidden" name="status" value="${lot.status}">
 		
 		description <input name="description" value="${lot.description}"><br>
-		product <input name="product" value="${lot.poductId}"><br>
-		min_price  <input name="min_price" value="${lot.min_price}"><br>
-	    saler  <input name="saler" value="${lot.saler}"><br>
-	    exp_date  <input name="exp_date" value="${lot.exp_date}"><br>
+		product id <input name="productId" value="${lot.poductId}"><br>
+		min_price  <input name="minPrice" value="${lot.minPrice}"><br>
+	    saler id - ${lot.salerId}<br>
+	    exp_date  <input name="expDate" value="${lot.dateStr}"><br>
+	    status - ${lot.status}<br>
 		
 
 		<input type="submit" name="save" value="SAVE"><br> 

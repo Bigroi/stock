@@ -51,9 +51,6 @@ public class ProductRenderingController {
 	
 	@RequestMapping("/ProductListPage.spr")
 	public ModelAndView listOfProducts() throws DaoException {
-//TODO  НЕСООТВЕТСТВИЕ с ProductForm.jsp -- product.lotСount и product.applicationСount
-		// Необходим метод, который бы считал данные для этих колонок. Т.е. поля
-		// соледует добавить в бин, а в дао сделать ещё 2 запроса для заполнения этих полей.
 		List<Product> products = DaoFactory.getProductDao().getAllProduct();
 		return new ModelAndView("productList", "listOfProducts", products);
 	}
