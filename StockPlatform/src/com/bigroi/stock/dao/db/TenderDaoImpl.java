@@ -33,6 +33,9 @@ public class TenderDaoImpl implements TenderDao{
 	private static final String SELECT_TENDER_BY_ID = "SELECT id, description, productId,"
 			+ " max_price, customerId, status, exp_date FROM tender WHERE id = ?";
 	
+	private static final String SELECT_TENDER_BY_CUSTOMER_ID = "SELECT * FROM tender "
+			+ " WHERE customerId = ?";
+	
 	private DataSource datasource;
 
 	public DataSource getDatasource() {
@@ -83,6 +86,15 @@ public class TenderDaoImpl implements TenderDao{
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		Tender tender = template.queryForObject(SELECT_TENDER_BY_ID, new Object[] {id}, 
 				new BeanPropertyRowMapper<Tender>(Tender.class));
+		return tender;
+	}
+	
+	@Override
+	public Tender getcustomerId(long customerId) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		Tender tender = template.queryForObject(SELECT_TENDER_BY_CUSTOMER_ID, new Object[] {customerId}, 
+				new BeanPropertyRowMapper<Tender>(Tender.class));
+		
 		return tender;
 	}
 }

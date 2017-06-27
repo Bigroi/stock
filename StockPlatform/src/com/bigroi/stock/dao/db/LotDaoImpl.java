@@ -32,6 +32,9 @@ public class LotDaoImpl implements LotDao {
 	
 	private static final String SELECT_LOTS_BY_ID = "SELECT id, description, poductId,"
 			+ " min_price, salerId, status, exp_date FROM lot WHERE id = ?";
+	
+	private static final String SELECT_LOTS_BY_SALER_ID ="SELECT * FROM lot "
+			+ "WHERE salerId = ?";
 
 	private DataSource datasource;
 
@@ -88,5 +91,15 @@ public class LotDaoImpl implements LotDao {
 				new BeanPropertyRowMapper<Lot>(Lot.class));
 		return lot;
 	}
+
+	@Override
+	public Lot getsalerId(long salerId) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		Lot lot = template.queryForObject(SELECT_LOTS_BY_SALER_ID, new Object[] {salerId},
+				new BeanPropertyRowMapper<Lot>(Lot.class));
+		return lot;
+	}
+	
+	
 
 }

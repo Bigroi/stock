@@ -11,5 +11,7 @@ public interface LotDao {
 	void update(long id, Lot lot) throws DaoException;
 	
 	Lot getById(long id) throws DaoException;
+	
+	Lot getsalerId(long salerId) throws DaoException;
 
 }
