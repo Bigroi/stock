@@ -101,7 +101,6 @@ public class LotDaoImpl implements LotDao {
 	@Override
 	public List<Lot> getSalerId(long salerId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		//List<Lot> lot =  template.query(SELECT_LOTS_BY_SALER_ID, new BeanPropertyRowMapper<Lot>(Lot.class));
 		List<Lot> lot =  template.query(SELECT_LOTS_BY_SALER_ID, new RowMapper<Lot>(){
 			@Override
 			public Lot mapRow(ResultSet rs, int rowNum) throws SQLException {
