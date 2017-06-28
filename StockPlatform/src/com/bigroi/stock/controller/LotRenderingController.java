@@ -62,15 +62,14 @@ public class LotRenderingController {
 			lot.setId(id);
 			DaoFactory.getLotDao().update(lot.getId(), lot);			
 		}
-		return lotEdit(id, session);
-//		return listOfProducts();
+//		return lotEdit(id, session);
+		return myLotList(session);
 	}
 	
 	@RequestMapping("/MyLotListAuth.spr")
-	public ModelAndView myLotList() throws DaoException {
-//TODO нет SQL и jsp
-//		List<Product> products = DaoFactory.getProductDao().getAllProduct();
-		List<Lot> lots = null;
+	public ModelAndView myLotList(HttpSession session) throws DaoException {
+		User user = (User) session.getAttribute("user");
+		List<Lot> lots = DaoFactory.getLotDao().getBySalerId(user.getCompanyId());
 		return new ModelAndView("myLotList", "listOfLots", lots);
 	}
 

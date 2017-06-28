@@ -10,6 +10,7 @@
 <title>Product list</title>
 </head>
 <body>
+	Продукты
 	<table border="1">
 		<thead>
 			<tr>
@@ -35,7 +36,7 @@
 		<input type="submit" value="Add product">
 	</form>
 	<form action="Index.spr">
-		<input type="submit" value="Back">
+		<input type="submit" value="Welcome page">
 	</form>
 </body>
 </html>

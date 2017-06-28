@@ -18,7 +18,7 @@
 		product id <input name="productId" value="${tender.productId}"><br>
 		maxPrice  <input name="maxPrice" value="${tender.maxPrice}"><br>
 	    customer id - ${tender.customerId}<br>
-	    expDate <input name="expDate" value="${tender.expDate}"><br>
+	    expDate <input name="expDate" value="${tender.dateStr}"><br>
 	    status - ${tender.status}<br>
 	    
 	    

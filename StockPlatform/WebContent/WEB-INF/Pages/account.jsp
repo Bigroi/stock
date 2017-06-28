@@ -25,8 +25,8 @@
 	<input type="button" name="back" value="BACK" onclick="document.location = 'Index.spr'">
 	
 	 <ul>
-        <li><a href="MyLotListAuth.spr">MyLotList</a></li>
-        <li><a href="MyAplicatioListAuth.spr">MyAplicatioList</a></li>
+        <li><a href="MyLotListAuth.spr">My lots list</a></li>
+        <li><a href="MyTenderListAuth.spr">My tenders list</a></li>
 	</ul>
 </body>
 </html> 

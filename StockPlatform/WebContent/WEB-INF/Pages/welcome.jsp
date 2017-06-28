@@ -10,20 +10,27 @@
    <p> WELCOME !!! ${user.login}</p>
    <p><a href="LoginPage.spr">LOGIN</a> </p>
    <p><a href="RegistrationPage.spr">Registration</a> </p>
-   <p><a href="AccounPageAuth.spr">Edit account</a> </p>
-   <p><a href="ProductListPage.spr">Proluct list</a> </p>
+   <p><a href="AccounPageAuth.spr">Account</a> </p>
    
-  	<form action="ProductForm.spr">
-		<input type="hidden" name="id" value="-1" />
-		<input type="submit" value="Add product">
-	</form>
-	<form action="LotFormAuth.spr">
-		<input type="hidden" name="id" value="-1" />
-		<p><input type="submit" value="Add lot"></p>
-	</form>
-	<form action="TenderFormAuth.spr">
-		<input type="hidden" name="id" value="-1" />
-		<p><input type="submit" value="Add tender"></p>
-	</form>
-  </body>
+    <ul>
+    	<li><a href="ProductListPage.spr">Proluct list</a>
+    		<form action="ProductForm.spr">
+				<input type="hidden" name="id" value="-1" />
+				<p><input type="submit" value="Add product"></p>
+			</form>
+		</li>
+        <li><a href="MyLotListAuth.spr">My lots list</a>
+        	<form action="LotFormAuth.spr">
+				<input type="hidden" name="id" value="-1" />
+				<p><input type="submit" value="Add lot"></p>	
+			</form>
+        </li>
+        <li><a href="MyTenderListAuth.spr">My tenders list</a>
+        	<form action="TenderFormAuth.spr">
+				<input type="hidden" name="id" value="-1" />
+				<p><input type="submit" value="Add tender"></p>
+			</form>
+        </li>
+	</ul>
+</body>
 </html>
