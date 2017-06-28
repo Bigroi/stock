@@ -1,5 +1,7 @@
 package com.bigroi.stock.daotest.lot;
 
+
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -15,7 +17,6 @@ private static Lot lot;
 	public static void init(){
 		lot = new Lot();
 		lot.setSalerId(1);
-		
 	}
 	
 	@Test

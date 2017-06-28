@@ -3,13 +3,17 @@ package com.bigroi.stock.dao.db;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -19,6 +23,8 @@ import com.bigroi.stock.dao.LotDao;
 import com.mysql.jdbc.Statement;
 
 public class LotDaoImpl implements LotDao {
+	
+	private static final Logger lOG = Logger.getLogger(UserDaoImpl.class);
 
 	private static final String ADD_LOTS_BY_ID = "INSERT INTO lot (id, description,"
 			+ " poductId,min_price, salerId, status, exp_date) "
@@ -33,8 +39,8 @@ public class LotDaoImpl implements LotDao {
 	private static final String SELECT_LOTS_BY_ID = "SELECT id, description, poductId,"
 			+ " min_price, salerId, status, exp_date FROM lot WHERE id = ?";
 	
-	private static final String SELECT_LOTS_BY_SALER_ID ="SELECT * FROM lot "
-			+ "WHERE salerId = ?";
+	private static final String SELECT_LOTS_BY_SALER_ID = "SELECT id, description, "
+			+ "poductId, min_price, salerId, status, exp_date FROM lot WHERE salerId  = ?";
 
 	private DataSource datasource;
 
@@ -93,12 +99,28 @@ public class LotDaoImpl implements LotDao {
 	}
 
 	@Override
-	public Lot getSalerId(long salerId) throws DaoException {
+	public List<Lot> getSalerId(long salerId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		Lot lot = template.queryForObject(SELECT_LOTS_BY_SALER_ID, new Object[] {salerId},
-				new BeanPropertyRowMapper<Lot>(Lot.class));
+		//List<Lot> lot =  template.query(SELECT_LOTS_BY_SALER_ID, new BeanPropertyRowMapper<Lot>(Lot.class));
+		List<Lot> lot =  template.query(SELECT_LOTS_BY_SALER_ID, new RowMapper<Lot>(){
+			@Override
+			public Lot mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Lot lot = new Lot();
+				lot.setId(rs.getLong("id"));
+				lot.setDescription(rs.getString("description"));
+				lot.setPoductId(rs.getLong("poductId"));
+				lot.setMinPrice(rs.getDouble("min_price"));
+				lot.setSalerId(rs.getLong("salerId"));
+				lot.setStatus(rs.getByte("status"));
+				lot.setExpDate(rs.getDate("exp_date"));
+				return lot;
+			}
+		}, salerId);
+		lOG.info(lot);
 		return lot;
 	}
+
+	
 	
 	
 

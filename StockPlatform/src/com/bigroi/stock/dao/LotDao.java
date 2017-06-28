@@ -1,5 +1,7 @@
 package com.bigroi.stock.dao;
 
+import java.util.List;
+
 import com.bigroi.stock.bean.Lot;
 
 public interface LotDao {
@@ -12,6 +14,6 @@ public interface LotDao {
 	
 	Lot getById(long id) throws DaoException;
 	
-	Lot getSalerId(long salerId) throws DaoException;
+	List<Lot> getSalerId(long salerId) throws DaoException;
 
 }
