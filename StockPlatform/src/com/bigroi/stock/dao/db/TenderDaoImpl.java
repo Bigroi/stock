@@ -98,8 +98,14 @@ public class TenderDaoImpl implements TenderDao{
 		List<Tender> tender = template.query(SELECT_TENDER_BY_CUSTOMER_ID, new RowMapper<Tender>(){
 			@Override
 			public Tender mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Tender tender = new Tender();//TODO in developing
-				
+				Tender tender = new Tender();
+				tender.setId(rs.getLong("id"));
+				tender.setDescription(rs.getString("description"));
+				tender.setProductId(rs.getLong("productId"));
+				tender.setMaxPrice(rs.getDouble("max_price"));
+				tender.setCustomerId(rs.getLong("customerId"));
+				tender.setStatus(rs.getByte("status"));
+				tender.setExpData(rs.getDate("exp_date"));
 				return tender;
 			}
 		},customerId);
