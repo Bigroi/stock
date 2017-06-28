@@ -3,13 +3,16 @@ package com.bigroi.stock.dao.db;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -90,11 +93,16 @@ public class TenderDaoImpl implements TenderDao{
 	}
 	
 	@Override
-	public Tender getCustomerId(long customerId) throws DaoException {
+	public List<Tender> getByCustomerId(long customerId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		Tender tender = template.queryForObject(SELECT_TENDER_BY_CUSTOMER_ID, new Object[] {customerId}, 
-				new BeanPropertyRowMapper<Tender>(Tender.class));
-		
+		List<Tender> tender = template.query(SELECT_TENDER_BY_CUSTOMER_ID, new RowMapper<Tender>(){
+			@Override
+			public Tender mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Tender tender = new Tender();//TODO in developing
+				
+				return tender;
+			}
+		},customerId);
 		return tender;
 	}
 }

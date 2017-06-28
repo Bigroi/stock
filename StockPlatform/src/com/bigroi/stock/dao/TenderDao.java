@@ -1,5 +1,7 @@
 package com.bigroi.stock.dao;
 
+import java.util.List;
+
 import com.bigroi.stock.bean.Tender;
 
 public interface TenderDao {
@@ -12,6 +14,6 @@ public interface TenderDao {
 	
 	Tender getById(long id) throws DaoException;
 	
-	Tender getCustomerId(long customerId) throws DaoException;
+	List<Tender> getByCustomerId(long customerId) throws DaoException;
 
 }

@@ -18,6 +18,6 @@ public class TenderGetCustId {
 	}
 	@Test
 	public void getById() throws DaoException{
-		DaoFactory.getTenderDao().getCustomerId(tender.getCustomerId());
+		DaoFactory.getTenderDao().getByCustomerId(tender.getCustomerId());
 	}
 }

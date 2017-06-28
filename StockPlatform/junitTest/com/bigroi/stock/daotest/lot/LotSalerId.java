@@ -21,7 +21,7 @@ private static Lot lot;
 	
 	@Test
 	public void getSalerId() throws DaoException{
-		DaoFactory.getLotDao().getSalerId(lot.getSalerId());
+		DaoFactory.getLotDao().getBySalerId(lot.getSalerId());
 		
 	}
 
