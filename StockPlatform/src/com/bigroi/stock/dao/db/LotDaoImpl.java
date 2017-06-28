@@ -93,7 +93,7 @@ public class LotDaoImpl implements LotDao {
 	}
 
 	@Override
-	public Lot getsalerId(long salerId) throws DaoException {
+	public Lot getSalerId(long salerId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		Lot lot = template.queryForObject(SELECT_LOTS_BY_SALER_ID, new Object[] {salerId},
 				new BeanPropertyRowMapper<Lot>(Lot.class));

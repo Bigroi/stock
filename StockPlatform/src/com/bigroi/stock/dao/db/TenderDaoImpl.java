@@ -90,7 +90,7 @@ public class TenderDaoImpl implements TenderDao{
 	}
 	
 	@Override
-	public Tender getcustomerId(long customerId) throws DaoException {
+	public Tender getCustomerId(long customerId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		Tender tender = template.queryForObject(SELECT_TENDER_BY_CUSTOMER_ID, new Object[] {customerId}, 
 				new BeanPropertyRowMapper<Tender>(Tender.class));

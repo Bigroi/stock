@@ -12,6 +12,6 @@ public interface TenderDao {
 	
 	Tender getById(long id) throws DaoException;
 	
-	Tender getcustomerId(long customerId) throws DaoException;
+	Tender getCustomerId(long customerId) throws DaoException;
 
 }
