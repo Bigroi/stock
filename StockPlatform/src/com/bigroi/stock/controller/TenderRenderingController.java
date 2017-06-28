@@ -69,9 +69,6 @@ public class TenderRenderingController {
 	@RequestMapping("/MyTenderListAuth.spr")
 	public ModelAndView myTenderList(HttpSession session) throws DaoException {
 		User user = (User) session.getAttribute("user");
-		;
-//TODO нет SQL и jsp
-//		List<Product> products = DaoFactory.getProductDao().getAllProduct();
 		List<Tender> tenders = DaoFactory.getTenderDao().getByCustomerId(user.getCompanyId());
 		return new ModelAndView("myTenderList", "listOfTenders", tenders);
 	}
