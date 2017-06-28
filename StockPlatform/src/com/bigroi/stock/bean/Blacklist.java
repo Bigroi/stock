@@ -3,7 +3,7 @@ package com.bigroi.stock.bean;
 public class Blacklist {
 
 	private long id;
-	private  long appId;
+	private  long tenderId;
 	private long lotId;
 	
 	public long getId() {
@@ -12,11 +12,11 @@ public class Blacklist {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public long getAppId() {
-		return appId;
+	public long getTenderId() {
+		return tenderId;
 	}
-	public void setAppId(long appId) {
-		this.appId = appId;
+	public void setTenderId(long tenderId) {
+		this.tenderId = tenderId;
 	}
 	public long getLotId() {
 		return lotId;
@@ -26,8 +26,6 @@ public class Blacklist {
 	}
 	@Override
 	public String toString() {
-		return "Blacklist [id=" + id + ", appId=" + appId + ", lotId=" + lotId + "]";
+		return "Blacklist [id=" + id + ", tenderId=" + tenderId + ", lotId=" + lotId + "]";
 	}
-	
-	
 }

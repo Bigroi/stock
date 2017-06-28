@@ -24,7 +24,7 @@ public class TenderAdd {
 		tender.setMaxPrice(4);
 		tender.setCustomerId(1);
 		tender.setStatus((byte) 3);
-		tender.setExpData(new Date(tender.getExpData().getTime()));
+		tender.setExpDate(new Date(tender.getExpDate().getTime()));
 		
 	}
 	

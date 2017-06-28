@@ -29,6 +29,10 @@ public class DaoFactory {
 	public static ArchiveDao getArchiveDao(){
 		return (ArchiveDao) CONTEX.getBean("archiveDao");
 	}
+	
+	public static BlacklistDao getBlacklistDao(){
+		return (BlacklistDao) CONTEX.getBean("blacklistDao");
+	}
 
 	public static ApplicationContext getContext() {
 		return CONTEX;

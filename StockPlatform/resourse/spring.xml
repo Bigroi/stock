@@ -52,5 +52,9 @@
 	<bean id="archiveDao" class="com.bigroi.stock.dao.db.ArchiveDaoImpl">
 		<property name="datasource" ref="datasource"></property>
 	</bean> 
+	
+	<bean id="blacklistDao" class="com.bigroi.stock.dao.db.BlacklistDaoImpl">
+		<property name="datasource" ref="datasource"></property>
+	</bean> 
 
 </beans>

@@ -16,11 +16,11 @@ public class Tender {
 	private byte status;
 	private Date expDate = new Date();
 
-	public Date getExpData() {
+	public Date getExpDate() {
 		return expDate;
 	}
 
-	public void setExpData(Date expDate) {
+	public void setExpDate(Date expDate) {
 		this.expDate = expDate;
 	}
 

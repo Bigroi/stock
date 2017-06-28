@@ -36,8 +36,9 @@ public class TenderDaoImpl implements TenderDao{
 	private static final String SELECT_TENDER_BY_ID = "SELECT id, description, productId,"
 			+ " max_price, customerId, status, exp_date FROM tender WHERE id = ?";
 	
-	private static final String SELECT_TENDER_BY_CUSTOMER_ID = "SELECT * FROM tender "
-			+ " WHERE customerId = ?";
+	private static final String SELECT_TENDER_BY_CUSTOMER_ID = "SELECT id, description,"
+			+ "productId, max_price, customerId, status, exp_date "
+			+ "FROM tender WHERE customerId = 1";
 	
 	private DataSource datasource;
 
@@ -63,7 +64,7 @@ public class TenderDaoImpl implements TenderDao{
 				ps.setDouble(4, tender.getMaxPrice());
 				ps.setLong(5, tender.getCustomerId());
 				ps.setByte(6, tender.getStatus());
-				ps.setDate(7, new Date(tender.getExpData().getTime()));
+				ps.setDate(7, new Date(tender.getExpDate().getTime()));
 				return ps;
 			}
 		},keyHolder);
@@ -81,7 +82,7 @@ public class TenderDaoImpl implements TenderDao{
 	public void update(long id, Tender tender) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(UPDATE_TENDER_BY_ID, tender.getId(), tender.getDescription(), tender.getProductId(),
-				tender.getMaxPrice(), tender.getCustomerId(), tender.getStatus(), tender.getExpData(), id);
+				tender.getMaxPrice(), tender.getCustomerId(), tender.getStatus(), tender.getExpDate(), id);
 	}
 
 	@Override
@@ -105,7 +106,7 @@ public class TenderDaoImpl implements TenderDao{
 				tender.setMaxPrice(rs.getDouble("max_price"));
 				tender.setCustomerId(rs.getLong("customerId"));
 				tender.setStatus(rs.getByte("status"));
-				tender.setExpData(rs.getDate("exp_date"));
+				tender.setExpDate(rs.getDate("exp_date"));
 				return tender;
 			}
 		},customerId);
