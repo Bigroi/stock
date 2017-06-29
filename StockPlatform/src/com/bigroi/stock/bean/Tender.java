@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.bigroi.stock.bean.common.Status;
+
 public class Tender {
 
 	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
@@ -13,7 +15,7 @@ public class Tender {
 	private long productId;
 	private double maxPrice;
 	private long customerId;
-	private byte status;
+	private Status status;
 	private Date expDate = new Date();
 
 	public Date getExpDate() {
@@ -72,11 +74,11 @@ public class Tender {
 		this.customerId = customerId;
 	}
 
-	public byte getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
@@ -85,7 +87,4 @@ public class Tender {
 		return "Tender [id=" + id + ", description=" + description + ", productId=" + productId + ", maxPrice="
 				+ maxPrice + ", customerId=" + customerId + ", status=" + status + ", expDate=" + expDate + "]";
 	}
-
-	
-
 }

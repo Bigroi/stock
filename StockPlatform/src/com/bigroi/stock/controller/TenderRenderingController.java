@@ -28,7 +28,7 @@ public class TenderRenderingController {
 			User user = (User) session.getAttribute("user");
 			tender.setCustomerId(user.getCompanyId());
 			// TODO Какой статус будем присваивать
-			tender.setStatus((byte) 1);
+			//TODO Stutus.Enum tender.setStatus((byte) 1);
 			model.addAttribute("id", -1);
 		} else {
 			tender = DaoFactory.getTenderDao().getById(id);
@@ -54,7 +54,7 @@ public class TenderRenderingController {
 		tender.setMaxPrice(maxPrice);
 		tender.setCustomerId(customerId);
 		tender.setDateStr(expDateStr);
-		tender.setStatus(status);
+		//TODO Stutus.Enum tender.setStatus(status);
 		if (id == -1) {
 			DaoFactory.getTenderDao().add(tender);
 			id = tender.getId();

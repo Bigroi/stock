@@ -10,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bigroi.stock.bean.Lot;
+import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
@@ -25,7 +26,7 @@ public class LotAdd {
 		lot.setPoductId(1);
 		lot.setMinPrice(10);
 		lot.setSalerId(1);
-		lot.setStatus((byte) 2);
+		lot.setStatus(Status.DRAFT);
 		lot.setExpDate(new Date(lot.getExpDate().getTime()));
 	}
 	

@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bigroi.stock.bean.Tender;
+import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
@@ -21,7 +22,7 @@ private static Tender tender;
 		tender.setProductId(1);
 		tender.setMaxPrice(4);
 		tender.setCustomerId(1);
-		tender.setStatus((byte) 3);
+		tender.setStatus(Status.DRAFT);
 		tender.setExpDate(new Date(tender.getExpDate().getTime()));
 	}
 	@Test

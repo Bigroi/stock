@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.bigroi.stock.bean.common.Status;
+
 public class Lot {
 	
 	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
@@ -14,7 +16,7 @@ public class Lot {
 	private double minPrice;
 	private long salerId;
 	private Date expDate = new Date();
-	private byte status;
+	private Status status;
 	
 	public String getDateStr(){
 		return FORMATTER.format(expDate);
@@ -72,11 +74,11 @@ public class Lot {
 		this.expDate = expDate;
 	}
 
-	public byte getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

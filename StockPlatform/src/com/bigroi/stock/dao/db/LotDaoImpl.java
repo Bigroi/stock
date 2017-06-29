@@ -18,6 +18,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.bigroi.stock.bean.Lot;
+import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
 import com.mysql.jdbc.Statement;
@@ -69,7 +70,7 @@ public class LotDaoImpl implements LotDao {
 				ps.setLong(3, lot.getPoductId());
 				ps.setDouble(4, lot.getMinPrice());
 				ps.setLong(5, lot.getSalerId());
-				ps.setByte(6, lot.getStatus());
+				ps.setString(6, lot.getStatus().name().toUpperCase());
 				ps.setDate(7, new Date(lot.getExpDate().getTime()));
 				return ps;
 			}
@@ -90,7 +91,7 @@ public class LotDaoImpl implements LotDao {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(UPDATE_LOTS_BY_ID, lot.getId(), lot.getDescription(), 
 				lot.getPoductId(), lot.getMinPrice(),
-				lot.getSalerId(), lot.getStatus(), lot.getExpDate(), id);
+				lot.getSalerId(), lot.getStatus().name().toUpperCase(), lot.getExpDate(), id);
 
 	}
 
@@ -114,7 +115,7 @@ public class LotDaoImpl implements LotDao {
 				lot.setPoductId(rs.getLong("poductId"));
 				lot.setMinPrice(rs.getDouble("min_price"));
 				lot.setSalerId(rs.getLong("salerId"));
-				lot.setStatus(rs.getByte("status"));
+				lot.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				lot.setExpDate(rs.getDate("exp_date"));
 				return lot;
 			}
@@ -135,7 +136,7 @@ public class LotDaoImpl implements LotDao {
 				lot.setPoductId(rs.getLong("poductId"));
 				lot.setMinPrice(rs.getDouble("min_price"));
 				lot.setSalerId(rs.getLong("salerId"));
-				lot.setStatus(rs.getByte("status"));
+				lot.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				lot.setExpDate(rs.getDate("exp_date"));
 				return lot;
 			}

@@ -27,7 +27,7 @@ public class LotRenderingController {
 			User user = (User) session.getAttribute("user");
 			lot.setSalerId(user.getCompanyId());
 			//TODO Какой статус будем присваивать
-			lot.setStatus((byte) 1);
+			//TODO Status.ENUM lot.setStatus((byte) 1);
 			model.addAttribute("id", -1);
 		} else {
 			lot = DaoFactory.getLotDao().getById(id);
@@ -53,7 +53,7 @@ public class LotRenderingController {
 		lot.setMinPrice(minPrice);
 		lot.setSalerId(salerId);
 		lot.setDateStr(expDateStr);
-		lot.setStatus(status);		
+		//TODO Status.ENUM lot.setStatus(status);		
 		
 		if (id == -1) {
 			DaoFactory.getLotDao().add(lot);

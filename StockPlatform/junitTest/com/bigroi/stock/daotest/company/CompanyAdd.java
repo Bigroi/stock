@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bigroi.stock.bean.Company;
+import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
@@ -23,7 +24,7 @@ private static Company company;
 		company.setRegNumber("sdfsdf");
 		company.setCountry("bel");
 		company.setCity("min");
-		company.setStatus((byte) 0);
+		company.setStatus(Status.DRAFT);
 		
 	}
 	@Test

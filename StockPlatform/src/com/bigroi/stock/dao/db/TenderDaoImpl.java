@@ -17,6 +17,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.bigroi.stock.bean.Tender;
+import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.TenderDao;
 import com.mysql.jdbc.Statement;
@@ -67,7 +68,7 @@ public class TenderDaoImpl implements TenderDao{
 				ps.setLong(3, tender.getProductId());
 				ps.setDouble(4, tender.getMaxPrice());
 				ps.setLong(5, tender.getCustomerId());
-				ps.setByte(6, tender.getStatus());
+				ps.setString(6, tender.getStatus().name().toUpperCase());
 				ps.setDate(7, new Date(tender.getExpDate().getTime()));
 				return ps;
 			}
@@ -86,7 +87,8 @@ public class TenderDaoImpl implements TenderDao{
 	public void update(long id, Tender tender) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(UPDATE_TENDER_BY_ID, tender.getId(), tender.getDescription(), tender.getProductId(),
-				tender.getMaxPrice(), tender.getCustomerId(), tender.getStatus(), tender.getExpDate(), id);
+				tender.getMaxPrice(), tender.getCustomerId(), 
+				tender.getStatus().name().toUpperCase(), tender.getExpDate(), id);
 	}
 
 	@Override
@@ -109,7 +111,7 @@ public class TenderDaoImpl implements TenderDao{
 				tender.setProductId(rs.getLong("productId"));
 				tender.setMaxPrice(rs.getDouble("max_price"));
 				tender.setCustomerId(rs.getLong("customerId"));
-				tender.setStatus(rs.getByte("status"));
+				tender.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				tender.setExpDate(rs.getDate("exp_date"));
 				return tender;
 			}
@@ -129,7 +131,7 @@ public class TenderDaoImpl implements TenderDao{
 				tender.setProductId(rs.getLong("productId"));
 				tender.setMaxPrice(rs.getDouble("max_price"));
 				tender.setCustomerId(rs.getLong("customerId"));
-				tender.setStatus(rs.getByte("status"));
+				tender.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				tender.setExpDate(rs.getDate("exp_date"));
 				return tender;
 			}

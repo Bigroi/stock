@@ -66,7 +66,7 @@ public class CompanyDaoImpl implements CompanyDao {
 				ps.setString(5, company.getRegNumber());
 				ps.setString(6, company.getCountry());
 				ps.setString(7, company.getCity());
-				ps.setByte(8, company.getStatus());
+				ps.setString(8, company.getStatus().name().toUpperCase());
 				return ps;
 			}
 		}, keyHolder);
@@ -86,7 +86,7 @@ public class CompanyDaoImpl implements CompanyDao {
 		template.update(UPDATE_COMPANY_BY_ID, company.getId(), 
 				company.getName(), company.getEmail(),company.getPhone(), 
 				company.getRegNumber(), company.getCountry(), company.getCity(),
-				company.getStatus(), id);
+				company.getStatus().name().toUpperCase(), id);
 	}
 
 }
