@@ -15,24 +15,6 @@
 CREATE DATABASE IF NOT EXISTS `stock` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `stock`;
 
--- Дамп структуры для таблица stock.archive
-CREATE TABLE IF NOT EXISTS `archive` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `salerId` bigint(20) DEFAULT NULL,
-  `customerId` bigint(20) DEFAULT NULL,
-  `productId` bigint(20) DEFAULT NULL,
-  `price` decimal(10,2) DEFAULT NULL,
-  `tms_tmp` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_archive_company` (`salerId`),
-  KEY `FK_archive_company_2` (`customerId`),
-  KEY `FK_archive_product` (`productId`),
-  CONSTRAINT `FK_archive_company` FOREIGN KEY (`salerId`) REFERENCES `company` (`id`),
-  CONSTRAINT `FK_archive_company_2` FOREIGN KEY (`customerId`) REFERENCES `company` (`id`),
-  CONSTRAINT `FK_archive_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.blacklist
 CREATE TABLE IF NOT EXISTS `blacklist` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -43,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `blacklist` (
   KEY `FK_blacklist_lot` (`lotId`),
   CONSTRAINT `FK_blacklist_application` FOREIGN KEY (`tenderId`) REFERENCES `tender` (`id`),
   CONSTRAINT `FK_blacklist_lot` FOREIGN KEY (`lotId`) REFERENCES `lot` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.company
@@ -60,6 +42,26 @@ CREATE TABLE IF NOT EXISTS `company` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
+-- Дамп структуры для таблица stock.deals
+CREATE TABLE IF NOT EXISTS `deals` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `salerId` bigint(20) DEFAULT NULL,
+  `customerId` bigint(20) DEFAULT NULL,
+  `productId` bigint(20) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `tms_tmp` date DEFAULT NULL,
+  `sellerApprov` varchar(1) DEFAULT NULL,
+  `custApprov` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_archive_company` (`salerId`),
+  KEY `FK_archive_company_2` (`customerId`),
+  KEY `FK_archive_product` (`productId`),
+  CONSTRAINT `FK_archive_company` FOREIGN KEY (`salerId`) REFERENCES `company` (`id`),
+  CONSTRAINT `FK_archive_company_2` FOREIGN KEY (`customerId`) REFERENCES `company` (`id`),
+  CONSTRAINT `FK_archive_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+
+-- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.lot
 CREATE TABLE IF NOT EXISTS `lot` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -74,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `lot` (
   KEY `product` (`poductId`),
   CONSTRAINT `FK_lot_company` FOREIGN KEY (`salerId`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_lot_product` FOREIGN KEY (`poductId`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.product
@@ -100,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `tender` (
   KEY `FK_application_company` (`customerId`),
   CONSTRAINT `FK_tender_company` FOREIGN KEY (`customerId`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_tender_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.user

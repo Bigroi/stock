@@ -38,7 +38,11 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String SELECT_TENDER_BY_CUSTOMER_ID = "SELECT id, description,"
 			+ "productId, max_price, customerId, status, exp_date "
-			+ "FROM tender WHERE customerId = 1";
+			+ "FROM tender WHERE customerId = ?";
+	
+	private static final String SELECT_TENDER_BY_PRODUCT_ID ="SELECT id, description,"
+			+ " productId, max_price, customerId, status, exp_date FROM tender"
+			+ " WHERE productId = ? ORDER BY  max_price DESC ";
 	
 	private DataSource datasource;
 
@@ -110,6 +114,26 @@ public class TenderDaoImpl implements TenderDao{
 				return tender;
 			}
 		},customerId);
+		return tender;
+	}
+
+	@Override
+	public List<Tender> getByProductId(long productId) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<Tender> tender = template.query(SELECT_TENDER_BY_PRODUCT_ID, new RowMapper<Tender>() {
+			@Override
+			public Tender mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Tender tender = new Tender();
+				tender.setId(rs.getLong("id"));
+				tender.setDescription(rs.getString("description"));
+				tender.setProductId(rs.getLong("productId"));
+				tender.setMaxPrice(rs.getDouble("max_price"));
+				tender.setCustomerId(rs.getLong("customerId"));
+				tender.setStatus(rs.getByte("status"));
+				tender.setExpDate(rs.getDate("exp_date"));
+				return tender;
+			}
+		}, productId);
 		return tender;
 	}
 }

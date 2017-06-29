@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Archive {
+public class Deals {
 	
 	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
 
@@ -14,6 +14,8 @@ public class Archive {
 	private long productId;
 	private double price;
 	private Date tmsTmp = new Date();
+	private String sellerApprov;
+	private String custApprov;
 	
 	public String getDateStr(){
 		return FORMATTER.format(tmsTmp);
@@ -71,9 +73,28 @@ public class Archive {
 		this.tmsTmp = tmsTmp;
 	}
 
+	public String getSellerApprov() {
+		return sellerApprov;
+	}
+
+	public void setSellerApprov(String sellerApprov) {
+		this.sellerApprov = sellerApprov;
+	}
+
+	public String getCustApprov() {
+		return custApprov;
+	}
+
+	public void setCustApprov(String custApprov) {
+		this.custApprov = custApprov;
+	}
+
 	@Override
 	public String toString() {
-		return "Archive [id=" + id + ", salerId=" + salerId + ", customerId=" + customerId + ", productId=" + productId
-				+ ", price=" + price + ", tmsTmp=" + tmsTmp + "]";
+		return "Deals [id=" + id + ", salerId=" + salerId + ", customerId=" + customerId + ", productId=" + productId
+				+ ", price=" + price + ", tmsTmp=" + tmsTmp + ", sellerApprov=" + sellerApprov + ", custApprov="
+				+ custApprov + "]";
 	}
+
+	
 }

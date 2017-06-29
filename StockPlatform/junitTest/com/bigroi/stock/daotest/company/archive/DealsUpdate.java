@@ -5,17 +5,17 @@ import java.sql.Date;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.bigroi.stock.bean.Archive;
+import com.bigroi.stock.bean.Deals;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
-public class ArchiveUpdate {
+public class DealsUpdate {
 	
-private static Archive archive;
+private static Deals archive;
 	
 	@BeforeClass
 	public static void init(){
-		archive = new Archive();
+		archive = new Deals();
 		archive.setId(1);
 		archive.setSalerId(1);
 		archive.setCustomerId(1);
@@ -26,7 +26,7 @@ private static Archive archive;
 	
 	@Test
 	public void update() throws DaoException{
-		DaoFactory.getArchiveDao().update(archive.getId(), archive);
+		DaoFactory.getDealsDao().update(archive.getId(), archive);
 		
 	}
 }

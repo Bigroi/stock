@@ -49,7 +49,7 @@
 		<property name="datasource" ref="datasource"></property>
 	</bean>
 	
-	<bean id="archiveDao" class="com.bigroi.stock.dao.db.ArchiveDaoImpl">
+	<bean id="dealsDao" class="com.bigroi.stock.dao.db.DealsDaoImpl">
 		<property name="datasource" ref="datasource"></property>
 	</bean> 
 	

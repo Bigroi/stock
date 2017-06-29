@@ -15,5 +15,7 @@ public interface TenderDao {
 	Tender getById(long id) throws DaoException;
 	
 	List<Tender> getByCustomerId(long customerId) throws DaoException;
+	
+	List<Tender> getByProductId(long productId) throws DaoException;
 
 }

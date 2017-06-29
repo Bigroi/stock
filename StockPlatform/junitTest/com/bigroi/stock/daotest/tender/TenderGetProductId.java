@@ -7,17 +7,17 @@ import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
-public class TenderGetCustId {
+public class TenderGetProductId {
 	
-	private static Tender tender;
+private static Tender tender;
 	
 	@BeforeClass
 	public static void init(){
 		tender = new Tender();
-		tender.setCustomerId(1);
+		tender.setProductId(1);
 	}
 	@Test
-	public void getByCustomerId() throws DaoException{
-		DaoFactory.getTenderDao().getByCustomerId(tender.getCustomerId());
+	public void getByProductId() throws DaoException{
+		DaoFactory.getTenderDao().getByProductId(tender.getProductId());
 	}
 }

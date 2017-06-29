@@ -12,21 +12,22 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.bigroi.stock.bean.Archive;
-import com.bigroi.stock.dao.ArchiveDao;
+import com.bigroi.stock.bean.Deals;
+import com.bigroi.stock.dao.DealsDao;
 import com.bigroi.stock.dao.DaoException;
 import com.mysql.jdbc.Statement;
 
-public class ArchiveDaoImpl implements ArchiveDao {
+public class DealsDaoImpl implements DealsDao {
 
-	private static final String ADD_ARCHIVE_BY_ID = "INSERT INTO archive "
-			+ "(id, salerId, customerId, productId, price, tms_tmp)"
-			+ " VALUES (?, ?, ?, ?, ?, ?)";
+	private static final String ADD_ARCHIVE_BY_ID = "INSERT INTO deals "
+			+ "(id, salerId, customerId, productId, price, tms_tmp, sellerApprov, custApprov)"
+			+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-	private static final String DELETE_ARCHIVE_BY_ID = "DELETE FROM archive WHERE id = ?";
+	private static final String DELETE_ARCHIVE_BY_ID = "DELETE FROM deals WHERE id = ?";
 
-	private static final String UPDATE_ARCHIVE_BY_ID = "UPDATE archive SET id = ?, salerId = ?,"
-			+ "customerId = ?, productId = ?, price = ?, tms_tmp = ? WHERE id = ?";
+	private static final String UPDATE_ARCHIVE_BY_ID = "UPDATE deals SET id = ?, salerId = ?,"
+			+ "customerId = ?, productId = ?, price = ?, tms_tmp = ?, "
+			+ "sellerApprov = ?, custApprov = ? WHERE id = ?";
 
 	private DataSource datasource;
 
@@ -39,24 +40,26 @@ public class ArchiveDaoImpl implements ArchiveDao {
 	}
 
 	@Override
-	public void add(Archive archive) throws DaoException {
+	public void add(Deals deals) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(ADD_ARCHIVE_BY_ID, Statement.RETURN_GENERATED_KEYS);
-				ps.setLong(1, archive.getId());
-				ps.setLong(2, archive.getSalerId());
-				ps.setLong(3, archive.getCustomerId());
-				ps.setLong(4, archive.getProductId());
-				ps.setDouble(5, archive.getPrice());
-				ps.setDate(6, new Date(archive.getTmsTmp().getTime()));
+				ps.setLong(1, deals.getId());
+				ps.setLong(2, deals.getSalerId());
+				ps.setLong(3, deals.getCustomerId());
+				ps.setLong(4, deals.getProductId());
+				ps.setDouble(5, deals.getPrice());
+				ps.setDate(6, new Date(deals.getTmsTmp().getTime()));
+				ps.setString(7, deals.getSellerApprov());
+				ps.setString(8, deals.getCustApprov());
 				return ps;
 			}
 		}, keyHolder);
 		long id = keyHolder.getKey().longValue();
-		archive.setId(id);
+		deals.setId(id);
 	}
 
 	@Override
@@ -66,12 +69,10 @@ public class ArchiveDaoImpl implements ArchiveDao {
 	}
 
 	@Override
-	public void update(long id, Archive archive) throws DaoException {
+	public void update(long id, Deals deals) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_ARCHIVE_BY_ID, archive.getId(), archive.getSalerId(), 
-				archive.getCustomerId(),archive.getProductId(), archive.getPrice(), 
-				archive.getTmsTmp(), id);
-
+		template.update(UPDATE_ARCHIVE_BY_ID, deals.getId(), deals.getSalerId(), 
+				deals.getCustomerId(),deals.getProductId(), deals.getPrice(), 
+				deals.getTmsTmp(), deals.getSellerApprov(), deals.getCustApprov(), id);
 	}
-
 }

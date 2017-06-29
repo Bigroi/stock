@@ -41,6 +41,10 @@ public class LotDaoImpl implements LotDao {
 	
 	private static final String SELECT_LOTS_BY_SALER_ID = "SELECT id, description, "
 			+ "poductId, min_price, salerId, status, exp_date FROM lot WHERE salerId  = ?";
+	
+	private static final String SELECT_LOTS_BY_PRODUCT_ID ="SELECT id, description, "
+			+ "poductId, min_price, salerId, status, exp_date FROM lot"
+			+ " WHERE poductId = ? ORDER BY min_price";
 
 	private DataSource datasource;
 
@@ -116,6 +120,27 @@ public class LotDaoImpl implements LotDao {
 			}
 		}, salerId);
 		lOG.info(lot);
+		return lot;
+	}
+
+	@Override
+	public List<Lot> getByProductId(long productId) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<Lot> lot =  template.query(SELECT_LOTS_BY_PRODUCT_ID, new RowMapper<Lot>() {
+			@Override
+			public Lot mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Lot lot = new Lot();
+				lot.setId(rs.getLong("id"));
+				lot.setDescription(rs.getString("description"));
+				lot.setPoductId(rs.getLong("poductId"));
+				lot.setMinPrice(rs.getDouble("min_price"));
+				lot.setSalerId(rs.getLong("salerId"));
+				lot.setStatus(rs.getByte("status"));
+				lot.setExpDate(rs.getDate("exp_date"));
+				return lot;
+			}
+		}, productId);
+		
 		return lot;
 	}
 

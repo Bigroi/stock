@@ -26,8 +26,8 @@ public class DaoFactory {
 		return (TenderDao) CONTEX.getBean("tenderDao");
 	}
 	
-	public static ArchiveDao getArchiveDao(){
-		return (ArchiveDao) CONTEX.getBean("archiveDao");
+	public static DealsDao getDealsDao(){
+		return (DealsDao) CONTEX.getBean("dealsDao");
 	}
 	
 	public static BlacklistDao getBlacklistDao(){
