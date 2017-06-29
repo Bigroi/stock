@@ -54,5 +54,13 @@ public class ProductRenderingController {
 		List<Product> products = DaoFactory.getProductDao().getAllProduct();
 		return new ModelAndView("productList", "listOfProducts", products);
 	}
-
+	
+	@RequestMapping("/TradeOffers.spr")
+	public ModelAndView tradeOffers(@RequestParam("id") long id) throws DaoException {
+		ModelMap model = new ModelMap();
+		model.addAttribute("product", DaoFactory.getProductDao().getById(id));
+		model.addAttribute("listOfLots", DaoFactory.getLotDao().getByProductId(id));
+		model.addAttribute("listOfTenders", DaoFactory.getTenderDao().getByProductId(id));
+		return new ModelAndView("tradeOffers", model);
+	}
 }
