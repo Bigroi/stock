@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
@@ -26,8 +27,7 @@ public class LotRenderingController {
 			lot = new Lot();			
 			User user = (User) session.getAttribute("user");
 			lot.setSalerId(user.getCompanyId());
-			//TODO Какой статус будем присваивать
-			//TODO Status.ENUM lot.setStatus((byte) 1);
+			lot.setStatus(Status.DRAFT);
 			model.addAttribute("id", -1);
 		} else {
 			lot = DaoFactory.getLotDao().getById(id);
@@ -44,7 +44,7 @@ public class LotRenderingController {
 			@RequestParam("minPrice") double minPrice,
 			@RequestParam("salerId") long salerId,
 			@RequestParam("expDate") String expDateStr,
-			@RequestParam("status") byte status,
+			@RequestParam("status") Status status,
 			HttpSession session) throws DaoException, ParseException {
 
 		Lot lot = new Lot();
@@ -53,7 +53,7 @@ public class LotRenderingController {
 		lot.setMinPrice(minPrice);
 		lot.setSalerId(salerId);
 		lot.setDateStr(expDateStr);
-		//TODO Status.ENUM lot.setStatus(status);		
+		lot.setStatus(status);		
 		
 		if (id == -1) {
 			DaoFactory.getLotDao().add(lot);

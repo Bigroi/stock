@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
@@ -27,8 +28,7 @@ public class TenderRenderingController {
 			tender = new Tender();
 			User user = (User) session.getAttribute("user");
 			tender.setCustomerId(user.getCompanyId());
-			// TODO Какой статус будем присваивать
-			//TODO Stutus.Enum tender.setStatus((byte) 1);
+			tender.setStatus(Status.DRAFT);
 			model.addAttribute("id", -1);
 		} else {
 			tender = DaoFactory.getTenderDao().getById(id);
@@ -45,7 +45,7 @@ public class TenderRenderingController {
 			@RequestParam("maxPrice") double maxPrice,
 			@RequestParam("customerId") long customerId,
 			@RequestParam("expDate") String expDateStr,
-			@RequestParam("status") byte status,
+			@RequestParam("status") Status status,
 			HttpSession session) throws DaoException, ParseException {
 
 		Tender tender = new Tender();
@@ -54,7 +54,7 @@ public class TenderRenderingController {
 		tender.setMaxPrice(maxPrice);
 		tender.setCustomerId(customerId);
 		tender.setDateStr(expDateStr);
-		//TODO Stutus.Enum tender.setStatus(status);
+		tender.setStatus(status);
 		if (id == -1) {
 			DaoFactory.getTenderDao().add(tender);
 			id = tender.getId();
