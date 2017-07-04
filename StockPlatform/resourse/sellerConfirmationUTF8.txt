@@ -1,3 +1,6 @@
-Заголовок
-тело 1
-тело2
+Подтвердите, пожалуйста, свои намерения по продаже
+
+@lotId
+@price
+@sellerLinkApprove
+@sellerLinkCancel
