@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/Pages/account.jsp=UTF-8
-encoding//resourse/customerMessageUTF8.txt=UTF-8
-encoding//resourse/sellerMessageUTF8.txt=UTF-8
+encoding//resourse/customerConfirmationUTF8.txt=UTF-8
+encoding//resourse/sellerConfirmationUTF8.txt=UTF-8
 encoding//src/com/bigroi/stock/util/Main.java=Cp1251
