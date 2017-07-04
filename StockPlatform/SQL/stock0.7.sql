@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `blacklist` (
   KEY `FK_blacklist_lot` (`lotId`),
   CONSTRAINT `FK_blacklist_application` FOREIGN KEY (`tenderId`) REFERENCES `tender` (`id`),
   CONSTRAINT `FK_blacklist_lot` FOREIGN KEY (`lotId`) REFERENCES `lot` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.company
@@ -39,27 +39,21 @@ CREATE TABLE IF NOT EXISTS `company` (
   `city` varchar(50) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.deals
 CREATE TABLE IF NOT EXISTS `deals` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `salerId` bigint(20) DEFAULT NULL,
-  `customerId` bigint(20) DEFAULT NULL,
-  `productId` bigint(20) DEFAULT NULL,
-  `price` decimal(10,2) DEFAULT NULL,
-  `tms_tmp` date DEFAULT NULL,
-  `sellerApprov` varchar(1) DEFAULT NULL,
-  `custApprov` varchar(1) DEFAULT NULL,
+  `lotId` bigint(20) DEFAULT NULL,
+  `tenderId` bigint(20) DEFAULT NULL,
+  `dealsTime` time DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_archive_company` (`salerId`),
-  KEY `FK_archive_company_2` (`customerId`),
-  KEY `FK_archive_product` (`productId`),
-  CONSTRAINT `FK_archive_company` FOREIGN KEY (`salerId`) REFERENCES `company` (`id`),
-  CONSTRAINT `FK_archive_company_2` FOREIGN KEY (`customerId`) REFERENCES `company` (`id`),
-  CONSTRAINT `FK_archive_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+  KEY `FK_deals_lot` (`lotId`),
+  KEY `FK_deals_tender` (`tenderId`),
+  CONSTRAINT `FK_deals_lot` FOREIGN KEY (`lotId`) REFERENCES `lot` (`id`),
+  CONSTRAINT `FK_deals_tender` FOREIGN KEY (`tenderId`) REFERENCES `tender` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.lot
@@ -76,7 +70,25 @@ CREATE TABLE IF NOT EXISTS `lot` (
   KEY `product` (`poductId`),
   CONSTRAINT `FK_lot_company` FOREIGN KEY (`salerId`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_lot_product` FOREIGN KEY (`poductId`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- Экспортируемые данные не выделены.
+-- Дамп структуры для таблица stock.predeal
+CREATE TABLE IF NOT EXISTS `predeal` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sellerHashCode` varchar(50) DEFAULT NULL,
+  `customerHashCode` varchar(50) DEFAULT NULL,
+  `tenderId` bigint(20) DEFAULT NULL,
+  `lotId` bigint(20) DEFAULT NULL,
+  `sallerApprov` varchar(50) DEFAULT NULL,
+  `custApprov` varchar(50) DEFAULT NULL,
+  `dealDate` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_predeal_tender` (`tenderId`),
+  KEY `FK_predeal_lot` (`lotId`),
+  CONSTRAINT `FK_predeal_lot` FOREIGN KEY (`lotId`) REFERENCES `lot` (`id`),
+  CONSTRAINT `FK_predeal_tender` FOREIGN KEY (`tenderId`) REFERENCES `tender` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.product
@@ -85,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `name` varchar(50) DEFAULT NULL,
   `description` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.tender
@@ -102,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `tender` (
   KEY `FK_application_company` (`customerId`),
   CONSTRAINT `FK_tender_company` FOREIGN KEY (`customerId`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_tender_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица stock.user

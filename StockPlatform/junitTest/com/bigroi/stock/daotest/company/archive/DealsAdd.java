@@ -1,6 +1,7 @@
 package com.bigroi.stock.daotest.company.archive;
 
-import java.sql.Date;
+
+import java.sql.Time;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -19,12 +20,10 @@ public class DealsAdd {
 	@BeforeClass
 	public static void init(){
 		archive = new Deals();
-		archive.setId(14);
-		archive.setSalerId(1);
-		archive.setCustomerId(1);
-		archive.setProductId(1);
-		archive.setPrice(6);
-		archive.setTmsTmp(new Date(archive.getTmsTmp().getTime()));	
+		archive.setId(16);
+		archive.setLotId(1);
+		archive.setTenderId(1);
+		archive.setDealsTime(new Time(0));
 	}
 	
 	@Test

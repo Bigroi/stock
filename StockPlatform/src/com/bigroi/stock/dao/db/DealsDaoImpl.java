@@ -1,7 +1,6 @@
 package com.bigroi.stock.dao.db;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -19,15 +18,13 @@ import com.mysql.jdbc.Statement;
 
 public class DealsDaoImpl implements DealsDao {
 
-	private static final String ADD_ARCHIVE_BY_ID = "INSERT INTO deals "
-			+ "(id, salerId, customerId, productId, price, tms_tmp, sellerApprov, custApprov)"
-			+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String ADD_ARCHIVE_BY_ID = "INSERT INTO deals(id, lotId, tenderId, dealsTime) "
+			+ "VALUES (?, ?, ?, ?)";
 
 	private static final String DELETE_ARCHIVE_BY_ID = "DELETE FROM deals WHERE id = ?";
 
-	private static final String UPDATE_ARCHIVE_BY_ID = "UPDATE deals SET id = ?, salerId = ?,"
-			+ "customerId = ?, productId = ?, price = ?, tms_tmp = ?, "
-			+ "sellerApprov = ?, custApprov = ? WHERE id = ?";
+	private static final String UPDATE_ARCHIVE_BY_ID = "UPDATE deals SET id = ?, lotId = ?, "
+			+ "tenderId = ?, dealsTime = ? WHERE id = ?";
 
 	private DataSource datasource;
 
@@ -48,13 +45,9 @@ public class DealsDaoImpl implements DealsDao {
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(ADD_ARCHIVE_BY_ID, Statement.RETURN_GENERATED_KEYS);
 				ps.setLong(1, deals.getId());
-				ps.setLong(2, deals.getSalerId());
-				ps.setLong(3, deals.getCustomerId());
-				ps.setLong(4, deals.getProductId());
-				ps.setDouble(5, deals.getPrice());
-				ps.setDate(6, new Date(deals.getTmsTmp().getTime()));
-				ps.setString(7, deals.getSellerApprov());
-				ps.setString(8, deals.getCustApprov());
+				ps.setLong(2, deals.getLotId());
+				ps.setLong(3, deals.getTenderId());
+				ps.setTime(4, deals.getDealsTime());
 				return ps;
 			}
 		}, keyHolder);
@@ -71,8 +64,7 @@ public class DealsDaoImpl implements DealsDao {
 	@Override
 	public void update(long id, Deals deals) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_ARCHIVE_BY_ID, deals.getId(), deals.getSalerId(), 
-				deals.getCustomerId(),deals.getProductId(), deals.getPrice(), 
-				deals.getTmsTmp(), deals.getSellerApprov(), deals.getCustApprov(), id);
+		template.update(UPDATE_ARCHIVE_BY_ID, deals.getId(),  deals.getLotId(),
+				 deals.getTenderId(),  deals.getDealsTime(), id);
 	}
 }
