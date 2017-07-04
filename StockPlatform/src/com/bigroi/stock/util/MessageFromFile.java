@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-public class messageFromFile {
+public class MessageFromFile {
 
 	public static Map<String, String> read(String fileName) throws IOException {
 		Map<String, String> map = new HashMap<>();
