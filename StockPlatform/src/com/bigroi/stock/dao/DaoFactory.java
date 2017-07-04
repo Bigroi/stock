@@ -33,6 +33,10 @@ public class DaoFactory {
 	public static BlacklistDao getBlacklistDao(){
 		return (BlacklistDao) CONTEX.getBean("blacklistDao");
 	}
+	
+	public static PreDeal getPreDeal(){
+		return (PreDeal) CONTEX.getBean("preDealDao");
+	}
 
 	public static ApplicationContext getContext() {
 		return CONTEX;

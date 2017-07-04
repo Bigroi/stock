@@ -56,5 +56,9 @@
 	<bean id="blacklistDao" class="com.bigroi.stock.dao.db.BlacklistDaoImpl">
 		<property name="datasource" ref="datasource"></property>
 	</bean> 
+	
+	<!-- <bean id="preDealDao" class="com.bigroi.stock.dao.db.PreDealDaoImpl">
+		<property name="datasource" ref="datasource"></property>
+	</bean>  -->
 
 </beans>
