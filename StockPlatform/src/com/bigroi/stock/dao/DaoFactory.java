@@ -34,8 +34,8 @@ public class DaoFactory {
 		return (BlacklistDao) CONTEX.getBean("blacklistDao");
 	}
 	
-	public static PreDeal getPreDeal(){
-		return (PreDeal) CONTEX.getBean("preDealDao");
+	public static PreDealDao getPreDealDao(){
+		return (PreDealDao) CONTEX.getBean("preDealDao");
 	}
 
 	public static ApplicationContext getContext() {

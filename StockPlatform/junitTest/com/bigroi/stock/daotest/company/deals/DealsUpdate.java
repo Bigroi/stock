@@ -1,8 +1,9 @@
-package com.bigroi.stock.daotest.company.archive;
+package com.bigroi.stock.daotest.company.deals;
 
 
 
-import java.sql.Time;
+import java.sql.Date;
+
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,10 +19,10 @@ private static Deals archive;
 	@BeforeClass
 	public static void init(){
 		archive = new Deals();
-		archive.setId(18);
-		archive.setLotId(1);
+		archive.setId(1);
+		archive.setLotId(5);
 		archive.setTenderId(1);
-		archive.setDealsTime(new Time(2));
+		archive.setDealsTime(new Date(archive.getDealsTime().getTime()));
 	}
 	@Test
 	public void update() throws DaoException{

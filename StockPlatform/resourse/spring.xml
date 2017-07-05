@@ -57,8 +57,8 @@
 		<property name="datasource" ref="datasource"></property>
 	</bean> 
 	
-	<!-- <bean id="preDealDao" class="com.bigroi.stock.dao.db.PreDealDaoImpl">
+	 <bean id="preDealDao" class="com.bigroi.stock.dao.db.PreDealDaoImpl">
 		<property name="datasource" ref="datasource"></property>
-	</bean>  -->
+	</bean> 
 
 </beans>

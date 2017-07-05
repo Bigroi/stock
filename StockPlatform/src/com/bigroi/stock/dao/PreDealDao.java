@@ -2,7 +2,9 @@ package com.bigroi.stock.dao;
 
 import java.util.List;
 
-public interface PreDeal {
+import com.bigroi.stock.bean.PreDeal;
+
+public interface PreDealDao {
 	
     void add(PreDeal preDeal) throws DaoException;
 	

@@ -80,7 +80,7 @@ public class TenderDaoImpl implements TenderDao{
 	@Override
 	public void delete(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(DELETE_TENDER_BY_ID,id);
+		template.update(DELETE_TENDER_BY_ID, id);
 	}
 
 	@Override

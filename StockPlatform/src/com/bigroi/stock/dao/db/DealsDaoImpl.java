@@ -1,6 +1,7 @@
 package com.bigroi.stock.dao.db;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -47,7 +48,7 @@ public class DealsDaoImpl implements DealsDao {
 				ps.setLong(1, deals.getId());
 				ps.setLong(2, deals.getLotId());
 				ps.setLong(3, deals.getTenderId());
-				ps.setTime(4, deals.getDealsTime());
+				ps.setDate(4, new Date(deals.getDealsTime().getTime()));
 				return ps;
 			}
 		}, keyHolder);

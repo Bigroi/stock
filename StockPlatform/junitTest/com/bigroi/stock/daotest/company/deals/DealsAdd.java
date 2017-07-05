@@ -1,7 +1,8 @@
-package com.bigroi.stock.daotest.company.archive;
+package com.bigroi.stock.daotest.company.deals;
 
 
-import java.sql.Time;
+import java.sql.Date;
+
 
 import org.junit.After;
 import org.junit.Assert;
@@ -23,7 +24,7 @@ public class DealsAdd {
 		archive.setId(16);
 		archive.setLotId(1);
 		archive.setTenderId(1);
-		archive.setDealsTime(new Time(0));
+		archive.setDealsTime(new Date(archive.getDealsTime().getTime()));
 	}
 	
 	@Test
