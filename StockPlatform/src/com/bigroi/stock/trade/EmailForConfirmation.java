@@ -1,5 +1,8 @@
 package com.bigroi.stock.trade;
 
+import static com.bigroi.stock.bean.common.Constant.EMAIL_PASS;
+import static com.bigroi.stock.bean.common.Constant.EMAIL_USER;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +15,7 @@ import com.bigroi.stock.bean.common.MessagePart;
 import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
+import com.bigroi.stock.mail.MailManager;
 import com.bigroi.stock.util.MessageFromFile;
 
 public class EmailForConfirmation {
@@ -19,7 +23,7 @@ public class EmailForConfirmation {
 	private final static String SELLER_CONFIRMATION_FILE = "sellerConfirmationUTF8.txt";
 	private final static String SELLER_CONFIRMATION_LINK = "http://localhost:8080/StockPlatform/SellerCheck.spr?";
 	private final static String CUSTOMER_CONFIRMATION_LINK = "http://localhost:8080/StockPlatform/CustomerCheck.spr?";
-
+	
 	public void send() throws IOException, DaoException {
 		Map<MessagePart, String> customerMessage = MessageFromFile.read(CUSTOMER_CONFIRMATION_FILE);
 		Map<MessagePart, String> sellerMessage = MessageFromFile.read(SELLER_CONFIRMATION_FILE);
@@ -69,19 +73,9 @@ public class EmailForConfirmation {
 			DaoFactory.getLotDao().update(lot.getId(), lot);
 			tender.setStatus(Status.SUCCESS);
 			DaoFactory.getTenderDao().update(tender.getId(), tender);
-
-			sendEmail(sellerEmail, sellerSubject, sellerText);
-			sendEmail(customerEmail, customerSubject, customerText);
+		
+			new MailManager(EMAIL_USER, EMAIL_PASS).send(sellerEmail, sellerSubject, sellerText);
+			new MailManager(EMAIL_USER, EMAIL_PASS).send(customerEmail, customerSubject, customerText);			
 		}
-	}
-
-	// TODO «¿√À”ÿ ¿ ‰Îˇ messengera
-	private void sendEmail(String email, String subject, String text) {
-		System.out.println("To: " + email);
-		System.out.println("Subject: " + subject);
-		System.out.println("Text: ");
-		System.out.println(text);
-		System.out.println("-----------------------------------------");
-
 	}	
 }
