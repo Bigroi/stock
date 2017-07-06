@@ -72,4 +72,14 @@ public class TenderRenderingController {
 		List<Tender> tenders = DaoFactory.getTenderDao().getByCustomerId(user.getCompanyId());
 		return new ModelAndView("myTenderList", "listOfTenders", tenders);
 	}
+	
+	@RequestMapping("/TenderInGameAuth.spr")
+	public ModelAndView tenderInGame(@RequestParam("id") long id, HttpSession session) throws DaoException {
+		Tender tender = DaoFactory.getTenderDao().getById(id);
+		if (tender.getStatus() == Status.DRAFT){
+			tender.setStatus(Status.IN_GAME);
+			DaoFactory.getTenderDao().update(id, tender);
+		}
+		return myTenderList(session);
+	}
 }

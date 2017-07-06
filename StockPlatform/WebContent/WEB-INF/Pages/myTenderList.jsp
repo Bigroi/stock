@@ -29,6 +29,12 @@
 					<td>${tender.customerId}</td>
 					<td>${tender.dateStr}</td>
 					<td>${tender.status}</td>
+					<c:if test="${tender.status eq 'DRAFT'}">
+						<td><form action="TenderInGameAuth.spr" method="get">
+								<input type="hidden" name="id" value="${tender.id}"> <input
+									type="submit" value="In game">
+							</form>	</td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>

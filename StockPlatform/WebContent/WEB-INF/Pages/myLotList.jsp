@@ -29,14 +29,19 @@
 					<td>${lot.salerId}</td>
 					<td>${lot.dateStr}</td>
 					<td>${lot.status}</td>
+					<c:if test="${lot.status eq 'DRAFT'}">
+						<td><form action="LotInGameAuth.spr" method="get">
+								<input type="hidden" name="id" value="${lot.id}"> <input
+									type="submit" value="In game">
+							</form>	</td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	
 	<form action="LotFormAuth.spr">
-		<input type="hidden" name="id" value="-1" />
-		<input type="submit" value="Add lot">
+		<input type="hidden" name="id" value="-1" /> <input type="submit"
+			value="Add lot">
 	</form>
 	<form action="Index.spr">
 		<input type="submit" value="Welcome page">

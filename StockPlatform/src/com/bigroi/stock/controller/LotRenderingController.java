@@ -72,5 +72,14 @@ public class LotRenderingController {
 		List<Lot> lots = DaoFactory.getLotDao().getBySalerId(user.getCompanyId());
 		return new ModelAndView("myLotList", "listOfLots", lots);
 	}
-
+	
+	@RequestMapping("/LotInGameAuth.spr")
+	public ModelAndView lotInGame(@RequestParam("id") long id, HttpSession session) throws DaoException {
+		Lot lot = DaoFactory.getLotDao().getById(id);
+		if (lot.getStatus() == Status.DRAFT){
+			lot.setStatus(Status.IN_GAME);
+			DaoFactory.getLotDao().update(id, lot);
+		}
+		return myLotList(session);
+	}
 }
