@@ -1,5 +1,8 @@
 package com.bigroi.stock.util;
 
+import static com.bigroi.stock.bean.common.MessagePart.SUBJECT;
+import static com.bigroi.stock.bean.common.MessagePart.TEXT;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,10 +10,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.bigroi.stock.bean.common.MessagePart;
+
 public class MessageFromFile {
 
-	public static Map<String, String> read(String fileName) throws IOException {
-		Map<String, String> map = new HashMap<>();
+	public static Map<MessagePart, String> read(String fileName) throws IOException {
+		Map<MessagePart, String> map = new HashMap<>();
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
 				Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName),
 				StandardCharsets.UTF_8))) {
@@ -26,11 +31,11 @@ public class MessageFromFile {
 					text = text + line + System.lineSeparator();
 				}
 			}
-			map.put("subject", subject);
+			map.put(SUBJECT, subject);
 			if (text.endsWith(System.lineSeparator())) {
 				text = text.substring(0, text.length() - 2);
 			}
-			map.put("text", text);
+			map.put(TEXT, text);
 		}
 		return map;
 	}
