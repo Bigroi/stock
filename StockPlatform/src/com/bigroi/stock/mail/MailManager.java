@@ -13,8 +13,8 @@ import javax.mail.internet.MimeMessage;
 
 public class MailManager {
 
-	private String user;
-	private String password;
+	private String user;        //mailmanager16@gmail.com
+	private String password;   //qwerty123321
 	private Properties properties;
 
 	public MailManager(String user, String password) {

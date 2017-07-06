@@ -11,12 +11,10 @@ public class MailManagerTest {
 	
 	@BeforeClass
 	public static void init(){
-		send =  new MailManager("your email","your passw");
+		send =  new MailManager("mailmanager16@gmail.com","qwerty123321");
 	}
-	
-	
 	@Test
 	public  void send(){
-		send.send("your email", "test", "hello world!");
+		send.send("mailmanager16@gmail.com", "test", "hello world!");
 	}
 }
