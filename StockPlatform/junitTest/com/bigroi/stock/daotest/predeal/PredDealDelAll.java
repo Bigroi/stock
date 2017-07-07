@@ -22,9 +22,10 @@ private static PreDeal pred;
 		pred.setCustomerHashCode("evgen!!!");
 		pred.setTenderId(1);
 		pred.setLotId(1);
-	    pred.setSallerApprov(true);
-		pred.setCustApprov(true);
+	    pred.setSallerApprov(Boolean.parseBoolean(pred.YES));
+		pred.setCustApprov(Boolean.parseBoolean(pred.YES));
 		pred.setDealDate(new Date(pred.getDealDate().getTime()));
+		
 	}
 	@Test
 	public void deleteAll() throws DaoException{

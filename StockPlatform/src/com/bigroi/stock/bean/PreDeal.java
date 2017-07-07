@@ -6,8 +6,8 @@ import java.util.Date;
 
 public class PreDeal {
 	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
-	private static final String YES = "Y";
-	private static final String NO = "N";
+	public final String YES = "Y";
+	public final String NO = "N";
 
 	private long id;
 	private String sellerHashCode;

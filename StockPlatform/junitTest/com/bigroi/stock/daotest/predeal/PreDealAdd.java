@@ -19,13 +19,13 @@ public class PreDealAdd {
 	@BeforeClass
 	public static void init(){
 		pred = new PreDeal();
-		pred.setId(8);
+		pred.setId(1);
 		pred.setSellerHashCode("aa");
 		pred.setCustomerHashCode("bb");
 		pred.setTenderId(1);
 		pred.setLotId(1);
-	    pred.setSallerApprov(true);
-		pred.setCustApprov(true);
+	    pred.setSallerApprov(Boolean.parseBoolean(pred.YES));
+		pred.setCustApprov(Boolean.parseBoolean(pred.YES));
 		pred.setDealDate(new Date(pred.getDealDate().getTime()));
 		
 	}
