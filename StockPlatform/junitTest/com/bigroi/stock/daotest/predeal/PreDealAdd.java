@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bigroi.stock.bean.PreDeal;
+import com.bigroi.stock.bean.common.YesNoSingle;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
@@ -23,8 +24,8 @@ public class PreDealAdd {
 		pred.setCustomerHashCode("bb");
 		pred.setTenderId(1);
 		pred.setLotId(1);
-		//TODO		pred.setSellerApprov("nn");
-		pred.setCustApprov("nnn");
+	    pred.setSallerApprov(YesNoSingle.N);
+		pred.setCustApprov(YesNoSingle.N);
 		pred.setDealDate(new Date(pred.getDealDate().getTime()));
 		
 	}

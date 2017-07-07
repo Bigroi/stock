@@ -64,8 +64,8 @@ public class PreDealDaoImpl implements PreDealDao {
 				ps.setString(3, preDeal.getCustomerHashCode());
 				ps.setLong(4, preDeal.getTenderId());
 				ps.setLong(5, preDeal.getLotId());
-				ps.setString(6, preDeal.getSallerApprov());
-				ps.setString(7, preDeal.getCustApprov());
+				ps.setString(6, preDeal.getSallerApprov().name().toUpperCase());
+				ps.setString(7, preDeal.getSallerApprov().name().toUpperCase());
 				ps.setDate(8, new Date(preDeal.getDealDate().getTime()));
 				return ps;
 			}
@@ -92,8 +92,8 @@ public class PreDealDaoImpl implements PreDealDao {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(UPDATE_PREDEALS_BY_ID, preDeal.getId(), preDeal.getSellerHashCode(), 
 				preDeal.getCustomerHashCode(), preDeal.getTenderId(),preDeal.getLotId(), 
-				preDeal.getSallerApprov(), preDeal.getCustApprov(), 
-				preDeal.getDealDate(), id);
+				preDeal.getSallerApprov().name().toUpperCase(), 
+				preDeal.getCustApprov().name().toUpperCase(), preDeal.getDealDate(), id);
 	}
 
 	@Override

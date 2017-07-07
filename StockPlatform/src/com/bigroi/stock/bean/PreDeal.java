@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.bigroi.stock.bean.common.YesNoSingle;
+
 public class PreDeal {
 	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
 	
@@ -12,8 +14,8 @@ public class PreDeal {
 	private String customerHashCode;
 	private long tenderId;
 	private long lotId;
-	private String sallerApprov;
-	private String custApprov;
+	private YesNoSingle sallerApprov;
+	private YesNoSingle custApprov;
 	private Date dealDate = new Date();
 	
 	public long getId() {
@@ -46,16 +48,16 @@ public class PreDeal {
 	public void setLotId(long lotId) {
 		this.lotId = lotId;
 	}
-	public String getSallerApprov() {
+	public YesNoSingle getSallerApprov() {
 		return sallerApprov;
 	}
-	public void setSallerApprov(String sallerApprov) {
+	public void setSallerApprov(YesNoSingle sallerApprov) {
 		this.sallerApprov = sallerApprov;
 	}
-	public String getCustApprov() {
+	public YesNoSingle getCustApprov() {
 		return custApprov;
 	}
-	public void setCustApprov(String custApprov) {
+	public void setCustApprov(YesNoSingle custApprov) {
 		this.custApprov = custApprov;
 	}
 	public Date getDealDate() {
