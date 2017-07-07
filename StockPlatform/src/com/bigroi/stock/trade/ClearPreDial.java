@@ -15,9 +15,7 @@ public class ClearPreDial implements Runnable {
 		try {
 			List<PreDeal> predials = DaoFactory.getPreDealDao().getAllPreDeal();
 			for (PreDeal preDeal : predials) {
-				if (Y.name().equals(preDeal.getSellerApprov())){
-					
-				}
+				
 			}
 		} catch (DaoException e) {			
 			e.printStackTrace();

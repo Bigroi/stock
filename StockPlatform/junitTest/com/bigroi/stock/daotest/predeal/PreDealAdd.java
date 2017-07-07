@@ -23,7 +23,7 @@ public class PreDealAdd {
 		pred.setCustomerHashCode("bb");
 		pred.setTenderId(1);
 		pred.setLotId(1);
-		pred.setSellerApprov("nn");
+		//TODO		pred.setSellerApprov("nn");
 		pred.setCustApprov("nnn");
 		pred.setDealDate(new Date(pred.getDealDate().getTime()));
 		

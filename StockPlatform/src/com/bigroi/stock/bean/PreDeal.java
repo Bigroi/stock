@@ -12,7 +12,7 @@ public class PreDeal {
 	private String customerHashCode;
 	private long tenderId;
 	private long lotId;
-	private String sellerApprov;
+	private String sallerApprov;
 	private String custApprov;
 	private Date dealDate = new Date();
 	
@@ -46,11 +46,11 @@ public class PreDeal {
 	public void setLotId(long lotId) {
 		this.lotId = lotId;
 	}
-	public String getSellerApprov() {
-		return sellerApprov;
+	public String getSallerApprov() {
+		return sallerApprov;
 	}
-	public void setSellerApprov(String sellerApprov) {
-		this.sellerApprov = sellerApprov;
+	public void setSallerApprov(String sallerApprov) {
+		this.sallerApprov = sallerApprov;
 	}
 	public String getCustApprov() {
 		return custApprov;

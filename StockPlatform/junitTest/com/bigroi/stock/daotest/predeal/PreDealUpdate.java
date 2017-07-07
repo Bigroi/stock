@@ -22,7 +22,7 @@ private static PreDeal pred;
 		pred.setCustomerHashCode("evgen!!!");
 		pred.setTenderId(1);
 		pred.setLotId(1);
-		pred.setSellerApprov("ndfn");
+		//TODO		pred.setSellerApprov("ndfn");
 		pred.setCustApprov("dsfdnn");
 		pred.setDealDate(new Date(pred.getDealDate().getTime()));
 	}
