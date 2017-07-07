@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT IGNORE INTO `user` (`id`, `login`, `password`, `companyId`) VALUES
 	(1, 'Admin', '1', 1),
-	(2, 'Админ', '2', 1);
+	(2, 'Админ', '2', 10);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

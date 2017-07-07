@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
+encoding//SQL/stock.sql=UTF-8
 encoding//WebContent/WEB-INF/Pages/account.jsp=UTF-8
 encoding//resourse/customerConfirmationUTF8.txt=UTF-8
+encoding//resourse/expiredLinkOpponentUTF8.txt=UTF-8
+encoding//resourse/expiredLinkUTF8.txt=UTF-8
 encoding//resourse/sellerConfirmationUTF8.txt=UTF-8
-encoding//src/com/bigroi/stock/util/Main.java=Cp1251

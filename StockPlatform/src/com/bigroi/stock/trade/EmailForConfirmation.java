@@ -28,6 +28,8 @@ public class EmailForConfirmation {
 		Map<MessagePart, String> customerMessage = MessageFromFile.read(CUSTOMER_CONFIRMATION_FILE);
 		Map<MessagePart, String> sellerMessage = MessageFromFile.read(SELLER_CONFIRMATION_FILE);
 		List<PreDeal> preDials = DaoFactory.getPreDealDao().getAllPreDeal();
+		String sellerSubject = sellerMessage.get(MessagePart.SUBJECT);
+		String customerSubject = customerMessage.get(MessagePart.SUBJECT);
 
 		for (PreDeal preDeal : preDials) {
 			Lot lot = DaoFactory.getLotDao().getById(preDeal.getLotId());
@@ -36,8 +38,6 @@ public class EmailForConfirmation {
 			Tender tender = DaoFactory.getTenderDao().getById(preDeal.getTenderId());
 			String customerEmail = DaoFactory.getCompanyDao().getById(tender.getCustomerId()).getEmail();			
 			
-			String sellerSubject = sellerMessage.get(MessagePart.SUBJECT);
-			String customerSubject = customerMessage.get(MessagePart.SUBJECT);
 			String sellerText = sellerMessage.get(MessagePart.TEXT);
 			String customerText = customerMessage.get(MessagePart.TEXT);
 
