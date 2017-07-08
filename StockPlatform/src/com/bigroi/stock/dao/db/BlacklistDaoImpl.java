@@ -19,12 +19,12 @@ import com.mysql.jdbc.Statement;
 
 public class BlacklistDaoImpl implements BlacklistDao {
 	
-	private static final String ADD_BLACKLIST_BY_ID = "INSERT INTO blacklist"
+	private static final String ADD_BLACKLIST_BY_ID = "INSERT INTO blacklist "
 			+ "(id, tenderId, lotId) VALUES (?, ?, ?)";
 
 	private static final String DELETE_BLACKLIST_BY_ID = "DELETE FROM blacklist WHERE id = ?";
 
-	private static final String UPDATE_BLACKLIST_BY_ID = "UPDATE blacklist SET id = ?,"
+	private static final String UPDATE_BLACKLIST_BY_ID = "UPDATE blacklist SET id = ?, "
 			+ "tenderId = ?, lotId = ? WHERE id = ?";
 	
 	private DataSource datasource;

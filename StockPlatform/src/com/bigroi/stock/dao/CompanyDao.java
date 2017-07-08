@@ -8,8 +8,8 @@ public interface CompanyDao {
 
 	void add(Company company) throws DaoException;
 
-	void delete(long id) throws DaoException;
+	boolean delete(long id) throws DaoException;
 
-	void update(long id, Company company) throws DaoException;
+	boolean updateById(Company company) throws DaoException;
 
 }

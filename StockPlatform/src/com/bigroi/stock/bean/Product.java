@@ -5,8 +5,6 @@ public class Product {
 	private long id;
 	private String name;
 	private String description;
-	private int lot—ount;
-	private int application—ount;
 
 	public long getId() {
 		return id;
@@ -30,22 +28,6 @@ public class Product {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public int getLot—ount() {
-		return lot—ount;
-	}
-
-	public void setLot—ount(int lot—ount) {
-		this.lot—ount = lot—ount;
-	}
-
-	public int getApplication—ount() {
-		return application—ount;
-	}
-
-	public void setApplication—ount(int application—ount) {
-		this.application—ount = application—ount;
 	}
 
 	@Override

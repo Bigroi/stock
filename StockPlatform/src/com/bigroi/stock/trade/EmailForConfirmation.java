@@ -55,12 +55,13 @@ public class EmailForConfirmation {
 			double maxPrice = DaoFactory.getTenderDao().getById(preDeal.getTenderId()).getMaxPrice();
 			double price = (minPrace + maxPrice) / 2;
 
-			sellerText = sellerText.replaceAll("@lotId", preDeal.getLotId() + "");
-			sellerText = sellerText.replaceAll("@lotDate", lot.getDateStr());
-			sellerText = sellerText.replaceAll("@lotPrice", lot.getMinPrice() + "");
-			sellerText = sellerText.replaceAll("@price", price + "");
-			sellerText = sellerText.replaceAll("@sellerLinkApprove", sellerLinkApprove);
-			sellerText = sellerText.replaceAll("@sellerLinkCancel", sellerLinkCancel);
+			sellerText = sellerText
+			.replaceAll("@lotId", preDeal.getLotId() + "")
+			.replaceAll("@lotDate", lot.getDateStr())
+			.replaceAll("@lotPrice", lot.getMinPrice() + "")
+			.replaceAll("@price", price + "")
+			.replaceAll("@sellerLinkApprove", sellerLinkApprove)
+			.replaceAll("@sellerLinkCancel", sellerLinkCancel);
 
 			customerText = customerText.replaceAll("@tenderId", preDeal.getTenderId() + "");
 			customerText = customerText.replaceAll("@tenderDate", tender.getDateStr());

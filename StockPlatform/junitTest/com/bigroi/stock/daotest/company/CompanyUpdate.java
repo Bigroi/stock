@@ -26,7 +26,7 @@ private static Company company;
 	
 	@Test
 	public void update() throws DaoException{
-		DaoFactory.getCompanyDao().update(company.getId(), company);
+		DaoFactory.getCompanyDao().updateById(company);
 		
 	}
 

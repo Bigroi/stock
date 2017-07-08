@@ -51,7 +51,7 @@ public class AccountRenderingController {
 		company.setRegNumber(regNumber);
 		company.setCountry(country);
 		company.setCity(city);
-		DaoFactory.getCompanyDao().update(company.getId(), company);;		
+		DaoFactory.getCompanyDao().updateById( company);;		
 		
 		return goToAccountPage(session);
 	}

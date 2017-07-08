@@ -30,7 +30,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String UPDATE_COMPANY_BY_ID = "UPDATE company SET "
-			+ "id = ?, name = ?,email = ?, phone = ?, reg_number = ?, "
+			+ "name = ?,email = ?, phone = ?, reg_number = ?, "
 			+ "country = ?, city = ?, status = ? WHERE id = ?";
 
 	private DataSource datasource;
@@ -75,18 +75,19 @@ public class CompanyDaoImpl implements CompanyDao {
 	}
 
 	@Override
-	public void delete(long id) throws DaoException {
+	public boolean delete(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(DELETE_COMPANY_BY_ID, id);
+		return template.update(DELETE_COMPANY_BY_ID, id) == 1;
 	}
 
 	@Override
-	public void update(long id, Company company) throws DaoException {
+	public boolean updateById(Company company) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_COMPANY_BY_ID, company.getId(), 
+		return template.update(UPDATE_COMPANY_BY_ID,  
 				company.getName(), company.getEmail(),company.getPhone(), 
 				company.getRegNumber(), company.getCountry(), company.getCity(),
-				company.getStatus().name().toUpperCase(), id);
+				company.getStatus().name().toUpperCase(), company.getId())
+				== 1;
 	}
 
 }

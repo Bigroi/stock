@@ -38,12 +38,4 @@ public class DaoFactory {
 		return (PreDealDao) CONTEX.getBean("preDealDao");
 	}
 
-	public static ApplicationContext getContext() {
-		return CONTEX;
-	}
-
-	public static StubDao getStubDao(Class<?> clazz) {
-		return new StubDao(clazz);
-	}
-
 }

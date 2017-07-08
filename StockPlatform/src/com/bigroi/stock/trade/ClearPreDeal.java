@@ -67,7 +67,7 @@ public class ClearPreDeal implements Runnable {
 		}
 	}	
 
-private String replaceText(String text, long id) {
+	private String replaceText(String text, long id) {
 		return text.replaceAll("@id", id + "");
 	}
 
