@@ -20,12 +20,12 @@ import com.mysql.jdbc.Statement;
 public class BlacklistDaoImpl implements BlacklistDao {
 	
 	private static final String ADD_BLACKLIST_BY_ID = "INSERT INTO blacklist "
-			+ "(id, tenderId, lotId) VALUES (?, ?, ?)";
+			+ "(id, tender_Id, lot_Id) VALUES (?, ?, ?)";
 
 	private static final String DELETE_BLACKLIST_BY_ID = "DELETE FROM blacklist WHERE id = ?";
 
-	private static final String UPDATE_BLACKLIST_BY_ID = "UPDATE blacklist SET id = ?, "
-			+ "tenderId = ?, lotId = ? WHERE id = ?";
+	private static final String UPDATE_BLACKLIST_BY_ID = "UPDATE blacklist SET "
+			+ "tender_Id = ?, lot_Id = ? WHERE id = ?";
 	
 	private DataSource datasource;
 
@@ -56,17 +56,18 @@ public class BlacklistDaoImpl implements BlacklistDao {
 	}
 
 	@Override
-	public void delete(long id) throws DaoException {
+	public boolean deletedById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(DELETE_BLACKLIST_BY_ID, id);
+		return template.update(DELETE_BLACKLIST_BY_ID, id) == 1;
 	}
 
 	@Override
-	public void update(long id, Blacklist blacklist) throws DaoException {
+	public boolean updateById( Blacklist blacklist) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_BLACKLIST_BY_ID, blacklist.getId(), 
-				blacklist.getTenderId(), blacklist.getLotId(), id);
+		return template.update(UPDATE_BLACKLIST_BY_ID, blacklist.getId(), 
+				blacklist.getTenderId(), blacklist.getLotId()) == 1;
 		
 	}
+
 
 }

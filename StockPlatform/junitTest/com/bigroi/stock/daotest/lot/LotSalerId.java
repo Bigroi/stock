@@ -16,12 +16,12 @@ private static Lot lot;
 	@BeforeClass
 	public static void init(){
 		lot = new Lot();
-		lot.setSalerId(1);
+		lot.setSellerId(1);
 	}
 	
 	@Test
 	public void getSalerId() throws DaoException{
-		DaoFactory.getLotDao().getBySalerId(lot.getSalerId());
+		DaoFactory.getLotDao().getBySellerId(lot.getSellerId());
 		
 	}
 

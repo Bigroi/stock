@@ -8,13 +8,13 @@ public interface LotDao {
 	
 	void add(Lot lot) throws DaoException;
 	
-	void delete(long id) throws DaoException;
+	boolean deletedById(long id) throws DaoException;
 	
-	void update(long id, Lot lot) throws DaoException;
+	boolean updateById( Lot lot) throws DaoException;
 	
 	Lot getById(long id) throws DaoException;
 	
-	List<Lot> getBySalerId(long salerId) throws DaoException;
+	List<Lot> getBySellerId(long salerId) throws DaoException;
 	
 	List<Lot> getByProductId(long productId) throws DaoException;
 

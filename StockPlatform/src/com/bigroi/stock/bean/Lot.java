@@ -14,7 +14,7 @@ public class Lot {
 	private String description;
 	private long poductId;
 	private double minPrice;
-	private long salerId;
+	private long sellerId;
 	private Date expDate = new Date();
 	private Status status;
 	
@@ -58,12 +58,12 @@ public class Lot {
 		this.minPrice = minPrice;
 	}
 
-	public long getSalerId() {
-		return salerId;
+	public long getSellerId() {
+		return sellerId;
 	}
 
-	public void setSalerId(long salerId) {
-		this.salerId = salerId;
+	public void setSellerId(long salerId) {
+		this.sellerId = salerId;
 	}
 
 	public Date getExpDate() {
@@ -85,7 +85,7 @@ public class Lot {
 	@Override
 	public String toString() {
 		return "Lot [id=" + id + ", description=" + description + ", poductId=" + poductId + ", minPrice=" + minPrice
-				+ ", salerId=" + salerId + ", expDate=" + expDate + ", status=" + status + "]";
+				+ ", salerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + "]";
 	}
 
 	

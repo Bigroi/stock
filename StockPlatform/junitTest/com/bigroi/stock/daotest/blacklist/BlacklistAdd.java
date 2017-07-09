@@ -29,7 +29,7 @@ public class BlacklistAdd {
 	
 	@After
 	public void delete() throws DaoException{
-		DaoFactory.getBlacklistDao().delete(blacklist.getId());
+		DaoFactory.getBlacklistDao().deletedById(blacklist.getId());
 	}
 	
 

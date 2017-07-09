@@ -19,13 +19,13 @@ import com.mysql.jdbc.Statement;
 
 public class DealsDaoImpl implements DealsDao {
 
-	private static final String ADD_ARCHIVE_BY_ID = "INSERT INTO deals(id, lotId, tenderId, dealsTime) "
+	private static final String ADD_ARCHIVE_BY_ID = "INSERT INTO deals(id, lot_Id, tender_Id, deals_Time) "
 			+ "VALUES (?, ?, ?, ?)";
 
 	private static final String DELETE_ARCHIVE_BY_ID = "DELETE FROM deals WHERE id = ?";
 
-	private static final String UPDATE_ARCHIVE_BY_ID = "UPDATE deals SET id = ?, lotId = ?, "
-			+ "tenderId = ?, dealsTime = ? WHERE id = ?";
+	private static final String UPDATE_ARCHIVE_BY_ID = "UPDATE deals SET lot_Id = ?, "
+			+ "tender_Id = ?, deals_Time = ? WHERE id = ?";
 
 	private DataSource datasource;
 
@@ -57,15 +57,17 @@ public class DealsDaoImpl implements DealsDao {
 	}
 
 	@Override
-	public void delete(long id) throws DaoException {
+	public boolean deletedById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(DELETE_ARCHIVE_BY_ID, id);
+		return template.update(DELETE_ARCHIVE_BY_ID, id) == 1;
 	}
 
 	@Override
-	public void update(long id, Deals deals) throws DaoException {
+	public boolean updateById(Deals deals) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_ARCHIVE_BY_ID, deals.getId(),  deals.getLotId(),
-				 deals.getTenderId(),  deals.getDealsTime(), id);
+		return template.update(UPDATE_ARCHIVE_BY_ID, deals.getId(),  deals.getLotId(),
+				 deals.getTenderId(),  deals.getDealsTime()) == 1;
 	}
+
+	
 }

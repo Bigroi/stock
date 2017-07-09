@@ -21,14 +21,14 @@ private static Lot lot;
 		lot.setDescription("evgen!!");
 		lot.setPoductId(1);
 		lot.setMinPrice(110);
-		lot.setSalerId(1);
+		lot.setSellerId(1);
 		lot.setStatus(Status.DRAFT);
 		lot.setExpDate(new Date(lot.getExpDate().getTime()));
 	}
 	
 	@Test
 	public void update() throws DaoException{
-		DaoFactory.getLotDao().update(lot.getId(), lot);
+		DaoFactory.getLotDao().updateById( lot);
 	
 	}
 }

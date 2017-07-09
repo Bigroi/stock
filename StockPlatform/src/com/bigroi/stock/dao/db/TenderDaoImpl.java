@@ -24,26 +24,26 @@ import com.mysql.jdbc.Statement;
 
 public class TenderDaoImpl implements TenderDao{
 	
-	private static final String ADD_TENDER_BY_ID = "INSERT INTO tender"
-			+ " (id, description, productId, max_price, customerId,"
-			+ " status, exp_date) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+	private static final String ADD_TENDER_BY_ID = "INSERT INTO tender "
+			+ " (id, description, product_Id, max_price, customer_Id, "
+			+ " status, exp_date) VALUES ( ?, ?, ?, ?, ?, ?, ?) ";
 		
-	private static final String DELETE_TENDER_BY_ID = "DELETE FROM tender WHERE id = ?";
+	private static final String DELETE_TENDER_BY_ID = "DELETE FROM tender WHERE id = ? ";
 
-	private static final String UPDATE_TENDER_BY_ID = "UPDATE tender SET id = ?, description = ?, "
-			+ "productId = ?, max_price = ?, customerId = ?, status = ?, exp_date = ? "
-			+ "WHERE id = ?";
+	private static final String UPDATE_TENDER_BY_ID = "UPDATE tender SET description = ?, "
+			+ "product_Id = ?, max_price = ?, customer_Id = ?, status = ?, exp_date = ? "
+			+ "WHERE id = ? ";
 	
-	private static final String SELECT_TENDER_BY_ID = "SELECT id, description, productId,"
-			+ " max_price, customerId, status, exp_date FROM tender WHERE id = ?";
+	private static final String SELECT_TENDER_BY_ID = "SELECT id, description, product_Id, "
+			+ " max_price, customer_Id, status, exp_date FROM tender WHERE id = ? ";
 	
-	private static final String SELECT_TENDER_BY_CUSTOMER_ID = "SELECT id, description,"
-			+ "productId, max_price, customerId, status, exp_date "
-			+ "FROM tender WHERE customerId = ?";
+	private static final String SELECT_TENDER_BY_CUSTOMER_ID = "SELECT id, description, "
+			+ "product_Id, max_price, customer_Id, status, exp_date "
+			+ "FROM tender WHERE customer_Id = ?";
 	
-	private static final String SELECT_TENDER_BY_PRODUCT_ID ="SELECT id, description,"
-			+ " productId, max_price, customerId, status, exp_date FROM tender"
-			+ " WHERE productId = ? ORDER BY  max_price DESC ";
+	private static final String SELECT_TENDER_BY_PRODUCT_ID ="SELECT id, description, "
+			+ " product_Id, max_price, customer_Id, status, exp_date FROM tender "
+			+ " WHERE product_Id = ? ORDER BY  max_price DESC ";
 	
 	private DataSource datasource;
 
@@ -78,25 +78,29 @@ public class TenderDaoImpl implements TenderDao{
 	}
 
 	@Override
-	public void delete(long id) throws DaoException {
+	public boolean deletedById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(DELETE_TENDER_BY_ID, id);
+	return	template.update(DELETE_TENDER_BY_ID, id) == 1;
 	}
 
 	@Override
-	public void update(long id, Tender tender) throws DaoException {
+	public boolean updateById(Tender tender) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_TENDER_BY_ID, tender.getId(), tender.getDescription(), tender.getProductId(),
+	return	template.update(UPDATE_TENDER_BY_ID, tender.getId(), tender.getDescription(), tender.getProductId(),
 				tender.getMaxPrice(), tender.getCustomerId(), 
-				tender.getStatus().name().toUpperCase(), tender.getExpDate(), id);
+				tender.getStatus().name().toUpperCase(), tender.getExpDate()) == 1;
 	}
 
 	@Override
 	public Tender getById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		Tender tender = template.queryForObject(SELECT_TENDER_BY_ID, new Object[] {id}, 
-				new BeanPropertyRowMapper<Tender>(Tender.class));
-		return tender;
+		List<Tender> tender = template.query(SELECT_TENDER_BY_ID, new BeanPropertyRowMapper<Tender>(Tender.class), id);
+		if (tender.size() == 0) {
+			return null;
+		} else {
+			return tender.get(0);
+		}
+		
 	}
 	
 	@Override
@@ -108,9 +112,9 @@ public class TenderDaoImpl implements TenderDao{
 				Tender tender = new Tender();
 				tender.setId(rs.getLong("id"));
 				tender.setDescription(rs.getString("description"));
-				tender.setProductId(rs.getLong("productId"));
+				tender.setProductId(rs.getLong("product_Id"));
 				tender.setMaxPrice(rs.getDouble("max_price"));
-				tender.setCustomerId(rs.getLong("customerId"));
+				tender.setCustomerId(rs.getLong("customer_Id"));
 				tender.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				tender.setExpDate(rs.getDate("exp_date"));
 				return tender;
@@ -128,9 +132,9 @@ public class TenderDaoImpl implements TenderDao{
 				Tender tender = new Tender();
 				tender.setId(rs.getLong("id"));
 				tender.setDescription(rs.getString("description"));
-				tender.setProductId(rs.getLong("productId"));
+				tender.setProductId(rs.getLong("product_Id"));
 				tender.setMaxPrice(rs.getDouble("max_price"));
-				tender.setCustomerId(rs.getLong("customerId"));
+				tender.setCustomerId(rs.getLong("customer_Id"));
 				tender.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				tender.setExpDate(rs.getDate("exp_date"));
 				return tender;

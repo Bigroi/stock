@@ -1,5 +1,6 @@
 package com.bigroi.stock.dao.db;
 
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ import com.mysql.jdbc.Statement;
 
 public class CompanyDaoImpl implements CompanyDao {
 
-	private static final String SELECT_COMPANY_BY_ID = "SELECT id, name, email, phone,"
+	private static final String SELECT_COMPANY_BY_ID = "SELECT id, name, email, phone, "
 			+ "reg_number, country, city, status FROM company WHERE id = ?";
 
 	private static final String DELETE_COMPANY_BY_ID = "DELETE FROM company " 
@@ -29,9 +30,10 @@ public class CompanyDaoImpl implements CompanyDao {
 			+ " (id, name, email, phone, reg_number, country, city,status) " 
 			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
-	private static final String UPDATE_COMPANY_BY_ID = "UPDATE company SET "
-			+ "name = ?,email = ?, phone = ?, reg_number = ?, "
-			+ "country = ?, city = ?, status = ? WHERE id = ?";
+	private static final String UPDATE_COMPANY_BY_ID = "UPDATE company SET  name = ?, "
+			+ "email = ?, phone = ?, reg_number = ?, country = ?, city = ?, "
+			+ "status = ? WHERE id = ? ";
+		
 
 	private DataSource datasource;
 
@@ -46,9 +48,9 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
 	public Company getById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		Company company = template.queryForObject(SELECT_COMPANY_BY_ID, new Object[] { id },
-				new BeanPropertyRowMapper<Company>(Company.class));
-		return company;
+		Company company = (Company) template.query(SELECT_COMPANY_BY_ID, new BeanPropertyRowMapper<Company>(Company.class),id);
+		return company;//TODO: problem List<Company>??
+		
 	}
 
 	@Override
@@ -75,7 +77,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	}
 
 	@Override
-	public boolean delete(long id) throws DaoException {
+	public boolean deletedById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(DELETE_COMPANY_BY_ID, id) == 1;
 	}
@@ -83,11 +85,10 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
 	public boolean updateById(Company company) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_COMPANY_BY_ID,  
-				company.getName(), company.getEmail(),company.getPhone(), 
-				company.getRegNumber(), company.getCountry(), company.getCity(),
-				company.getStatus().name().toUpperCase(), company.getId())
-				== 1;
+		return template.update(UPDATE_COMPANY_BY_ID, company.getName(), company.getEmail(),
+				company.getPhone(), company.getRegNumber(), company.getCountry(), 
+				company.getCity(),company.getStatus().name().toUpperCase(), 
+				company.getId()) == 1;
 	}
 
 }

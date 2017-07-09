@@ -23,18 +23,18 @@ public class ProductDaoImpl implements ProductDao {
 	
 	private static final Logger lOG = Logger.getLogger(ProductDaoImpl.class);
 
-	private static final String GET_ALL_PRODUCTS = "SELECT id, name, description FROM product";
+	private static final String GET_ALL_PRODUCTS = "SELECT id, name, description FROM product ";
 
 	private static final String ADD_PRODUCTS_BY_ID = "INSERT INTO product (id, name, description) " 
 	        + "VALUES (?, ?, ?)";
 
-	private static final String DELETE_PRODUCTS_BY_ID = "DELETE FROM product WHERE id = ?";
+	private static final String DELETE_PRODUCTS_BY_ID = "DELETE FROM product WHERE id = ? ";
 
-	private static final String UPDATE_PRODUCTS_BY_ID = "UPDATE product SET id = ?, name = ?,"
+	private static final String UPDATE_PRODUCTS_BY_ID = "UPDATE product SET name = ?, "
 			+ " description = ? WHERE id = ?";
 
 	private static final String SELECT_PRODUCTS_BY_ID = "SELECT id, name, description "
-			+ " FROM product WHERE id = ?";
+			+ " FROM product WHERE id = ? ";
 
 	private DataSource datasource;
 
@@ -73,15 +73,15 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public void delete(long id) throws DaoException {
+	public boolean deletedById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(DELETE_PRODUCTS_BY_ID, id);
+	return	template.update(DELETE_PRODUCTS_BY_ID, id) == 1;
 	}
 
 	@Override
-	public void update(long id, Product product) throws DaoException {
+	public boolean updateById(Product product) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_PRODUCTS_BY_ID, product.getId(), product.getName(), product.getDescription(), id);
+	return	template.update(UPDATE_PRODUCTS_BY_ID, product.getId(), product.getName(), product.getDescription()) == 1;
 	}
 
 	@Override

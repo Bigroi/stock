@@ -6,7 +6,7 @@ public interface BlacklistDao {
 	
 	    void add(Blacklist blacklist) throws DaoException;
 		
-		void delete(long id) throws DaoException;
-		
-		void update(long id, Blacklist blacklist) throws DaoException;
+		boolean deletedById(long id) throws DaoException;
+	
+		boolean updateById(Blacklist blacklist) throws DaoException;
 }

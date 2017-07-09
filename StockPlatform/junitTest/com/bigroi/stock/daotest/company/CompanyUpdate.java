@@ -4,6 +4,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bigroi.stock.bean.Company;
+import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
@@ -14,13 +15,14 @@ private static Company company;
 	@BeforeClass
 	public static void init(){
 		company = new Company();
-		company.setId(13);
+		company.setId(10);
 		company.setName("JAVA");
 		company.setEmail("emailJAVA");
 		company.setPhone("165");
 		company.setRegNumber("JAVA");
 		company.setCountry("JAVA");
-		company.setCity("JAVA");
+		company.setCity("JAVA@@@");
+		company.setStatus(Status.DRAFT);
 		
 	}
 	

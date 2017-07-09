@@ -10,11 +10,11 @@ public class PreDeal {
 	public final String NO = "N";
 
 	private long id;
-	private String sellerHashCode;
+	private String sellerHashCode;//TODO: fields sellerHashCode,customerHashCode,sellerApprov,custApprov,dealDate in DB ???
 	private String customerHashCode;
 	private long tenderId;
 	private long lotId;
-	private boolean sallerApprov;
+	private boolean sellerApprov;
 	private boolean custApprov;
 	private Date dealDate = new Date();
 
@@ -59,11 +59,11 @@ public class PreDeal {
 	}
 
 	public boolean getSallerApprov() {
-		return sallerApprov;
+		return sellerApprov;
 	}
 
 	public void setSallerApprov(boolean sallerApprov) {
-		this.sallerApprov = sallerApprov;
+		this.sellerApprov = sallerApprov;
 	}
 
 	public boolean getCustApprov() {
@@ -91,7 +91,7 @@ public class PreDeal {
 	}
 
 	public boolean checkSallerApprov() {
-		if (YES.toUpperCase().equals(sallerApprov)&& (NO.toUpperCase().equals(sallerApprov))){
+		if (YES.toUpperCase().equals(sellerApprov)&& (NO.toUpperCase().equals(sellerApprov))){
 			return true;
 		} else {
 			return false;

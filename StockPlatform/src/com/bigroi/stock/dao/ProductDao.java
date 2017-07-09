@@ -10,9 +10,9 @@ public interface ProductDao {
 	
 	void add(Product product) throws DaoException;
 	
-	void delete(long id) throws DaoException;
+	boolean deletedById(long id) throws DaoException;
 	
-	void update(long id, Product product) throws DaoException;
+	boolean updateById(Product product) throws DaoException;
 	
 	Product getById(long id) throws DaoException;
 }

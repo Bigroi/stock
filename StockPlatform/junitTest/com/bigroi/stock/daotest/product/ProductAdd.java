@@ -29,6 +29,6 @@ public class ProductAdd {
 
 	@After
 	public void delete() throws DaoException {
-		DaoFactory.getProductDao().delete(product.getId());
+		DaoFactory.getProductDao().deletedById(product.getId());
 	}
 }

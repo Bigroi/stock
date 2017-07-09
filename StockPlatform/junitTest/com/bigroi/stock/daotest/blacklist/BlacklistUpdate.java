@@ -14,12 +14,12 @@ private static Blacklist blacklist;
 	@BeforeClass
 	public static void init() throws DaoException{
 		blacklist = new Blacklist();
-		blacklist.setId(10);
-		blacklist.setTenderId(3);
-		blacklist.setLotId(3);
+		blacklist.setId(1);
+		blacklist.setTenderId(1);
+		blacklist.setLotId(1);
 	}
 	@Test
 	public void update() throws DaoException{
-		DaoFactory.getBlacklistDao().update(blacklist.getId(), blacklist);
+		DaoFactory.getBlacklistDao().updateById(blacklist);
 	}
 }

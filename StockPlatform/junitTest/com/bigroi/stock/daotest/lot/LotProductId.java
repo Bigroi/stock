@@ -14,7 +14,7 @@ private static Lot lot;
 	@BeforeClass
 	public static void init(){
 		lot = new Lot();
-		lot.setSalerId(1);
+		lot.setSellerId(1);
 	}
 	
 	@Test

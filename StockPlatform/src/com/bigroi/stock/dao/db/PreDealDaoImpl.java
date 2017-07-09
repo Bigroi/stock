@@ -23,23 +23,23 @@ import com.bigroi.stock.dao.PreDealDao;
 public class PreDealDaoImpl implements PreDealDao {
 	
 	private static final String ADD_PREDEALS_BY_ID = "INSERT INTO predeal "
-			+ "(id, sellerHashCode, customerHashCode, tenderId, lotId, "
-			+ "sallerApprov, custApprov, dealDate) "
+			+ "(id, sellerHashCode, customerHashCode, tender_Id, lot_Id, "
+			+ "sellerApprov, custApprov, dealDate) "
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String DELETE_PREDEALS_BY_ID = "DELETE FROM predeal "
 			+ "WHERE id = ?";
 	
-	private static final String DELETE_ALL_PREDEALS_BY_ID = "DELETE  FROM predeal";
+	private static final String DELETE_ALL_PREDEALS_BY_ID = "DELETE  FROM predeal ";
 
-	private static final String UPDATE_PREDEALS_BY_ID = "UPDATE predeal SET id = ?, "
-			+ "sellerHashCode =?, customerHashCode =?, tenderId =?, lotId =?, "
-			+ "sallerApprov =?, custApprov =?, dealDate =? WHERE id = ?";
+	private static final String UPDATE_PREDEALS_BY_ID = "UPDATE predeal SET "
+			+ "sellerHashCode =?, customerHashCode =?, tender_Id =?, lot_Id =?, "
+			+ "sellerApprov =?, custApprov =?, dealDate =? WHERE id = ?";
 			
 	
 	private static final String GET_ALL_PREDEALS_BY_ID = "SELECT id, sellerHashCode, "
-			+ "customerHashCode, tenderId, lotId, sallerApprov, custApprov, "
-			+ "dealDate FROM predeal";
+			+ "customerHashCode, tender_Id, lot_Id, sellerApprov, custApprov, "
+			+ "dealDate FROM predeal ";
 	
 	private DataSource datasource;
 
@@ -75,9 +75,9 @@ public class PreDealDaoImpl implements PreDealDao {
 	}
 
 	@Override
-	public void delete(long id) throws DaoException {
+	public boolean deletedById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(DELETE_PREDEALS_BY_ID, id);
+	 return	template.update(DELETE_PREDEALS_BY_ID, id) == 1;
 	}
 
 	@Override
@@ -88,11 +88,11 @@ public class PreDealDaoImpl implements PreDealDao {
 	}
 
 	@Override
-	public void update(long id, PreDeal preDeal) throws DaoException {
+	public boolean updateById( PreDeal preDeal) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_PREDEALS_BY_ID, preDeal.getId(), preDeal.getSellerHashCode(), 
+	return	template.update(UPDATE_PREDEALS_BY_ID, preDeal.getId(), preDeal.getSellerHashCode(), 
 				preDeal.getCustomerHashCode(), preDeal.getTenderId(),preDeal.getLotId(), 
-				preDeal.getSallerApprov(), preDeal.getCustApprov(), preDeal.getDealDate(), id);
+				preDeal.getSallerApprov(), preDeal.getCustApprov(), preDeal.getDealDate()) == 1;
 	}
 
 	@Override

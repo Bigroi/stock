@@ -37,7 +37,7 @@ public class PreDealAdd {
 	
 	@After
 	public void delete() throws DaoException{
-		DaoFactory.getPreDealDao().delete(pred.getId());
+		DaoFactory.getPreDealDao().deletedById(pred.getId());
 	}
 
 }

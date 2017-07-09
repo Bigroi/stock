@@ -25,7 +25,7 @@ public class LotAdd {
 		lot.setDescription("evgen");
 		lot.setPoductId(1);
 		lot.setMinPrice(10);
-		lot.setSalerId(1);
+		lot.setSellerId(1);
 		lot.setStatus(Status.DRAFT);
 		lot.setExpDate(new Date(lot.getExpDate().getTime()));
 	}
@@ -39,7 +39,7 @@ public class LotAdd {
 	
 	@After
 	public void delete() throws DaoException{
-		DaoFactory.getLotDao().delete(lot.getId());
+		DaoFactory.getLotDao().deletedById(lot.getId());
 	}
 
 }

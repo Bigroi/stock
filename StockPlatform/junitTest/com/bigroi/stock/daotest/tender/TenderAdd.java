@@ -37,7 +37,7 @@ public class TenderAdd {
 	
 	@After
 	public void delete() throws DaoException{
-		DaoFactory.getTenderDao().delete(tender.getId());
+		DaoFactory.getTenderDao().deletedById(tender.getId());
 	}
 
 }
