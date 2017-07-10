@@ -23,8 +23,8 @@ private static PreDeal pred;
 		pred.setCustomerHashCode("JAVATEST");
 		pred.setTenderId(1);
 		pred.setLotId(1);
-		pred.setSallerApprov(Boolean.parseBoolean(pred.YES));
-		pred.setCustApprov(Boolean.parseBoolean(pred.YES));
+		/*pred.setSallerApprov(Boolean.parseBoolean(pred.YES));
+		pred.setCustApprov(Boolean.parseBoolean(pred.YES));*/
 		pred.setDealDate(new Date(pred.getDealDate().getTime()));
 	}
 	@Test

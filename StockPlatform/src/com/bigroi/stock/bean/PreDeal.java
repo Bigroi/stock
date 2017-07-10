@@ -6,8 +6,8 @@ import java.util.Date;
 
 public class PreDeal {
 	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
-	public final String YES = "Y";
-	public final String NO = "N";
+	public final boolean YES = Boolean.parseBoolean("Y");
+	public final static boolean NO = Boolean.parseBoolean("N");;
 
 	private long id;
 	private String sellerHashCode;//TODO: fields sellerHashCode,customerHashCode,sellerApprov,custApprov,dealDate in DB ???
@@ -90,20 +90,21 @@ public class PreDeal {
 		dealDate = FORMATTER.parse(dealDateStr);
 	}
 
-	public boolean checkSallerApprov() {
-		if (YES.toUpperCase().equals(sellerApprov)&& (NO.toUpperCase().equals(sellerApprov))){
-			return true;
+	public  boolean checkSallerApprov( boolean yes) {
+		if (yes == true ){//TODO: how convert boolean to String and insert into DB????
+			return YES;
 		} else {
-			return false;
+			return  false;
 		}
+		
 	}
 	
-	public boolean checkCustApprov() {
-		if (YES.toUpperCase().equals(custApprov) && (NO.toUpperCase().equals(custApprov))){
-			return true;
+	/*public boolean checkCustApprov() {
+		if (sellerApprov == true){
+			return YES;
 		} else {
-			return false;
+			return NO;
 		}
-	}
+	}*/
 
 }
