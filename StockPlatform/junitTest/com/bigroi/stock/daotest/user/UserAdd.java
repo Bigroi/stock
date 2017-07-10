@@ -19,7 +19,7 @@ public class UserAdd {
 		user.setId(28);
 		user.setLogin("evgen");
 		user.setPassword("123");
-		user.setCompanyId(4);
+		user.setCompanyId(2);
 	}
 	
 	@Test
@@ -29,6 +29,6 @@ public class UserAdd {
 	}
 	@After
 	public void delete()throws DaoException{
-		DaoFactory.getUserDao().delete(user.getId());
+		//DaoFactory.getUserDao().deleteById(user.getId());
 	}
 }

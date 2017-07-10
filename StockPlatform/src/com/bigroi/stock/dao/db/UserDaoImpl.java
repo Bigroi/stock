@@ -24,20 +24,20 @@ public class UserDaoImpl implements UserDao {
 	private static final Logger lOG = Logger.getLogger(UserDaoImpl.class);
 	
 	private static final String GET_USER_BY_LOGIN = "SELECT id, login, password, companyId FROM user "
-	        + "WHERE login = ?";
+	        + "WHERE login = ? ";
 
-	private static final String GET_ALL_USERS = "SELECT id, login, password, companyId FROM user";
+	private static final String GET_ALL_USERS = "SELECT id, login, password, companyId FROM user ";
 
 	private static final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT id, login, password, companyId FROM user "
-			+ "WHERE login = ? AND password = ?";
+			+ "WHERE login = ? AND password = ? ";
 	
-	private static final String ADD_USERS_BY_ID = "INSERT INTO user (id, login, password, companyId)"
-			+ " VALUES (?, ?, ?, ?)";
+	private static final String ADD_USERS_BY_ID = "INSERT INTO user (id, login, password, companyId) "
+			+ " VALUES (?, ?, ?, ?) ";
 			
-	private static final String DELETE_USERS_BY_ID = "DELETE FROM user WHERE id = ?";
+	private static final String DELETE_USERS_BY_ID = "DELETE FROM user WHERE id = ? ";
 
-	private static final String UPDATE_USERS_BY_ID = "UPDATE user SET id = ?, login = ?, password = ?, "
-			+ "companyId = ? WHERE id= ?";
+	private static final String UPDATE_USERS_BY_ID = "UPDATE user SET  login = ?, password = ?, "
+			+ "companyId = ? WHERE id= ? ";
 
 	private DataSource datasource;
 
@@ -98,16 +98,17 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void delete(long id) throws DaoException {
+	public boolean deleteById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(DELETE_USERS_BY_ID, id);
+	return	template.update(DELETE_USERS_BY_ID, id) == 1;
 
 	}
 
 	@Override
-	public void update(long id, User user) throws DaoException {
+	public  boolean updateById( User user) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_USERS_BY_ID, user.getId(), user.getLogin(), user.getPassword(), user.getCompanyId(), id);
+		return template.update(UPDATE_USERS_BY_ID, user.getLogin(), 
+				user.getPassword(), user.getCompanyId(), user.getId()) == 1;
 	}
 
 }

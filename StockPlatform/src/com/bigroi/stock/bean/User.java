@@ -2,7 +2,7 @@ package com.bigroi.stock.bean;
 
 public class User {
 	
-	private long id;//TODO: edit User DAO and fields in DB
+	private long id;
 	private String login;
 	private String password;
 	private long companyId;

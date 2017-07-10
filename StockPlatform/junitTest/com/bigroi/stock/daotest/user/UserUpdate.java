@@ -1,7 +1,7 @@
 package com.bigroi.stock.daotest.user;
 
 
-import org.junit.Assert;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -15,16 +15,14 @@ public class UserUpdate {
 	@BeforeClass
 	public static void init(){
 		user = new User();
-		user.setId(29);
-		user.setLogin("evgen");
+		user.setId(28);
+		user.setLogin("Java");
 		user.setPassword("123");
-		user.setCompanyId(4);
+		user.setCompanyId(2);
 	}
 	@Test
 	public void update() throws DaoException {
 	
-	DaoFactory.getUserDao().update(user.getId(),user);
-		Assert.assertNotNull(user);
-
+	DaoFactory.getUserDao().updateById(user);
 	}
 }
