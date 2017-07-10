@@ -82,4 +82,14 @@ public class TenderRenderingController {
 		}
 		return myTenderList(session);
 	}
+	
+	@RequestMapping("/TenderCancelAuth.spr")
+	public ModelAndView lotCancel(@RequestParam("id") long id, HttpSession session) throws DaoException {
+		Tender tender = DaoFactory.getTenderDao().getById(id);
+		if ((tender.getStatus() == Status.DRAFT) || (tender.getStatus() == Status.IN_GAME)){
+			tender.setStatus(Status.CANCELED);
+			DaoFactory.getTenderDao().updateById(tender);
+		}
+		return myTenderList(session);
+	}
 }

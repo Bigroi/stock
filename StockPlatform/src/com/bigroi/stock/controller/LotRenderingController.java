@@ -82,4 +82,14 @@ public class LotRenderingController {
 		}
 		return myLotList(session);
 	}
+	
+	@RequestMapping("/LotCancelAuth.spr")
+	public ModelAndView lotCancel(@RequestParam("id") long id, HttpSession session) throws DaoException {
+		Lot lot = DaoFactory.getLotDao().getById(id);
+		if ((lot.getStatus() == Status.DRAFT) || (lot.getStatus() == Status.IN_GAME)){
+			lot.setStatus(Status.CANCELED);
+			DaoFactory.getLotDao().updateById(lot);
+		}
+		return myLotList(session);
+	}
 }

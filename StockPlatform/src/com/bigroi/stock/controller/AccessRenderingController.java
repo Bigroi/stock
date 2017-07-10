@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.User;
-import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
@@ -55,8 +55,7 @@ public class AccessRenderingController {
 		company.setRegNumber(regNumber);
 		company.setCountry(country);
 		company.setCity(city);
-		//TODO будет другой статус, просто поставил, чтобы не выбивало ошибку выполнения
-		company.setStatus(Status.DRAFT);
+		company.setStatus(CompanyStatus.NOT_VERIFIED);
 		DaoFactory.getCompanyDao().add(company);		
 		User user = new User();
 		user.setLogin(login);

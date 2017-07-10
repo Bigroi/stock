@@ -35,6 +35,16 @@
 									type="submit" value="In game">
 							</form>	</td>
 					</c:if>
+					<c:if test="${(tender.status eq 'DRAFT') || (tender.status eq 'IN_GAME')}">
+						<td><form action="#" method="get">
+								<input type="hidden" name="id" value="${tender.id}"> <input
+									type="submit" value="Modify">
+							</form>	</td>
+						<td><form action="TenderCancelAuth.spr" method="get">
+								<input type="hidden" name="id" value="${tender.id}"> <input
+									type="submit" value="Cancel">
+							</form>	</td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>

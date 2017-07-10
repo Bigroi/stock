@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
@@ -35,13 +36,15 @@ public class AccountRenderingController {
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
 			@RequestParam("city") String city,
+		// TODO будет другой тип status.
+			@RequestParam("status") CompanyStatus status,
 			HttpSession session) throws DaoException {
 	
 		//TODO Здесь будет одна транзакция
 		User user = (User) session.getAttribute("user");
 		user.setPassword(password);
 		session.setAttribute("user", user);
-		DaoFactory.getUserDao().update(user.getId(), user);
+		DaoFactory.getUserDao().updateById(user);
 		
 		Company company = new Company();
 		company.setId(user.getCompanyId());
@@ -51,7 +54,9 @@ public class AccountRenderingController {
 		company.setRegNumber(regNumber);
 		company.setCountry(country);
 		company.setCity(city);
-		DaoFactory.getCompanyDao().updateById( company);;		
+		company.setStatus(status);
+		
+		DaoFactory.getCompanyDao().updateById( company);	
 		
 		return goToAccountPage(session);
 	}

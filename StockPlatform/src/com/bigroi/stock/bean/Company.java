@@ -1,6 +1,6 @@
 package com.bigroi.stock.bean;
 
-import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.bean.common.CompanyStatus;
 
 public class Company {
 
@@ -11,7 +11,7 @@ public class Company {
 	private String regNumber;
 	private String country;
 	private String city;
-	private Status status;
+	private CompanyStatus status;
 
 	public long getId() {
 		return id;
@@ -69,11 +69,11 @@ public class Company {
 		this.city = city;
 	}
 
-	public Status getStatus() {
+	public CompanyStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(CompanyStatus status) {
 		this.status = status;
 	}
 

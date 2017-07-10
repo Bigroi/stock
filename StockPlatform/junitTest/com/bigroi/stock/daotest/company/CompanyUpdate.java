@@ -22,7 +22,7 @@ private static Company company;
 		company.setRegNumber("JAVA");
 		company.setCountry("JAVA");
 		company.setCity("JAVA!!!!!!!!!");
-		company.setStatus(Status.DRAFT);
+//TODO		company.setStatus(Status.DRAFT);
 		
 	}
 	

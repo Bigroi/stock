@@ -24,7 +24,7 @@ private static Company company;
 		company.setRegNumber("sdfsdf");
 		company.setCountry("bel");
 		company.setCity("min");
-		company.setStatus(Status.DRAFT);
+//TODO		company.setStatus(Status.DRAFT);
 		
 	}
 	@Test
