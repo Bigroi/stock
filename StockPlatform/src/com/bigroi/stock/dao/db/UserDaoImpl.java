@@ -23,21 +23,21 @@ public class UserDaoImpl implements UserDao {
 	
 	private static final Logger lOG = Logger.getLogger(UserDaoImpl.class);
 	
-	private static final String GET_USER_BY_LOGIN = "SELECT id, login, password, companyId FROM user "
+	private static final String GET_USER_BY_LOGIN = "SELECT id, login, password, company_Id FROM user "
 	        + "WHERE login = ? ";
 
-	private static final String GET_ALL_USERS = "SELECT id, login, password, companyId FROM user ";
+	private static final String GET_ALL_USERS = "SELECT id, login, password, company_Id FROM user ";
 
-	private static final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT id, login, password, companyId FROM user "
+	private static final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT id, login, password, company_Id FROM user "
 			+ "WHERE login = ? AND password = ? ";
 	
-	private static final String ADD_USERS_BY_ID = "INSERT INTO user (id, login, password, companyId) "
+	private static final String ADD_USERS_BY_ID = "INSERT INTO user (id, login, password, company_Id) "
 			+ " VALUES (?, ?, ?, ?) ";
 			
 	private static final String DELETE_USERS_BY_ID = "DELETE FROM user WHERE id = ? ";
 
 	private static final String UPDATE_USERS_BY_ID = "UPDATE user SET  login = ?, password = ?, "
-			+ "companyId = ? WHERE id= ? ";
+			+ "company_Id = ? WHERE id= ? ";
 
 	private DataSource datasource;
 
@@ -52,7 +52,7 @@ public class UserDaoImpl implements UserDao {
 	public List<User> getAllUser() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<User> users = template.query(GET_ALL_USERS, new BeanPropertyRowMapper<User>(User.class));
-		lOG.info(users); //TODO разобраться с log4j
+		lOG.info(users); 
 		return users;
 	}
 

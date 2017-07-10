@@ -16,7 +16,7 @@ public class UserAdd {
 	@BeforeClass
 	public static void init(){
 		user = new User();
-		user.setId(28);
+		user.setId(29);
 		user.setLogin("evgen");
 		user.setPassword("123");
 		user.setCompanyId(2);
@@ -29,6 +29,6 @@ public class UserAdd {
 	}
 	@After
 	public void delete()throws DaoException{
-		//DaoFactory.getUserDao().deleteById(user.getId());
+		DaoFactory.getUserDao().deleteById(user.getId());
 	}
 }

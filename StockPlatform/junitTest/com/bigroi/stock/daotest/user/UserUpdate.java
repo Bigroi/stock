@@ -16,7 +16,7 @@ public class UserUpdate {
 	public static void init(){
 		user = new User();
 		user.setId(28);
-		user.setLogin("Java");
+		user.setLogin("Java!!");
 		user.setPassword("123");
 		user.setCompanyId(2);
 	}
