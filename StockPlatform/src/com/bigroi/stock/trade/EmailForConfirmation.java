@@ -47,9 +47,9 @@ public class EmailForConfirmation {
 			String sellerText = sellerMessage.get(MessagePart.TEXT);
 			String customerText = customerMessage.get(MessagePart.TEXT);
 
-			String sellerLink = link.getSellerConfirmationLink() + "id=" + preDeal.getId() + "&key="
+			String sellerLink = link.getSellerConfirmationLink() + "?id=" + preDeal.getId() + "&key="
 					+ preDeal.getSellerHashCode() + "&action=";
-			String customerLink = link.getCustomerConfirmationLink() + "id=" + preDeal.getId() + "&key="
+			String customerLink = link.getCustomerConfirmationLink() + "?id=" + preDeal.getId() + "&key="
 					+ preDeal.getCustomerHashCode() + "&action=";
 
 			String sellerLinkApprove = sellerLink + Action.APPROVE;
