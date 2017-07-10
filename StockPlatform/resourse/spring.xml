@@ -17,8 +17,15 @@
 		<property name="locations">
 			<list>
 				<value>classpath:datasourse.properties</value>
+				<value>classpath:link.properties</value>
 			</list>
 		</property>
+	</bean>
+	
+	<bean id = "link" 
+		class="com.bigroi.stock.bean.Link">
+		<property name="sellerConfirmationLink" value="${link.seller.confirmation}" />
+		<property name="customerConfirmationLink" value="${link.sustomer.confirmation}" />
 	</bean>
 
 	<bean id="datasource"
