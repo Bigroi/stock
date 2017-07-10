@@ -18,7 +18,7 @@ private static Tender tender;
 	public static void init(){
 		tender = new Tender();
 		tender.setId(11);
-		tender.setDescription("test");
+		tender.setDescription("Javatest");
 		tender.setProductId(1);
 		tender.setMaxPrice(4);
 		tender.setCustomerId(1);

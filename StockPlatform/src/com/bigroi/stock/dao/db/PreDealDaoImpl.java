@@ -90,9 +90,10 @@ public class PreDealDaoImpl implements PreDealDao {
 	@Override
 	public boolean updateById( PreDeal preDeal) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-	return	template.update(UPDATE_PREDEALS_BY_ID, preDeal.getId(), preDeal.getSellerHashCode(), 
+	return	template.update(UPDATE_PREDEALS_BY_ID, preDeal.getSellerHashCode(), 
 				preDeal.getCustomerHashCode(), preDeal.getTenderId(),preDeal.getLotId(), 
-				preDeal.getSallerApprov(), preDeal.getCustApprov(), preDeal.getDealDate()) == 1;
+				preDeal.getSallerApprov(), preDeal.getCustApprov(), 
+				preDeal.getDealDate(), preDeal.getId()) == 1;
 	}
 
 	@Override

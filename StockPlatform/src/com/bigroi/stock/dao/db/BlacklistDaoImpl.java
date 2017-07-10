@@ -64,8 +64,8 @@ public class BlacklistDaoImpl implements BlacklistDao {
 	@Override
 	public boolean updateById( Blacklist blacklist) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_BLACKLIST_BY_ID, blacklist.getId(), 
-				blacklist.getTenderId(), blacklist.getLotId()) == 1;
+		return template.update(UPDATE_BLACKLIST_BY_ID, 
+				blacklist.getTenderId(), blacklist.getLotId(), blacklist.getId()) == 1;
 		
 	}
 

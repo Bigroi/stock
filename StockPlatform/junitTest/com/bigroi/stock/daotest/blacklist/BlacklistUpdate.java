@@ -16,7 +16,7 @@ private static Blacklist blacklist;
 		blacklist = new Blacklist();
 		blacklist.setId(1);
 		blacklist.setTenderId(1);
-		blacklist.setLotId(1);
+		blacklist.setLotId(3);
 	}
 	@Test
 	public void update() throws DaoException{

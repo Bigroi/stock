@@ -18,9 +18,9 @@ private static PreDeal pred;
 	@BeforeClass
 	public static void init(){
 		pred = new PreDeal();
-		pred.setId(12);
-		pred.setSellerHashCode("!!!");
-		pred.setCustomerHashCode("evgen!!!");
+		pred.setId(2);
+		pred.setSellerHashCode("JAVATEST");
+		pred.setCustomerHashCode("JAVATEST");
 		pred.setTenderId(1);
 		pred.setLotId(1);
 		pred.setSallerApprov(Boolean.parseBoolean(pred.YES));

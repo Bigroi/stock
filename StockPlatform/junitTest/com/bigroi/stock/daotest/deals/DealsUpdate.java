@@ -16,9 +16,9 @@ public class DealsUpdate {
 	@BeforeClass
 	public static void init(){
 		deals = new Deals();
-		deals.setId(2);
-		deals.setLotId(1);
-		deals.setTenderId(1);
+		deals.setId(1);
+		deals.setLotId(3);
+		deals.setTenderId(3);
 		deals.setDealsTime(new Date(deals.getDealsTime().getTime()));
 	}
 	

@@ -65,8 +65,8 @@ public class DealsDaoImpl implements DealsDao {
 	@Override
 	public boolean updateById(Deals deals) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_ARCHIVE_BY_ID, deals.getId(),  deals.getLotId(),
-				 deals.getTenderId(),  deals.getDealsTime()) == 1;
+		return template.update(UPDATE_ARCHIVE_BY_ID,  deals.getLotId(),
+				 deals.getTenderId(),  deals.getDealsTime(), deals.getId()) == 1;
 	}
 
 	

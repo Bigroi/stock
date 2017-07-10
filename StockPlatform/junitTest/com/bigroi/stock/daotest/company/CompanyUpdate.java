@@ -15,13 +15,13 @@ private static Company company;
 	@BeforeClass
 	public static void init(){
 		company = new Company();
-		company.setId(10);
-		company.setName("JAVA");
+		company.setId(2);
+		company.setName("JAVATEST");
 		company.setEmail("emailJAVA");
 		company.setPhone("165");
 		company.setRegNumber("JAVA");
 		company.setCountry("JAVA");
-		company.setCity("JAVA@@@");
+		company.setCity("JAVA!!!!!!!!!");
 		company.setStatus(Status.DRAFT);
 		
 	}

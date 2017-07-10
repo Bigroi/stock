@@ -89,9 +89,10 @@ public class LotDaoImpl implements LotDao {
 	@Override
 	public boolean updateById( Lot lot) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_LOTS_BY_ID, lot.getId(), lot.getDescription(), 
+		return template.update(UPDATE_LOTS_BY_ID, lot.getDescription(), 
 				lot.getPoductId(), lot.getMinPrice(),
-				lot.getSellerId(), lot.getStatus().name().toUpperCase(), lot.getExpDate()) == 1;
+				lot.getSellerId(), lot.getStatus().name().toUpperCase(), 
+				lot.getExpDate(), lot.getId()) == 1;
 
 	}
 

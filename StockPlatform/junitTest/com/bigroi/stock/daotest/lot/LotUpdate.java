@@ -18,7 +18,7 @@ private static Lot lot;
 	public static void init(){
 		lot = new Lot();
 		lot.setId(4);
-		lot.setDescription("evgen!!");
+		lot.setDescription("JAVATEST");
 		lot.setPoductId(1);
 		lot.setMinPrice(110);
 		lot.setSellerId(1);

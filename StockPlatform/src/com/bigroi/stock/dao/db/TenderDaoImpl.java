@@ -86,9 +86,9 @@ public class TenderDaoImpl implements TenderDao{
 	@Override
 	public boolean updateById(Tender tender) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-	return	template.update(UPDATE_TENDER_BY_ID, tender.getId(), tender.getDescription(), tender.getProductId(),
+	return	template.update(UPDATE_TENDER_BY_ID, tender.getDescription(), tender.getProductId(),
 				tender.getMaxPrice(), tender.getCustomerId(), 
-				tender.getStatus().name().toUpperCase(), tender.getExpDate()) == 1;
+				tender.getStatus().name().toUpperCase(), tender.getExpDate(), tender.getId()) == 1;
 	}
 
 	@Override

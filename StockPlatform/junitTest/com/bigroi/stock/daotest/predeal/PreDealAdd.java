@@ -19,7 +19,7 @@ public class PreDealAdd {
 	@BeforeClass
 	public static void init(){
 		pred = new PreDeal();
-		pred.setId(1);
+		pred.setId(2);
 		pred.setSellerHashCode("aa");
 		pred.setCustomerHashCode("bb");
 		pred.setTenderId(1);
@@ -37,7 +37,7 @@ public class PreDealAdd {
 	
 	@After
 	public void delete() throws DaoException{
-		DaoFactory.getPreDealDao().deletedById(pred.getId());
+		//DaoFactory.getPreDealDao().deletedById(pred.getId());
 	}
 
 }

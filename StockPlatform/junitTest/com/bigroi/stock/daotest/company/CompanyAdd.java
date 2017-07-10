@@ -17,8 +17,8 @@ private static Company company;
 	@BeforeClass
 	public static void init(){
 		company = new Company();
-		company.setId(100);
-		company.setName("eee");
+		company.setId(2);
+		company.setName("TEST");
 		company.setEmail("email");
 		company.setPhone("165");
 		company.setRegNumber("sdfsdf");
@@ -35,7 +35,7 @@ private static Company company;
 	
 	@After
 	public  void delete() throws DaoException{
-		DaoFactory.getCompanyDao().deletedById(company.getId());
+		//DaoFactory.getCompanyDao().deletedById(company.getId());
 		
 	}
 

@@ -81,7 +81,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public boolean updateById(Product product) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-	return	template.update(UPDATE_PRODUCTS_BY_ID, product.getId(), product.getName(), product.getDescription()) == 1;
+	return	template.update(UPDATE_PRODUCTS_BY_ID, product.getName(), product.getDescription(), product.getId()) == 1;
 	}
 
 	@Override
