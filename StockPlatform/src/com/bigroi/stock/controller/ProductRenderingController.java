@@ -43,7 +43,7 @@ public class ProductRenderingController {
 			id = product.getId();
 		} else {
 			product.setId(id);
-			DaoFactory.getProductDao().update(product.getId(), product);
+			DaoFactory.getProductDao().updateById(product);
 		}
 //		return productEdit(id);
 		return listOfProducts();

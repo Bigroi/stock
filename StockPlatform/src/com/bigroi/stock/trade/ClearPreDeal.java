@@ -32,19 +32,26 @@ public class ClearPreDeal implements Runnable {
 			String expiredOpponentSubject = expiredLinkOpponentMessage.get(MessagePart.SUBJECT);
 			for (PreDeal preDeal : predials) {
 				Lot lot = DaoFactory.getLotDao().getById(preDeal.getLotId());
-				String sellerEmail = DaoFactory.getCompanyDao().getById(lot.getSalerId()).getEmail();	
+				String sellerEmail = DaoFactory.getCompanyDao().getById(lot.getSellerId()).getEmail();	
 				
 				Tender tender = DaoFactory.getTenderDao().getById(preDeal.getTenderId());
 				String customerEmail = DaoFactory.getCompanyDao().getById(tender.getCustomerId()).getEmail();	
 				
 				lot.setStatus(Status.IN_GAME);
-				DaoFactory.getLotDao().update(lot.getId(), lot);				
+				//убрать sysout, но параметры оставить				
+				System.out.println(DaoFactory.getLotDao().updateById(lot));		
+				//убрать sysout, но параметры оставить	
 				tender.setStatus(Status.IN_GAME);
-				DaoFactory.getTenderDao().update(tender.getId(), tender);	
+				System.out.println(DaoFactory.getTenderDao().updateById(tender));	
 				
 				String expiredText = expiredLinkMessage.get(MessagePart.TEXT);
-				String expiredOpponentText = expiredLinkOpponentMessage.get(MessagePart.TEXT);				
+				String expiredOpponentText = expiredLinkOpponentMessage.get(MessagePart.TEXT);	
 				
+				//убрать sysout
+				System.out.println("Seller Approv - " + preDeal.getSallerApprov());
+				System.out.println("Cust Approv - " + preDeal.getCustApprov());
+
+				 
 				if ( preDeal.getSallerApprov()){							
 					new MailManager(EMAIL_USER, EMAIL_PASS).send(sellerEmail, expiredOpponentSubject, replaceText(expiredOpponentText, preDeal.getLotId()));					
 				}else {					

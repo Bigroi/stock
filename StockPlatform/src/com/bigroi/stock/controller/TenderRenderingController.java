@@ -60,7 +60,7 @@ public class TenderRenderingController {
 			id = tender.getId();
 		} else {
 			tender.setId(id);
-			DaoFactory.getTenderDao().update(tender.getId(), tender);			
+			DaoFactory.getTenderDao().updateById(tender);			
 		}
 //		return tenderEdit(id, session);
 		return myTenderList(session);
@@ -78,7 +78,7 @@ public class TenderRenderingController {
 		Tender tender = DaoFactory.getTenderDao().getById(id);
 		if (tender.getStatus() == Status.DRAFT){
 			tender.setStatus(Status.IN_GAME);
-			DaoFactory.getTenderDao().update(id, tender);
+			DaoFactory.getTenderDao().updateById(tender);
 		}
 		return myTenderList(session);
 	}

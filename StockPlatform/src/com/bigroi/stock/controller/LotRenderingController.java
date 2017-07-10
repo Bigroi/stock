@@ -26,7 +26,7 @@ public class LotRenderingController {
 		if (id == -1) {
 			lot = new Lot();			
 			User user = (User) session.getAttribute("user");
-			lot.setSalerId(user.getCompanyId());
+			lot.setSellerId(user.getCompanyId());
 			lot.setStatus(Status.DRAFT);
 			model.addAttribute("id", -1);
 		} else {
@@ -42,7 +42,7 @@ public class LotRenderingController {
 			@RequestParam("description") String description,			
 			@RequestParam("productId") long productId,
 			@RequestParam("minPrice") double minPrice,
-			@RequestParam("salerId") long salerId,
+			@RequestParam("sellerId") long salerId,
 			@RequestParam("expDate") String expDateStr,
 			@RequestParam("status") Status status,
 			HttpSession session) throws DaoException, ParseException {
@@ -51,7 +51,7 @@ public class LotRenderingController {
 		lot.setDescription(description);
 		lot.setPoductId(productId);
 		lot.setMinPrice(minPrice);
-		lot.setSalerId(salerId);
+		lot.setSellerId(salerId);
 		lot.setDateStr(expDateStr);
 		lot.setStatus(status);		
 		
@@ -60,7 +60,7 @@ public class LotRenderingController {
 			id = lot.getId();
 		} else {
 			lot.setId(id);
-			DaoFactory.getLotDao().update(lot.getId(), lot);			
+			DaoFactory.getLotDao().updateById(lot);
 		}
 //		return lotEdit(id, session);
 		return myLotList(session);
@@ -68,8 +68,8 @@ public class LotRenderingController {
 	
 	@RequestMapping("/MyLotListAuth.spr")
 	public ModelAndView myLotList(HttpSession session) throws DaoException {
-		User user = (User) session.getAttribute("user");
-		List<Lot> lots = DaoFactory.getLotDao().getBySalerId(user.getCompanyId());
+		User user = (User) session.getAttribute("user");		
+		List<Lot> lots = DaoFactory.getLotDao().getBySellerId(user.getCompanyId());
 		return new ModelAndView("myLotList", "listOfLots", lots);
 	}
 	
@@ -78,7 +78,7 @@ public class LotRenderingController {
 		Lot lot = DaoFactory.getLotDao().getById(id);
 		if (lot.getStatus() == Status.DRAFT){
 			lot.setStatus(Status.IN_GAME);
-			DaoFactory.getLotDao().update(id, lot);
+			DaoFactory.getLotDao().updateById(lot);
 		}
 		return myLotList(session);
 	}

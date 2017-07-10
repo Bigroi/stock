@@ -13,18 +13,14 @@
 		<thead>
 			<tr>
 				<td>name</td>
-				<td>description</td>
-				<td>lot count</td>
-				<td>application count</td>
+				<td>description</td>				
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="product" items="${listOfProducts}">
 				<tr>
 					<td>${product.name}</td>
-					<td>${product.description}</td>
-					<td>${product.lotСount}</td>
-					<td>${product.applicationСount}</td>
+					<td>${product.description}</td>					
 					<td><form action="TradeOffers.spr" method="get">
 							<input type="hidden" name="id" value="${product.id}"> <input
 								type="submit" value="Trade offers">

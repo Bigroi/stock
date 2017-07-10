@@ -15,7 +15,7 @@
 				<td>description</td>
 				<td>poductId</td>
 				<td>min price</td>
-				<td>salerId</td>
+				<td>sellerId</td>
 				<td>expDate</td>
 				<td>status</td>
 			</tr>
@@ -26,7 +26,7 @@
 					<td>${lot.description}</td>
 					<td>${lot.poductId}</td>
 					<td>${lot.minPrice}</td>
-					<td>${lot.salerId}</td>
+					<td>${lot.sellerId}</td>
 					<td>${lot.dateStr}</td>
 					<td>${lot.status}</td>
 					<c:if test="${lot.status eq 'DRAFT'}">

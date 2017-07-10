@@ -1,9 +1,9 @@
 package com.bigroi.stock.dao.db;
 
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -48,8 +48,12 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
 	public Company getById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		Company company = (Company) template.query(SELECT_COMPANY_BY_ID, new BeanPropertyRowMapper<Company>(Company.class),id);
-		return company;//TODO: problem List<Company>??
+		List<Company> companys = template.query(SELECT_COMPANY_BY_ID, new BeanPropertyRowMapper<Company>(Company.class),id);
+		if (companys.size() == 0) {
+			return null;
+		} else {
+			return companys.get(0);
+		}
 		
 	}
 

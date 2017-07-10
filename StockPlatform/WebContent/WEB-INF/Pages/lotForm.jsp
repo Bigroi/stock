@@ -12,13 +12,13 @@
 	<form action="LotSaveAuth.spr">
 	
 		<input type="hidden" name="id" value="${id}"> 
-		<input type="hidden" name="salerId" value="${lot.salerId}">
+		<input type="hidden" name="sellerId" value="${lot.sellerId}">
 		<input type="hidden" name="status" value="${lot.status}">
 		
 		description <input name="description" value="${lot.description}"><br>
 		product id <input name="productId" value="${lot.poductId}"><br>
 		min_price  <input name="minPrice" value="${lot.minPrice}"><br>
-	    saler id - ${lot.salerId}<br>
+	    seller id - ${lot.sellerId}<br>
 	    exp_date  <input name="expDate" value="${lot.dateStr}"><br>
 	    status - ${lot.status}<br>
 		

@@ -33,7 +33,7 @@ public class EmailForConfirmation {
 
 		for (PreDeal preDeal : preDials) {
 			Lot lot = DaoFactory.getLotDao().getById(preDeal.getLotId());
-			String sellerEmail = DaoFactory.getCompanyDao().getById(lot.getSalerId()).getEmail();
+			String sellerEmail = DaoFactory.getCompanyDao().getById(lot.getSellerId()).getEmail();
 
 			Tender tender = DaoFactory.getTenderDao().getById(preDeal.getTenderId());
 			String customerEmail = DaoFactory.getCompanyDao().getById(tender.getCustomerId()).getEmail();			
@@ -71,12 +71,12 @@ public class EmailForConfirmation {
 			customerText = customerText.replaceAll("@customerLinkCancel", customerLinkCancel);			
 			
 			lot.setStatus(Status.SUCCESS);
-			DaoFactory.getLotDao().update(lot.getId(), lot);
+			DaoFactory.getLotDao().updateById(lot);
 			tender.setStatus(Status.SUCCESS);
-			DaoFactory.getTenderDao().update(tender.getId(), tender);
+			DaoFactory.getTenderDao().updateById(tender);
 		
 			new MailManager(EMAIL_USER, EMAIL_PASS).send(sellerEmail, sellerSubject, sellerText);
 			new MailManager(EMAIL_USER, EMAIL_PASS).send(customerEmail, customerSubject, customerText);			
 		}
-	}	
+	}
 }
