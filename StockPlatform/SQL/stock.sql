@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `blacklist` (
   KEY `FK_blacklist_lot` (`lot_Id`),
   CONSTRAINT `FK_blacklist_application` FOREIGN KEY (`tender_Id`) REFERENCES `tender` (`id`),
   CONSTRAINT `FK_blacklist_lot` FOREIGN KEY (`lot_Id`) REFERENCES `lot` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы stock.blacklist: ~2 rows (приблизительно)
 /*!40000 ALTER TABLE `blacklist` DISABLE KEYS */;
@@ -45,13 +45,13 @@ CREATE TABLE IF NOT EXISTS `company` (
   `city` varchar(50) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.company: ~3 rows (приблизительно)
+-- Дамп данных таблицы stock.company: ~2 rows (приблизительно)
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
 INSERT IGNORE INTO `company` (`id`, `name`, `email`, `phone`, `reg_number`, `country`, `city`, `status`) VALUES
-	(1, 'bigroi', 'abc@mail.ru', '123123', 'qwe123', 'Belarus', 'Minsk', 'DRAFT'),
-	(10, 'JAVA', 'emailJAVA', '16532432', '123йцу', 'Belarus', 'Minsk', 'DRAFT');
+	(1, 'bigroi', 'abc@mail.ru', '123123', 'qwe123', 'Belarus', 'Minsk', 'VERIFIED'),
+	(10, 'JAVA', 'emailJAVA', '16532432', '123йцу', 'Belarus', 'Minsk', 'VERIFIED');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.deals
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `deals` (
   KEY `FK_deals_tender` (`tender_Id`),
   CONSTRAINT `FK_deals_lot` FOREIGN KEY (`lot_Id`) REFERENCES `lot` (`id`),
   CONSTRAINT `FK_deals_tender` FOREIGN KEY (`tender_Id`) REFERENCES `tender` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы stock.deals: ~2 rows (приблизительно)
 /*!40000 ALTER TABLE `deals` DISABLE KEYS */;
@@ -88,14 +88,14 @@ CREATE TABLE IF NOT EXISTS `lot` (
   KEY `product` (`poduct_Id`),
   CONSTRAINT `FK_lot_company` FOREIGN KEY (`seller_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_lot_product` FOREIGN KEY (`poduct_Id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы stock.lot: ~3 rows (приблизительно)
 /*!40000 ALTER TABLE `lot` DISABLE KEYS */;
 INSERT IGNORE INTO `lot` (`id`, `description`, `poduct_Id`, `min_price`, `seller_Id`, `status`, `exp_date`) VALUES
 	(1, 'урожай 2017', 1, 2.00, 1, 'DRAFT', '2016-06-26'),
 	(3, 'урожай 2017', 111, 5.00, 1, 'DRAFT', '2017-06-28'),
-	(4, 'JAVATEST', 1, 110.00, 1, 'DRAFT', '2017-07-10');
+	(4, 'супер урожай', 1, 110.00, 1, 'DRAFT', '2017-07-10');
 /*!40000 ALTER TABLE `lot` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.predeal
@@ -105,8 +105,8 @@ CREATE TABLE IF NOT EXISTS `predeal` (
   `customerHashCode` varchar(50) DEFAULT NULL,
   `tender_Id` bigint(20) DEFAULT NULL,
   `lot_Id` bigint(20) DEFAULT NULL,
-  `sellerApprov` varchar(50) NOT NULL,
-  `custApprov` varchar(50) NOT NULL,
+  `sellerApprov` varchar(1) NOT NULL,
+  `custApprov` varchar(1) NOT NULL,
   `dealDate` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_predeal_tender` (`tender_Id`),
@@ -115,12 +115,11 @@ CREATE TABLE IF NOT EXISTS `predeal` (
   CONSTRAINT `FK_predeal_tender` FOREIGN KEY (`tender_Id`) REFERENCES `tender` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.predeal: ~3 rows (приблизительно)
+-- Дамп данных таблицы stock.predeal: ~2 rows (приблизительно)
 /*!40000 ALTER TABLE `predeal` DISABLE KEYS */;
 INSERT IGNORE INTO `predeal` (`id`, `sellerHashCode`, `customerHashCode`, `tender_Id`, `lot_Id`, `sellerApprov`, `custApprov`, `dealDate`) VALUES
-	(2, 'JAVATEST', 'JAVATEST', 1, 1, '0', '0', '2017-07-10'),
-	(8, 'asdasdasd', 'adasdasdasd', 1, 1, 'Y', 'N', '2017-07-05'),
-	(89, 'df', 'sdf', 11, 4, 'y', 'n', '2017-07-09');
+	(1, 'aasdqwe', 'asdasd', 11, 1, 'N', 'N', '2017-07-11'),
+	(2, 'aasdqwe', 'asdasd', 3, 4, 'N', 'N', '2017-07-11');
 /*!40000 ALTER TABLE `predeal` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.product
@@ -153,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `tender` (
   KEY `FK_application_company` (`customer_Id`),
   CONSTRAINT `FK_tender_company` FOREIGN KEY (`customer_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_tender_product` FOREIGN KEY (`product_Id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы stock.tender: ~3 rows (приблизительно)
 /*!40000 ALTER TABLE `tender` DISABLE KEYS */;
@@ -172,9 +171,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   KEY `FK_user_company` (`company_Id`),
   CONSTRAINT `FK_user_company` FOREIGN KEY (`company_Id`) REFERENCES `company` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.user: ~3 rows (приблизительно)
+-- Дамп данных таблицы stock.user: ~2 rows (приблизительно)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT IGNORE INTO `user` (`id`, `login`, `password`, `company_Id`) VALUES
 	(1, 'Admin', '1', 1),

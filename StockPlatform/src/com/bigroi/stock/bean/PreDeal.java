@@ -6,11 +6,14 @@ import java.util.Date;
 
 public class PreDeal {
 	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
-	public final boolean YES = Boolean.parseBoolean("Y");
-	public final static boolean NO = Boolean.parseBoolean("N");;
+	private static final String YES = "Y";
+	private static final String NO = "N";
+	
 
 	private long id;
-	private String sellerHashCode;//TODO: fields sellerHashCode,customerHashCode,sellerApprov,custApprov,dealDate in DB ???
+	private String sellerHashCode;// TODO: fields
+									// sellerHashCode,customerHashCode,sellerApprov,custApprov,dealDate
+									// in DB ???
 	private String customerHashCode;
 	private long tenderId;
 	private long lotId;
@@ -58,11 +61,11 @@ public class PreDeal {
 		this.lotId = lotId;
 	}
 
-	public boolean getSallerApprov() {
+	public boolean getSellerApprov() {
 		return sellerApprov;
 	}
 
-	public void setSallerApprov(boolean sallerApprov) {
+	public void setSellerApprov(boolean sallerApprov) {
 		this.sellerApprov = sallerApprov;
 	}
 
@@ -90,21 +93,36 @@ public class PreDeal {
 		dealDate = FORMATTER.parse(dealDateStr);
 	}
 
-	public  boolean checkSallerApprov( boolean yes) {
-		if (yes == true ){//TODO: how convert boolean to String and insert into DB????
-			return YES;
+	public void setSellerApp(String sellerApprov) {//TODO: return false
+		if (YES.toUpperCase().equals(sellerApprov) || (NO.toUpperCase().equals(sellerApprov))) {
+			this.sellerApprov = true;
 		} else {
-			return  false;
+			this.sellerApprov = false;
 		}
-		
 	}
 	
-	/*public boolean checkCustApprov() {
-		if (sellerApprov == true){
+	public String getSellerApp() {
+		if (sellerApprov) {
 			return YES;
 		} else {
 			return NO;
 		}
-	}*/
+	}
+
+	public void setCustApp(String custApprov) { //TODO: return false
+		if (YES.toUpperCase().equals(sellerApprov) || (NO.toUpperCase().equals(sellerApprov))) {
+			this.custApprov = true;
+		} else {
+			this.custApprov = false;
+		}
+	}
+
+	public String getCustApp() {
+		if (custApprov) {
+			return YES;
+		} else {
+			return NO;
+		}
+	}
 
 }

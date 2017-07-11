@@ -2,6 +2,7 @@ package com.bigroi.stock.daotest.predeal;
 
 import java.sql.Date;
 
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -19,13 +20,13 @@ public class PreDealAdd {
 	@BeforeClass
 	public static void init(){
 		pred = new PreDeal();
-		pred.setId(24);
-		pred.setSellerHashCode("true!");
-		pred.setCustomerHashCode("bb");
+		pred.setId(2);
+		pred.setSellerHashCode("aasdqwe");
+		pred.setCustomerHashCode("asdasd");
 		pred.setTenderId(1);
 		pred.setLotId(1);
-	    pred.setSallerApprov(pred.checkSallerApprov(true));
-		pred.setCustApprov(pred.YES);
+	    pred.setSellerApprov(Boolean.parseBoolean("Y"));
+		pred.setCustApprov(Boolean.parseBoolean("Y"));
 		pred.setDealDate(new Date(pred.getDealDate().getTime()));
 		
 	}
@@ -38,6 +39,7 @@ public class PreDealAdd {
 	@After
 	public void delete() throws DaoException{
 		//DaoFactory.getPreDealDao().deletedById(pred.getId());
+		
 	}
 
 }

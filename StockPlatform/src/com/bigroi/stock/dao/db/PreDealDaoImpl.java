@@ -25,7 +25,7 @@ public class PreDealDaoImpl implements PreDealDao {
 	private static final String ADD_PREDEALS_BY_ID = "INSERT INTO predeal "
 			+ "(id, sellerHashCode, customerHashCode, tender_Id, lot_Id, "
 			+ "sellerApprov, custApprov, dealDate) "
-			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
 
 	private static final String DELETE_PREDEALS_BY_ID = "DELETE FROM predeal "
 			+ "WHERE id = ?";
@@ -64,8 +64,8 @@ public class PreDealDaoImpl implements PreDealDao {
 				ps.setString(3, preDeal.getCustomerHashCode());
 				ps.setLong(4, preDeal.getTenderId());
 				ps.setLong(5, preDeal.getLotId());
-				ps.setBoolean(6, preDeal.getSallerApprov());
-				ps.setBoolean(7, preDeal.getSallerApprov());
+				ps.setString(6, preDeal.getSellerApp());
+				ps.setString(7, preDeal.getCustApp());
 				ps.setDate(8, new Date(preDeal.getDealDate().getTime()));
 				return ps;
 			}
@@ -92,7 +92,7 @@ public class PreDealDaoImpl implements PreDealDao {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 	return	template.update(UPDATE_PREDEALS_BY_ID, preDeal.getSellerHashCode(), 
 				preDeal.getCustomerHashCode(), preDeal.getTenderId(),preDeal.getLotId(), 
-				preDeal.getSallerApprov(), preDeal.getCustApprov(), 
+				preDeal.getSellerApprov(), preDeal.getCustApprov(), 
 				preDeal.getDealDate(), preDeal.getId()) == 1;
 	}
 
