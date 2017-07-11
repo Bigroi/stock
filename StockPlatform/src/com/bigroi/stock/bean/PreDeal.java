@@ -8,7 +8,6 @@ public class PreDeal {
 	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
 	private static final String YES = "Y";
 	private static final String NO = "N";
-	
 
 	private long id;
 	private String sellerHashCode;// TODO: fields
@@ -20,6 +19,52 @@ public class PreDeal {
 	private boolean sellerApprov;
 	private boolean custApprov;
 	private Date dealDate = new Date();
+
+	public String getSellerApprov() {
+		if (this.sellerApprov) {
+			return YES;
+		}
+		return NO;
+	}
+
+	public void setSellerApprov(String sellerApprov) {
+		if ("Y".equals(sellerApprov.toUpperCase())) {
+			this.sellerApprov = true;
+		} else {
+			this.sellerApprov = false;
+		}
+	}
+
+	public String getCustApprov() {
+		if (this.custApprov) {
+			return YES;
+		}
+		return NO;
+	}
+
+	public void setCustApprov(String custApprov) {
+		if ("Y".equals(custApprov.toUpperCase())) {
+			this.custApprov = true;
+		} else {
+			this.custApprov = false;
+		}
+	}
+
+	public boolean getSellerApprovBool() {
+		return sellerApprov;
+	}
+
+	public void setSellerApprovBool(boolean sellerApprov) {
+		this.sellerApprov = sellerApprov;
+	}
+
+	public boolean getCustApprovBool() {
+		return custApprov;
+	}
+
+	public void setCustApprovBool(boolean custApprov) {
+		this.custApprov = custApprov;
+	}
 
 	public long getId() {
 		return id;
@@ -61,22 +106,6 @@ public class PreDeal {
 		this.lotId = lotId;
 	}
 
-	public boolean getSellerApprov() {
-		return sellerApprov;
-	}
-
-	public void setSellerApprov(boolean sallerApprov) {
-		this.sellerApprov = sallerApprov;
-	}
-
-	public boolean getCustApprov() {
-		return custApprov;
-	}
-
-	public void setCustApprov(boolean custApprov) {
-		this.custApprov = custApprov;
-	}
-
 	public Date getDealDate() {
 		return dealDate;
 	}
@@ -91,38 +120,6 @@ public class PreDeal {
 
 	public void setDateStr(String dealDateStr) throws ParseException {
 		dealDate = FORMATTER.parse(dealDateStr);
-	}
-
-	public void setSellerApp(String sellerApprov) {//TODO: return false
-		if (YES.toUpperCase().equals(sellerApprov) || (NO.toUpperCase().equals(sellerApprov))) {
-			this.sellerApprov = true;
-		} else {
-			this.sellerApprov = false;
-		}
-	}
-	
-	public String getSellerApp() {
-		if (sellerApprov) {
-			return YES;
-		} else {
-			return NO;
-		}
-	}
-
-	public void setCustApp(String custApprov) { //TODO: return false
-		if (YES.toUpperCase().equals(sellerApprov) || (NO.toUpperCase().equals(sellerApprov))) {
-			this.custApprov = true;
-		} else {
-			this.custApprov = false;
-		}
-	}
-
-	public String getCustApp() {
-		if (custApprov) {
-			return YES;
-		} else {
-			return NO;
-		}
 	}
 
 }

@@ -64,8 +64,8 @@ public class PreDealDaoImpl implements PreDealDao {
 				ps.setString(3, preDeal.getCustomerHashCode());
 				ps.setLong(4, preDeal.getTenderId());
 				ps.setLong(5, preDeal.getLotId());
-				ps.setString(6, preDeal.getSellerApp());
-				ps.setString(7, preDeal.getCustApp());
+				ps.setString(6, preDeal.getSellerApprov());
+				ps.setString(7, preDeal.getCustApprov());
 				ps.setDate(8, new Date(preDeal.getDealDate().getTime()));
 				return ps;
 			}
@@ -87,6 +87,7 @@ public class PreDealDaoImpl implements PreDealDao {
 		
 	}
 
+	
 	@Override
 	public boolean updateById( PreDeal preDeal) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);

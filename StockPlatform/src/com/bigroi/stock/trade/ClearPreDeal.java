@@ -48,16 +48,16 @@ public class ClearPreDeal implements Runnable {
 				String expiredOpponentText = expiredLinkOpponentMessage.get(MessagePart.TEXT);	
 				
 				//убрать sysout
-				System.out.println("Seller Approv - " + preDeal.getSallerApprov());
-				System.out.println("Cust Approv - " + preDeal.getCustApprov());
+				System.out.println(preDeal.getId() + " Seller Approv - " + preDeal.getSellerApprovBool());
+				System.out.println(preDeal.getId() + " Cust Approv - " + preDeal.getCustApprovBool());
 
 				 
-				if ( preDeal.getSallerApprov()){							
+				if ( preDeal.getSellerApprovBool()){							
 					new MailManager(EMAIL_USER, EMAIL_PASS).send(sellerEmail, expiredOpponentSubject, replaceText(expiredOpponentText, preDeal.getLotId()));					
 				}else {					
 					new MailManager(EMAIL_USER, EMAIL_PASS).send(sellerEmail, expiredSubject, replaceText(expiredText, preDeal.getLotId()));					
 				}		
-				if (preDeal.getCustApprov()){				
+				if (preDeal.getCustApprovBool()){				
 					new MailManager(EMAIL_USER, EMAIL_PASS).send(customerEmail, expiredOpponentSubject, replaceText(expiredOpponentText, preDeal.getTenderId()));
 				}else {						
 					new MailManager(EMAIL_USER, EMAIL_PASS).send(customerEmail, expiredSubject, replaceText(expiredText, preDeal.getTenderId()));
