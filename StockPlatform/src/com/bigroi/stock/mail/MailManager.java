@@ -13,8 +13,8 @@ import javax.mail.internet.MimeMessage;
 
 public class MailManager {
 
-	private String user;        
-	private String password;   
+	private String user;
+	private String password;
 	private Properties properties;
 
 	public MailManager(String user, String password) {
@@ -25,20 +25,21 @@ public class MailManager {
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
 		properties.put("mail.smtp.host", "smtp.gmail.com");
-		properties.put("mail.smtp.port", "587");// port TLS 
+		properties.put("mail.smtp.port", "587");// port TLS
 		properties.put("mail.mime.charset", "UTF-8");
 	}
 
-	public void send(String toEmail, String subject, String text) {
+	public void send(String fromEmail,String toEmail, String subject, String text) {
 		Session session = Session.getInstance(properties, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(user, password);
 			}
 		});
-		
+
 		try {
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(user));
+			InternetAddress emailFrom = new InternetAddress(fromEmail);
+			message.setFrom(emailFrom);
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
 			message.setSubject(subject);
 			message.setText(text);

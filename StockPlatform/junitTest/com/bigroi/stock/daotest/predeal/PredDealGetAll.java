@@ -22,8 +22,8 @@ private static PreDeal pred;
 		pred.setCustomerHashCode("evgen!!!");
 		pred.setTenderId(1);
 		pred.setLotId(1);
-		 pred.setSellerApprov(Boolean.parseBoolean("Y"));
-		//pred.setCustApprov(Boolean.parseBoolean(pred.NO));*/
+		 pred.setSellerApprov("Y");
+		pred.setCustApprov("N");
 		pred.setDealDate(new Date(pred.getDealDate().getTime()));
 		
 		

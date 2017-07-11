@@ -25,8 +25,8 @@ public class PreDealAdd {
 		pred.setCustomerHashCode("asdasd");
 		pred.setTenderId(1);
 		pred.setLotId(1);
-	    pred.setSellerApprov(Boolean.parseBoolean("Y"));
-		pred.setCustApprov(Boolean.parseBoolean("Y"));
+	    pred.setSellerApprov("Y");
+		pred.setCustApprov("Y");
 		pred.setDealDate(new Date(pred.getDealDate().getTime()));
 		
 	}
@@ -38,7 +38,7 @@ public class PreDealAdd {
 	
 	@After
 	public void delete() throws DaoException{
-		//DaoFactory.getPreDealDao().deletedById(pred.getId());
+		DaoFactory.getPreDealDao().deletedById(pred.getId());
 		
 	}
 

@@ -16,6 +16,6 @@ public class MailManagerTest {
 	}
 	@Test
 	public  void send(){
-		send.send(Constant.EMAIL_USER, "test", "hello world!");
+		send.send("support@bigroi.com", Constant.EMAIL_USER, "Message subject", "content message: Hello!" );
 	}
 }
