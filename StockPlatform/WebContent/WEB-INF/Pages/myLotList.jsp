@@ -36,7 +36,7 @@
 							</form>	</td>
 					</c:if>
 					<c:if test="${(lot.status eq 'DRAFT') || (lot.status eq 'IN_GAME')}">
-						<td><form action="#" method="get">
+						<td><form action="LotFormAuth.spr" method="get">
 								<input type="hidden" name="id" value="${lot.id}"> <input
 									type="submit" value="Modify">
 							</form>	</td>

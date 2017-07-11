@@ -16,12 +16,23 @@
 		<input type="hidden" name="status" value="${lot.status}">
 		
 		description <input name="description" value="${lot.description}"><br>
-		product id <input name="productId" value="${lot.poductId}"><br>
-		min_price  <input name="minPrice" value="${lot.minPrice}"><br>
-	    seller id - ${lot.sellerId}<br>
-	    exp_date  <input name="expDate" value="${lot.dateStr}"><br>
-	    status - ${lot.status}<br>
-		
+		<c:choose>		
+			<c:when test="${id == '-1'}">
+				product id <input name="productId" value="${lot.poductId}"><br>		
+				min_price  <input name="minPrice" value="${lot.minPrice}"><br>
+				exp_date  <input name="expDate" value="${lot.dateStr}"><br>
+			</c:when>
+			<c:otherwise>
+				<input type="hidden" name="productId" value="${lot.poductId}">		
+				<input type="hidden" name="minPrice" value="${lot.minPrice}">
+				<input type="hidden" name="expDate" value="${lot.dateStr}">
+				product id - ${lot.poductId}<br>		
+				min_price - ${lot.minPrice}<br>
+				exp_date - ${lot.dateStr}<br>			
+			</c:otherwise>
+	    </c:choose>
+	    seller id - ${lot.sellerId}<br>	    
+	    status - ${lot.status}<br>		
 
 		<input type="submit" name="save" value="SAVE"><br> 
 		<input type="button" name="back" value="Welcome page" onclick="document.location = 'Index.spr'">		

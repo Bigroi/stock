@@ -36,7 +36,6 @@ public class AccountRenderingController {
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
 			@RequestParam("city") String city,
-		// TODO будет другой тип status.
 			@RequestParam("status") CompanyStatus status,
 			HttpSession session) throws DaoException {
 	

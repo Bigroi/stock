@@ -14,12 +14,23 @@
 	<input type="hidden" name="status" value="${tender.status}">
 		
 		description <input name="description" value="${tender.description}"><br>
-		product id <input name="productId" value="${tender.productId}"><br>
-		maxPrice  <input name="maxPrice" value="${tender.maxPrice}"><br>
-	    customer id - ${tender.customerId}<br>
-	    expDate <input name="expDate" value="${tender.dateStr}"><br>
-	    status - ${tender.status}<br>
-	    
+		<c:choose>		
+			<c:when test="${id == '-1'}">
+				product id <input name="productId" value="${tender.productId}"><br>
+				maxPrice  <input name="maxPrice" value="${tender.maxPrice}"><br>	    
+			    expDate <input name="expDate" value="${tender.dateStr}"><br>
+			</c:when>
+			<c:otherwise>
+				<input type="hidden" name="productId" value="${tender.productId}">
+				<input type="hidden" name="maxPrice" value="${tender.maxPrice}">	    
+			    <input type="hidden" name="expDate" value="${tender.dateStr}">	
+			    product id - ${tender.productId}<br>
+				maxPrice - ${tender.maxPrice}<br>	    
+			    expDate - ${tender.dateStr}<br>	
+			</c:otherwise>
+	    </c:choose>		
+	  	customer id - ${tender.customerId}<br>
+	    status - ${tender.status}<br>	    
 	    
 	   <input type="submit" name="save" value="SAVE"><br> 
 	<input type="button" name="back" value="Welcome page" onclick="document.location = 'Index.spr'">
