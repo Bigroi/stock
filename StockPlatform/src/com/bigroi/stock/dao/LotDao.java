@@ -17,5 +17,7 @@ public interface LotDao {
 	List<Lot> getBySellerId(long salerId) throws DaoException;
 	
 	List<Lot> getByProductId(long productId) throws DaoException;
-
+	
+	List<Lot> getProductIdInGame() throws DaoException;
+ 
 }

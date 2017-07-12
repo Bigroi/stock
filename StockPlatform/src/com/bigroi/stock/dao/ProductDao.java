@@ -15,4 +15,6 @@ public interface ProductDao {
 	boolean updateById(Product product) throws DaoException;
 	
 	Product getById(long id) throws DaoException;
+	
+	List<Product> getAllProductId() throws DaoException;
 }

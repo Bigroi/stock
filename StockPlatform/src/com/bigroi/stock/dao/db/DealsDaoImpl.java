@@ -19,13 +19,13 @@ import com.mysql.jdbc.Statement;
 
 public class DealsDaoImpl implements DealsDao {
 
-	private static final String ADD_ARCHIVE_BY_ID = "INSERT INTO deals(id, lot_Id, tender_Id, deals_Time) "
-			+ "VALUES (?, ?, ?, ?)";
+	private static final String ADD_DEALS_BY_ID = "INSERT INTO deals(id, lot_Id, tender_Id, deals_Time) "
+			+ "VALUES (?, ?, ?, ?) ";
 
-	private static final String DELETE_ARCHIVE_BY_ID = "DELETE FROM deals WHERE id = ?";
+	private static final String DELETE_DEALS_BY_ID = "DELETE FROM deals WHERE id = ? ";
 
-	private static final String UPDATE_ARCHIVE_BY_ID = "UPDATE deals SET lot_Id = ?, "
-			+ "tender_Id = ?, deals_Time = ? WHERE id = ?";
+	private static final String UPDATE_DEALS_BY_ID = "UPDATE deals SET lot_Id = ?, "
+			+ "tender_Id = ?, deals_Time = ? WHERE id = ? ";
 
 	private DataSource datasource;
 
@@ -44,7 +44,7 @@ public class DealsDaoImpl implements DealsDao {
 		template.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement ps = con.prepareStatement(ADD_ARCHIVE_BY_ID, Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement ps = con.prepareStatement(ADD_DEALS_BY_ID, Statement.RETURN_GENERATED_KEYS);
 				ps.setLong(1, deals.getId());
 				ps.setLong(2, deals.getLotId());
 				ps.setLong(3, deals.getTenderId());
@@ -59,13 +59,13 @@ public class DealsDaoImpl implements DealsDao {
 	@Override
 	public boolean deletedById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(DELETE_ARCHIVE_BY_ID, id) == 1;
+		return template.update(DELETE_DEALS_BY_ID, id) == 1;
 	}
 
 	@Override
 	public boolean updateById(Deals deals) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_ARCHIVE_BY_ID,  deals.getLotId(),
+		return template.update(UPDATE_DEALS_BY_ID,  deals.getLotId(),
 				 deals.getTenderId(),  deals.getDealsTime(), deals.getId()) == 1;
 	}
 

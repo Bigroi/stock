@@ -39,11 +39,16 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String SELECT_TENDER_BY_CUSTOMER_ID = "SELECT id, description, "
 			+ "product_Id, max_price, customer_Id, status, exp_date "
-			+ "FROM tender WHERE customer_Id = ?";
+			+ "FROM tender WHERE customer_Id = ? ";
 	
 	private static final String SELECT_TENDER_BY_PRODUCT_ID ="SELECT id, description, "
 			+ " product_Id, max_price, customer_Id, status, exp_date FROM tender "
 			+ " WHERE product_Id = ? ORDER BY  max_price DESC ";
+	
+	private static final String SELECT_TENDER_BY_PRODUCT_ID_IN_GAME = "SELECT id, description, "
+			+ "product_Id, max_price, customer_Id, status, exp_date FROM tender "
+			+ "WHERE status = 'IN_GAME' AND product_Id IN(SELECT product_Id FROM tender "
+			+ "WHERE status = 'IN_GAME' ) ";
 	
 	private DataSource datasource;
 
@@ -100,7 +105,6 @@ public class TenderDaoImpl implements TenderDao{
 		} else {
 			return tender.get(0);
 		}
-		
 	}
 	
 	@Override
@@ -140,6 +144,14 @@ public class TenderDaoImpl implements TenderDao{
 				return tender;
 			}
 		}, productId);
+		return tender;
+	}
+
+	@Override
+	public List<Tender> getProductIdInGame() throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<Tender> tender = template.query(SELECT_TENDER_BY_PRODUCT_ID_IN_GAME,
+				new BeanPropertyRowMapper<Tender>(Tender.class));
 		return tender;
 	}
 }

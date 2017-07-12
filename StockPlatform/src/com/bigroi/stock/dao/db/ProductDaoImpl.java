@@ -35,6 +35,10 @@ public class ProductDaoImpl implements ProductDao {
 
 	private static final String SELECT_PRODUCTS_BY_ID = "SELECT id, name, description "
 			+ " FROM product WHERE id = ? ";
+	
+	private static final String SELECT_PROUCTS_BY_PROUCTS_ID = "SELECT DISTINCT poduct_Id "
+			+ "FROM lot WHERE status = 'IN_GAME' AND poduct_Id IN"
+			+ " ( SELECT product_Id FROM tender WHERE status = 'IN_GAME')";
 
 	private DataSource datasource;
 
@@ -81,14 +85,28 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public boolean updateById(Product product) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-	return	template.update(UPDATE_PRODUCTS_BY_ID, product.getName(), product.getDescription(), product.getId()) == 1;
+	return	template.update(UPDATE_PRODUCTS_BY_ID, product.getName(), 
+			product.getDescription(), product.getId()) == 1;
 	}
 
 	@Override
 	public Product getById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		Product product = template.queryForObject(SELECT_PRODUCTS_BY_ID, new Object[] { id },
+		List<Product> product =  template.query(SELECT_PRODUCTS_BY_ID,
+				new BeanPropertyRowMapper<Product>(Product.class), id);
+		if (product.size() == 0) {
+			return null;
+		} else {
+			return product.get(0);
+		}
+	}
+
+	@Override
+	public List<Product> getAllProductId() throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<Product> products = template.query(SELECT_PROUCTS_BY_PROUCTS_ID, 
 				new BeanPropertyRowMapper<Product>(Product.class));
-		return product;
+		lOG.debug(products);
+		return products;
 	}
 }
