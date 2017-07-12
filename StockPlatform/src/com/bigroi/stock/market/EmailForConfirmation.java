@@ -1,4 +1,4 @@
-package com.bigroi.stock.trade;
+package com.bigroi.stock.market;
 
 import java.io.IOException;
 import java.util.List;
