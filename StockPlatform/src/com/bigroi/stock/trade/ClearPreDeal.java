@@ -1,8 +1,5 @@
 package com.bigroi.stock.trade;
 
-import static com.bigroi.stock.bean.common.Constant.EMAIL_PASS;
-import static com.bigroi.stock.bean.common.Constant.EMAIL_USER;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -53,14 +50,14 @@ public class ClearPreDeal implements Runnable {
 
 				 
 				if ( preDeal.getSellerApprovBool()){							
-					new MailManager(EMAIL_USER, EMAIL_PASS).send(sellerEmail, expiredOpponentSubject, replaceText(expiredOpponentText, preDeal.getLotId()));					
+					new MailManager().send(sellerEmail, expiredOpponentSubject, replaceText(expiredOpponentText, preDeal.getLotId()));					
 				}else {					
-					new MailManager(EMAIL_USER, EMAIL_PASS).send(sellerEmail, expiredSubject, replaceText(expiredText, preDeal.getLotId()));					
+					new MailManager().send(sellerEmail, expiredSubject, replaceText(expiredText, preDeal.getLotId()));					
 				}		
 				if (preDeal.getCustApprovBool()){				
-					new MailManager(EMAIL_USER, EMAIL_PASS).send(customerEmail, expiredOpponentSubject, replaceText(expiredOpponentText, preDeal.getTenderId()));
+					new MailManager().send(customerEmail, expiredOpponentSubject, replaceText(expiredOpponentText, preDeal.getTenderId()));
 				}else {						
-					new MailManager(EMAIL_USER, EMAIL_PASS).send(customerEmail, expiredSubject, replaceText(expiredText, preDeal.getTenderId()));
+					new MailManager().send(customerEmail, expiredSubject, replaceText(expiredText, preDeal.getTenderId()));
 				}								
 			}
 		} catch (DaoException | IOException e) {

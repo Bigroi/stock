@@ -1,8 +1,5 @@
 package com.bigroi.stock.trade;
 
-import static com.bigroi.stock.bean.common.Constant.EMAIL_PASS;
-import static com.bigroi.stock.bean.common.Constant.EMAIL_USER;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -82,8 +79,8 @@ public class EmailForConfirmation {
 			tender.setStatus(Status.SUCCESS);
 			DaoFactory.getTenderDao().updateById(tender);
 		
-			new MailManager(EMAIL_USER, EMAIL_PASS).send(sellerEmail, sellerSubject, sellerText);
-			new MailManager(EMAIL_USER, EMAIL_PASS).send(customerEmail, customerSubject, customerText);				
+			new MailManager().send(sellerEmail, sellerSubject, sellerText);
+			new MailManager().send(customerEmail, customerSubject, customerText);				
 		}	
 	}	
 }
