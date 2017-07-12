@@ -16,6 +16,7 @@ public class MailManagerTest {
 	}
 	@Test
 	public  void send(){
+		//MailManager.getContext().send("support@bigroi.com", Constant.EMAIL_USER, "Message subject", "content message: Hello!" );
 		send.send("support@bigroi.com", Constant.EMAIL_USER, "Message subject", "content message: Hello!" );
 	}
 }
