@@ -21,10 +21,9 @@
 		</property>
 	</bean>
 	
-	<!--  <bean id = "mail" 
-		class="com.bigroi.stock.mail.MailManager">
+	  <!-- <bean id = "mail" class="com.bigroi.stock.bean.Mail">
 		<property name="smtp" value="${mail.properties.smtp}" />
 		<property name="port" value="${mail.properties.port}" />
-	</bean> 
-	  -->
+	</bean>  -->
+	  
 </beans>

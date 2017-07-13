@@ -8,7 +8,7 @@ public class Mail {
 	public String getSmtp() {
 		return smtp;
 	}
-
+	
 	public void setSmtp(String smtp) {
 		this.smtp = smtp;
 	}

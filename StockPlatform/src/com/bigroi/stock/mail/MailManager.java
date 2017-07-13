@@ -19,9 +19,7 @@ public class MailManager extends PropertiesMail implements MailPost {
 	private String password;
 
 	public MailManager() {
-
 		this(EMAIL_USER, EMAIL_PASS);
-
 	}
 
 	public MailManager(String user, String password) {

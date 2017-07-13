@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import com.bigroi.stock.bean.common.Constant;
 import com.bigroi.stock.mail.MailManager;
+import com.bigroi.stock.mail.PropertiesMail;
 
 public class MailManagerTest {
 	
@@ -16,7 +17,7 @@ public class MailManagerTest {
 	}
 	@Test
 	public  void send(){
-		//MailManager.getContext().send("support@bigroi.com", Constant.EMAIL_USER, "Message subject", "content message: Hello!" );
-		send.send("support@bigroi.com", Constant.EMAIL_USER, "Message subject", "content message: Hello!" );
+		//PropertiesMail.getContext().send("support@bigroi.com", Constant.EMAIL_USER, "Message subject", "content message: Hello!" );
+		//send.send("support@bigroi.com", Constant.EMAIL_USER, "Message subject", "content message: Hello!" );
 	}
 }

@@ -48,10 +48,9 @@ public class LotDaoImpl implements LotDao {
 			+ " WHERE poduct_Id = ? ORDER BY min_price ";
 	
 	private static final String SELECT_LOTS_BY_PRODUCT_ID_IN_GAME = "SELECT id, description, "
-			+ "poduct_Id, min_price, seller_Id, status, exp_date  FROM lot WHERE "
-			+ "status = 'IN_GAME' AND poduct_Id IN "
-			+ "(SELECT poduct_Id FROM lot WHERE status = 'IN_GAME') ";
-
+			+ "poduct_Id, min_price, seller_Id, status, exp_date FROM lot WHERE "
+			+ "poduct_Id = ? AND status = 'IN_GAME' ";
+	
 	private DataSource datasource;
 
 	public DataSource getDatasource() {
@@ -150,20 +149,14 @@ public class LotDaoImpl implements LotDao {
 				return lot;
 			}
 		}, productId);
-		
 		return lot;
 	}
 
 	@Override
-	public List<Lot> getProductIdInGame() throws DaoException {
+	public List<Lot> getProductIdInGame(long productId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Lot> lots = template.query(SELECT_LOTS_BY_PRODUCT_ID_IN_GAME, 
-				new BeanPropertyRowMapper<Lot>(Lot.class));
+				new BeanPropertyRowMapper<Lot>(Lot.class),productId);
 		return lots;
 	}
-
-	
-	
-	
-
 }

@@ -102,7 +102,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<Product> getAllProductId() throws DaoException {
+	public List<Product> getAllProductIdIdInGame() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Product> products = template.query(SELECT_PROUCTS_BY_PROUCTS_ID, 
 				new BeanPropertyRowMapper<Product>(Product.class));

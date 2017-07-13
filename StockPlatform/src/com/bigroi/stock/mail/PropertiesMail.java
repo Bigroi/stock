@@ -11,8 +11,8 @@ public class PropertiesMail {
 
 	private static final ApplicationContext CONTEXT = new ClassPathXmlApplicationContext("spring-mail.xml");
 	public Properties properties;
-	// private Mail smtp;
-	// private Mail port;
+	private Mail smtp;
+	private Mail port;
 
 	public PropertiesMail() {
 		properties = new Properties();
@@ -26,5 +26,5 @@ public class PropertiesMail {
 	/*public static MailPost getContext() {
 		return (MailPost) CONTEXT.getBean("mail");
 	}*/
-//TODO: разобраться с ошибкой в пропертях, Переписать бин Mail на Smtp или наооборот
+
 }
