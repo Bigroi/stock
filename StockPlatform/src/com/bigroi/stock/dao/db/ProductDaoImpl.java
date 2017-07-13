@@ -105,21 +105,14 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<Object> getAllProductIdInGame() throws DaoException {
+	public List<Long> getAllProductIdInGame() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Object> products = template.query(SELECT_PROUCTS_BY_PROUCTS_ID, new RowMapper<Object>() {
+		List<Long> products = template.query(SELECT_PROUCTS_BY_PROUCTS_ID, new RowMapper<Long>() {
 			@Override
-			public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
-				List<Object> products = new ArrayList<>();
-				Product  product = new Product();
-				product.setId(rs.getLong("id"));
-				product.setName(rs.getString("name"));
-				product.setDescription(rs.getString("description"));
-				products.add( product);
-				return product;
-	      	}
+			public Long mapRow(ResultSet rs, int num) throws SQLException {
+				return rs.getLong("id");
+			}
 		});
-		//TODO: List<Object> ---> List<Long>
 		return products;
 	}
 }

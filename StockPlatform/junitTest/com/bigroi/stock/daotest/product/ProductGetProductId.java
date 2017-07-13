@@ -8,7 +8,7 @@ import com.bigroi.stock.dao.DaoFactory;
 public class ProductGetProductId {
 	
 	@Test
-	public void getAllProductId() throws DaoException{
+	public void getAllProductIdInGame() throws DaoException{
 		DaoFactory.getProductDao().getAllProductIdInGame();
 	}
 

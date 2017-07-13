@@ -16,5 +16,5 @@ public interface ProductDao {
 	
 	Product getById(long id) throws DaoException;
 	
-	List<Object> getAllProductIdInGame() throws DaoException;
+	List<Long> getAllProductIdInGame() throws DaoException;
 }
