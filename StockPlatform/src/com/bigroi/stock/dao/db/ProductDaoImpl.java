@@ -2,7 +2,9 @@ package com.bigroi.stock.dao.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -11,6 +13,7 @@ import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -102,11 +105,21 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<Product> getAllProductIdIdInGame() throws DaoException {
+	public List<Object> getAllProductIdInGame() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Product> products = template.query(SELECT_PROUCTS_BY_PROUCTS_ID, 
-				new BeanPropertyRowMapper<Product>(Product.class));
-		lOG.debug(products);
+		List<Object> products = template.query(SELECT_PROUCTS_BY_PROUCTS_ID, new RowMapper<Object>() {
+			@Override
+			public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+				List<Object> products = new ArrayList<>();
+				Product  product = new Product();
+				product.setId(rs.getLong("id"));
+				product.setName(rs.getString("name"));
+				product.setDescription(rs.getString("description"));
+				products.add( product);
+				return product;
+	      	}
+		});
+		//TODO: List<Object> ---> List<Long>
 		return products;
 	}
 }

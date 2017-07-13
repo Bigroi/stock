@@ -9,7 +9,7 @@ public class ProductGetProductId {
 	
 	@Test
 	public void getAllProductId() throws DaoException{
-		DaoFactory.getProductDao().getAllProductIdIdInGame();
+		DaoFactory.getProductDao().getAllProductIdInGame();
 	}
 
 }
