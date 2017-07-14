@@ -64,17 +64,17 @@ public class Trade implements Runnable {
 		
 	}
 
-	private void alignmentNumberLotsTendders() {
-		
-		int delta = tenders.size() - lots.size();
-		if (delta >0)
-			for (int i = 0; i < delta; i++)
-				tenders.remove(0);			
-		
-		if (delta <0)
-			for (int i = 0; i < -delta; i++)
-				lots.remove(lots.remove(lots.size()-1));				
-	}
+//	private void alignmentNumberLotsTendders() {
+//	// надо при одновременном удалении лота и тендера при несовпадении цены	
+//		int delta = tenders.size() - lots.size();
+//		if (delta >0)
+//			for (int i = 0; i < delta; i++)
+//				tenders.remove(0);			
+//		
+//		if (delta <0)
+//			for (int i = 0; i < -delta; i++)
+//				lots.remove(lots.remove(lots.size()-1));				
+//	}
 
 	private void removeLotsTendersWrongPrice() {
 		
