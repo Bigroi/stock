@@ -61,12 +61,14 @@ public class ClearPreDeal implements Runnable {
 				}								
 			}
 		} catch (DaoException | IOException e) {
+			//TODO Emailing Admin
 			e.printStackTrace();
 		}
 	
 		try {
 			DaoFactory.getPreDealDao().deleteAll();
 		} catch (DaoException e) {
+			//TODO Emailing Admin
 			e.printStackTrace();
 		}
 	}	
