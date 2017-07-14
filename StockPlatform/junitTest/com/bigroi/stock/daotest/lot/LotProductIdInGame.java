@@ -20,6 +20,6 @@ public class LotProductIdInGame {
 	
 	@Test
 	public void getProductIdInGame() throws DaoException{
-		DaoFactory.getLotDao().getProductIdInGame(productId.getPoductId());
+		DaoFactory.getLotDao().getByProductIdInGameOrderMinPrice(productId.getPoductId());
 	}
 }

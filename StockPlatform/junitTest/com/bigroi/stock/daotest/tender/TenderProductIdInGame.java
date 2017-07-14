@@ -19,7 +19,7 @@ public class TenderProductIdInGame {
 	}
 	@Test
 	public void getProductIdInGame() throws DaoException{
-		DaoFactory.getTenderDao().getProductIdInGame(productId.getProductId());
+		DaoFactory.getTenderDao().getByProductIdInGameOrderMaxPrice(productId.getProductId());
 	}
 
 }

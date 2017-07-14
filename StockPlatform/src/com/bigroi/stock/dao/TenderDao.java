@@ -18,6 +18,6 @@ public interface TenderDao {
 	
 	List<Tender> getByProductId(long productId) throws DaoException;
 	
-	List<Tender> getProductIdInGame(long productId) throws DaoException;
+	List<Tender> getByProductIdInGameOrderMaxPrice(long productId) throws DaoException;
 
 }
