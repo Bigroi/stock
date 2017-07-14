@@ -110,7 +110,7 @@ public class ProductDaoImpl implements ProductDao {
 		List<Long> products = template.query(SELECT_PROUCTS_BY_PROUCTS_ID, new RowMapper<Long>() {
 			@Override
 			public Long mapRow(ResultSet rs, int num) throws SQLException {
-				return rs.getLong("id");
+				return rs.getLong("poduct_Id");
 			}
 		});
 		return products;
