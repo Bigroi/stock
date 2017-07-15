@@ -3,9 +3,9 @@ package com.bigroi.stock.mailtest.send;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.bigroi.stock.bean.common.Constant;
-import com.bigroi.stock.mail.MailManager;
-import com.bigroi.stock.mail.PropertiesMail;
+import com.bigroi.stock.messager.MailManager;
+import com.bigroi.stock.messager.MailManagerException;
+import com.bigroi.stock.messager.MessagerFactory;
 
 public class MailManagerTest {
 	
@@ -13,11 +13,11 @@ public class MailManagerTest {
 	
 	@BeforeClass
 	public static void init(){
-		send =  new MailManager(Constant.EMAIL_USER,Constant.EMAIL_PASS);
+		send =  MessagerFactory.getMailManager();
 	}
+	
 	@Test
-	public  void send(){
-		//PropertiesMail.getContext().send("support@bigroi.com", Constant.EMAIL_USER, "Message subject", "content message: Hello!" );
-		//send.send("support@bigroi.com", Constant.EMAIL_USER, "Message subject", "content message: Hello!" );
+	public  void send() throws MailManagerException{
+		send.send("mailmanager16@gmail.com", "pinyuta-p@yandex.ru", "Message subject", "content message: Hello!" );
 	}
 }

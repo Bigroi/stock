@@ -11,7 +11,8 @@ import com.bigroi.stock.bean.common.MessagePart;
 import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
-import com.bigroi.stock.mail.MailManager;
+import com.bigroi.stock.messager.MailManagerException;
+import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.util.MessageFromFile;
 
 public class ClearPreDeal implements Runnable {
@@ -50,24 +51,18 @@ public class ClearPreDeal implements Runnable {
 
 				 
 				if ( preDeal.getSellerApprovBool()){							
-					new MailManager().send(sellerEmail, expiredOpponentSubject, replaceText(expiredOpponentText, preDeal.getLotId()));					
+					MessagerFactory.getMailManager().send(sellerEmail, expiredOpponentSubject, replaceText(expiredOpponentText, preDeal.getLotId()));					
 				}else {					
-					new MailManager().send(sellerEmail, expiredSubject, replaceText(expiredText, preDeal.getLotId()));					
+					MessagerFactory.getMailManager().send(sellerEmail, expiredSubject, replaceText(expiredText, preDeal.getLotId()));					
 				}		
 				if (preDeal.getCustApprovBool()){				
-					new MailManager().send(customerEmail, expiredOpponentSubject, replaceText(expiredOpponentText, preDeal.getTenderId()));
+					MessagerFactory.getMailManager().send(customerEmail, expiredOpponentSubject, replaceText(expiredOpponentText, preDeal.getTenderId()));
 				}else {						
-					new MailManager().send(customerEmail, expiredSubject, replaceText(expiredText, preDeal.getTenderId()));
+					MessagerFactory.getMailManager().send(customerEmail, expiredSubject, replaceText(expiredText, preDeal.getTenderId()));
 				}								
 			}
-		} catch (DaoException | IOException e) {
-			//TODO Emailing Admin
-			e.printStackTrace();
-		}
-	
-		try {
 			DaoFactory.getPreDealDao().deleteAll();
-		} catch (DaoException e) {
+		} catch (DaoException | IOException | MailManagerException e) {
 			//TODO Emailing Admin
 			e.printStackTrace();
 		}

@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class DaoFactory {
-	private static final ApplicationContext CONTEX = new ClassPathXmlApplicationContext("spring.xml");
+	private static final ApplicationContext CONTEX = new ClassPathXmlApplicationContext("spring-dao.xml");
 
 	public static UserDao getUserDao() {
 		return (UserDao) CONTEX.getBean("userDao");

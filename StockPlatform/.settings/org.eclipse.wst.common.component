@@ -5,6 +5,8 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/resourse"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/junitTest"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/templates"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/spring"/>
         <property name="context-root" value="StockPlatform"/>
         <property name="java-output-path" value="/StockPlatform/build/classes"/>
     </wb-module>

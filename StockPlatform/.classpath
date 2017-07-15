@@ -8,6 +8,8 @@
 	</classpathentry>
 	<classpathentry kind="src" path="resourse"/>
 	<classpathentry kind="src" path="junitTest"/>
+	<classpathentry kind="src" path="templates"/>
+	<classpathentry kind="src" path="spring"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
