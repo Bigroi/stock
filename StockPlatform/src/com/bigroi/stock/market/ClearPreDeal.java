@@ -21,7 +21,8 @@ public class ClearPreDeal implements Runnable {
 
 	@Override
 	public void run() {
-		// С учетом того, что в preDeal не храняться пары YY 		
+		// С учетом того, что в preDeal не храняться пары YY 	
+		// too hard to read!
 		try {			
 			Map<MessagePart, String> expiredLinkMessage = MessageFromFile.read(EXPIRED_LINK_FILE);
 			Map<MessagePart, String> expiredLinkOpponentMessage = MessageFromFile.read(EXPIRED_LINK_OPPONENT_FILE);

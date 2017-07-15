@@ -46,8 +46,8 @@ public class MailManagerImpl implements MailManager {
 	}
 
 	@Override
-	public void sendToAdmin( String subject, String text) throws MailManagerException{
-		// TODO Auto-generated method stub
+	public void sendToAdmin( String subject, String text){
+		// do not throw any Exception! In case of exception jest log it.
 	}
 	
 	public void setMailProperties(Properties mailProperties) {

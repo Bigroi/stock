@@ -27,6 +27,7 @@ public class EmailForConfirmation {
 	private static final ApplicationContext CONTEX = new ClassPathXmlApplicationContext("spring.xml");
 	
 	public void send() throws MarketException {		
+		// too hard to read
 		try{
 			Map<MessagePart, String> customerMessage = MessageFromFile.read(CUSTOMER_CONFIRMATION_FILE);
 			Map<MessagePart, String> sellerMessage = MessageFromFile.read(SELLER_CONFIRMATION_FILE);

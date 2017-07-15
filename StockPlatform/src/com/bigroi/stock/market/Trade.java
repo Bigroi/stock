@@ -10,7 +10,7 @@ import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
-import com.bigroi.stock.util.Key;
+import com.bigroi.stock.util.KeyGenerator;
 
 public class Trade implements Runnable {
 	private List<Lot> lots;
@@ -46,8 +46,8 @@ public class Trade implements Runnable {
 			}else {
 				PreDeal  predeal = new PreDeal();
 				predeal.setLotId(lot.getId());
-				predeal.setSellerHashCode(Key.generate(KEY_LENGTH));
-				predeal.setCustomerHashCode(Key.generate(KEY_LENGTH));
+				predeal.setSellerHashCode(KeyGenerator.generate(KEY_LENGTH));
+				predeal.setCustomerHashCode(KeyGenerator.generate(KEY_LENGTH));
 				predeal.setTenderId(tender.getId());
 				predeal.setSellerApprovBool(false);
 				predeal.setCustApprovBool(false);

@@ -19,23 +19,20 @@ public class MessageFromFile {
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
 				Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName),
 				StandardCharsets.UTF_8))) {
-			String subject = "";
-			String text = "";
-			boolean flag = true;
+			String subject = null;
+			StringBuilder text = new StringBuilder();
 			String line;
 			while ((line = reader.readLine()) != null) {
-				if (flag) {
+				if (subject == null) {
 					subject = line;
-					flag = false;
+				} else if (text.length() == 0){
+					text.append(line);
 				} else {
-					text = text + line + System.lineSeparator();
+					text.append(System.lineSeparator()).append(line);
 				}
 			}
 			map.put(SUBJECT, subject);
-			if (text.endsWith(System.lineSeparator())) {
-				text = text.substring(0, text.length() - 2);
-			}
-			map.put(TEXT, text);
+			map.put(TEXT, text.toString());
 		}
 		return map;
 	}
