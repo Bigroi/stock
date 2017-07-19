@@ -63,14 +63,12 @@ public class ClearPreDeal implements Runnable {
 			MessagerFactory.getMailManager().send(customerEmail, expiredSubject,
 					replaceText(expiredText, preDeal.getTenderId()));
 		}
-
 		if (!preDeal.getSellerApprovBool() && preDeal.getCustApprovBool()) {
 			MessagerFactory.getMailManager().send(sellerEmail, expiredSubject,
 					replaceText(expiredText, preDeal.getLotId()));
 			MessagerFactory.getMailManager().send(customerEmail, expiredOpponentSubject,
 					replaceText(expiredOpponentText, preDeal.getTenderId()));
 		}
-
 		if (!preDeal.getSellerApprovBool() && !preDeal.getCustApprovBool()) {
 			MessagerFactory.getMailManager().send(sellerEmail, expiredSubject,
 					replaceText(expiredText, preDeal.getLotId()));
@@ -86,30 +84,24 @@ public class ClearPreDeal implements Runnable {
 			lot.setStatus(Status.IN_GAME);
 		}
 		DaoFactory.getLotDao().updateById(lot);
-
 		if (tender.isExpired()) {
 			tender.setStatus(Status.EXPIRED);
 		} else {
 			tender.setStatus(Status.IN_GAME);
 		}
 		DaoFactory.getTenderDao().updateById(tender);
-
 	}
 
 	private void getDataForEmail(PreDeal preDeal) throws DaoException {
 		lot = DaoFactory.getLotDao().getById(preDeal.getLotId());
 		sellerEmail = DaoFactory.getCompanyDao().getById(lot.getSellerId()).getEmail();
-
 		tender = DaoFactory.getTenderDao().getById(preDeal.getTenderId());
 		customerEmail = DaoFactory.getCompanyDao().getById(tender.getCustomerId()).getEmail();
-
 		expiredText = expiredLinkMessage.get(MessagePart.TEXT);
 		expiredOpponentText = expiredLinkOpponentMessage.get(MessagePart.TEXT);
-
 	}
 
 	private String replaceText(String text, long id) {
 		return text.replaceAll("@id", id + "");
 	}
-
 }
