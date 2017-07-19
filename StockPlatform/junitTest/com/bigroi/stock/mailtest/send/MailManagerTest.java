@@ -18,6 +18,7 @@ public class MailManagerTest {
 	
 	@Test
 	public  void send() throws MailManagerException{
-		send.send("mailmanager16@gmail.com", "pinyuta-p@yandex.ru", "Message subject", "content message: Hello!" );
+		//send.send("mailmanager16@gmail.com", "pinyuta-p@yandex.ru", "Message subject", "content message: Hello!" );
+		send.sendToAdmin("subject", "text");
 	}
 }
