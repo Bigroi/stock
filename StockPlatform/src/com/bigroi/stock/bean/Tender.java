@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.util.DateUtil;
 
 public class Tender {
 
@@ -17,6 +18,13 @@ public class Tender {
 	private long customerId;
 	private Status status;
 	private Date expDate = new Date();
+
+	public boolean isExpired() {
+		if (DateUtil.beforToday(expDate)) {
+			return true;
+		}
+		return false;
+	}
 
 	public Date getExpDate() {
 		return expDate;

@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.util.DateUtil;
 
 public class Lot {
 	
@@ -17,12 +18,19 @@ public class Lot {
 	private long sellerId;
 	private Date expDate = new Date();
 	private Status status;
-	
-	public String getDateStr(){
+
+	public boolean isExpired() {
+		if (DateUtil.beforToday(expDate)) {
+			return true;
+		}
+		return false;
+	}
+
+	public String getDateStr() {
 		return FORMATTER.format(expDate);
 	}
-	
-	public void setDateStr(String dateStr) throws ParseException{
+
+	public void setDateStr(String dateStr) throws ParseException {
 		expDate = FORMATTER.parse(dateStr);
 	}
 
@@ -88,6 +96,4 @@ public class Lot {
 				+ ", salerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + "]";
 	}
 
-	
-	
 }
