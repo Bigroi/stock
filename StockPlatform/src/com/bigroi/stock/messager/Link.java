@@ -1,4 +1,4 @@
-package com.bigroi.stock.bean;
+package com.bigroi.stock.messager;
 
 public class Link {
 	private String sellerConfirmationLink;

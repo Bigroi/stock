@@ -21,7 +21,7 @@
 	</bean>
 	
 	<bean id = "link" 
-		class="com.bigroi.stock.bean.Link">
+		class="com.bigroi.stock.messager.Link">
 		<property name="sellerConfirmationLink" value="${link.seller.confirmation}" />
 		<property name="customerConfirmationLink" value="${link.sustomer.confirmation}" />
 	</bean>

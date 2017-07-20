@@ -11,4 +11,8 @@ public class MessagerFactory {
 		return (MailManager) CONTEXT.getBean("mailManager");
 	}
 	
+	public static Link getLink(){
+		return (Link) CONTEXT.getBean("link");
+	}
+	
 }
