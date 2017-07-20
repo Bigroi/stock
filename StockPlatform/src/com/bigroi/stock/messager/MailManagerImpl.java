@@ -15,6 +15,7 @@ import javax.mail.internet.MimeMessage;
 public class MailManagerImpl implements MailManager {
 
 	private Properties mailProperties;
+	private String adminUser;
 	private String user;
 	private String password;
 
@@ -49,11 +50,14 @@ public class MailManagerImpl implements MailManager {
 		String subject = e.getMessage();
 		StackTraceElement[] eText = e.getStackTrace();
 		String text = Arrays.toString(eText);
-		send(user, subject, text);
+		send(adminUser, subject, text);
 	}
 
 	public void setMailProperties(Properties mailProperties) {
 		this.mailProperties = mailProperties;
+	}
+	public void setAdminUser(String adminUser) {
+		this.adminUser = adminUser;
 	}
 
 	public void setUser(String user) {

@@ -38,5 +38,6 @@
 		</property>
 		<property name="user" value="${mail.user}" />
 		<property name="password" value="${mail.password}" />
+		<property name="adminUser" value="${mail.adminUser}"/>
 	</bean>
 </beans>
