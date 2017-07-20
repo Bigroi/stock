@@ -1,5 +1,6 @@
 package com.bigroi.stock.messager;
 
+import java.util.Arrays;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -44,27 +45,11 @@ public class MailManagerImpl implements MailManager {
 	}
 
 	@Override
-	public void sendToAdmin(String subject, String text) throws MailManagerException {
-		// do not throw any Exception! In case of exception jest log it.
-		try {
-			mailProperties.put("mail.smtp.port", 587);
-			Session session = Session.getInstance(mailProperties, new Authenticator() {
-				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication(user, password);
-				}
-			});
-			Message message = new MimeMessage(session);
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user));
-			Exception eSubject = new Exception(subject);
-			eSubject.getMessage().getClass();
-			Exception eText = new Exception(text);
-			eText.getStackTrace();
-			message.setSubject(String.valueOf(eSubject));
-			message.setText(String.valueOf(eText));
-			Transport.send(message);
-		} catch (MessagingException e) {
-			throw new MailManagerException(e);
-		}
+	public void sendToAdmin(Exception e) throws MailManagerException {
+		String subject = e.getMessage();
+		StackTraceElement[] eText = e.getStackTrace();
+		String text = Arrays.toString(eText);
+		send(user, subject, text);
 	}
 
 	public void setMailProperties(Properties mailProperties) {

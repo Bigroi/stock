@@ -7,7 +7,7 @@ import com.bigroi.stock.messager.MailManager;
 import com.bigroi.stock.messager.MailManagerException;
 import com.bigroi.stock.messager.MessagerFactory;
 
-public class MailManagerTest {
+public class SendToAdmin {
 
 	private static MailManager send;
 
@@ -18,7 +18,10 @@ public class MailManagerTest {
 
 	@Test
 	public void send() throws MailManagerException {
-		send.send("mailmanager16@gmail.com", "pinyuta-p@yandex.ru", "Message subject", "content message: Hello!");
-
+		try {
+			throw new MailManagerException("Subject Exception");
+		} catch (MailManagerException e) {
+			send.sendToAdmin(e);
+		}
 	}
 }
