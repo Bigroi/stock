@@ -122,4 +122,10 @@ public class PreDeal {
 		dealDate = FORMATTER.parse(dealDateStr);
 	}
 
+	@Override
+	public String toString() {
+		return "PreDeal [id=" + id + ", sellerHashCode=" + sellerHashCode + ", customerHashCode=" + customerHashCode
+				+ ", tenderId=" + tenderId + ", lotId=" + lotId + ", sellerApprov=" + sellerApprov + ", custApprov="
+				+ custApprov + ", dealDate=" + dealDate + "]";
+	}
 }

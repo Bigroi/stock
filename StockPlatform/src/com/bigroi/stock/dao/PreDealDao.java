@@ -16,6 +16,7 @@ public interface PreDealDao {
 	
 	List<PreDeal> getAllPreDeal() throws DaoException;
 	
+	 PreDeal getById(long id) throws DaoException ;
 	
 
 }

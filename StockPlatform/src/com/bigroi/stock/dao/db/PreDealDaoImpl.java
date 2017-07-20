@@ -41,6 +41,10 @@ public class PreDealDaoImpl implements PreDealDao {
 			+ "customerHashCode, tender_Id, lot_Id, sellerApprov, custApprov, "
 			+ "dealDate FROM predeal ";
 	
+	private static final String SELECT_PREDEALS_BY_ID = "SELECT id, sellerHashCode, "
+			+ "customerHashCode, tender_Id, lot_Id, sellerApprov, "
+			+ "custApprov, dealDate FROM predeal WHERE id = ? ";
+	
 	private DataSource datasource;
 
 	public DataSource getDatasource() {
@@ -104,5 +108,14 @@ public class PreDealDaoImpl implements PreDealDao {
 		return list;
 	}
 
-	
+	@Override
+	public PreDeal getById(long id) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<PreDeal> list = template.query(SELECT_PREDEALS_BY_ID, new BeanPropertyRowMapper<PreDeal>(PreDeal.class), id);
+		if(list.size() == 0){
+			return null;
+		}else{
+			return list.get(0);
+		}
+	}
 }
