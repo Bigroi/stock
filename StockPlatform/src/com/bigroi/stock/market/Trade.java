@@ -7,7 +7,6 @@ import java.util.List;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.PreDeal;
 import com.bigroi.stock.bean.Tender;
-import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 import com.bigroi.stock.util.KeyGenerator;
@@ -53,10 +52,13 @@ public class Trade implements Runnable {
 				predeal.setCustApprovBool(false);
 				predeal.setDealDate(new Date());
 				DaoFactory.getPreDealDao().add(predeal);
-				lot.setStatus(Status.ON_APPROVAL);
-				DaoFactory.getLotDao().updateById(lot);
-				tender.setStatus(Status.ON_APPROVAL);
-				DaoFactory.getTenderDao().updateById(tender);
+				
+// 	На бумаге нет изменения статуса. Изменение статуса происходит при отправке ссылок на подтверждение			
+//				lot.setStatus(Status.ON_APPROVAL);
+//				DaoFactory.getLotDao().updateById(lot);
+//				tender.setStatus(Status.ON_APPROVAL);
+//				DaoFactory.getTenderDao().updateById(tender);
+				
 				tenders.remove(0);
 				lots.remove(0);
 			}
