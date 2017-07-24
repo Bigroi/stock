@@ -1,16 +1,15 @@
 package com.bigroi.stock.timertest.TimerStock;
 
 import org.junit.Test;
-
-import com.bigroi.stock.bean.TimerStock;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TimerStockTest {
 	
+	@SuppressWarnings("resource")
 	@Test
-	public void start(){
-		Thread thread = new Thread();
-		TimerStock ts = new TimerStock(thread);
-		
+	public void start() throws InterruptedException{
+		new ClassPathXmlApplicationContext("spring-timer.xml");
+		Thread.sleep(50000);
 
 	}
 
