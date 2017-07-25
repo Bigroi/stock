@@ -46,11 +46,15 @@ public class MailManagerImpl implements MailManager {
 	}
 
 	@Override
-	public void sendToAdmin(Exception e) throws MailManagerException {
+	public void sendToAdmin(Throwable  e) {
+		try{
 		String subject = e.getMessage();
 		StackTraceElement[] eText = e.getStackTrace();
 		String text = Arrays.toString(eText);
 		send(adminUser, subject, text);
+		}catch (MailManagerException excep) {
+			excep.printStackTrace();
+		}
 	}
 
 	public void setMailProperties(Properties mailProperties) {
