@@ -140,10 +140,10 @@ public class Message {
 	}
 
 	private void getEmails(PreDeal preDeal) throws DaoException {
-		// TODO одной транзакцией
+		// TODO одним запросом
 		Lot lot = DaoFactory.getLotDao().getById(preDeal.getLotId());
 		sellerEmail = DaoFactory.getCompanyDao().getById(lot.getSellerId()).getEmail();
-		// TODO одной транзакцией
+		// TODO одним запросом
 		Tender tender = DaoFactory.getTenderDao().getById(preDeal.getTenderId());
 		customerEmail = DaoFactory.getCompanyDao().getById(tender.getCustomerId()).getEmail();
 

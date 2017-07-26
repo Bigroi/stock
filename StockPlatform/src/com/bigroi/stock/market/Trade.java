@@ -9,6 +9,7 @@ import com.bigroi.stock.bean.PreDeal;
 import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
+import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.util.KeyGenerator;
 
 public class Trade implements Runnable {
@@ -29,7 +30,7 @@ public class Trade implements Runnable {
 				pairing();			
 			}
 		} catch (DaoException e) {
-			// TODO Emailing Admin
+			MessagerFactory.getMailManager().sendToAdmin(e);
 			e.printStackTrace();
 		}
 

@@ -11,6 +11,7 @@ import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 import com.bigroi.stock.messager.MailManagerException;
 import com.bigroi.stock.messager.Message;
+import com.bigroi.stock.messager.MessagerFactory;
 
 public class ClearPreDeal implements Runnable {
 	@Override
@@ -25,7 +26,7 @@ public class ClearPreDeal implements Runnable {
 			}
 			DaoFactory.getPreDealDao().deleteAll();
 		} catch (DaoException | IOException | MailManagerException e) {
-			// TODO Emailing Admin
+			MessagerFactory.getMailManager().sendToAdmin(e);
 			e.printStackTrace();
 		}
 	}
