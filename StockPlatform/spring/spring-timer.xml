@@ -5,11 +5,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
-	<bean id="timerStock" class="com.bigroi.stock.bean.TimerStock"></bean>
-
+	<bean id="clear" class="com.bigroi.stock.market.ClearPreDeal"></bean>
+	
 	<task:scheduled-tasks>
 		<task:scheduled ref="clear" method="run" cron="*/5 * * * * ?"/>
 	</task:scheduled-tasks>
 
-	<bean id="clear" class="com.bigroi.stock.market.ClearPreDeal"></bean>
 </beans>

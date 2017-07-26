@@ -17,7 +17,7 @@ public class SendToAdmin {
 	}
 
 	@Test
-	public void send() throws MailManagerException {
+	public void send() {
 		try {
 			throw new MailManagerException("Subject Exception");
 		} catch (MailManagerException e) {

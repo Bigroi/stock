@@ -29,27 +29,31 @@ public class LotDaoImpl implements LotDao {
 
 	private static final String ADD_LOTS_BY_ID = "INSERT INTO lot (id, description, "
 			+ " poduct_Id,min_price, seller_Id, status, exp_date) "
-			+ "VALUES ( ?, ?, ?, ?, ?, ?, ?) ";
+			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?) ";
 
 	private static final String DELETE_LOTS_BY_ID = "DELETE FROM lot WHERE id = ? ";
 
 	private static final String UPDATE_LOTS_BY_ID = "UPDATE lot SET "
-			+ "description = ?, poduct_Id = ?, min_price = ?, seller_Id = ?, " 
-			+ "status = ?, exp_date = ? WHERE id = ? ";
+			+ " description = ?, poduct_Id = ?, min_price = ?, seller_Id = ?, " 
+			+ " status = ?, exp_date = ? WHERE id = ? ";
 	
 	private static final String SELECT_LOTS_BY_ID = "SELECT id, description, poduct_Id, "
 			+ " min_price, seller_Id, status, exp_date FROM lot WHERE id = ? ";
 	
 	private static final String SELECT_LOTS_BY_SALLER_ID = "SELECT id, description, "
-			+ "poduct_Id, min_price, seller_Id, status, exp_date FROM lot WHERE seller_Id  = ? ";
+			+ " poduct_Id, min_price, seller_Id, status, exp_date FROM lot WHERE seller_Id  = ? ";
 	
 	private static final String SELECT_LOTS_BY_PRODUCT_ID ="SELECT id, description, "
-			+ "poduct_Id, min_price, seller_Id, status, exp_date FROM lot "
+			+ " poduct_Id, min_price, seller_Id, status, exp_date FROM lot "
 			+ " WHERE poduct_Id = ? ORDER BY min_price ";
 	
 	private static final String SELECT_LOTS_BY_PRODUCT_ID_IN_GAME = "SELECT id, description, "
-			+ "poduct_Id, min_price, seller_Id, status, exp_date FROM lot WHERE "
-			+ "poduct_Id = ? AND status = 'IN_GAME' ORDER BY min_price";
+			+ " poduct_Id, min_price, seller_Id, status, exp_date FROM lot WHERE "
+			+ " poduct_Id = ? AND status = 'IN_GAME' ORDER BY min_price ";
+	
+	private static final String SELECT_ALL_LOTS_BY_IN_GAME = "SELECT id, description,"
+			+ " poduct_Id, min_price, seller_Id, status, exp_date FROM lot "
+			+ " WHERE status ='IN_GAME' ";
 	
 	private DataSource datasource;
 
@@ -158,5 +162,13 @@ public class LotDaoImpl implements LotDao {
 		List<Lot> lots = template.query(SELECT_LOTS_BY_PRODUCT_ID_IN_GAME, 
 				new BeanPropertyRowMapper<Lot>(Lot.class),productId);
 		return lots;
+	}
+
+	@Override
+	public List<Lot> getAllInGame() throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<Lot> lot = template.query(SELECT_ALL_LOTS_BY_IN_GAME, 
+				new BeanPropertyRowMapper<Lot>(Lot.class));
+		return lot;
 	}
 }
