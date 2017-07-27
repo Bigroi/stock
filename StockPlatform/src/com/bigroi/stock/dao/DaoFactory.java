@@ -37,5 +37,9 @@ public class DaoFactory {
 	public static PreDealDao getPreDealDao(){
 		return (PreDealDao) CONTEX.getBean("preDealDao");
 	}
+	
+	public static EmailDao  getEmailDao(){
+		return (EmailDao) CONTEX.getBean("emailDao");
+	}
 
 }

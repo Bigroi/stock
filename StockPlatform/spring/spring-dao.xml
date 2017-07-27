@@ -11,12 +11,12 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:component-scan base-package="com.bigroi.stock.controller" />
-	
+
 	<bean id="property"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:datasourse.properties</value>				
+				<value>classpath:datasourse.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -27,37 +27,41 @@
 		<property name="username" value="${data.db.name}" />
 		<property name="password" value="${data.db.pass}" />
 	</bean>
-	
+
 	<bean id="userDao" class="com.bigroi.stock.dao.db.UserDaoImpl">
 		<property name="datasource" ref="datasource"></property>
 	</bean>
-	
+
 	<bean id="productDao" class="com.bigroi.stock.dao.db.ProductDaoImpl">
 		<property name="datasource" ref="datasource"></property>
 	</bean>
-	
+
 	<bean id="companyDao" class="com.bigroi.stock.dao.db.CompanyDaoImpl">
 		<property name="datasource" ref="datasource"></property>
 	</bean>
-	
+
 	<bean id="lotDao" class="com.bigroi.stock.dao.db.LotDaoImpl">
 		<property name="datasource" ref="datasource"></property>
 	</bean>
-	
+
 	<bean id="tenderDao" class="com.bigroi.stock.dao.db.TenderDaoImpl">
 		<property name="datasource" ref="datasource"></property>
 	</bean>
-	
+
 	<bean id="dealsDao" class="com.bigroi.stock.dao.db.DealsDaoImpl">
 		<property name="datasource" ref="datasource"></property>
-	</bean> 
-	
+	</bean>
+
 	<bean id="blacklistDao" class="com.bigroi.stock.dao.db.BlacklistDaoImpl">
 		<property name="datasource" ref="datasource"></property>
-	</bean> 
-	
-	 <bean id="preDealDao" class="com.bigroi.stock.dao.db.PreDealDaoImpl">
+	</bean>
+
+	<bean id="preDealDao" class="com.bigroi.stock.dao.db.PreDealDaoImpl">
 		<property name="datasource" ref="datasource"></property>
-	</bean> 
+	</bean>
+
+	<bean id="emailDao" class="com.bigroi.stock.dao.db.EmailDaoImpl">
+		<property name="datasource" ref="datasource"></property>
+	</bean>
 
 </beans>
