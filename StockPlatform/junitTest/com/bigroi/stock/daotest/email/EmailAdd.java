@@ -14,11 +14,9 @@ public class EmailAdd {
 
 	@BeforeClass
 	public static void init() {
-		email = new Email();
-		email.setId(7);
-		email.setToEmail("@todo");
-		email.setEmailSubject("subj");
-		email.setEmailText("text");
+		email = new Email("@todo!","subj!","text");
+		//email.setId(5);
+		
 	}
 
 	@Test
