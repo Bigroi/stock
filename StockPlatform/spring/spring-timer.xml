@@ -10,5 +10,11 @@
 	<task:scheduled-tasks>
 		<task:scheduled ref="clear" method="run" cron="*/5 * * * * ?"/>
 	</task:scheduled-tasks>
+	
+	<bean id="send" class="com.bigroi.stock.messager.SendEmail"></bean>
+	
+	<task:scheduled-tasks>
+	<task:scheduled ref="send" method="run" cron="*/* 30 * * * ?"/>
+	</task:scheduled-tasks>
 
 </beans>
