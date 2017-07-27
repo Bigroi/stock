@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
+import com.bigroi.stock.bean.Email;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.PreDeal;
 import com.bigroi.stock.bean.Tender;
@@ -33,23 +34,24 @@ public class Message {
 		getMessageFromFile(SUCCESS_LINK_FILE);
 		getEmails(preDeal);
 
-		MessagerFactory.getMailManager().send(sellerEmail, subject, text.replaceAll("@id", preDeal.getLotId() + ""));
-		MessagerFactory.getMailManager().send(customerEmail, subject,
-				text.replaceAll("@id", preDeal.getTenderId() + ""));
+		DaoFactory.getEmailDao().add(new Email(sellerEmail, subject, text.replaceAll("@id", preDeal.getLotId() + "")));
+		DaoFactory.getEmailDao()
+				.add(new Email(customerEmail, subject, text.replaceAll("@id", preDeal.getTenderId() + "")));
 	}
-	
-	public void sendMessageCancelSeller(PreDeal preDeal) throws DaoException, IOException, MailManagerException{
+
+	public void sendMessageCancelSeller(PreDeal preDeal) throws DaoException, IOException, MailManagerException {
 		getMessageFromFile(CANCEL_LINK_FILE);
 		getEmails(preDeal);
-		MessagerFactory.getMailManager().send(customerEmail, subject, text.replaceAll("@id", preDeal.getTenderId() + ""));		
+		DaoFactory.getEmailDao()
+				.add(new Email(customerEmail, subject, text.replaceAll("@id", preDeal.getTenderId() + "")));		
 	}
-	
-	public void sendMessageCancelCustomer(PreDeal preDeal) throws DaoException, IOException, MailManagerException{
+
+	public void sendMessageCancelCustomer(PreDeal preDeal) throws DaoException, IOException, MailManagerException {
 		getMessageFromFile(CANCEL_LINK_FILE);
 		getEmails(preDeal);
-		MessagerFactory.getMailManager().send(customerEmail, subject, text.replaceAll("@id", preDeal.getLotId() + ""));		
+		DaoFactory.getEmailDao()
+				.add(new Email(customerEmail, subject, text.replaceAll("@id", preDeal.getLotId() + "")));
 	}
-	
 
 	public void sendMessageClearPredeal(PreDeal preDeal) throws IOException, MailManagerException, DaoException {
 		getMessageFromFile(EXPIRED_LINK_FILE);
@@ -61,22 +63,22 @@ public class Message {
 		getEmails(preDeal);
 
 		if (preDeal.getSellerApprovBool() && !preDeal.getCustApprovBool()) {
-			MessagerFactory.getMailManager().send(sellerEmail, expiredOpponentSubject,
-					expiredOpponentText.replaceAll("@id", preDeal.getLotId() + ""));
-			MessagerFactory.getMailManager().send(customerEmail, expiredSubject,
-					expiredText.replaceAll("@id", preDeal.getTenderId() + ""));
+			DaoFactory.getEmailDao().add(new Email(sellerEmail, expiredOpponentSubject,
+					expiredOpponentText.replaceAll("@id", preDeal.getLotId() + "")));
+			DaoFactory.getEmailDao().add(new Email(customerEmail, expiredSubject,
+					expiredText.replaceAll("@id", preDeal.getTenderId() + "")));			
 		}
 		if (!preDeal.getSellerApprovBool() && preDeal.getCustApprovBool()) {
-			MessagerFactory.getMailManager().send(sellerEmail, expiredSubject,
-					expiredText.replaceAll("@id", preDeal.getLotId() + ""));
-			MessagerFactory.getMailManager().send(customerEmail, expiredOpponentSubject,
-					expiredOpponentText.replaceAll("@id", preDeal.getTenderId() + ""));
+			DaoFactory.getEmailDao().add(
+					new Email(sellerEmail, expiredSubject, expiredText.replaceAll("@id", preDeal.getLotId() + "")));
+			DaoFactory.getEmailDao().add(new Email(customerEmail, expiredOpponentSubject,
+					expiredOpponentText.replaceAll("@id", preDeal.getTenderId() + "")));
 		}
 		if (!preDeal.getSellerApprovBool() && !preDeal.getCustApprovBool()) {
-			MessagerFactory.getMailManager().send(sellerEmail, expiredSubject,
-					expiredText.replaceAll("@id", preDeal.getLotId() + ""));
-			MessagerFactory.getMailManager().send(customerEmail, expiredSubject,
-					expiredText.replaceAll("@id", preDeal.getTenderId() + ""));
+			DaoFactory.getEmailDao().add(
+					new Email(sellerEmail, expiredSubject, expiredText.replaceAll("@id", preDeal.getLotId() + "")));
+			DaoFactory.getEmailDao().add(new Email(customerEmail, expiredSubject,
+					expiredText.replaceAll("@id", preDeal.getTenderId() + "")));			
 		}
 	}
 
@@ -89,10 +91,10 @@ public class Message {
 		String customerText = text;
 		getEmails(preDeal);
 		getLinksForConfirmation(preDeal);
-		
+
 		Lot lot = DaoFactory.getLotDao().getById(preDeal.getLotId());
 		Tender tender = DaoFactory.getTenderDao().getById(preDeal.getTenderId());
-		
+
 		double price = TradingPrice.getPrice(DaoFactory.getLotDao().getById(preDeal.getLotId()).getMinPrice(),
 				DaoFactory.getTenderDao().getById(preDeal.getTenderId()).getMaxPrice());
 		sellerText = sellerText.replaceAll("@lotId", preDeal.getLotId() + "").replaceAll("@lotDate", lot.getDateStr())
@@ -102,9 +104,9 @@ public class Message {
 				.replaceAll("@tenderDate", tender.getDateStr()).replaceAll("@tenderPrice", tender.getMaxPrice() + "")
 				.replaceAll("@price", price + "").replaceAll("@customerLinkApprove", customerLinkApprove)
 				.replaceAll("@customerLinkCancel", customerLinkCancel);
-		
-		MessagerFactory.getMailManager().send(sellerEmail, sellerSubject, sellerText);
-		MessagerFactory.getMailManager().send(customerEmail, customerSubject, customerText);
+
+		DaoFactory.getEmailDao().add(new Email(sellerEmail, sellerSubject, sellerText));
+		DaoFactory.getEmailDao().add(new Email(customerEmail, customerSubject, customerText));		
 	}
 
 	private void getLinksForConfirmation(PreDeal preDeal) {
