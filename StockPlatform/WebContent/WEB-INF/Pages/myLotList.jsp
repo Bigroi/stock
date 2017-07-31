@@ -24,31 +24,49 @@
 			<c:forEach var="lot" items="${listOfLots}">
 				<tr>
 					<td>${lot.description}</td>
-					<td>${lot.poductId}</td>
+					<td><select>
+							<option disabled>choose product Id</option>
+							<c:forEach var="lotList" items="${listOfLots}">
+								<option>${lotList.poductId}</option>
+							</c:forEach>
+					</select></td>
 					<td>${lot.minPrice}</td>
 					<td>${lot.sellerId}</td>
 					<td>${lot.dateStr}</td>
 					<td>${lot.status}</td>
+
 					<c:if test="${lot.status eq 'DRAFT'}">
 						<td><form action="LotInGameAuth.spr" method="get">
 								<input type="hidden" name="id" value="${lot.id}"> <input
 									type="submit" value="In game">
-							</form>	</td>
+							</form></td>
 					</c:if>
-					<c:if test="${(lot.status eq 'DRAFT') || (lot.status eq 'IN_GAME')}">
+					<c:if
+						test="${(lot.status eq 'DRAFT') || (lot.status eq 'IN_GAME')}">
 						<td><form action="LotFormAuth.spr" method="get">
 								<input type="hidden" name="id" value="${lot.id}"> <input
 									type="submit" value="Modify">
-							</form>	</td>
+							</form></td>
 						<td><form action="LotCancelAuth.spr" method="get">
 								<input type="hidden" name="id" value="${lot.id}"> <input
 									type="submit" value="Cancel">
-							</form>	</td>
+							</form></td>
 					</c:if>
+
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+
+	<%-- <form action="MyLotListAuth.spr" method="get">
+	<select>
+	 <option disabled> choose product Id</option>
+	 <c:forEach var="lot" items="${listOfLots}">
+	<option> ${lot.poductId} </option>
+	</c:forEach>
+	</select>
+	</form>  --%>
+
 	<form action="LotFormAuth.spr">
 		<input type="hidden" name="id" value="-1" /> <input type="submit"
 			value="Add lot">
