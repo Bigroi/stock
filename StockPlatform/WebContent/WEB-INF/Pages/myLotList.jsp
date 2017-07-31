@@ -58,15 +58,6 @@
 		</tbody>
 	</table>
 
-	<%-- <form action="MyLotListAuth.spr" method="get">
-	<select>
-	 <option disabled> choose product Id</option>
-	 <c:forEach var="lot" items="${listOfLots}">
-	<option> ${lot.poductId} </option>
-	</c:forEach>
-	</select>
-	</form>  --%>
-
 	<form action="LotFormAuth.spr">
 		<input type="hidden" name="id" value="-1" /> <input type="submit"
 			value="Add lot">

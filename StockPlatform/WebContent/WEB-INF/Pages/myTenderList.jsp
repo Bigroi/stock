@@ -58,15 +58,6 @@
 		</tbody>
 	</table>
 
-	<%-- <form action="MyTenderListAuth.spr" method="get">
-		<select>
-			<option disabled>choose product Id</option>
-			<c:forEach var="tender" items="${listOfTenders}">
-				<option>${tender.productId}</option>
-			</c:forEach>
-		</select>
-	</form> --%>
-
 	<form action="TenderFormAuth.spr">
 		<input type="hidden" name="id" value="-1" /> <input type="submit"
 			value="Add tender">
