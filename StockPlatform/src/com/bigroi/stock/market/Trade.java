@@ -23,7 +23,8 @@ public class Trade implements Runnable {
 			List<Long> productIds = DaoFactory.getProductDao().getAllProductIdInGame();
 			for (long productId : productIds) {				
 				lots = DaoFactory.getLotDao().getByProductIdInGameOrderMinPrice(productId);
-				tenders = DaoFactory.getTenderDao().getByProductIdInGameOrderMaxPrice(productId);
+//				tenders =  DaoFactory.getTenderDao().getByProductIdInGameOrderMaxPrice(productId);//ѕока удалил getByProductIdInGameOrderMaxPrice
+
 //				if (lots.isEmpty() || tenders.isEmpty())continue; // ” нас это отсекаетс€ SQL
 				removeLotsTendersWrongPrice();
 //				alignmentNumberLotsTendders(); // надо при одновременном удалении лота и тендера при несовпадении цены

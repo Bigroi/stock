@@ -60,7 +60,7 @@ public class ProductRenderingController {
 		ModelMap model = new ModelMap();
 		model.addAttribute("product", DaoFactory.getProductDao().getById(id));
 		model.addAttribute("listOfLots", DaoFactory.getLotDao().getByProductIdInGameOrderMinPrice(id));
-		model.addAttribute("listOfTenders", DaoFactory.getTenderDao().getByProductIdInGameOrderMaxPrice(id));
+		model.addAttribute("listOfTenders", DaoFactory.getTenderDao().getByProductIdInGameOrderMaxPriceDesc(id));
 		return new ModelAndView("tradeOffers", model);
 	}
 }
