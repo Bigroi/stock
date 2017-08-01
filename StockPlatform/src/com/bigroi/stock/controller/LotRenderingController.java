@@ -34,6 +34,7 @@ public class LotRenderingController {
 			model.addAttribute("id", lot.getId());
 		}		
 		model.addAttribute("lot", lot);
+		model.put("listOfProducts", DaoFactory.getProductDao().getAllProduct());
 		return new ModelAndView("lotForm", model);
 	}
 	

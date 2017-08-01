@@ -25,12 +25,7 @@
 			<c:forEach var="tender" items="${listOfTenders}">
 				<tr>
 					<td>${tender.description}</td>
-					<td><select>
-							<option disabled>choose product Id</option>
-							<c:forEach var="tenderList" items="${listOfTenders}">
-								<option>${tenderList.productId}</option>
-							</c:forEach>
-					</select></td>
+					<td>${tender.productId}</td>
 					<td>${tender.maxPrice}</td>
 					<td>${tender.customerId}</td>
 					<td>${tender.dateStr}</td>

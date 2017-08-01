@@ -35,6 +35,7 @@ public class TenderRenderingController {
 			model.addAttribute("id", tender.getId());
 		}
 		model.addAttribute("tender", tender);
+		model.put("listOfProducts", DaoFactory.getProductDao().getAllProduct());
 		return new ModelAndView("tenderForm", model);
 	}
 

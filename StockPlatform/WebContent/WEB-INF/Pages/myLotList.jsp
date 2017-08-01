@@ -24,12 +24,7 @@
 			<c:forEach var="lot" items="${listOfLots}">
 				<tr>
 					<td>${lot.description}</td>
-					<td><select>
-							<option disabled>choose product Id</option>
-							<c:forEach var="lotList" items="${listOfLots}">
-								<option>${lotList.poductId}</option>
-							</c:forEach>
-					</select></td>
+					<td>${lot.poductId}</td>
 					<td>${lot.minPrice}</td>
 					<td>${lot.sellerId}</td>
 					<td>${lot.dateStr}</td>
