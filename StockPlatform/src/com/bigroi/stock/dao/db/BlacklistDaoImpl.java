@@ -3,10 +3,11 @@ package com.bigroi.stock.dao.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
-
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -20,12 +21,15 @@ import com.mysql.jdbc.Statement;
 public class BlacklistDaoImpl implements BlacklistDao {
 	
 	private static final String ADD_BLACKLIST_BY_ID = "INSERT INTO blacklist "
-			+ "(id, tender_Id, lot_Id) VALUES (?, ?, ?)";
+			+ " (id, tender_Id, lot_Id) VALUES (?, ?, ?)";
 
-	private static final String DELETE_BLACKLIST_BY_ID = "DELETE FROM blacklist WHERE id = ?";
+	private static final String DELETE_BLACKLIST_BY_ID = "DELETE FROM blacklist WHERE id = ? ";
 
 	private static final String UPDATE_BLACKLIST_BY_ID = "UPDATE blacklist SET "
-			+ "tender_Id = ?, lot_Id = ? WHERE id = ?";
+			+ " tender_Id = ?, lot_Id = ? WHERE id = ?";
+	
+	private static final String GET_LOT_ID_AND_TENDER_ID = "SELECT id FROM "
+			+ " blacklist WHERE tender_Id = ? AND lot_Id = ? ";
 	
 	private DataSource datasource;
 
@@ -69,5 +73,15 @@ public class BlacklistDaoImpl implements BlacklistDao {
 		
 	}
 
-
+	@Override
+	public boolean getTenderIdAndLotId(long tenderId, long lotId) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<Blacklist> list = template.query(GET_LOT_ID_AND_TENDER_ID, 
+				new BeanPropertyRowMapper<Blacklist>(Blacklist.class), tenderId, lotId);
+		if(list.size() == 0){
+			return false;
+		}else{
+			return true;
+		}
+	}
 }

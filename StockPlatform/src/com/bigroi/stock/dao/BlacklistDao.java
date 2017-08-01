@@ -9,4 +9,6 @@ public interface BlacklistDao {
 		boolean deletedById(long id) throws DaoException;
 	
 		boolean updateById(Blacklist blacklist) throws DaoException;
+		
+		boolean getTenderIdAndLotId(long tenderId, long lotId) throws DaoException;
 }
