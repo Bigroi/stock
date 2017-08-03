@@ -3,6 +3,7 @@ package com.bigroi.stock.dao.db;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -12,12 +13,14 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.bigroi.stock.bean.PreDeal;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.PreDealDao;
+import com.bigroi.stock.util.TmprCountEdges;
 
 
 public class PreDealDaoImpl implements PreDealDao {
@@ -44,6 +47,14 @@ public class PreDealDaoImpl implements PreDealDao {
 	private static final String SELECT_PREDEALS_BY_ID = "SELECT id, sellerHashCode, "
 			+ "customerHashCode, tender_Id, lot_Id, sellerApprov, "
 			+ "custApprov, dealDate FROM predeal WHERE id = ? ";
+	
+	private static final String GET_ALL_EDGES =" SELECT  tender.id AS tender_id, "
+			+ "lot.id AS lot_id, tender.product_Id, tender.max_price, "
+			+ "lot.min_price FROM lot JOIN tender ON  tender.product_Id = lot.poduct_Id "
+			+ "AND tender.`status` = 'IN_GAME' AND lot.`status` = 'IN_GAME' "
+			+ "AND lot.min_price <= tender.max_price LEFT JOIN blacklist ON "
+			+ "blacklist.tender_Id = tender.id AND blacklist.lot_Id = lot.id WHERE blacklist.id = blacklist.id ";
+	//TODO: WHERE blacklist.id = blacklist.id --> WHERE blacklist.id IS NULL ...?
 	
 	private DataSource datasource;
 
@@ -117,5 +128,23 @@ public class PreDealDaoImpl implements PreDealDao {
 		}else{
 			return list.get(0);
 		}
+	}
+
+	@Override
+	public List<TmprCountEdges> getAllEdges() throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<TmprCountEdges> list = template.query(GET_ALL_EDGES, new RowMapper<TmprCountEdges>() {
+			@Override
+			public TmprCountEdges mapRow(ResultSet rs, int rowNum) throws SQLException {
+				TmprCountEdges temp = new TmprCountEdges();
+				temp.setTenderId(rs.getLong("tender_id"));
+				temp.setLotId(rs.getLong("lot_id"));
+				temp.setProductId(rs.getLong("product_Id"));
+				temp.setMaxPrice(rs.getDouble("max_price"));
+				temp.setMinPrice(rs.getDouble("min_price"));
+				return temp;
+			}
+		});	
+		return list;
 	}
 }
