@@ -53,8 +53,9 @@ public class PreDealDaoImpl implements PreDealDao {
 			+ "lot.min_price FROM lot JOIN tender ON  tender.product_Id = lot.poduct_Id "
 			+ "AND tender.`status` = 'IN_GAME' AND lot.`status` = 'IN_GAME' "
 			+ "AND lot.min_price <= tender.max_price LEFT JOIN blacklist ON "
-			+ "blacklist.tender_Id = tender.id AND blacklist.lot_Id = lot.id WHERE blacklist.id = blacklist.id ";
-	//TODO: WHERE blacklist.id = blacklist.id --> WHERE blacklist.id IS NULL ...?
+			+ "blacklist.tender_Id = tender.id AND blacklist.lot_Id = lot.id "
+			+ "WHERE blacklist.id IS NULL AND product_Id = ? ";
+	//TODO: WHERE blacklist.id = blacklist.id <--> WHERE blacklist.id IS NULL ...?
 	
 	private DataSource datasource;
 
@@ -131,7 +132,7 @@ public class PreDealDaoImpl implements PreDealDao {
 	}
 
 	@Override
-	public List<TmprCountEdges> getAllEdges() throws DaoException {
+	public List<TmprCountEdges> getAllEdges(long productId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<TmprCountEdges> list = template.query(GET_ALL_EDGES, new RowMapper<TmprCountEdges>() {
 			@Override
@@ -144,7 +145,7 @@ public class PreDealDaoImpl implements PreDealDao {
 				temp.setMinPrice(rs.getDouble("min_price"));
 				return temp;
 			}
-		});	
+		}, productId);
 		return list;
 	}
 }
