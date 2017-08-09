@@ -10,7 +10,7 @@ public class CommonRenderingController {
 	
 	@RequestMapping("/Index.spr")
 	public ModelAndView goToWelcomePage() {
-		return new ModelAndView("welcome");
+		return new ModelAndView("welcome");//welcome  // !JSON-test
 	}
 
 	@RequestMapping("/LoginPage.spr")
