@@ -12,6 +12,7 @@
 <p>Welcome ${user}</p>
 <p>Authenticate</p>
 <form action="AuthenticateJSON.spr">
+<input type="hidden" name="json">
 Login: <input type="text" name="login"><br> 
 		Password<input type="password" name="password"><br> 
 			<input type="submit" value="enter">
@@ -25,6 +26,7 @@ Login: <input type="text" name="login"><br>
 <p>${message}</p>
 	
 	<form action="RegisrationJSON.spr" method="post">
+	<input type="hidden" name="json"> 
 		 Login:<input name="login"><br> 
 		 Password:<input type="password" name="password"><br> 
 		 Repeat Password:<input type="password" name="passwordRepeat"><br> 
@@ -41,6 +43,7 @@ Login: <input type="text" name="login"><br>
 	
 	<form action="AccountChangeAuthJSON.spr" method="post">
 		<p>${user.login}</p>
+		<input type="hidden" name="json">
 		<input type="hidden" name="status" value="${company.status}">
 		 <p>password <input name="password" value="${user.password}"></p>
 		 name <input name="name" value="${company.name}"><br>
