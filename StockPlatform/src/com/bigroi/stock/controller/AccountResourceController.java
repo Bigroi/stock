@@ -14,7 +14,6 @@ import com.bigroi.stock.bean.User;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
-import com.google.gson.Gson;
 
 @Controller
 public class AccountResourceController {
@@ -22,20 +21,19 @@ public class AccountResourceController {
 	@RequestMapping(value = "/AccounPageAuthJSON.spr")
 	@ResponseBody
 	public String goToAccountPage(HttpSession session) {
-		try{
-		ModelMap model = new ModelMap();
-		User user = (User) session.getAttribute("user");
-		model.addAttribute("user", user);
-		Company company = DaoFactory.getCompanyDao().getById(user.getCompanyId());
-		model.addAttribute("company", company);
-		return new ResultBean(1, model).toString();
-		}catch(DaoException e){
+		try {
+			ModelMap model = new ModelMap();
+			User user = (User) session.getAttribute("user");
+			model.addAttribute("user", user);
+			Company company = DaoFactory.getCompanyDao().getById(user.getCompanyId());
+			model.addAttribute("company", company);
+			return new ResultBean(1, model).toString();
+		} catch (DaoException e) {
 			return new ResultBean(-1, e.getMessage()).toString();
 		}
-
 	}
 
-	/*@RequestMapping(value = "AccountChangeAuthJSON.spr")
+  @RequestMapping(value = "AccountChangeAuthJSON.spr")//TODO: на форму не приходит company, только user
 	@ResponseBody
 	public String editAccount(@RequestParam("password") String password,
 			@RequestParam("name") String name,
@@ -45,29 +43,29 @@ public class AccountResourceController {
 			@RequestParam("country") String country,
 			@RequestParam("city") String city, 
 			@RequestParam("status") CompanyStatus status, 
-			@RequestParam("json") String json, HttpSession session)
-			throws DaoException {
+			@RequestParam("json") String json, HttpSession session) {
+		try {
+			User user = (User) session.getAttribute("user");
+			user.setPassword(password);
+			session.setAttribute("user", user);
+			DaoFactory.getUserDao().updateById(user);
 
-		User user = (User) session.getAttribute("user");
-		user.setPassword(password);
-		session.setAttribute("user", user);
-		DaoFactory.getUserDao().updateById(user);
+			Company company = new Company();
+			company.setId(user.getCompanyId());
+			company.setName(name);
+			company.setEmail(email);
+			company.setPhone(phone);
+			company.setRegNumber(regNumber);
+			company.setCountry(country);
+			company.setCity(city);
+			company.setStatus(status);
+			DaoFactory.getCompanyDao().updateById(company);
+			Object obj = goToAccountPage(session);
 
-		Company company = new Company();
-		company.setId(user.getCompanyId());
-		company.setName(name);
-		company.setEmail(email);
-		company.setPhone(phone);
-		company.setRegNumber(regNumber);
-		company.setCountry(country);
-		company.setCity(city);
-		company.setStatus(status);
+			return new ResultBean(1, obj).toString();
 
-		DaoFactory.getCompanyDao().updateById(company);
-
-		return gson.toJson(goToAccountPage(session));
-
+		} catch (DaoException e) {
+			return new ResultBean(-1, e.getMessage()).toString();
+		}
 	}
-*/
-
 }
