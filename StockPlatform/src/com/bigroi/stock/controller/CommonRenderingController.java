@@ -22,4 +22,10 @@ public class CommonRenderingController {
 	public ModelAndView goToRegistrationPage() {
 		return new ModelAndView("registration");
 	}
+//----------------Temporary for testing JSON----------------------------------
+	@RequestMapping("/gotoAcc.spr")
+	public ModelAndView gotoAcc(){
+		return new ModelAndView("!JSON-account");
+	}
+//----------------------------------------------------------------------------	
 }
