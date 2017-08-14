@@ -2,6 +2,7 @@ package com.bigroi.stock.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.mbeans.UserMBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,17 +14,19 @@ import com.bigroi.stock.bean.User;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
+import com.google.gson.Gson;
 
 @Controller
+@RequestMapping("/json")
 public class AccessResourceController {
 	
-	@RequestMapping(value = "/AuthenticateJSON.spr")
+	
+	@RequestMapping(value = "/Authenticate.spr")
 	@ResponseBody
-	public String authenticate(@RequestParam("login") String login, 
-			@RequestParam("password") String password,
-			@RequestParam("json") String json, HttpSession session) {
+	public String authenticate(@RequestParam("json") String json, HttpSession session) {
 		try {
-			User user = DaoFactory.getUserDao().getByLoginAndPassword(login, password);
+			User bean = new Gson().fromJson(json, User.class);
+			User user = DaoFactory.getUserDao().getByLoginAndPassword(bean.getLogin(), bean.getPassword());
 			if (user != null) {
 				session.setAttribute("user", user);
 				return new ResultBean(1, "authenticate.success").toString();

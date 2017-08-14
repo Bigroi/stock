@@ -20,16 +20,14 @@ import com.bigroi.stock.dao.DaoFactory;
 
 @Controller
 public class LotResourseController {
-	// TODO: @RequestParam("json") String json........
+
 	@RequestMapping(value = "/MyLotListAuthJSON.spr")
 	@ResponseBody
 	public String myLotList(HttpSession session) {
 		try {
 			User user = (User) session.getAttribute("user");
-			ModelMap model = new ModelMap();
 			List<Lot> lots = DaoFactory.getLotDao().getBySellerId(user.getCompanyId());
-			model.put("listOfLots", lots);
-			return new ResultBean(1, model).toString();
+			return new ResultBean(1, lots).toString();
 		} catch (DaoException e) {
 			return new ResultBean(-1, e.getMessage()).toString();
 		}
@@ -37,23 +35,18 @@ public class LotResourseController {
 
 	@RequestMapping(value = "/LotFormAuthJSON.spr")
 	@ResponseBody
-	public String lotEdit(@RequestParam("id") long id, HttpSession session)  {
+	public String getLot(@RequestParam("id") long id, HttpSession session)  {
 		try{
-		ModelMap model = new ModelMap();
-		Lot lot;
-		if (id == -1) {
-			lot = new Lot();
-			User user = (User) session.getAttribute("user");
-			lot.setSellerId(user.getCompanyId());
-			lot.setStatus(Status.DRAFT);
-			model.addAttribute("id", -1);
-		} else {
-			lot = DaoFactory.getLotDao().getById(id);
-			model.addAttribute("id", lot.getId());
-		}
-		model.addAttribute("lot", lot);
-		model.put("listOfProducts", DaoFactory.getProductDao().getAllProduct());
-		return new ResultBean(1, model).toString();
+			Lot lot;
+			if (id == -1) {
+				lot = new Lot();
+				User user = (User) session.getAttribute("user");
+				lot.setSellerId(user.getCompanyId());
+				lot.setStatus(Status.DRAFT);
+			} else {
+				lot = DaoFactory.getLotDao().getById(id);
+			}
+			return new ResultBean(1, lot).toString();
 		}catch(DaoException e){
 			return new ResultBean(-1, e.getMessage()).toString();
 		}
@@ -84,7 +77,7 @@ public class LotResourseController {
 				lot.setId(id);
 				DaoFactory.getLotDao().updateById(lot);
 			}
-			return new ResultBean(1, myLotList(session)).toString();
+			return new ResultBean(1, "lot.update.success").toString();
 		} catch (DaoException | ParseException e) {
 			return new ResultBean(-1, e.getMessage()).toString();
 		}
@@ -92,14 +85,14 @@ public class LotResourseController {
 	
 	@RequestMapping(value = "/LotInGameAuthJSON.spr")
 	@ResponseBody
-	public String lotInGame(@RequestParam("id") long id, HttpSession session) {
+	public String setLotInGame(@RequestParam("id") long id, HttpSession session) {
 		try{
-		Lot lot = DaoFactory.getLotDao().getById(id);
-		if (lot.getStatus() == Status.DRAFT){
-			lot.setStatus(Status.IN_GAME);
-			DaoFactory.getLotDao().updateById(lot);
-		}
-		return new ResultBean(1, myLotList(session)).toString();//nullPointerException
+			Lot lot = DaoFactory.getLotDao().getById(id);
+			if (lot.getStatus() == Status.DRAFT){
+				lot.setStatus(Status.IN_GAME);
+				DaoFactory.getLotDao().updateById(lot);
+			}
+			return new ResultBean(1, "lot.update.success").toString();//nullPointerException
 		}catch(DaoException e){
 			return new ResultBean(-1, e.getMessage()).toString();
 		}
@@ -108,14 +101,14 @@ public class LotResourseController {
 	
 	@RequestMapping(value = "/LotCancelAuthJSON.spr")
 	@ResponseBody
-	public String lotCancel(@RequestParam("id") long id, HttpSession session) {
+	public String lotCancel(@RequestParam("id") long id) {
 		try{
-		Lot lot = DaoFactory.getLotDao().getById(id);
-		if ((lot.getStatus() == Status.DRAFT) || (lot.getStatus() == Status.IN_GAME)){
-			lot.setStatus(Status.CANCELED);
-			DaoFactory.getLotDao().updateById(lot);
-		}
-		return new ResultBean(1, myLotList(session)).toString();//nullPointerException
+			Lot lot = DaoFactory.getLotDao().getById(id);
+			if ((lot.getStatus() == Status.DRAFT) || (lot.getStatus() == Status.IN_GAME)){
+				lot.setStatus(Status.CANCELED);
+				DaoFactory.getLotDao().updateById(lot);
+			}
+			return new ResultBean(1, "lot.update.success").toString();//nullPointerException
 		}catch(DaoException e){
 			return new ResultBean(-1, e.getMessage()).toString();
 		}

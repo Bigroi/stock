@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -19,6 +20,8 @@ import com.bigroi.stock.dao.DaoException;
 import com.mysql.jdbc.Statement;
 
 public class BlacklistDaoImpl implements BlacklistDao {
+	
+	private static final Logger logger = Logger.getLogger(BlacklistDaoImpl.class);
 	
 	private static final String ADD_BLACKLIST_BY_ID = "INSERT INTO blacklist "
 			+ " (id, tender_Id, lot_Id) VALUES (?, ?, ?)";
@@ -43,6 +46,8 @@ public class BlacklistDaoImpl implements BlacklistDao {
 
 	@Override
 	public void add(Blacklist blacklist) throws DaoException {
+		logger.info("exection BlackListDaoImpl.add");
+		logger.info(blacklist);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -57,6 +62,7 @@ public class BlacklistDaoImpl implements BlacklistDao {
 		}, keyHolder);
 		long id = keyHolder.getKey().longValue();
 		blacklist.setId(id);
+		logger.info("exection BlackListDaoImpl.add successfully finished");
 	}
 
 	@Override
