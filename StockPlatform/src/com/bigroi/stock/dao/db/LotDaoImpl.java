@@ -25,6 +25,8 @@ import com.mysql.jdbc.Statement;
 
 public class LotDaoImpl implements LotDao {
 	
+	private static final Logger logger = Logger.getLogger(LotDaoImpl.class);
+	
 	private static final Logger lOG = Logger.getLogger(UserDaoImpl.class);
 
 	private static final String ADD_LOTS_BY_ID = "INSERT INTO lot (id, description, "
@@ -67,6 +69,8 @@ public class LotDaoImpl implements LotDao {
 
 	@Override
 	public void add(Lot lot) throws DaoException {
+		logger.info("exection LotDaoImpl.add");
+		logger.info(lot);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -85,18 +89,24 @@ public class LotDaoImpl implements LotDao {
 		}, keyHolder);
 		long id = keyHolder.getKey().longValue();
 		lot.setId(id);
+		logger.info("exection LotDaoImpl.add successfully finished");
 	}
 
 	@Override
 	public boolean deletedById(long id) throws DaoException {
+		logger.info("exection LotDaoImpl.deletedById");
+		logger.info(id);
 		JdbcTemplate template = new JdbcTemplate(datasource);
+		logger.info("exection LotDaoImpl.deletedById successfully finished");
 		return template.update(DELETE_LOTS_BY_ID, id) == 1;
-
 	}
 
 	@Override
-	public boolean updateById( Lot lot) throws DaoException {
+	public boolean updateById(Lot lot) throws DaoException {
+		logger.info("exection LotDaoImpl.updateById");
+		logger.info(lot);
 		JdbcTemplate template = new JdbcTemplate(datasource);
+		logger.info("exection LotDaoImpl.updateById successfully finished");
 		return template.update(UPDATE_LOTS_BY_ID, lot.getDescription(), 
 				lot.getPoductId(), lot.getMinPrice(),
 				lot.getSellerId(), lot.getStatus().name().toUpperCase(), 
@@ -106,17 +116,23 @@ public class LotDaoImpl implements LotDao {
 
 	@Override
 	public Lot getById(long id) throws DaoException {
+		logger.info("exection LotDaoImpl.getById");
+		logger.info(id);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Lot> lot = template.query(SELECT_LOTS_BY_ID, new BeanPropertyRowMapper<Lot>(Lot.class), id);
 		if(lot.size() == 0){
+			logger.info("exection LotDaoImpl.getById return null, successfully finished");
 			return null;
 		}else{
+			logger.info("exection LotDaoImpl.getById return lot.get(0), successfully finished");
 			return lot.get(0);
 		}
 	}
 
 	@Override
 	public List<Lot> getBySellerId(long sellerId) throws DaoException {
+		logger.info("exection LotDaoImpl.getBySellerId");
+		logger.info(sellerId);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Lot> lot =  template.query(SELECT_LOTS_BY_SALLER_ID, new RowMapper<Lot>(){
 			@Override
@@ -133,11 +149,14 @@ public class LotDaoImpl implements LotDao {
 			}
 		}, sellerId);
 		lOG.info(lot);
+		logger.info("exection LotDaoImpl.getBySellerId successfully finished");
 		return lot;
 	}
 
 	@Override
 	public List<Lot> getByProductId(long productId) throws DaoException {
+		logger.info("exection LotDaoImpl.getByProductId");
+		logger.info(productId);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Lot> lot =  template.query(SELECT_LOTS_BY_PRODUCT_ID, new RowMapper<Lot>() {
 			@Override
@@ -153,22 +172,28 @@ public class LotDaoImpl implements LotDao {
 				return lot;
 			}
 		}, productId);
+		logger.info("exection LotDaoImpl.getByProductId successfully finished");
 		return lot;
 	}
 
 	@Override
 	public List<Lot> getByProductIdInGameOrderMinPrice(long productId) throws DaoException {
+		logger.info("exection LotDaoImpl.getByProductIdInGameOrderMinPrice");
+		logger.info(productId);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Lot> lots = template.query(SELECT_LOTS_BY_PRODUCT_ID_IN_GAME, 
 				new BeanPropertyRowMapper<Lot>(Lot.class),productId);
+		logger.info("exection LotDaoImpl.getByProductIdInGameOrderMinPrice successfully finished");
 		return lots;
 	}
 
 	@Override
 	public List<Lot> getAllInGame() throws DaoException {
+		logger.info("exection LotDaoImpl.getAllInGame");
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Lot> lot = template.query(SELECT_ALL_LOTS_BY_IN_GAME, 
 				new BeanPropertyRowMapper<Lot>(Lot.class));
+		logger.info("exection LotDaoImpl.getAllInGame successfully finished");
 		return lot;
 	}
 }

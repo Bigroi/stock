@@ -23,6 +23,8 @@ import com.mysql.jdbc.Statement;
 
 public class ProductDaoImpl implements ProductDao {
 	
+	private static final Logger logger = Logger.getLogger(ProductDaoImpl.class);
+	
 	private static final Logger lOG = Logger.getLogger(ProductDaoImpl.class);
 
 	private static final String GET_ALL_PRODUCTS = "SELECT id, name, description FROM product ";
@@ -54,14 +56,18 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public List<Product> getAllProduct() throws DaoException {
+		logger.info("exection ProductDaoImpl.getAllProduct");
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Product> products = template.query(GET_ALL_PRODUCTS, new BeanPropertyRowMapper<Product>(Product.class));
 		lOG.debug(products);
+		logger.info("exection ProductDaoImpl.getAllProduct successfully finished");
 		return products;
 	}
 
 	@Override
 	public void add(Product product) throws DaoException {
+		logger.info("exection ProductDaoImpl.add");
+		logger.info(product);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -76,35 +82,47 @@ public class ProductDaoImpl implements ProductDao {
 		}, keyHolder);
 		long id = keyHolder.getKey().longValue();
 		product.setId(id);
+		logger.info("exection ProductDaoImpl.add successfully finished");
 	}
 
 	@Override
 	public boolean deletedById(long id) throws DaoException {
+		logger.info("exection ProductDaoImpl.deletedById");
+		logger.info(id);
 		JdbcTemplate template = new JdbcTemplate(datasource);
-	return	template.update(DELETE_PRODUCTS_BY_ID, id) == 1;
+		logger.info("exection ProductDaoImpl.deletedById successfully finished");
+		return	template.update(DELETE_PRODUCTS_BY_ID, id) == 1;
 	}
 
 	@Override
 	public boolean updateById(Product product) throws DaoException {
+		logger.info("exection ProductDaoImpl.updateById");
+		logger.info(product);
 		JdbcTemplate template = new JdbcTemplate(datasource);
-	return	template.update(UPDATE_PRODUCTS_BY_ID, product.getName(), 
-			product.getDescription(), product.getId()) == 1;
+		logger.info("exection ProductDaoImpl.updateById successfully finished");
+		return	template.update(UPDATE_PRODUCTS_BY_ID, product.getName(), 
+								product.getDescription(), product.getId()) == 1;
 	}
 
 	@Override
 	public Product getById(long id) throws DaoException {
+		logger.info("exection ProductDaoImpl.getById");
+		logger.info(id);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Product> product =  template.query(SELECT_PRODUCTS_BY_ID,
 				new BeanPropertyRowMapper<Product>(Product.class), id);
 		if (product.size() == 0) {
+			logger.info("exection ProductDaoImpl.getById return null, successfully finished");
 			return null;
 		} else {
+			logger.info("exection ProductDaoImpl.getById return product.get(0), successfully finished");
 			return product.get(0);
 		}
 	}
 
 	@Override
 	public List<Long> getAllProductIdInGame() throws DaoException {
+		logger.info("exection ProductDaoImpl.getAllProductIdInGame");
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Long> products = template.query(SELECT_PROUCTS_BY_PROUCTS_ID, new RowMapper<Long>() {
 			@Override
@@ -112,6 +130,7 @@ public class ProductDaoImpl implements ProductDao {
 				return rs.getLong("poduct_Id");
 			}
 		});
+		logger.info("exection ProductDaoImpl.getAllProductIdInGame successfully finished");
 		return products;
 	}
 }

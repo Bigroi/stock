@@ -67,26 +67,36 @@ public class BlacklistDaoImpl implements BlacklistDao {
 
 	@Override
 	public boolean deletedById(long id) throws DaoException {
+		logger.info("exection BlackListDaoImpl.deletedById");
+		logger.info(id);
 		JdbcTemplate template = new JdbcTemplate(datasource);
+		logger.info("exection BlackListDaoImpl.deletedById successfully finished");
 		return template.update(DELETE_BLACKLIST_BY_ID, id) == 1;
 	}
 
 	@Override
 	public boolean updateById( Blacklist blacklist) throws DaoException {
+		logger.info("exection BlackListDaoImpl.updateById");
+		logger.info(blacklist);
 		JdbcTemplate template = new JdbcTemplate(datasource);
+		logger.info("exection BlackListDaoImpl.updateById successfully finished");
 		return template.update(UPDATE_BLACKLIST_BY_ID, 
 				blacklist.getTenderId(), blacklist.getLotId(), blacklist.getId()) == 1;
-		
 	}
 
 	@Override
 	public boolean getTenderIdAndLotId(long tenderId, long lotId) throws DaoException {
+		logger.info("exection BlackListDaoImpl.getTenderIdAndLotId");
+		logger.info(tenderId);
+		logger.info(lotId);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Blacklist> list = template.query(GET_LOT_ID_AND_TENDER_ID, 
 				new BeanPropertyRowMapper<Blacklist>(Blacklist.class), tenderId, lotId);
 		if(list.size() == 0){
+			logger.info("exection BlackListDaoImpl.getTenderIdAndLotId return false, successfully finished");
 			return false;
 		}else{
+			logger.info("exection BlackListDaoImpl.getTenderIdAndLotId return true, successfully finished");
 			return true;
 		}
 	}

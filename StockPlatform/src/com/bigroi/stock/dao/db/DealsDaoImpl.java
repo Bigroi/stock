@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -18,6 +19,8 @@ import com.bigroi.stock.dao.DaoException;
 import com.mysql.jdbc.Statement;
 
 public class DealsDaoImpl implements DealsDao {
+	
+	private static final Logger logger = Logger.getLogger(DealsDaoImpl.class);
 
 	private static final String ADD_DEALS_BY_ID = "INSERT INTO deals(id, lot_Id, tender_Id, deals_Time) "
 			+ "VALUES (?, ?, ?, ?) ";
@@ -39,6 +42,8 @@ public class DealsDaoImpl implements DealsDao {
 
 	@Override
 	public void add(Deals deals) throws DaoException {
+		logger.info("exection DealsDaoImpl.add");
+		logger.info(deals);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -54,17 +59,24 @@ public class DealsDaoImpl implements DealsDao {
 		}, keyHolder);
 		long id = keyHolder.getKey().longValue();
 		deals.setId(id);
+		logger.info("exection DealsDaoImpl.add successfully finished");
 	}
 
 	@Override
 	public boolean deletedById(long id) throws DaoException {
+		logger.info("exection DealsDaoImpl.deletedById");
+		logger.info(id);
 		JdbcTemplate template = new JdbcTemplate(datasource);
+		logger.info("exection DealsDaoImpl.deletedById successfully finished");
 		return template.update(DELETE_DEALS_BY_ID, id) == 1;
 	}
 
 	@Override
 	public boolean updateById(Deals deals) throws DaoException {
+		logger.info("exection DealsDaoImpl.updateById");
+		logger.info(deals);
 		JdbcTemplate template = new JdbcTemplate(datasource);
+		logger.info("exection DealsDaoImpl.updateById successfully finished");
 		return template.update(UPDATE_DEALS_BY_ID,  deals.getLotId(),
 				 deals.getTenderId(),  deals.getDealsTime(), deals.getId()) == 1;
 	}

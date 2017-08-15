@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -23,6 +24,8 @@ import com.bigroi.stock.dao.TenderDao;
 import com.mysql.jdbc.Statement;
 
 public class TenderDaoImpl implements TenderDao{
+	
+	private static final Logger logger = Logger.getLogger(TenderDaoImpl.class);
 	
 	private static final String ADD_TENDER_BY_ID = "INSERT INTO tender "
 			+ " (id, description, product_Id, max_price, customer_Id, "
@@ -65,6 +68,8 @@ public class TenderDaoImpl implements TenderDao{
 
 	@Override
 	public void add(Tender tender) throws DaoException {
+		logger.info("exection TenderDaoImpl.add");
+		logger.info(tender);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -83,35 +88,48 @@ public class TenderDaoImpl implements TenderDao{
 		},keyHolder);
 		long id = keyHolder.getKey().longValue();
 		tender.setId(id);
+		logger.info("exection TenderDaoImpl.add successfully finished");
 	}
 
 	@Override
 	public boolean deletedById(long id) throws DaoException {
+		logger.info("exection TenderDaoImpl.deletedById");
+		logger.info(id);
 		JdbcTemplate template = new JdbcTemplate(datasource);
-	return	template.update(DELETE_TENDER_BY_ID, id) == 1;
+		logger.info("exection TenderDaoImpl.deletedById successfully finished");
+		return	template.update(DELETE_TENDER_BY_ID, id) == 1;
 	}
 
 	@Override
 	public boolean updateById(Tender tender) throws DaoException {
+		logger.info("exection TenderDaoImpl.updateById");
+		logger.info(tender);
 		JdbcTemplate template = new JdbcTemplate(datasource);
-	return	template.update(UPDATE_TENDER_BY_ID, tender.getDescription(), tender.getProductId(),
+		logger.info("exection TenderDaoImpl.updateById successfully finished");
+		return	template.update(UPDATE_TENDER_BY_ID, tender.getDescription(), tender.getProductId(),
 				tender.getMaxPrice(), tender.getCustomerId(), 
 				tender.getStatus().name().toUpperCase(), tender.getExpDate(), tender.getId()) == 1;
 	}
 
 	@Override
 	public Tender getById(long id) throws DaoException {
+		logger.info("exection TenderDaoImpl.getById");
+		logger.info(id);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Tender> tender = template.query(SELECT_TENDER_BY_ID, new BeanPropertyRowMapper<Tender>(Tender.class), id);
 		if (tender.size() == 0) {
+			logger.info("exection TenderDaoImpl.getById return null, successfully finished");
 			return null;
 		} else {
+			logger.info("exection TenderDaoImpl.getById return tender.get(0), successfully finished");
 			return tender.get(0);
 		}
 	}
 	
 	@Override
 	public List<Tender> getByCustomerId(long customerId) throws DaoException {
+		logger.info("exection TenderDaoImpl.getByCustomerId");
+		logger.info(customerId);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Tender> tender = template.query(SELECT_TENDER_BY_CUSTOMER_ID, new RowMapper<Tender>(){
 			@Override
@@ -127,11 +145,14 @@ public class TenderDaoImpl implements TenderDao{
 				return tender;
 			}
 		},customerId);
+		logger.info("exection TenderDaoImpl.getByCustomerId successfully finished");
 		return tender;
 	}
 
 	@Override
 	public List<Tender> getByProductId(long productId) throws DaoException {
+		logger.info("exection TenderDaoImpl.getByProductId");
+		logger.info(productId);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Tender> tender = template.query(SELECT_TENDER_BY_PRODUCT_ID, new RowMapper<Tender>() {
 			@Override
@@ -147,22 +168,28 @@ public class TenderDaoImpl implements TenderDao{
 				return tender;
 			}
 		}, productId);
+		logger.info("exection TenderDaoImpl.getByProductId successfully finished");
 		return tender;
 	}
 
 	@Override
 	public List<Tender> getByProductIdInGameOrderMaxPriceDesc(long productId) throws DaoException {
+		logger.info("exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc");
+		logger.info(productId);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Tender> tender = template.query(SELECT_TENDER_BY_PRODUCT_ID_IN_GAME_ORDER_MAX_PRACE_DESC,
 				new BeanPropertyRowMapper<Tender>(Tender.class), productId);
+		logger.info("exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished");
 		return tender;
 	}
 
 	@Override
 	public List<Tender> getAllInGame() throws DaoException {
+		logger.info("exection TenderDaoImpl.getAllInGame");
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Tender> tender = template.query(SELECT_ALL_TENDER_IN_GAME, 
 				new BeanPropertyRowMapper<Tender>(Tender.class));
+		logger.info("exection TenderDaoImpl.getAllInGame successfully finished");
 		return tender;
 	}
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -19,6 +20,8 @@ import com.bigroi.stock.dao.DaoException;
 import com.mysql.jdbc.Statement;
 
 public class CompanyDaoImpl implements CompanyDao {
+	
+	private static final Logger logger = Logger.getLogger(CompanyDaoImpl.class);
 
 	private static final String SELECT_COMPANY_BY_ID = "SELECT id, name, email, phone, "
 			+ "reg_number, country, city, status FROM company WHERE id = ?";
@@ -47,11 +50,15 @@ public class CompanyDaoImpl implements CompanyDao {
 
 	@Override
 	public Company getById(long id) throws DaoException {
+		logger.info("exection CompanyDaoImpl.getById");
+		logger.info(id);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Company> companys = template.query(SELECT_COMPANY_BY_ID, new BeanPropertyRowMapper<Company>(Company.class),id);
 		if (companys.size() == 0) {
+			logger.info("exection CompanyDaoImpl.getById return null, successfully finished");
 			return null;
 		} else {
+			logger.info("exection CompanyDaoImpl.getById return companys.get(0), successfully finished");
 			return companys.get(0);
 		}
 		
@@ -59,6 +66,8 @@ public class CompanyDaoImpl implements CompanyDao {
 
 	@Override
 	public void add(Company company) throws DaoException {
+		logger.info("exection CompanyDaoImpl.add");
+		logger.info(company);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -78,17 +87,24 @@ public class CompanyDaoImpl implements CompanyDao {
 		}, keyHolder);
 		long id = keyHolder.getKey().longValue();
 		company.setId(id);
+		logger.info("exection CompanyDaoImpl.add successfully finished");
 	}
 
 	@Override
 	public boolean deletedById(long id) throws DaoException {
+		logger.info("exection CompanyDaoImpl.deletedById");
+		logger.info(id);
 		JdbcTemplate template = new JdbcTemplate(datasource);
+		logger.info("exection CompanyDaoImpl.deletedById successfully finished");
 		return template.update(DELETE_COMPANY_BY_ID, id) == 1;
 	}
 
 	@Override
 	public boolean updateById(Company company) throws DaoException {
+		logger.info("exection CompanyDaoImpl.updateById");
+		logger.info(company);
 		JdbcTemplate template = new JdbcTemplate(datasource);
+		logger.info("exection CompanyDaoImpl.updateById successfully finished");
 		return template.update(UPDATE_COMPANY_BY_ID, company.getName(), company.getEmail(),
 				company.getPhone(), company.getRegNumber(), company.getCountry(), 
 				company.getCity(),company.getStatus().name().toUpperCase(), 

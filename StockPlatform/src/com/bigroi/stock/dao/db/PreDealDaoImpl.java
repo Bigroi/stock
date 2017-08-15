@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -24,6 +25,8 @@ import com.bigroi.stock.util.TmprCountEdges;
 
 
 public class PreDealDaoImpl implements PreDealDao {
+	
+	private static final Logger logger = Logger.getLogger(PreDealDaoImpl.class);
 	
 	private static final String ADD_PREDEALS_BY_ID = "INSERT INTO predeal "
 			+ "(id, sellerHashCode, customerHashCode, tender_Id, lot_Id, "
@@ -69,6 +72,8 @@ public class PreDealDaoImpl implements PreDealDao {
 
 	@Override
 	public void add(PreDeal preDeal) throws DaoException {
+		logger.info("exection PreDealDaoImpl.add");
+		logger.info(preDeal);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -88,26 +93,34 @@ public class PreDealDaoImpl implements PreDealDao {
 		},keyHolder);
 		long id = keyHolder.getKey().longValue();
 		preDeal.setId(id);
+		logger.info("exection PreDealDaoImpl.add successfully finished");
 	}
 
 	@Override
 	public boolean deletedById(long id) throws DaoException {
+		logger.info("exection PreDealDaoImpl.deletedById");
+		logger.info(id);
 		JdbcTemplate template = new JdbcTemplate(datasource);
-	 return	template.update(DELETE_PREDEALS_BY_ID, id) == 1;
+		logger.info("exection PreDealDaoImpl.deletedById successfully finished");
+		return	template.update(DELETE_PREDEALS_BY_ID, id) == 1;
 	}
 
 	@Override
 	public void deleteAll() throws DaoException {
+		logger.info("exection PreDealDaoImpl.deleteAll");
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(DELETE_ALL_PREDEALS_BY_ID);
-		
+		logger.info("exection PreDealDaoImpl.deleteAll successfully finished");
 	}
 
 	
 	@Override
 	public boolean updateById( PreDeal preDeal) throws DaoException {
+		logger.info("exection PreDealDaoImpl.updateById");
+		logger.info(preDeal);
 		JdbcTemplate template = new JdbcTemplate(datasource);
-	return	template.update(UPDATE_PREDEALS_BY_ID, preDeal.getSellerHashCode(), 
+		logger.info("exection PreDealDaoImpl.updateById successfully finished");
+		return	template.update(UPDATE_PREDEALS_BY_ID, preDeal.getSellerHashCode(), 
 				preDeal.getCustomerHashCode(), preDeal.getTenderId(),preDeal.getLotId(), 
 				preDeal.getSellerApprov(), preDeal.getCustApprov(), 
 				preDeal.getDealDate(), preDeal.getId()) == 1;
@@ -115,24 +128,32 @@ public class PreDealDaoImpl implements PreDealDao {
 
 	@Override
 	public List<PreDeal> getAllPreDeal() throws DaoException {
+		logger.info("exection PreDealDaoImpl.List<PreDeal>.getAllPreDeal");
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<PreDeal> list = template.query(GET_ALL_PREDEALS_BY_ID, new BeanPropertyRowMapper<PreDeal>(PreDeal.class));
+		logger.info("exection PreDealDaoImpl.getAllPreDeal successfully finished");
 		return list;
 	}
 
 	@Override
 	public PreDeal getById(long id) throws DaoException {
+		logger.info("exection PreDealDaoImpl.getById");
+		logger.info(id);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<PreDeal> list = template.query(SELECT_PREDEALS_BY_ID, new BeanPropertyRowMapper<PreDeal>(PreDeal.class), id);
 		if(list.size() == 0){
+			logger.info("exection PreDealDaoImpl.getById return null, successfully finished");
 			return null;
 		}else{
+			logger.info("exection PreDealDaoImpl.getById return list.get(0), successfully finished");
 			return list.get(0);
 		}
 	}
 
 	@Override
 	public List<TmprCountEdges> getAllEdges(long productId) throws DaoException {
+		logger.info("exection PreDealDaoImpl.getAllEdges");
+		logger.info(productId);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<TmprCountEdges> list = template.query(GET_ALL_EDGES, new RowMapper<TmprCountEdges>() {
 			@Override
@@ -146,6 +167,7 @@ public class PreDealDaoImpl implements PreDealDao {
 				return temp;
 			}
 		}, productId);
+		logger.info("exection PreDealDaoImpl.getAllEdges successfully finished");
 		return list;
 	}
 }
