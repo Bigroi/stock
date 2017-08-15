@@ -2,6 +2,7 @@ package com.bigroi.stock.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +18,18 @@ import com.bigroi.stock.dao.DaoFactory;
 @Controller
 public class AccountRenderingController {
 	
+	private static final Logger logger = Logger.getLogger(AccountRenderingController.class);
+	
 	@RequestMapping("/AccounPageAuth.spr")
 	public ModelAndView goToAccountPage(HttpSession session) throws DaoException{
+		logger.info("exection AccountRenderingController.goToAccountPage");
+		logger.info(session);
 		ModelMap model = new ModelMap();
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("user", user);
 		Company company = DaoFactory.getCompanyDao().getById(user.getCompanyId());
-		model.addAttribute("company", company);		
+		model.addAttribute("company", company);	
+		logger.info("exection AccountRenderingController.goToAccountPage successfully finished");
 		return new ModelAndView("account", model);		
 	}
 	
@@ -38,7 +44,18 @@ public class AccountRenderingController {
 			@RequestParam("city") String city,
 			@RequestParam("status") CompanyStatus status,
 			HttpSession session) throws DaoException {
-	
+		
+		logger.info("exection AccountRenderingController.editAccount");
+		logger.info(password);
+		logger.info(name);
+		logger.info(email);
+		logger.info(phone);
+		logger.info(regNumber);
+		logger.info(country);
+		logger.info(city);
+		logger.info(status);
+		logger.info(session);
+		
 		//TODO Здесь будет одна транзакция
 		User user = (User) session.getAttribute("user");
 		user.setPassword(password);
@@ -57,6 +74,7 @@ public class AccountRenderingController {
 		
 		DaoFactory.getCompanyDao().updateById( company);	
 		
+		logger.info("exection AccountRenderingController.editAccount successfully finished");
 		return goToAccountPage(session);
 	}
 

@@ -2,6 +2,7 @@ package com.bigroi.stock.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,17 +19,23 @@ import com.bigroi.stock.dao.DaoFactory;
 @Controller
 public class AccountResourceController {
 
+	private static final Logger logger = Logger.getLogger(AccountResourceController.class);
+	
 	@RequestMapping(value = "/AccounPageAuthJSON.spr")
 	@ResponseBody
 	public String goToAccountPage(HttpSession session) {
+		logger.info("execution AccountResourceController.goToAccountPage");
+		logger.info(session);
 		try {
 			ModelMap model = new ModelMap();
 			User user = (User) session.getAttribute("user");
 			model.addAttribute("user", user);
 			Company company = DaoFactory.getCompanyDao().getById(user.getCompanyId());
 			model.addAttribute("company", company);
+			logger.info("execution AccountResourceController.goToAccountPage successfully finished");
 			return new ResultBean(1, model).toString();
 		} catch (DaoException e) {
+			logger.info("execution AccountResourceController.goToAccountPage - catch DaoException");
 			return new ResultBean(-1, e.getMessage()).toString();
 		}
 	}
@@ -44,6 +51,19 @@ public class AccountResourceController {
 			@RequestParam("city") String city, 
 			@RequestParam("status") CompanyStatus status, 
 			@RequestParam("json") String json, HttpSession session) {
+	  
+	  	logger.info("exection AccountResourceController.editAccount");
+	  	logger.info(password);
+		logger.info(name);
+		logger.info(email);
+		logger.info(phone);
+		logger.info(regNumber);
+		logger.info(country);
+		logger.info(city);
+		logger.info(status);
+		logger.info(json);
+		logger.info(session);
+		
 		try {
 			User user = (User) session.getAttribute("user");
 			user.setPassword(password);
@@ -62,9 +82,11 @@ public class AccountResourceController {
 			DaoFactory.getCompanyDao().updateById(company);
 			Object obj = goToAccountPage(session);
 
+			logger.info("exection AccountResourceController.editAccount successfully finished");
 			return new ResultBean(1, obj).toString();
 
 		} catch (DaoException e) {
+			logger.info("execution AccountResourceController.editAccount - catch DaoException");
 			return new ResultBean(-1, e.getMessage()).toString();
 		}
 	}

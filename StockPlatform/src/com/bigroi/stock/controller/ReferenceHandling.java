@@ -2,6 +2,7 @@ package com.bigroi.stock.controller;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,9 @@ import com.bigroi.stock.messager.Message;
 
 @Controller
 public class ReferenceHandling {
+	
+	private static final Logger logger = Logger.getLogger(ReferenceHandling.class);
+	
 	private PreDeal preDeal;
 	private static final String EXPIRED_LINK = "—сылка просрочена или получен отказ от потенциального партнера";
 	private static final String WRONG_LINK = "Ќеверна€ ссылка";
@@ -31,6 +35,10 @@ public class ReferenceHandling {
 	@RequestMapping("/SellerCheck.spr")
 	public ModelAndView sellerCheck(@RequestParam("id") long id, @RequestParam("key") String key,
 			@RequestParam("action") Action action) throws DaoException, IOException, MailManagerException {
+		logger.info("exection ReferenceHandling.sellerCheck");
+		logger.info(id);
+		logger.info(key);
+		logger.info(action);
 		String message = null;
 		preDeal = DaoFactory.getPreDealDao().getById(id);
 		if (preDeal == null) {
@@ -63,12 +71,17 @@ public class ReferenceHandling {
 			message = CANCEL_LINK;
 			break;
 		}
+		logger.info("exection ReferenceHandling.sellerCheck successfully finished");
 		return new ModelAndView("approveLink", "message", message);
 	}
 	
 	@RequestMapping("/CustomerCheck.spr")
 	public ModelAndView customerCheck(@RequestParam("id") long id, @RequestParam("key") String key,
 			@RequestParam("action") Action action) throws DaoException, IOException, MailManagerException {
+		logger.info("exection ReferenceHandling.customerCheck");
+		logger.info(id);
+		logger.info(key);
+		logger.info(action);
 		String message = null;
 		preDeal = DaoFactory.getPreDealDao().getById(id);
 		if (preDeal == null) {
@@ -101,31 +114,38 @@ public class ReferenceHandling {
 			message = CANCEL_LINK;
 			break;
 		}
+		logger.info("exection ReferenceHandling.customerCheck successfully finished");
 		return new ModelAndView("approveLink", "message", message);
 	}
 
 	private void addBlackList() throws DaoException {
+		logger.info("exection ReferenceHandling.addBlackList");
 		Blacklist blackList = new Blacklist();
 		blackList.setLotId(preDeal.getLotId());
 		blackList.setTenderId(preDeal.getTenderId());
 		DaoFactory.getBlacklistDao().add(blackList);
+		logger.info("exection ReferenceHandling.addBlackList successfully finished");
 	}
 
 
 	private void addDeal() throws DaoException {
+		logger.info("exection ReferenceHandling.addDeal");
 		Deals deal = new Deals();
 		deal.setLotId(preDeal.getLotId());
 		deal.setTenderId(preDeal.getTenderId());
 		DaoFactory.getDealsDao().add(deal);
-		
+		logger.info("exection ReferenceHandling.addDeal successfully finished");
 	}
 
 	private void setStatuses(Status status) throws DaoException {
+		logger.info("exection ReferenceHandling.setStatuses");
+		logger.info(status);
 		Lot lot = DaoFactory.getLotDao().getById(preDeal.getLotId());
 		lot.setStatus(status);
 		DaoFactory.getLotDao().updateById(lot);
 		Tender tender = DaoFactory.getTenderDao().getById(preDeal.getTenderId());
 		tender.setStatus(status);
-		DaoFactory.getTenderDao().updateById(tender);		
+		DaoFactory.getTenderDao().updateById(tender);	
+		logger.info("exection ReferenceHandling.setStatuses successfully finished");
 	}
 }
