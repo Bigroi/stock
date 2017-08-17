@@ -101,6 +101,7 @@ CREATE TABLE IF NOT EXISTS `lot` (
   `seller_Id` bigint(20) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   `exp_date` date DEFAULT NULL,
+  `volume_of_lot` INT DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `saler` (`seller_Id`),
   KEY `product` (`poduct_Id`),
@@ -110,10 +111,10 @@ CREATE TABLE IF NOT EXISTS `lot` (
 
 -- Дамп данных таблицы stock.lot: ~3 rows (приблизительно)
 /*!40000 ALTER TABLE `lot` DISABLE KEYS */;
-INSERT INTO `lot` (`id`, `description`, `poduct_Id`, `min_price`, `seller_Id`, `status`, `exp_date`) VALUES
-	(1, 'картоха 2017', 1, 2.00, 1, 'EXPIRED', '2016-06-26'),
-	(3, 'киви', 111, 5.00, 1, 'IN_GAME', '2017-06-28'),
-	(4, 'креветки', 1, 110.00, 1, 'DRAFT', '2017-07-10');
+INSERT INTO `lot` (`id`, `description`, `poduct_Id`, `min_price`, `seller_Id`, `status`, `exp_date`, `volume_of_lot`) VALUES
+	(1, 'картоха 2017', 1, 2.00, 1, 'EXPIRED', '2016-06-26', 110),
+	(3, 'киви', 111, 5.00, 1, 'IN_GAME', '2017-06-28', 120),
+	(4, 'креветки', 1, 110.00, 1, 'DRAFT', '2017-07-10', 130);
 /*!40000 ALTER TABLE `lot` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.predeal
@@ -162,6 +163,7 @@ CREATE TABLE IF NOT EXISTS `tender` (
   `customer_Id` bigint(20) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   `exp_date` date DEFAULT NULL,
+  `volume_of_tender` INT DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_application_product` (`product_Id`),
   KEY `FK_application_company` (`customer_Id`),
@@ -171,10 +173,10 @@ CREATE TABLE IF NOT EXISTS `tender` (
 
 -- Дамп данных таблицы stock.tender: ~3 rows (приблизительно)
 /*!40000 ALTER TABLE `tender` DISABLE KEYS */;
-INSERT INTO `tender` (`id`, `description`, `product_Id`, `max_price`, `customer_Id`, `status`, `exp_date`) VALUES
-	(1, 'темт', 1, 4.00, 1, 'EXPIRED', '2017-06-27'),
-	(3, 'дордло', 111, 2.00, 1, 'IN_GAME', '2017-06-28'),
-	(11, 'Javatest', 1, 4.00, 1, 'EXPIRED', '2017-07-10');
+INSERT INTO `tender` (`id`, `description`, `product_Id`, `max_price`, `customer_Id`, `status`, `exp_date`, `volume_of_tender`) VALUES
+	(1, 'темт', 1, 4.00, 1, 'EXPIRED', '2017-06-27', 150),
+	(3, 'дордло', 111, 2.00, 1, 'IN_GAME', '2017-06-28', 160),
+	(11, 'Javatest', 1, 4.00, 1, 'EXPIRED', '2017-07-10', 170);
 /*!40000 ALTER TABLE `tender` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.user
