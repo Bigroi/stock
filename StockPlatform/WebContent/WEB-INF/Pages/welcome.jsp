@@ -13,7 +13,7 @@
    <p><a href="AccounPageAuth.spr">Account</a> </p>
    
     <ul>
-    	<li><a href="ProductListPage.spr">Proluct list</a>
+    	<li><a href="ProductListPage.spr">Product list</a>
     		<form action="ProductForm.spr">
 				<input type="hidden" name="id" value="-1" />
 				<p><input type="submit" value="Add product"></p>
