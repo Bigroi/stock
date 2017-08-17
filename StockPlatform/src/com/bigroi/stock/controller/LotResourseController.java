@@ -71,6 +71,7 @@ public class LotResourseController {
 			@RequestParam("minPrice") double minPrice,
 			@RequestParam("sellerId") long salerId,
 			@RequestParam("expDate") String expDateStr,
+			@RequestParam("volumeOfLot") int volumeOfLot,
 			@RequestParam("status") Status status, HttpSession session){
 		logger.info("exection LotResourseController.lotSave");
 		logger.info(id);
@@ -79,6 +80,7 @@ public class LotResourseController {
 		logger.info(minPrice);
 		logger.info(salerId);
 		logger.info(expDateStr);
+		logger.info(volumeOfLot);
 		logger.info(status);
 		logger.info(session);
 		try {
@@ -88,6 +90,7 @@ public class LotResourseController {
 			lot.setMinPrice(minPrice);
 			lot.setSellerId(salerId);
 			lot.setDateStr(expDateStr);
+			lot.setVolumeOfLot(volumeOfLot);
 			lot.setStatus(status);
 
 			if (id == -1) {

@@ -30,31 +30,31 @@ public class LotDaoImpl implements LotDao {
 	private static final Logger lOG = Logger.getLogger(UserDaoImpl.class);
 
 	private static final String ADD_LOTS_BY_ID = "INSERT INTO lot (id, description, "
-			+ " poduct_Id,min_price, seller_Id, status, exp_date) "
-			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?) ";
+			+ " poduct_Id,min_price, seller_Id, status, exp_date, volume_of_lot) "
+			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?) ";
 
 	private static final String DELETE_LOTS_BY_ID = "DELETE FROM lot WHERE id = ? ";
 
 	private static final String UPDATE_LOTS_BY_ID = "UPDATE lot SET "
 			+ " description = ?, poduct_Id = ?, min_price = ?, seller_Id = ?, " 
-			+ " status = ?, exp_date = ? WHERE id = ? ";
+			+ " status = ?, exp_date = ?, volume_of_lot = ? WHERE id = ? ";
 	
 	private static final String SELECT_LOTS_BY_ID = "SELECT id, description, poduct_Id, "
-			+ " min_price, seller_Id, status, exp_date FROM lot WHERE id = ? ";
+			+ " min_price, seller_Id, status, exp_date, volume_of_lot FROM lot WHERE id = ? ";
 	
 	private static final String SELECT_LOTS_BY_SALLER_ID = "SELECT id, description, "
-			+ " poduct_Id, min_price, seller_Id, status, exp_date FROM lot WHERE seller_Id  = ? ";
+			+ " poduct_Id, min_price, seller_Id, status, exp_date, volume_of_lot FROM lot WHERE seller_Id  = ? ";
 	
 	private static final String SELECT_LOTS_BY_PRODUCT_ID ="SELECT id, description, "
-			+ " poduct_Id, min_price, seller_Id, status, exp_date FROM lot "
+			+ " poduct_Id, min_price, seller_Id, status, exp_date, volume_of_lot FROM lot "
 			+ " WHERE poduct_Id = ? ORDER BY min_price ";
 	
 	private static final String SELECT_LOTS_BY_PRODUCT_ID_IN_GAME = "SELECT id, description, "
-			+ " poduct_Id, min_price, seller_Id, status, exp_date FROM lot WHERE "
+			+ " poduct_Id, min_price, seller_Id, status, exp_date, volume_of_lot FROM lot WHERE "
 			+ " poduct_Id = ? AND status = 'IN_GAME' ORDER BY min_price ";
 	
 	private static final String SELECT_ALL_LOTS_BY_IN_GAME = "SELECT id, description,"
-			+ " poduct_Id, min_price, seller_Id, status, exp_date FROM lot "
+			+ " poduct_Id, min_price, seller_Id, status, exp_date, volume_of_lot FROM lot "
 			+ " WHERE status ='IN_GAME' ";
 	
 	private DataSource datasource;
@@ -84,6 +84,7 @@ public class LotDaoImpl implements LotDao {
 				ps.setLong(5, lot.getSellerId());
 				ps.setString(6, lot.getStatus().name().toUpperCase());
 				ps.setDate(7, new Date(lot.getExpDate().getTime()));
+				ps.setInt(8, lot.getVolumeOfLot());
 				return ps;
 			}
 		}, keyHolder);
@@ -110,7 +111,7 @@ public class LotDaoImpl implements LotDao {
 		return template.update(UPDATE_LOTS_BY_ID, lot.getDescription(), 
 				lot.getPoductId(), lot.getMinPrice(),
 				lot.getSellerId(), lot.getStatus().name().toUpperCase(), 
-				lot.getExpDate(), lot.getId()) == 1;
+				lot.getExpDate(), lot.getVolumeOfLot(), lot.getId()) == 1;
 
 	}
 
@@ -145,6 +146,7 @@ public class LotDaoImpl implements LotDao {
 				lot.setSellerId(rs.getLong("seller_Id"));
 				lot.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				lot.setExpDate(rs.getDate("exp_date"));
+				lot.setVolumeOfLot(rs.getInt("volume_of_lot"));
 				return lot;
 			}
 		}, sellerId);
@@ -169,6 +171,7 @@ public class LotDaoImpl implements LotDao {
 				lot.setSellerId(rs.getLong("seller_Id"));
 				lot.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				lot.setExpDate(rs.getDate("exp_date"));
+				lot.setVolumeOfLot(rs.getInt("volume_of_lot"));
 				return lot;
 			}
 		}, productId);

@@ -18,6 +18,7 @@ public class Tender {
 	private long customerId;
 	private Status status;
 	private Date expDate = new Date();
+	private int volumeOfTender;
 
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
@@ -89,10 +90,19 @@ public class Tender {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	
+	public int getVolumeOfTender() {
+		return volumeOfTender;
+	}
+
+	public void setVolumeOfTender(int volumeOfTender) {
+		this.volumeOfTender = volumeOfTender;
+	}
+
 
 	@Override
 	public String toString() {
 		return "Tender [id=" + id + ", description=" + description + ", productId=" + productId + ", maxPrice="
-				+ maxPrice + ", customerId=" + customerId + ", status=" + status + ", expDate=" + expDate + "]";
+				+ maxPrice + ", customerId=" + customerId + ", status=" + status + ", expDate=" + expDate + ", volumeOfTender=" + volumeOfTender + "]";
 	}
 }

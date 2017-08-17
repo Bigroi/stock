@@ -18,6 +18,7 @@
 				<td>max price</td>
 				<td>customerId</td>
 				<td>expDate</td>
+				<td>volumeOfTender</td>
 				<td>status</td>
 			</tr>
 		</thead>
@@ -29,6 +30,7 @@
 					<td>${tender.maxPrice}</td>
 					<td>${tender.customerId}</td>
 					<td>${tender.dateStr}</td>
+					<td>${tender.volumeOfTender}</td>
 					<td>${tender.status}</td>
 
 					<c:if test="${tender.status eq 'DRAFT'}">

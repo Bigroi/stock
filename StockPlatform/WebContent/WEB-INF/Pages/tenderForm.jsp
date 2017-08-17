@@ -16,6 +16,7 @@
 		<input type="hidden" name="status" value="${tender.status}">
 
 		description <input name="description" value="${tender.description}"><br>
+		volume of tender  <input name="volumeOfTender" value="${tender.volumeOfTender}"><br>
 		<c:choose>
 			<c:when test="${id == '-1'}">
 				product id  <select name="productId">
@@ -26,14 +27,17 @@
 				</select><br> 
 				maxPrice  <input name="maxPrice" value="${tender.maxPrice}"><br>	    
 			    expDate <input name="expDate" value="${tender.dateStr}"><br>
+			    <!-- volume_of_tender  <input name="volumeOfTender" value="${tender.volumeOfTender}"><br>-->
 			</c:when>
 			<c:otherwise>
 				<input type="hidden" name="productId" value="${tender.productId}">
 				<input type="hidden" name="maxPrice" value="${tender.maxPrice}">
-				<input type="hidden" name="expDate" value="${tender.dateStr}">	
+				<input type="hidden" name="expDate" value="${tender.dateStr}">
+				<!--<input type="hidden" name="volumeOfTender" value="${tender.volumeOfTender}">-->
 			    product id - ${tender.productId}<br>
 				maxPrice - ${tender.maxPrice}<br>	    
 			    expDate - ${tender.dateStr}<br>
+			    <!--volume of tender - ${tender.volumeOfTender}-->
 			</c:otherwise>
 		</c:choose>
 		customer id - ${tender.customerId}<br> status - ${tender.status}<br>

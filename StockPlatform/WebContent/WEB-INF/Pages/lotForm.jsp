@@ -17,6 +17,7 @@
 		 <input type="hidden" name="status" value="${lot.status}">
 
 		description <input name="description" value="${lot.description}"><br>
+		volume of lot  <input name="volumeOfLot" value="${lot.volumeOfLot}"><br>
 		<c:choose>
 			<c:when test="${id == '-1'}">
 				product id  <select name="productId">
@@ -27,14 +28,17 @@
 				</select><br>                         	
 				min_price  <input name="minPrice" value="${lot.minPrice}"><br>
 				exp_date  <input name="expDate" value="${lot.dateStr}"><br>
+				<!-- volume_of_lot  <input name="volumeOfLot" value="${lot.volumeOfLot}"><br> -->
 			</c:when>
 			<c:otherwise>
 				<input type="hidden" name="productId" value="${lot.poductId}">
 				<input type="hidden" name="minPrice" value="${lot.minPrice}">
 				<input type="hidden" name="expDate" value="${lot.dateStr}">
+				<!--  <input type="hidden" name="volumeOfLot" value="${lot.volumeOfLot}"><br>-->
 				product id - ${lot.poductId}<br>		
 				min_price - ${lot.minPrice}<br>
 				exp_date - ${lot.dateStr}<br>
+				<!--volume of lot - ${lot.volumeOfLot}<br>-->
 			</c:otherwise>
 		</c:choose>
 		seller id - ${lot.sellerId}<br> 

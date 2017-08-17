@@ -57,6 +57,7 @@ public class LotRenderingController {
 			@RequestParam("minPrice") double minPrice,
 			@RequestParam("sellerId") long salerId,
 			@RequestParam("expDate") String expDateStr,
+			@RequestParam("volumeOfLot") int volumeOfLot,
 			@RequestParam("status") Status status,
 			HttpSession session) throws DaoException, ParseException {
 
@@ -66,6 +67,7 @@ public class LotRenderingController {
 		logger.info(minPrice);
 		logger.info(salerId);
 		logger.info(expDateStr);
+		logger.info(volumeOfLot);
 		logger.info(status);
 		logger.info(session);
 		
@@ -75,6 +77,7 @@ public class LotRenderingController {
 		lot.setMinPrice(minPrice);
 		lot.setSellerId(salerId);
 		lot.setDateStr(expDateStr);
+		lot.setVolumeOfLot(volumeOfLot);
 		lot.setStatus(status);		
 		
 		if (id == -1) {

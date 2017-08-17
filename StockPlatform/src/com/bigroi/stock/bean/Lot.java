@@ -18,6 +18,7 @@ public class Lot {
 	private long sellerId;
 	private Date expDate = new Date();
 	private Status status;
+	private int volumeOfLot;
 
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
@@ -90,10 +91,19 @@ public class Lot {
 		this.status = status;
 	}
 
+	public int getVolumeOfLot() {
+		return volumeOfLot;
+	}
+
+	public void setVolumeOfLot(int volumeOfLot) {
+		this.volumeOfLot = volumeOfLot;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "Lot [id=" + id + ", description=" + description + ", poductId=" + poductId + ", minPrice=" + minPrice
-				+ ", salerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + "]";
+				+ ", salerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + ", volumeOfLot=" + volumeOfLot +"]";
 	}
 
 }

@@ -29,31 +29,31 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String ADD_TENDER_BY_ID = "INSERT INTO tender "
 			+ " (id, description, product_Id, max_price, customer_Id, "
-			+ " status, exp_date) VALUES ( ?, ?, ?, ?, ?, ?, ?) ";
+			+ " status, exp_date, volume_of_tender) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?) ";
 		
 	private static final String DELETE_TENDER_BY_ID = "DELETE FROM tender WHERE id = ? ";
 
 	private static final String UPDATE_TENDER_BY_ID = "UPDATE tender SET description = ?, "
-			+ "product_Id = ?, max_price = ?, customer_Id = ?, status = ?, exp_date = ? "
-			+ "WHERE id = ? ";
+			+ "product_Id = ?, max_price = ?, customer_Id = ?, status = ?, exp_date = ?, "
+			+ "volume_of_tender = ? WHERE id = ? ";
 	
 	private static final String SELECT_TENDER_BY_ID = "SELECT id, description, product_Id, "
-			+ " max_price, customer_Id, status, exp_date FROM tender WHERE id = ? ";
+			+ " max_price, customer_Id, status, exp_date, volume_of_tender FROM tender WHERE id = ? ";
 	
 	private static final String SELECT_TENDER_BY_CUSTOMER_ID = "SELECT id, description, "
-			+ "product_Id, max_price, customer_Id, status, exp_date "
+			+ "product_Id, max_price, customer_Id, status, exp_date, volume_of_tender "
 			+ "FROM tender WHERE customer_Id = ? ";
 	
 	private static final String SELECT_TENDER_BY_PRODUCT_ID ="SELECT id, description, "
-			+ " product_Id, max_price, customer_Id, status, exp_date FROM tender "
+			+ " product_Id, max_price, customer_Id, status, exp_date, volume_of_tender FROM tender "
 			+ " WHERE product_Id = ? ORDER BY  max_price DESC ";
 	
 	private static final String SELECT_TENDER_BY_PRODUCT_ID_IN_GAME_ORDER_MAX_PRACE_DESC = "SELECT id, description, "
-			+ "product_Id, max_price, customer_Id, status, exp_date FROM tender WHERE "
+			+ "product_Id, max_price, customer_Id, status, exp_date, volume_of_tender FROM tender WHERE "
 			+ "product_Id = ? AND status = 'IN_GAME' ORDER BY max_price DESC";
 	
 	private static final String SELECT_ALL_TENDER_IN_GAME = "SELECT id, description, "
-			+ " product_Id, max_price, customer_Id, status, exp_date FROM tender "
+			+ " product_Id, max_price, customer_Id, status, exp_date, volume_of_tender FROM tender "
 			+ " WHERE status = 'IN_GAME' ";
 			
 	private DataSource datasource;
@@ -83,6 +83,7 @@ public class TenderDaoImpl implements TenderDao{
 				ps.setLong(5, tender.getCustomerId());
 				ps.setString(6, tender.getStatus().name().toUpperCase());
 				ps.setDate(7, new Date(tender.getExpDate().getTime()));
+				ps.setInt(8, tender.getVolumeOfTender());
 				return ps;
 			}
 		},keyHolder);
@@ -108,7 +109,8 @@ public class TenderDaoImpl implements TenderDao{
 		logger.info("exection TenderDaoImpl.updateById successfully finished");
 		return	template.update(UPDATE_TENDER_BY_ID, tender.getDescription(), tender.getProductId(),
 				tender.getMaxPrice(), tender.getCustomerId(), 
-				tender.getStatus().name().toUpperCase(), tender.getExpDate(), tender.getId()) == 1;
+				tender.getStatus().name().toUpperCase(), tender.getExpDate(), 
+				tender.getVolumeOfTender(), tender.getId()) == 1;
 	}
 
 	@Override
@@ -142,6 +144,7 @@ public class TenderDaoImpl implements TenderDao{
 				tender.setCustomerId(rs.getLong("customer_Id"));
 				tender.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				tender.setExpDate(rs.getDate("exp_date"));
+				tender.setVolumeOfTender(rs.getInt("volume_of_tender"));
 				return tender;
 			}
 		},customerId);
@@ -165,6 +168,7 @@ public class TenderDaoImpl implements TenderDao{
 				tender.setCustomerId(rs.getLong("customer_Id"));
 				tender.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				tender.setExpDate(rs.getDate("exp_date"));
+				tender.setVolumeOfTender(rs.getInt("volume_of_tender"));
 				return tender;
 			}
 		}, productId);

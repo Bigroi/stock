@@ -55,6 +55,7 @@ public class TenderRenderingController {
 			@RequestParam("maxPrice") double maxPrice,
 			@RequestParam("customerId") long customerId,
 			@RequestParam("expDate") String expDateStr,
+			@RequestParam("volumeOfTender") int volumeOfTender,
 			@RequestParam("status") Status status,
 			HttpSession session) throws DaoException, ParseException {
 		
@@ -64,6 +65,7 @@ public class TenderRenderingController {
 		logger.info(maxPrice);
 		logger.info(customerId);
 		logger.info(expDateStr);
+		logger.info(volumeOfTender);
 		logger.info(status);
 		logger.info(session);
 		
@@ -73,6 +75,7 @@ public class TenderRenderingController {
 		tender.setMaxPrice(maxPrice);
 		tender.setCustomerId(customerId);
 		tender.setDateStr(expDateStr);
+		tender.setVolumeOfTender(volumeOfTender);
 		tender.setStatus(status);
 		if (id == -1) {
 			DaoFactory.getTenderDao().add(tender);
