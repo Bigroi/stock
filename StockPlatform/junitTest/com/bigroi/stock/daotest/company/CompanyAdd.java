@@ -6,6 +6,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bigroi.stock.bean.Company;
+import com.bigroi.stock.bean.common.CompanyStatus;
+import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
@@ -16,14 +18,14 @@ private static Company company;
 	@BeforeClass
 	public static void init(){
 		company = new Company();
-		company.setId(2);
+		company.setId(12);
 		company.setName("TEST");
 		company.setEmail("email");
 		company.setPhone("165");
 		company.setRegNumber("sdfsdf");
 		company.setCountry("bel");
 		company.setCity("min");
-//TODO		company.setStatus(Status.DRAFT);
+        company.setStatus(CompanyStatus.VERIFIED);
 		
 	}
 	@Test

@@ -1,5 +1,8 @@
 package com.bigroi.stock.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -15,32 +18,31 @@ import com.bigroi.stock.bean.User;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
+import com.google.gson.Gson;
 
 @Controller
-public class AccountResourceController {
+@RequestMapping("/json")
+public class AccountResourceController extends ResourseBeanException {
 
 	private static final Logger logger = Logger.getLogger(AccountResourceController.class);
 	
-	@RequestMapping(value = "/AccounPageAuthJSON.spr")
+	@RequestMapping(value = "/AccounPageAuth.spr")
 	@ResponseBody
-	public String goToAccountPage(HttpSession session) {
+	public String goToAccountPage(@RequestParam("json") String json, HttpSession session) throws DaoException {
 		logger.info("execution AccountResourceController.goToAccountPage");
 		logger.info(session);
-		try {
-			ModelMap model = new ModelMap();
+		    User bean = new Gson().fromJson(json, User.class);
+			Map<String,Object> map = new HashMap<>();
 			User user = (User) session.getAttribute("user");
-			model.addAttribute("user", user);
-			Company company = DaoFactory.getCompanyDao().getById(user.getCompanyId());
-			model.addAttribute("company", company);
+			map.put("user", user);
+			Company company = DaoFactory.getCompanyDao().getById(bean.getCompanyId());
+			map.put("company", company);
 			logger.info("execution AccountResourceController.goToAccountPage successfully finished");
-			return new ResultBean(1, model).toString();
-		} catch (DaoException e) {
-			logger.info("execution AccountResourceController.goToAccountPage - catch DaoException");
-			return new ResultBean(-1, e.getMessage()).toString();
-		}
+			return new ResultBean(1, map).toString();
+		
 	}
 
-  @RequestMapping(value = "AccountChangeAuthJSON.spr")//TODO: на форму не приходит company, только user
+  @RequestMapping(value = "AccountChangeAuth.spr")
 	@ResponseBody
 	public String editAccount(@RequestParam("password") String password,
 			@RequestParam("name") String name,
@@ -50,7 +52,7 @@ public class AccountResourceController {
 			@RequestParam("country") String country,
 			@RequestParam("city") String city, 
 			@RequestParam("status") CompanyStatus status, 
-			@RequestParam("json") String json, HttpSession session) {
+			@RequestParam("json") String json, HttpSession session) throws DaoException {
 	  
 	  	logger.info("exection AccountResourceController.editAccount");
 	  	logger.info(password);
@@ -64,7 +66,7 @@ public class AccountResourceController {
 		logger.info(json);
 		logger.info(session);
 		
-		try {
+		
 			User user = (User) session.getAttribute("user");
 			user.setPassword(password);
 			session.setAttribute("user", user);
@@ -80,14 +82,10 @@ public class AccountResourceController {
 			company.setCity(city);
 			company.setStatus(status);
 			DaoFactory.getCompanyDao().updateById(company);
-			Object obj = goToAccountPage(session);
+			Object obj = goToAccountPage(json, session);
 
 			logger.info("exection AccountResourceController.editAccount successfully finished");
 			return new ResultBean(1, obj).toString();
 
-		} catch (DaoException e) {
-			logger.info("execution AccountResourceController.editAccount - catch DaoException");
-			return new ResultBean(-1, e.getMessage()).toString();
-		}
 	}
 }
