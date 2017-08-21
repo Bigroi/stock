@@ -79,3 +79,27 @@
 2017-08-18 12:25:05,787 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.add successfully finished
 2017-08-18 14:49:07,575 [INFO ][main            ][roller.AccountResourceController] - execution AccountResourceController.goToAccountPage
 2017-08-18 14:49:08,769 [INFO ][main            ][roller.AccountResourceController] - com.bigroi.stock.jsontest.AccountgoToAccountPageJson$1@226a82c4
+2017-08-21 12:12:04,544 [INFO ][main            ][roller.AccountResourceController] - execution AccountResourceController.goToAccountPage
+2017-08-21 12:12:04,568 [INFO ][main            ][roller.AccountResourceController] - com.bigroi.stock.jsontest.AccountgoToAccountPageJson$1@1dfb72a
+2017-08-21 12:12:58,143 [INFO ][main            ][roller.AccountResourceController] - execution AccountResourceController.goToAccountPage
+2017-08-21 12:12:59,763 [INFO ][main            ][roller.AccountResourceController] - com.bigroi.stock.jsontest.AccountgoToAccountPageJson$1@1defd3f
+2017-08-21 12:13:40,914 [INFO ][main            ][roller.AccountResourceController] - execution AccountResourceController.goToAccountPage
+2017-08-21 12:13:46,377 [INFO ][main            ][roller.AccountResourceController] - com.bigroi.stock.jsontest.AccountgoToAccountPageJson$1@183da2e
+2017-08-21 15:55:40,315 [INFO ][main            ][roller.AccountResourceController] - exection AccountResourceController.editAccount
+2017-08-21 15:55:51,088 [INFO ][main            ][roller.AccountResourceController] - {"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}
+2017-08-21 15:55:53,908 [INFO ][main            ][roller.AccountResourceController] - com.bigroi.stock.jsontest.AccountgoEditAccount$1@1d37183
+2017-08-21 15:57:56,821 [INFO ][main            ][roller.AccountResourceController] - exection AccountResourceController.editAccount
+2017-08-21 15:57:58,394 [INFO ][main            ][roller.AccountResourceController] - {"id":0,"login":"Admin","password":"1","companyId":0}
+2017-08-21 15:57:59,872 [INFO ][main            ][roller.AccountResourceController] - com.bigroi.stock.jsontest.AccountgoEditAccount$1@145e5c6
+2017-08-21 15:59:43,035 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById
+2017-08-21 15:59:43,042 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - User [id=0, login=Admin, password=1, companyId=0]
+2017-08-21 15:59:43,278 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById successfully finished
+2017-08-21 16:00:14,703 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-08-21 16:00:14,710 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=0, name=null, email=null, phone=null, regNumber=null, country=null, city=null, status=null]
+2017-08-21 16:00:14,718 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-08-21 16:03:33,237 [INFO ][main            ][roller.AccountResourceController] - exection AccountResourceController.editAccount
+2017-08-21 16:03:35,383 [INFO ][main            ][roller.AccountResourceController] - [{"id":0,"login":"Admin","password":"1","companyId":0},{"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}]
+2017-08-21 16:03:40,697 [INFO ][main            ][roller.AccountResourceController] - com.bigroi.stock.jsontest.AccountgoEditAccount$1@1dc3715
+2017-08-21 16:05:59,829 [INFO ][main            ][roller.AccountResourceController] - exection AccountResourceController.editAccount
+2017-08-21 16:06:00,775 [INFO ][main            ][roller.AccountResourceController] - [{"id":0,"login":"Admin","password":"1","companyId":1},{"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}]
+2017-08-21 16:06:01,525 [INFO ][main            ][roller.AccountResourceController] - com.bigroi.stock.jsontest.AccountgoEditAccount$1@1dc3715

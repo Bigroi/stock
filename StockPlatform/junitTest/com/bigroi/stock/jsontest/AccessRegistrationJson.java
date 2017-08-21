@@ -47,6 +47,7 @@ public class  AccessRegistrationJson {
 		objList.add(user);
 		objList.add(company);
 		String result = res.registration(new Gson().toJson(objList), new HttpSession() {
+		//String result = res.registration(new Gson().toJson(user), new HttpSession() {
 
 			@Override
 			public void setMaxInactiveInterval(int arg0) {
@@ -147,7 +148,7 @@ public class  AccessRegistrationJson {
 			@Override
 			public Object getAttribute(String arg0) {
 				
-				return null;
+				return objList;
 			}
 		});
 		ResultBean bean = new Gson().fromJson(result, ResultBean.class);

@@ -44,44 +44,20 @@ public class AccountResourceController extends ResourseBeanException {
 
   @RequestMapping(value = "AccountChangeAuth.spr")
 	@ResponseBody
-	public String editAccount(@RequestParam("password") String password,
-			@RequestParam("name") String name,
-			@RequestParam("email") String email, 
-			@RequestParam("phone") String phone,
-			@RequestParam("regNumber") String regNumber, 
-			@RequestParam("country") String country,
-			@RequestParam("city") String city, 
-			@RequestParam("status") CompanyStatus status, 
-			@RequestParam("json") String json, HttpSession session) throws DaoException {
+	public String editAccount(@RequestParam("json") String json, HttpSession session) throws DaoException {
 	  
 	  	logger.info("exection AccountResourceController.editAccount");
-	  	logger.info(password);
-		logger.info(name);
-		logger.info(email);
-		logger.info(phone);
-		logger.info(regNumber);
-		logger.info(country);
-		logger.info(city);
-		logger.info(status);
 		logger.info(json);
 		logger.info(session);
 		
-		
+		    User userBean = new Gson().fromJson(json, User.class);
 			User user = (User) session.getAttribute("user");
-			user.setPassword(password);
+			user.setPassword(userBean.getPassword());
 			session.setAttribute("user", user);
 			DaoFactory.getUserDao().updateById(user);
 
-			Company company = new Company();
-			company.setId(user.getCompanyId());
-			company.setName(name);
-			company.setEmail(email);
-			company.setPhone(phone);
-			company.setRegNumber(regNumber);
-			company.setCountry(country);
-			company.setCity(city);
-			company.setStatus(status);
-			DaoFactory.getCompanyDao().updateById(company);
+			Company companyBean = new Gson().fromJson(json, Company.class);
+			DaoFactory.getCompanyDao().updateById(companyBean);
 			Object obj = goToAccountPage(json, session);
 
 			logger.info("exection AccountResourceController.editAccount successfully finished");

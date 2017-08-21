@@ -8,26 +8,46 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionContext;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.controller.AccountResourceController;
 import com.bigroi.stock.dao.DaoException;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
-public class AccountgoToAccountPageJson {
-
+public class AccountgoEditAccount {
+	
+	private static User user;
+	private static Company company;
+	
+	@BeforeClass
+	public static void init(){
+		user = new User();
+		user.setLogin("Admin");
+		user.setPassword("1");
+		user.setCompanyId(1);
+		company = new Company();
+		company.setName("Test");
+		company.setEmail("@test");
+		company.setPhone("123434ewr");
+		company.setRegNumber("dsfdsf324324");
+		company.setCountry("sdfbe");
+		company.setCity("Minsk");
+		company.setStatus(CompanyStatus.NOT_VERIFIED);
+	}
+	
 	@Test
 	public void gotoPage() throws DaoException{
 		AccountResourceController res = new AccountResourceController();
-		User user = new User();
-		Company company = new Company();
 		List<Object> listObj = new ArrayList<>();
 		listObj.add(user);
 		listObj.add(company);
-		String result = res.goToAccountPage(new Gson().toJson(listObj), new HttpSession() {
+		String result = res.editAccount(new Gson().toJson(listObj), new HttpSession() {
+			//String result = res.registration(new Gson().toJson(user), new HttpSession() {
 
 			@Override
 			public void setMaxInactiveInterval(int arg0) {
@@ -127,8 +147,9 @@ public class AccountgoToAccountPageJson {
 			@Override
 			public Object getAttribute(String arg0) {
 				
-				return listObj;
+				return listObj;//user
 			}
 		});
 	}
+
 }
