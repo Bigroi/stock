@@ -24,6 +24,7 @@ public class AccountgoEditAccount {
 	private static User user;
 	private static Company company;
 	
+	
 	@BeforeClass
 	public static void init(){
 		user = new User();

@@ -49,6 +49,7 @@ public class  AccessRegistrationJson {
 		String result = res.registration(new Gson().toJson(objList), new HttpSession() {
 		//String result = res.registration(new Gson().toJson(user), new HttpSession() {
 
+			
 			@Override
 			public void setMaxInactiveInterval(int arg0) {
 				

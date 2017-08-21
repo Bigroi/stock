@@ -46,6 +46,7 @@ public class AccountResourceController extends ResourseBeanException {
 	@ResponseBody
 	public String editAccount(@RequestParam("json") String json, HttpSession session) throws DaoException {
 	  
+	  
 	  	logger.info("exection AccountResourceController.editAccount");
 		logger.info(json);
 		logger.info(session);
