@@ -30,6 +30,7 @@ public class  AccessRegistrationJson {
 		user = new User();
 		user.setLogin("Admin111");
 		user.setPassword("111");
+		user.setCompanyId(1);
 		company = new Company();
 		company.setName("Test");
 		company.setEmail("@test");
@@ -43,11 +44,9 @@ public class  AccessRegistrationJson {
 	@Test
 	public void auth() throws DaoException {
 		AccessResourceController res = new AccessResourceController();
-		List<Object> objList = new ArrayList<>();
-		objList.add(user);
-		objList.add(company);
-		String result = res.registration(new Gson().toJson(objList), new HttpSession() {
-		//String result = res.registration(new Gson().toJson(user), new HttpSession() {
+		
+		String result = res.registration(new Gson().toJson(user), new Gson().toJson(company), new HttpSession() {
+		
 
 			
 			@Override
@@ -149,7 +148,7 @@ public class  AccessRegistrationJson {
 			@Override
 			public Object getAttribute(String arg0) {
 				
-				return objList;
+				return user;
 			}
 		});
 		ResultBean bean = new Gson().fromJson(result, ResultBean.class);

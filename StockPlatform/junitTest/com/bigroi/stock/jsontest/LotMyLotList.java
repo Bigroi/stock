@@ -1,8 +1,6 @@
 package com.bigroi.stock.jsontest;
 
-import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -12,17 +10,15 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.ResultBean;
 import com.bigroi.stock.bean.User;
-import com.bigroi.stock.controller.AccountResourceController;
+import com.bigroi.stock.controller.LotResourseController;
 import com.bigroi.stock.dao.DaoException;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
-public class AccountgoToAccountPageJson {
+public class LotMyLotList {
 	
-	private static User user;
+private static User user;
 	
 	@BeforeClass
 	public static void init(){
@@ -33,10 +29,9 @@ public class AccountgoToAccountPageJson {
 	}
 
 	@Test
-	public void gotoPage() throws DaoException{
-		AccountResourceController res = new AccountResourceController();
-		
-		String result = res.goToAccountPage(new Gson().toJson(user), new HttpSession() {
+	public void myLotList() throws DaoException{
+		LotResourseController res = new LotResourseController();
+		String result = res.myLotList(new Gson().toJson(user), new HttpSession() {
 
 			@Override
 			public void setMaxInactiveInterval(int arg0) {

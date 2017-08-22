@@ -8,10 +8,12 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionContext;
 
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bigroi.stock.bean.Company;
+import com.bigroi.stock.bean.ResultBean;
 import com.bigroi.stock.bean.User;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.controller.AccountResourceController;
@@ -45,10 +47,7 @@ public class AccountgoEditAccount {
 	@Test
 	public void gotoPage() throws DaoException{
 		AccountResourceController res = new AccountResourceController();
-		List<Object> listObj = new ArrayList<>();
-		listObj.add(user);
-		listObj.add(company);
-		String result = res.editAccount(new Gson().toJson(listObj), new HttpSession() {
+		String result = res.editAccount(new Gson().toJson(user), new Gson().toJson(company), new HttpSession() {
 			//String result = res.registration(new Gson().toJson(user), new HttpSession() {
 
 			@Override
@@ -149,9 +148,12 @@ public class AccountgoEditAccount {
 			@Override
 			public Object getAttribute(String arg0) {
 				
-				return listObj;//user
+				return user;//user
 			}
 		});
+		
+		ResultBean bean = new Gson().fromJson(result, ResultBean.class);
+		Assert.assertEquals(bean.getResult(), 1);
 	}
 
 }

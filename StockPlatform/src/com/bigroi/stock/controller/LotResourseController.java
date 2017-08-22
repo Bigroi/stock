@@ -17,28 +17,27 @@ import com.bigroi.stock.bean.User;
 import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
+import com.google.gson.Gson;
 
 @Controller
-public class LotResourseController {
+@RequestMapping("/json")
+public class LotResourseController extends ResourseBeanException {
 
 	private static final Logger logger = Logger.getLogger(LotResourseController.class);
 	
-	@RequestMapping(value = "/MyLotListAuthJSON.spr")
+	@RequestMapping(value = "/MyLotListAuth.spr")
 	@ResponseBody
-	public String myLotList(HttpSession session) {
+	public String myLotList(@RequestParam("json") String json, HttpSession session) throws DaoException {
 		logger.info("exection LotResourseController.myLotList");
+		logger.info(json);
 		logger.info(session);
-		try {
-			User user = (User) session.getAttribute("user");
-			List<Lot> lots = DaoFactory.getLotDao().getBySellerId(user.getCompanyId());
+		User userBean = new Gson().fromJson(json, User.class);
+		userBean = (User) session.getAttribute("user");
+			List<Lot> lots = DaoFactory.getLotDao().getBySellerId(userBean.getCompanyId());
 			logger.info("exection LotResourseController.myLotList successfully finished");
-			return new ResultBean(1, lots).toString();
-		} catch (DaoException e) {
-			logger.info("execution LotResourseController.myLotList - catch DaoException");
-			return new ResultBean(-1, e.getMessage()).toString();
-		}
+			return new ResultBean(1, lots).toString();	
 	}
-
+//--------------------------------------------------------------------------------------	
 	@RequestMapping(value = "/LotFormAuthJSON.spr")
 	@ResponseBody
 	public String getLot(@RequestParam("id") long id, HttpSession session)  {

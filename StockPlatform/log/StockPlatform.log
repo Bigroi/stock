@@ -130,3 +130,258 @@
 2017-08-21 16:05:59 INFO: exection AccountResourceController.editAccount
 2017-08-21 16:06:00 INFO: [{"id":0,"login":"Admin","password":"1","companyId":1},{"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}]
 2017-08-21 16:06:01 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1dc3715
+2017-08-22 15:03:50 INFO: exection AccountResourceController.editAccount
+2017-08-22 15:03:51 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 15:03:55 INFO: {"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}
+2017-08-22 15:04:01 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1a0dcaa
+2017-08-22 15:05:36 INFO: exection AccountResourceController.editAccount
+2017-08-22 15:05:36 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 15:05:36 INFO: {"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}
+2017-08-22 15:05:36 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1a0dcaa
+2017-08-22 15:09:00 INFO: exection AccountResourceController.editAccount
+2017-08-22 15:09:00 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 15:09:00 INFO: {"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}
+2017-08-22 15:09:00 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1a0dcaa
+2017-08-22 15:11:58 INFO: exection AccountResourceController.editAccount
+2017-08-22 15:11:58 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 15:11:58 INFO: {"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}
+2017-08-22 15:11:58 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1a0dcaa
+2017-08-22 15:12:54 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1353778: startup date [Tue Aug 22 15:12:54 AST 2017]; root of context hierarchy
+2017-08-22 15:13:01 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 15:14:05 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 15:14:14 INFO: exection UserDaoImpl.updateById
+2017-08-22 15:14:14 INFO: User [id=0, login=Admin, password=1, companyId=1]
+2017-08-22 15:14:14 INFO: exection UserDaoImpl.updateById successfully finished
+2017-08-22 15:14:40 INFO: exection CompanyDaoImpl.updateById
+2017-08-22 15:14:40 INFO: Company [id=0, name=Test, email=@test, phone=123434ewr, regNumber=dsfdsf324324, country=sdfbe, city=Minsk, status=NOT_VERIFIED]
+2017-08-22 15:14:40 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-08-22 15:14:54 INFO: execution AccountResourceController.goToAccountPage
+2017-08-22 15:14:54 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1a0dcaa
+2017-08-22 15:14:54 INFO: exection CompanyDaoImpl.getById
+2017-08-22 15:14:54 INFO: 0
+2017-08-22 15:14:55 INFO: exection CompanyDaoImpl.getById return null, successfully finished
+2017-08-22 15:14:55 INFO: execution AccountResourceController.goToAccountPage successfully finished
+2017-08-22 15:15:49 INFO: exection AccountResourceController.editAccount successfully finished
+2017-08-22 15:18:16 INFO: exection AccountResourceController.editAccount
+2017-08-22 15:18:16 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 15:18:16 INFO: {"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}
+2017-08-22 15:18:17 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1464ce8
+2017-08-22 15:18:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@120ebad: startup date [Tue Aug 22 15:18:17 AST 2017]; root of context hierarchy
+2017-08-22 15:18:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 15:18:20 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 15:18:20 INFO: exection UserDaoImpl.updateById
+2017-08-22 15:18:20 INFO: User [id=0, login=Admin, password=1, companyId=1]
+2017-08-22 15:18:20 INFO: exection UserDaoImpl.updateById successfully finished
+2017-08-22 15:18:21 INFO: exection CompanyDaoImpl.updateById
+2017-08-22 15:18:21 INFO: Company [id=0, name=Test, email=@test, phone=123434ewr, regNumber=dsfdsf324324, country=sdfbe, city=Minsk, status=NOT_VERIFIED]
+2017-08-22 15:18:21 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-08-22 15:18:21 INFO: execution AccountResourceController.goToAccountPage
+2017-08-22 15:18:21 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1464ce8
+2017-08-22 15:18:21 INFO: exection CompanyDaoImpl.getById
+2017-08-22 15:18:21 INFO: 0
+2017-08-22 15:18:21 INFO: exection CompanyDaoImpl.getById return null, successfully finished
+2017-08-22 15:18:21 INFO: execution AccountResourceController.goToAccountPage successfully finished
+2017-08-22 15:18:21 INFO: exection AccountResourceController.editAccount successfully finished
+2017-08-22 15:19:07 INFO: exection AccountResourceController.editAccount
+2017-08-22 15:19:07 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 15:19:07 INFO: {"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}
+2017-08-22 15:19:07 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1a0dcaa
+2017-08-22 15:19:45 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1353778: startup date [Tue Aug 22 15:19:45 AST 2017]; root of context hierarchy
+2017-08-22 15:19:51 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 15:20:50 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 15:20:58 INFO: exection UserDaoImpl.updateById
+2017-08-22 15:20:58 INFO: User [id=0, login=Admin, password=1, companyId=1]
+2017-08-22 15:20:58 INFO: exection UserDaoImpl.updateById successfully finished
+2017-08-22 15:21:30 INFO: exection CompanyDaoImpl.updateById
+2017-08-22 15:21:30 INFO: Company [id=0, name=Test, email=@test, phone=123434ewr, regNumber=dsfdsf324324, country=sdfbe, city=Minsk, status=NOT_VERIFIED]
+2017-08-22 15:21:30 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-08-22 15:21:32 INFO: execution AccountResourceController.goToAccountPage
+2017-08-22 15:21:32 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1a0dcaa
+2017-08-22 15:21:32 INFO: exection CompanyDaoImpl.getById
+2017-08-22 15:21:32 INFO: 0
+2017-08-22 15:21:33 INFO: exection CompanyDaoImpl.getById return null, successfully finished
+2017-08-22 15:21:33 INFO: execution AccountResourceController.goToAccountPage successfully finished
+2017-08-22 15:21:54 INFO: exection AccountResourceController.editAccount successfully finished
+2017-08-22 15:24:41 INFO: exection AccountResourceController.editAccount
+2017-08-22 15:24:41 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 15:24:41 INFO: {"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}
+2017-08-22 15:24:41 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1a0dcaa
+2017-08-22 15:25:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1353778: startup date [Tue Aug 22 15:25:18 AST 2017]; root of context hierarchy
+2017-08-22 15:25:25 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 15:26:23 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 15:26:31 INFO: exection UserDaoImpl.updateById
+2017-08-22 15:26:31 INFO: User [id=0, login=Admin, password=1, companyId=1]
+2017-08-22 15:26:31 INFO: exection UserDaoImpl.updateById successfully finished
+2017-08-22 15:49:37 INFO: exection CompanyDaoImpl.updateById
+2017-08-22 15:49:37 INFO: Company [id=0, name=Test, email=@test, phone=123434ewr, regNumber=dsfdsf324324, country=sdfbe, city=Minsk, status=NOT_VERIFIED]
+2017-08-22 15:49:37 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-08-22 15:49:49 INFO: exection AccountResourceController.editAccount successfully finished
+2017-08-22 15:50:16 INFO: execution AccountResourceController.goToAccountPage
+2017-08-22 15:50:16 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1a0dcaa
+2017-08-22 15:50:16 INFO: exection CompanyDaoImpl.getById
+2017-08-22 15:50:16 INFO: 0
+2017-08-22 15:50:17 INFO: exection CompanyDaoImpl.getById return null, successfully finished
+2017-08-22 15:50:17 INFO: execution AccountResourceController.goToAccountPage successfully finished
+2017-08-22 15:51:11 INFO: exection AccountResourceController.editAccount
+2017-08-22 15:51:11 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 15:51:11 INFO: {"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}
+2017-08-22 15:51:11 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1464ce8
+2017-08-22 15:51:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@120ebad: startup date [Tue Aug 22 15:51:12 AST 2017]; root of context hierarchy
+2017-08-22 15:51:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 15:51:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 15:51:16 INFO: exection UserDaoImpl.updateById
+2017-08-22 15:51:16 INFO: User [id=0, login=Admin, password=1, companyId=1]
+2017-08-22 15:51:16 INFO: exection UserDaoImpl.updateById successfully finished
+2017-08-22 15:51:17 INFO: exection CompanyDaoImpl.updateById
+2017-08-22 15:51:17 INFO: Company [id=0, name=Test, email=@test, phone=123434ewr, regNumber=dsfdsf324324, country=sdfbe, city=Minsk, status=NOT_VERIFIED]
+2017-08-22 15:51:17 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-08-22 15:51:17 INFO: exection AccountResourceController.editAccount successfully finished
+2017-08-22 15:51:17 INFO: execution AccountResourceController.goToAccountPage
+2017-08-22 15:51:17 INFO: com.bigroi.stock.jsontest.AccountgoEditAccount$1@1464ce8
+2017-08-22 15:51:17 INFO: exection CompanyDaoImpl.getById
+2017-08-22 15:51:17 INFO: 0
+2017-08-22 15:51:17 INFO: exection CompanyDaoImpl.getById return null, successfully finished
+2017-08-22 15:51:17 INFO: execution AccountResourceController.goToAccountPage successfully finished
+2017-08-22 15:56:20 INFO: execution AccountResourceController.goToAccountPage
+2017-08-22 15:56:20 INFO: com.bigroi.stock.jsontest.AccountgoToAccountPageJson$1@183da2e
+2017-08-22 16:00:26 INFO: execution AccountResourceController.goToAccountPage
+2017-08-22 16:00:26 INFO: com.bigroi.stock.jsontest.AccountgoToAccountPageJson$1@7b636c
+2017-08-22 16:01:31 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cd705f: startup date [Tue Aug 22 16:01:31 AST 2017]; root of context hierarchy
+2017-08-22 16:01:37 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 16:02:36 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 16:02:44 INFO: exection CompanyDaoImpl.getById
+2017-08-22 16:02:44 INFO: 1
+2017-08-22 16:02:48 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-08-22 16:03:15 INFO: execution AccountResourceController.goToAccountPage successfully finished
+2017-08-22 16:04:17 INFO: execution AccountResourceController.goToAccountPage
+2017-08-22 16:04:17 INFO: com.bigroi.stock.jsontest.AccountgoToAccountPageJson$1@d64342
+2017-08-22 16:04:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@19a81e8: startup date [Tue Aug 22 16:04:17 AST 2017]; root of context hierarchy
+2017-08-22 16:04:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 16:04:20 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 16:04:21 INFO: exection CompanyDaoImpl.getById
+2017-08-22 16:04:21 INFO: 1
+2017-08-22 16:04:22 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-08-22 16:04:22 INFO: execution AccountResourceController.goToAccountPage successfully finished
+2017-08-22 16:20:54 INFO: exection AccessResourceController.registration
+2017-08-22 16:20:54 INFO: {"id":0,"login":"Admin111","password":"111","companyId":0}
+2017-08-22 16:20:54 INFO: {"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}
+2017-08-22 16:20:54 INFO: com.bigroi.stock.jsontest.AccessRegistrationJson$1@1a0dcaa
+2017-08-22 16:21:15 INFO: exection AccessResourceController.getUser
+2017-08-22 16:21:15 INFO: Admin111
+2017-08-22 16:21:15 INFO: exection AccessResourceController.getUser successfully finished
+2017-08-22 16:21:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1353778: startup date [Tue Aug 22 16:21:15 AST 2017]; root of context hierarchy
+2017-08-22 16:21:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 16:21:26 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 16:21:27 INFO: exection UserDaoImpl.getByLogin
+2017-08-22 16:21:27 INFO: Admin111
+2017-08-22 16:21:31 INFO: exection UserDaoImpl.getByLogin return null, successfully finished
+2017-08-22 16:22:01 INFO: exection CompanyDaoImpl.add
+2017-08-22 16:22:01 INFO: Company [id=0, name=Test, email=@test, phone=123434ewr, regNumber=dsfdsf324324, country=sdfbe, city=Minsk, status=NOT_VERIFIED]
+2017-08-22 16:22:02 INFO: exection CompanyDaoImpl.add successfully finished
+2017-08-22 16:23:00 INFO: exection UserDaoImpl.add
+2017-08-22 16:23:00 INFO: User [id=0, login=Admin111, password=111, companyId=0]
+2017-08-22 16:23:01 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-08-22 16:23:02 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-08-22 16:24:30 INFO: exection AccessResourceController.registration
+2017-08-22 16:24:30 INFO: {"id":0,"login":"Admin111","password":"111","companyId":1}
+2017-08-22 16:24:30 INFO: {"id":0,"name":"Test","email":"@test","phone":"123434ewr","regNumber":"dsfdsf324324","country":"sdfbe","city":"Minsk","status":"NOT_VERIFIED"}
+2017-08-22 16:24:30 INFO: com.bigroi.stock.jsontest.AccessRegistrationJson$1@1a0dcaa
+2017-08-22 16:24:38 INFO: exection AccessResourceController.getUser
+2017-08-22 16:24:38 INFO: Admin111
+2017-08-22 16:24:38 INFO: exection AccessResourceController.getUser successfully finished
+2017-08-22 16:24:39 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1353778: startup date [Tue Aug 22 16:24:39 AST 2017]; root of context hierarchy
+2017-08-22 16:24:40 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 16:24:49 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 16:24:50 INFO: exection UserDaoImpl.getByLogin
+2017-08-22 16:24:50 INFO: Admin111
+2017-08-22 16:24:54 INFO: exection UserDaoImpl.getByLogin return null, successfully finished
+2017-08-22 16:25:14 INFO: exection CompanyDaoImpl.add
+2017-08-22 16:25:14 INFO: Company [id=0, name=Test, email=@test, phone=123434ewr, regNumber=dsfdsf324324, country=sdfbe, city=Minsk, status=NOT_VERIFIED]
+2017-08-22 16:25:14 INFO: exection CompanyDaoImpl.add successfully finished
+2017-08-22 16:25:56 INFO: exection UserDaoImpl.add
+2017-08-22 16:25:56 INFO: User [id=0, login=Admin111, password=111, companyId=1]
+2017-08-22 16:25:57 INFO: exection UserDaoImpl.add successfully finished
+2017-08-22 16:26:20 INFO: exection AccessResourceController.registration successfully finished
+2017-08-22 16:45:01 INFO: exection LotResourseController.myLotList
+2017-08-22 16:45:01 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 16:45:01 INFO: com.bigroi.stock.jsontest.LotMyLotList$1@1dd4eda
+2017-08-22 16:45:36 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cd705f: startup date [Tue Aug 22 16:45:36 AST 2017]; root of context hierarchy
+2017-08-22 16:45:42 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 16:46:37 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 16:46:45 INFO: exection LotDaoImpl.getBySellerId
+2017-08-22 16:46:45 INFO: 1
+2017-08-22 16:46:49 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-08-22 16:46:50 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-08-22 16:48:20 INFO: exection LotResourseController.myLotList
+2017-08-22 16:48:20 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 16:48:20 INFO: com.bigroi.stock.jsontest.LotMyLotList$1@1dd4eda
+2017-08-22 16:49:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cd705f: startup date [Tue Aug 22 16:49:12 AST 2017]; root of context hierarchy
+2017-08-22 16:49:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 16:50:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 16:50:21 INFO: exection LotDaoImpl.getBySellerId
+2017-08-22 16:50:21 INFO: 1
+2017-08-22 16:50:24 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-08-22 16:50:25 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-08-22 16:52:33 INFO: exection LotResourseController.myLotList
+2017-08-22 16:52:33 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 16:52:33 INFO: com.bigroi.stock.jsontest.LotMyLotList$1@1dd4eda
+2017-08-22 16:52:57 INFO: exection LotResourseController.myLotList successfully finished
+2017-08-22 16:53:05 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1225652: startup date [Tue Aug 22 16:53:05 AST 2017]; root of context hierarchy
+2017-08-22 16:53:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 16:54:07 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 16:54:15 INFO: exection LotDaoImpl.getBySellerId
+2017-08-22 16:54:15 INFO: 1
+2017-08-22 16:54:18 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-08-22 16:54:19 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-08-22 17:24:36 INFO: exection LotResourseController.myLotList
+2017-08-22 17:24:36 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 17:24:36 INFO: com.bigroi.stock.jsontest.LotMyLotList$1@1dd4eda
+2017-08-22 17:24:51 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cd705f: startup date [Tue Aug 22 17:24:51 AST 2017]; root of context hierarchy
+2017-08-22 17:24:58 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 17:26:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 17:26:21 INFO: exection LotDaoImpl.getBySellerId
+2017-08-22 17:26:21 INFO: 1
+2017-08-22 17:26:26 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-08-22 17:26:27 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-08-22 17:33:53 INFO: exection LotResourseController.myLotList
+2017-08-22 17:33:53 INFO: {"id":0,"login":"Admin","password":"1","companyId":0}
+2017-08-22 17:33:53 INFO: com.bigroi.stock.jsontest.LotMyLotList$1@1dd4eda
+2017-08-22 17:34:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cd705f: startup date [Tue Aug 22 17:34:15 AST 2017]; root of context hierarchy
+2017-08-22 17:34:21 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 17:35:25 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 17:35:35 INFO: exection LotDaoImpl.getBySellerId
+2017-08-22 17:35:35 INFO: 0
+2017-08-22 17:35:39 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-08-22 17:35:40 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-08-22 17:40:07 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Tue Aug 22 17:40:07 AST 2017]; root of context hierarchy
+2017-08-22 17:40:07 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 17:40:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 17:40:10 INFO: exection LotDaoImpl.getBySellerId
+2017-08-22 17:40:10 INFO: 1
+2017-08-22 17:40:11 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-08-22 17:40:12 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-08-22 17:41:22 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@10abc94: startup date [Tue Aug 22 17:41:22 AST 2017]; root of context hierarchy
+2017-08-22 17:41:23 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 17:41:26 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 17:41:26 INFO: exection LotDaoImpl.getBySellerId
+2017-08-22 17:41:26 INFO: 1
+2017-08-22 17:42:15 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-08-22 17:42:16 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-08-22 17:44:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Tue Aug 22 17:44:17 AST 2017]; root of context hierarchy
+2017-08-22 17:44:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 17:44:20 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 17:44:20 INFO: exection LotDaoImpl.getBySellerId
+2017-08-22 17:44:20 INFO: 1
+2017-08-22 17:44:21 INFO: [Lot [id=1, description=картоха 2017, poductId=1, minPrice=2.0, salerId=1, expDate=2016-06-26, status=EXPIRED, volumeOfLot=110], Lot [id=3, description=киви, poductId=111, minPrice=5.0, salerId=1, expDate=2017-06-28, status=IN_GAME, volumeOfLot=120], Lot [id=4, description=креветки, poductId=1, minPrice=110.0, salerId=1, expDate=2017-07-10, status=DRAFT, volumeOfLot=130]]
+2017-08-22 17:44:21 INFO: exection LotDaoImpl.getBySellerId successfully finished
+2017-08-22 17:45:04 INFO: exection LotResourseController.myLotList
+2017-08-22 17:45:04 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 17:45:04 INFO: com.bigroi.stock.jsontest.LotMyLotList$1@1dd4eda
+2017-08-22 17:45:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cd705f: startup date [Tue Aug 22 17:45:18 AST 2017]; root of context hierarchy
+2017-08-22 17:45:24 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 17:46:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 17:46:27 INFO: exection LotDaoImpl.getBySellerId
+2017-08-22 17:46:27 INFO: 1
+2017-08-22 17:46:30 INFO: [Lot [id=1, description=картоха 2017, poductId=1, minPrice=2.0, salerId=1, expDate=2016-06-26, status=EXPIRED, volumeOfLot=110], Lot [id=3, description=киви, poductId=111, minPrice=5.0, salerId=1, expDate=2017-06-28, status=IN_GAME, volumeOfLot=120], Lot [id=4, description=креветки, poductId=1, minPrice=110.0, salerId=1, expDate=2017-07-10, status=DRAFT, volumeOfLot=130]]
+2017-08-22 17:46:30 INFO: exection LotDaoImpl.getBySellerId successfully finished
+2017-08-22 17:46:51 INFO: exection LotResourseController.myLotList successfully finished
