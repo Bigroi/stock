@@ -21,6 +21,7 @@ import com.google.gson.JsonObject;
 
 public class AccountgoEditAccount {
 	
+	
 	private static User user;
 	private static Company company;
 	
