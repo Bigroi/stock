@@ -42,7 +42,8 @@ public class AccountResourceController extends ResourseBeanException {
 		
 	}
 
-  @RequestMapping(value = "AccountChangeAuth.spr")
+  
+	@RequestMapping(value = "AccountChangeAuth.spr")
 	@ResponseBody
 	public String editAccount(@RequestParam("json") String json, HttpSession session) throws DaoException {
 	  
