@@ -37,74 +37,58 @@ public class LotResourseController extends ResourseBeanException {
 			logger.info("exection LotResourseController.myLotList successfully finished");
 			return new ResultBean(1, lots).toString();	
 	}
-//--------------------------------------------------------------------------------------	
-	@RequestMapping(value = "/LotFormAuthJSON.spr")
+
+	@RequestMapping(value = "/LotFormAuth.spr")
 	@ResponseBody
-	public String getLot(@RequestParam("id") long id, HttpSession session)  {
+	public String getLot(@RequestParam("id") long id,
+			@RequestParam("jsonUser") String jsonUser,  
+			@RequestParam("jsonLot") String jsonLot,
+			HttpSession session) throws DaoException  {
 		logger.info("exection LotResourseController.getLot");
 		logger.info(id);
+		logger.info(jsonUser);
+		logger.info(jsonLot);
 		logger.info(session);
-		try{
-			Lot lot;
+		User userBean = new Gson().fromJson(jsonUser, User.class);
+			Lot lotBean = new Gson().fromJson(jsonLot, Lot.class);
 			if (id == -1) {
-				lot = new Lot();
-				User user = (User) session.getAttribute("user");
-				lot.setSellerId(user.getCompanyId());
-				lot.setStatus(Status.DRAFT);
+				lotBean = new Lot();
+				 userBean = (User) session.getAttribute("user");
+				 lotBean.setSellerId(userBean.getCompanyId());
+				 lotBean.setStatus(Status.DRAFT);
 			} else {
-				lot = DaoFactory.getLotDao().getById(id);
+				lotBean = DaoFactory.getLotDao().getById(id);
 			}
 			logger.info("exection LotResourseController.getLot successfully finished");
-			return new ResultBean(1, lot).toString();
-		}catch(DaoException e){
-			logger.info("execution LotResourseController.getLot - catch DaoException");
-			return new ResultBean(-1, e.getMessage()).toString();
-		}
+			return new ResultBean(1, lotBean).toString();
+		
 	}
 	
-	@RequestMapping(value = "/LotSaveAuthJSON.spr")//TODO: не корректно работает JSON
+	@RequestMapping(value = "/LotSaveAuth.spr")
 	@ResponseBody
-	public String lotSave(@RequestParam("id") long id, 
-			@RequestParam("description") String description,			
-			@RequestParam("productId") long productId,
-			@RequestParam("minPrice") double minPrice,
-			@RequestParam("sellerId") long salerId,
-			@RequestParam("expDate") String expDateStr,
-			@RequestParam("volumeOfLot") int volumeOfLot,
-			@RequestParam("status") Status status, HttpSession session){
+	public String lotSave(@RequestParam("id") long id,
+			//@RequestParam("jsonUser") String jsonUser,
+			@RequestParam("jsonLot") String jsonLot,
+			 HttpSession session) throws DaoException, ParseException{
 		logger.info("exection LotResourseController.lotSave");
 		logger.info(id);
-		logger.info(description);
-		logger.info(productId);
-		logger.info(minPrice);
-		logger.info(salerId);
-		logger.info(expDateStr);
-		logger.info(volumeOfLot);
-		logger.info(status);
+		//logger.info(jsonUser);
+		logger.info(jsonLot);
 		logger.info(session);
-		try {
-			Lot lot = new Lot();
-			lot.setDescription(description);
-			lot.setPoductId(productId);
-			lot.setMinPrice(minPrice);
-			lot.setSellerId(salerId);
-			lot.setDateStr(expDateStr);
-			lot.setVolumeOfLot(volumeOfLot);
-			lot.setStatus(status);
-
+		//User userBean = new Gson().fromJson(jsonUser, User.class);
+		//userBean = (User) session.getAttribute("user");
+		Lot lotBean = new Gson().fromJson(jsonLot, Lot.class);//TODO: падает перед проверкой  -1/1
 			if (id == -1) {
-				DaoFactory.getLotDao().add(lot);
-				id = lot.getId();
+				DaoFactory.getLotDao().add(lotBean);
+				id = lotBean.getId();
+				logger.info("exection LotResourseController.lotSave - 'lot.added.success', successfully finished");
 			} else {
-				lot.setId(id);
-				DaoFactory.getLotDao().updateById(lot);
+				lotBean.setId(id);
+				DaoFactory.getLotDao().updateById(lotBean);
 			}
 			logger.info("exection LotResourseController.lotSave - 'lot.update.success', successfully finished");
 			return new ResultBean(1, "lot.update.success").toString();
-		} catch (DaoException | ParseException e) {
-			logger.info("execution LotResourseController.lotSave - catch DaoException | ParseException");
-			return new ResultBean(-1, e.getMessage()).toString();
-		}
+		
 	}
 	
 	@RequestMapping(value = "/LotInGameAuthJSON.spr")

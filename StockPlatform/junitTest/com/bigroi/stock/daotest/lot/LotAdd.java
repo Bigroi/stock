@@ -28,6 +28,7 @@ public class LotAdd {
 		lot.setSellerId(1);
 		lot.setStatus(Status.DRAFT);
 		lot.setExpDate(new Date(lot.getExpDate().getTime()));
+		lot.setVolumeOfLot(123);
 	}
 	
 	@Test

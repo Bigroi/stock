@@ -385,3 +385,94 @@
 2017-08-22 17:46:30 INFO: [Lot [id=1, description=ךאנעמץא 2017, poductId=1, minPrice=2.0, salerId=1, expDate=2016-06-26, status=EXPIRED, volumeOfLot=110], Lot [id=3, description=ךטגט, poductId=111, minPrice=5.0, salerId=1, expDate=2017-06-28, status=IN_GAME, volumeOfLot=120], Lot [id=4, description=ךנוגועךט, poductId=1, minPrice=110.0, salerId=1, expDate=2017-07-10, status=DRAFT, volumeOfLot=130]]
 2017-08-22 17:46:30 INFO: exection LotDaoImpl.getBySellerId successfully finished
 2017-08-22 17:46:51 INFO: exection LotResourseController.myLotList successfully finished
+2017-08-22 20:08:21 INFO: exection LotResourseController.getLot
+2017-08-22 20:08:21 INFO: 0
+2017-08-22 20:08:21 INFO: com.bigroi.stock.jsontest.LotGetLot$1@279ad2e3
+2017-08-22 20:08:46 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5c30a9b0: startup date [Tue Aug 22 20:08:46 EET 2017]; root of context hierarchy
+2017-08-22 20:08:48 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 20:09:00 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 20:09:02 INFO: exection LotDaoImpl.getById
+2017-08-22 20:09:02 INFO: 0
+2017-08-22 20:09:03 INFO: exection LotDaoImpl.getById return null, successfully finished
+2017-08-22 20:10:19 INFO: exection LotResourseController.getLot successfully finished
+2017-08-22 20:15:24 INFO: exection LotResourseController.getLot
+2017-08-22 20:15:24 INFO: 1
+2017-08-22 20:15:24 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 20:15:24 INFO: com.bigroi.stock.jsontest.LotGetLot$1@491666ad
+2017-08-22 20:17:46 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@72f926e6: startup date [Tue Aug 22 20:17:46 EET 2017]; root of context hierarchy
+2017-08-22 20:17:48 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-22 20:18:00 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-22 20:18:01 INFO: exection LotDaoImpl.getById
+2017-08-22 20:18:01 INFO: 1
+2017-08-22 20:18:02 INFO: exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-08-22 20:18:13 INFO: exection LotResourseController.getLot successfully finished
+2017-08-22 20:18:57 INFO: exection LotResourseController.getLot
+2017-08-22 20:18:57 INFO: -1
+2017-08-22 20:18:57 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 20:18:57 INFO: com.bigroi.stock.jsontest.LotGetLot$1@491666ad
+2017-08-22 20:19:34 INFO: exection LotResourseController.getLot successfully finished
+2017-08-22 20:20:46 INFO: exection LotResourseController.getLot
+2017-08-22 20:20:46 INFO: -1
+2017-08-22 20:20:46 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 20:20:46 INFO: com.bigroi.stock.jsontest.LotGetLot$1@491666ad
+2017-08-22 20:21:43 INFO: exection LotResourseController.getLot successfully finished
+2017-08-22 20:37:02 INFO: exection LotResourseController.lotSave
+2017-08-22 20:37:02 INFO: 1
+2017-08-22 20:37:02 INFO: {"id":1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":0}
+2017-08-22 20:37:02 INFO: com.bigroi.stock.jsontest.LotSave$1@176d53b2
+2017-08-22 20:38:33 INFO: exection LotResourseController.lotSave
+2017-08-22 20:38:33 INFO: -1
+2017-08-22 20:38:33 INFO: {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":0}
+2017-08-22 20:38:33 INFO: com.bigroi.stock.jsontest.LotSave$1@176d53b2
+2017-08-22 20:43:03 INFO: exection LotResourseController.lotSave
+2017-08-22 20:43:03 INFO: -1
+2017-08-22 20:43:03 INFO: {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":0}
+2017-08-22 20:43:03 INFO: com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:43:12 INFO: exection LotResourseController.lotSave
+2017-08-22 20:43:12 INFO: -1
+2017-08-22 20:43:12 INFO: {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":0}
+2017-08-22 20:43:12 INFO: com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:43:44 INFO: exection LotResourseController.lotSave
+2017-08-22 20:43:45 INFO: 1
+2017-08-22 20:44:51 INFO: {"id":1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":0}
+2017-08-22 20:44:59 INFO: com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:46:13 INFO: exection LotResourseController.lotSave
+2017-08-22 20:46:15 INFO: 1
+2017-08-22 20:46:16 INFO: {"id":1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":123}
+2017-08-22 20:46:18 INFO: com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:47:06 INFO: exection LotResourseController.lotSave
+2017-08-22 20:47:07 INFO: 1
+2017-08-22 20:47:08 INFO: {"id":1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":123}
+2017-08-22 20:47:15 INFO: com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:49:08 INFO: exection LotResourseController.lotSave
+2017-08-22 20:49:08 INFO: -1
+2017-08-22 20:49:08 INFO: {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":123}
+2017-08-22 20:49:08 INFO: com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:53:37 INFO: exection LotResourseController.lotSave
+2017-08-22 20:53:37 INFO: -1
+2017-08-22 20:53:37 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 20:53:37 INFO: {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":123}
+2017-08-22 20:53:37 INFO: com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:55:59 INFO: exection LotResourseController.lotSave
+2017-08-22 20:55:59 INFO: -1
+2017-08-22 20:55:59 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 20:55:59 INFO: {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":123}
+2017-08-22 20:56:16 INFO: com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:56:50 INFO: exection LotResourseController.lotSave
+2017-08-22 20:56:50 INFO: -1
+2017-08-22 20:56:50 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 20:56:50 INFO: {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":123}
+2017-08-22 20:56:55 INFO: com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 21:07:27 INFO: exection LotResourseController.lotSave
+2017-08-22 21:07:27 INFO: 1
+2017-08-22 21:07:27 INFO: {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 21:07:27 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-22 21:07:35 INFO: com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 21:12:06 INFO: exection LotResourseController.lotSave
+2017-08-22 21:12:06 INFO: 1
+2017-08-22 21:12:06 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-22 21:12:12 INFO: com.bigroi.stock.jsontest.LotSave$1@176d53b2
+2017-08-22 21:13:34 INFO: exection LotResourseController.lotSave
+2017-08-22 21:13:34 INFO: 1
+2017-08-22 21:13:34 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-22 21:13:37 INFO: com.bigroi.stock.jsontest.LotSave$1@176d53b2

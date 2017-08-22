@@ -183,3 +183,88 @@
 2017-08-22 17:46:30,025 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - [Lot [id=1, description=ךאנעמץא 2017, poductId=1, minPrice=2.0, salerId=1, expDate=2016-06-26, status=EXPIRED, volumeOfLot=110], Lot [id=3, description=ךטגט, poductId=111, minPrice=5.0, salerId=1, expDate=2017-06-28, status=IN_GAME, volumeOfLot=120], Lot [id=4, description=ךנוגועךט, poductId=1, minPrice=110.0, salerId=1, expDate=2017-07-10, status=DRAFT, volumeOfLot=130]]
 2017-08-22 17:46:30,041 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getBySellerId successfully finished
 2017-08-22 17:46:51,171 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.myLotList successfully finished
+2017-08-22 20:08:21,289 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.getLot
+2017-08-22 20:08:21,290 [INFO ][main            ][controller.LotResourseController] - 0
+2017-08-22 20:08:21,291 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotGetLot$1@279ad2e3
+2017-08-22 20:09:02,466 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById
+2017-08-22 20:09:02,468 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 0
+2017-08-22 20:09:03,595 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById return null, successfully finished
+2017-08-22 20:10:19,216 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.getLot successfully finished
+2017-08-22 20:15:24,698 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.getLot
+2017-08-22 20:15:24,700 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-22 20:15:24,700 [INFO ][main            ][controller.LotResourseController] - {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 20:15:24,700 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotGetLot$1@491666ad
+2017-08-22 20:18:01,765 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById
+2017-08-22 20:18:01,766 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 1
+2017-08-22 20:18:02,649 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-08-22 20:18:13,080 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.getLot successfully finished
+2017-08-22 20:18:57,814 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.getLot
+2017-08-22 20:18:57,816 [INFO ][main            ][controller.LotResourseController] - -1
+2017-08-22 20:18:57,816 [INFO ][main            ][controller.LotResourseController] - {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 20:18:57,816 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotGetLot$1@491666ad
+2017-08-22 20:19:34,429 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.getLot successfully finished
+2017-08-22 20:20:46,338 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.getLot
+2017-08-22 20:20:46,339 [INFO ][main            ][controller.LotResourseController] - -1
+2017-08-22 20:20:46,340 [INFO ][main            ][controller.LotResourseController] - {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 20:20:46,340 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotGetLot$1@491666ad
+2017-08-22 20:21:43,020 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.getLot successfully finished
+2017-08-22 20:37:02,009 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 20:37:02,010 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-22 20:37:02,011 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":0}
+2017-08-22 20:37:02,011 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@176d53b2
+2017-08-22 20:38:33,807 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 20:38:33,809 [INFO ][main            ][controller.LotResourseController] - -1
+2017-08-22 20:38:33,809 [INFO ][main            ][controller.LotResourseController] - {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":0}
+2017-08-22 20:38:33,810 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@176d53b2
+2017-08-22 20:43:03,127 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 20:43:03,128 [INFO ][main            ][controller.LotResourseController] - -1
+2017-08-22 20:43:03,128 [INFO ][main            ][controller.LotResourseController] - {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":0}
+2017-08-22 20:43:03,128 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:43:12,565 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 20:43:12,566 [INFO ][main            ][controller.LotResourseController] - -1
+2017-08-22 20:43:12,566 [INFO ][main            ][controller.LotResourseController] - {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":0}
+2017-08-22 20:43:12,567 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:43:44,396 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 20:43:45,917 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-22 20:44:51,183 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":0}
+2017-08-22 20:44:59,205 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:46:13,206 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 20:46:15,005 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-22 20:46:16,149 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":123}
+2017-08-22 20:46:18,362 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:47:06,189 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 20:47:07,680 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-22 20:47:08,979 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":123}
+2017-08-22 20:47:15,583 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:49:08,368 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 20:49:08,370 [INFO ][main            ][controller.LotResourseController] - -1
+2017-08-22 20:49:08,370 [INFO ][main            ][controller.LotResourseController] - {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":123}
+2017-08-22 20:49:08,370 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:53:37,509 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 20:53:37,510 [INFO ][main            ][controller.LotResourseController] - -1
+2017-08-22 20:53:37,510 [INFO ][main            ][controller.LotResourseController] - {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 20:53:37,510 [INFO ][main            ][controller.LotResourseController] - {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":123}
+2017-08-22 20:53:37,511 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:55:59,686 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 20:55:59,687 [INFO ][main            ][controller.LotResourseController] - -1
+2017-08-22 20:55:59,687 [INFO ][main            ][controller.LotResourseController] - {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 20:55:59,688 [INFO ][main            ][controller.LotResourseController] - {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":123}
+2017-08-22 20:56:16,642 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 20:56:50,687 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 20:56:50,689 [INFO ][main            ][controller.LotResourseController] - -1
+2017-08-22 20:56:50,689 [INFO ][main            ][controller.LotResourseController] - {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 20:56:50,689 [INFO ][main            ][controller.LotResourseController] - {"id":-1,"description":"evgen","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"DRAFT","volumeOfLot":123}
+2017-08-22 20:56:55,099 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 21:07:27,432 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 21:07:27,434 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-22 21:07:27,434 [INFO ][main            ][controller.LotResourseController] - {"id":0,"login":"Admin","password":"1","companyId":1}
+2017-08-22 21:07:27,434 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-22 21:07:35,034 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@971d0d8
+2017-08-22 21:12:06,383 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 21:12:06,385 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-22 21:12:06,385 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-22 21:12:12,781 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@176d53b2
+2017-08-22 21:13:34,145 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-22 21:13:34,147 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-22 21:13:34,147 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"אגד 22, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-22 21:13:37,304 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@176d53b2
