@@ -583,3 +583,184 @@
 2017-08-23 12:11:09 INFO: 1
 2017-08-23 12:11:13 INFO: exection LotDaoImpl.getById return lot.get(0), successfully finished
 2017-08-23 12:11:35 INFO: exection LotResourseController.lotCancel - 'lot.update.success', successfully finished
+2017-08-23 13:16:08 INFO: exection ProductRenderingController.productEdit
+2017-08-23 13:16:08 INFO: 1
+2017-08-23 13:16:28 INFO: {"id":1}
+2017-08-23 13:16:45 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@10b0854: startup date [Wed Aug 23 13:16:45 AST 2017]; root of context hierarchy
+2017-08-23 13:16:51 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 13:17:51 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 13:17:59 INFO: exection ProductDaoImpl.getById
+2017-08-23 13:17:59 INFO: 1
+2017-08-23 13:18:03 INFO: exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 13:18:14 INFO: execution ProductRenderingController.productEdit - get edited product
+2017-08-23 13:18:16 INFO: exection ProductRenderingController.productEdit successfully finished
+2017-08-23 13:33:18 INFO: exection ProductRenderingController.productEdit
+2017-08-23 13:33:18 INFO: -1
+2017-08-23 13:33:23 INFO: {"id":-1}
+2017-08-23 13:33:46 INFO: execution ProductRenderingController.productEdit - create new product
+2017-08-23 13:33:53 INFO: exection ProductRenderingController.productEdit successfully finished
+2017-08-23 13:47:32 INFO: exection ProductRenderingController.productSave
+2017-08-23 13:47:42 INFO: 1
+2017-08-23 13:47:43 INFO: {"id":1,"name":"test","description":"testProd"}
+2017-08-23 13:48:08 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@10b0854: startup date [Wed Aug 23 13:48:08 AST 2017]; root of context hierarchy
+2017-08-23 13:48:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 13:49:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 13:49:20 INFO: exection ProductDaoImpl.updateById
+2017-08-23 13:49:20 INFO: Product [id=1, name=test, description=testProd]
+2017-08-23 13:49:20 INFO: exection ProductDaoImpl.updateById successfully finished
+2017-08-23 13:49:38 INFO: execution ProductRenderingController.productSave - update product
+2017-08-23 13:49:39 INFO: exection ProductRenderingController.productSave successfully finished
+2017-08-23 13:49:42 INFO: exection ProductRenderingController.listOfProducts
+2017-08-23 13:49:42 INFO: exection ProductDaoImpl.getAllProduct
+2017-08-23 13:49:43 INFO: exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 13:49:43 INFO: exection ProductRenderingController.listOfProducts successfully finished
+2017-08-23 13:50:53 INFO: exection ProductRenderingController.productSave
+2017-08-23 13:50:58 INFO: 0
+2017-08-23 13:50:59 INFO: {"id":0,"name":"test","description":"testProd"}
+2017-08-23 13:51:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@10b0854: startup date [Wed Aug 23 13:51:13 AST 2017]; root of context hierarchy
+2017-08-23 13:51:19 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 13:52:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 13:52:22 INFO: exection ProductDaoImpl.updateById
+2017-08-23 13:52:22 INFO: Product [id=0, name=test, description=testProd]
+2017-08-23 13:52:22 INFO: exection ProductDaoImpl.updateById successfully finished
+2017-08-23 13:52:41 INFO: execution ProductRenderingController.productSave - update product
+2017-08-23 13:52:43 INFO: exection ProductRenderingController.productSave successfully finished
+2017-08-23 13:53:51 INFO: exection ProductRenderingController.productSave
+2017-08-23 13:53:56 INFO: 0
+2017-08-23 13:53:59 INFO: {"id":0,"name":"test","description":"testProd"}
+2017-08-23 13:54:40 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@10b0854: startup date [Wed Aug 23 13:54:39 AST 2017]; root of context hierarchy
+2017-08-23 13:54:45 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 13:55:41 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 13:55:49 INFO: exection ProductDaoImpl.add
+2017-08-23 13:55:49 INFO: Product [id=0, name=test, description=testProd]
+2017-08-23 13:55:51 INFO: exection ProductDaoImpl.add successfully finished
+2017-08-23 13:56:05 INFO: execution ProductRenderingController.productSave - create new product
+2017-08-23 13:56:07 INFO: exection ProductRenderingController.productSave successfully finished
+2017-08-23 13:56:08 INFO: exection ProductRenderingController.listOfProducts
+2017-08-23 13:56:08 INFO: exection ProductDaoImpl.getAllProduct
+2017-08-23 13:56:09 INFO: exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 13:56:09 INFO: exection ProductRenderingController.listOfProducts successfully finished
+2017-08-23 14:17:22 INFO: exection ProductRenderingController.listOfProducts
+2017-08-23 14:17:24 INFO: {"id":0}
+2017-08-23 14:17:35 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@10b0854: startup date [Wed Aug 23 14:17:35 AST 2017]; root of context hierarchy
+2017-08-23 14:17:42 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 14:18:42 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 14:18:50 INFO: exection ProductDaoImpl.getAllProduct
+2017-08-23 14:18:54 INFO: exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 14:19:07 INFO: exection ProductRenderingController.listOfProducts successfully finished
+2017-08-23 14:20:32 INFO: exection ProductRenderingController.listOfProducts
+2017-08-23 14:20:33 INFO: {"id":0}
+2017-08-23 14:20:43 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@10b0854: startup date [Wed Aug 23 14:20:43 AST 2017]; root of context hierarchy
+2017-08-23 14:20:50 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 14:22:03 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 14:22:14 INFO: exection ProductDaoImpl.getAllProduct
+2017-08-23 14:22:19 INFO: exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 14:24:37 INFO: exection ProductRenderingController.listOfProducts
+2017-08-23 14:24:39 INFO: {"id":0}
+2017-08-23 14:24:52 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@10b0854: startup date [Wed Aug 23 14:24:52 AST 2017]; root of context hierarchy
+2017-08-23 14:24:58 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 14:26:02 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 14:26:10 INFO: exection ProductDaoImpl.getAllProduct
+2017-08-23 14:26:14 INFO: exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 14:26:39 INFO: exection ProductRenderingController.listOfProducts successfully finished
+2017-08-23 14:28:40 INFO: exection ProductRenderingController.listOfProducts
+2017-08-23 14:28:47 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@8bf312: startup date [Wed Aug 23 14:28:46 AST 2017]; root of context hierarchy
+2017-08-23 14:28:53 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 14:30:02 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 14:30:15 INFO: exection ProductDaoImpl.getAllProduct
+2017-08-23 14:30:20 INFO: exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 14:30:28 INFO: exection ProductRenderingController.listOfProducts successfully finished
+2017-08-23 14:53:08 INFO: exection ProductRenderingController.tradeOffers
+2017-08-23 14:53:12 INFO: 1
+2017-08-23 14:53:27 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@8bf312: startup date [Wed Aug 23 14:53:27 AST 2017]; root of context hierarchy
+2017-08-23 14:53:33 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 14:54:38 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 14:54:46 INFO: exection ProductDaoImpl.getById
+2017-08-23 14:54:46 INFO: 1
+2017-08-23 14:54:51 INFO: exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 14:56:14 INFO: exection LotDaoImpl.getByProductIdInGameOrderMinPrice
+2017-08-23 14:56:14 INFO: 1
+2017-08-23 14:56:14 INFO: exection LotDaoImpl.getByProductIdInGameOrderMinPrice successfully finished
+2017-08-23 14:56:19 INFO: exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc
+2017-08-23 14:56:19 INFO: 1
+2017-08-23 14:56:19 INFO: exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished
+2017-08-23 14:56:31 INFO: exection ProductRenderingController.tradeOffers successfully finished
+2017-08-23 15:05:31 INFO: exection ProductRenderingController.tradeOffers
+2017-08-23 15:05:32 INFO: 1
+2017-08-23 15:05:46 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@90c451: startup date [Wed Aug 23 15:05:45 AST 2017]; root of context hierarchy
+2017-08-23 15:05:52 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 15:07:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 15:07:29 INFO: exection ProductDaoImpl.getById
+2017-08-23 15:07:29 INFO: 1
+2017-08-23 15:07:33 INFO: exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 15:07:57 INFO: exection LotDaoImpl.getByProductIdInGameOrderMinPrice
+2017-08-23 15:07:57 INFO: 1
+2017-08-23 15:07:58 INFO: exection LotDaoImpl.getByProductIdInGameOrderMinPrice successfully finished
+2017-08-23 15:08:01 INFO: exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc
+2017-08-23 15:08:02 INFO: 1
+2017-08-23 15:08:02 INFO: exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished
+2017-08-23 15:08:13 INFO: exection ProductRenderingController.tradeOffers successfully finished
+2017-08-23 15:10:23 INFO: exection ProductRenderingController.tradeOffers
+2017-08-23 15:10:35 INFO: 1
+2017-08-23 15:10:49 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@9b3632: startup date [Wed Aug 23 15:10:49 AST 2017]; root of context hierarchy
+2017-08-23 15:10:56 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 15:12:07 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 15:12:16 INFO: exection ProductDaoImpl.getById
+2017-08-23 15:12:16 INFO: 1
+2017-08-23 15:12:20 INFO: exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 15:12:41 INFO: exection LotDaoImpl.getByProductIdInGameOrderMinPrice
+2017-08-23 15:12:41 INFO: 1
+2017-08-23 15:12:42 INFO: exection LotDaoImpl.getByProductIdInGameOrderMinPrice successfully finished
+2017-08-23 15:12:47 INFO: exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc
+2017-08-23 15:12:47 INFO: 1
+2017-08-23 15:12:48 INFO: exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished
+2017-08-23 15:12:50 INFO: exection ProductRenderingController.tradeOffers successfully finished
+2017-08-23 15:17:09 INFO: exection ProductRenderingController.tradeOffers
+2017-08-23 15:17:09 INFO: 1
+2017-08-23 15:17:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@9b3632: startup date [Wed Aug 23 15:17:10 AST 2017]; root of context hierarchy
+2017-08-23 15:17:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 15:17:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 15:17:14 INFO: exection ProductDaoImpl.getById
+2017-08-23 15:17:14 INFO: 1
+2017-08-23 15:17:15 INFO: exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 15:17:15 INFO: exection LotDaoImpl.getByProductIdInGameOrderMinPrice
+2017-08-23 15:17:15 INFO: 1
+2017-08-23 15:17:16 INFO: exection LotDaoImpl.getByProductIdInGameOrderMinPrice successfully finished
+2017-08-23 15:17:16 INFO: exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc
+2017-08-23 15:17:16 INFO: 1
+2017-08-23 15:17:16 INFO: exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished
+2017-08-23 15:17:16 INFO: exection ProductRenderingController.tradeOffers successfully finished
+2017-08-23 15:17:42 INFO: exection ProductRenderingController.tradeOffers
+2017-08-23 15:17:48 INFO: 1
+2017-08-23 15:18:02 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@9b3632: startup date [Wed Aug 23 15:18:02 AST 2017]; root of context hierarchy
+2017-08-23 15:18:09 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 15:19:21 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 15:19:29 INFO: exection ProductDaoImpl.getById
+2017-08-23 15:19:29 INFO: 1
+2017-08-23 15:19:33 INFO: exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 15:19:50 INFO: exection LotDaoImpl.getByProductIdInGameOrderMinPrice
+2017-08-23 15:19:50 INFO: 1
+2017-08-23 15:19:50 INFO: exection LotDaoImpl.getByProductIdInGameOrderMinPrice successfully finished
+2017-08-23 15:19:59 INFO: exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc
+2017-08-23 15:19:59 INFO: 1
+2017-08-23 15:19:59 INFO: exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished
+2017-08-23 15:20:43 INFO: exection ProductRenderingController.tradeOffers successfully finished
+2017-08-23 15:22:23 INFO: exection ProductRenderingController.tradeOffers
+2017-08-23 15:22:23 INFO: 1
+2017-08-23 15:22:23 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@8bf312: startup date [Wed Aug 23 15:22:23 AST 2017]; root of context hierarchy
+2017-08-23 15:22:24 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 15:22:42 INFO: exection ProductRenderingController.tradeOffers
+2017-08-23 15:22:42 INFO: 1
+2017-08-23 15:22:57 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@8bf312: startup date [Wed Aug 23 15:22:57 AST 2017]; root of context hierarchy
+2017-08-23 15:23:04 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 15:24:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 15:24:25 INFO: exection ProductDaoImpl.getById
+2017-08-23 15:24:25 INFO: 1
+2017-08-23 15:24:29 INFO: exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 15:24:38 INFO: exection LotDaoImpl.getByProductIdInGameOrderMinPrice
+2017-08-23 15:24:38 INFO: 1
+2017-08-23 15:24:38 INFO: exection LotDaoImpl.getByProductIdInGameOrderMinPrice successfully finished
+2017-08-23 15:24:40 INFO: exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc
+2017-08-23 15:24:40 INFO: 1
+2017-08-23 15:24:41 INFO: exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished
+2017-08-23 15:24:47 INFO: exection ProductRenderingController.tradeOffers successfully finished

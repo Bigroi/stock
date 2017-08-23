@@ -357,3 +357,140 @@
 2017-08-23 12:11:09,872 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 1
 2017-08-23 12:11:13,419 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById return lot.get(0), successfully finished
 2017-08-23 12:11:35,973 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotCancel - 'lot.update.success', successfully finished
+2017-08-23 13:16:08,951 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.productEdit
+2017-08-23 13:16:08,951 [INFO ][main            ][oller.ProductRenderingController] - 1
+2017-08-23 13:16:28,452 [INFO ][main            ][oller.ProductRenderingController] - {"id":1}
+2017-08-23 13:17:59,431 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById
+2017-08-23 13:17:59,439 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - 1
+2017-08-23 13:18:03,364 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 13:18:14,788 [INFO ][main            ][oller.ProductRenderingController] - execution ProductRenderingController.productEdit - get edited product
+2017-08-23 13:18:16,828 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.productEdit successfully finished
+2017-08-23 13:33:18,480 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.productEdit
+2017-08-23 13:33:18,488 [INFO ][main            ][oller.ProductRenderingController] - -1
+2017-08-23 13:33:23,513 [INFO ][main            ][oller.ProductRenderingController] - {"id":-1}
+2017-08-23 13:33:46,251 [INFO ][main            ][oller.ProductRenderingController] - execution ProductRenderingController.productEdit - create new product
+2017-08-23 13:33:53,827 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.productEdit successfully finished
+2017-08-23 13:47:32,635 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.productSave
+2017-08-23 13:47:42,500 [INFO ][main            ][oller.ProductRenderingController] - 1
+2017-08-23 13:47:43,892 [INFO ][main            ][oller.ProductRenderingController] - {"id":1,"name":"test","description":"testProd"}
+2017-08-23 13:49:20,230 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.updateById
+2017-08-23 13:49:20,230 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - Product [id=1, name=test, description=testProd]
+2017-08-23 13:49:20,403 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.updateById successfully finished
+2017-08-23 13:49:38,022 [INFO ][main            ][oller.ProductRenderingController] - execution ProductRenderingController.productSave - update product
+2017-08-23 13:49:39,540 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.productSave successfully finished
+2017-08-23 13:49:42,401 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.listOfProducts
+2017-08-23 13:49:42,401 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-08-23 13:49:43,279 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 13:49:43,287 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.listOfProducts successfully finished
+2017-08-23 13:50:53,173 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.productSave
+2017-08-23 13:50:58,294 [INFO ][main            ][oller.ProductRenderingController] - 0
+2017-08-23 13:50:59,563 [INFO ][main            ][oller.ProductRenderingController] - {"id":0,"name":"test","description":"testProd"}
+2017-08-23 13:52:22,220 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.updateById
+2017-08-23 13:52:22,220 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - Product [id=0, name=test, description=testProd]
+2017-08-23 13:52:22,385 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.updateById successfully finished
+2017-08-23 13:52:41,736 [INFO ][main            ][oller.ProductRenderingController] - execution ProductRenderingController.productSave - update product
+2017-08-23 13:52:43,092 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.productSave successfully finished
+2017-08-23 13:53:51,423 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.productSave
+2017-08-23 13:53:56,963 [INFO ][main            ][oller.ProductRenderingController] - 0
+2017-08-23 13:53:59,199 [INFO ][main            ][oller.ProductRenderingController] - {"id":0,"name":"test","description":"testProd"}
+2017-08-23 13:55:49,001 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.add
+2017-08-23 13:55:49,009 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - Product [id=0, name=test, description=testProd]
+2017-08-23 13:55:51,690 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.add successfully finished
+2017-08-23 13:56:05,147 [INFO ][main            ][oller.ProductRenderingController] - execution ProductRenderingController.productSave - create new product
+2017-08-23 13:56:07,165 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.productSave successfully finished
+2017-08-23 13:56:08,269 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.listOfProducts
+2017-08-23 13:56:08,269 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-08-23 13:56:09,117 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 13:56:09,117 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.listOfProducts successfully finished
+2017-08-23 14:17:22,166 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.listOfProducts
+2017-08-23 14:17:24,159 [INFO ][main            ][oller.ProductRenderingController] - {"id":0}
+2017-08-23 14:18:50,549 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-08-23 14:18:54,094 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 14:19:07,154 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.listOfProducts successfully finished
+2017-08-23 14:20:32,305 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.listOfProducts
+2017-08-23 14:20:33,659 [INFO ][main            ][oller.ProductRenderingController] - {"id":0}
+2017-08-23 14:22:14,938 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-08-23 14:22:19,156 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 14:24:37,934 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.listOfProducts
+2017-08-23 14:24:39,531 [INFO ][main            ][oller.ProductRenderingController] - {"id":0}
+2017-08-23 14:26:10,534 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-08-23 14:26:14,250 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 14:26:39,695 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.listOfProducts successfully finished
+2017-08-23 14:28:40,243 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.listOfProducts
+2017-08-23 14:30:15,473 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-08-23 14:30:20,546 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 14:30:28,093 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.listOfProducts successfully finished
+2017-08-23 14:53:08,495 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers
+2017-08-23 14:53:12,039 [INFO ][main            ][oller.ProductRenderingController] - 1
+2017-08-23 14:54:46,597 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById
+2017-08-23 14:54:46,605 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - 1
+2017-08-23 14:54:51,704 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 14:56:14,670 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getByProductIdInGameOrderMinPrice
+2017-08-23 14:56:14,676 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 1
+2017-08-23 14:56:14,971 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getByProductIdInGameOrderMinPrice successfully finished
+2017-08-23 14:56:19,640 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc
+2017-08-23 14:56:19,645 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-23 14:56:19,933 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished
+2017-08-23 14:56:31,689 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers successfully finished
+2017-08-23 15:05:31,359 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers
+2017-08-23 15:05:32,238 [INFO ][main            ][oller.ProductRenderingController] - 1
+2017-08-23 15:07:29,041 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById
+2017-08-23 15:07:29,049 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - 1
+2017-08-23 15:07:33,021 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 15:07:57,789 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getByProductIdInGameOrderMinPrice
+2017-08-23 15:07:57,796 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 1
+2017-08-23 15:07:58,334 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getByProductIdInGameOrderMinPrice successfully finished
+2017-08-23 15:08:01,990 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc
+2017-08-23 15:08:02,000 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-23 15:08:02,429 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished
+2017-08-23 15:08:13,666 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers successfully finished
+2017-08-23 15:10:23,617 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers
+2017-08-23 15:10:35,547 [INFO ][main            ][oller.ProductRenderingController] - 1
+2017-08-23 15:12:16,427 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById
+2017-08-23 15:12:16,435 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - 1
+2017-08-23 15:12:20,310 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 15:12:41,796 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getByProductIdInGameOrderMinPrice
+2017-08-23 15:12:41,800 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 1
+2017-08-23 15:12:42,102 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getByProductIdInGameOrderMinPrice successfully finished
+2017-08-23 15:12:47,968 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc
+2017-08-23 15:12:47,972 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-23 15:12:48,248 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished
+2017-08-23 15:12:50,379 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers successfully finished
+2017-08-23 15:17:09,726 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers
+2017-08-23 15:17:09,735 [INFO ][main            ][oller.ProductRenderingController] - 1
+2017-08-23 15:17:14,286 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById
+2017-08-23 15:17:14,286 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - 1
+2017-08-23 15:17:15,965 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 15:17:15,968 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getByProductIdInGameOrderMinPrice
+2017-08-23 15:17:15,969 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 1
+2017-08-23 15:17:16,041 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getByProductIdInGameOrderMinPrice successfully finished
+2017-08-23 15:17:16,041 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc
+2017-08-23 15:17:16,041 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-23 15:17:16,102 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished
+2017-08-23 15:17:16,102 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers successfully finished
+2017-08-23 15:17:42,570 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers
+2017-08-23 15:17:48,694 [INFO ][main            ][oller.ProductRenderingController] - 1
+2017-08-23 15:19:29,981 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById
+2017-08-23 15:19:29,989 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - 1
+2017-08-23 15:19:33,965 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 15:19:50,542 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getByProductIdInGameOrderMinPrice
+2017-08-23 15:19:50,546 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 1
+2017-08-23 15:19:50,817 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getByProductIdInGameOrderMinPrice successfully finished
+2017-08-23 15:19:59,295 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc
+2017-08-23 15:19:59,299 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-23 15:19:59,550 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished
+2017-08-23 15:20:43,237 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers successfully finished
+2017-08-23 15:22:23,394 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers
+2017-08-23 15:22:23,407 [INFO ][main            ][oller.ProductRenderingController] - 1
+2017-08-23 15:22:42,360 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers
+2017-08-23 15:22:42,369 [INFO ][main            ][oller.ProductRenderingController] - 1
+2017-08-23 15:24:25,211 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById
+2017-08-23 15:24:25,219 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - 1
+2017-08-23 15:24:29,547 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-08-23 15:24:38,547 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getByProductIdInGameOrderMinPrice
+2017-08-23 15:24:38,554 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 1
+2017-08-23 15:24:38,875 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getByProductIdInGameOrderMinPrice successfully finished
+2017-08-23 15:24:40,743 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc
+2017-08-23 15:24:40,750 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-23 15:24:41,004 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished
+2017-08-23 15:24:47,173 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers successfully finished
