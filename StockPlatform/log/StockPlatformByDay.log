@@ -494,3 +494,112 @@
 2017-08-23 15:24:40,750 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
 2017-08-23 15:24:41,004 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByProductIdInGameOrderMaxPriceDesc successfully finished
 2017-08-23 15:24:47,173 [INFO ][main            ][oller.ProductRenderingController] - exection ProductRenderingController.tradeOffers successfully finished
+2017-08-23 16:14:07,599 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderEdit
+2017-08-23 16:14:07,607 [INFO ][main            ][roller.TenderRenderingController] - 1
+2017-08-23 16:14:07,607 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderEdit$1@4afd8d
+2017-08-23 16:14:11,451 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById
+2017-08-23 16:14:11,451 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-23 16:14:12,880 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-08-23 16:14:12,880 [INFO ][main            ][roller.TenderRenderingController] - execution TenderRenderingController.tenderEdit - get edited tender
+2017-08-23 16:14:12,888 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-08-23 16:14:12,959 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 16:14:12,959 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderEdit successfully finished
+2017-08-23 16:14:29,916 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderEdit
+2017-08-23 16:14:35,547 [INFO ][main            ][roller.TenderRenderingController] - 1
+2017-08-23 16:14:36,577 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderEdit$1@1490758
+2017-08-23 16:16:11,407 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById
+2017-08-23 16:16:11,415 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-23 16:16:15,074 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-08-23 16:16:31,828 [INFO ][main            ][roller.TenderRenderingController] - execution TenderRenderingController.tenderEdit - get edited tender
+2017-08-23 16:16:36,329 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-08-23 16:16:36,581 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 16:16:38,120 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderEdit successfully finished
+2017-08-23 16:17:17,963 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderEdit
+2017-08-23 16:17:24,051 [INFO ][main            ][roller.TenderRenderingController] - 0
+2017-08-23 16:17:27,314 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderEdit$1@1490758
+2017-08-23 16:18:59,643 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById
+2017-08-23 16:18:59,643 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 0
+2017-08-23 16:19:03,205 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById return null, successfully finished
+2017-08-23 16:19:50,525 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderEdit
+2017-08-23 16:19:58,069 [INFO ][main            ][roller.TenderRenderingController] - -1
+2017-08-23 16:19:59,891 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderEdit$1@1490758
+2017-08-23 16:20:42,937 [INFO ][main            ][roller.TenderRenderingController] - execution TenderRenderingController.tenderEdit - create new tender
+2017-08-23 16:22:30,497 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-08-23 16:22:35,547 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-08-23 16:23:21,032 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderEdit successfully finished
+2017-08-23 16:32:08,085 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderSave
+2017-08-23 16:32:08,093 [INFO ][main            ][roller.TenderRenderingController] - {"id":1,"description":"Javatest","productId":1,"maxPrice":4.0,"customerId":1,"status":"DRAFT","expDate":"Aug 23, 2017 4:32:06 PM","volumeOfTender":500}
+2017-08-23 16:32:16,071 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderSave$1@187b79e
+2017-08-23 16:34:24,864 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.updateById
+2017-08-23 16:34:24,870 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - Tender [id=1, description=Javatest, productId=1, maxPrice=4.0, customerId=1, status=DRAFT, expDate=Wed Aug 23 16:32:06 AST 2017, volumeOfTender=500]
+2017-08-23 16:34:25,099 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.updateById successfully finished
+2017-08-23 16:34:38,414 [INFO ][main            ][roller.TenderRenderingController] - execution TenderRenderingController.tenderSave - update tender
+2017-08-23 16:34:41,789 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderSave successfully finished
+2017-08-23 16:34:52,971 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.myTenderList
+2017-08-23 16:34:52,977 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderSave$1@187b79e
+2017-08-23 16:34:52,983 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByCustomerId
+2017-08-23 16:34:52,988 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-23 16:34:53,317 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByCustomerId successfully finished
+2017-08-23 16:34:53,323 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.myTenderList successfully finished
+2017-08-23 16:36:06,508 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderSave
+2017-08-23 16:36:06,516 [INFO ][main            ][roller.TenderRenderingController] - {"id":1,"description":"JavatestAdd","productId":1,"maxPrice":4.0,"customerId":1,"status":"DRAFT","expDate":"Aug 23, 2017 4:36:05 PM","volumeOfTender":500}
+2017-08-23 16:36:12,271 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderSave$1@187b79e
+2017-08-23 16:36:40,874 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderSave
+2017-08-23 16:36:40,884 [INFO ][main            ][roller.TenderRenderingController] - {"id":0,"description":"JavatestAdd","productId":1,"maxPrice":4.0,"customerId":1,"status":"DRAFT","expDate":"Aug 23, 2017 4:36:39 PM","volumeOfTender":500}
+2017-08-23 16:36:50,687 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderSave$1@187b79e
+2017-08-23 16:38:09,331 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderSave
+2017-08-23 16:38:09,340 [INFO ][main            ][roller.TenderRenderingController] - {"id":0,"description":"JavatestAdd","productId":1,"maxPrice":4.0,"customerId":1,"status":"DRAFT","expDate":"Aug 23, 2017 4:38:08 PM","volumeOfTender":500}
+2017-08-23 16:38:15,628 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderSave$1@187b79e
+2017-08-23 16:40:00,370 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.add
+2017-08-23 16:40:00,375 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - Tender [id=0, description=JavatestAdd, productId=1, maxPrice=4.0, customerId=1, status=DRAFT, expDate=Wed Aug 23 16:38:08 AST 2017, volumeOfTender=500]
+2017-08-23 16:40:05,210 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.add successfully finished
+2017-08-23 16:40:39,833 [INFO ][main            ][roller.TenderRenderingController] - execution TenderRenderingController.tenderSave - save new tender
+2017-08-23 16:40:41,689 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderSave successfully finished
+2017-08-23 16:40:42,409 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.myTenderList
+2017-08-23 16:40:42,413 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderSave$1@187b79e
+2017-08-23 16:40:42,417 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByCustomerId
+2017-08-23 16:40:42,421 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-23 16:40:42,866 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByCustomerId successfully finished
+2017-08-23 16:40:42,872 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.myTenderList successfully finished
+2017-08-23 16:45:58,925 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.myTenderList
+2017-08-23 16:46:05,006 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderList$1@a9f84e
+2017-08-23 16:47:41,787 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByCustomerId
+2017-08-23 16:47:41,795 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-23 16:47:45,943 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByCustomerId successfully finished
+2017-08-23 16:48:13,240 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.myTenderList successfully finished
+2017-08-23 16:56:04,411 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderInGame
+2017-08-23 16:56:04,418 [INFO ][main            ][roller.TenderRenderingController] - 12
+2017-08-23 16:56:04,435 [INFO ][main            ][roller.TenderRenderingController] - {"id":12,"description":"JavatestInGAme","productId":1,"maxPrice":4.0,"customerId":1,"status":"DRAFT","expDate":"Aug 23, 2017 4:56:03 PM","volumeOfTender":888}
+2017-08-23 16:56:12,501 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderInGame$1@187b79e
+2017-08-23 16:58:28,000 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById
+2017-08-23 16:58:28,008 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 12
+2017-08-23 16:58:33,515 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-08-23 16:58:44,723 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.updateById
+2017-08-23 16:58:44,731 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - Tender [id=12, description=JavatestInGAme, productId=1, maxPrice=4.0, customerId=1, status=DRAFT, expDate=Wed Aug 23 16:56:03 AST 2017, volumeOfTender=888]
+2017-08-23 16:58:44,731 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.updateById successfully finished
+2017-08-23 16:59:00,408 [INFO ][main            ][roller.TenderRenderingController] - execution TenderRenderingController.tenderInGame - change status IN_GAME
+2017-08-23 16:59:01,846 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.tenderInGame successfully finished
+2017-08-23 16:59:03,773 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.myTenderList
+2017-08-23 16:59:03,781 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderInGame$1@187b79e
+2017-08-23 16:59:03,789 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByCustomerId
+2017-08-23 16:59:03,789 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-23 16:59:03,992 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByCustomerId successfully finished
+2017-08-23 16:59:04,000 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.myTenderList successfully finished
+2017-08-23 17:02:57,345 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.lotCancel
+2017-08-23 17:02:57,354 [INFO ][main            ][roller.TenderRenderingController] - 12
+2017-08-23 17:02:57,356 [INFO ][main            ][roller.TenderRenderingController] - {"id":12,"description":"lotCancel","productId":1,"maxPrice":4.0,"customerId":1,"status":"DRAFT","expDate":"Aug 23, 2017 5:02:56 PM","volumeOfTender":777}
+2017-08-23 17:03:05,416 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderLotCancel$1@187b79e
+2017-08-23 17:04:42,727 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById
+2017-08-23 17:04:42,735 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 12
+2017-08-23 17:04:46,291 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-08-23 17:05:02,712 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.updateById
+2017-08-23 17:05:02,720 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - Tender [id=12, description=lotCancel, productId=1, maxPrice=4.0, customerId=1, status=DRAFT, expDate=Wed Aug 23 17:02:56 AST 2017, volumeOfTender=777]
+2017-08-23 17:05:02,720 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.updateById successfully finished
+2017-08-23 17:05:28,977 [INFO ][main            ][roller.TenderRenderingController] - execution TenderRenderingController.lotCancel - change status CANCELED
+2017-08-23 17:05:30,994 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.lotCancel successfully finished
+2017-08-23 17:05:32,123 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.myTenderList
+2017-08-23 17:05:32,123 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.jsontest.TenderLotCancel$1@187b79e
+2017-08-23 17:05:32,130 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByCustomerId
+2017-08-23 17:05:32,130 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-23 17:05:32,334 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByCustomerId successfully finished
+2017-08-23 17:05:32,342 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.myTenderList successfully finished
