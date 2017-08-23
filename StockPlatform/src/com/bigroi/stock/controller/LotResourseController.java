@@ -24,7 +24,7 @@ import com.google.gson.Gson;
 public class LotResourseController extends ResourseBeanException {
 
 	private static final Logger logger = Logger.getLogger(LotResourseController.class);
-	
+
 	@RequestMapping(value = "/MyLotListAuth.spr")
 	@ResponseBody
 	public String myLotList(@RequestParam("json") String json, HttpSession session) throws DaoException {
@@ -33,102 +33,90 @@ public class LotResourseController extends ResourseBeanException {
 		logger.info(session);
 		User userBean = new Gson().fromJson(json, User.class);
 		userBean = (User) session.getAttribute("user");
-			List<Lot> lots = DaoFactory.getLotDao().getBySellerId(userBean.getCompanyId());
-			logger.info("exection LotResourseController.myLotList successfully finished");
-			return new ResultBean(1, lots).toString();	
+		List<Lot> lots = DaoFactory.getLotDao().getBySellerId(userBean.getCompanyId());
+		logger.info("exection LotResourseController.myLotList successfully finished");
+		return new ResultBean(1, lots).toString();
 	}
 
 	@RequestMapping(value = "/LotFormAuth.spr")
 	@ResponseBody
-	public String getLot(@RequestParam("id") long id,
-			@RequestParam("jsonUser") String jsonUser,  
-			@RequestParam("jsonLot") String jsonLot,
-			HttpSession session) throws DaoException  {
+	public String getLot(@RequestParam("id") long id, @RequestParam("jsonUser") String jsonUser,
+			@RequestParam("jsonLot") String jsonLot, HttpSession session) throws DaoException {
 		logger.info("exection LotResourseController.getLot");
 		logger.info(id);
 		logger.info(jsonUser);
 		logger.info(jsonLot);
 		logger.info(session);
 		User userBean = new Gson().fromJson(jsonUser, User.class);
-			Lot lotBean = new Gson().fromJson(jsonLot, Lot.class);
-			if (id == -1) {
-				lotBean = new Lot();
-				 userBean = (User) session.getAttribute("user");
-				 lotBean.setSellerId(userBean.getCompanyId());
-				 lotBean.setStatus(Status.DRAFT);
-			} else {
-				lotBean = DaoFactory.getLotDao().getById(id);
-			}
-			logger.info("exection LotResourseController.getLot successfully finished");
-			return new ResultBean(1, lotBean).toString();
-		
+		Lot lotBean = new Gson().fromJson(jsonLot, Lot.class);
+		if (id == -1) {
+			lotBean = new Lot();
+			userBean = (User) session.getAttribute("user");
+			lotBean.setSellerId(userBean.getCompanyId());
+			lotBean.setStatus(Status.DRAFT);
+		} else {
+			lotBean = DaoFactory.getLotDao().getById(id);
+		}
+		logger.info("exection LotResourseController.getLot successfully finished");
+		return new ResultBean(1, lotBean).toString();
+
 	}
-	
+
 	@RequestMapping(value = "/LotSaveAuth.spr")
 	@ResponseBody
-	public String lotSave(@RequestParam("id") long id,
-			//@RequestParam("jsonUser") String jsonUser,
-			@RequestParam("jsonLot") String jsonLot,
-			 HttpSession session) throws DaoException, ParseException{
+	public String lotSave(@RequestParam("id") long id, @RequestParam("jsonLot") String jsonLot, 
+			HttpSession session) throws DaoException, ParseException {
 		logger.info("exection LotResourseController.lotSave");
 		logger.info(id);
-		//logger.info(jsonUser);
 		logger.info(jsonLot);
 		logger.info(session);
-		//User userBean = new Gson().fromJson(jsonUser, User.class);
-		//userBean = (User) session.getAttribute("user");
-		Lot lotBean = new Gson().fromJson(jsonLot, Lot.class);//TODO: падает перед проверкой  -1/1
-			if (id == -1) {
-				DaoFactory.getLotDao().add(lotBean);
-				id = lotBean.getId();
-				logger.info("exection LotResourseController.lotSave - 'lot.added.success', successfully finished");
-			} else {
-				lotBean.setId(id);
-				DaoFactory.getLotDao().updateById(lotBean);
-			}
-			logger.info("exection LotResourseController.lotSave - 'lot.update.success', successfully finished");
-			return new ResultBean(1, "lot.update.success").toString();
-		
+		Lot lotBean = new Gson().fromJson(jsonLot, Lot.class);
+		if (id == 0) {// TODO: тут переправил id == -1 на id == 0
+			DaoFactory.getLotDao().add(lotBean);
+			id = lotBean.getId();
+			logger.info("exection LotResourseController.lotSave - 'lot.added.success', successfully finished");
+		} else {
+			lotBean.setId(id);
+			DaoFactory.getLotDao().updateById(lotBean);
+		}
+		logger.info("exection LotResourseController.lotSave - 'lot.update.success', successfully finished");
+		return new ResultBean(1, "lot.update.success").toString();
 	}
-	
+
 	@RequestMapping(value = "/LotInGameAuthJSON.spr")
 	@ResponseBody
-	public String setLotInGame(@RequestParam("id") long id, HttpSession session) {
+	public String setLotInGame(@RequestParam("id") long id, @RequestParam("jsonLot") String jsonLot,
+			HttpSession session) throws DaoException {
 		logger.info("exection LotResourseController.setLotInGame");
 		logger.info(id);
+		logger.info(jsonLot);
 		logger.info(session);
-		try{
-			Lot lot = DaoFactory.getLotDao().getById(id);
-			if (lot.getStatus() == Status.DRAFT){
-				lot.setStatus(Status.IN_GAME);
-				DaoFactory.getLotDao().updateById(lot);
-			}
-			logger.info("exection LotResourseController.setLotInGame - 'lot.update.success', successfully finished");
-			return new ResultBean(1, "lot.update.success").toString();//nullPointerException
-		}catch(DaoException e){
-			logger.info("execution LotResourseController.lotSave - catch DaoException");
-			return new ResultBean(-1, e.getMessage()).toString();
+		Lot lotBean = new Gson().fromJson(jsonLot, Lot.class);
+		Lot lot = DaoFactory.getLotDao().getById(id);
+		if (lot.getStatus() == Status.DRAFT) {
+			lot.setStatus(Status.IN_GAME);
+			DaoFactory.getLotDao().updateById(lotBean);
 		}
+		logger.info("exection LotResourseController.setLotInGame - 'lot.update.success', successfully finished");
+		return new ResultBean(1, "lot.update.success").toString();
 	}
-	
-	
+
 	@RequestMapping(value = "/LotCancelAuthJSON.spr")
 	@ResponseBody
-	public String lotCancel(@RequestParam("id") long id) {
+	public String lotCancel(@RequestParam("id") long id, @RequestParam("jsonLot") String jsonLot) throws DaoException {
 		logger.info("exection LotResourseController.lotCancel");
 		logger.info(id);
-		try{
-			Lot lot = DaoFactory.getLotDao().getById(id);
-			if ((lot.getStatus() == Status.DRAFT) || (lot.getStatus() == Status.IN_GAME)){
-				lot.setStatus(Status.CANCELED);
-				DaoFactory.getLotDao().updateById(lot);
-			}
-			logger.info("exection LotResourseController.lotCancel - 'lot.update.success', successfully finished");
-			return new ResultBean(1, "lot.update.success").toString();//nullPointerException
-		}catch(DaoException e){
-			logger.info("execution LotResourseController.lotCancel - catch DaoException");
-			return new ResultBean(-1, e.getMessage()).toString();
+		logger.info(jsonLot);
+
+		Lot lotBean = new Gson().fromJson(jsonLot, Lot.class);
+		Lot lot = DaoFactory.getLotDao().getById(id);
+		if ((lot.getStatus() == Status.DRAFT) || (lot.getStatus() == Status.IN_GAME)) {
+			lot.setStatus(Status.CANCELED);
+			DaoFactory.getLotDao().updateById(lotBean);
 		}
+		logger.info("exection LotResourseController.lotCancel - 'lot.update.success', successfully finished");
+		return new ResultBean(1, "lot.update.success").toString();// nullPointerException
+
 	}
-	
+
 }

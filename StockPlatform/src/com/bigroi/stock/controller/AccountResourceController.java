@@ -60,7 +60,6 @@ public class AccountResourceController extends ResourseBeanException {
 		Company companyBean = new Gson().fromJson(jsonCompany, Company.class);
 		DaoFactory.getCompanyDao().updateById(companyBean);
 		// Object obj = goToAccountPage(jsonCompany, session);
-
 		logger.info("exection AccountResourceController.editAccount successfully finished");
 		return new ResultBean(1, goToAccountPage(jsonCompany, session)).toString();
 

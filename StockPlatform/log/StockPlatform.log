@@ -476,3 +476,110 @@
 2017-08-22 21:13:34 INFO: 1
 2017-08-22 21:13:34 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 22, 2017","status":"EXPIRED","volumeOfLot":400}
 2017-08-22 21:13:37 INFO: com.bigroi.stock.jsontest.LotSave$1@176d53b2
+2017-08-23 10:47:30 INFO: exection LotResourseController.lotSave
+2017-08-23 10:47:30 INFO: 1
+2017-08-23 10:47:30 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 10:47:49 INFO: com.bigroi.stock.jsontest.LotSave$1@187b79e
+2017-08-23 10:49:35 INFO: exection LotResourseController.lotSave
+2017-08-23 10:49:35 INFO: 1
+2017-08-23 10:49:35 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 10:49:44 INFO: com.bigroi.stock.jsontest.LotSave$1@187b79e
+2017-08-23 10:50:56 INFO: exection LotResourseController.lotSave
+2017-08-23 10:50:56 INFO: 1
+2017-08-23 10:50:56 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 10:51:06 INFO: com.bigroi.stock.jsontest.LotSave$1@187b79e
+2017-08-23 10:53:00 INFO: exection LotResourseController.lotSave
+2017-08-23 10:53:00 INFO: 1
+2017-08-23 10:53:00 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 10:53:11 INFO: com.bigroi.stock.jsontest.LotSave$1@1638935
+2017-08-23 10:59:01 INFO: exection LotResourseController.lotSave
+2017-08-23 10:59:01 INFO: 1
+2017-08-23 10:59:01 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 10:59:07 INFO: com.bigroi.stock.jsontest.LotSave$1@187b79e
+2017-08-23 11:15:14 INFO: exection LotResourseController.lotSave
+2017-08-23 11:15:14 INFO: 1
+2017-08-23 11:15:14 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"DRAFT","volumeOfLot":400}
+2017-08-23 11:15:14 INFO: com.bigroi.stock.jsontest.LotSetLotInGame$1@1638935
+2017-08-23 11:17:16 INFO: exection LotResourseController.lotSave
+2017-08-23 11:17:16 INFO: 1
+2017-08-23 11:17:16 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 11:17:16 INFO: com.bigroi.stock.jsontest.LotSave$1@1638935
+2017-08-23 11:18:06 INFO: exection LotResourseController.setLotInGame
+2017-08-23 11:18:06 INFO: 1
+2017-08-23 11:18:06 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"DRAFT","volumeOfLot":400}
+2017-08-23 11:18:06 INFO: com.bigroi.stock.jsontest.LotSetLotInGame$1@1be98f5
+2017-08-23 11:18:20 INFO: exection LotResourseController.lotSave
+2017-08-23 11:18:20 INFO: 1
+2017-08-23 11:18:20 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 11:18:20 INFO: com.bigroi.stock.jsontest.LotSave$1@1be98f5
+2017-08-23 11:24:19 INFO: exection LotResourseController.setLotInGame
+2017-08-23 11:24:19 INFO: 1
+2017-08-23 11:24:19 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"DRAFT","volumeOfLot":400}
+2017-08-23 11:24:35 INFO: com.bigroi.stock.jsontest.LotSetLotInGame$1@1638935
+2017-08-23 11:25:14 INFO: exection LotResourseController.setLotInGame
+2017-08-23 11:25:14 INFO: 1
+2017-08-23 11:25:14 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"Aug 23, 2017 11:25:13 AM","status":"DRAFT","volumeOfLot":400}
+2017-08-23 11:25:35 INFO: com.bigroi.stock.jsontest.LotSetLotInGame$1@60a8c0
+2017-08-23 11:26:04 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@b472aa: startup date [Wed Aug 23 11:26:04 AST 2017]; root of context hierarchy
+2017-08-23 11:26:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 11:27:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 11:27:22 INFO: exection LotDaoImpl.getById
+2017-08-23 11:27:22 INFO: 1
+2017-08-23 11:27:26 INFO: exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-08-23 11:28:57 INFO: exection LotResourseController.setLotInGame - 'lot.update.success', successfully finished
+2017-08-23 11:36:03 INFO: exection LotResourseController.lotSave
+2017-08-23 11:36:03 INFO: 1
+2017-08-23 11:36:03 INFO: {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"Aug 23, 2017 11:36:02 AM","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 11:36:10 INFO: com.bigroi.stock.jsontest.LotSave$1@60a8c0
+2017-08-23 11:36:45 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1e36e46: startup date [Wed Aug 23 11:36:45 AST 2017]; root of context hierarchy
+2017-08-23 11:36:51 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 11:37:48 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 11:37:56 INFO: exection LotDaoImpl.updateById
+2017-08-23 11:37:56 INFO: Lot [id=1, description=test, poductId=1, minPrice=10.0, salerId=1, expDate=Wed Aug 23 11:36:02 AST 2017, status=EXPIRED, volumeOfLot=400]
+2017-08-23 11:37:57 INFO: exection LotDaoImpl.updateById successfully finished
+2017-08-23 11:40:18 INFO: exection LotResourseController.lotSave - 'lot.update.success', successfully finished
+2017-08-23 11:41:37 INFO: exection LotResourseController.lotSave
+2017-08-23 11:41:37 INFO: -1
+2017-08-23 11:41:37 INFO: {"id":-1,"description":"test!!!!!!!!!!","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"Aug 23, 2017 11:41:36 AM","status":"EXPIRED","volumeOfLot":500}
+2017-08-23 11:41:54 INFO: com.bigroi.stock.jsontest.LotSave$1@60a8c0
+2017-08-23 11:42:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@b472aa: startup date [Wed Aug 23 11:42:11 AST 2017]; root of context hierarchy
+2017-08-23 11:42:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 11:43:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 11:43:21 INFO: exection LotDaoImpl.add
+2017-08-23 11:43:21 INFO: Lot [id=-1, description=test!!!!!!!!!!, poductId=1, minPrice=10.0, salerId=1, expDate=Wed Aug 23 11:41:36 AST 2017, status=EXPIRED, volumeOfLot=500]
+2017-08-23 11:43:24 INFO: exection LotDaoImpl.add successfully finished
+2017-08-23 11:43:33 INFO: exection LotResourseController.lotSave - 'lot.added.success', successfully finished
+2017-08-23 11:43:36 INFO: exection LotResourseController.lotSave - 'lot.update.success', successfully finished
+2017-08-23 11:45:08 INFO: exection LotResourseController.lotSave
+2017-08-23 11:45:08 INFO: 0
+2017-08-23 11:45:08 INFO: {"id":0,"description":"test Add","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"Aug 23, 2017 11:45:07 AM","status":"EXPIRED","volumeOfLot":600}
+2017-08-23 11:45:18 INFO: com.bigroi.stock.jsontest.LotSave$1@60a8c0
+2017-08-23 11:45:36 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1e36e46: startup date [Wed Aug 23 11:45:36 AST 2017]; root of context hierarchy
+2017-08-23 11:45:42 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 11:46:39 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 11:46:47 INFO: exection LotDaoImpl.updateById
+2017-08-23 11:46:47 INFO: Lot [id=0, description=test Add, poductId=1, minPrice=10.0, salerId=1, expDate=Wed Aug 23 11:45:07 AST 2017, status=EXPIRED, volumeOfLot=600]
+2017-08-23 11:46:47 INFO: exection LotDaoImpl.updateById successfully finished
+2017-08-23 11:46:53 INFO: exection LotResourseController.lotSave - 'lot.update.success', successfully finished
+2017-08-23 11:51:54 INFO: exection LotResourseController.lotSave
+2017-08-23 11:51:54 INFO: 0
+2017-08-23 11:51:54 INFO: {"id":0,"description":"test Add","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"Aug 23, 2017 11:51:53 AM","status":"EXPIRED","volumeOfLot":600}
+2017-08-23 11:52:01 INFO: com.bigroi.stock.jsontest.LotSave$1@60a8c0
+2017-08-23 11:52:44 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1e36e46: startup date [Wed Aug 23 11:52:44 AST 2017]; root of context hierarchy
+2017-08-23 11:52:50 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 11:53:49 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 11:53:57 INFO: exection LotDaoImpl.add
+2017-08-23 11:53:57 INFO: Lot [id=0, description=test Add, poductId=1, minPrice=10.0, salerId=1, expDate=Wed Aug 23 11:51:53 AST 2017, status=EXPIRED, volumeOfLot=600]
+2017-08-23 11:54:00 INFO: exection LotDaoImpl.add successfully finished
+2017-08-23 11:54:16 INFO: exection LotResourseController.lotSave - 'lot.added.success', successfully finished
+2017-08-23 11:54:21 INFO: exection LotResourseController.lotSave - 'lot.update.success', successfully finished
+2017-08-23 12:09:27 INFO: exection LotResourseController.lotCancel
+2017-08-23 12:09:27 INFO: 1
+2017-08-23 12:09:46 INFO: {"id":1,"description":"test Add","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"Aug 23, 2017 12:09:26 PM","status":"EXPIRED","volumeOfLot":600}
+2017-08-23 12:10:00 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@a638b5: startup date [Wed Aug 23 12:10:00 AST 2017]; root of context hierarchy
+2017-08-23 12:10:06 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-23 12:11:02 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-23 12:11:09 INFO: exection LotDaoImpl.getById
+2017-08-23 12:11:09 INFO: 1
+2017-08-23 12:11:13 INFO: exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-08-23 12:11:35 INFO: exection LotResourseController.lotCancel - 'lot.update.success', successfully finished

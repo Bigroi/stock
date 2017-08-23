@@ -19,33 +19,32 @@ import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.controller.LotResourseController;
 import com.bigroi.stock.dao.DaoException;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 public class LotSave {
 	
-	private static User user;
+	
 	private static Lot lot;
+	
 		
 		@BeforeClass
 		public static void init(){
-			/*user = new User();
-			user.setLogin("Admin");
-			user.setPassword("1");
-			user.setCompanyId(1);*/
+			
 			lot = new Lot();
-			lot.setId(1);
-			lot.setDescription("test");
+		//	lot.setId(1);//TODO: при такой записи lot.setPoductId(-1); в базу заносится ID -1
+			lot.setDescription("test Add");
 			lot.setPoductId(1);
 			lot.setMinPrice(10);
 			lot.setSellerId(1);
 			lot.setStatus(Status.EXPIRED);
-			lot.setExpDate(new Date(lot.getExpDate().getTime()));
-			lot.setVolumeOfLot(400);
+			//lot.setExpDate(new Date(lot.getExpDate().getTime()));
+			lot.setVolumeOfLot(600);
 		}
 
 		@Test
-		public void getLot() throws DaoException, ParseException{
+		public void lotSave() throws DaoException, ParseException{
 			LotResourseController res = new LotResourseController();
-			String result = res.lotSave(lot.getId(), /*new Gson().toJson(user),*/ new Gson().toJson(lot), new HttpSession() {
+			String result = res.lotSave(lot.getId(), new Gson().toJson(lot), new HttpSession() {
 
 				@Override
 				public void setMaxInactiveInterval(int arg0) {
@@ -145,7 +144,7 @@ public class LotSave {
 				@Override
 				public Object getAttribute(String arg0) {
 					
-					return lot;
+					return null;
 				}
 			});
 			

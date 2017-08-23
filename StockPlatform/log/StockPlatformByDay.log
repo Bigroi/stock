@@ -268,3 +268,92 @@
 2017-08-22 21:13:34,147 [INFO ][main            ][controller.LotResourseController] - 1
 2017-08-22 21:13:34,147 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 22, 2017","status":"EXPIRED","volumeOfLot":400}
 2017-08-22 21:13:37,304 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@176d53b2
+2017-08-23 10:47:30,789 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-23 10:47:30,796 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-23 10:47:30,796 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 10:47:49,551 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@187b79e
+2017-08-23 10:49:35,526 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-23 10:49:35,534 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-23 10:49:35,541 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 10:49:44,655 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@187b79e
+2017-08-23 10:50:56,542 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-23 10:50:56,550 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-23 10:50:56,550 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 10:51:06,846 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@187b79e
+2017-08-23 10:53:00,864 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-23 10:53:00,872 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-23 10:53:00,872 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 10:53:11,445 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@1638935
+2017-08-23 10:59:01,242 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-23 10:59:01,250 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-23 10:59:01,250 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 10:59:07,146 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@187b79e
+2017-08-23 11:15:14,525 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-23 11:15:14,525 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-23 11:15:14,533 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"DRAFT","volumeOfLot":400}
+2017-08-23 11:15:14,533 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSetLotInGame$1@1638935
+2017-08-23 11:17:16,480 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-23 11:17:16,488 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-23 11:17:16,488 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 11:17:16,488 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@1638935
+2017-08-23 11:18:06,540 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.setLotInGame
+2017-08-23 11:18:06,540 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-23 11:18:06,547 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"DRAFT","volumeOfLot":400}
+2017-08-23 11:18:06,547 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSetLotInGame$1@1be98f5
+2017-08-23 11:18:20,957 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-23 11:18:20,964 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-23 11:18:20,964 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 11:18:20,964 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@1be98f5
+2017-08-23 11:24:19,671 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.setLotInGame
+2017-08-23 11:24:19,671 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-23 11:24:19,671 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"рту 23, 2017","status":"DRAFT","volumeOfLot":400}
+2017-08-23 11:24:35,228 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSetLotInGame$1@1638935
+2017-08-23 11:25:14,766 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.setLotInGame
+2017-08-23 11:25:14,774 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-23 11:25:14,774 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"Aug 23, 2017 11:25:13 AM","status":"DRAFT","volumeOfLot":400}
+2017-08-23 11:25:35,375 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSetLotInGame$1@60a8c0
+2017-08-23 11:27:22,784 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById
+2017-08-23 11:27:22,791 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 1
+2017-08-23 11:27:26,741 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-08-23 11:28:57,468 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.setLotInGame - 'lot.update.success', successfully finished
+2017-08-23 11:36:03,938 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-23 11:36:03,946 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-23 11:36:03,954 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"Aug 23, 2017 11:36:02 AM","status":"EXPIRED","volumeOfLot":400}
+2017-08-23 11:36:10,682 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@60a8c0
+2017-08-23 11:37:56,846 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.updateById
+2017-08-23 11:37:56,846 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - Lot [id=1, description=test, poductId=1, minPrice=10.0, salerId=1, expDate=Wed Aug 23 11:36:02 AST 2017, status=EXPIRED, volumeOfLot=400]
+2017-08-23 11:37:57,005 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.updateById successfully finished
+2017-08-23 11:40:18,534 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave - 'lot.update.success', successfully finished
+2017-08-23 11:41:37,207 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-23 11:41:37,214 [INFO ][main            ][controller.LotResourseController] - -1
+2017-08-23 11:41:37,214 [INFO ][main            ][controller.LotResourseController] - {"id":-1,"description":"test!!!!!!!!!!","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"Aug 23, 2017 11:41:36 AM","status":"EXPIRED","volumeOfLot":500}
+2017-08-23 11:41:54,653 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@60a8c0
+2017-08-23 11:43:21,409 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.add
+2017-08-23 11:43:21,409 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - Lot [id=-1, description=test!!!!!!!!!!, poductId=1, minPrice=10.0, salerId=1, expDate=Wed Aug 23 11:41:36 AST 2017, status=EXPIRED, volumeOfLot=500]
+2017-08-23 11:43:24,352 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.add successfully finished
+2017-08-23 11:43:33,067 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave - 'lot.added.success', successfully finished
+2017-08-23 11:43:36,781 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave - 'lot.update.success', successfully finished
+2017-08-23 11:45:08,948 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-23 11:45:08,956 [INFO ][main            ][controller.LotResourseController] - 0
+2017-08-23 11:45:08,956 [INFO ][main            ][controller.LotResourseController] - {"id":0,"description":"test Add","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"Aug 23, 2017 11:45:07 AM","status":"EXPIRED","volumeOfLot":600}
+2017-08-23 11:45:18,619 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@60a8c0
+2017-08-23 11:46:47,274 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.updateById
+2017-08-23 11:46:47,274 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - Lot [id=0, description=test Add, poductId=1, minPrice=10.0, salerId=1, expDate=Wed Aug 23 11:45:07 AST 2017, status=EXPIRED, volumeOfLot=600]
+2017-08-23 11:46:47,439 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.updateById successfully finished
+2017-08-23 11:46:53,478 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave - 'lot.update.success', successfully finished
+2017-08-23 11:51:54,331 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave
+2017-08-23 11:51:54,338 [INFO ][main            ][controller.LotResourseController] - 0
+2017-08-23 11:51:54,386 [INFO ][main            ][controller.LotResourseController] - {"id":0,"description":"test Add","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"Aug 23, 2017 11:51:53 AM","status":"EXPIRED","volumeOfLot":600}
+2017-08-23 11:52:01,393 [INFO ][main            ][controller.LotResourseController] - com.bigroi.stock.jsontest.LotSave$1@60a8c0
+2017-08-23 11:53:57,645 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.add
+2017-08-23 11:53:57,645 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - Lot [id=0, description=test Add, poductId=1, minPrice=10.0, salerId=1, expDate=Wed Aug 23 11:51:53 AST 2017, status=EXPIRED, volumeOfLot=600]
+2017-08-23 11:54:00,373 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.add successfully finished
+2017-08-23 11:54:16,845 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave - 'lot.added.success', successfully finished
+2017-08-23 11:54:21,323 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotSave - 'lot.update.success', successfully finished
+2017-08-23 12:09:27,214 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotCancel
+2017-08-23 12:09:27,226 [INFO ][main            ][controller.LotResourseController] - 1
+2017-08-23 12:09:46,671 [INFO ][main            ][controller.LotResourseController] - {"id":1,"description":"test Add","poductId":1,"minPrice":10.0,"sellerId":1,"expDate":"Aug 23, 2017 12:09:26 PM","status":"EXPIRED","volumeOfLot":600}
+2017-08-23 12:11:09,872 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById
+2017-08-23 12:11:09,872 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 1
+2017-08-23 12:11:13,419 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-08-23 12:11:35,973 [INFO ][main            ][controller.LotResourseController] - exection LotResourseController.lotCancel - 'lot.update.success', successfully finished
