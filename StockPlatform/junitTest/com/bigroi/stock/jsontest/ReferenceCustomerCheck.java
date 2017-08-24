@@ -1,4 +1,4 @@
-package com.bigroi.stock.controller;
+package com.bigroi.stock.jsontest;
 
 import java.io.IOException;
 
@@ -9,6 +9,7 @@ import org.junit.Test;
 import com.bigroi.stock.bean.PreDeal;
 import com.bigroi.stock.bean.ResultBean;
 import com.bigroi.stock.bean.common.Action;
+import com.bigroi.stock.controller.ReferenceHandlingResourse;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.messager.MailManagerException;
 import com.google.gson.Gson;
