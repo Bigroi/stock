@@ -92,28 +92,36 @@ private static final Logger logger = Logger.getLogger(ReferenceHandling.class);
 	}
 	
 	@RequestMapping("/CustomerCheck.spr")
-	public ModelAndView customerCheck(@RequestParam("id") long id, @RequestParam("key") String key,
+	@ResponseBody
+	public String customerCheck(@RequestParam("id") long id, 
+			@RequestParam("jsonPredeal")  String jsonPredeal,
+			@RequestParam("key") String key,
 			@RequestParam("action") Action action) throws DaoException, IOException, MailManagerException {
 		logger.info("exection ReferenceHandling.customerCheck");
 		logger.info(id);
 		logger.info(key);
 		logger.info(action);
+		PreDeal beanPredeal = new Gson().fromJson(jsonPredeal, PreDeal.class);
+		Map<String,String> map = new HashMap<>();
 		String message = null;
 		preDeal = DaoFactory.getPreDealDao().getById(id);
 		if (preDeal == null) {
-			return new ModelAndView("approveLink", "message", EXPIRED_LINK);
+			map.put("message", EXPIRED_LINK);
+			return new ResultBean(1, map ).toString(); 
 		}
 		if (!preDeal.getCustomerHashCode().equals(key)) {
-			return new ModelAndView("approveLink", "message", WRONG_LINK);
+			map.put("message", WRONG_LINK);
+			return new ResultBean(1, map ).toString(); 
 		}
 		if (preDeal.getCustApprovBool()) {
-			return new ModelAndView("approveLink", "message", RECONFIRMATION);
+			map.put("message", RECONFIRMATION);
+			return new ResultBean(1, map ).toString();
 		}
 
 		switch (action) {
 		case APPROVE:
 			preDeal.setCustApprovBool(true);
-			DaoFactory.getPreDealDao().updateById(preDeal);
+			DaoFactory.getPreDealDao().updateById(beanPredeal);
 			if (preDeal.getSellerApprovBool()) {				
 				addDeal();				
 				setStatuses(Status.SUCCESS);				
@@ -126,12 +134,13 @@ private static final Logger logger = Logger.getLogger(ReferenceHandling.class);
 			addBlackList();
 			setStatuses(Status.IN_GAME);			
 			new Message().sendMessageCancelSeller(preDeal);
-			DaoFactory.getPreDealDao().deletedById(preDeal.getId());			
+			DaoFactory.getPreDealDao().deletedById(beanPredeal.getId());			
 			message = CANCEL_LINK;
 			break;
 		}
 		logger.info("exection ReferenceHandling.customerCheck successfully finished");
-		return new ModelAndView("approveLink", "message", message);
+		map.put("message", message);
+		return new ResultBean(1, map ).toString();
 	}
 
 	private void addBlackList() throws DaoException {

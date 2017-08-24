@@ -1096,3 +1096,45 @@
 2017-08-24 12:18:34 INFO: 4
 2017-08-24 12:18:34 INFO: exection PreDealDaoImpl.deletedById successfully finished
 2017-08-24 12:22:15 INFO: exection ReferenceHandling.sellerCheck successfully finished
+2017-08-24 12:55:09 INFO: exection ReferenceHandling.sellerCheck
+2017-08-24 12:55:09 INFO: 5
+2017-08-24 12:55:09 INFO: {"id":5,"sellerHashCode":"bbbb","customerHashCode":"cc","tenderId":11,"lotId":4,"sellerApprov":true,"custApprov":true,"dealDate":"Aug 24, 2017 12:55:08 PM"}
+2017-08-24 12:55:09 INFO: bbbb
+2017-08-24 12:55:09 INFO: APPROVE
+2017-08-24 12:55:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@ae9b55: startup date [Thu Aug 24 12:55:10 AST 2017]; root of context hierarchy
+2017-08-24 12:55:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-24 12:55:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-24 12:55:13 INFO: exection PreDealDaoImpl.getById
+2017-08-24 12:55:13 INFO: 5
+2017-08-24 12:55:15 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 12:55:28 INFO: exection ReferenceHandling.sellerCheck
+2017-08-24 12:55:28 INFO: 5
+2017-08-24 12:55:28 INFO: {"id":5,"sellerHashCode":"bbbb","customerHashCode":"cc","tenderId":11,"lotId":4,"sellerApprov":true,"custApprov":true,"dealDate":"Aug 24, 2017 12:55:27 PM"}
+2017-08-24 12:55:28 INFO: bbbb
+2017-08-24 12:55:28 INFO: APPROVE
+2017-08-24 12:55:29 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@ae9b55: startup date [Thu Aug 24 12:55:29 AST 2017]; root of context hierarchy
+2017-08-24 12:55:29 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-24 12:55:32 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-24 12:55:32 INFO: exection PreDealDaoImpl.getById
+2017-08-24 12:55:32 INFO: 5
+2017-08-24 12:55:33 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 12:56:12 INFO: exection ReferenceHandling.customerCheck
+2017-08-24 12:56:12 INFO: 5
+2017-08-24 12:56:12 INFO: bbbb
+2017-08-24 12:56:12 INFO: APPROVE
+2017-08-24 12:56:37 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@ae9b55: startup date [Thu Aug 24 12:56:36 AST 2017]; root of context hierarchy
+2017-08-24 12:56:43 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-24 12:57:45 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-24 12:57:52 INFO: exection PreDealDaoImpl.getById
+2017-08-24 12:57:52 INFO: 5
+2017-08-24 12:57:56 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 12:59:17 INFO: exection ReferenceHandling.customerCheck
+2017-08-24 12:59:17 INFO: 5
+2017-08-24 12:59:17 INFO: cc
+2017-08-24 12:59:17 INFO: APPROVE
+2017-08-24 12:59:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@ae9b55: startup date [Thu Aug 24 12:59:17 AST 2017]; root of context hierarchy
+2017-08-24 12:59:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-08-24 12:59:21 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-08-24 12:59:21 INFO: exection PreDealDaoImpl.getById
+2017-08-24 12:59:21 INFO: 5
+2017-08-24 12:59:23 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
