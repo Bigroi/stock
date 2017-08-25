@@ -30,17 +30,17 @@ private static final Logger logger = Logger.getLogger(ProductRenderingController
 		logger.info(id);
 		logger.info(json);
 		Map<String, Object> map = new HashMap<>();
-		Product productBean = new Gson().fromJson(json, Product.class);
+		Product product;
 		if (id == -1) {
-			productBean = new Product();
-			map.put("id", -1);
+			product = new Product();
+			product.setId(-1);
 			logger.info("execution ProductRenderingController.productEdit - create new product");
 		} else {
-			productBean = DaoFactory.getProductDao().getById(id);
-			map.put("id", productBean.getId());
+			product = DaoFactory.getProductDao().getById(id);
+			map.put("id", product.getId());
 			logger.info("execution ProductRenderingController.productEdit - get edited product");
 		}		
-		map.put("product", productBean);
+		map.put("product", product);
 		logger.info("exection ProductRenderingController.productEdit successfully finished");
 		return new ResultBean(1, map).toString();                   
 	}
@@ -53,15 +53,15 @@ private static final Logger logger = Logger.getLogger(ProductRenderingController
 		logger.info(id);
 		logger.info(json);
 		Product productBean = new Gson().fromJson(json, Product.class);
-		/*Product product = new Product(); //TODO: с этим работает,но не понимаю зачем создавать дублера.  
+		Product product = new Product();  
 		product.setName(productBean.getName());
-		product.setDescription(productBean.getDescription());*/
-		if (id == 0) {//TODO: исправил с -1 на 1
+		product.setDescription(productBean.getDescription());
+		if (id == -1) {
 			DaoFactory.getProductDao().add(productBean);
 			id = productBean.getId();
 			logger.info("execution ProductRenderingController.productSave - create new product");
 		} else {
-			productBean.setId(id);
+			product.setId(id);
 			DaoFactory.getProductDao().updateById(productBean);
 			logger.info("execution ProductRenderingController.productSave - update product");
 		}

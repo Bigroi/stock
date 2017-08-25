@@ -17,9 +17,9 @@ private static Product product;
 	@BeforeClass
 	public static void init(){
 		product = new Product();
-		//product.setId(1);
-		product.setName("test");
-		product.setDescription("testProd");
+		product.setId(1);
+		product.setName("!!!");
+		product.setDescription("!!!");
 	}
 	
 	@Test

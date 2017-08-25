@@ -17,7 +17,9 @@ public class ProductEdit {
 	@BeforeClass
 	public static void init(){
 		product = new Product();
-		product.setId(-1);
+		product.setId(6);
+		product.setName("test");
+		product.setDescription("testProd");
 	}
 	
 	@Test

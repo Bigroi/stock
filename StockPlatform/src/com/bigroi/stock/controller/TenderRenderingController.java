@@ -35,7 +35,7 @@ public class TenderRenderingController {
 			User user = (User) session.getAttribute("user");
 			tender.setCustomerId(user.getCompanyId());
 			tender.setStatus(Status.DRAFT);
-			model.addAttribute("id", -1);
+			tender.setId(-1);
 			logger.info("execution TenderRenderingController.tenderEdit - create new tender");
 		} else {
 			tender = DaoFactory.getTenderDao().getById(id);

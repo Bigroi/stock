@@ -1,0 +1,194 @@
+2017-08-24 11:41:22,404 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck
+2017-08-24 11:41:22,427 [INFO ][main            ][ock.controller.ReferenceHandling] - 1
+2017-08-24 11:41:22,427 [INFO ][main            ][ock.controller.ReferenceHandling] - {"id":1,"sellerHashCode":"qwerty","tenderId":0,"lotId":0,"sellerApprov":false,"custApprov":false,"dealDate":"Aug 24, 2017 11:41:20 AM"}
+2017-08-24 11:41:22,427 [INFO ][main            ][ock.controller.ReferenceHandling] - qwerty
+2017-08-24 11:41:40,500 [INFO ][main            ][ock.controller.ReferenceHandling] - APPROVE
+2017-08-24 11:43:50,278 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 11:43:50,286 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 1
+2017-08-24 11:43:54,706 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 11:48:12,541 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck
+2017-08-24 11:48:12,549 [INFO ][main            ][ock.controller.ReferenceHandling] - 1
+2017-08-24 11:48:12,549 [INFO ][main            ][ock.controller.ReferenceHandling] - {"id":1,"sellerHashCode":"qwerty","tenderId":0,"lotId":0,"sellerApprov":false,"custApprov":false,"dealDate":"Aug 24, 2017 11:48:11 AM"}
+2017-08-24 11:48:12,559 [INFO ][main            ][ock.controller.ReferenceHandling] - qwerty
+2017-08-24 11:48:29,954 [INFO ][main            ][ock.controller.ReferenceHandling] - APPROVE
+2017-08-24 11:50:31,258 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 11:50:31,266 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 1
+2017-08-24 11:50:34,907 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 11:51:55,280 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.updateById
+2017-08-24 11:51:55,288 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - PreDeal [id=1, sellerHashCode=qwerty, customerHashCode=null, tenderId=0, lotId=0, sellerApprov=false, custApprov=false, dealDate=Thu Aug 24 11:48:11 AST 2017]
+2017-08-24 11:51:55,303 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.updateById successfully finished
+2017-08-24 11:55:23,684 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck
+2017-08-24 11:55:23,692 [INFO ][main            ][ock.controller.ReferenceHandling] - 1
+2017-08-24 11:55:23,692 [INFO ][main            ][ock.controller.ReferenceHandling] - {"id":1,"sellerHashCode":"qwerty","customerHashCode":"qwerdfk","tenderId":1,"lotId":1,"sellerApprov":true,"custApprov":true,"dealDate":"Aug 24, 2017 11:55:22 AM"}
+2017-08-24 11:55:23,692 [INFO ][main            ][ock.controller.ReferenceHandling] - qwerty
+2017-08-24 11:55:23,692 [INFO ][main            ][ock.controller.ReferenceHandling] - APPROVE
+2017-08-24 11:55:27,457 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 11:55:27,457 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 1
+2017-08-24 11:55:28,803 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 11:56:03,252 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.updateById
+2017-08-24 11:56:03,260 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - PreDeal [id=1, sellerHashCode=qwerty, customerHashCode=qwerdfk, tenderId=1, lotId=1, sellerApprov=true, custApprov=true, dealDate=Thu Aug 24 11:55:22 AST 2017]
+2017-08-24 11:56:03,268 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.updateById successfully finished
+2017-08-24 11:56:28,585 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.addDeal
+2017-08-24 11:56:28,593 [INFO ][main            ][bigroi.stock.dao.db.DealsDaoImpl] - exection DealsDaoImpl.add
+2017-08-24 11:56:28,601 [INFO ][main            ][bigroi.stock.dao.db.DealsDaoImpl] - Deals [id=0, lotId=1, tenderId=1, dealsTime=Thu Aug 24 11:56:28 AST 2017]
+2017-08-24 11:56:28,870 [INFO ][main            ][bigroi.stock.dao.db.DealsDaoImpl] - exection DealsDaoImpl.add successfully finished
+2017-08-24 11:56:28,877 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.addDeal successfully finished
+2017-08-24 11:56:31,677 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.setStatuses
+2017-08-24 11:56:31,685 [INFO ][main            ][ock.controller.ReferenceHandling] - SUCCESS
+2017-08-24 11:56:31,685 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById
+2017-08-24 11:56:31,695 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 1
+2017-08-24 11:56:32,043 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-08-24 11:56:32,043 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.updateById
+2017-08-24 11:56:32,051 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - Lot [id=1, description=test, poductId=1, minPrice=10.0, salerId=1, expDate=2017-08-23 00:00:00.0, status=SUCCESS, volumeOfLot=400]
+2017-08-24 11:56:32,059 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.updateById successfully finished
+2017-08-24 11:56:32,278 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById
+2017-08-24 11:56:32,278 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-24 11:56:32,583 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-08-24 11:56:32,590 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.updateById
+2017-08-24 11:56:32,598 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - Tender [id=1, description=Javatest, productId=1, maxPrice=4.0, customerId=1, status=SUCCESS, expDate=2017-08-23 00:00:00.0, volumeOfTender=500]
+2017-08-24 11:56:32,598 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.updateById successfully finished
+2017-08-24 11:56:32,791 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.setStatuses successfully finished
+2017-08-24 11:56:49,882 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById
+2017-08-24 11:56:49,890 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 1
+2017-08-24 11:56:50,102 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-08-24 11:56:50,110 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById
+2017-08-24 11:56:50,110 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - 1
+2017-08-24 11:56:50,399 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-08-24 11:56:50,407 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById
+2017-08-24 11:56:50,415 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 1
+2017-08-24 11:56:50,594 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-08-24 11:56:50,594 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById
+2017-08-24 11:56:50,602 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - 1
+2017-08-24 11:56:50,787 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-08-24 11:56:50,787 [INFO ][main            ][bigroi.stock.dao.db.EmailDaoImpl] - exection EmailDaoImpl.add
+2017-08-24 11:56:50,794 [INFO ][main            ][bigroi.stock.dao.db.EmailDaoImpl] - Email [id=0, toEmail=abc@mail.ru, emailSublect=Bingo!!!, emailText=Вы и Ваш потенциальный партнер подтвердили сделку по вашему лоту №1]
+2017-08-24 11:56:51,005 [INFO ][main            ][bigroi.stock.dao.db.EmailDaoImpl] - exection EmailDaoImpl.add successfully finished
+2017-08-24 11:56:51,013 [INFO ][main            ][bigroi.stock.dao.db.EmailDaoImpl] - exection EmailDaoImpl.add
+2017-08-24 11:56:51,013 [INFO ][main            ][bigroi.stock.dao.db.EmailDaoImpl] - Email [id=0, toEmail=abc@mail.ru, emailSublect=Bingo!!!, emailText=Вы и Ваш потенциальный партнер подтвердили сделку по вашему лоту №1]
+2017-08-24 11:56:51,186 [INFO ][main            ][bigroi.stock.dao.db.EmailDaoImpl] - exection EmailDaoImpl.add successfully finished
+2017-08-24 11:57:31,885 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck successfully finished
+2017-08-24 11:59:18,042 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck
+2017-08-24 11:59:18,050 [INFO ][main            ][ock.controller.ReferenceHandling] - 1
+2017-08-24 11:59:18,058 [INFO ][main            ][ock.controller.ReferenceHandling] - {"id":1,"sellerHashCode":"qwerty","customerHashCode":"qwerdfk","tenderId":1,"lotId":1,"sellerApprov":true,"custApprov":true,"dealDate":"Aug 24, 2017 11:59:16 AM"}
+2017-08-24 11:59:18,058 [INFO ][main            ][ock.controller.ReferenceHandling] - qwerty
+2017-08-24 11:59:18,058 [INFO ][main            ][ock.controller.ReferenceHandling] - APPROVE
+2017-08-24 11:59:22,207 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 11:59:22,214 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 1
+2017-08-24 11:59:23,639 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 12:00:25,101 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck
+2017-08-24 12:00:25,109 [INFO ][main            ][ock.controller.ReferenceHandling] - 1
+2017-08-24 12:00:25,109 [INFO ][main            ][ock.controller.ReferenceHandling] - {"id":1,"sellerHashCode":"qwerty","customerHashCode":"qwerdfk","tenderId":1,"lotId":1,"sellerApprov":true,"custApprov":true,"dealDate":"Aug 24, 2017 12:00:23 PM"}
+2017-08-24 12:00:25,109 [INFO ][main            ][ock.controller.ReferenceHandling] - qwerty
+2017-08-24 12:00:25,109 [INFO ][main            ][ock.controller.ReferenceHandling] - APPROVE
+2017-08-24 12:00:29,335 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 12:00:29,335 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 1
+2017-08-24 12:00:30,752 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 12:04:31,708 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck
+2017-08-24 12:04:31,724 [INFO ][main            ][ock.controller.ReferenceHandling] - 1
+2017-08-24 12:04:31,724 [INFO ][main            ][ock.controller.ReferenceHandling] - {"id":1,"sellerHashCode":"qwerty","customerHashCode":"qwerdfk","tenderId":1,"lotId":1,"sellerApprov":true,"custApprov":true,"dealDate":"Aug 24, 2017 12:04:30 PM"}
+2017-08-24 12:04:31,724 [INFO ][main            ][ock.controller.ReferenceHandling] - qwerty
+2017-08-24 12:04:31,724 [INFO ][main            ][ock.controller.ReferenceHandling] - CANCEL
+2017-08-24 12:04:35,913 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 12:04:35,913 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 1
+2017-08-24 12:04:37,377 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 12:05:27,004 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck
+2017-08-24 12:05:27,012 [INFO ][main            ][ock.controller.ReferenceHandling] - 3
+2017-08-24 12:05:27,012 [INFO ][main            ][ock.controller.ReferenceHandling] - {"id":3,"sellerHashCode":"qwerty","customerHashCode":"qwerdfk","tenderId":1,"lotId":1,"sellerApprov":true,"custApprov":true,"dealDate":"Aug 24, 2017 12:05:25 PM"}
+2017-08-24 12:05:27,012 [INFO ][main            ][ock.controller.ReferenceHandling] - qwerty
+2017-08-24 12:05:27,021 [INFO ][main            ][ock.controller.ReferenceHandling] - CANCEL
+2017-08-24 12:05:31,665 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 12:05:31,665 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 3
+2017-08-24 12:05:33,160 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 12:07:45,618 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck
+2017-08-24 12:07:45,631 [INFO ][main            ][ock.controller.ReferenceHandling] - 3
+2017-08-24 12:07:45,631 [INFO ][main            ][ock.controller.ReferenceHandling] - {"id":3,"sellerHashCode":"qwerty","customerHashCode":"qwerdfk","tenderId":3,"lotId":3,"sellerApprov":true,"custApprov":true,"dealDate":"Aug 24, 2017 12:07:44 PM"}
+2017-08-24 12:07:45,631 [INFO ][main            ][ock.controller.ReferenceHandling] - qwerty
+2017-08-24 12:07:45,631 [INFO ][main            ][ock.controller.ReferenceHandling] - CANCEL
+2017-08-24 12:07:49,804 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 12:07:49,804 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 3
+2017-08-24 12:07:51,203 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 12:13:33,445 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck
+2017-08-24 12:13:33,453 [INFO ][main            ][ock.controller.ReferenceHandling] - 4
+2017-08-24 12:13:33,453 [INFO ][main            ][ock.controller.ReferenceHandling] - {"id":4,"sellerHashCode":"bb","customerHashCode":"cc","tenderId":3,"lotId":3,"sellerApprov":false,"custApprov":false,"dealDate":"Aug 24, 2017 12:13:32 PM"}
+2017-08-24 12:13:33,453 [INFO ][main            ][ock.controller.ReferenceHandling] - bb
+2017-08-24 12:13:33,453 [INFO ][main            ][ock.controller.ReferenceHandling] - CANCEL
+2017-08-24 12:13:37,682 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 12:13:37,690 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 4
+2017-08-24 12:13:39,250 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 12:17:34,716 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck
+2017-08-24 12:17:34,724 [INFO ][main            ][ock.controller.ReferenceHandling] - 4
+2017-08-24 12:17:34,724 [INFO ][main            ][ock.controller.ReferenceHandling] - {"id":4,"sellerHashCode":"xcvb","customerHashCode":"cc","tenderId":3,"lotId":3,"sellerApprov":false,"custApprov":false,"dealDate":"Aug 24, 2017 12:17:33 PM"}
+2017-08-24 12:17:34,724 [INFO ][main            ][ock.controller.ReferenceHandling] - xcvb
+2017-08-24 12:17:34,724 [INFO ][main            ][ock.controller.ReferenceHandling] - CANCEL
+2017-08-24 12:17:38,812 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 12:17:38,812 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 4
+2017-08-24 12:17:40,161 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 12:18:08,799 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.addBlackList
+2017-08-24 12:18:08,807 [INFO ][main            ][oi.stock.dao.db.BlacklistDaoImpl] - exection BlackListDaoImpl.add
+2017-08-24 12:18:08,815 [INFO ][main            ][oi.stock.dao.db.BlacklistDaoImpl] - Blacklist [id=0, tenderId=3, lotId=3]
+2017-08-24 12:18:09,089 [INFO ][main            ][oi.stock.dao.db.BlacklistDaoImpl] - exection BlackListDaoImpl.add successfully finished
+2017-08-24 12:18:09,089 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.addBlackList successfully finished
+2017-08-24 12:18:18,940 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.setStatuses
+2017-08-24 12:18:18,948 [INFO ][main            ][ock.controller.ReferenceHandling] - IN_GAME
+2017-08-24 12:18:18,948 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById
+2017-08-24 12:18:18,948 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 3
+2017-08-24 12:18:19,223 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-08-24 12:18:19,223 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.updateById
+2017-08-24 12:18:19,231 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - Lot [id=3, description=киви, poductId=111, minPrice=5.0, salerId=1, expDate=2017-06-28 00:00:00.0, status=IN_GAME, volumeOfLot=120]
+2017-08-24 12:18:19,239 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.updateById successfully finished
+2017-08-24 12:18:19,458 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById
+2017-08-24 12:18:19,458 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 3
+2017-08-24 12:18:19,759 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-08-24 12:18:19,767 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.updateById
+2017-08-24 12:18:19,767 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - Tender [id=3, description=дордло, productId=111, maxPrice=2.0, customerId=1, status=IN_GAME, expDate=2017-06-28 00:00:00.0, volumeOfTender=160]
+2017-08-24 12:18:19,775 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.updateById successfully finished
+2017-08-24 12:18:19,923 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.setStatuses successfully finished
+2017-08-24 12:18:26,735 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById
+2017-08-24 12:18:26,751 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - 3
+2017-08-24 12:18:26,908 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-08-24 12:18:26,908 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById
+2017-08-24 12:18:26,908 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - 1
+2017-08-24 12:18:27,193 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-08-24 12:18:27,201 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById
+2017-08-24 12:18:27,201 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 3
+2017-08-24 12:18:27,365 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-08-24 12:18:27,373 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById
+2017-08-24 12:18:27,373 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - 1
+2017-08-24 12:18:27,544 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-08-24 12:18:27,552 [INFO ][main            ][bigroi.stock.dao.db.EmailDaoImpl] - exection EmailDaoImpl.add
+2017-08-24 12:18:27,552 [INFO ][main            ][bigroi.stock.dao.db.EmailDaoImpl] - Email [id=0, toEmail=abc@mail.ru, emailSublect=Отказ от сделки., emailText=К сожалению, Ваш потенциальный партнер отказался от Вашего лота №3.]
+2017-08-24 12:18:27,719 [INFO ][main            ][bigroi.stock.dao.db.EmailDaoImpl] - exection EmailDaoImpl.add successfully finished
+2017-08-24 12:18:34,330 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.deletedById
+2017-08-24 12:18:34,337 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 4
+2017-08-24 12:18:34,337 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.deletedById successfully finished
+2017-08-24 12:22:15,500 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck successfully finished
+2017-08-24 12:55:09,971 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck
+2017-08-24 12:55:09,979 [INFO ][main            ][ock.controller.ReferenceHandling] - 5
+2017-08-24 12:55:09,979 [INFO ][main            ][ock.controller.ReferenceHandling] - {"id":5,"sellerHashCode":"bbbb","customerHashCode":"cc","tenderId":11,"lotId":4,"sellerApprov":true,"custApprov":true,"dealDate":"Aug 24, 2017 12:55:08 PM"}
+2017-08-24 12:55:09,979 [INFO ][main            ][ock.controller.ReferenceHandling] - bbbb
+2017-08-24 12:55:09,979 [INFO ][main            ][ock.controller.ReferenceHandling] - APPROVE
+2017-08-24 12:55:13,725 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 12:55:13,725 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 5
+2017-08-24 12:55:15,078 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 12:55:28,487 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.sellerCheck
+2017-08-24 12:55:28,495 [INFO ][main            ][ock.controller.ReferenceHandling] - 5
+2017-08-24 12:55:28,495 [INFO ][main            ][ock.controller.ReferenceHandling] - {"id":5,"sellerHashCode":"bbbb","customerHashCode":"cc","tenderId":11,"lotId":4,"sellerApprov":true,"custApprov":true,"dealDate":"Aug 24, 2017 12:55:27 PM"}
+2017-08-24 12:55:28,495 [INFO ][main            ][ock.controller.ReferenceHandling] - bbbb
+2017-08-24 12:55:28,502 [INFO ][main            ][ock.controller.ReferenceHandling] - APPROVE
+2017-08-24 12:55:32,577 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 12:55:32,577 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 5
+2017-08-24 12:55:33,978 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 12:56:12,935 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.customerCheck
+2017-08-24 12:56:12,943 [INFO ][main            ][ock.controller.ReferenceHandling] - 5
+2017-08-24 12:56:12,943 [INFO ][main            ][ock.controller.ReferenceHandling] - bbbb
+2017-08-24 12:56:12,951 [INFO ][main            ][ock.controller.ReferenceHandling] - APPROVE
+2017-08-24 12:57:52,933 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 12:57:52,933 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 5
+2017-08-24 12:57:56,552 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-08-24 12:59:17,563 [INFO ][main            ][ock.controller.ReferenceHandling] - exection ReferenceHandling.customerCheck
+2017-08-24 12:59:17,571 [INFO ][main            ][ock.controller.ReferenceHandling] - 5
+2017-08-24 12:59:17,571 [INFO ][main            ][ock.controller.ReferenceHandling] - cc
+2017-08-24 12:59:17,571 [INFO ][main            ][ock.controller.ReferenceHandling] - APPROVE
+2017-08-24 12:59:21,832 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById
+2017-08-24 12:59:21,839 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - 5
+2017-08-24 12:59:23,405 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getById return list.get(0), successfully finished

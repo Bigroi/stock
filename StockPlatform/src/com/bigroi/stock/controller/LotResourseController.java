@@ -1,7 +1,9 @@
 package com.bigroi.stock.controller;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -40,7 +42,8 @@ public class LotResourseController extends ResourseBeanException {
 
 	@RequestMapping(value = "/LotFormAuth.spr")
 	@ResponseBody
-	public String getLot(@RequestParam("id") long id, @RequestParam("jsonUser") String jsonUser,
+	public String lotEdit(@RequestParam("id") long id, 
+			@RequestParam("jsonUser") String jsonUser,
 			@RequestParam("jsonLot") String jsonLot, HttpSession session) throws DaoException {
 		logger.info("exection LotResourseController.getLot");
 		logger.info(id);
@@ -48,18 +51,23 @@ public class LotResourseController extends ResourseBeanException {
 		logger.info(jsonLot);
 		logger.info(session);
 		User userBean = new Gson().fromJson(jsonUser, User.class);
-		Lot lotBean = new Gson().fromJson(jsonLot, Lot.class);
+		Lot lot;
+		Map<String, Object> map = new HashMap<>();
 		if (id == -1) {
-			lotBean = new Lot();
+			lot = new Lot();
 			userBean = (User) session.getAttribute("user");
-			lotBean.setSellerId(userBean.getCompanyId());
-			lotBean.setStatus(Status.DRAFT);
+			lot.setSellerId(userBean.getCompanyId());
+			lot.setStatus(Status.DRAFT);
+			lot.setId(-1);
+			logger.info("execution LotRenderingController.lotEdit - create new lot");
 		} else {
-			lotBean = DaoFactory.getLotDao().getById(id);
+			lot = DaoFactory.getLotDao().getById(id);
+			map.put("id", lot.getId());
 		}
+		map.put("lot", lot);
+		map.put("listOfProducts", DaoFactory.getProductDao().getAllProduct());
 		logger.info("exection LotResourseController.getLot successfully finished");
-		return new ResultBean(1, lotBean).toString();
-
+		return new ResultBean(1, map).toString();
 	}
 
 	@RequestMapping(value = "/LotSaveAuth.spr")
@@ -71,9 +79,9 @@ public class LotResourseController extends ResourseBeanException {
 		logger.info(jsonLot);
 		logger.info(session);
 		Lot lotBean = new Gson().fromJson(jsonLot, Lot.class);
-		if (id == 0) {// TODO: тут переправил id == -1 на id == 0
-			DaoFactory.getLotDao().add(lotBean);
+		if (id == -1) {
 			id = lotBean.getId();
+			DaoFactory.getLotDao().add(lotBean);
 			logger.info("exection LotResourseController.lotSave - 'lot.added.success', successfully finished");
 		} else {
 			lotBean.setId(id);
@@ -115,8 +123,7 @@ public class LotResourseController extends ResourseBeanException {
 			DaoFactory.getLotDao().updateById(lotBean);
 		}
 		logger.info("exection LotResourseController.lotCancel - 'lot.update.success', successfully finished");
-		return new ResultBean(1, "lot.update.success").toString();// nullPointerException
-
+		return new ResultBean(1, "lot.update.success").toString();
 	}
 
 }

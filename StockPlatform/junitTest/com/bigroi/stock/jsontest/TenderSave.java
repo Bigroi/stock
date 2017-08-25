@@ -33,7 +33,7 @@ public class TenderSave {
 		user.setPassword("1");
 		user.setCompanyId(1);
 		tender = new Tender();
-		//tender.setId(1);
+		tender.setId(-1);
 		tender.setDescription("JavatestAdd");
 		tender.setProductId(1);
 		tender.setMaxPrice(4);

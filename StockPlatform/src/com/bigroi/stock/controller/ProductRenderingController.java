@@ -26,7 +26,7 @@ public class ProductRenderingController {
 		Product product;
 		if (id == -1) {
 			product = new Product();
-			model.addAttribute("id", -1);
+			product.setId(-1);
 			logger.info("execution ProductRenderingController.productEdit - create new product");
 		} else {
 			product = DaoFactory.getProductDao().getById(id);

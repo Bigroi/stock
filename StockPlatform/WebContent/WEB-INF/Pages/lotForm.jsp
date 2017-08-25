@@ -12,7 +12,7 @@
 
 	<form action="LotSaveAuth.spr" method="get">
 	
-		 <input type="hidden" name="id" value="${id}"> 
+		 <input type="hidden" name="id" value="${lot.id}"> 
 		 <input type="hidden" name="sellerId" value="${lot.sellerId}">
 		 <input type="hidden" name="status" value="${lot.status}">
 

@@ -37,7 +37,7 @@ public class LotRenderingController {
 			User user = (User) session.getAttribute("user");
 			lot.setSellerId(user.getCompanyId());
 			lot.setStatus(Status.DRAFT);
-			model.addAttribute("id", -1);
+			lot.setId(-1);
 			logger.info("execution LotRenderingController.lotEdit - create new lot");
 		} else {
 			lot = DaoFactory.getLotDao().getById(id);

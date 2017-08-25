@@ -13,11 +13,12 @@ import org.junit.Test;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.ResultBean;
 import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.controller.LotResourseController;
 import com.bigroi.stock.dao.DaoException;
 import com.google.gson.Gson;
 
-public class LotGetLot {
+public class LotEdit {
 	
 private static User user;
 private static Lot lot;
@@ -30,12 +31,19 @@ private static Lot lot;
 		user.setCompanyId(1);
 		lot = new Lot();
 		lot.setId(-1);
+		lot.setDescription("test Edit");
+		lot.setPoductId(1);
+		lot.setMinPrice(10);
+		lot.setSellerId(1);
+		lot.setStatus(Status.EXPIRED);
+		//lot.setExpDate(new Date(lot.getExpDate().getTime()));
+		lot.setVolumeOfLot(100);
 	}
 
 	@Test
 	public void getLot() throws DaoException{
 		LotResourseController res = new LotResourseController();
-		String result = res.getLot(lot.getId(), new Gson().toJson(user), new Gson().toJson(lot), new HttpSession() {
+		String result = res.lotEdit(lot.getId(), new Gson().toJson(user), new Gson().toJson(lot), new HttpSession() {
 
 			@Override
 			public void setMaxInactiveInterval(int arg0) {

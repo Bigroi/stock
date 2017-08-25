@@ -11,7 +11,7 @@
 <body>
 	<form action="TenderSaveAuth.spr">
 	
-		<input type="hidden" name="id" value="${id}"> 
+		<input type="hidden" name="id" value="${tender.id}"> 
 		<input type="hidden" name="customerId" value="${tender.customerId}">
 		<input type="hidden" name="status" value="${tender.status}">
 

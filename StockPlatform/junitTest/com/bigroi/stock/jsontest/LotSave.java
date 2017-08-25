@@ -31,8 +31,8 @@ public class LotSave {
 		public static void init(){
 			
 			lot = new Lot();
-		//	lot.setId(1);//TODO: при такой записи lot.setPoductId(-1); в базу заносится ID -1
-			lot.setDescription("test Add");
+		    lot.setId(-1);
+			lot.setDescription("test -1");
 			lot.setPoductId(1);
 			lot.setMinPrice(10);
 			lot.setSellerId(1);

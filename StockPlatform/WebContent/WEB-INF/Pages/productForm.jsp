@@ -12,7 +12,7 @@
 
 	<form action="ProductSave.spr">
 	
-		<input type="hidden" name="id" value="${id}"> <br>
+		<input type="hidden" name="id" value="${product.id}"> <br>
 		
 		name <input name="name" value="${product.name}"><br>
 		

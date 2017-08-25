@@ -61,7 +61,7 @@ public class TenderResourseController extends ResourseBeanException {
 		logger.info(json);
 		logger.info(session);
 		Tender tenderBean = new Gson().fromJson(json, Tender.class);
-		if (id == 0) {// TODO: сменил с id == -1 на id == 0
+		if (id == -1) {
 			DaoFactory.getTenderDao().add(tenderBean);
 			id = tenderBean.getId();
 			logger.info("execution TenderRenderingController.tenderSave - save new tender");
