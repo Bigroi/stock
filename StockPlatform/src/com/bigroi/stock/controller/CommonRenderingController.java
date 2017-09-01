@@ -15,7 +15,7 @@ public class CommonRenderingController {
 	public ModelAndView goToWelcomePage() {
 		logger.info("exection CommonRenderingController.goToWelcomePage");
 		logger.info("exection CommonRenderingController.goToWelcomePage successfully finished");
-		return new ModelAndView("welcome");//welcome  // !JSON-test
+		return new ModelAndView("welcome");
 	}
 
 	@RequestMapping("/LoginPage.spr")

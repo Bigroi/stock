@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,10 +8,11 @@
 <title>Welcome page</title>
 </head>
 <body>
-   <p> WELCOME !!! ${user.login}</p>
-   <p><a href="LoginPage.spr">LOGIN</a> </p>
-   <p><a href="RegistrationPage.spr">Registration</a> </p>
-   <p><a href="AccounPageAuth.spr">Account</a> </p>
+   <p> WELCOME !!! ${user.login}</p>  
+   <a href="?lang=en">en</a> |  <a href="?lang=ru">ru</a>
+   <p><a href="LoginPage.spr"><spring:message code="label.login"/></a> </p>
+   <p><a href="RegistrationPage.spr"><spring:message code="label.registration"/></a> </p>
+   <p><a href="AccounPageAuth.spr"><spring:message code="label.account"/></a> </p>
    
     <ul>
     	<li><a href="ProductListPage.spr">Product list</a>
@@ -32,5 +34,7 @@
 			</form>
         </li>
 	</ul>
+	
+
 </body>
 </html>
