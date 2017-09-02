@@ -2,9 +2,11 @@ package com.bigroi.stock.controller;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 import org.springframework.cglib.core.Local;
 import org.springframework.context.ApplicationContext;
@@ -44,12 +46,19 @@ public class LocalizationResosurseController  {
 		//ApplicationContext context = new ClassPathXmlApplicationContext();//stockPlatform-servlet.xml
 		// context.getMessage(new Gson().toJson(json),new Object[]{}, new Locale(locale));
 		
-		messageSource.getMessage(new Gson().toJson(json),new Object[]{}, new Locale(locale));
-		Map<String, Object> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>();
+		@SuppressWarnings("unchecked")
+		List<String> keys = new Gson().fromJson(json, List.class); 
+		for (String key : keys){
+			String str = ResourceBundle.getBundle("messages", new Locale(locale)).getString("label.account");
+			map.put(key, str);
+		}
+//		messageSource.getMessage(new Gson().toJson(json),new Object[]{}, new Locale(locale));
+//		Map<String, Object> map = new HashMap<>();
 		//ReloadableResourceBundleMessageSource messageSource = new Gson().fromJson(json, ReloadableResourceBundleMessageSource.class);
 		//map.put("messageSource",messageSource.getBasenameSet());
 		//map.put("contextLocal", context);
-		map.put("messageLocal", messageSource);
+//		map.put("messageLocal", messageSource);
 		
 		return new ResultBean(1, map).toString();
 		

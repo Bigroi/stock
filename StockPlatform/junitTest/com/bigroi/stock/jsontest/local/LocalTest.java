@@ -1,5 +1,7 @@
 package com.bigroi.stock.jsontest.local;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import org.junit.Assert;
@@ -13,8 +15,7 @@ import com.google.gson.Gson;
 
 public class LocalTest {
 	
-	private static MessageSource messageSource;
-	private static String local;
+	private static String local = "ru";
 	
 	@BeforeClass
 	public static void init(){
@@ -24,10 +25,12 @@ public class LocalTest {
 	
 	@Test
 	public void testLocal(){
-		/*LocalizationResosurseController  res = new LocalizationResosurseController();
-		String result = res.getLocale(local, new Gson().toJson(messageSource));
+		LocalizationResosurseController  res = new LocalizationResosurseController();
+		List<String> list = new ArrayList<>();
+		list.add("label.registration");
+		String result = res.getLocale(local, new Gson().toJson(list));
 		ResultBean bean = new Gson().fromJson(result, ResultBean.class);
-		Assert.assertEquals(bean.getResult(), 1);*/
+		Assert.assertEquals(bean.getResult(), 1);
 	}
 
 }
