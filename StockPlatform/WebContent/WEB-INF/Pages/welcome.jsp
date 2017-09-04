@@ -15,22 +15,22 @@
    <p><a href="AccounPageAuth.spr"><spring:message code="label.account"/></a> </p>
    
     <ul>
-    	<li><a href="ProductListPage.spr">Product list</a>
+    	<li><a href="ProductListPage.spr"><spring:message code="label.productList"/></a>
     		<form action="ProductForm.spr">
 				<input type="hidden" name="id" value="-1" />
-				<p><input type="submit" value="Add product"></p>
+				<p><input type="submit" value="<spring:message code="label.button.AddProduct"/>"></p>
 			</form>
 		</li>
-        <li><a href="MyLotListAuth.spr">My lots list</a>
+        <li><a href="MyLotListAuth.spr"><spring:message code="label.myLotList"/></a>
         	<form action="LotFormAuth.spr">
 				<input type="hidden" name="id" value="-1" />
-				<p><input type="submit" value="Add lot"></p>	
+				<p><input type="submit" value="<spring:message code="label.button.AddLot"/>"></p>	
 			</form>
         </li>
-        <li><a href="MyTenderListAuth.spr">My tenders list</a>
+        <li><a href="MyTenderListAuth.spr"><spring:message code="label.tenderList"/></a>
         	<form action="TenderFormAuth.spr">
 				<input type="hidden" name="id" value="-1" />
-				<p><input type="submit" value="Add tender"></p>
+				<p><input type="submit" value="<spring:message code="label.button.AddTender"/>"></p>
 			</form>
         </li>
 	</ul>
