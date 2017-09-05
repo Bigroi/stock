@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 public class LocalizationResosurseController {
 
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/WelcomPageLocale.spr")
+	@RequestMapping(value = "/Locale.spr")
 	@ResponseBody
 	public String getLocale(String locale, String json) {
 		Map<String, String> map = new HashMap<>();
