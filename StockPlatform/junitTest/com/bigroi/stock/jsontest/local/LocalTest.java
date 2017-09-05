@@ -23,11 +23,11 @@ public class LocalTest {
 		list.add("label.account");
 		list.add("label.productList");
 		list.add("label.button.AddProduct");
-		list.add("label.button.label.myLotList");
+		list.add("label.myLotList");
 		list.add("label.button.AddLot");
 		list.add("label.tenderList");
 		list.add("label.button.AddTender");
-		String result = res.getWelcomPageLocale(local, new Gson().toJson(list));
+		String result = res.getLocale(local, new Gson().toJson(list));
 		ResultBean bean = new Gson().fromJson(result, ResultBean.class);
 		Assert.assertEquals(bean.getResult(), 1);
 	}
