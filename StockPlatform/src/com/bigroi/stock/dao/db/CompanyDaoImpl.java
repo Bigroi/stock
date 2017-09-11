@@ -36,7 +36,8 @@ public class CompanyDaoImpl implements CompanyDao {
 	private static final String UPDATE_COMPANY_BY_ID = "UPDATE company SET  name = ?, "
 			+ "email = ?, phone = ?, reg_number = ?, country = ?, city = ?, "
 			+ "status = ? WHERE id = ? ";
-		
+	private static final String SELECT_ALL_COMPANY_LIST ="SELECT id, name, email, "
+			+ "phone, reg_number, country, city, status FROM company";
 
 	private DataSource datasource;
 
@@ -109,6 +110,16 @@ public class CompanyDaoImpl implements CompanyDao {
 				company.getPhone(), company.getRegNumber(), company.getCountry(), 
 				company.getCity(),company.getStatus().name().toUpperCase(), 
 				company.getId()) == 1;
+	}
+
+	@Override
+	public List<Company> getAllCompany() throws DaoException {
+		logger.info("exection CompanyDaoImpl.getAllCompany");
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<Company> list = template.query(SELECT_ALL_COMPANY_LIST, 
+				new BeanPropertyRowMapper<Company>(Company.class));
+		logger.info("exection CompanyDaoImpl.getAllCompany successfully finished");
+		return list;
 	}
 
 }

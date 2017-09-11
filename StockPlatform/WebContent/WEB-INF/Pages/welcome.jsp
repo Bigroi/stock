@@ -33,6 +33,11 @@
 				<p><input type="submit" value="<spring:message code="label.button.AddTender"/>"></p>
 			</form>
         </li>
+        <li>
+        <a href="CompanyList.spr"> Company list with status</a>
+       
+        </li>
+        
 	</ul>
 	
 

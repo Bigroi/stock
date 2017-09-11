@@ -1,5 +1,7 @@
 package com.bigroi.stock.dao;
 
+import java.util.List;
+
 import com.bigroi.stock.bean.Company;
 
 public interface CompanyDao {
@@ -11,5 +13,7 @@ public interface CompanyDao {
 	boolean deletedById(long id) throws DaoException;
 
 	boolean updateById(Company company) throws DaoException;
+	
+	List<Company> getAllCompany() throws DaoException;
 
 }

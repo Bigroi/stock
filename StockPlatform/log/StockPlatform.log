@@ -1305,3 +1305,25 @@
 2017-09-01 14:45:06 INFO: Loading XML bean definitions from class path resource [stockPlatform-servlet.xml]
 2017-09-01 14:46:24 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1f205aa: startup date [Fri Sep 01 14:46:24 AST 2017]; root of context hierarchy
 2017-09-01 14:46:24 INFO: Loading XML bean definitions from class path resource [WEB-INF/stockPlatform-servlet.xml]
+2017-09-11 15:02:25 INFO: exection TenderRenderingController.myTenderList
+2017-09-11 15:02:25 INFO: com.bigroi.stock.controller.TenderRenderingController$1@a1bec0
+2017-09-11 15:02:25 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@79c6c6: startup date [Mon Sep 11 15:02:25 AST 2017]; root of context hierarchy
+2017-09-11 15:02:25 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-11 15:02:29 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-11 15:03:14 INFO: exection TenderRenderingController.myTenderList
+2017-09-11 15:03:16 INFO: com.bigroi.stock.controller.TenderRenderingController$1@d2dae5
+2017-09-11 15:03:31 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1bd930a: startup date [Mon Sep 11 15:03:31 AST 2017]; root of context hierarchy
+2017-09-11 15:03:37 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-11 15:04:43 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-11 15:07:05 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@147d241: startup date [Mon Sep 11 15:07:05 AST 2017]; root of context hierarchy
+2017-09-11 15:07:05 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-11 15:07:08 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-11 15:07:08 INFO: exection TenderDaoImpl.getByCustomerId
+2017-09-11 15:07:08 INFO: 0
+2017-09-11 15:07:09 INFO: exection TenderDaoImpl.getByCustomerId successfully finished
+2017-09-11 15:21:05 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1bc7afb: startup date [Mon Sep 11 15:21:05 AST 2017]; root of context hierarchy
+2017-09-11 15:21:06 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-11 15:21:09 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-11 15:22:03 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@14b199c: startup date [Mon Sep 11 15:22:03 AST 2017]; root of context hierarchy
+2017-09-11 15:22:03 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-11 15:22:07 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
