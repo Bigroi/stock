@@ -1327,3 +1327,36 @@
 2017-09-11 15:22:03 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@14b199c: startup date [Mon Sep 11 15:22:03 AST 2017]; root of context hierarchy
 2017-09-11 15:22:03 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
 2017-09-11 15:22:07 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-12 17:02:51 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Tue Sep 12 17:02:51 AST 2017]; root of context hierarchy
+2017-09-12 17:02:51 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-12 17:02:55 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-12 17:02:55 INFO: exection CompanyDaoImpl.updateById
+2017-09-12 17:02:55 INFO: Company [id=1, name=null, email=null, phone=null, regNumber=null, country=null, city=null, status=REVOKED]
+2017-09-12 17:02:56 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-09-12 17:14:41 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Tue Sep 12 17:14:41 AST 2017]; root of context hierarchy
+2017-09-12 17:14:42 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-12 17:14:44 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-12 17:14:46 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-09-12 17:14:46 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-09-12 17:26:44 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ca8de8: startup date [Tue Sep 12 17:26:44 AST 2017]; root of context hierarchy
+2017-09-12 17:26:44 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-12 17:26:47 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-12 17:27:20 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-09-12 17:27:21 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-09-12 17:28:27 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ca8de8: startup date [Tue Sep 12 17:28:27 AST 2017]; root of context hierarchy
+2017-09-12 17:28:28 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-12 17:28:31 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-12 17:28:31 INFO: exection CompanyDaoImpl.updateById
+2017-09-12 17:28:31 INFO: Company [id=10, name=null, email=null, phone=null, regNumber=null, country=null, city=null, status=REVOKED]
+2017-09-12 17:28:31 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-09-12 17:30:02 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ca8de8: startup date [Tue Sep 12 17:30:02 AST 2017]; root of context hierarchy
+2017-09-12 17:30:02 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-12 17:30:05 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-12 17:30:06 INFO: exection CompanyDaoImpl.updateById
+2017-09-12 17:30:06 INFO: Company [id=10, name=null, email=null, phone=null, regNumber=null, country=null, city=null, status=REVOKED]
+2017-09-12 17:30:06 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-09-12 17:42:39 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Tue Sep 12 17:42:39 AST 2017]; root of context hierarchy
+2017-09-12 17:42:39 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-12 17:42:42 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-12 17:42:43 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-09-12 17:42:44 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]

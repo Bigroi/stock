@@ -3,6 +3,7 @@ package com.bigroi.stock.dao;
 import java.util.List;
 
 import com.bigroi.stock.bean.Company;
+import com.bigroi.stock.bean.common.CompanyStatus;
 
 public interface CompanyDao {
 
@@ -15,5 +16,7 @@ public interface CompanyDao {
 	boolean updateById(Company company) throws DaoException;
 	
 	List<Company> getAllCompany() throws DaoException;
+
+	boolean updateStatus(Company company, long id);
 
 }

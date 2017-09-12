@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.bigroi.stock.bean.Company;
+import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
 import com.mysql.jdbc.Statement;
@@ -38,6 +39,8 @@ public class CompanyDaoImpl implements CompanyDao {
 			+ "status = ? WHERE id = ? ";
 	private static final String SELECT_ALL_COMPANY_LIST ="SELECT id, name, email, "
 			+ "phone, reg_number, country, city, status FROM company";
+	
+	private static final String UPDATE_COMPANY_BY_STATUS = "UPDATE company SET status = ? WHERE id = ? ";
 
 	private DataSource datasource;
 
@@ -121,5 +124,13 @@ public class CompanyDaoImpl implements CompanyDao {
 		logger.info("exection CompanyDaoImpl.getAllCompany successfully finished");
 		return list;
 	}
+
+	@Override
+	public boolean updateStatus(Company company, long id) {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		return template.update(UPDATE_COMPANY_BY_STATUS, company.getStatus(), company.getId()) == 1; 
+	}
+
+	
 
 }
