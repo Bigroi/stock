@@ -15,7 +15,7 @@ public class CompanyUpdateStatus {
 	public static void init(){
 		company = new Company();
 		company.setId(10);
-		company.setStatus(CompanyStatus.VERIFIED);
+		company.setStatus(CompanyStatus.REVOKED);
 		
 	}
 	

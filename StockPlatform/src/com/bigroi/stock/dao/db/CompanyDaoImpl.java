@@ -128,9 +128,9 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
 	public boolean updateStatus(Company company, long id) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_COMPANY_BY_STATUS, company.getStatus(), company.getId()) == 1; 
+		return template.update(UPDATE_COMPANY_BY_STATUS, company.getStatus().name().toUpperCase(),
+				company.getId()) == 1;
 	}
-
 	
 
 }

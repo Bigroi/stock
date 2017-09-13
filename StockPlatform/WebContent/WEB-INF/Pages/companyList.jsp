@@ -30,7 +30,9 @@
 					<td>${company.regNumber}</td>
 					<td>${company.country}</td>
 					<td>${company.city}</td>
+					
 					<td>${company.status}</td>
+					
 					<td>
 						<form action="ChangeStatus.spr">
 							<input type="hidden" name="id" value="${company.id }"> <input

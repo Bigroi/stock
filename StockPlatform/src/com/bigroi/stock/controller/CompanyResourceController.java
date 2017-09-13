@@ -1,15 +1,12 @@
 package com.bigroi.stock.controller;
 
-import java.io.PrintWriter;
+
 import java.util.List;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.tribes.group.Response;
-import org.apache.jasper.tagplugins.jstl.core.Redirect;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Company;
-import com.bigroi.stock.bean.Tender;
+
 import com.bigroi.stock.bean.User;
 import com.bigroi.stock.bean.common.CompanyStatus;
-import com.bigroi.stock.bean.common.Status;
+
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
@@ -42,28 +39,27 @@ public class CompanyResourceController {
 	}
 	
 	@RequestMapping("/ChangeStatus.spr")
-	public ModelAndView changeStatus(@RequestParam("id") long id, HttpSession session) throws DaoException {
-		session.getAttribute("user");
+	public ModelAndView changeStatus(@RequestParam("id") long id ) throws DaoException {
+		//session.getAttribute("user");
 		ModelMap model = new ModelMap();
-		Company company;
-		if (id > 0) {
+		Company company = new Company();;
+		if (id > -1) {
 			company = DaoFactory.getCompanyDao().getById(id);
-			model.put("id", company);
-			model.put("listOfStatus", DaoFactory.getCompanyDao().getAllCompany());
 		}
+		model.put("id", company);
+		model.put("listOfStatus",id);
+		model.put("FullListOfStatus", DaoFactory.getCompanyDao().getAllCompany());
 		return new ModelAndView("companyForm", model);
 	}
 	
 	@RequestMapping("/SaveStatus.spr")
-	public Company saveStatus(@RequestParam("id") long id, @RequestParam("status") CompanyStatus status ){
-		Company company = new Company();
-		company.setStatus(status);
-		if(id > 0){
+	public ModelAndView saveStatus(@RequestParam("id") long id, Company company ) throws DaoException{
+		if(id > -1){
 			company.setId(id);
-			//DaoFactory.getCompanyDao().updateStatus(company);
+			DaoFactory.getCompanyDao().updateStatus(company, id);
 		}
 	
-		return company;
+		return changeStatus(company.getId());
 		
 		
 		

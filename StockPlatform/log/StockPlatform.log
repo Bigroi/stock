@@ -1360,3 +1360,27 @@
 2017-09-12 17:42:42 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
 2017-09-12 17:42:43 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
 2017-09-12 17:42:44 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-09-13 12:50:05 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ca8de8: startup date [Wed Sep 13 12:50:05 AST 2017]; root of context hierarchy
+2017-09-13 12:50:05 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-13 12:50:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-13 12:50:50 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-09-13 12:50:51 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-09-13 12:55:50 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ca8de8: startup date [Wed Sep 13 12:55:50 AST 2017]; root of context hierarchy
+2017-09-13 12:55:51 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-13 12:55:54 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-13 12:56:13 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-09-13 12:56:14 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-09-13 12:58:22 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ca8de8: startup date [Wed Sep 13 12:58:22 AST 2017]; root of context hierarchy
+2017-09-13 12:58:23 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-13 12:58:26 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-13 13:00:09 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Sep 13 13:00:09 AST 2017]; root of context hierarchy
+2017-09-13 13:00:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-13 13:00:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-13 13:01:05 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Sep 13 13:01:05 AST 2017]; root of context hierarchy
+2017-09-13 13:01:05 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-13 13:01:08 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-09-13 13:01:09 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-09-13 13:01:10 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-09-13 13:01:56 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Sep 13 13:01:56 AST 2017]; root of context hierarchy
+2017-09-13 13:01:56 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-09-13 13:02:00 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
