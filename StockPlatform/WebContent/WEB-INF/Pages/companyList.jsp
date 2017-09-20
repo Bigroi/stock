@@ -30,9 +30,16 @@
 					<td>${company.regNumber}</td>
 					<td>${company.country}</td>
 					<td>${company.city}</td>
-					
 					<td>${company.status}</td>
-					
+					 <c:if test="${company.status eq 'REVOKED' }"> 
+						<td>
+							<form action="CancelApll.spr">
+								<input type="hidden" name="id" value="${company.id}"> <input
+									type="submit" value="Cancel all application" >
+							</form>
+						</td>
+					 </c:if> 
+
 					<td>
 						<form action="ChangeStatus.spr">
 							<input type="hidden" name="id" value="${company.id }"> <input
@@ -50,5 +57,7 @@
 	<form action="Index.spr">
 		<input type="submit" value="Back">
 	</form>
+	
+	
 </body>
 </html>

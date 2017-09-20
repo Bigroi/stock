@@ -2,6 +2,7 @@ package com.bigroi.stock.dao;
 
 import java.util.List;
 
+
 import com.bigroi.stock.bean.Lot;
 
 public interface LotDao {
@@ -21,5 +22,9 @@ public interface LotDao {
 	List<Lot> getByProductIdInGameOrderMinPrice(long productId) throws DaoException;
 	
 	List<Lot> getAllInGame() throws DaoException;
+
+	Lot setStatusCancel(Lot lot) throws DaoException;
+
+	
  
 }

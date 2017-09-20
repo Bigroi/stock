@@ -103,7 +103,7 @@ public class Lot {
 	@Override
 	public String toString() {
 		return "Lot [id=" + id + ", description=" + description + ", poductId=" + poductId + ", minPrice=" + minPrice
-				+ ", salerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + ", volumeOfLot=" + volumeOfLot +"]";
+				+ ", sallerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + ", volumeOfLot=" + volumeOfLot +"]";
 	}
 
 }

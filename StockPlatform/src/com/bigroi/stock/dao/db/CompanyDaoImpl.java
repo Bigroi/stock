@@ -15,7 +15,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.bigroi.stock.bean.Company;
-import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
 import com.mysql.jdbc.Statement;

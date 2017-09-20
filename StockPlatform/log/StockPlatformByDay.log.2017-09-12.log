@@ -1,0 +1,9 @@
+2017-09-12 17:02:55,922 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-09-12 17:02:55,930 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=1, name=null, email=null, phone=null, regNumber=null, country=null, city=null, status=REVOKED]
+2017-09-12 17:02:56,000 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-09-12 17:28:31,861 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-09-12 17:28:31,861 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=10, name=null, email=null, phone=null, regNumber=null, country=null, city=null, status=REVOKED]
+2017-09-12 17:28:31,900 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-09-12 17:30:06,174 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-09-12 17:30:06,182 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=10, name=null, email=null, phone=null, regNumber=null, country=null, city=null, status=REVOKED]
+2017-09-12 17:30:06,221 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished

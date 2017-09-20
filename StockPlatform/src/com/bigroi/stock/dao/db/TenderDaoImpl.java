@@ -55,6 +55,10 @@ public class TenderDaoImpl implements TenderDao{
 	private static final String SELECT_ALL_TENDER_IN_GAME = "SELECT id, description, "
 			+ " product_Id, max_price, customer_Id, status, exp_date, volume_of_tender FROM tender "
 			+ " WHERE status = 'IN_GAME' ";
+	
+	private static final String UPDATE_STATUS_BY_CUSTOMER_ID ="UPDATE tender SET status = 'CANCELED'"
+			+ " WHERE customer_Id = ?";
+			
 			
 	private DataSource datasource;
 
@@ -194,6 +198,13 @@ public class TenderDaoImpl implements TenderDao{
 		List<Tender> tender = template.query(SELECT_ALL_TENDER_IN_GAME, 
 				new BeanPropertyRowMapper<Tender>(Tender.class));
 		logger.info("exection TenderDaoImpl.getAllInGame successfully finished");
+		return tender;
+	}
+
+	@Override
+	public Tender setStatusCancel(Tender tender) {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		template.update(UPDATE_STATUS_BY_CUSTOMER_ID, tender.getCustomerId());
 		return tender;
 	}
 }
