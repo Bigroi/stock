@@ -22,7 +22,7 @@ import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
 @Controller
-public class CompanyResourceController {
+public class CompanyRenderingController {
 
 	@RequestMapping("/CompanyList.spr")
 	public ModelAndView getListCompanyAll(HttpSession session) throws DaoException {
@@ -41,6 +41,7 @@ public class CompanyResourceController {
 		// session.getAttribute("user");
 		ModelMap model = new ModelMap();
 		Company company = new Company();
+		
 		;
 		if (id > -1) {
 			company = DaoFactory.getCompanyDao().getById(id);
