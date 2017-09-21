@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.bigroi.stock.bean.Company;
+import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
 import com.mysql.jdbc.Statement;
@@ -39,7 +40,14 @@ public class CompanyDaoImpl implements CompanyDao {
 	private static final String SELECT_ALL_COMPANY_LIST ="SELECT id, name, email, "
 			+ "phone, reg_number, country, city, status FROM company";
 	
-	private static final String UPDATE_COMPANY_BY_STATUS = "UPDATE company SET status = ? WHERE id = ? ";
+	private static final String SET_STATUS_VERIFIED_BY_ID = "UPDATE company SET "
+			+ "status = '" + CompanyStatus.VERIFIED + "' WHERE id = ?";
+	
+	private static final String SET_STATUS_REVOKED_BY_ID = "UPDATE company SET "
+			+ "status = '" + CompanyStatus.REVOKED + "'  WHERE id = ?";
+	
+	private static final String SET_STATUS_NOT_VERIFIED_BY_ID = "UPDATE company SET "
+			+ "status = '" + CompanyStatus.NOT_VERIFIED + "'  WHERE id = ?";
 
 	private DataSource datasource;
 
@@ -125,10 +133,24 @@ public class CompanyDaoImpl implements CompanyDao {
 	}
 
 	@Override
-	public boolean updateStatus(Company company, long id) {
+	public Company setStatusVerified(Company company) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_COMPANY_BY_STATUS, company.getStatus().name().toUpperCase(),
-				company.getId()) == 1;
+		template.update(SET_STATUS_VERIFIED_BY_ID, company.getId());
+		return company;
+	}
+
+	@Override
+	public Company setStatusRevoked(Company company) {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		template.update(SET_STATUS_REVOKED_BY_ID, company.getId());
+		return company;
+	}
+
+	@Override
+	public Company setStatusNotVerified(Company company) {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		template.update(SET_STATUS_NOT_VERIFIED_BY_ID, company.getId());
+		return company;
 	}
 	
 

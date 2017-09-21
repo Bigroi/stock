@@ -31,6 +31,13 @@
 					<td>${company.country}</td>
 					<td>${company.city}</td>
 					<td>${company.status}</td>
+					<td>
+						<form action="ChangeStatus.spr">
+							<input type="hidden" name="id" value="${company.id }"> <input
+								type="submit" value="Change status">
+
+						</form>
+					</td>
 					 <c:if test="${company.status eq 'REVOKED' }"> 
 						<td>
 							<form action="CancelApll.spr">
@@ -39,15 +46,6 @@
 							</form>
 						</td>
 					 </c:if> 
-
-					<td>
-						<form action="ChangeStatus.spr">
-							<input type="hidden" name="id" value="${company.id }"> <input
-								type="submit" value="Change status">
-
-						</form>
-
-					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

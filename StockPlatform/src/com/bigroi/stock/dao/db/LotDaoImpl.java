@@ -57,8 +57,8 @@ public class LotDaoImpl implements LotDao {
 			+ " poduct_Id, min_price, seller_Id, status, exp_date, volume_of_lot FROM lot "
 			+ " WHERE status ='IN_GAME' ";
 	
-	private static final String UPDATE_STATUS_BY_SELLER_ID ="UPDATE lot SET status = 'CANCELED' "
-			+ "WHERE seller_Id = ?";
+	private static final String UPDATE_STATUS_BY_SELLER_ID ="UPDATE lot SET"
+			+ " status = '" + Status.CANCELED + "' WHERE seller_Id = ?";
 	
 	private DataSource datasource;
 
@@ -204,10 +204,10 @@ public class LotDaoImpl implements LotDao {
 	}
 
 	@Override
-	public  Lot setStatusCancel(Lot lot) throws DaoException {
+	public  boolean setStatusCancel(long sellerId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		  template.update(UPDATE_STATUS_BY_SELLER_ID, lot.getSellerId());
-		return lot;
+		return  template.update(UPDATE_STATUS_BY_SELLER_ID, sellerId) == 1;
+		 
 	}
 
 	

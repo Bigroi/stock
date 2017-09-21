@@ -17,6 +17,12 @@ public interface CompanyDao {
 	
 	List<Company> getAllCompany() throws DaoException;
 
-	boolean updateStatus(Company company, long id);
+	Company setStatusVerified(Company company);
+
+	Company setStatusRevoked(Company company);
+
+	Company setStatusNotVerified(Company company);
+
+	
 
 }

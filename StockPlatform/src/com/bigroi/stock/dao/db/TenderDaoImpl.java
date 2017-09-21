@@ -56,8 +56,8 @@ public class TenderDaoImpl implements TenderDao{
 			+ " product_Id, max_price, customer_Id, status, exp_date, volume_of_tender FROM tender "
 			+ " WHERE status = 'IN_GAME' ";
 	
-	private static final String UPDATE_STATUS_BY_CUSTOMER_ID ="UPDATE tender SET status = 'CANCELED'"
-			+ " WHERE customer_Id = ?";
+	private static final String UPDATE_STATUS_BY_CUSTOMER_ID ="UPDATE tender SET "
+			+ "status = '" + Status.CANCELED + "' WHERE customer_Id = ?";
 			
 			
 	private DataSource datasource;
@@ -202,9 +202,9 @@ public class TenderDaoImpl implements TenderDao{
 	}
 
 	@Override
-	public Tender setStatusCancel(Tender tender) {
+	public boolean setStatusCancel( long customerId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_STATUS_BY_CUSTOMER_ID, tender.getCustomerId());
-		return tender;
+		return template.update(UPDATE_STATUS_BY_CUSTOMER_ID, customerId) == 1;
+		
 	}
 }

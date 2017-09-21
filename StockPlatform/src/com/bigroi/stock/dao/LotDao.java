@@ -23,7 +23,7 @@ public interface LotDao {
 	
 	List<Lot> getAllInGame() throws DaoException;
 
-	Lot setStatusCancel(Lot lot) throws DaoException;
+	 boolean setStatusCancel( long sellerId) throws DaoException;
 
 	
  
