@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
+import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.Email;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.PreDeal;
 import com.bigroi.stock.bean.Tender;
+import com.bigroi.stock.bean.User;
 import com.bigroi.stock.bean.common.Action;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
@@ -29,6 +31,19 @@ public class Message {
 	private final static String EXPIRED_LINK_OPPONENT_FILE = "expiredLinkOpponentUTF8.txt";
 	private final static String CUSTOMER_CONFIRMATION_FILE = "customerConfirmationUTF8.txt";
 	private final static String SELLER_CONFIRMATION_FILE = "sellerConfirmationUTF8.txt";
+	private final static String CHANGE_USER_PASSWORD_FILE = "changeUserPasswordUTF8.txt";
+	
+	public void sendMessageChangeUserPass(User user) throws IOException, DaoException{	
+		getMessageFromFile(CHANGE_USER_PASSWORD_FILE);
+		Company company = DaoFactory.getCompanyDao().getById(user.getCompanyId());
+		String companyEmail = company.getEmail();
+		try {
+			MessagerFactory.getMailManager().send(companyEmail, subject, text.replaceAll("@login", user.getLogin() + " ").replaceAll("@password", user.getPassword()+ " "));
+		} catch (MailManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public void sendMessageSuccess(PreDeal preDeal) throws IOException, DaoException, MailManagerException {
 		getMessageFromFile(SUCCESS_LINK_FILE);
@@ -148,7 +163,5 @@ public class Message {
 		// TODO одним запросом
 		Tender tender = DaoFactory.getTenderDao().getById(preDeal.getTenderId());
 		customerEmail = DaoFactory.getCompanyDao().getById(tender.getCustomerId()).getEmail();
-
 	}
-
 }
