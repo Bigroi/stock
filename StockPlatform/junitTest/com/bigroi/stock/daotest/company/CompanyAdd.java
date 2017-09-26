@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.common.CompanyStatus;
-import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 

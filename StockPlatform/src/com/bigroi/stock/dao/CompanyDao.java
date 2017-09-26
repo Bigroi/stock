@@ -3,7 +3,7 @@ package com.bigroi.stock.dao;
 import java.util.List;
 
 import com.bigroi.stock.bean.Company;
-import com.bigroi.stock.bean.common.CompanyStatus;
+
 
 public interface CompanyDao {
 

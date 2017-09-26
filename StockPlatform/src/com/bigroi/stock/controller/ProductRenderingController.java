@@ -15,9 +15,9 @@ import com.bigroi.stock.dao.DaoFactory;
 
 @Controller
 public class ProductRenderingController {
-	
+
 	private static final Logger logger = Logger.getLogger(ProductRenderingController.class);
-	
+
 	@RequestMapping("/ProductForm.spr")
 	public ModelAndView productEdit(@RequestParam("id") long id) throws DaoException {
 		logger.info("exection ProductRenderingController.productEdit");
@@ -32,15 +32,14 @@ public class ProductRenderingController {
 			product = DaoFactory.getProductDao().getById(id);
 			model.addAttribute("id", product.getId());
 			logger.info("execution ProductRenderingController.productEdit - get edited product");
-		}		
+		}
 		model.addAttribute("product", product);
 		logger.info("exection ProductRenderingController.productEdit successfully finished");
 		return new ModelAndView("productForm", model);
 	}
-	
+
 	@RequestMapping("/ProductSave.spr")
-	public ModelAndView productSave(@RequestParam("id") long id, 
-			@RequestParam("name") String name,			
+	public ModelAndView productSave(@RequestParam("id") long id, @RequestParam("name") String name,
 			@RequestParam("description") String description) throws DaoException {
 		logger.info("exection ProductRenderingController.productSave");
 		logger.info(id);
@@ -58,11 +57,11 @@ public class ProductRenderingController {
 			DaoFactory.getProductDao().updateById(product);
 			logger.info("execution ProductRenderingController.productSave - update product");
 		}
-//		return productEdit(id);
+		// return productEdit(id);
 		logger.info("exection ProductRenderingController.productSave successfully finished");
 		return listOfProducts();
 	}
-	
+
 	@RequestMapping("/ProductListPage.spr")
 	public ModelAndView listOfProducts() throws DaoException {
 		logger.info("exection ProductRenderingController.listOfProducts");
@@ -70,7 +69,7 @@ public class ProductRenderingController {
 		logger.info("exection ProductRenderingController.listOfProducts successfully finished");
 		return new ModelAndView("productList", "listOfProducts", products);
 	}
-	
+
 	@RequestMapping("/TradeOffers.spr")
 	public ModelAndView tradeOffers(@RequestParam("id") long id) throws DaoException {
 		logger.info("exection ProductRenderingController.tradeOffers");
@@ -81,5 +80,48 @@ public class ProductRenderingController {
 		model.addAttribute("listOfTenders", DaoFactory.getTenderDao().getByProductIdInGameOrderMaxPriceDesc(id));
 		logger.info("exection ProductRenderingController.tradeOffers successfully finished");
 		return new ModelAndView("tradeOffers", model);
+	}
+
+	// -------------------------- controllers for admin's panel ------------------------------//
+
+	@RequestMapping("/ProductListAdmin.spr")
+	public ModelAndView listOfProductsForAdmin() throws DaoException {
+		List<Product> products = DaoFactory.getProductDao().getAllProduct();
+		return new ModelAndView("productListForAdmin", "listOfProducts", products);
+	}
+
+	@RequestMapping("/EditProduct.spr")
+	public ModelAndView editProduct(@RequestParam("id") long id) throws DaoException {
+		Product product;
+		ModelMap model = new ModelMap();
+		if (id != -1) {
+			product = DaoFactory.getProductDao().getById(id);
+		} else {
+			product = new Product();
+		}
+		model.put("product", product);
+		model.put("getId", id);
+		return new ModelAndView("productFormForAdmin", model);
+	}
+
+	@RequestMapping("/ProdSave.spr")
+	public ModelAndView prodSave(@RequestParam("id") long id, @RequestParam("name") String name,
+			@RequestParam("description") String description) throws DaoException {
+		Product product = new Product();
+		product.setName(name);
+		product.setDescription(description);
+		if (id != -1) {
+			DaoFactory.getProductDao().updateById(product);
+		} else {
+			DaoFactory.getProductDao().add(product);
+		}
+		return listOfProductsForAdmin();
+	}
+
+	@RequestMapping("/DeleteProduct.spr")
+	public ModelAndView prodDelete(@RequestParam("id") long id) throws DaoException {
+		DaoFactory.getProductDao().deletedById(id);
+		return listOfProductsForAdmin();
+
 	}
 }

@@ -40,6 +40,8 @@
         
 	</ul>
 	
+	<a href="ProductListAdmin.spr" > Product list for admin's panel</a>
+	
 
 </body>
 </html>
