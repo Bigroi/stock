@@ -120,13 +120,14 @@ public class ProductRenderingController {
 		logger.info(name);
 		logger.info(description);
 		Product product = new Product();
-		product.setId(id);
 		product.setName(name);
 		product.setDescription(description);
 		if (id != -1) {
+			product.setId(id);
 			DaoFactory.getProductDao().updateById(product);
 			logger.info("exection ProductRenderingController.prodSave - update product");
 		} else {
+			product.getId();
 			DaoFactory.getProductDao().add(product);
 			logger.info("exection ProductRenderingController.prodSave - create new a product");
 		}
