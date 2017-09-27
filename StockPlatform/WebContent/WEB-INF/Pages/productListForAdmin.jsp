@@ -6,6 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Product list for Admin</title>
+<script>
+	function noDelete() {
+		alert("Sorry, but it can't be temporarily deleted!");
+		return false;
+	}
+</script>
 </head>
 <body>
 	<p>Product list:</p>
@@ -31,7 +37,7 @@
 					<td>
 						<form action="DeleteProduct.spr" method="get">
 							<input type="hidden" name="id" value="${product.id}"> <input
-								type="submit" value="delete">
+								type="submit" value="delete" onclick="noDelete()">
 						</form>
 					</td>
 
@@ -45,8 +51,9 @@
 	<form action="EditProduct.spr" method="get">
 		<input type="hidden" name="id" value="-1"> <input
 			type="submit" value="add">
-	</form><br>
-	
+	</form>
+	<br>
+
 	<form action="Index.spr">
 		<input type="submit" value="Back">
 	</form>

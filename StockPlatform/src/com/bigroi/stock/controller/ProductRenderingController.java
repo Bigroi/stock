@@ -86,42 +86,63 @@ public class ProductRenderingController {
 
 	@RequestMapping("/ProductListAdmin.spr")
 	public ModelAndView listOfProductsForAdmin() throws DaoException {
+		logger.info("exection ProductRenderingController.listOfProductsForAdmin");
 		List<Product> products = DaoFactory.getProductDao().getAllProduct();
+		logger.info("exection ProductRenderingController.listOfProductsForAdmin successfully finished");
 		return new ModelAndView("productListForAdmin", "listOfProducts", products);
 	}
 
 	@RequestMapping("/EditProduct.spr")
 	public ModelAndView editProduct(@RequestParam("id") long id) throws DaoException {
+		logger.info("exection ProductRenderingController.editProduct");
+		logger.info(id);
 		Product product;
 		ModelMap model = new ModelMap();
 		if (id != -1) {
 			product = DaoFactory.getProductDao().getById(id);
+			logger.info("exection ProductRenderingController.editProduct - get product");
 		} else {
 			product = new Product();
+			logger.info("exection ProductRenderingController.editProduct - created new a product");
 		}
 		model.put("product", product);
 		model.put("getId", id);
+		logger.info("exection ProductRenderingController.editProduct successfully finished");
 		return new ModelAndView("productFormForAdmin", model);
 	}
 
 	@RequestMapping("/ProdSave.spr")
-	public ModelAndView prodSave(@RequestParam("id") long id, @RequestParam("name") String name,
+	public ModelAndView prodSave(@RequestParam("id") long id,
+			@RequestParam("name") String name,
 			@RequestParam("description") String description) throws DaoException {
+		logger.info("exection ProductRenderingController.prodSave");
+		logger.info(id);
+		logger.info(name);
+		logger.info(description);
 		Product product = new Product();
+		product.setId(id);
 		product.setName(name);
 		product.setDescription(description);
 		if (id != -1) {
 			DaoFactory.getProductDao().updateById(product);
+			logger.info("exection ProductRenderingController.prodSave - update product");
 		} else {
 			DaoFactory.getProductDao().add(product);
+			logger.info("exection ProductRenderingController.prodSave - create new a product");
 		}
+		logger.info("exection ProductRenderingController.prodSave successfully finished");
+		//return editProduct(product.getId());
 		return listOfProductsForAdmin();
 	}
 
 	@RequestMapping("/DeleteProduct.spr")
 	public ModelAndView prodDelete(@RequestParam("id") long id) throws DaoException {
-		DaoFactory.getProductDao().deletedById(id);
+		logger.info("exection ProductRenderingController.prodDelete");
+		logger.info(id);
+		//DaoFactory.getProductDao().deletedById(id);
+		logger.info("exection ProductRenderingController.prodDelete - delted product");
+		logger.info("exection ProductRenderingController.prodDelete successfully finished");
 		return listOfProductsForAdmin();
 
-	}
+	}	
 }
