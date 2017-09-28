@@ -24,13 +24,11 @@ import com.mysql.jdbc.Statement;
 public class ProductDaoImpl implements ProductDao {
 	
 	private static final Logger logger = Logger.getLogger(ProductDaoImpl.class);
-	
-	private static final Logger lOG = Logger.getLogger(ProductDaoImpl.class);
 
-	private static final String GET_ALL_PRODUCTS = "SELECT id, name, description FROM product ";
+	private static final String GET_ALL_PRODUCTS = "SELECT id, name, description, archive FROM product ";
 
-	private static final String ADD_PRODUCTS_BY_ID = "INSERT INTO product (id, name, description) " 
-	        + "VALUES (?, ?, ?)";
+	private static final String ADD_PRODUCTS_BY_ID = "INSERT INTO product (id, name, description, archive) " 
+	        + "VALUES (?, ?, ?, ?)";
 
 	private static final String DELETE_PRODUCTS_BY_ID = "DELETE FROM product WHERE id = ? ";
 
@@ -43,6 +41,14 @@ public class ProductDaoImpl implements ProductDao {
 	private static final String SELECT_PROUCTS_BY_PROUCTS_ID = "SELECT DISTINCT poduct_Id "
 			+ "FROM lot WHERE status = 'IN_GAME' AND poduct_Id IN"
 			+ " ( SELECT product_Id FROM tender WHERE status = 'IN_GAME')";
+	
+	private static final String SWITCH_ON_YES_BY_ID = "UPDATE product SET archive = 'Y' WHERE id = ?";
+	
+	private static final String SELECT_PRODUCTS_BY_YES = "SELECT id, name, description "
+			+ "FROM product WHERE archive = 'Y'";
+	
+	private static final String SELECT_PRODUCTS_BY_NO = "SELECT id, name, description "
+			+ "FROM product WHERE archive = 'N'";
 
 	private DataSource datasource;
 
@@ -59,7 +65,6 @@ public class ProductDaoImpl implements ProductDao {
 		logger.info("exection ProductDaoImpl.getAllProduct");
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Product> products = template.query(GET_ALL_PRODUCTS, new BeanPropertyRowMapper<Product>(Product.class));
-		lOG.debug(products);
 		logger.info("exection ProductDaoImpl.getAllProduct successfully finished");
 		return products;
 	}
@@ -77,6 +82,7 @@ public class ProductDaoImpl implements ProductDao {
 				ps.setLong(1, product.getId());
 				ps.setString(2, product.getName());
 				ps.setString(3, product.getDescription());
+				ps.setString(4, product.getArchiveData());
 				return ps;
 			}
 		}, keyHolder);
@@ -131,6 +137,28 @@ public class ProductDaoImpl implements ProductDao {
 			}
 		});
 		logger.info("exection ProductDaoImpl.getAllProductIdInGame successfully finished");
+		return products;
+	}
+
+	@Override
+	public void switchOnYes(long id) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		template.update(SWITCH_ON_YES_BY_ID,  id);
+	}
+
+	@Override
+	public List<Product> getArchiveYesProduct() throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<Product> products = template.query(SELECT_PRODUCTS_BY_YES,
+				new BeanPropertyRowMapper<>(Product.class));
+		return products;
+	}
+
+	@Override
+	public List<Product> getArchiveNoProduct() throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<Product> products = template.query(SELECT_PRODUCTS_BY_NO,
+				new BeanPropertyRowMapper<>(Product.class));
 		return products;
 	}
 }

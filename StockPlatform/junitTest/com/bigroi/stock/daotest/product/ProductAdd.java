@@ -16,9 +16,11 @@ public class ProductAdd {
 	@BeforeClass
 	public static void init() {
 		product = new Product();
-		product.setId(11);
-		product.setName("evgen");
+		product.setId(13);
+		product.setName("TEST_ARCHIVE");
 		product.setDescription("product");
+		product.setArchive(true);
+		
 	}
 
 	@Test
@@ -29,6 +31,6 @@ public class ProductAdd {
 
 	@After
 	public void delete() throws DaoException {
-		DaoFactory.getProductDao().deletedById(product.getId());
+		//DaoFactory.getProductDao().deletedById(product.getId());
 	}
 }

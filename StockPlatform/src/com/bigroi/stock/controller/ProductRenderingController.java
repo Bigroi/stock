@@ -1,5 +1,6 @@
 package com.bigroi.stock.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -87,9 +88,13 @@ public class ProductRenderingController {
 	@RequestMapping("/ProductListAdmin.spr")
 	public ModelAndView listOfProductsForAdmin() throws DaoException {
 		logger.info("exection ProductRenderingController.listOfProductsForAdmin");
-		List<Product> products = DaoFactory.getProductDao().getAllProduct();
+		List<Product> allProducts = new ArrayList<>();
+		List<Product> productsYes = DaoFactory.getProductDao().getArchiveYesProduct();
+		List<Product> productsNo = DaoFactory.getProductDao().getArchiveNoProduct();
+		allProducts.addAll(productsYes);
+		allProducts.addAll(productsNo);
 		logger.info("exection ProductRenderingController.listOfProductsForAdmin successfully finished");
-		return new ModelAndView("productListForAdmin", "listOfProducts", products);
+		return new ModelAndView("productListForAdmin", "listOfProducts", allProducts);
 	}
 
 	@RequestMapping("/EditProduct.spr")
@@ -128,6 +133,7 @@ public class ProductRenderingController {
 			logger.info("exection ProductRenderingController.prodSave - update product");
 		} else {
 			product.getId();
+			product.setArchive(true);
 			DaoFactory.getProductDao().add(product);
 			logger.info("exection ProductRenderingController.prodSave - create new a product");
 		}
@@ -141,6 +147,7 @@ public class ProductRenderingController {
 		logger.info("exection ProductRenderingController.prodDelete");
 		logger.info(id);
 		//DaoFactory.getProductDao().deletedById(id);
+		DaoFactory.getProductDao().switchOnYes(id);
 		logger.info("exection ProductRenderingController.prodDelete - delted product");
 		logger.info("exection ProductRenderingController.prodDelete successfully finished");
 		return listOfProductsForAdmin();

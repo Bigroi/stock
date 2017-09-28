@@ -37,7 +37,7 @@
 					<td>
 						<form action="DeleteProduct.spr" method="get">
 							<input type="hidden" name="id" value="${product.id}"> <input
-								type="submit" value="delete" onclick="noDelete()">
+								type="submit" value="delete" onclick="<!-- noDelete() -->">
 						</form>
 					</td>
 

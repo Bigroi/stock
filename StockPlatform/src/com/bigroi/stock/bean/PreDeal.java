@@ -10,9 +10,7 @@ public class PreDeal {
 	private static final String NO = "N";
 
 	private long id;
-	private String sellerHashCode;// TODO: fields
-									// sellerHashCode,customerHashCode,sellerApprov,custApprov,dealDate
-									// in DB ???
+	private String sellerHashCode;
 	private String customerHashCode;
 	private long tenderId;
 	private long lotId;
