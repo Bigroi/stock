@@ -3,6 +3,8 @@ package com.bigroi.stock.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Product;
+import com.bigroi.stock.bean.User;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
@@ -86,11 +89,18 @@ public class ProductRenderingController {
 	// -------------------------- controllers for admin's panel ------------------------------//
 
 	@RequestMapping("/ProductListAdmin.spr")
-	public ModelAndView listOfProductsForAdmin() throws DaoException {
+	public ModelAndView listOfProductsForAdmin(HttpSession session) throws DaoException {
 		logger.info("exection ProductRenderingController.listOfProductsForAdmin");
+		User user = (User) session.getAttribute("user");
 		List<Product> allProducts = new ArrayList<>();
-		List<Product> productsYes = DaoFactory.getProductDao().getArchiveYesProduct();
-		List<Product> productsNo = DaoFactory.getProductDao().getArchiveNoProduct();
+		List<Product> productsYes = new ArrayList<>();
+		List<Product> productsNo = new ArrayList<>();
+		if(user != null && user.getLogin().equals("Admin")){
+			 productsYes = DaoFactory.getProductDao().getArchiveYesProduct();
+			 productsNo = DaoFactory.getProductDao().getArchiveNoProduct();
+		}else if(user == null || !(user.getLogin().equals("Admin"))){
+			productsNo = DaoFactory.getProductDao().getArchiveNoProduct();
+		}
 		allProducts.addAll(productsYes);
 		allProducts.addAll(productsNo);
 		logger.info("exection ProductRenderingController.listOfProductsForAdmin successfully finished");
@@ -119,7 +129,8 @@ public class ProductRenderingController {
 	@RequestMapping("/ProdSave.spr")
 	public ModelAndView prodSave(@RequestParam("id") long id,
 			@RequestParam("name") String name,
-			@RequestParam("description") String description) throws DaoException {
+			@RequestParam("description") String description,
+			HttpSession session) throws DaoException {
 		logger.info("exection ProductRenderingController.prodSave");
 		logger.info(id);
 		logger.info(name);
@@ -133,24 +144,23 @@ public class ProductRenderingController {
 			logger.info("exection ProductRenderingController.prodSave - update product");
 		} else {
 			product.getId();
-			product.setArchive(true);
+			product.setArchive(false);
 			DaoFactory.getProductDao().add(product);
 			logger.info("exection ProductRenderingController.prodSave - create new a product");
 		}
 		logger.info("exection ProductRenderingController.prodSave successfully finished");
 		//return editProduct(product.getId());
-		return listOfProductsForAdmin();
+		return listOfProductsForAdmin(session);
 	}
 
 	@RequestMapping("/DeleteProduct.spr")
-	public ModelAndView prodDelete(@RequestParam("id") long id) throws DaoException {
+	public ModelAndView prodDelete(@RequestParam("id") long id, HttpSession session) throws DaoException {
 		logger.info("exection ProductRenderingController.prodDelete");
 		logger.info(id);
-		//DaoFactory.getProductDao().deletedById(id);
 		DaoFactory.getProductDao().switchOnYes(id);
 		logger.info("exection ProductRenderingController.prodDelete - delted product");
 		logger.info("exection ProductRenderingController.prodDelete successfully finished");
-		return listOfProductsForAdmin();
+		return listOfProductsForAdmin(session);
 
 	}	
 }

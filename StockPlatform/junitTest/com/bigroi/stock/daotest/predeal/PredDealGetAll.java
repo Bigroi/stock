@@ -30,7 +30,7 @@ private static PreDeal pred;
 	}
 	@Test
 	public void update() throws DaoException{
-		DaoFactory.getPreDealDao().getAllPreDeal();
+		System.out.println(DaoFactory.getPreDealDao().getAllPreDeal());
 	}
 
 }

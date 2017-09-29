@@ -1,26 +1,21 @@
-2017-09-28 14:59:09,274 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.add
-2017-09-28 14:59:09,282 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - Product [id=11, name=evgen, description=product, archive=true]
-2017-09-28 14:59:10,571 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.add successfully finished
-2017-09-28 15:01:23,907 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.add
-2017-09-28 15:01:23,907 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - Product [id=12, name=evgenN, description=product, archive=true]
-2017-09-28 15:01:25,063 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.add successfully finished
-2017-09-28 15:02:18,233 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.add
-2017-09-28 15:02:18,241 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - Product [id=12, name=TEST_ARCHIVE, description=product, archive=true]
-2017-09-28 15:02:38,440 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.add
-2017-09-28 15:02:38,448 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - Product [id=13, name=TEST_ARCHIVE, description=product, archive=true]
-2017-09-28 15:02:39,666 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.add successfully finished
-2017-09-28 15:14:30,258 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.updateById
-2017-09-28 15:14:30,261 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - Product [id=1, name=apple, description=product, archive=false]
-2017-09-28 15:14:30,293 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.updateById successfully finished
-2017-09-28 15:17:18,078 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
-2017-09-28 15:17:19,311 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
-2017-09-28 15:17:51,037 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
-2017-09-28 15:17:52,178 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
-2017-09-28 15:18:25,027 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
-2017-09-28 15:18:26,243 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
-2017-09-28 15:19:26,573 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
-2017-09-28 15:19:27,734 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
-2017-09-28 15:39:55,205 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
-2017-09-28 15:40:43,637 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
-2017-09-28 15:40:44,911 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
-2017-09-28 15:44:11,413 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-09-29 10:42:20,444 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.List<PreDeal>.getAllPreDeal
+2017-09-29 10:42:21,772 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getAllPreDeal successfully finished
+2017-09-29 11:28:51,586 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.List<PreDeal>.getAllPreDeal
+2017-09-29 11:28:52,993 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getAllPreDeal successfully finished
+2017-09-29 11:30:06,944 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.List<PreDeal>.getAllPreDeal
+2017-09-29 11:30:08,640 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getAllPreDeal successfully finished
+2017-09-29 11:31:06,939 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.List<PreDeal>.getAllPreDeal
+2017-09-29 11:31:08,212 [INFO ][main            ][groi.stock.dao.db.PreDealDaoImpl] - exection PreDealDaoImpl.getAllPreDeal successfully finished
+2017-09-29 11:36:38,003 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-09-29 11:36:39,341 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-09-29 11:37:36,733 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-09-29 11:37:37,928 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-09-29 11:38:39,464 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-09-29 11:38:40,909 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-09-29 11:39:16,410 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-09-29 11:39:17,738 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-09-29 11:39:46,575 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct
+2017-09-29 11:39:47,998 [INFO ][main            ][groi.stock.dao.db.ProductDaoImpl] - exection ProductDaoImpl.getAllProduct successfully finished
+2017-09-29 13:30:25,612 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.add
+2017-09-29 13:30:25,612 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - Lot [id=27, description=evgen!!!!!!!!!!!!, poductId=1, minPrice=10.0, sallerId=1, expDate=2017-09-29, status=DRAFT, volumeOfLot=123]
+2017-09-29 13:30:26,831 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.add successfully finished

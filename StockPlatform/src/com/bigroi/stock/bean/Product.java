@@ -8,10 +8,11 @@ public class Product {
 	private long id;
 	private String name;
 	private String description;
-	private boolean archive;
+	private  boolean archive;
 	
 	public String getArchiveData(){
-		if(this.archive){
+		
+		if(this.archive == false){
 			return NO;
 		}else{
 			return YES;
@@ -63,4 +64,6 @@ public class Product {
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", archive=" +archive +"] \n";
 	}
+	
+	
 }

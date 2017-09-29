@@ -124,6 +124,6 @@ public class PreDeal {
 	public String toString() {
 		return "PreDeal [id=" + id + ", sellerHashCode=" + sellerHashCode + ", customerHashCode=" + customerHashCode
 				+ ", tenderId=" + tenderId + ", lotId=" + lotId + ", sellerApprov=" + sellerApprov + ", custApprov="
-				+ custApprov + ", dealDate=" + dealDate + "]";
+				+ custApprov + ", dealDate=" + dealDate + "]\n";
 	}
 }
