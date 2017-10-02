@@ -3,23 +3,23 @@ package com.bigroi.stock.daotest.lot;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.bigroi.stock.bean.Company;
+import com.bigroi.stock.bean.Product;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
-public class LotSetStatus {
+public class LotSetStatusByProd {
 	
-	public static Company company;
+	public static Product prod;
 	
 	@BeforeClass
 	public static void init(){
-		company = new Company();
-		company.setId(1);
+		prod = new Product();
+		prod.setId(136);
 	}
 	
 	@Test
 	public void setStatus() throws DaoException{
-		DaoFactory.getLotDao().setStatusCancel(company.getId());
+		DaoFactory.getLotDao().setStatusCancelByProductId(prod.getId());
 	}
 
 }

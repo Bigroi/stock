@@ -152,6 +152,7 @@ public class CompanyDaoImpl implements CompanyDao {
 		template.update(SET_STATUS_NOT_VERIFIED_BY_ID, company.getId());
 		return company;
 	}
+
 	
 
 }

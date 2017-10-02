@@ -60,6 +60,9 @@ public class LotDaoImpl implements LotDao {
 	private static final String UPDATE_STATUS_BY_SELLER_ID ="UPDATE lot SET"
 			+ " status = '" + Status.CANCELED + "' WHERE seller_Id = ?";
 	
+	private static final String UPDATE_STATUS_BY_PRODUCT_ID ="UPDATE lot SET"
+			+ " status = '" + Status.CANCELED + "' WHERE poduct_Id = ?";
+	
 	private DataSource datasource;
 
 	public DataSource getDatasource() {
@@ -208,6 +211,12 @@ public class LotDaoImpl implements LotDao {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return  template.update(UPDATE_STATUS_BY_SELLER_ID, sellerId) == 1;
 		 
+	}
+
+	@Override
+	public boolean setStatusCancelByProductId(long productId) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		return template.update(UPDATE_STATUS_BY_PRODUCT_ID, productId) == 1;
 	}
 
 	

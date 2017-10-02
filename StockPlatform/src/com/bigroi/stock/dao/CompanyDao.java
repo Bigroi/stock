@@ -22,6 +22,7 @@ public interface CompanyDao {
 	Company setStatusRevoked(Company company);
 
 	Company setStatusNotVerified(Company company);
+	
 
 	
 

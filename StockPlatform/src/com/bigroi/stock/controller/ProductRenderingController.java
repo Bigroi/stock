@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.Product;
 import com.bigroi.stock.bean.User;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
+import com.bigroi.stock.messager.MailManagerException;
+import com.bigroi.stock.messager.MessagerFactory;
 
 @Controller
 public class ProductRenderingController {
@@ -149,15 +152,21 @@ public class ProductRenderingController {
 			logger.info("exection ProductRenderingController.prodSave - create new a product");
 		}
 		logger.info("exection ProductRenderingController.prodSave successfully finished");
-		//return editProduct(product.getId());
 		return listOfProductsForAdmin(session);
 	}
 
 	@RequestMapping("/DeleteProduct.spr")
-	public ModelAndView prodDelete(@RequestParam("id") long id, HttpSession session) throws DaoException {
+	public ModelAndView prodDelete(@RequestParam("id") long id, HttpSession session) throws DaoException, MailManagerException {
 		logger.info("exection ProductRenderingController.prodDelete");
 		logger.info(id);
+		User user = (User) session.getAttribute("user");
+		if(user != null){
 		DaoFactory.getProductDao().switchOnYes(id);
+		DaoFactory.getLotDao().setStatusCancelByProductId(id);
+		DaoFactory.getTenderDao().setStatusCancelByProductId(id);
+		Company company =  DaoFactory.getCompanyDao().getById(user.getCompanyId());
+		MessagerFactory.getMailManager().send(company.getEmail(), "deleteComapny", " some text");
+		}
 		logger.info("exection ProductRenderingController.prodDelete - delted product");
 		logger.info("exection ProductRenderingController.prodDelete successfully finished");
 		return listOfProductsForAdmin(session);

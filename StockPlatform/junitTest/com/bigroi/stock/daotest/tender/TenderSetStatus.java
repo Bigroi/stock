@@ -4,6 +4,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bigroi.stock.bean.Company;
+import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 
 public class TenderSetStatus {
@@ -17,7 +18,7 @@ public class TenderSetStatus {
 	}
 
 	@Test
-	public void setStatus() {
+	public void setStatus() throws DaoException {
 		DaoFactory.getTenderDao().setStatusCancel(company.getId());
 	}
 

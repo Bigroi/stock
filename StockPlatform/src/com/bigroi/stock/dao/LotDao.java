@@ -24,6 +24,8 @@ public interface LotDao {
 	List<Lot> getAllInGame() throws DaoException;
 
 	 boolean setStatusCancel( long sellerId) throws DaoException;
+	 
+	 boolean setStatusCancelByProductId(long productId) throws DaoException;
 
 	
  
