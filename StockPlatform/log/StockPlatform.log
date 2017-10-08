@@ -1615,3 +1615,1347 @@
 2017-10-02 14:58:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
 2017-10-02 14:58:18 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
 2017-10-02 14:58:18 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-10-06 13:37:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@17776a8: startup date [Fri Oct 06 13:37:16 EET 2017]; root of context hierarchy
+2017-10-06 13:37:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 13:37:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 13:37:17 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userDao' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'dataSource' of bean class [com.bigroi.stock.dao.db.UserDaoImpl]: Bean property 'dataSource' is not writable or has an invalid setter method. Did you mean 'datasource'?
+2017-10-06 13:43:16 INFO: exection UserDaoImpl.add
+2017-10-06 13:43:16 INFO: User [id=5, login=EvgenAdmin, password=123, companyId=12]
+2017-10-06 13:44:25 INFO: exection UserDaoImpl.add
+2017-10-06 13:44:25 INFO: User [id=5, login=EvgenAdmin, password=123, companyId=12]
+2017-10-06 13:45:20 INFO: exection UserDaoImpl.getAllUser
+2017-10-06 13:46:27 INFO: exection UserDaoImpl.getAllUser
+2017-10-06 13:47:02 INFO: exection UserDaoImpl.getAllUser
+2017-10-06 13:59:55 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 13:59:55 EET 2017]; root of context hierarchy
+2017-10-06 13:59:55 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 13:59:55 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 13:59:55 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userDao' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'dataSource' of bean class [com.bigroi.stock.dao.db.UserDaoImpl]: Bean property 'dataSource' is not writable or has an invalid setter method. Did you mean 'datasource'?
+2017-10-06 14:30:56 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 14:30:56 EET 2017]; root of context hierarchy
+2017-10-06 14:30:57 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 14:30:57 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 14:30:57 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userDao' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'dataSource' of bean class [com.bigroi.stock.dao.db.UserDaoImpl]: Bean property 'dataSource' is not writable or has an invalid setter method. Did you mean 'datasource'?
+2017-10-06 14:31:50 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 14:31:50 EET 2017]; root of context hierarchy
+2017-10-06 14:31:50 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 14:31:51 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 14:31:51 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userDao!!!!!!!' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'dataSource' of bean class [com.bigroi.stock.dao.db.UserDaoImpl]: Bean property 'dataSource' is not writable or has an invalid setter method. Did you mean 'datasource'?
+2017-10-06 14:33:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 14:33:14 EET 2017]; root of context hierarchy
+2017-10-06 14:33:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 14:33:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 14:33:15 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userDaoTest' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'dataSource' of bean class [com.bigroi.stock.dao.db.UserDaoImpl]: Bean property 'dataSource' is not writable or has an invalid setter method. Did you mean 'datasource'?
+2017-10-06 14:35:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 14:35:16 EET 2017]; root of context hierarchy
+2017-10-06 14:35:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 14:35:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 14:35:17 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userDao' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'dataSource' of bean class [com.bigroi.stock.dao.db.UserDaoImpl]: Bean property 'dataSource' is not writable or has an invalid setter method. Did you mean 'datasource'?
+2017-10-06 14:48:07 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 14:48:07 EET 2017]; root of context hierarchy
+2017-10-06 14:48:07 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 14:48:08 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Cannot resolve reference to bean 'dataSource' while setting bean property 'dataSource'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'dataSource' available
+2017-10-06 14:56:34 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 14:56:34 EET 2017]; root of context hierarchy
+2017-10-06 14:56:34 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 14:56:34 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Cannot resolve reference to bean 'dataSource' while setting bean property 'dataSource'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'dataSource' available
+2017-10-06 15:01:33 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 15:01:33 EET 2017]; root of context hierarchy
+2017-10-06 15:01:33 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 15:01:34 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 15:01:34 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'datasource' of bean class [org.springframework.jdbc.datasource.DataSourceTransactionManager]: Bean property 'datasource' is not writable or has an invalid setter method. Did you mean 'dataSource'?
+2017-10-06 15:02:19 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 15:02:19 EET 2017]; root of context hierarchy
+2017-10-06 15:02:19 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 15:02:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 15:02:19 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userDao' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'dataSource' of bean class [com.bigroi.stock.dao.db.UserDaoImpl]: Bean property 'dataSource' is not writable or has an invalid setter method. Did you mean 'datasource'?
+2017-10-06 15:02:36 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 15:02:36 EET 2017]; root of context hierarchy
+2017-10-06 15:02:36 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 15:02:36 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 15:02:36 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userDao' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'dataSource' of bean class [com.bigroi.stock.dao.db.UserDaoImpl]: Bean property 'dataSource' is not writable or has an invalid setter method. Did you mean 'datasource'?
+2017-10-06 15:03:57 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 15:03:57 EET 2017]; root of context hierarchy
+2017-10-06 15:03:57 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 15:03:58 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 15:03:58 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'datasource' of bean class [org.springframework.jdbc.datasource.DataSourceTransactionManager]: Bean property 'datasource' is not writable or has an invalid setter method. Did you mean 'dataSource'?
+2017-10-06 15:04:56 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 15:04:56 EET 2017]; root of context hierarchy
+2017-10-06 15:04:56 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 15:04:56 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 15:04:56 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'datasource' of bean class [org.springframework.jdbc.datasource.DataSourceTransactionManager]: Bean property 'datasource' is not writable or has an invalid setter method. Did you mean 'dataSource'?
+2017-10-06 15:05:55 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 15:05:55 EET 2017]; root of context hierarchy
+2017-10-06 15:05:55 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 15:05:55 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 15:05:55 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManagerTESTSETET' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'datasource' of bean class [org.springframework.jdbc.datasource.DataSourceTransactionManager]: Bean property 'datasource' is not writable or has an invalid setter method. Did you mean 'dataSource'?
+2017-10-06 16:12:03 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 16:12:03 EET 2017]; root of context hierarchy
+2017-10-06 16:12:03 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 16:12:04 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 16:12:04 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userDao' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'dataSource' of bean class [com.bigroi.stock.dao.db.UserDaoImpl]: Bean property 'dataSource' is not writable or has an invalid setter method. Did you mean 'datasource'?
+2017-10-06 16:13:41 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 16:13:41 EET 2017]; root of context hierarchy
+2017-10-06 16:13:41 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 16:13:42 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 16:13:42 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'datasource' of bean class [org.springframework.jdbc.datasource.DataSourceTransactionManager]: Bean property 'datasource' is not writable or has an invalid setter method. Did you mean 'dataSource'?
+2017-10-06 16:15:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 16:15:18 EET 2017]; root of context hierarchy
+2017-10-06 16:15:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 16:15:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 16:15:18 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'datasource' of bean class [org.springframework.jdbc.datasource.DataSourceTransactionManager]: Bean property 'datasource' is not writable or has an invalid setter method. Did you mean 'dataSource'?
+2017-10-06 16:26:54 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 16:26:54 EET 2017]; root of context hierarchy
+2017-10-06 16:26:54 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-06 16:26:55 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 16:26:55 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-dao.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'datasource' of bean class [org.springframework.jdbc.datasource.DataSourceTransactionManager]: Bean property 'datasource' is not writable or has an invalid setter method. Did you mean 'dataSource'?
+2017-10-06 16:32:45 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 16:32:45 EET 2017]; root of context hierarchy
+2017-10-06 16:32:45 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 16:32:46 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 16:32:46 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'datasource' of bean class [org.springframework.jdbc.datasource.DataSourceTransactionManager]: Bean property 'datasource' is not writable or has an invalid setter method. Did you mean 'dataSource'?
+2017-10-06 17:38:50 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Fri Oct 06 17:38:50 EET 2017]; root of context hierarchy
+2017-10-06 17:38:50 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-06 17:38:50 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-06 17:38:50 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'datasource' of bean class [org.springframework.jdbc.datasource.DataSourceTransactionManager]: Bean property 'datasource' is not writable or has an invalid setter method. Did you mean 'dataSource'?
+2017-10-07 08:06:04 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Sat Oct 07 08:06:04 EET 2017]; root of context hierarchy
+2017-10-07 08:06:04 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:06:05 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:06:05 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'datasource' of bean class [org.springframework.jdbc.datasource.DataSourceTransactionManager]: Bean property 'datasource' is not writable or has an invalid setter method. Did you mean 'dataSource'?
+2017-10-07 08:11:38 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Sat Oct 07 08:11:38 EET 2017]; root of context hierarchy
+2017-10-07 08:11:38 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:11:39 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Cannot resolve reference to bean 'datasource' while setting bean property 'datasource'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'datasource' available
+2017-10-07 08:13:57 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Sat Oct 07 08:13:57 EET 2017]; root of context hierarchy
+2017-10-07 08:13:57 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:13:58 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:13:58 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:13:58 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'datasource' of bean class [org.springframework.jdbc.datasource.DataSourceTransactionManager]: Bean property 'datasource' is not writable or has an invalid setter method. Did you mean 'dataSource'?
+2017-10-07 08:16:04 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Sat Oct 07 08:16:04 EET 2017]; root of context hierarchy
+2017-10-07 08:16:04 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:16:05 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:16:05 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:16:05 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'datasource' of bean class [org.springframework.jdbc.datasource.DataSourceTransactionManager]: Bean property 'datasource' is not writable or has an invalid setter method. Did you mean 'dataSource'?
+2017-10-07 08:17:54 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Sat Oct 07 08:17:54 EET 2017]; root of context hierarchy
+2017-10-07 08:17:54 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:17:54 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:17:54 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:17:54 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'datasource' of bean class [org.springframework.jdbc.datasource.DataSourceTransactionManager]: Bean property 'datasource' is not writable or has an invalid setter method. Did you mean 'dataSource'?
+2017-10-07 08:19:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Sat Oct 07 08:19:14 EET 2017]; root of context hierarchy
+2017-10-07 08:19:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:19:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:19:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:19:15 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.bigroi.stock.service.UserServiceImpl] for bean with name 'userService' defined in class path resource [spring-service.xml]; nested exception is java.lang.ClassNotFoundException: com.bigroi.stock.service.UserServiceImpl
+2017-10-07 08:22:09 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Sat Oct 07 08:22:09 EET 2017]; root of context hierarchy
+2017-10-07 08:22:09 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:09 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@568bf312: startup date [Sat Oct 07 08:22:10 EET 2017]; root of context hierarchy
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@258e2e41: startup date [Sat Oct 07 08:22:10 EET 2017]; root of context hierarchy
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@501edcf1: startup date [Sat Oct 07 08:22:10 EET 2017]; root of context hierarchy
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2f177a4b: startup date [Sat Oct 07 08:22:10 EET 2017]; root of context hierarchy
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@56528192: startup date [Sat Oct 07 08:22:10 EET 2017]; root of context hierarchy
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@49d904ec: startup date [Sat Oct 07 08:22:10 EET 2017]; root of context hierarchy
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@76508ed1: startup date [Sat Oct 07 08:22:10 EET 2017]; root of context hierarchy
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@384ad17b: startup date [Sat Oct 07 08:22:10 EET 2017]; root of context hierarchy
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@37afeb11: startup date [Sat Oct 07 08:22:10 EET 2017]; root of context hierarchy
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@130d63be: startup date [Sat Oct 07 08:22:10 EET 2017]; root of context hierarchy
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@397fbdb: startup date [Sat Oct 07 08:22:10 EET 2017]; root of context hierarchy
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:10 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:10 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2f4948e4: startup date [Sat Oct 07 08:22:10 EET 2017]; root of context hierarchy
+2017-10-07 08:22:10 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2a5c8d3f: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1e66f1f5: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ebd319f: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@152aa092: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@74455848: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@57af006c: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@bd4dc25: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4f2b503c: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4310d43: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@18df8434: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4b741d6d: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@35dab4eb: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7188af83: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4201c465: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@60f00693: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5dafbe45: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3bcd05cb: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@76b07f29: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3cfdd820: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1df8b5b8: startup date [Sat Oct 07 08:22:11 EET 2017]; root of context hierarchy
+2017-10-07 08:22:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@420a85c4: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@127a7a2e: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5cdec700: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@18e36d14: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@20f5281c: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@432038ec: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@172b013: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1800a575: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@32c726ee: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@34158c08: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4b6e2263: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3549bca9: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@59b38691: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@497486b3: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@49d3c823: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1817f1eb: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@24d09c1: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1d2bd371: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@ec2cc4: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@256f8274: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7ce97ee5: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@72ea6193: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@36f48b4: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1698ee84: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@662f5666: startup date [Sat Oct 07 08:22:12 EET 2017]; root of context hierarchy
+2017-10-07 08:22:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@41925502: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3a62c01e: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6b5894c8: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@58e6d4b8: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@162be91c: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@ab7a938: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@756cf158: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@89ff02e: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@40dd3977: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@18e7143f: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@66ea1466: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@552518c3: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7555b920: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2e185cd7: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@63f34b70: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5489c777: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@30c31dd7: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@20312893: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@21680803: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@610db97e: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@78e16155: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5aa360ea: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1af05b03: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6134ac4a: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@50b1f030: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@676f0a60: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@77e80a5e: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@d2387c8: startup date [Sat Oct 07 08:22:13 EET 2017]; root of context hierarchy
+2017-10-07 08:22:13 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@110844f6: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@32639b12: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3249a1ce: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@291120f4: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@73d69c0f: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4b6ac111: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@18fdb6cf: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@511d5d04: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6ad6fa53: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ddd3478: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6075b2d3: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4443ef6f: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5b022357: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@49aa766b: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4a7761b1: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@250b236d: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3be4f71: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@51b1a8f6: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1436a7ab: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@40368a46: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@59546cfe: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@de18f63: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@655523dd: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@48535004: startup date [Sat Oct 07 08:22:14 EET 2017]; root of context hierarchy
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45d6ef73: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@238acd0b: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@376e7531: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7de843ef: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@58e85c6f: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@64b7225f: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2b917fb0: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@446c3920: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4b7c4456: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3effd4f3: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4b1a43d8: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@719d35e8: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@43f0c2d1: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3681037: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2d0ecb24: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@154bd49b: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@e8ea697: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@71ad3d8a: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@702b06fb: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@42b28ff1: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@10358c32: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3727f0ee: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@69391e08: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1e86a5a7: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1894e40d: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@336206d8: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@64984b0f: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@146dcfe6: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@421056e5: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3ed7821: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15639440: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1305c126: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@67e13bd0: startup date [Sat Oct 07 08:22:15 EET 2017]; root of context hierarchy
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:15 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@51d387d3: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1a22e0ef: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1afd72ef: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5de6cf3a: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@671c4166: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@57435801: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3bd6ba24: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@24a86066: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5d96bdf8: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@444f44c5: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@423c5404: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3337d04c: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2e17a321: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f044c58: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2dfb885e: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@436bd4df: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3bc4ef12: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6a756082: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@10a98392: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2fd954f: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1a8b81e8: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@47768e74: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7c2924d7: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@518ddd3b: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4d0e54e0: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@753fd7a1: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5e99b9c: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5a545b0f: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@77f991c: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6a1d526c: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2539cd1c: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@9f674ac: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@781711b7: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@29050de5: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@42d6c12d: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1b0e9707: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@73613ae5: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:16 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@52226e57: startup date [Sat Oct 07 08:22:16 EET 2017]; root of context hierarchy
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@488f3dd1: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@17e0933c: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@60f21960: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5099c59b: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6003ad65: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4a1a256d: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@d13baac: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3d8d17a3: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@58fd1214: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5403799b: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@53747c4a: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1b3ab4f9: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7d0100ea: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@55acec99: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@515b9d4a: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@55c57422: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7455dacb: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2a140ce5: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2be818da: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7015ebef: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@608cd501: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1a21f43f: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4bf03fee: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@110e9982: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1f15e689: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@670342a2: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@55846997: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@339f3a55: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@361cd35c: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@448c92fc: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3312f4f4: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5a48da4f: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6aa7e176: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2ca3d826: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@61394494: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6870cfac: startup date [Sat Oct 07 08:22:17 EET 2017]; root of context hierarchy
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@581c9bb7: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@75e80a97: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1eeb5818: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@48e41b5d: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@16681017: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@70c29356: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4c4c7d6c: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@39449465: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@42cf6349: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7ac058a0: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@23ee2ccf: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@21f9c6ea: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@f559c74: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@78b0ec3a: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2a04ab05: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7f6b7426: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@423f8a73: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3b6c2be6: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@161d95c6: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4357524b: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@677cb96e: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@365cef67: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5cd8d029: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5fb7ab9c: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6b9697ae: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@49038f97: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6b3d9c38: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f8667bb: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6ce15112: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3a861417: startup date [Sat Oct 07 08:22:18 EET 2017]; root of context hierarchy
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:19 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1b3bec6c: startup date [Sat Oct 07 08:22:19 EET 2017]; root of context hierarchy
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:19 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@47f2c722: startup date [Sat Oct 07 08:22:19 EET 2017]; root of context hierarchy
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:19 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@65e4cb84: startup date [Sat Oct 07 08:22:19 EET 2017]; root of context hierarchy
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:19 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@39c7fb0b: startup date [Sat Oct 07 08:22:19 EET 2017]; root of context hierarchy
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:19 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@701d2b59: startup date [Sat Oct 07 08:22:19 EET 2017]; root of context hierarchy
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:19 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@e795a1d: startup date [Sat Oct 07 08:22:19 EET 2017]; root of context hierarchy
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:19 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@36d697ab: startup date [Sat Oct 07 08:22:19 EET 2017]; root of context hierarchy
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:19 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7910f355: startup date [Sat Oct 07 08:22:19 EET 2017]; root of context hierarchy
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:22:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:22:19 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3c3e363: startup date [Sat Oct 07 08:22:19 EET 2017]; root of context hierarchy
+2017-10-07 08:22:19 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:25:55 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@17776a8: startup date [Sat Oct 07 08:25:55 EET 2017]; root of context hierarchy
+2017-10-07 08:25:57 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:25:59 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:06 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:09 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6531a794: startup date [Sat Oct 07 08:26:09 EET 2017]; root of context hierarchy
+2017-10-07 08:26:09 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5f0fd5a0: startup date [Sat Oct 07 08:26:12 EET 2017]; root of context hierarchy
+2017-10-07 08:26:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:15 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@518caac3: startup date [Sat Oct 07 08:26:15 EET 2017]; root of context hierarchy
+2017-10-07 08:26:15 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2812b107: startup date [Sat Oct 07 08:26:18 EET 2017]; root of context hierarchy
+2017-10-07 08:26:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:20 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:21 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:21 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3370f42: startup date [Sat Oct 07 08:26:21 EET 2017]; root of context hierarchy
+2017-10-07 08:26:21 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:23 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:24 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:25 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f19ac19: startup date [Sat Oct 07 08:26:25 EET 2017]; root of context hierarchy
+2017-10-07 08:26:25 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:26 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:27 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:28 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5ddcc487: startup date [Sat Oct 07 08:26:28 EET 2017]; root of context hierarchy
+2017-10-07 08:26:28 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:29 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:30 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:31 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@132e0cc: startup date [Sat Oct 07 08:26:31 EET 2017]; root of context hierarchy
+2017-10-07 08:26:31 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:32 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:34 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:34 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@61fe30: startup date [Sat Oct 07 08:26:34 EET 2017]; root of context hierarchy
+2017-10-07 08:26:34 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:35 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:37 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:37 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2ef14fe: startup date [Sat Oct 07 08:26:37 EET 2017]; root of context hierarchy
+2017-10-07 08:26:37 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:39 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:40 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:40 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7e4204e2: startup date [Sat Oct 07 08:26:40 EET 2017]; root of context hierarchy
+2017-10-07 08:26:40 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:42 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:43 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:43 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5dcb4f5f: startup date [Sat Oct 07 08:26:43 EET 2017]; root of context hierarchy
+2017-10-07 08:26:43 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:45 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:46 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:46 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4748a0f9: startup date [Sat Oct 07 08:26:46 EET 2017]; root of context hierarchy
+2017-10-07 08:26:46 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:48 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:49 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:49 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@79c7532f: startup date [Sat Oct 07 08:26:49 EET 2017]; root of context hierarchy
+2017-10-07 08:26:49 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:51 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:52 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:52 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@222eb8aa: startup date [Sat Oct 07 08:26:52 EET 2017]; root of context hierarchy
+2017-10-07 08:26:52 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:54 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:55 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:56 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1d730606: startup date [Sat Oct 07 08:26:56 EET 2017]; root of context hierarchy
+2017-10-07 08:26:56 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:26:58 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:26:59 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:26:59 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@158a3b2e: startup date [Sat Oct 07 08:26:59 EET 2017]; root of context hierarchy
+2017-10-07 08:26:59 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:01 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:02 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:02 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@56e8b606: startup date [Sat Oct 07 08:27:02 EET 2017]; root of context hierarchy
+2017-10-07 08:27:02 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:04 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:05 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:05 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4c5474f5: startup date [Sat Oct 07 08:27:05 EET 2017]; root of context hierarchy
+2017-10-07 08:27:05 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:07 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:08 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:08 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5553d0f5: startup date [Sat Oct 07 08:27:08 EET 2017]; root of context hierarchy
+2017-10-07 08:27:08 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:11 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@57ac5227: startup date [Sat Oct 07 08:27:11 EET 2017]; root of context hierarchy
+2017-10-07 08:27:11 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:13 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:14 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:14 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@20f12539: startup date [Sat Oct 07 08:27:14 EET 2017]; root of context hierarchy
+2017-10-07 08:27:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4a891c97: startup date [Sat Oct 07 08:27:17 EET 2017]; root of context hierarchy
+2017-10-07 08:27:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:19 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:20 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:20 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@129b4fe2: startup date [Sat Oct 07 08:27:20 EET 2017]; root of context hierarchy
+2017-10-07 08:27:20 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:22 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:23 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:23 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@f73dcd6: startup date [Sat Oct 07 08:27:23 EET 2017]; root of context hierarchy
+2017-10-07 08:27:23 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:25 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:26 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:26 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@60f7cc1d: startup date [Sat Oct 07 08:27:26 EET 2017]; root of context hierarchy
+2017-10-07 08:27:26 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:28 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:29 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:30 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@44828f6b: startup date [Sat Oct 07 08:27:30 EET 2017]; root of context hierarchy
+2017-10-07 08:27:30 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:31 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:33 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:33 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@47dbb1e2: startup date [Sat Oct 07 08:27:33 EET 2017]; root of context hierarchy
+2017-10-07 08:27:33 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:34 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:36 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:36 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2c104774: startup date [Sat Oct 07 08:27:36 EET 2017]; root of context hierarchy
+2017-10-07 08:27:36 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:37 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:39 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:39 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@631e06ab: startup date [Sat Oct 07 08:27:39 EET 2017]; root of context hierarchy
+2017-10-07 08:27:39 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:41 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:42 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:42 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6256ac4f: startup date [Sat Oct 07 08:27:42 EET 2017]; root of context hierarchy
+2017-10-07 08:27:42 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:44 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:45 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:45 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@f9d87b: startup date [Sat Oct 07 08:27:45 EET 2017]; root of context hierarchy
+2017-10-07 08:27:45 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:47 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:48 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:49 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@495083a0: startup date [Sat Oct 07 08:27:49 EET 2017]; root of context hierarchy
+2017-10-07 08:27:49 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:27:51 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:27:55 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:27:56 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@669513d8: startup date [Sat Oct 07 08:27:56 EET 2017]; root of context hierarchy
+2017-10-07 08:27:56 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:28:00 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:28:03 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:28:03 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@644c78d4: startup date [Sat Oct 07 08:28:03 EET 2017]; root of context hierarchy
+2017-10-07 08:28:03 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:28:05 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:28:06 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:28:06 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@21694e53: startup date [Sat Oct 07 08:28:06 EET 2017]; root of context hierarchy
+2017-10-07 08:28:06 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:28:08 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:28:09 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:28:09 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2f4854d6: startup date [Sat Oct 07 08:28:09 EET 2017]; root of context hierarchy
+2017-10-07 08:28:09 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:28:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:28:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:28:12 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd69f5a: startup date [Sat Oct 07 08:28:12 EET 2017]; root of context hierarchy
+2017-10-07 08:28:12 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:28:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:28:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:28:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@37cd92d6: startup date [Sat Oct 07 08:28:16 EET 2017]; root of context hierarchy
+2017-10-07 08:28:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:28:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:28:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:28:19 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@35293c05: startup date [Sat Oct 07 08:28:19 EET 2017]; root of context hierarchy
+2017-10-07 08:28:19 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:28:20 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:28:22 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:28:22 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec50a1: startup date [Sat Oct 07 08:28:22 EET 2017]; root of context hierarchy
+2017-10-07 08:28:22 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:28:24 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:28:25 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:28:25 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7957dc72: startup date [Sat Oct 07 08:28:25 EET 2017]; root of context hierarchy
+2017-10-07 08:28:25 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:28:27 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:28:28 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:28:28 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@52d10fb8: startup date [Sat Oct 07 08:28:28 EET 2017]; root of context hierarchy
+2017-10-07 08:28:28 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:28:30 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:28:33 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:28:33 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3228d990: startup date [Sat Oct 07 08:28:33 EET 2017]; root of context hierarchy
+2017-10-07 08:28:33 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:31:32 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Sat Oct 07 08:31:32 EET 2017]; root of context hierarchy
+2017-10-07 08:31:32 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:31:32 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:31:32 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:31:32 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userService' defined in class path resource [spring-service.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.bigroi.stock.service.impl.UserServiceImpl]: Constructor threw exception; nested exception is java.lang.NullPointerException
+2017-10-07 08:33:55 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@17776a8: startup date [Sat Oct 07 08:33:55 EET 2017]; root of context hierarchy
+2017-10-07 08:33:56 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:33:58 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:34:05 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:37:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@17776a8: startup date [Sat Oct 07 08:37:17 EET 2017]; root of context hierarchy
+2017-10-07 08:37:18 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:37:20 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:37:27 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:38:53 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Sat Oct 07 08:38:53 EET 2017]; root of context hierarchy
+2017-10-07 08:38:54 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:38:54 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:38:54 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:40:55 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Sat Oct 07 08:40:55 EET 2017]; root of context hierarchy
+2017-10-07 08:40:55 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:40:55 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:40:56 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:40:57 INFO: exection UserDaoImpl.add
+2017-10-07 08:40:57 INFO: User [id=5, login=EvgenAdmin, password=123, companyId=12]
+2017-10-07 08:40:57 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-10-07 08:40:57 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-10-07 08:41:38 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@45c8e616: startup date [Sat Oct 07 08:41:38 EET 2017]; root of context hierarchy
+2017-10-07 08:41:39 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-07 08:41:39 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-07 08:41:39 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-07 08:41:40 INFO: exection UserDaoImpl.add
+2017-10-07 08:41:40 INFO: User [id=5, login=EvgenAdmin, password=123, companyId=11]
+2017-10-07 08:41:40 INFO: exection UserDaoImpl.add successfully finished

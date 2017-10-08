@@ -1,0 +1,7 @@
+2017-10-06 13:43:16,611 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.add
+2017-10-06 13:43:16,614 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - User [id=5, login=EvgenAdmin, password=123, companyId=12]
+2017-10-06 13:44:25,812 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.add
+2017-10-06 13:44:25,820 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - User [id=5, login=EvgenAdmin, password=123, companyId=12]
+2017-10-06 13:45:20,715 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.getAllUser
+2017-10-06 13:46:27,735 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.getAllUser
+2017-10-06 13:47:02,613 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.getAllUser
