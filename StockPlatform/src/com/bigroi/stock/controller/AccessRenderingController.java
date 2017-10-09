@@ -13,6 +13,8 @@ import com.bigroi.stock.bean.User;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
+import com.bigroi.stock.service.ServiceException;
+import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 public class AccessRenderingController {
@@ -48,7 +50,7 @@ public class AccessRenderingController {
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
 			@RequestParam("city") String city,
-			HttpSession session) throws DaoException {
+			HttpSession session) throws DaoException, ServiceException {
 		
 		logger.info("exection AccessRenderingController.registration");
 		logger.info(login);
@@ -79,12 +81,13 @@ public class AccessRenderingController {
 		company.setCountry(country);
 		company.setCity(city);
 		company.setStatus(CompanyStatus.NOT_VERIFIED);
-		DaoFactory.getCompanyDao().add(company);		
+		//DaoFactory.getCompanyDao().add(company);		
 		User user = new User();
 		user.setLogin(login);
 		user.setPassword(password);
 		user.setCompanyId(company.getId());
-		DaoFactory.getUserDao().add(user);		
+		//DaoFactory.getUserDao().add(user);
+		ServiceFactory.getUserService().addCompanyAndUser(company, user);
 		session.setAttribute("user", user);
 		logger.info("exection AccessRenderingController.registration - 'welcome', successfully finished");
 		return new ModelAndView("welcome", "user", user);

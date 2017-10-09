@@ -32,12 +32,5 @@ public class CommonRenderingController {
 		logger.info("exection CommonRenderingController.goToRegistrationPage successfully finished");
 		return new ModelAndView("registration");
 	}
-//----------------Temporary for testing JSON----------------------------------
-	@RequestMapping("/gotoAcc.spr")
-	public ModelAndView gotoAcc(){
-		logger.info("exection CommonRenderingController.gotoAcc");
-		logger.info("exection CommonRenderingController.gotoAcc successfully finished");
-		return new ModelAndView("!JSON-account");
-	}
-//----------------------------------------------------------------------------	
+	
 }
