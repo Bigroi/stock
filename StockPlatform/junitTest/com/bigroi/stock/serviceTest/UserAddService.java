@@ -1,5 +1,7 @@
 package com.bigroi.stock.serviceTest;
 
+import java.sql.SQLException;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -37,7 +39,7 @@ public class UserAddService {
 	}
 	
 	@Test
-	public void userAdd() throws ServiceException{
+	public void userAdd() throws ServiceException, SQLException{
 		ServiceFactory.getUserService().addCompanyAndUser(company, user);
 		Assert.assertNotNull(user);
 	}

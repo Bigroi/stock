@@ -1,5 +1,7 @@
 package com.bigroi.stock.controller;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -50,7 +52,7 @@ public class AccessRenderingController {
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
 			@RequestParam("city") String city,
-			HttpSession session) throws DaoException, ServiceException {
+			HttpSession session) throws DaoException, ServiceException, SQLException {
 		
 		logger.info("exection AccessRenderingController.registration");
 		logger.info(login);
@@ -72,7 +74,6 @@ public class AccessRenderingController {
 			logger.info("exection AccessRenderingController.registration - 'Passwords do not match', successfully finished");
 			return new ModelAndView("registration","message", "Passwords do not match" );		
 		}
-		//TODO Здесь будет одна транзакция
 		Company company = new Company();
 		company.setName(name);
 		company.setEmail(email);
@@ -80,13 +81,11 @@ public class AccessRenderingController {
 		company.setRegNumber(regNumber);
 		company.setCountry(country);
 		company.setCity(city);
-		company.setStatus(CompanyStatus.NOT_VERIFIED);
-		//DaoFactory.getCompanyDao().add(company);		
+		company.setStatus(CompanyStatus.NOT_VERIFIED);		
 		User user = new User();
 		user.setLogin(login);
 		user.setPassword(password);
 		user.setCompanyId(company.getId());
-		//DaoFactory.getUserDao().add(user);
 		ServiceFactory.getUserService().addCompanyAndUser(company, user);
 		session.setAttribute("user", user);
 		logger.info("exection AccessRenderingController.registration - 'welcome', successfully finished");
