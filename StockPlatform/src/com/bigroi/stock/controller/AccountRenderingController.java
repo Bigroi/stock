@@ -14,6 +14,8 @@ import com.bigroi.stock.bean.User;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
+import com.bigroi.stock.service.ServiceException;
+import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 public class AccountRenderingController {
@@ -43,7 +45,7 @@ public class AccountRenderingController {
 			@RequestParam("country") String country,
 			@RequestParam("city") String city,
 			@RequestParam("status") CompanyStatus status,
-			HttpSession session) throws DaoException {
+			HttpSession session) throws DaoException, ServiceException {
 		
 		logger.info("exection AccountRenderingController.editAccount");
 		logger.info(password);
@@ -56,12 +58,9 @@ public class AccountRenderingController {
 		logger.info(status);
 		logger.info(session);
 		
-		//TODO Здесь будет одна транзакция
 		User user = (User) session.getAttribute("user");
 		user.setPassword(password);
 		session.setAttribute("user", user);
-		DaoFactory.getUserDao().updateById(user);
-		
 		Company company = new Company();
 		company.setId(user.getCompanyId());
 		company.setName(name);
@@ -71,8 +70,7 @@ public class AccountRenderingController {
 		company.setCountry(country);
 		company.setCity(city);
 		company.setStatus(status);
-		
-		DaoFactory.getCompanyDao().updateById( company);	
+		ServiceFactory.getUserService().updateCompanyAndUser(user, company);
 		
 		logger.info("exection AccountRenderingController.editAccount successfully finished");
 		return goToAccountPage(session);

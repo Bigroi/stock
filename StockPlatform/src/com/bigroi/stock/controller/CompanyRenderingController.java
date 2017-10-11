@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Company;
-import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
+import com.bigroi.stock.service.ServiceException;
+import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 public class CompanyRenderingController {
@@ -30,39 +31,19 @@ public class CompanyRenderingController {
 	}
 
 	@RequestMapping("/ChangeStatus.spr")
-	public ModelAndView changeStatus(@RequestParam("id") long id) throws DaoException {
+	public ModelAndView changeStatus(@RequestParam("id") long id) throws DaoException, ServiceException {
 		logger.info("exection CompanyRenderingController.changeStatus");
 		logger.info(id);
-		Company  company = DaoFactory.getCompanyDao().getById(id);
-		switch (company.getStatus()) {
-		case NOT_VERIFIED :
-			DaoFactory.getCompanyDao().setStatusVerified(company);
-			logger.info("exection CompanyRenderingController.changeStatus - chahge status VERIFIED");
-			break;
-		case VERIFIED :
-			DaoFactory.getCompanyDao().setStatusRevoked(company);
-			logger.info("exection CompanyRenderingController.changeStatus - chahge status REVOKED");
-			break;
-		case REVOKED :
-			DaoFactory.getCompanyDao().setStatusNotVerified(company);
-			logger.info("exection CompanyRenderingController.changeStatus - chahge status NOT_VERIFIED");
-			break;
-		}
+		ServiceFactory.getCompanyService().changeStatusCompany(id);
 		logger.info("exection CompanyRenderingController.changeStatus successfully finished");
 		return getListCompanyAll();
 	}
 
 	@RequestMapping("CancelApll.spr")
-	public ModelAndView cancelApplication(@RequestParam("id") long id) throws DaoException {
+	public ModelAndView cancelApplication(@RequestParam("id") long id) throws DaoException, ServiceException {
 		logger.info("exection CompanyRenderingController.cancelApplication");
 		logger.info(id);
-		Company company = DaoFactory.getCompanyDao().getById(id);
-		if (company.getStatus() == CompanyStatus.REVOKED) {
-			DaoFactory.getLotDao().setStatusCancel(company.getId());
-			logger.info("exection CompanyRenderingController.cancelApplication - cancel all lots");
-			DaoFactory.getTenderDao().setStatusCancel(company.getId());
-			logger.info("exection CompanyRenderingController.cancelApplication - cancel all tenders");
-		}
+		ServiceFactory.getCompanyService().statusCancelLotAndTender(id);
 		logger.info("exection CompanyRenderingController.cancelApplication successfully finished");
 		return getListCompanyAll();
 

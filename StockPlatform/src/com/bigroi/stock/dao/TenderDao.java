@@ -22,8 +22,8 @@ public interface TenderDao {
 	
 	List<Tender> getAllInGame() throws DaoException;
 
-	boolean setStatusCancel(long customerId) throws DaoException;
+	boolean TenderStatusCancel(long customerId) throws DaoException;
 
-	boolean  setStatusCancelByProductId(long productId) throws DaoException;
+	boolean  TenderStatusCancelByProductId(long productId) throws DaoException;
 
 }

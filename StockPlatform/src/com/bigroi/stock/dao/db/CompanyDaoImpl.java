@@ -134,22 +134,28 @@ public class CompanyDaoImpl implements CompanyDao {
 
 	@Override
 	public Company setStatusVerified(Company company) {
+		logger.info("exection CompanyDaoImpl.setStatusVerified");
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(SET_STATUS_VERIFIED_BY_ID, company.getId());
+		logger.info("exection CompanyDaoImpl.setStatusVerified successfully finished");
 		return company;
 	}
 
 	@Override
 	public Company setStatusRevoked(Company company) {
+		logger.info("exection CompanyDaoImpl.setStatusRevoked");
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(SET_STATUS_REVOKED_BY_ID, company.getId());
+		logger.info("exection CompanyDaoImpl.setStatusRevoked successfully finished");
 		return company;
 	}
 
 	@Override
 	public Company setStatusNotVerified(Company company) {
+		logger.info("exection CompanyDaoImpl.setStatusNotVerified");
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(SET_STATUS_NOT_VERIFIED_BY_ID, company.getId());
+		logger.info("exection CompanyDaoImpl.setStatusNotVerified successfully finished");
 		return company;
 	}
 

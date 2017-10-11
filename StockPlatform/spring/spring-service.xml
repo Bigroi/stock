@@ -9,20 +9,26 @@
 		 http://www.springframework.org/schema/tx
 		 http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<import resource="classpath:spring-dao.xml"/>
+	<import resource="classpath:spring-dao.xml" />
 
 	<tx:annotation-driven proxy-target-class="true"
-		transaction-manager="transactionManager"/>
+		transaction-manager="transactionManager" />
 
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="datasource"/>
+		<property name="dataSource" ref="datasource" />
 	</bean>
 
 	<bean id="userService" class="com.bigroi.stock.service.impl.UserServiceImpl"
 		lazy-init="true">
-		<property name="userDao" ref="userDao"/>
-		<property name="companyDao" ref="companyDao"/>
+		<property name="userDao" ref="userDao" />
+		<property name="companyDao" ref="companyDao" />
+	</bean>
+
+	<bean id="companyService" class="com.bigroi.stock.service.impl.CompanyServiceImpl">
+		<property name="lotDao" ref="lotDao" />
+		<property name="tenderDao" ref="tenderDao"/>
+		<property name="companyDao" ref="companyDao" />
 	</bean>
 
 </beans>

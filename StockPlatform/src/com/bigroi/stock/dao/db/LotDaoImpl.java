@@ -207,17 +207,19 @@ public class LotDaoImpl implements LotDao {
 	}
 
 	@Override
-	public  boolean setStatusCancel(long sellerId) throws DaoException {
+	public  boolean LotStatusCancel(long sellerId) throws DaoException {
+		logger.info("exection LotDaoImpl.LotStatusCancel");
 		JdbcTemplate template = new JdbcTemplate(datasource);
+		logger.info("exection LotDaoImpl.LotStatusCancel successfully finished");
 		return  template.update(UPDATE_STATUS_BY_SELLER_ID, sellerId) == 1;
 		 
 	}
 
 	@Override
-	public boolean setStatusCancelByProductId(long productId) throws DaoException {
+	public boolean LotStatusCancelByProductId(long productId) throws DaoException {
+		logger.info("exection LotDaoImpl.LotStatusCancelByProductId");
 		JdbcTemplate template = new JdbcTemplate(datasource);
+		logger.info("exection LotDaoImpl.LotStatusCancelByProductId successfully finished");
 		return template.update(UPDATE_STATUS_BY_PRODUCT_ID, productId) == 1;
 	}
-
-	
 }

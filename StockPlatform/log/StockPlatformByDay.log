@@ -133,3 +133,102 @@
 2017-10-09 22:09:58,954 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.add
 2017-10-09 22:09:58,954 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - User [id=22, login=TEST!!!!!!!, password=!!, companyId=22]
 2017-10-09 22:09:58,955 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.add successfully finished
+2017-10-11 10:54:33,880 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.add
+2017-10-11 10:54:33,880 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=22, name=TEST!!!!!!!, email=TEST!!!!!!, phone=TEST!!!!!!, regNumber=TEST, country=TEST, city=TEST, status=REVOKED]
+2017-10-11 10:54:34,066 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.add successfully finished
+2017-10-11 10:54:34,066 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.add
+2017-10-11 10:54:34,066 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - User [id=22, login=TEST!!!!!!!, password=!!, companyId=22]
+2017-10-11 10:54:34,097 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.add successfully finished
+2017-10-11 11:54:27,943 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById
+2017-10-11 11:54:27,943 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - User [id=22, login=update, password=!!, companyId=22]
+2017-10-11 11:54:27,991 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById successfully finished
+2017-10-11 11:54:28,069 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-10-11 11:54:28,084 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=22, name=update, email=update, phone=update, regNumber=update, country=TEST, city=TEST, status=VERIFIED]
+2017-10-11 11:54:28,084 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 11:57:35,688 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById
+2017-10-11 11:57:35,704 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - User [id=22, login=update202, password=!!202, companyId=22]
+2017-10-11 11:57:35,736 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById successfully finished
+2017-10-11 11:57:35,845 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-10-11 11:57:35,845 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=202, name=update202, email=update202, phone=update202, regNumber=update, country=TEST, city=TEST, status=VERIFIED]
+2017-10-11 11:57:35,845 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:05:45,222 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById
+2017-10-11 12:05:45,222 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - User [id=22, login=update202NEW, password=!!202, companyId=22]
+2017-10-11 12:05:45,270 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById successfully finished
+2017-10-11 12:05:45,372 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-10-11 12:05:45,379 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=202, name=update202, email=update202, phone=update202, regNumber=update, country=TEST, city=TEST, status=VERIFIED]
+2017-10-11 12:05:45,379 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:09:11,719 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById
+2017-10-11 12:09:11,727 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - User [id=22, login=updateprop, password=!!202, companyId=22]
+2017-10-11 12:09:11,759 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById successfully finished
+2017-10-11 12:09:11,857 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-10-11 12:09:11,859 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=202, name=update202, email=update202, phone=update202, regNumber=update, country=TEST, city=TEST, status=VERIFIED]
+2017-10-11 12:09:11,861 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:12:58,598 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-10-11 12:12:58,598 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=202, name=JAVATEST, email=emailJAVA, phone=165, regNumber=JAVA, country=JAVA, city=JAVA!!!!!!!!!, status=null]
+2017-10-11 12:12:58,637 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:13:29,637 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-10-11 12:13:29,637 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=22, name=JAVATEST, email=emailJAVA, phone=165, regNumber=JAVA, country=JAVA, city=JAVA!!!!!!!!!, status=null]
+2017-10-11 12:13:29,676 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:14:31,543 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-10-11 12:14:31,543 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=22, name=JAVATEST, email=emailJAVA, phone=165, regNumber=JAVA, country=JAVA, city=JAVA!!!!!!!!!, status=null]
+2017-10-11 12:14:31,590 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:15:09,882 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-10-11 12:15:09,890 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=22, name=JAVATEST, email=emailJAVA, phone=165, regNumber=JAVA, country=JAVA, city=JAVA!!!!!!!!!, status=NOT_VERIFIED]
+2017-10-11 12:15:09,929 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:15:55,112 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById
+2017-10-11 12:15:55,112 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - User [id=22, login=updateROL, password=!!202, companyId=22]
+2017-10-11 12:15:55,152 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById successfully finished
+2017-10-11 12:15:55,238 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-10-11 12:15:55,238 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=22, name=update202, email=update202, phone=update202, regNumber=update, country=TEST, city=TEST, status=VERIFIED]
+2017-10-11 12:15:55,238 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:17:00,979 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById
+2017-10-11 12:17:00,979 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - User [id=22, login=ROLBACK, password=ROLBACK, companyId=22]
+2017-10-11 12:17:01,019 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById successfully finished
+2017-10-11 12:17:01,113 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-10-11 12:17:01,113 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=22, name=updROLBACK, email=updatROLBACK, phone=upROLBACK, regNumber=ROLBACK, country=TEST, city=TEST, status=null]
+2017-10-11 12:17:01,121 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:17:41,620 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById
+2017-10-11 12:17:41,620 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - User [id=22, login=ROLBACK, password=ROLBACK, companyId=22]
+2017-10-11 12:17:41,659 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById successfully finished
+2017-10-11 12:17:41,745 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-10-11 12:17:41,752 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=22, name=updROLBACK, email=updatROLBACK, phone=upROLBACK, regNumber=ROLBACK, country=TEST, city=TEST, status=null]
+2017-10-11 12:17:41,752 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 14:05:15,396 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById
+2017-10-11 14:05:15,404 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - User [id=22, login=ROLBACK, password=ROLBACK, companyId=22]
+2017-10-11 14:05:15,475 [INFO ][main            ][.bigroi.stock.dao.db.UserDaoImpl] - exection UserDaoImpl.updateById successfully finished
+2017-10-11 14:05:15,584 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById
+2017-10-11 14:05:15,584 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - Company [id=22, name=updROLBACK, email=updatROLBACK!!!!!!!!!!, phone=upROLBACK, regNumber=ROLBACK, country=TEST, city=TEST, status=VERIFIED]
+2017-10-11 14:05:15,584 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 16:20:34,208 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById
+2017-10-11 16:20:34,216 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - 1
+2017-10-11 16:20:34,742 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-11 16:20:34,742 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.LotStatusCancel
+2017-10-11 16:20:34,742 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.LotStatusCancel successfully finished
+2017-10-11 16:20:34,750 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.TenderStatusCancel
+2017-10-11 16:20:34,750 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.TenderStatusCancel successfully finished
+2017-10-11 16:21:26,807 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById
+2017-10-11 16:21:26,815 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - 1
+2017-10-11 16:21:27,127 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-11 16:21:27,127 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.LotStatusCancel
+2017-10-11 16:21:27,127 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.LotStatusCancel successfully finished
+2017-10-11 16:21:27,135 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.TenderStatusCancel
+2017-10-11 16:21:27,135 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.TenderStatusCancel successfully finished
+2017-10-11 16:39:21,270 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById
+2017-10-11 16:39:21,278 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - 1
+2017-10-11 16:39:21,653 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-11 16:39:21,653 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.LotStatusCancel
+2017-10-11 16:39:21,661 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.LotStatusCancel successfully finished
+2017-10-11 16:39:21,661 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.TenderStatusCancel
+2017-10-11 16:39:21,668 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.TenderStatusCancel successfully finished
+2017-10-11 16:41:00,420 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById
+2017-10-11 16:41:00,420 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - 1
+2017-10-11 16:41:00,749 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-11 16:41:00,749 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.LotStatusCancel
+2017-10-11 16:41:00,749 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.LotStatusCancel successfully finished
+2017-10-11 16:41:00,756 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.TenderStatusCancel
+2017-10-11 16:41:00,756 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.TenderStatusCancel successfully finished
+2017-10-11 17:00:47,668 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById
+2017-10-11 17:00:47,668 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - 1
+2017-10-11 17:00:47,981 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-11 17:00:47,989 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.setStatusVerified
+2017-10-11 17:00:47,989 [INFO ][main            ][groi.stock.dao.db.CompanyDaoImpl] - exection CompanyDaoImpl.setStatusVerified successfully finished

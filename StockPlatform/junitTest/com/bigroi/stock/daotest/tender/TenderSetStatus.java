@@ -19,7 +19,7 @@ public class TenderSetStatus {
 
 	@Test
 	public void setStatus() throws DaoException {
-		DaoFactory.getTenderDao().setStatusCancel(company.getId());
+		DaoFactory.getTenderDao().TenderStatusCancel(company.getId());
 	}
 
 }

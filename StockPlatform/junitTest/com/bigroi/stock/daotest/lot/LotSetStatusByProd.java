@@ -19,7 +19,7 @@ public class LotSetStatusByProd {
 	
 	@Test
 	public void setStatus() throws DaoException{
-		DaoFactory.getLotDao().setStatusCancelByProductId(prod.getId());
+		DaoFactory.getLotDao().LotStatusCancelByProductId(prod.getId());
 	}
 
 }

@@ -10,6 +10,10 @@ public class ServiceFactory {
 	public static UserService getUserService(){
 		return (UserService) CONTEX.getBean("userService");
 	}
+	
+	public static CompanyService getCompanyService(){
+		return (CompanyService) CONTEX.getBean("companyService");
+	}
 
 	public static ApplicationContext getContext() {
 		return  CONTEX;

@@ -205,15 +205,19 @@ public class TenderDaoImpl implements TenderDao{
 	}
 
 	@Override
-	public boolean setStatusCancel( long customerId) throws DaoException {
+	public boolean TenderStatusCancel( long customerId) throws DaoException {
+		logger.info("exection TenderDaoImpl.TenderStatusCancel");
 		JdbcTemplate template = new JdbcTemplate(datasource);
+		logger.info("exection TenderDaoImpl.TenderStatusCancel successfully finished");
 		return template.update(UPDATE_STATUS_BY_CUSTOMER_ID, customerId) == 1;
 		
 	}
 
 	@Override
-	public boolean setStatusCancelByProductId(long productId) throws DaoException {
+	public boolean TenderStatusCancelByProductId(long productId) throws DaoException {
+		logger.info("exection TenderDaoImpl.TenderStatusCancelByProductId");
 		JdbcTemplate template = new JdbcTemplate(datasource);
+		logger.info("exection TenderDaoImpl.TenderStatusCancelByProductId successfully finished");
 		return template.update(UPDATE_STATUS_BY_PRODUCT_ID, productId) == 1;
 	}
 }

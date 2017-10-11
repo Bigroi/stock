@@ -162,8 +162,8 @@ public class ProductRenderingController {
 		User user = (User) session.getAttribute("user");
 		if(user != null){
 		DaoFactory.getProductDao().switchOnYes(id);
-		DaoFactory.getLotDao().setStatusCancelByProductId(id);
-		DaoFactory.getTenderDao().setStatusCancelByProductId(id);
+		DaoFactory.getLotDao().LotStatusCancelByProductId(id);
+		DaoFactory.getTenderDao().TenderStatusCancelByProductId(id);
 		Company company =  DaoFactory.getCompanyDao().getById(user.getCompanyId());
 		MessagerFactory.getMailManager().send(company.getEmail(), "deleteComapny", " some text");
 		}

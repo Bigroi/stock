@@ -14,6 +14,7 @@
 </script>
 </head>
 <body>
+<h2 style="color: red;"> Все продукты видит только АДМИН(log:Admin)</h2>
 	<p>Product list:</p>
 	<table border="2">
 		<thead>

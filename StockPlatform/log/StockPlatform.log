@@ -3297,3 +3297,198 @@
 2017-10-09 22:09:58 INFO: exection UserDaoImpl.add
 2017-10-09 22:09:58 INFO: User [id=22, login=TEST!!!!!!!, password=!!, companyId=22]
 2017-10-09 22:09:58 INFO: exection UserDaoImpl.add successfully finished
+2017-10-11 10:54:29 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 10:54:29 AST 2017]; root of context hierarchy
+2017-10-11 10:54:29 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 10:54:30 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 10:54:31 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 10:54:33 INFO: exection CompanyDaoImpl.add
+2017-10-11 10:54:33 INFO: Company [id=22, name=TEST!!!!!!!, email=TEST!!!!!!, phone=TEST!!!!!!, regNumber=TEST, country=TEST, city=TEST, status=REVOKED]
+2017-10-11 10:54:34 INFO: exection CompanyDaoImpl.add successfully finished
+2017-10-11 10:54:34 INFO: exection UserDaoImpl.add
+2017-10-11 10:54:34 INFO: User [id=22, login=TEST!!!!!!!, password=!!, companyId=22]
+2017-10-11 10:54:34 INFO: exection UserDaoImpl.add successfully finished
+2017-10-11 11:54:23 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 11:54:23 AST 2017]; root of context hierarchy
+2017-10-11 11:54:23 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 11:54:24 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 11:54:25 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 11:54:27 INFO: exection UserDaoImpl.updateById
+2017-10-11 11:54:27 INFO: User [id=22, login=update, password=!!, companyId=22]
+2017-10-11 11:54:27 INFO: exection UserDaoImpl.updateById successfully finished
+2017-10-11 11:54:28 INFO: exection CompanyDaoImpl.updateById
+2017-10-11 11:54:28 INFO: Company [id=22, name=update, email=update, phone=update, regNumber=update, country=TEST, city=TEST, status=VERIFIED]
+2017-10-11 11:54:28 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 11:57:31 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 11:57:31 AST 2017]; root of context hierarchy
+2017-10-11 11:57:32 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 11:57:32 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 11:57:33 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 11:57:35 INFO: exection UserDaoImpl.updateById
+2017-10-11 11:57:35 INFO: User [id=22, login=update202, password=!!202, companyId=22]
+2017-10-11 11:57:35 INFO: exection UserDaoImpl.updateById successfully finished
+2017-10-11 11:57:35 INFO: exection CompanyDaoImpl.updateById
+2017-10-11 11:57:35 INFO: Company [id=202, name=update202, email=update202, phone=update202, regNumber=update, country=TEST, city=TEST, status=VERIFIED]
+2017-10-11 11:57:35 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:05:40 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 12:05:40 AST 2017]; root of context hierarchy
+2017-10-11 12:05:41 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 12:05:42 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 12:05:42 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 12:05:45 INFO: exection UserDaoImpl.updateById
+2017-10-11 12:05:45 INFO: User [id=22, login=update202NEW, password=!!202, companyId=22]
+2017-10-11 12:05:45 INFO: exection UserDaoImpl.updateById successfully finished
+2017-10-11 12:05:45 INFO: exection CompanyDaoImpl.updateById
+2017-10-11 12:05:45 INFO: Company [id=202, name=update202, email=update202, phone=update202, regNumber=update, country=TEST, city=TEST, status=VERIFIED]
+2017-10-11 12:05:45 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:09:07 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 12:09:07 AST 2017]; root of context hierarchy
+2017-10-11 12:09:08 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 12:09:08 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 12:09:09 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 12:09:11 INFO: exection UserDaoImpl.updateById
+2017-10-11 12:09:11 INFO: User [id=22, login=updateprop, password=!!202, companyId=22]
+2017-10-11 12:09:11 INFO: exection UserDaoImpl.updateById successfully finished
+2017-10-11 12:09:11 INFO: exection CompanyDaoImpl.updateById
+2017-10-11 12:09:11 INFO: Company [id=202, name=update202, email=update202, phone=update202, regNumber=update, country=TEST, city=TEST, status=VERIFIED]
+2017-10-11 12:09:11 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:12:56 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 12:12:56 AST 2017]; root of context hierarchy
+2017-10-11 12:12:57 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 12:12:58 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 12:12:58 INFO: exection CompanyDaoImpl.updateById
+2017-10-11 12:12:58 INFO: Company [id=202, name=JAVATEST, email=emailJAVA, phone=165, regNumber=JAVA, country=JAVA, city=JAVA!!!!!!!!!, status=null]
+2017-10-11 12:12:58 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:13:27 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 12:13:27 AST 2017]; root of context hierarchy
+2017-10-11 12:13:28 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 12:13:29 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 12:13:29 INFO: exection CompanyDaoImpl.updateById
+2017-10-11 12:13:29 INFO: Company [id=22, name=JAVATEST, email=emailJAVA, phone=165, regNumber=JAVA, country=JAVA, city=JAVA!!!!!!!!!, status=null]
+2017-10-11 12:13:29 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:14:29 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 12:14:29 AST 2017]; root of context hierarchy
+2017-10-11 12:14:30 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 12:14:31 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 12:14:31 INFO: exection CompanyDaoImpl.updateById
+2017-10-11 12:14:31 INFO: Company [id=22, name=JAVATEST, email=emailJAVA, phone=165, regNumber=JAVA, country=JAVA, city=JAVA!!!!!!!!!, status=null]
+2017-10-11 12:14:31 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:15:08 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 12:15:08 AST 2017]; root of context hierarchy
+2017-10-11 12:15:08 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 12:15:09 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 12:15:09 INFO: exection CompanyDaoImpl.updateById
+2017-10-11 12:15:09 INFO: Company [id=22, name=JAVATEST, email=emailJAVA, phone=165, regNumber=JAVA, country=JAVA, city=JAVA!!!!!!!!!, status=NOT_VERIFIED]
+2017-10-11 12:15:09 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:15:50 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 12:15:50 AST 2017]; root of context hierarchy
+2017-10-11 12:15:50 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 12:15:51 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 12:15:52 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 12:15:55 INFO: exection UserDaoImpl.updateById
+2017-10-11 12:15:55 INFO: User [id=22, login=updateROL, password=!!202, companyId=22]
+2017-10-11 12:15:55 INFO: exection UserDaoImpl.updateById successfully finished
+2017-10-11 12:15:55 INFO: exection CompanyDaoImpl.updateById
+2017-10-11 12:15:55 INFO: Company [id=22, name=update202, email=update202, phone=update202, regNumber=update, country=TEST, city=TEST, status=VERIFIED]
+2017-10-11 12:15:55 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:16:56 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 12:16:56 AST 2017]; root of context hierarchy
+2017-10-11 12:16:57 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 12:16:58 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 12:16:58 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 12:17:00 INFO: exection UserDaoImpl.updateById
+2017-10-11 12:17:00 INFO: User [id=22, login=ROLBACK, password=ROLBACK, companyId=22]
+2017-10-11 12:17:01 INFO: exection UserDaoImpl.updateById successfully finished
+2017-10-11 12:17:01 INFO: exection CompanyDaoImpl.updateById
+2017-10-11 12:17:01 INFO: Company [id=22, name=updROLBACK, email=updatROLBACK, phone=upROLBACK, regNumber=ROLBACK, country=TEST, city=TEST, status=null]
+2017-10-11 12:17:01 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 12:17:37 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 12:17:37 AST 2017]; root of context hierarchy
+2017-10-11 12:17:38 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 12:17:38 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 12:17:39 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 12:17:41 INFO: exection UserDaoImpl.updateById
+2017-10-11 12:17:41 INFO: User [id=22, login=ROLBACK, password=ROLBACK, companyId=22]
+2017-10-11 12:17:41 INFO: exection UserDaoImpl.updateById successfully finished
+2017-10-11 12:17:41 INFO: exection CompanyDaoImpl.updateById
+2017-10-11 12:17:41 INFO: Company [id=22, name=updROLBACK, email=updatROLBACK, phone=upROLBACK, regNumber=ROLBACK, country=TEST, city=TEST, status=null]
+2017-10-11 12:17:41 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 14:05:09 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 14:05:09 AST 2017]; root of context hierarchy
+2017-10-11 14:05:09 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 14:05:10 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 14:05:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 14:05:15 INFO: exection UserDaoImpl.updateById
+2017-10-11 14:05:15 INFO: User [id=22, login=ROLBACK, password=ROLBACK, companyId=22]
+2017-10-11 14:05:15 INFO: exection UserDaoImpl.updateById successfully finished
+2017-10-11 14:05:15 INFO: exection CompanyDaoImpl.updateById
+2017-10-11 14:05:15 INFO: Company [id=22, name=updROLBACK, email=updatROLBACK!!!!!!!!!!, phone=upROLBACK, regNumber=ROLBACK, country=TEST, city=TEST, status=VERIFIED]
+2017-10-11 14:05:15 INFO: exection CompanyDaoImpl.updateById successfully finished
+2017-10-11 16:20:28 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 16:20:28 AST 2017]; root of context hierarchy
+2017-10-11 16:20:29 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 16:20:30 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 16:20:31 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 16:20:34 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@a9e4eb: startup date [Wed Oct 11 16:20:34 AST 2017]; root of context hierarchy
+2017-10-11 16:20:34 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 16:20:34 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 16:20:34 INFO: exection CompanyDaoImpl.getById
+2017-10-11 16:20:34 INFO: 1
+2017-10-11 16:20:34 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-11 16:20:34 INFO: exection LotDaoImpl.LotStatusCancel
+2017-10-11 16:20:34 INFO: exection LotDaoImpl.LotStatusCancel successfully finished
+2017-10-11 16:20:34 INFO: exection TenderDaoImpl.TenderStatusCancel
+2017-10-11 16:20:34 INFO: exection TenderDaoImpl.TenderStatusCancel successfully finished
+2017-10-11 16:21:22 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 16:21:22 AST 2017]; root of context hierarchy
+2017-10-11 16:21:22 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 16:21:23 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 16:21:24 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 16:21:26 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@a9e4eb: startup date [Wed Oct 11 16:21:26 AST 2017]; root of context hierarchy
+2017-10-11 16:21:26 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 16:21:26 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 16:21:26 INFO: exection CompanyDaoImpl.getById
+2017-10-11 16:21:26 INFO: 1
+2017-10-11 16:21:27 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-11 16:21:27 INFO: exection LotDaoImpl.LotStatusCancel
+2017-10-11 16:21:27 INFO: exection LotDaoImpl.LotStatusCancel successfully finished
+2017-10-11 16:21:27 INFO: exection TenderDaoImpl.TenderStatusCancel
+2017-10-11 16:21:27 INFO: exection TenderDaoImpl.TenderStatusCancel successfully finished
+2017-10-11 16:29:31 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 16:29:31 AST 2017]; root of context hierarchy
+2017-10-11 16:29:31 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 16:29:32 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 16:29:32 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 16:30:44 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 16:30:44 AST 2017]; root of context hierarchy
+2017-10-11 16:30:44 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 16:30:45 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 16:30:46 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 16:39:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 16:39:16 AST 2017]; root of context hierarchy
+2017-10-11 16:39:16 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 16:39:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 16:39:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 16:39:21 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@a9e4eb: startup date [Wed Oct 11 16:39:21 AST 2017]; root of context hierarchy
+2017-10-11 16:39:21 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 16:39:21 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 16:39:21 INFO: exection CompanyDaoImpl.getById
+2017-10-11 16:39:21 INFO: 1
+2017-10-11 16:39:21 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-11 16:39:21 INFO: exection LotDaoImpl.LotStatusCancel
+2017-10-11 16:39:21 INFO: exection LotDaoImpl.LotStatusCancel successfully finished
+2017-10-11 16:39:21 INFO: exection TenderDaoImpl.TenderStatusCancel
+2017-10-11 16:39:21 INFO: exection TenderDaoImpl.TenderStatusCancel successfully finished
+2017-10-11 16:40:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 16:40:17 AST 2017]; root of context hierarchy
+2017-10-11 16:40:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 16:40:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 16:40:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 16:40:19 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'companyService' defined in class path resource [spring-service.xml]: Cannot resolve reference to bean 'lotDao' while setting bean property 'lotDao'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'lotDao' available
+2017-10-11 16:40:56 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 16:40:56 AST 2017]; root of context hierarchy
+2017-10-11 16:40:56 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 16:40:57 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 16:40:58 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 16:41:00 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@a9e4eb: startup date [Wed Oct 11 16:41:00 AST 2017]; root of context hierarchy
+2017-10-11 16:41:00 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 16:41:00 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 16:41:00 INFO: exection CompanyDaoImpl.getById
+2017-10-11 16:41:00 INFO: 1
+2017-10-11 16:41:00 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-11 16:41:00 INFO: exection LotDaoImpl.LotStatusCancel
+2017-10-11 16:41:00 INFO: exection LotDaoImpl.LotStatusCancel successfully finished
+2017-10-11 16:41:00 INFO: exection TenderDaoImpl.TenderStatusCancel
+2017-10-11 16:41:00 INFO: exection TenderDaoImpl.TenderStatusCancel successfully finished
+2017-10-11 17:00:43 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Wed Oct 11 17:00:43 AST 2017]; root of context hierarchy
+2017-10-11 17:00:43 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-11 17:00:44 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 17:00:45 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 17:00:47 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@a9e4eb: startup date [Wed Oct 11 17:00:47 AST 2017]; root of context hierarchy
+2017-10-11 17:00:47 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-11 17:00:47 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-11 17:00:47 INFO: exection CompanyDaoImpl.getById
+2017-10-11 17:00:47 INFO: 1
+2017-10-11 17:00:47 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-11 17:00:47 INFO: exection CompanyDaoImpl.setStatusVerified
+2017-10-11 17:00:47 INFO: exection CompanyDaoImpl.setStatusVerified successfully finished
