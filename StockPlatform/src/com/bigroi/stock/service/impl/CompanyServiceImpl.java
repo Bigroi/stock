@@ -1,5 +1,7 @@
 package com.bigroi.stock.service.impl;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.Company;
@@ -66,5 +68,19 @@ public class CompanyServiceImpl implements CompanyService {
 		}
 		
 	}
+
+	@Override
+	@Transactional
+	public List<Company>  getAllCompsny() throws ServiceException {
+		try {
+			return  companyDao.getAllCompany();
+		} catch (DaoException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+		}
+		return null;
+		
+	}
+	
+	
 
 }

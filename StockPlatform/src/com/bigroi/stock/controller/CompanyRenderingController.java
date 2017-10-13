@@ -1,6 +1,5 @@
 package com.bigroi.stock.controller;
 
-import java.util.ArrayList;
 
 import java.util.List;
 
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Company;
-import com.bigroi.stock.dao.DaoException;
-import com.bigroi.stock.dao.DaoFactory;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -22,16 +19,15 @@ public class CompanyRenderingController {
 	private static final Logger logger = Logger.getLogger(CompanyRenderingController.class);
 
 	@RequestMapping("/CompanyList.spr")
-	public ModelAndView getListCompanyAll() throws DaoException {
+	public ModelAndView getListCompanyAll() throws ServiceException {
 		logger.info("exection CompanyRenderingController.getListCompanyAll");
-		List<Company> list = new ArrayList<>();
-		list = DaoFactory.getCompanyDao().getAllCompany();
+		List<Company> list = ServiceFactory.getCompanyService().getAllCompsny();
 		logger.info("exection CompanyRenderingController.getListCompanyAll successfully finished");
 		return new ModelAndView("companyList", "listOfCompany", list);
 	}
 
 	@RequestMapping("/ChangeStatus.spr")
-	public ModelAndView changeStatus(@RequestParam("id") long id) throws DaoException, ServiceException {
+	public ModelAndView changeStatus(@RequestParam("id") long id) throws ServiceException {
 		logger.info("exection CompanyRenderingController.changeStatus");
 		logger.info(id);
 		ServiceFactory.getCompanyService().changeStatusCompany(id);
@@ -40,7 +36,7 @@ public class CompanyRenderingController {
 	}
 
 	@RequestMapping("CancelApll.spr")
-	public ModelAndView cancelApplication(@RequestParam("id") long id) throws DaoException, ServiceException {
+	public ModelAndView cancelApplication(@RequestParam("id") long id) throws ServiceException {
 		logger.info("exection CompanyRenderingController.cancelApplication");
 		logger.info(id);
 		ServiceFactory.getCompanyService().statusCancelLotAndTender(id);

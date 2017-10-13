@@ -14,6 +14,14 @@ public class ServiceFactory {
 	public static CompanyService getCompanyService(){
 		return (CompanyService) CONTEX.getBean("companyService");
 	}
+	
+	public static LotService getLotService(){
+		return (LotService) CONTEX.getBean("lotService");
+	}
+	
+	public static ProductService getProductService(){
+		return (ProductService) CONTEX.getBean("productService");
+	}
 
 	public static ApplicationContext getContext() {
 		return  CONTEX;

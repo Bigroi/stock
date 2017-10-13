@@ -12,8 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.User;
 import com.bigroi.stock.bean.common.CompanyStatus;
-import com.bigroi.stock.dao.DaoException;
-import com.bigroi.stock.dao.DaoFactory;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -23,13 +21,13 @@ public class AccountRenderingController {
 	private static final Logger logger = Logger.getLogger(AccountRenderingController.class);
 	
 	@RequestMapping("/AccounPageAuth.spr")
-	public ModelAndView goToAccountPage(HttpSession session) throws DaoException{
+	public ModelAndView goToAccountPage(HttpSession session) throws ServiceException{
 		logger.info("exection AccountRenderingController.goToAccountPage");
 		logger.info(session);
 		ModelMap model = new ModelMap();
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("user", user);
-		Company company = DaoFactory.getCompanyDao().getById(user.getCompanyId());
+		Company company = ServiceFactory.getUserService().getById(user.getCompanyId());
 		model.addAttribute("company", company);	
 		logger.info("exection AccountRenderingController.goToAccountPage successfully finished");
 		return new ModelAndView("account", model);		
@@ -45,7 +43,7 @@ public class AccountRenderingController {
 			@RequestParam("country") String country,
 			@RequestParam("city") String city,
 			@RequestParam("status") CompanyStatus status,
-			HttpSession session) throws DaoException, ServiceException {
+			HttpSession session) throws ServiceException {
 		
 		logger.info("exection AccountRenderingController.editAccount");
 		logger.info(password);

@@ -1,7 +1,5 @@
 package com.bigroi.stock.controller;
 
-import java.sql.SQLException;
-
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -13,8 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.User;
 import com.bigroi.stock.bean.common.CompanyStatus;
-import com.bigroi.stock.dao.DaoException;
-import com.bigroi.stock.dao.DaoFactory;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -25,12 +21,12 @@ public class AccessRenderingController {
 
 	@RequestMapping("/Authenticate.spr")
 	public ModelAndView authenticate(@RequestParam("login") String login, @RequestParam("password") String password,
-			HttpSession session) throws DaoException {
+			HttpSession session) throws ServiceException {
 		logger.info("exection AccessRenderingController.authenticate");
 		logger.info(login);
 		logger.info(password);
 		logger.info(session);
-		User user = DaoFactory.getUserDao().getByLoginAndPassword(login, password);
+		User user = ServiceFactory.getUserService().getByLoginAndPassword(login, password);
 		if (user != null) {
 			session.setAttribute("user", user);
 			logger.info("exection AccessRenderingController.authenticate - 'welcome', successfully finished");
@@ -52,7 +48,7 @@ public class AccessRenderingController {
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
 			@RequestParam("city") String city,
-			HttpSession session) throws DaoException, ServiceException, SQLException {
+			HttpSession session) throws ServiceException{
 		
 		logger.info("exection AccessRenderingController.registration");
 		logger.info(login);
@@ -92,11 +88,11 @@ public class AccessRenderingController {
 		return new ModelAndView("welcome", "user", user);
 	}
 
-	private User getUser(String login) throws DaoException {
+	private User getUser(String login) throws ServiceException {
 		logger.info("exection AccessRenderingController.getUser");
 		logger.info(login);
 		logger.info("exection AccessRenderingController.getUser successfully finished");
-		return DaoFactory.getUserDao().getByLogin(login);
+		return ServiceFactory.getUserService().getByLogin(login);
 	}
 	
 	

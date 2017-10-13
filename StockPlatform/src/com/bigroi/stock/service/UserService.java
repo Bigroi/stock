@@ -10,4 +10,10 @@ public interface UserService {
 	
 	void updateCompanyAndUser(User user, Company company)throws ServiceException;
 	
+	User getByLoginAndPassword(String login, String password) throws ServiceException;
+	
+	User getByLogin(String login) throws ServiceException;
+	
+	Company getById(long id) throws ServiceException;
+	
 }
