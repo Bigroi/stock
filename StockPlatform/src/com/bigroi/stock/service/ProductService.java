@@ -9,13 +9,13 @@ import com.bigroi.stock.bean.Product;
 public interface ProductService {
 	
 	List<Product> getAllProduct() throws ServiceException;
-	
-	 void addProduct (Product product) throws ServiceException;
-	 
-	 void updateProduct (Product product) throws ServiceException;
-	 
-	 Product getById(long id) throws ServiceException;
 	 
 	 ModelMap tradeOffers(long id) throws ServiceException;
+	 
+	 ModelMap callEditProduct(long id) throws ServiceException;
+	 
+	 void callSaveProduct(long id, Product product) throws ServiceException;
+	 
+	 
 
 }

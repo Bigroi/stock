@@ -37,6 +37,8 @@
 
 	<bean id="productService" class="com.bigroi.stock.service.impl.ProductServiceImpl">
 		<property name="productDao" ref="productDao" />
+		<property name="lotDao" ref="lotDao" />
+		<property name="tenderDao" ref="tenderDao" />
 	</bean>
 
 </beans>

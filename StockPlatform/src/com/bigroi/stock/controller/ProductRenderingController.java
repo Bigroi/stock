@@ -28,31 +28,17 @@ public class ProductRenderingController {
 	private static final Logger logger = Logger.getLogger(ProductRenderingController.class);
 
 	@RequestMapping("/ProductForm.spr")
-	public ModelAndView productEdit(@RequestParam("id") long id) throws DaoException, ServiceException {
+	public ModelAndView productEdit(@RequestParam("id") long id) throws ServiceException {
 		logger.info("exection ProductRenderingController.productEdit");
 		logger.info(id);
-		
-		ModelMap model = new ModelMap();
-		Product product;
-		if (id == -1) {
-			product = new Product();
-			product.setId(-1);
-			logger.info("execution ProductRenderingController.productEdit - create new product");
-		} else {
-			//product = DaoFactory.getProductDao().getById(id);
-			product = ServiceFactory.getProductService().getById(id);
-			model.addAttribute("id", product.getId());
-			logger.info("execution ProductRenderingController.productEdit - get edited product");
-		}
-		model.addAttribute("product", product);
-		
+		ModelMap model = ServiceFactory.getProductService().callEditProduct(id);
 		logger.info("exection ProductRenderingController.productEdit successfully finished");
 		return new ModelAndView("productForm", model);
 	}
 
 	@RequestMapping("/ProductSave.spr")
 	public ModelAndView productSave(@RequestParam("id") long id, @RequestParam("name") String name,
-			@RequestParam("description") String description) throws DaoException, ServiceException {
+			@RequestParam("description") String description) throws ServiceException {
 		logger.info("exection ProductRenderingController.productSave");
 		logger.info(id);
 		logger.info(name);
@@ -60,41 +46,24 @@ public class ProductRenderingController {
 		Product product = new Product();
 		product.setName(name);
 		product.setDescription(description);
-		if (id == -1) {
-			//DaoFactory.getProductDao().add(product);
-			ServiceFactory.getProductService().addProduct(product);
-			id = product.getId();
-			logger.info("execution ProductRenderingController.productSave - create new product");
-		} else {
-			product.setId(id);
-			//DaoFactory.getProductDao().updateById(product);
-			ServiceFactory.getProductService().updateProduct(product);
-			logger.info("execution ProductRenderingController.productSave - update product");
-		}
-		// return productEdit(id);
+		ServiceFactory.getProductService().callSaveProduct(id, product);
 		logger.info("exection ProductRenderingController.productSave successfully finished");
 		return listOfProducts();
 	}
 
 	@RequestMapping("/ProductListPage.spr")
-	public ModelAndView listOfProducts() throws DaoException, ServiceException {
+	public ModelAndView listOfProducts() throws ServiceException {
 		logger.info("exection ProductRenderingController.listOfProducts");
-		//List<Product> products = DaoFactory.getProductDao().getAllProduct();
 		List<Product> products = ServiceFactory.getProductService().getAllProduct();
 		logger.info("exection ProductRenderingController.listOfProducts successfully finished");
 		return new ModelAndView("productList", "listOfProducts", products);
 	}
 
 	@RequestMapping("/TradeOffers.spr")
-	public ModelAndView tradeOffers(@RequestParam("id") long id) throws DaoException, ServiceException {
+	public ModelAndView tradeOffers(@RequestParam("id") long id) throws ServiceException {
 		logger.info("exection ProductRenderingController.tradeOffers");
 		logger.info(id);
 		ModelMap model = ServiceFactory.getProductService().tradeOffers(id);
-		
-		/*ModelMap model = new ModelMap();
-		model.addAttribute("product", DaoFactory.getProductDao().getById(id));
-		model.addAttribute("listOfLots", DaoFactory.getLotDao().getByProductIdInGameOrderMinPrice(id));
-		model.addAttribute("listOfTenders", DaoFactory.getTenderDao().getByProductIdInGameOrderMaxPriceDesc(id));*/
 		logger.info("exection ProductRenderingController.tradeOffers successfully finished");
 		return new ModelAndView("tradeOffers", model);
 	}

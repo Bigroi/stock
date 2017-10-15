@@ -7,18 +7,29 @@ import org.springframework.ui.ModelMap;
 
 import com.bigroi.stock.bean.Product;
 import com.bigroi.stock.dao.DaoException;
-import com.bigroi.stock.dao.DaoFactory;
+import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.ProductDao;
+import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.ProductService;
 import com.bigroi.stock.service.ServiceException;
 
-public class ProductServiceImpl implements ProductService { //TODO: add field LotDao and TenderDao
+public class ProductServiceImpl implements ProductService {
 
 	private ProductDao productDao;
+	private LotDao lotDao;
+	private TenderDao tenderDao;
 
 	public void setProductDao(ProductDao productDao) {
 		this.productDao = productDao;
+	}
+
+	public void setLotDao(LotDao lotDao) {
+		this.lotDao = lotDao;
+	}
+
+	public void setTenderDao(TenderDao tenderDao) {
+		this.tenderDao = tenderDao;
 	}
 
 	@Override
@@ -34,31 +45,35 @@ public class ProductServiceImpl implements ProductService { //TODO: add field Lo
 
 	@Override
 	@Transactional
-	public void addProduct (Product product) throws ServiceException {
+	public ModelMap tradeOffers(long id) throws ServiceException {
+		ModelMap model = new ModelMap();
 		try {
-			productDao.add(product);
+			model.addAttribute("product", productDao.getById(id));
+			model.addAttribute("listOfLots", lotDao.getByProductIdInGameOrderMinPrice(id));
+			model.addAttribute("listOfTenders", tenderDao.getByProductIdInGameOrderMaxPriceDesc(id));
+			return model;
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 		}
+		return null;
 
 	}
 
 	@Override
 	@Transactional
-	public void updateProduct(Product product) throws ServiceException {
+	public ModelMap callEditProduct(long id) throws ServiceException {
+		ModelMap model = new ModelMap();
 		try {
-			productDao.updateById(product);
-		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
-		}
-		
-	}
-
-	@Override
-	@Transactional
-	public Product getById(long id) throws ServiceException {
-		try {
-			return productDao.getById(id);
+			Product product;
+			if (id == -1) {
+				product = new Product();
+				product.setId(-1);
+			} else {
+				product = productDao.getById(id);
+				model.addAttribute("id", product.getId());
+			}
+			model.addAttribute("product", product);
+			return model;
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 		}
@@ -67,27 +82,17 @@ public class ProductServiceImpl implements ProductService { //TODO: add field Lo
 
 	@Override
 	@Transactional
-	public ModelMap tradeOffers(long id) throws ServiceException {
-		ModelMap model = new ModelMap();
+	public void callSaveProduct(long id, Product product) throws ServiceException {
 		try {
-			model.addAttribute("product", DaoFactory.getProductDao().getById(id));
+			if (id == -1) {
+				productDao.add(product);
+				id = product.getId();
+			} else {
+				product.setId(id);
+				productDao.updateById(product);
+			}
 		} catch (DaoException e) {
-			// tmpr
-			e.printStackTrace();
+			MessagerFactory.getMailManager().sendToAdmin(e);
 		}
-		try {
-			model.addAttribute("listOfLots", DaoFactory.getLotDao().getByProductIdInGameOrderMinPrice(id));
-		} catch (DaoException e) {
-			// tmpr
-			e.printStackTrace();
-		}
-		try {
-			model.addAttribute("listOfTenders", DaoFactory.getTenderDao().getByProductIdInGameOrderMaxPriceDesc(id));
-		} catch (DaoException e) {
-			// tmpr
-			e.printStackTrace();
-		}
-		return model;
 	}
-
 }
