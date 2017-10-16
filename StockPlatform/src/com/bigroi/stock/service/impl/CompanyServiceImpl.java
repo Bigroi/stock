@@ -2,10 +2,15 @@ package com.bigroi.stock.service.impl;
 
 import java.util.List;
 
+
+
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.bigroi.stock.bean.Company;
+
 import com.bigroi.stock.bean.common.CompanyStatus;
+
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
@@ -14,6 +19,7 @@ import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.CompanyService;
 import com.bigroi.stock.service.ServiceException;
+
 
 public class CompanyServiceImpl implements CompanyService {
 
@@ -28,7 +34,7 @@ public class CompanyServiceImpl implements CompanyService {
 	public void setTenderDao(TenderDao tenderDao) {
 		this.tenderDao = tenderDao;
 	}
-	
+
 	public void setCompanyDao(CompanyDao companyDao) {
 		this.companyDao = companyDao;
 	}
@@ -39,8 +45,8 @@ public class CompanyServiceImpl implements CompanyService {
 		try {
 			Company company = DaoFactory.getCompanyDao().getById(id);
 			if (company.getStatus() == CompanyStatus.REVOKED) {
-                lotDao.LotStatusCancel(company.getId());
-                tenderDao.TenderStatusCancel(company.getId());
+				lotDao.LotStatusCancel(company.getId());
+				tenderDao.TenderStatusCancel(company.getId());
 			}
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
@@ -51,36 +57,32 @@ public class CompanyServiceImpl implements CompanyService {
 	@Transactional
 	public void changeStatusCompany(long id) throws ServiceException {
 		try {
-			Company  company = DaoFactory.getCompanyDao().getById(id);
-			switch(company.getStatus()){
+			Company company = DaoFactory.getCompanyDao().getById(id);
+			switch (company.getStatus()) {
 			case NOT_VERIFIED:
 				companyDao.setStatusVerified(company);
 				break;
-			case VERIFIED :
+			case VERIFIED:
 				companyDao.setStatusRevoked(company);
 				break;
-			case REVOKED :
+			case REVOKED:
 				companyDao.setStatusNotVerified(company);
 				break;
 			}
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 		}
-		
+
 	}
 
 	@Override
 	@Transactional
-	public List<Company>  getAllCompsny() throws ServiceException {
+	public List<Company> getAllCompsny() throws ServiceException {
 		try {
-			return  companyDao.getAllCompany();
+			return companyDao.getAllCompany();
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 		}
 		return null;
-		
 	}
-	
-	
-
-}
+}	

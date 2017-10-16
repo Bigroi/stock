@@ -12,8 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.User;
 import com.bigroi.stock.dao.DaoException;
-import com.bigroi.stock.dao.DaoFactory;
 import com.bigroi.stock.messager.Message;
+import com.bigroi.stock.service.ServiceException;
+import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 public class UserRenderingController {
@@ -21,26 +22,23 @@ public class UserRenderingController {
 	private static final Logger logger = Logger.getLogger(UserRenderingController.class);
 
 	@RequestMapping(value = "/ChangeUserPass.spr")
-	public ModelAndView listOfUser() throws DaoException {
+	public ModelAndView listOfUser() throws ServiceException {
 		logger.info("exection UserRenderingController.listOfUser");
-		List<User> user = DaoFactory.getUserDao().getAllUser();
+		List<User> user = ServiceFactory.getUserService().getListOfUser();
 		logger.info("exection UserRenderingController.listOfUser successfully finished");
 		return new ModelAndView("changeUserPass", "listOfUser", user);
 	}
 
 	@RequestMapping(value = "/ChangeThisUserPass.spr")
-	public ModelAndView changePass(@RequestParam("login") String login) throws DaoException, IOException {
+	public ModelAndView changePass(@RequestParam("login") String login) throws ServiceException {
 		logger.info("exection UserRenderingController.changePass");
 		logger.info(login);
-		User user = DaoFactory.getUserDao().getByLogin(login);
-		user.setPassword(generatePass(8));
-		DaoFactory.getUserDao().updateById(user);
-		sendMessage(user);
+		ServiceFactory.getUserService().callChangePass(login);
 		logger.info("exection UserRenderingController.changePass successfully finished");
 		return listOfUser();
 	}
 	
-	private String generatePass(int lengthOfPass) {
+	public static String generatePass(int lengthOfPass) {
 		String charsCaps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		String chars = "abcdefghijklmnopqrstuvwxyz";
 		String nums = "0123456789";
@@ -57,7 +55,7 @@ public class UserRenderingController {
 		return newPass;
 	}
 	
-	private void sendMessage(User user) throws IOException, DaoException{
+	public static void sendMessage(User user) throws IOException, DaoException{
 		new Message().sendMessageChangeUserPass(user);
 	}
 }

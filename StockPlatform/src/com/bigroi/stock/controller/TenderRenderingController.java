@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Tender;
-import com.bigroi.stock.bean.User;
 import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
+import com.bigroi.stock.service.ServiceException;
+import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 public class TenderRenderingController {
@@ -24,26 +25,11 @@ public class TenderRenderingController {
 	private static final Logger logger = Logger.getLogger(TenderRenderingController.class);
 
 	@RequestMapping("/TenderFormAuth.spr")
-	public ModelAndView tenderEdit(@RequestParam("id") long id, HttpSession session) throws DaoException {
+	public ModelAndView tenderEdit(@RequestParam("id") long id, HttpSession session) throws ServiceException {
 		logger.info("exection TenderRenderingController.tenderEdit");
 		logger.info(id);	
 		logger.info(session);	
-		ModelMap model = new ModelMap();
-		Tender tender;
-		if (id == -1) {
-			tender = new Tender();
-			User user = (User) session.getAttribute("user");
-			tender.setCustomerId(user.getCompanyId());
-			tender.setStatus(Status.DRAFT);
-			tender.setId(-1);
-			logger.info("execution TenderRenderingController.tenderEdit - create new tender");
-		} else {
-			tender = DaoFactory.getTenderDao().getById(id);
-			model.addAttribute("id", tender.getId());
-			logger.info("execution TenderRenderingController.tenderEdit - get edited tender");
-		}
-		model.addAttribute("tender", tender);
-		model.put("listOfProducts", DaoFactory.getProductDao().getAllProduct());
+		ModelMap model = ServiceFactory.getTenderService().callEditTender(id, session);
 		logger.info("exection TenderRenderingController.tenderEdit successfully finished");
 		return new ModelAndView("tenderForm", model);
 	}
@@ -57,7 +43,7 @@ public class TenderRenderingController {
 			@RequestParam("expDate") String expDateStr,
 			@RequestParam("volumeOfTender") int volumeOfTender,
 			@RequestParam("status") Status status,
-			HttpSession session) throws DaoException, ParseException {
+			HttpSession session) throws DaoException, ParseException, ServiceException {
 		
 		logger.info("exection TenderRenderingController.tenderSave");
 		logger.info(description);
@@ -79,7 +65,7 @@ public class TenderRenderingController {
 		tender.setStatus(status);
 		if (id == -1) {
 			DaoFactory.getTenderDao().add(tender);
-			id = tender.getId();
+			id = tender.getId();//TODO: Tender not get Id, !ERROR!    ------------------------------!!!!-------------------------
 			logger.info("execution TenderRenderingController.tenderSave - save new tender");
 		} else {
 			tender.setId(id);
@@ -92,41 +78,30 @@ public class TenderRenderingController {
 	}
 	
 	@RequestMapping("/MyTenderListAuth.spr")
-	public ModelAndView myTenderList(HttpSession session) throws DaoException {
+	public ModelAndView myTenderList(HttpSession session) throws  ServiceException {
 		logger.info("exection TenderRenderingController.myTenderList");
 		logger.info(session);
-		User user = (User) session.getAttribute("user");
-		List<Tender> tenders = DaoFactory.getTenderDao().getByCustomerId(user.getCompanyId());
+		List<Tender> tenders = ServiceFactory.getTenderService().getMyTenderList(session);
 		logger.info("exection TenderRenderingController.myTenderList successfully finished");
 		return new ModelAndView("myTenderList", "listOfTenders", tenders);
 	}
 	
 	@RequestMapping("/TenderInGameAuth.spr")
-	public ModelAndView tenderInGame(@RequestParam("id") long id, HttpSession session) throws DaoException {
+	public ModelAndView tenderInGame(@RequestParam("id") long id, HttpSession session) throws  ServiceException {
 		logger.info("exection TenderRenderingController.tenderInGame");
 		logger.info(id);
 		logger.info(session);
-		Tender tender = DaoFactory.getTenderDao().getById(id);
-		if (tender.getStatus() == Status.DRAFT){
-			tender.setStatus(Status.IN_GAME);
-			DaoFactory.getTenderDao().updateById(tender);
-			logger.info("execution TenderRenderingController.tenderInGame - change status IN_GAME");
-		}
+		ServiceFactory.getTenderService().setTenderInGame(id);
 		logger.info("exection TenderRenderingController.tenderInGame successfully finished");
 		return myTenderList(session);
 	}
 	
 	@RequestMapping("/TenderCancelAuth.spr")
-	public ModelAndView lotCancel(@RequestParam("id") long id, HttpSession session) throws DaoException {
+	public ModelAndView lotCancel(@RequestParam("id") long id, HttpSession session) throws  ServiceException {
 		logger.info("exection TenderRenderingController.lotCancel");
 		logger.info(id);
 		logger.info(session);
-		Tender tender = DaoFactory.getTenderDao().getById(id);
-		if ((tender.getStatus() == Status.DRAFT) || (tender.getStatus() == Status.IN_GAME)){
-			tender.setStatus(Status.CANCELED);
-			DaoFactory.getTenderDao().updateById(tender);
-			logger.info("execution TenderRenderingController.lotCancel - change status CANCELED");
-		}
+		ServiceFactory.getTenderService().setLotCancel(id);
 		logger.info("exection TenderRenderingController.lotCancel successfully finished");
 		return myTenderList(session);
 	}

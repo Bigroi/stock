@@ -30,22 +30,7 @@ public class LotRenderingController {
 		logger.info("execution LotRenderingController.lotEdit");
 		logger.info(id);
 		logger.info(session);
-		ModelMap model = new ModelMap();
-		Lot lot;
-		if (id == -1) {
-			lot = new Lot();			
-			User user = (User) session.getAttribute("user");
-			lot.setSellerId(user.getCompanyId());
-			lot.setStatus(Status.DRAFT);
-			lot.setId(-1);
-			logger.info("execution LotRenderingController.lotEdit - create new lot");
-		} else {
-			lot = ServiceFactory.getLotService().getById(id);
-			model.addAttribute("id", lot.getId());
-			logger.info("execution LotRenderingController.lotEdit - get edited lot");
-		}		
-		model.addAttribute("lot", lot);
-		//model.put("listOfProducts", DaoFactory.getProductDao().getAllProduct());
+		ModelMap model = ServiceFactory.getLotService().callLotEdit(id, session);
 		logger.info("exection LotRenderingController.lotEdit successfully finished");
 		return new ModelAndView("lotForm", model);
 	}
@@ -80,8 +65,7 @@ public class LotRenderingController {
 		lot.setStatus(status);		
 		
 		if (id == -1) {
-			//ServiceFactory.getLotService().addLot(lot);
-			id = lot.getId();//TODO: Lot not get Id, bug    ------------------------------!!!!-------------------------
+			id = lot.getId();//TODO: Lot not get Id, !ERROR!    ------------------------------!!!!-------------------------
 			DaoFactory.getLotDao().add(lot);
 			logger.info("execution LotRenderingController.lotSave - save new lot");
 		} else {

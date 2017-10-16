@@ -2,9 +2,13 @@ package com.bigroi.stock.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
 
 import com.bigroi.stock.bean.Lot;
+import com.bigroi.stock.bean.User;
 import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
@@ -92,7 +96,31 @@ public class LotServiceImpl implements LotService {
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 		}
-
+	}
+	
+	@Override
+	@Transactional
+	public ModelMap callLotEdit(long id, HttpSession session) throws ServiceException {
+		ModelMap model = new ModelMap();
+	      try{
+			Lot lot;
+			if (id == -1) {
+				lot = new Lot();			
+				User user = (User) session.getAttribute("user");
+				lot.setSellerId(user.getCompanyId());
+				lot.setStatus(Status.DRAFT);
+				lot.setId(-1);
+			} else {
+				lot = lotDao.getById(id);
+				model.addAttribute("id", lot.getId());
+			}		
+			model.addAttribute("lot", lot);
+			//model.put("listOfProducts", DaoFactory.getProductDao().getAllProduct());
+			return model;
+		}catch (DaoException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+		}
+	      return null;
 	}
 
 }

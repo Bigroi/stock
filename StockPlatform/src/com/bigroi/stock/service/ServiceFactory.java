@@ -22,6 +22,10 @@ public class ServiceFactory {
 	public static ProductService getProductService(){
 		return (ProductService) CONTEX.getBean("productService");
 	}
+	
+	public static TenderService getTenderService(){
+		return (TenderService) CONTEX.getBean("tenderService");
+	}
 
 	public static ApplicationContext getContext() {
 		return  CONTEX;

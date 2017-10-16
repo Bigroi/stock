@@ -1,9 +1,12 @@
 package com.bigroi.stock.service.impl;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.User;
-
+import com.bigroi.stock.controller.UserRenderingController;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserDao;
@@ -75,6 +78,36 @@ public class UserServiceImpl implements UserService {
 	public Company getById(long id) throws ServiceException {
 		try {
 			return companyDao.getById(id);
+		} catch (DaoException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+		}
+		return null;
+	}
+
+	@Override
+	@Transactional
+	public void callChangePass(String login) throws ServiceException {
+		try {
+			User user = userDao.getByLogin(login);
+			user.setPassword(UserRenderingController.generatePass(8));
+			userDao.updateById(user);
+			try {
+				UserRenderingController.sendMessage(user);
+			} catch (IOException e) {
+				MessagerFactory.getMailManager().sendToAdmin(e);
+			}
+		} catch (DaoException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+		}
+		
+	}
+
+	@Override
+	@Transactional
+	public List<User> getListOfUser() throws ServiceException {
+		try {
+			List<User> user = userDao.getAllUser();
+			return user;
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 		}

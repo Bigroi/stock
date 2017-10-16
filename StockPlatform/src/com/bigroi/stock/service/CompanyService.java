@@ -2,6 +2,8 @@ package com.bigroi.stock.service;
 
 import java.util.List;
 
+
+
 import com.bigroi.stock.bean.Company;
 
 public interface CompanyService {
@@ -11,4 +13,5 @@ public interface CompanyService {
 	void changeStatusCompany(long id) throws ServiceException;
 	
 	List<Company>  getAllCompsny() throws ServiceException;
+	
 }

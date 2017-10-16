@@ -2,6 +2,10 @@ package com.bigroi.stock.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.ui.ModelMap;
+
 import com.bigroi.stock.bean.Lot;
 
 public interface LotService {
@@ -17,5 +21,7 @@ public interface LotService {
 	void setStatusInGame(long id) throws ServiceException;
 	
 	void setStatusCancel(long id) throws ServiceException;
+	
+	ModelMap callLotEdit(long id, HttpSession session) throws ServiceException;
 
 }

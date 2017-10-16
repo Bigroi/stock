@@ -41,4 +41,8 @@
 		<property name="tenderDao" ref="tenderDao" />
 	</bean>
 
+	 <bean id="tenderService" class="com.bigroi.stock.service.impl.TenderServiceImpl">
+		<property name="tenderDao" ref="tenderDao"></property>
+	</bean> 
+
 </beans>
