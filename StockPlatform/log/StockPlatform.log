@@ -3543,3 +3543,335 @@
 2017-10-13 17:14:17 INFO: exection ProductDaoImpl.getById
 2017-10-13 17:14:17 INFO: 136
 2017-10-13 17:14:17 INFO: exection ProductDaoImpl.getById return product.get(0), successfully finished
+2017-10-17 12:36:29 INFO: exection ReferenceHandling.customerCheck
+2017-10-17 12:36:29 INFO: 1
+2017-10-17 12:36:29 INFO: 2
+2017-10-17 12:36:29 INFO: APPROVE
+2017-10-17 12:36:30 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 12:36:30 AST 2017]; root of context hierarchy
+2017-10-17 12:36:30 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 12:36:32 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 12:36:32 INFO: exection PreDealDaoImpl.getById
+2017-10-17 12:36:32 INFO: 1
+2017-10-17 12:44:24 INFO: exection ReferenceHandling.customerCheck
+2017-10-17 12:44:24 INFO: 1
+2017-10-17 12:44:24 INFO: 2
+2017-10-17 12:44:24 INFO: APPROVE
+2017-10-17 12:44:24 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 12:44:24 AST 2017]; root of context hierarchy
+2017-10-17 12:44:25 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 12:44:26 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 12:44:26 INFO: exection PreDealDaoImpl.getById
+2017-10-17 12:44:26 INFO: 1
+2017-10-17 12:44:27 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-10-17 12:47:48 INFO: exection ReferenceHandling.customerCheck
+2017-10-17 12:47:48 INFO: 1
+2017-10-17 12:47:48 INFO: 2
+2017-10-17 12:47:48 INFO: APPROVE
+2017-10-17 12:47:49 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 12:47:49 AST 2017]; root of context hierarchy
+2017-10-17 12:47:49 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 12:47:50 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 12:47:50 INFO: exection PreDealDaoImpl.getById
+2017-10-17 12:47:50 INFO: 1
+2017-10-17 12:47:52 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-10-17 12:53:15 INFO: exection ReferenceHandling.customerCheck
+2017-10-17 12:53:15 INFO: 1
+2017-10-17 12:53:15 INFO: 2
+2017-10-17 12:53:15 INFO: APPROVE
+2017-10-17 12:53:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 12:53:16 AST 2017]; root of context hierarchy
+2017-10-17 12:53:16 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 12:53:17 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 12:53:17 INFO: exection PreDealDaoImpl.getById
+2017-10-17 12:53:17 INFO: 1
+2017-10-17 12:53:19 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-10-17 13:20:45 INFO: exection ReferenceHandling.customerCheck
+2017-10-17 13:20:45 INFO: 1
+2017-10-17 13:20:45 INFO: 2
+2017-10-17 13:20:45 INFO: APPROVE
+2017-10-17 13:20:46 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 13:20:46 AST 2017]; root of context hierarchy
+2017-10-17 13:20:46 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 13:20:47 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 13:20:47 INFO: exection PreDealDaoImpl.getById
+2017-10-17 13:20:47 INFO: 1
+2017-10-17 13:20:49 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-10-17 13:34:21 INFO: exection ReferenceHandling.sellerCheck
+2017-10-17 13:34:21 INFO: 1
+2017-10-17 13:34:21 INFO: 2
+2017-10-17 13:34:21 INFO: APPROVE
+2017-10-17 13:34:21 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 13:34:21 AST 2017]; root of context hierarchy
+2017-10-17 13:34:22 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-17 13:34:22 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 13:34:23 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 13:36:00 INFO: exection ReferenceHandling.sellerCheck
+2017-10-17 13:36:00 INFO: 1
+2017-10-17 13:36:00 INFO: 2
+2017-10-17 13:36:00 INFO: APPROVE
+2017-10-17 13:36:00 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 13:36:00 AST 2017]; root of context hierarchy
+2017-10-17 13:36:01 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 13:36:02 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 13:36:02 INFO: exection PreDealDaoImpl.getById
+2017-10-17 13:36:02 INFO: 1
+2017-10-17 13:36:04 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-10-17 13:37:57 INFO: exection ReferenceHandling.sellerCheck
+2017-10-17 13:37:57 INFO: 1
+2017-10-17 13:37:57 INFO: 2
+2017-10-17 13:37:57 INFO: APPROVE
+2017-10-17 13:37:57 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 13:37:57 AST 2017]; root of context hierarchy
+2017-10-17 13:37:58 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-17 13:37:58 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 13:37:59 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 13:38:14 INFO: exection ReferenceHandling.sellerCheck
+2017-10-17 13:38:14 INFO: 1
+2017-10-17 13:38:14 INFO: 2
+2017-10-17 13:38:14 INFO: APPROVE
+2017-10-17 13:38:30 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@eca56e: startup date [Tue Oct 17 13:38:29 AST 2017]; root of context hierarchy
+2017-10-17 13:38:36 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-17 13:38:46 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 13:39:13 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 13:40:44 INFO: exection ReferenceHandling.sellerCheck
+2017-10-17 13:40:44 INFO: 1
+2017-10-17 13:40:44 INFO: 2
+2017-10-17 13:40:44 INFO: APPROVE
+2017-10-17 13:40:45 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 13:40:45 AST 2017]; root of context hierarchy
+2017-10-17 13:40:45 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-17 13:40:46 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 13:40:47 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 13:40:49 INFO: exection PreDealDaoImpl.getById
+2017-10-17 13:40:49 INFO: 1
+2017-10-17 13:40:50 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-10-17 13:40:50 INFO: exection PreDealDaoImpl.updateById
+2017-10-17 13:40:50 INFO: PreDeal [id=1, sellerHashCode=вапвап, customerHashCode=вапавп, tenderId=1, lotId=1, sellerApprov=true, custApprov=false, dealDate=2017-10-17 00:00:00.0]
+
+2017-10-17 13:40:50 INFO: exection PreDealDaoImpl.updateById successfully finished
+2017-10-17 13:43:02 INFO: exection ReferenceHandling.customerCheck
+2017-10-17 13:43:02 INFO: 1
+2017-10-17 13:43:02 INFO: 2
+2017-10-17 13:43:02 INFO: APPROVE
+2017-10-17 13:43:03 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 13:43:03 AST 2017]; root of context hierarchy
+2017-10-17 13:43:03 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 13:43:05 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 13:43:05 INFO: exection PreDealDaoImpl.getById
+2017-10-17 13:43:05 INFO: 1
+2017-10-17 13:43:06 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-10-17 15:53:16 INFO: exection ReferenceHandling.customerCheck
+2017-10-17 15:53:16 INFO: 1
+2017-10-17 15:53:16 INFO: 2
+2017-10-17 15:53:16 INFO: APPROVE
+2017-10-17 15:53:16 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 15:53:16 AST 2017]; root of context hierarchy
+2017-10-17 15:53:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-17 15:53:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 15:53:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 15:53:22 INFO: exection PreDealDaoImpl.getById
+2017-10-17 15:53:22 INFO: 1
+2017-10-17 15:53:23 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-10-17 15:53:23 INFO: exection PreDealDaoImpl.updateById
+2017-10-17 15:53:23 INFO: PreDeal [id=1, sellerHashCode=??????, customerHashCode=??????, tenderId=1, lotId=1, sellerApprov=true, custApprov=true, dealDate=2017-10-17 00:00:00.0]
+
+2017-10-17 15:53:23 INFO: exection PreDealDaoImpl.updateById successfully finished
+2017-10-17 15:53:23 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ccb269: startup date [Tue Oct 17 15:53:23 AST 2017]; root of context hierarchy
+2017-10-17 15:53:23 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 15:53:23 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 15:53:23 INFO: exection DealsDaoImpl.add
+2017-10-17 15:53:23 INFO: Deals [id=0, lotId=1, tenderId=1, dealsTime=Tue Oct 17 15:53:23 AST 2017]
+2017-10-17 15:53:23 INFO: exection DealsDaoImpl.add successfully finished
+2017-10-17 15:53:23 INFO: exection LotDaoImpl.getById
+2017-10-17 15:53:23 INFO: 1
+2017-10-17 15:53:23 INFO: exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-10-17 15:53:23 INFO: exection LotDaoImpl.updateById
+2017-10-17 15:53:23 INFO: Lot [id=1, description=test, poductId=134, minPrice=10.0, sallerId=11, expDate=2017-08-23 00:00:00.0, status=SUCCESS, volumeOfLot=400]
+2017-10-17 15:53:23 INFO: exection LotDaoImpl.updateById successfully finished
+2017-10-17 15:53:23 INFO: exection TenderDaoImpl.getById
+2017-10-17 15:53:23 INFO: 1
+2017-10-17 15:53:23 INFO: exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-10-17 15:53:23 INFO: exection TenderDaoImpl.updateById
+2017-10-17 15:53:23 INFO: Tender [id=1, description=Java, productId=13, maxPrice=4.0, customerId=1, status=SUCCESS, expDate=2017-08-23 00:00:00.0, volumeOfTender=500]
+2017-10-17 15:53:23 INFO: exection TenderDaoImpl.updateById successfully finished
+2017-10-17 15:53:23 INFO: exection LotDaoImpl.getById
+2017-10-17 15:53:23 INFO: 1
+2017-10-17 15:53:23 INFO: exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-10-17 15:53:23 INFO: exection CompanyDaoImpl.getById
+2017-10-17 15:53:23 INFO: 11
+2017-10-17 15:53:23 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-17 15:53:23 INFO: exection TenderDaoImpl.getById
+2017-10-17 15:53:23 INFO: 1
+2017-10-17 15:53:23 INFO: exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-10-17 15:53:23 INFO: exection CompanyDaoImpl.getById
+2017-10-17 15:53:23 INFO: 1
+2017-10-17 15:53:23 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-17 15:53:23 INFO: exection EmailDaoImpl.add
+2017-10-17 15:53:23 INFO: Email [id=0, toEmail=apccc@mail.ru, emailSublect=Bingo!!!, emailText=Вы и Ваш потенциальный партнер подтвердили сделку по вашему лоту №1]
+2017-10-17 15:53:24 INFO: exection EmailDaoImpl.add successfully finished
+2017-10-17 15:53:24 INFO: exection EmailDaoImpl.add
+2017-10-17 15:53:24 INFO: Email [id=0, toEmail=apccc@mail.ru, emailSublect=Bingo!!!, emailText=Вы и Ваш потенциальный партнер подтвердили сделку по вашему лоту №1]
+2017-10-17 15:53:24 INFO: exection EmailDaoImpl.add successfully finished
+2017-10-17 15:56:13 INFO: exection ReferenceHandling.sellerCheck
+2017-10-17 15:56:13 INFO: 1
+2017-10-17 15:56:13 INFO: 2
+2017-10-17 15:56:13 INFO: APPROVE
+2017-10-17 15:56:13 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 15:56:13 AST 2017]; root of context hierarchy
+2017-10-17 15:56:14 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-17 15:56:14 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 15:56:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 15:56:18 INFO: exection PreDealDaoImpl.getById
+2017-10-17 15:56:18 INFO: 1
+2017-10-17 15:56:18 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-10-17 15:56:19 INFO: exection PreDealDaoImpl.updateById
+2017-10-17 15:56:19 INFO: PreDeal [id=1, sellerHashCode=??????, customerHashCode=??????, tenderId=1, lotId=1, sellerApprov=true, custApprov=true, dealDate=2017-10-17 00:00:00.0]
+
+2017-10-17 15:56:19 INFO: exection PreDealDaoImpl.updateById successfully finished
+2017-10-17 15:56:19 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ccb269: startup date [Tue Oct 17 15:56:19 AST 2017]; root of context hierarchy
+2017-10-17 15:56:19 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 15:56:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 15:56:19 INFO: exection DealsDaoImpl.add
+2017-10-17 15:56:19 INFO: Deals [id=0, lotId=1, tenderId=1, dealsTime=Tue Oct 17 15:56:19 AST 2017]
+2017-10-17 15:56:19 INFO: exection DealsDaoImpl.add successfully finished
+2017-10-17 15:56:19 INFO: exection LotDaoImpl.getById
+2017-10-17 15:56:19 INFO: 1
+2017-10-17 15:56:19 INFO: exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-10-17 15:56:19 INFO: exection LotDaoImpl.updateById
+2017-10-17 15:56:19 INFO: Lot [id=1, description=test, poductId=134, minPrice=10.0, sallerId=11, expDate=2017-08-23 00:00:00.0, status=SUCCESS, volumeOfLot=400]
+2017-10-17 15:56:19 INFO: exection LotDaoImpl.updateById successfully finished
+2017-10-17 15:56:19 INFO: exection TenderDaoImpl.getById
+2017-10-17 15:56:19 INFO: 1
+2017-10-17 15:56:19 INFO: exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-10-17 15:56:19 INFO: exection TenderDaoImpl.updateById
+2017-10-17 15:56:19 INFO: Tender [id=1, description=Java, productId=13, maxPrice=4.0, customerId=1, status=SUCCESS, expDate=2017-08-23 00:00:00.0, volumeOfTender=500]
+2017-10-17 15:56:19 INFO: exection TenderDaoImpl.updateById successfully finished
+2017-10-17 15:56:19 INFO: exection LotDaoImpl.getById
+2017-10-17 15:56:19 INFO: 1
+2017-10-17 15:56:19 INFO: exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-10-17 15:56:19 INFO: exection CompanyDaoImpl.getById
+2017-10-17 15:56:19 INFO: 11
+2017-10-17 15:56:19 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-17 15:56:19 INFO: exection TenderDaoImpl.getById
+2017-10-17 15:56:19 INFO: 1
+2017-10-17 15:56:19 INFO: exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-10-17 15:56:19 INFO: exection CompanyDaoImpl.getById
+2017-10-17 15:56:19 INFO: 1
+2017-10-17 15:56:19 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-17 15:56:19 INFO: exection EmailDaoImpl.add
+2017-10-17 15:56:19 INFO: Email [id=0, toEmail=apccc@mail.ru, emailSublect=Bingo!!!, emailText=Вы и Ваш потенциальный партнер подтвердили сделку по вашему лоту №1]
+2017-10-17 15:56:19 INFO: exection EmailDaoImpl.add successfully finished
+2017-10-17 15:56:19 INFO: exection EmailDaoImpl.add
+2017-10-17 15:56:19 INFO: Email [id=0, toEmail=apccc@mail.ru, emailSublect=Bingo!!!, emailText=Вы и Ваш потенциальный партнер подтвердили сделку по вашему лоту №1]
+2017-10-17 15:56:19 INFO: exection EmailDaoImpl.add successfully finished
+2017-10-17 15:56:57 INFO: exection ReferenceHandling.sellerCheck
+2017-10-17 15:56:57 INFO: 3
+2017-10-17 15:56:57 INFO: 2
+2017-10-17 15:56:57 INFO: APPROVE
+2017-10-17 15:56:57 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 15:56:57 AST 2017]; root of context hierarchy
+2017-10-17 15:56:58 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-17 15:56:58 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 15:56:59 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 15:57:02 INFO: exection PreDealDaoImpl.getById
+2017-10-17 15:57:02 INFO: 3
+2017-10-17 15:57:02 INFO: exection PreDealDaoImpl.getById return null, successfully finished
+2017-10-17 15:57:17 INFO: exection ReferenceHandling.sellerCheck
+2017-10-17 15:57:17 INFO: 1
+2017-10-17 15:57:17 INFO: 2
+2017-10-17 15:57:17 INFO: APPROVE
+2017-10-17 15:57:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 15:57:17 AST 2017]; root of context hierarchy
+2017-10-17 15:57:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-17 15:57:18 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 15:57:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 15:57:21 INFO: exection PreDealDaoImpl.getById
+2017-10-17 15:57:21 INFO: 1
+2017-10-17 15:57:22 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-10-17 15:57:22 INFO: exection PreDealDaoImpl.updateById
+2017-10-17 15:57:22 INFO: PreDeal [id=1, sellerHashCode=??????, customerHashCode=??????, tenderId=1, lotId=1, sellerApprov=true, custApprov=true, dealDate=2017-10-17 00:00:00.0]
+
+2017-10-17 15:57:22 INFO: exection PreDealDaoImpl.updateById successfully finished
+2017-10-17 15:57:22 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ccb269: startup date [Tue Oct 17 15:57:22 AST 2017]; root of context hierarchy
+2017-10-17 15:57:22 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 15:57:22 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 15:57:22 INFO: exection DealsDaoImpl.add
+2017-10-17 15:57:22 INFO: Deals [id=0, lotId=1, tenderId=1, dealsTime=Tue Oct 17 15:57:22 AST 2017]
+2017-10-17 15:57:22 INFO: exection DealsDaoImpl.add successfully finished
+2017-10-17 15:57:22 INFO: exection LotDaoImpl.getById
+2017-10-17 15:57:22 INFO: 1
+2017-10-17 15:57:22 INFO: exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-10-17 15:57:22 INFO: exection LotDaoImpl.updateById
+2017-10-17 15:57:22 INFO: Lot [id=1, description=test, poductId=134, minPrice=10.0, sallerId=11, expDate=2017-08-23 00:00:00.0, status=SUCCESS, volumeOfLot=400]
+2017-10-17 15:57:22 INFO: exection LotDaoImpl.updateById successfully finished
+2017-10-17 15:57:22 INFO: exection TenderDaoImpl.getById
+2017-10-17 15:57:22 INFO: 1
+2017-10-17 15:57:22 INFO: exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-10-17 15:57:22 INFO: exection TenderDaoImpl.updateById
+2017-10-17 15:57:22 INFO: Tender [id=1, description=Java, productId=13, maxPrice=4.0, customerId=1, status=SUCCESS, expDate=2017-08-23 00:00:00.0, volumeOfTender=500]
+2017-10-17 15:57:22 INFO: exection TenderDaoImpl.updateById successfully finished
+2017-10-17 15:57:22 INFO: exection LotDaoImpl.getById
+2017-10-17 15:57:22 INFO: 1
+2017-10-17 15:57:22 INFO: exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-10-17 15:57:22 INFO: exection CompanyDaoImpl.getById
+2017-10-17 15:57:22 INFO: 11
+2017-10-17 15:57:22 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-17 15:57:22 INFO: exection TenderDaoImpl.getById
+2017-10-17 15:57:22 INFO: 1
+2017-10-17 15:57:22 INFO: exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-10-17 15:57:22 INFO: exection CompanyDaoImpl.getById
+2017-10-17 15:57:22 INFO: 1
+2017-10-17 15:57:22 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-17 15:57:22 INFO: exection EmailDaoImpl.add
+2017-10-17 15:57:22 INFO: Email [id=0, toEmail=apccc@mail.ru, emailSublect=Bingo!!!, emailText=Вы и Ваш потенциальный партнер подтвердили сделку по вашему лоту №1]
+2017-10-17 15:57:22 INFO: exection EmailDaoImpl.add successfully finished
+2017-10-17 15:57:22 INFO: exection EmailDaoImpl.add
+2017-10-17 15:57:22 INFO: Email [id=0, toEmail=apccc@mail.ru, emailSublect=Bingo!!!, emailText=Вы и Ваш потенциальный партнер подтвердили сделку по вашему лоту №1]
+2017-10-17 15:57:22 INFO: exection EmailDaoImpl.add successfully finished
+2017-10-17 16:05:31 INFO: exection ReferenceHandling.sellerCheck
+2017-10-17 16:05:31 INFO: 1
+2017-10-17 16:05:31 INFO: 2
+2017-10-17 16:05:31 INFO: APPROVE
+2017-10-17 16:05:31 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 16:05:31 AST 2017]; root of context hierarchy
+2017-10-17 16:05:32 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-17 16:05:32 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 16:05:33 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 16:05:34 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'referenceService' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'lotDao' of bean class [com.bigroi.stock.service.impl.ReferenceServiceImpl]: Bean property 'lotDao' is not writable or has an invalid setter method. Does the parameter type of the setter match the return type of the getter?
+2017-10-17 16:06:27 INFO: exection ReferenceHandling.sellerCheck
+2017-10-17 16:06:27 INFO: 1
+2017-10-17 16:06:27 INFO: 2
+2017-10-17 16:06:27 INFO: APPROVE
+2017-10-17 16:06:27 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1089e5f: startup date [Tue Oct 17 16:06:27 AST 2017]; root of context hierarchy
+2017-10-17 16:06:28 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-10-17 16:06:28 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 16:06:29 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 16:06:32 INFO: exection PreDealDaoImpl.getById
+2017-10-17 16:06:32 INFO: 1
+2017-10-17 16:06:32 INFO: exection PreDealDaoImpl.getById return list.get(0), successfully finished
+2017-10-17 16:06:32 INFO: exection PreDealDaoImpl.updateById
+2017-10-17 16:06:32 INFO: PreDeal [id=1, sellerHashCode=??????, customerHashCode=??????, tenderId=1, lotId=1, sellerApprov=true, custApprov=true, dealDate=2017-10-17 00:00:00.0]
+
+2017-10-17 16:06:32 INFO: exection PreDealDaoImpl.updateById successfully finished
+2017-10-17 16:06:32 INFO: exection DealsDaoImpl.add
+2017-10-17 16:06:32 INFO: Deals [id=0, lotId=1, tenderId=1, dealsTime=Tue Oct 17 16:06:32 AST 2017]
+2017-10-17 16:06:32 INFO: exection DealsDaoImpl.add successfully finished
+2017-10-17 16:06:32 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@14df057: startup date [Tue Oct 17 16:06:32 AST 2017]; root of context hierarchy
+2017-10-17 16:06:32 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-17 16:06:32 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-17 16:06:33 INFO: exection LotDaoImpl.getById
+2017-10-17 16:06:33 INFO: 1
+2017-10-17 16:06:33 INFO: exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-10-17 16:06:33 INFO: exection LotDaoImpl.updateById
+2017-10-17 16:06:33 INFO: Lot [id=1, description=test, poductId=134, minPrice=10.0, sallerId=11, expDate=2017-08-23 00:00:00.0, status=SUCCESS, volumeOfLot=400]
+2017-10-17 16:06:33 INFO: exection LotDaoImpl.updateById successfully finished
+2017-10-17 16:06:33 INFO: exection TenderDaoImpl.getById
+2017-10-17 16:06:33 INFO: 1
+2017-10-17 16:06:33 INFO: exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-10-17 16:06:33 INFO: exection TenderDaoImpl.updateById
+2017-10-17 16:06:33 INFO: Tender [id=1, description=Java, productId=13, maxPrice=4.0, customerId=1, status=SUCCESS, expDate=2017-08-23 00:00:00.0, volumeOfTender=500]
+2017-10-17 16:06:33 INFO: exection TenderDaoImpl.updateById successfully finished
+2017-10-17 16:06:33 INFO: exection LotDaoImpl.getById
+2017-10-17 16:06:33 INFO: 1
+2017-10-17 16:06:33 INFO: exection LotDaoImpl.getById return lot.get(0), successfully finished
+2017-10-17 16:06:33 INFO: exection CompanyDaoImpl.getById
+2017-10-17 16:06:33 INFO: 11
+2017-10-17 16:06:33 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-17 16:06:33 INFO: exection TenderDaoImpl.getById
+2017-10-17 16:06:33 INFO: 1
+2017-10-17 16:06:33 INFO: exection TenderDaoImpl.getById return tender.get(0), successfully finished
+2017-10-17 16:06:33 INFO: exection CompanyDaoImpl.getById
+2017-10-17 16:06:33 INFO: 1
+2017-10-17 16:06:33 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-17 16:06:33 INFO: exection EmailDaoImpl.add
+2017-10-17 16:06:33 INFO: Email [id=0, toEmail=apccc@mail.ru, emailSublect=Bingo!!!, emailText=Вы и Ваш потенциальный партнер подтвердили сделку по вашему лоту №1]
+2017-10-17 16:06:33 INFO: exection EmailDaoImpl.add successfully finished
+2017-10-17 16:06:33 INFO: exection EmailDaoImpl.add
+2017-10-17 16:06:33 INFO: Email [id=0, toEmail=apccc@mail.ru, emailSublect=Bingo!!!, emailText=Вы и Ваш потенциальный партнер подтвердили сделку по вашему лоту №1]
+2017-10-17 16:06:33 INFO: exection EmailDaoImpl.add successfully finished
