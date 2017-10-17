@@ -15,7 +15,6 @@ import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.controller.ReferenceHandling;
 import com.bigroi.stock.dao.BlacklistDao;
 import com.bigroi.stock.dao.DaoException;
-import com.bigroi.stock.dao.DaoFactory;
 import com.bigroi.stock.dao.DealsDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.PreDealDao;
@@ -165,10 +164,10 @@ public class ReferenceServiceImpl implements ReferenceService{
 	private void setStatuses(Status status) throws DaoException {
 		logger.info("exection ReferenceHandling.setStatuses");
 		logger.info(status);
-		Lot lot = DaoFactory.getLotDao().getById(ReferenceHandling.preDeal.getLotId());
+		Lot lot = lotDao.getById(ReferenceHandling.preDeal.getLotId());
 		lot.setStatus(status);
 		lotDao.updateById(lot);
-		Tender tender = DaoFactory.getTenderDao().getById(ReferenceHandling.preDeal.getTenderId());
+		Tender tender = tenderDao.getById(ReferenceHandling.preDeal.getTenderId());
 		tender.setStatus(status);
 		tenderDao.updateById(tender);	
 		logger.info("exection ReferenceHandling.setStatuses successfully finished");
