@@ -95,6 +95,15 @@ public class AccessRenderingController {
 		return ServiceFactory.getUserService().getByLogin(login);
 	}
 	
+	@RequestMapping("/Logout.spr")
+	public ModelAndView logout(String login, String password,
+			HttpSession session){
+		if(session != null){
+			session.invalidate();
+		}
+		return new ModelAndView("welcome","outMessage","you lefted account");
+	}
+	
 	
 	
 }
