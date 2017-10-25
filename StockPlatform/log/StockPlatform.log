@@ -3875,3 +3875,34 @@
 2017-10-17 16:06:33 INFO: exection EmailDaoImpl.add
 2017-10-17 16:06:33 INFO: Email [id=0, toEmail=apccc@mail.ru, emailSublect=Bingo!!!, emailText=Вы и Ваш потенциальный партнер подтвердили сделку по вашему лоту №1]
 2017-10-17 16:06:33 INFO: exection EmailDaoImpl.add successfully finished
+2017-10-23 17:40:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1bc7afb: startup date [Mon Oct 23 17:40:17 AST 2017]; root of context hierarchy
+2017-10-23 17:40:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-23 17:40:19 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-23 17:40:19 INFO: exection CompanyDaoImpl.getAllCompany
+2017-10-23 17:40:40 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@f10a6f: startup date [Mon Oct 23 17:40:40 AST 2017]; root of context hierarchy
+2017-10-23 17:40:40 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-23 17:40:41 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-23 17:40:42 INFO: exection CompanyDaoImpl.getAllCompany
+2017-10-23 17:40:43 INFO: exection CompanyDaoImpl.getAllCompany successfully finished
+2017-10-23 17:41:11 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Mon Oct 23 17:41:11 AST 2017]; root of context hierarchy
+2017-10-23 17:41:11 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-23 17:41:12 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-23 17:41:12 INFO: exection CompanyDaoImpl.getById
+2017-10-23 17:41:12 INFO: 1
+2017-10-23 17:41:13 INFO: exection CompanyDaoImpl.getById return companys.get(0), successfully finished
+2017-10-23 17:43:04 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Mon Oct 23 17:43:04 AST 2017]; root of context hierarchy
+2017-10-23 17:43:05 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-23 17:43:06 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-23 17:43:06 INFO: exection UserDaoImpl.getAllUser
+2017-10-23 17:43:07 INFO: [User [id=1, login=Admin, password=1, companyId=1], User [id=3, login=new, password=3, companyId=11], User [id=5, login=EvgenAdmin, password=123, companyId=11], User [id=15, login=EvgenAdmin!, password=123, companyId=11], User [id=22, login=ROLBACK, password=ROLBACK, companyId=22], User [id=23, login=NULL, password=123, companyId=23], User [id=24, login=rrrr, password=123, companyId=24]]
+2017-10-23 17:43:07 INFO: exection UserDaoImpl.getAllUser successfully finished
+2017-10-23 17:43:51 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1c8e616: startup date [Mon Oct 23 17:43:51 AST 2017]; root of context hierarchy
+2017-10-23 17:43:51 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-23 17:43:52 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-23 17:43:52 INFO: exection UserDaoImpl.getAllUser
+2017-10-23 17:43:53 INFO: [User [id=1, login=Admin, password=1, companyId=1], User [id=3, login=new, password=3, companyId=11], User [id=5, login=EvgenAdmin, password=123, companyId=11], User [id=15, login=EvgenAdmin!, password=123, companyId=11], User [id=22, login=ROLBACK, password=ROLBACK, companyId=22], User [id=23, login=NULL, password=123, companyId=23], User [id=24, login=rrrr, password=123, companyId=24]]
+2017-10-23 17:43:53 INFO: exection UserDaoImpl.getAllUser successfully finished
+2017-10-23 17:44:04 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@d3d15a: startup date [Mon Oct 23 17:44:04 AST 2017]; root of context hierarchy
+2017-10-23 17:44:04 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-10-23 17:44:05 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-10-23 17:44:05 INFO: exection UserDaoImpl.getAllUser
