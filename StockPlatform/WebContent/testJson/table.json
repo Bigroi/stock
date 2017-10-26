@@ -1,0 +1,21 @@
+{
+"result": 1,
+"data": {
+    "model":{
+     "custSortFn":{
+    "1": "answer.data.model.custSortFn[key] = function (a, b){ return (a - b); }",
+    "2": "answer.data.model.custSortFn[key] = function (a, b){ return (a - b); }"
+   },
+   "allowSorting":{ 
+    "3": false
+   }
+  },
+  "headers":["Наименование", "Количество, т", "Цена за тонну, кг", "Место загрузки"],
+  "rows":[
+   ["Картофель", "10.5", "700", "Барановичи"],
+   ["Яблоки", "5.35", "1200", "Логойск"],
+   ["Хурма", "3.5", "500", "Минск"],
+   ["Ананас", "50.0", "100", "Витебск"]
+  ]
+ }
+}

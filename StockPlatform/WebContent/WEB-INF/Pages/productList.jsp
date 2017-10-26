@@ -6,29 +6,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Product list</title>
+<link rel="stylesheet" href="css/tableStyle.css">
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script> 
+<script src="js/tableMaker.js"></script>	
+<script src="js/tableSorter.js"></script>	
 </head>
 <body>
 	Продукты
-	<table border="1">
-		<thead>
-			<tr>
-				<td>name</td>
-				<td>description</td>				
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="product" items="${listOfProducts}">
-				<tr>
-					<td>${product.name}</td>
-					<td>${product.description}</td>					
-					<td><form action="TradeOffers.spr" method="get">
-							<input type="hidden" name="id" value="${product.id}"> <input
-								type="submit" value="Trade offers">
-						</form></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	<div id = "tableContainer" data-url = "testJson/table.json">	
+<!-- !!!Обязательно использовать имя атрибута "data-url" для передачи url плагину tableMaker. -->	
+			<script>
+			$(function(){
+			$("#tableContainer").tableMaker();
+			});
+			</script>
+	</div>
 	 <form action="ProductForm.spr">
 		<input type="hidden" name="id" value="-1" />
 		<input type="submit" value="Add product">
