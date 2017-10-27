@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ public class TenderRenderingController {
 	private static final Logger logger = Logger.getLogger(TenderRenderingController.class);
 
 	@RequestMapping("/TenderFormAuth.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView tenderEdit(@RequestParam("id") long id, HttpSession session) throws ServiceException {
 		logger.info("exection TenderRenderingController.tenderEdit");
 		logger.info(id);	
@@ -35,6 +37,7 @@ public class TenderRenderingController {
 	}
 
 	@RequestMapping("/TenderSaveAuth.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView tenderSave(@RequestParam("id") long id, 
 			@RequestParam("description") String description,			
 			@RequestParam("productId") long productId,
@@ -78,6 +81,7 @@ public class TenderRenderingController {
 	}
 	
 	@RequestMapping("/MyTenderListAuth.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView myTenderList(HttpSession session) throws  ServiceException {
 		logger.info("exection TenderRenderingController.myTenderList");
 		logger.info(session);
@@ -87,6 +91,7 @@ public class TenderRenderingController {
 	}
 	
 	@RequestMapping("/TenderInGameAuth.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView tenderInGame(@RequestParam("id") long id, HttpSession session) throws  ServiceException {
 		logger.info("exection TenderRenderingController.tenderInGame");
 		logger.info(id);
@@ -97,6 +102,7 @@ public class TenderRenderingController {
 	}
 	
 	@RequestMapping("/TenderCancelAuth.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView lotCancel(@RequestParam("id") long id, HttpSession session) throws  ServiceException {
 		logger.info("exection TenderRenderingController.lotCancel");
 		logger.info(id);

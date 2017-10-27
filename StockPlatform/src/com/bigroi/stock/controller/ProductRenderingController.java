@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ public class ProductRenderingController {
 	private static final Logger logger = Logger.getLogger(ProductRenderingController.class);
 
 	@RequestMapping("/ProductForm.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView productEdit(@RequestParam("id") long id) throws ServiceException {
 		logger.info("exection ProductRenderingController.productEdit");
 		logger.info(id);
@@ -30,6 +32,7 @@ public class ProductRenderingController {
 	}
 
 	@RequestMapping("/ProductSave.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView productSave(@RequestParam("id") long id, @RequestParam("name") String name,
 			@RequestParam("description") String description) throws ServiceException {
 		logger.info("exection ProductRenderingController.productSave");
@@ -45,6 +48,7 @@ public class ProductRenderingController {
 	}
 
 	@RequestMapping("/ProductListPage.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView listOfProducts() throws ServiceException {
 		logger.info("exection ProductRenderingController.listOfProducts");
 		List<Product> products = ServiceFactory.getProductService().getAllProduct();
@@ -53,6 +57,7 @@ public class ProductRenderingController {
 	}
 
 	@RequestMapping("/TradeOffers.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView tradeOffers(@RequestParam("id") long id) throws ServiceException {
 		logger.info("exection ProductRenderingController.tradeOffers");
 		logger.info(id);
@@ -64,6 +69,7 @@ public class ProductRenderingController {
 	// -------------------------- controllers for admin's panel ------------------------------//
 
 	@RequestMapping("/ProductListAdmin.spr")
+	@Secured("ROLE_ADMIN")
 	public ModelAndView listOfProductsForAdmin(HttpSession session) throws ServiceException {
 		logger.info("exection ProductRenderingController.listOfProductsForAdmin");
 		List<Product> allProducts = ServiceFactory.getProductService().getListOfProductsForAdmin(session);
@@ -72,6 +78,7 @@ public class ProductRenderingController {
 	}
 
 	@RequestMapping("/EditProduct.spr")
+	@Secured("ROLE_ADMIN")
 	public ModelAndView editProduct(@RequestParam("id") long id) throws ServiceException {
 		logger.info("exection ProductRenderingController.editProduct");
 		logger.info(id);
@@ -81,6 +88,7 @@ public class ProductRenderingController {
 	}
 
 	@RequestMapping("/ProdSave.spr")
+	@Secured("ROLE_ADMIN")
 	public ModelAndView prodSave(@RequestParam("id") long id, @RequestParam("name") String name,
 			@RequestParam("description") String description, HttpSession session)
 			throws ServiceException {
@@ -97,6 +105,7 @@ public class ProductRenderingController {
 	}
 
 	@RequestMapping("/DeleteProduct.spr")
+	//@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView prodDelete(@RequestParam("id") long id, HttpSession session)
 			throws ServiceException {
 		logger.info("exection ProductRenderingController.prodDelete");

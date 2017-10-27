@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class LotRenderingController {
 	private static final Logger logger = Logger.getLogger(LotRenderingController.class);
 	
 	@RequestMapping("/LotFormAuth.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView lotEdit(@RequestParam("id") long id, HttpSession session) throws ServiceException {
 		logger.info("execution LotRenderingController.lotEdit");
 		logger.info(id);
@@ -36,6 +38,7 @@ public class LotRenderingController {
 	}
 	
 	@RequestMapping("/LotSaveAuth.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView lotSave(@RequestParam("id") long id, 
 			@RequestParam("description") String description,			
 			@RequestParam("productId") long productId,
@@ -79,6 +82,7 @@ public class LotRenderingController {
 	}
 	
 	@RequestMapping("/MyLotListAuth.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView myLotList(HttpSession session) throws  ServiceException {
 		logger.info("exection LotRenderingController.myLotList");
 		logger.info(session);
@@ -89,6 +93,7 @@ public class LotRenderingController {
 	}
 	
 	@RequestMapping("/LotInGameAuth.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView lotInGame(@RequestParam("id") long id, HttpSession session) throws ServiceException {
 		logger.info("exection LotRenderingController.lotInGame");
 		logger.info(id);
@@ -99,6 +104,7 @@ public class LotRenderingController {
 	}
 	
 	@RequestMapping("/LotCancelAuth.spr")
+	@Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
 	public ModelAndView lotCancel(@RequestParam("id") long id, HttpSession session) throws ServiceException {
 		logger.info("exection LotRenderingController.lotCancel");
 		logger.info(id);

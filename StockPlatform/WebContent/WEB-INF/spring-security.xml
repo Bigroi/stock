@@ -1,0 +1,25 @@
+<b:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:b="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	 <http > 
+  <!--  <intercept-url pattern="/index*" access="ROLE_USER,ROLE_ANONYMOUS"/>  -->
+  <!-- <intercept-url pattern="/add*" access="ROLE_USER"/>  -->
+  
+  <!--  <intercept-url pattern="/comapnyAdmin/*" access="ROLE_ADMIN"/>  -->
+   
+   <!-- <form-login login-page="/login.jsp" default-target-url="/index" authentication-failure-url="/login.jsp?error=true"/> 
+   <logout logout-url="/logout" logout-success-url="/index"/> 
+   <anonymous username="guest" granted-authority="ROLE_ANONYMOUS"/> --> 
+   <remember-me/> 
+</http>  
+
+	<global-method-security secured-annotations="enabled" />
+
+	<user-service>
+		<user name="admin" password="1" authorities="ROLE_ADMIN" />
+		<user name="user" password="1" authorities="ROLE_USER" />
+	</user-service>
+
+</b:beans>

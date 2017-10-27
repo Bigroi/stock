@@ -6,6 +6,7 @@ import com.bigroi.stock.bean.Product;
 
 public interface ProductDao {
 	
+	
 	List<Product> getAllProduct() throws DaoException;
 	
 	void add(Product product) throws DaoException;
