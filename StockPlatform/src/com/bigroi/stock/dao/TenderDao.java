@@ -3,27 +3,26 @@ package com.bigroi.stock.dao;
 import java.util.List;
 
 import com.bigroi.stock.bean.Tender;
+import com.bigroi.stock.bean.common.Status;
 
 public interface TenderDao {
 	
     void add(Tender tender) throws DaoException;
 	
-	boolean deletedById(long id) throws DaoException;
-	
-	boolean updateById (Tender tender) throws DaoException;
+	boolean update(Tender tender) throws DaoException;
 	
 	Tender getById(long id) throws DaoException;
 	
 	List<Tender> getByCustomerId(long customerId) throws DaoException;
 	
-	List<Tender> getByProductId(long productId) throws DaoException;
+	List<Tender> getActiveByProductId(long productId) throws DaoException;
 	
-	List<Tender> getByProductIdInGameOrderMaxPriceDesc(long productId) throws DaoException;
+	List<Tender> getAllActive() throws DaoException;
+
+	boolean setStatusByCustomerId(long customerId, Status status) throws DaoException;
+
+	boolean  setStatusByProductId(long productId, Status status) throws DaoException;
 	
-	List<Tender> getAllInGame() throws DaoException;
-
-	boolean TenderStatusCancel(long customerId) throws DaoException;
-
-	boolean  TenderStatusCancelByProductId(long productId) throws DaoException;
+	boolean  setStatusById(long id, Status status) throws DaoException;
 
 }

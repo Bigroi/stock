@@ -27,6 +27,6 @@ private static Tender tender;
 	}
 	@Test
 	public void update() throws DaoException{
-		DaoFactory.getTenderDao().updateById(tender);
+		DaoFactory.getTenderDao().update(tender);
 	}
 }

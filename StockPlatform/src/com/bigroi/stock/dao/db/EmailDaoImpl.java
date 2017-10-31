@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -21,8 +20,6 @@ import com.bigroi.stock.dao.EmailDao;
 
 public class EmailDaoImpl implements EmailDao {
 
-	private static final Logger logger = Logger.getLogger(EmailDaoImpl.class);
-	
 	private static final String GET_ALL_EMAILS = "SELECT id, to_email, " 
 	        + " email_subject, email_text FROM email ";
 
@@ -45,18 +42,13 @@ public class EmailDaoImpl implements EmailDao {
 
 	@Override
 	public List<Email> getAll() throws DaoException {
-		logger.info("exection EmailDaoImpl.getAll");
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Email> list = template.query(GET_ALL_EMAILS, 
+		return template.query(GET_ALL_EMAILS, 
 				new BeanPropertyRowMapper<Email>(Email.class));
-		logger.info("exection EmailDaoImpl.getAll successfully finished");
-		return list;
 	}
 
 	@Override
 	public void add(Email email) throws DaoException {
-		logger.info("exection EmailDaoImpl.add");
-		logger.info(email);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -72,15 +64,11 @@ public class EmailDaoImpl implements EmailDao {
 		}, keyHolder);
 		long id = keyHolder.getKey().longValue();
 		email.setId(id);
-		logger.info("exection EmailDaoImpl.add successfully finished");
 	}
 
 	@Override
 	public boolean deleteById(long id) throws DaoException {
-		logger.info("exection EmailDaoImpl.deleteById");
-		logger.info(id);
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		logger.info("exection EmailDaoImpl.deleteById successfully finished");
 		return template.update(DELETE_EMAILS_BY_ID, id) == 1;
 
 	}

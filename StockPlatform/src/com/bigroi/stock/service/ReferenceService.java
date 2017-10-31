@@ -1,14 +1,14 @@
 package com.bigroi.stock.service;
 
 import com.bigroi.stock.bean.PreDeal;
-import com.bigroi.stock.bean.common.Action;
 
 public interface ReferenceService {
 
-	String callSellerCheck(long id,String key,Action action) throws ServiceException;
+	PreDeal getById(long id) throws ServiceException;
 	
-	PreDeal getByIdPreDeal(long id) throws ServiceException;
+	void setApprovedByCustomer(long id) throws ServiceException;
 	
-	String callCustomerCheck(long id,String key,Action action) throws ServiceException;
-
+	void cancel(long preDealId) throws ServiceException;
+	
+	void setApprovedBySeller(long preDealId) throws ServiceException;
 }

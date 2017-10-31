@@ -23,6 +23,6 @@ public class UserUpdate {
 	@Test
 	public void update() throws DaoException {
 	
-	DaoFactory.getUserDao().updateById(user);
+	DaoFactory.getUserDao().update(user);
 	}
 }

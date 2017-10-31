@@ -13,7 +13,7 @@
 </head>
 <body>
 	Продукты
-	<div id = "tableContainer" data-url = "testJson/table.json">	
+	<div id = "tableContainer" data-url = "json/product/List.spr">	
 <!-- !!!Обязательно использовать имя атрибута "data-url" для передачи url плагину tableMaker. -->	
 			<script>
 			$(function(){
@@ -21,10 +21,6 @@
 			});
 			</script>
 	</div>
-	 <form action="ProductForm.spr">
-		<input type="hidden" name="id" value="-1" />
-		<input type="submit" value="Add product">
-	</form>
 	<form action="Index.spr">
 		<input type="submit" value="Welcome page">
 	</form>

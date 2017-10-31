@@ -12,41 +12,37 @@
    <p> WELCOME !!! ${user.login}</p>  
    <a href="?lang=en">en</a> |  <a href="?lang=ru">ru</a>
    <c:if test="${user.login == null }">
-   <p><a href="LoginPage.spr"><spring:message code="label.login"/></a> </p>
-   <p><a href="RegistrationPage.spr"><spring:message code="label.registration"/></a> </p>
+   <p><a href="/Login.spr"><spring:message code="label.login"/></a> </p>
+   <p><a href="/Registration.spr"><spring:message code="label.registration"/></a> </p>
    </c:if>
-   <p><a href="AccounPageAuth.spr"><spring:message code="label.account"/></a> </p>
+   <p><a href="/account/Form.spr"><spring:message code="label.account"/></a> </p>
 
 	<input type="button" value="<spring:message code="label.logout"/>" onclick="document.location = 'Logout.spr'">
 	<p style="font-family: cursive; font-size: 13px">${outMessage}</p>
 
 	<ul>
-    	<li><a href="ProductListPage.spr"><spring:message code="label.productList"/></a>
-    		<form action="ProductForm.spr">
-				<input type="hidden" name="id" value="-1" />
-				<p><input type="submit" value="<spring:message code="label.button.AddProduct"/>"></p>
-			</form>
+    	<li><a href="/product/List.spr"><spring:message code="label.productList"/></a>
 		</li>
-        <li><a href="MyLotListAuth.spr"><spring:message code="label.myLotList"/></a>
-        	<form action="LotFormAuth.spr">
+        <li><a href="/lot/MyList.spr"><spring:message code="label.myLotList"/></a>
+        	<form action="/lot/Form.spr">
 				<input type="hidden" name="id" value="-1" />
 				<p><input type="submit" value="<spring:message code="label.button.AddLot"/>"></p>	
 			</form>
         </li>
-        <li><a href="MyTenderListAuth.spr"><spring:message code="label.tenderList"/></a>
-        	<form action="TenderFormAuth.spr">
+        <li><a href="/tender/MyList.spr"><spring:message code="label.tenderList"/></a>
+        	<form action="/tender/Form.spr">
 				<input type="hidden" name="id" value="-1" />
 				<p><input type="submit" value="<spring:message code="label.button.AddTender"/>"></p>
 			</form>
         </li>
         <li>
-        <a href="CompanyList.spr"> Company list with status</a>
+        <a href="/company/admin/List.spr"> Company list with status</a>
        
         </li>
         
 	</ul>
 	
-	<a href="ProductListAdmin.spr" > Product list for admin's panel</a>
+	<a href="/product/admin/List.spr" > Product list for admin's panel</a>
 	
 
 </body>

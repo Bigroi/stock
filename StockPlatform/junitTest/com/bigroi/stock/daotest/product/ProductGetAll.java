@@ -11,7 +11,7 @@ public class ProductGetAll {
 	
 	@Test
 	public void getAll() throws DaoException{
-		System.out.println(DaoFactory.getProductDao().getAllProduct());
+		System.out.println(DaoFactory.getProductDao().getAllProducts());
 	}
 
 }

@@ -14,18 +14,18 @@ public class CheckStatus implements Runnable {
 	@Override
 	public void run() {
 		try {
-			List<Lot> lots = DaoFactory.getLotDao().getAllInGame();
+			List<Lot> lots = DaoFactory.getLotDao().getActive();
 			for (Lot lot : lots) {
 				if (lot.isExpired()){
 					lot.setStatus(Status.EXPIRED);
-					DaoFactory.getLotDao().updateById(lot);
+					DaoFactory.getLotDao().update(lot);
 				}
 			}
-			List<Tender> tenders = DaoFactory.getTenderDao().getAllInGame();
+			List<Tender> tenders = DaoFactory.getTenderDao().getAllActive();
 			for (Tender tender : tenders) {
 				if (tender.isExpired()){
 					tender.setStatus(Status.EXPIRED);
-					DaoFactory.getTenderDao().updateById(tender);
+					DaoFactory.getTenderDao().update(tender);
 				}
 			}
 		} catch (DaoException e) {

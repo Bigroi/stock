@@ -1,6 +1,5 @@
 package com.bigroi.stock.market;
 
-import java.io.IOException;
 import java.util.List;
 
 import com.bigroi.stock.bean.Lot;
@@ -17,7 +16,7 @@ public class ClearPreDeal implements Runnable {
 	@Override
 	public void run(){
 		try {
-			List<PreDeal> predials = DaoFactory.getPreDealDao().getAllPreDeal();
+			List<PreDeal> predials = DaoFactory.getPreDealDao().getAll();
 			for (PreDeal preDeal : predials) {
 				if (preDeal.getSellerApprovBool() && preDeal.getCustApprovBool())
 					continue;
@@ -25,7 +24,7 @@ public class ClearPreDeal implements Runnable {
 				new Message().sendMessageClearPredeal(preDeal);
 			}
 			DaoFactory.getPreDealDao().deleteAll();
-		} catch (DaoException | IOException | MailManagerException e) {
+		} catch (DaoException | MailManagerException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			e.printStackTrace();
 		}
@@ -38,14 +37,14 @@ public class ClearPreDeal implements Runnable {
 		} else {
 			lot.setStatus(Status.IN_GAME);
 		}
-		DaoFactory.getLotDao().updateById(lot);
+		DaoFactory.getLotDao().update(lot);
 		Tender tender = DaoFactory.getTenderDao().getById(predeal.getTenderId());
 		if (tender.isExpired()) {
 			tender.setStatus(Status.EXPIRED);
 		} else {
 			tender.setStatus(Status.IN_GAME);
 		}
-		DaoFactory.getTenderDao().updateById(tender);
+		DaoFactory.getTenderDao().update(tender);
 	}
 
 }

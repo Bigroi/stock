@@ -29,7 +29,7 @@ private static Company company;
 	
 	@Test
 	public void update() throws DaoException{
-		DaoFactory.getCompanyDao().updateById(company);
+		DaoFactory.getCompanyDao().update(company);
 		
 	}
 

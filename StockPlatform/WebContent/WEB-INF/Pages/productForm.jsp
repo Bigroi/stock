@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<form action="ProductSave.spr">
+	<form action="/product/Save.spr">
 	
 		<input type="hidden" name="id" value="${product.id}"> <br>
 		
@@ -22,7 +22,7 @@
 		<input type="submit" name="save" value="SAVE"><br> 
 		<input type="button" name="back" value="Welcome page" onclick="document.location = 'Index.spr'">
 	</form>
-	<form action="ProductListPage.spr">
+	<form action="/product/List.spr">
 		<input type="submit" value="List of products">
 	</form>
 

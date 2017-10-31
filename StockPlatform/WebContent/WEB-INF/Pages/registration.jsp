@@ -10,7 +10,7 @@
 </head>
 <body>
 	<p>${message}</p>
-	<form action="Registation.spr" method="post">
+	<form action="/access/Registation.spr" method="post">
 	
 		 Login:<input name="login"><br> 
 		 Password:<input type="password" name="password"><br> 

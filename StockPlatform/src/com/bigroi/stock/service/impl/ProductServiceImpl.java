@@ -2,17 +2,16 @@ package com.bigroi.stock.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.Product;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
-import com.bigroi.stock.dao.DaoFactory;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.ProductDao;
 import com.bigroi.stock.dao.TenderDao;
@@ -26,6 +25,11 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
 	private LotDao lotDao;
 	private TenderDao tenderDao;
+	private CompanyDao companyDao;
+	
+	public void setCompanyDao(CompanyDao companyDao) {
+		this.companyDao = companyDao;
+	}
 
 	public void setProductDao(ProductDao productDao) {
 		this.productDao = productDao;
@@ -39,37 +43,43 @@ public class ProductServiceImpl implements ProductService {
 		this.tenderDao = tenderDao;
 	}
 
+	
 	@Override
-	@Transactional
-	public List<Product> getAllProduct() throws ServiceException {
+	public List<Product> getAllProducts() throws ServiceException {
 		try {
-			return productDao.getAllProduct();
+			return productDao.getAllProducts();
+		} catch (DaoException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException(e);
+		}
+	}
+	
+	@Override
+	public List<Product> getAllActiveProducts() throws ServiceException {
+		try {
+			return productDao.getAllActiveProducts();
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 		}
-		return null;
+		return new ArrayList<>();
 	}
 
 	@Override
-	@Transactional
-	public ModelMap tradeOffers(long id) throws ServiceException {
+	public Map<String, ?> getTradeOffers(long id) throws ServiceException {
 		ModelMap model = new ModelMap();
 		try {
 			model.addAttribute("product", productDao.getById(id));
-			model.addAttribute("listOfLots", lotDao.getByProductIdInGameOrderMinPrice(id));
-			model.addAttribute("listOfTenders", tenderDao.getByProductIdInGameOrderMaxPriceDesc(id));
+			model.addAttribute("listOfLots", lotDao.getActiveByProductId(id));
+			model.addAttribute("listOfTenders", tenderDao.getActiveByProductId(id));
 			return model;
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException(e);
 		}
-		return null;
-
 	}
 
 	@Override
-	@Transactional
-	public ModelMap callEditProduct(long id) throws ServiceException {
-		ModelMap model = new ModelMap();
+	public Product getProductById(long id) throws ServiceException{
 		try {
 			Product product;
 			if (id == -1) {
@@ -77,113 +87,41 @@ public class ProductServiceImpl implements ProductService {
 				product.setId(-1);
 			} else {
 				product = productDao.getById(id);
-				model.addAttribute("id", product.getId());
 			}
-			model.addAttribute("product", product);
-			return model;
+			return product;
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException();
 		}
-		return null;
 	}
-
+	
 	@Override
-	@Transactional
-	public void callSaveProduct(long id, Product product) throws ServiceException {
+	public void merge(Product product) throws ServiceException{
 		try {
-			if (id == -1) {
+			if (product.getId() == -1) {
 				productDao.add(product);
-				id = product.getId();
 			} else {
-				product.setId(id);
-				productDao.updateById(product);
+				productDao.update(product);
 			}
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException();
 		}
 	}
-
-	// -------------------------- services for admin's panel ------------------------------//
-
+	
 	@Override
 	@Transactional
-	public List<Product> getListOfProductsForAdmin(HttpSession session) throws ServiceException {
+	public void delete(long id, long companyId) throws ServiceException {
 		try {
-			User user = (User) session.getAttribute("user");
-			List<Product> allProducts = new ArrayList<>();
-			List<Product> productsYes = new ArrayList<>();
-			List<Product> productsNo = new ArrayList<>();
-			if (user != null && user.getLogin().equals("Admin")) {
-				productsYes = productDao.getArchiveYesProduct();
-				productsNo = productDao.getArchiveNoProduct();
-			} else if (user == null || !(user.getLogin().equals("Admin"))) {
-				productsNo = productDao.getArchiveNoProduct();
-			}
-			allProducts.addAll(productsYes);
-			allProducts.addAll(productsNo);
-			return allProducts;
-		} catch (DaoException e) {
+			productDao.setArchived(id);
+			lotDao.setStatusByProductId(id, Status.CANCELED);
+			tenderDao.setStatusByProductId(id, Status.CANCELED);
+			Company company = companyDao.getById(companyId);
+			//TODO send correct text
+			MessagerFactory.getMailManager().send(company.getEmail(), "deleteComapny", " some text");
+		} catch (DaoException | MailManagerException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
-		}
-		return null;
-	}
-
-	@Override
-	@Transactional
-	public ModelMap callEditProductForAdmin(long id) throws ServiceException {
-		ModelMap model = new ModelMap();
-		try {
-			Product product;
-			if (id != -1) {
-				product = productDao.getById(id);
-			} else {
-				product = new Product();
-			}
-			model.put("product", product);
-			model.put("getId", id);
-			return model;
-		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
-		}
-		return null;
-	}
-
-	@Override
-	@Transactional
-	public void callSaveProductForAdmin(long id, Product product) throws ServiceException {
-		try {
-			if (id != -1) {
-				product.setId(id);
-				productDao.updateById(product);
-			} else {
-				product.getId();
-				product.setArchive(false);
-				productDao.add(product);
-			}
-		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
-		}
-
-	}
-
-	@Override
-	@Transactional
-	public void callDeleteProduct(long id, HttpSession session) throws ServiceException {
-		try {
-			User user = (User) session.getAttribute("user");
-			if (user != null) {
-				productDao.switchOnYes(id);
-				lotDao.LotStatusCancelByProductId(id);
-				tenderDao.TenderStatusCancelByProductId(id);
-				Company company = DaoFactory.getCompanyDao().getById(user.getCompanyId());
-				try {
-					MessagerFactory.getMailManager().send(company.getEmail(), "deleteComapny", " some text");
-				} catch (MailManagerException e) {
-					MessagerFactory.getMailManager().sendToAdmin(e);
-				}
-			}
-		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException(e);
 		}
 
 	}

@@ -40,7 +40,7 @@ public class UserAddService {
 	
 	@Test
 	public void userAdd() throws ServiceException, SQLException{
-		ServiceFactory.getUserService().addCompanyAndUser(company, user);
+		ServiceFactory.getUserService().addUser(company, user);
 		Assert.assertNotNull(user);
 	}
 

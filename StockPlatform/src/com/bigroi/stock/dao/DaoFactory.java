@@ -1,10 +1,9 @@
 package com.bigroi.stock.dao;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class DaoFactory {
-	private static final ApplicationContext CONTEX = new ClassPathXmlApplicationContext("spring-dao.xml");
+	private static final ApplicationContext CONTEX = null;//new ClassPathXmlApplicationContext("spring-dao.xml");
 
 	public static UserDao getUserDao() {
 		return (UserDao) CONTEX.getBean("userDao");

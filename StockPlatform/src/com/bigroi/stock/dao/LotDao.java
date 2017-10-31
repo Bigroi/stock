@@ -4,29 +4,25 @@ import java.util.List;
 
 
 import com.bigroi.stock.bean.Lot;
+import com.bigroi.stock.bean.common.Status;
 
 public interface LotDao {
 	
 	void add(Lot lot) throws DaoException;
 	
-	boolean deletedById(long id) throws DaoException;
-	
-	boolean updateById( Lot lot) throws DaoException;
+	boolean update( Lot lot) throws DaoException;
 	
 	Lot getById(long id) throws DaoException;
 	
 	List<Lot> getBySellerId(long salerId) throws DaoException;
 	
-	List<Lot> getByProductId(long productId) throws DaoException;
+	List<Lot> getActiveByProductId(long productId) throws DaoException;
 	
-	List<Lot> getByProductIdInGameOrderMinPrice(long productId) throws DaoException;
-	
-	List<Lot> getAllInGame() throws DaoException;
+	List<Lot> getActive() throws DaoException;
 
-	 boolean LotStatusCancel( long sellerId) throws DaoException;
+	boolean setStatusBySellerId(long sellerId, Status status) throws DaoException;
 	 
-	 boolean LotStatusCancelByProductId(long productId) throws DaoException;
-
-	
- 
+	boolean setStatusByProductId(long productId, Status status) throws DaoException;
+	 
+	boolean setStatusById(long id, Status status) throws DaoException;
 }

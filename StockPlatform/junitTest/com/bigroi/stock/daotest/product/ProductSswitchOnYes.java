@@ -18,7 +18,7 @@ public class ProductSswitchOnYes {
 	}
 	@Test
 	public void switchOnYes() throws DaoException{
-		DaoFactory.getProductDao().switchOnYes(product.getId());
+		DaoFactory.getProductDao().setArchived(product.getId());
 	}
 
 }

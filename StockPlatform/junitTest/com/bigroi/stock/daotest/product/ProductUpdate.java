@@ -23,7 +23,7 @@ private static Product product;
 	}
 	@Test
 	public void update() throws DaoException {
-	DaoFactory.getProductDao().updateById(product);
+	DaoFactory.getProductDao().update(product);
 	}
 
 }

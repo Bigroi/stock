@@ -14,7 +14,7 @@ import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DaoFactory;
 import com.bigroi.stock.messager.MessagerFactory;
-import com.bigroi.stock.util.KeyGenerator;
+import com.bigroi.stock.util.Generator;
 
 public class Trade implements Runnable {
 	private List<Lot> lots;
@@ -26,10 +26,11 @@ public class Trade implements Runnable {
 	@Override
 	public void run() {
 		try {
-			List<Long> productIds = DaoFactory.getProductDao().getAllProductIdInGame();
+			long[] productIds = DaoFactory.getProductDao()
+					.getAllActiveProducts().stream().mapToLong(p->p.getId()).toArray();
 			for (long productId : productIds) {
-				lots = DaoFactory.getLotDao().getByProductIdInGameOrderMinPrice(productId);
-				tenders = DaoFactory.getTenderDao().getByProductIdInGameOrderMaxPriceDesc(productId);
+				lots = DaoFactory.getLotDao().getActiveByProductId(productId);
+				tenders = DaoFactory.getTenderDao().getActiveByProductId(productId);
 				// if (lots.isEmpty() || tenders.isEmpty())continue; // У нас
 				// это отсекается SQL
 
@@ -50,6 +51,7 @@ public class Trade implements Runnable {
 
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void linkingTransactionsByLots() throws DaoException {
 		topLots = new HashMap<>();
 		topTenders = new HashMap<>();
@@ -65,6 +67,7 @@ public class Trade implements Runnable {
 	}
 			
 	//метод не проверен, но аналогичен проверенному linkingTransactionsByLots()
+	@SuppressWarnings("deprecation")
 	private void linkingTransactionsByTenders() throws DaoException {
 		
 		topLots = new HashMap<>();
@@ -72,11 +75,10 @@ public class Trade implements Runnable {
 		for (Tender tender : tenders) {
 			for (Lot lot : lots) {
 				if (DaoFactory.getBlacklistDao().getTenderIdAndLotId(tender.getId(), lot.getId()))
-					if (DaoFactory.getBlacklistDao().getTenderIdAndLotId(tender.getId(), lot.getId()))
-						continue;
-					if ((tender.getMaxPrice()) < (lot.getMinPrice()))
-						continue;
-					LinkingOneTransaction(lot, tender);	
+					continue;
+				if ((tender.getMaxPrice()) < (lot.getMinPrice()))
+					continue;
+				LinkingOneTransaction(lot, tender);	
 			}
 		}
 		
@@ -186,8 +188,8 @@ private void pairingByLots() throws DaoException {
 	private void addPredeal(long lotId, long tenderId) throws DaoException {
 		PreDeal  predeal = new PreDeal();
 		predeal.setLotId(lotId);
-		predeal.setSellerHashCode(KeyGenerator.generate(KEY_LENGTH));
-		predeal.setCustomerHashCode(KeyGenerator.generate(KEY_LENGTH));
+		predeal.setSellerHashCode(Generator.generateLinkKey(KEY_LENGTH));
+		predeal.setCustomerHashCode(Generator.generateLinkKey(KEY_LENGTH));
 		predeal.setTenderId(tenderId);
 		predeal.setSellerApprovBool(false);
 		predeal.setCustApprovBool(false);

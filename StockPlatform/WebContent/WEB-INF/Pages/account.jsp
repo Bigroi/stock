@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="AccountChangeAuth.spr" method="post">
+<form action="/account/Save.spr" method="post">
 		<p>${user.login}</p>
 		<%-- <input type="hidden" name="id" value="${id}"> --%>
 		<input type="hidden" name="status" value="${company.status}">
@@ -23,11 +23,11 @@
 
 	</form>
 	
-	<input type="button" name="back" value="BACK" onclick="document.location = 'Index.spr'">
+	<input type="button" name="back" value="BACK" onclick="document.location = '/Index.spr'">
 	
 	 <ul>
-        <li><a href="MyLotListAuth.spr">My lots list</a></li>
-        <li><a href="MyTenderListAuth.spr">My tenders list</a></li>
+        <li><a href="/lot/MyList.spr">My lots list</a></li>
+        <li><a href="/tender/MyList.spr">My tenders list</a></li>
 	</ul>
 </body>
 </html> 

@@ -21,7 +21,7 @@
 					<tr>
 						<td>${user.login}</td>
 						<td>
-							<form action="ChangeThisUserPass.spr" method="get">
+							<form action="/user/admin/ResetPassword.spr" method="get">
 									<input type="hidden" name="login" value="${user.login}">   
 									<input type="submit" value="Generate New Pass">
 								</form>
@@ -30,7 +30,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		 <form action="Index.spr">
+		 <form action="/admin/Index.spr">
 			<input type="submit" value="Welcome page">
 		</form>
 </body>

@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<form action="LotSaveAuth.spr" method="get">
+	<form action="/lot/Save.spr" method="post">
 	
 		 <input type="hidden" name="id" value="${lot.id}"> 
 		 <input type="hidden" name="sellerId" value="${lot.sellerId}">
@@ -19,11 +19,11 @@
 		description <input name="description" value="${lot.description}"><br>
 		volume of lot  <input name="volumeOfLot" value="${lot.volumeOfLot}"><br>
 		<c:choose>
-			<c:when test="${id == '-1'}">
+			<c:when test="${lot.id == '-1'}">
 				product id  <select name="productId">
 					<option>choose product</option>
 					<c:forEach var="product" items="${listOfProducts}">
-						<option>${product.name}</option>
+						<option value="${product.id}">${product.name}</option>
 					</c:forEach>
 				</select><br>                         	
 				min_price  <input name="minPrice" value="${lot.minPrice}"><br>
@@ -47,7 +47,7 @@
 		<input type="button" name="back" value="Welcome page" onclick="document.location = 'Index.spr'">
 	</form>
 	
-	<form action="MyLotListAuth.spr">
+	<form action="/lot/MyList.spr">
 		<input type="submit" value="My list of lots">
 	</form>
 	

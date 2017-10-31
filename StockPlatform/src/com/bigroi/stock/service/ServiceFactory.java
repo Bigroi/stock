@@ -27,7 +27,7 @@ public class ServiceFactory {
 		return (TenderService) CONTEX.getBean("tenderService");
 	}
 	
-	public static ReferenceService getReferenceService(){
+	public static ReferenceService getPreDealService(){
 		return (ReferenceService) CONTEX.getBean("referenceService");
 	}
 

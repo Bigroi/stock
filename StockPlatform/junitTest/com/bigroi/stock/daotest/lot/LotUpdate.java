@@ -28,7 +28,7 @@ private static Lot lot;
 	
 	@Test
 	public void update() throws DaoException{
-		DaoFactory.getLotDao().updateById( lot);
+		DaoFactory.getLotDao().update( lot);
 	
 	}
 }

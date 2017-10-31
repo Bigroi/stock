@@ -26,22 +26,12 @@
 		<tbody>
 			<c:forEach var="product" items="${listOfProducts}">
 				<tr>
-					<td>${product.name}</td>
+					<td>
+						<a href="/product/Form.spr?id=${product.id}">
+						${product.name}
+						</a>
+					</td>
 					<td>${product.description}</td>
-					<td>
-						<form action="EditProduct.spr" method="get">
-							<input type="hidden" name="id" value="${product.id}"> <input
-								type="submit" value="edit">
-						</form>
-					</td>
-
-					<td>
-						<form action="DeleteProduct.spr" method="get">
-							<input type="hidden" name="id" value="${product.id}"> <input
-								type="submit" value="delete" onclick="<!-- noDelete() -->">
-						</form>
-					</td>
-
 				</tr>
 			</c:forEach>
 
@@ -49,14 +39,13 @@
 
 	</table>
 	<br>
-	<form action="EditProduct.spr" method="get">
-		<input type="hidden" name="id" value="-1"> <input
-			type="submit" value="add">
+	<form action="/product/Form.spr" method="post">
+		<input type="submit" value="Add">
 	</form>
 	<br>
-
-	<form action="Index.spr">
+	<form action="/admin/Index.spr" method="get">
 		<input type="submit" value="Back">
 	</form>
+
 </body>
 </html>

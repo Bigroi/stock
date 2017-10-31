@@ -6,7 +6,4 @@ public interface DealsDao {
 	
     void add(Deals deals) throws DaoException;
 	
-	boolean deletedById(long id) throws DaoException;
-	
-	boolean updateById(Deals deals) throws DaoException;
 }

@@ -1,30 +1,33 @@
 package com.bigroi.stock.bean;
 
+import com.bigroi.stock.json.Column;
+import com.bigroi.stock.json.Id;
+import com.bigroi.stock.json.TableRow;
+
+@TableRow
 public class Product {
 	
 	private static final String YES = "Y";
 	private static final String NO = "N";
-
+	
+	@Id
 	private long id;
+	
+	@Column("skock.table.product.name")
 	private String name;
+	
+	@Column("stock.table.product.")
 	private String description;
-	private  boolean archive;
+	
+	@Column("stock.table.product.")
+	private boolean archive;
 	
 	public String getArchiveData(){
-		
-		if(this.archive == false){
-			return NO;
-		}else{
-			return YES;
-		}
+		return archive ? YES : NO;
 	}
 	
 	public void setArchiveData(String archive){
-		if("N".equals(archive.toUpperCase())){
-			this.archive = true;
-		}else{
-			this.archive = false;
-		}
+		this.archive = YES.equalsIgnoreCase(archive);
 	}
 	
 

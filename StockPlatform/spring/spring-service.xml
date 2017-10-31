@@ -39,6 +39,7 @@
 		<property name="productDao" ref="productDao" />
 		<property name="lotDao" ref="lotDao" />
 		<property name="tenderDao" ref="tenderDao" />
+		<property name="companyDao" ref="companyDao" />
 	</bean>
 
 	<bean id="tenderService" class="com.bigroi.stock.service.impl.TenderServiceImpl">

@@ -15,7 +15,5 @@ public interface UserDao {
 	
 	void add(User user)throws DaoException;
 	
-	boolean deleteById (long id) throws DaoException;
-	
-	boolean updateById(User user) throws DaoException;
+	boolean update(User user) throws DaoException;
 }

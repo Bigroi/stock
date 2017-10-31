@@ -33,18 +33,18 @@
 					<td>${lot.status}</td>
 
 					<c:if test="${lot.status eq 'DRAFT'}">
-						<td><form action="LotInGameAuth.spr" method="get">
+						<td><form action="/lot/StartTrading.spr" method="get">
 								<input type="hidden" name="id" value="${lot.id}"> <input
 									type="submit" value="In game">
 							</form></td>
 					</c:if>
 					<c:if
 						test="${(lot.status eq 'DRAFT') || (lot.status eq 'IN_GAME')}">
-						<td><form action="LotFormAuth.spr" method="get">
+						<td><form action="/lot/Form.spr" method="get">
 								<input type="hidden" name="id" value="${lot.id}"> <input
 									type="submit" value="Modify">
 							</form></td>
-						<td><form action="LotCancelAuth.spr" method="get">
+						<td><form action="/lot/Cancel.spr" method="get">
 								<input type="hidden" name="id" value="${lot.id}"> <input
 									type="submit" value="Cancel">
 							</form></td>
@@ -55,11 +55,11 @@
 		</tbody>
 	</table>
 
-	<form action="LotFormAuth.spr">
+	<form action="/lot/Form.spr">
 		<input type="hidden" name="id" value="-1" /> <input type="submit"
 			value="Add lot">
 	</form>
-	<form action="Index.spr">
+	<form action="/Index.spr">
 		<input type="submit" value="Welcome page">
 	</form>
 </body>

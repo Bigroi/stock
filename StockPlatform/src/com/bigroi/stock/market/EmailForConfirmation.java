@@ -17,7 +17,7 @@ public class EmailForConfirmation {
 	public void send() throws MarketException, IOException, MailManagerException {
 		try {
 
-			List<PreDeal> preDials = DaoFactory.getPreDealDao().getAllPreDeal();
+			List<PreDeal> preDials = DaoFactory.getPreDealDao().getAll();
 			for (PreDeal preDeal : preDials) {
 				setStatuses(preDeal);
 				new Message().sendMessageForConfirmation(preDeal);
@@ -30,10 +30,10 @@ public class EmailForConfirmation {
 	private void setStatuses(PreDeal predeal) throws DaoException {
 		Lot lot = DaoFactory.getLotDao().getById(predeal.getLotId());
 		lot.setStatus(Status.ON_APPROVAL);
-		DaoFactory.getLotDao().updateById(lot);
+		DaoFactory.getLotDao().update(lot);
 		Tender tender = DaoFactory.getTenderDao().getById(predeal.getTenderId());
 		tender.setStatus(Status.ON_APPROVAL);
-		DaoFactory.getTenderDao().updateById(tender);
+		DaoFactory.getTenderDao().update(tender);
 
 	}
 	

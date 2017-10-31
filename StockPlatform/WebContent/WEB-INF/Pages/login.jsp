@@ -8,7 +8,7 @@
 </head>
 <body>
 <p>${message}</p>
-<form action="Authenticate.spr" method="post">
+<form action="access/Authenticate.spr" method="post">
 		<p>Login:<input name="login"></p> 
 		<p>Password:<input type="password" name="password"></p> 
 			<input type="submit" value="LOGIN">

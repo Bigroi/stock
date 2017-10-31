@@ -6,22 +6,16 @@ import com.bigroi.stock.bean.Product;
 
 public interface ProductDao {
 	
+	List<Product> getAllProducts() throws DaoException;
 	
-	List<Product> getAllProduct() throws DaoException;
+	List<Product> getAllActiveProducts() throws DaoException;
 	
 	void add(Product product) throws DaoException;
 	
-	boolean deletedById(long id) throws DaoException;
-	
-	boolean updateById(Product product) throws DaoException;
+	boolean update(Product product) throws DaoException;
 	
 	Product getById(long id) throws DaoException;
 	
-	List<Long> getAllProductIdInGame() throws DaoException;
+	void setArchived(long id) throws DaoException;
 	
-	void switchOnYes(long id) throws DaoException;
-	
-	List<Product> getArchiveYesProduct() throws DaoException;
-	
-	List<Product> getArchiveNoProduct() throws DaoException;
 }

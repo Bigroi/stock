@@ -51,10 +51,10 @@
 			</tr>
 		</tbody>
 	</table>
-	<form action="ProductListPage.spr">
+	<form action="/product/List.spr">
 		<input type="submit" value="Product list">
 	</form>
-	<form action="Index.spr">
+	<form action="/Index.spr">
 		<input type="submit" value="Welcome page">
 	</form>
 </body>

@@ -34,18 +34,18 @@
 					<td>${tender.status}</td>
 
 					<c:if test="${tender.status eq 'DRAFT'}">
-						<td><form action="TenderInGameAuth.spr" method="get">
+						<td><form action="/tender/StartTrading.spr" method="get">
 								<input type="hidden" name="id" value="${tender.id}"> <input
-									type="submit" value="In game">
+									type="submit" value="Activate">
 							</form></td>
 					</c:if>
 					<c:if
 						test="${(tender.status eq 'DRAFT') || (tender.status eq 'IN_GAME')}">
-						<td><form action="TenderFormAuth.spr" method="get">
+						<td><form action="/tender/Form.spr" method="get">
 								<input type="hidden" name="id" value="${tender.id}"> <input
 									type="submit" value="Modify">
 							</form></td>
-						<td><form action="TenderCancelAuth.spr" method="get">
+						<td><form action="/tender/Cancel.spr" method="get">
 								<input type="hidden" name="id" value="${tender.id}"> <input
 									type="submit" value="Cancel">
 							</form></td>
@@ -55,11 +55,10 @@
 		</tbody>
 	</table>
 
-	<form action="TenderFormAuth.spr">
-		<input type="hidden" name="id" value="-1" /> <input type="submit"
-			value="Add tender">
+	<form action="/tender/Form.spr">
+		<input type="submit" value="Add tender">
 	</form>
-	<form action="Index.spr">
+	<form action="/Index.spr">
 		<input type="submit" value="Welcome page">
 	</form>
 </body>

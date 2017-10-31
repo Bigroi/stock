@@ -3,8 +3,7 @@ package com.bigroi.stock.jsontest.local;
 
 import org.junit.Test;
 
-
-import com.bigroi.stock.controller.LocalizationResosurseController;
+import com.bigroi.stock.controller.resource.LocalizationResosurseController;
 
 
 public class GetLabel {

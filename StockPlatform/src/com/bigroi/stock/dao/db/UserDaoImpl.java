@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -17,14 +16,9 @@ import org.springframework.jdbc.support.KeyHolder;
 import com.bigroi.stock.bean.User;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserDao;
-import com.mysql.jdbc.Statement;
 
 public class UserDaoImpl implements UserDao {
 	
-	private static final Logger logger = Logger.getLogger(UserDaoImpl.class);
-
-	private static final Logger lOG = Logger.getLogger(UserDaoImpl.class);
-
 	private static final String GET_USER_BY_LOGIN = "SELECT id, login, password, company_Id FROM user "
 			+ " WHERE login = ? ";
 
@@ -36,8 +30,6 @@ public class UserDaoImpl implements UserDao {
 	private static final String ADD_USERS_BY_ID = "INSERT INTO user (id, login, password, company_Id) "
 			+ " VALUES (?, ?, ?, ?) ";
 
-	private static final String DELETE_USERS_BY_ID = "DELETE FROM user WHERE id = ? ";
-
 	private static final String UPDATE_USERS_BY_ID = "UPDATE user SET  login = ?, password = ?, "
 			+ " company_Id = ? WHERE id= ? ";
 
@@ -48,55 +40,41 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public List<User> getAllUser() {
-		logger.info("exection UserDaoImpl.getAllUser");
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<User> users = template.query(GET_ALL_USERS, new BeanPropertyRowMapper<User>(User.class));
-		lOG.info(users);
-		logger.info("exection UserDaoImpl.getAllUser successfully finished");
 		return users;
 	}
 
 	public User getByLoginAndPassword(String login, String password) throws DaoException {
-		logger.info("exection UserDaoImpl.getByLoginAndPassword");
-		logger.info(login);
-		logger.info(password);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<User> users = template.query(GET_USER_BY_LOGIN_AND_PASSWORD, new BeanPropertyRowMapper<User>(User.class),
 				login, password);
 		if (users.size() == 0) {
-			logger.info("exection UserDaoImpl.getByLoginAndPassword return null, successfully finished");
 			return null;
 		} else {
-			logger.info("exection UserDaoImpl.getByLoginAndPassword return users.get(0), successfully finished");
 			return users.get(0);
 		}
 	}
 
 	@Override
 	public User getByLogin(String login) throws DaoException {
-		logger.info("exection UserDaoImpl.getByLogin");
-		logger.info(login);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<User> users = template.query(GET_USER_BY_LOGIN, new BeanPropertyRowMapper<User>(User.class), login);
 		if (users.size() == 0) {
-			logger.info("exection UserDaoImpl.getByLogin return null, successfully finished");
 			return null;
 		} else {
-			logger.info("exection UserDaoImpl.getByLogin return users.get(0), successfully finished");
 			return users.get(0);
 		}
 	}
 
 	@Override
 	public void add(User user) throws DaoException {
-		logger.info("exection UserDaoImpl.add");
-		logger.info(user);
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement ps = con.prepareStatement(ADD_USERS_BY_ID, Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement ps = con.prepareStatement(ADD_USERS_BY_ID, PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setLong(1, user.getId());
 				ps.setString(2, user.getLogin());
 				ps.setString(3, user.getPassword());
@@ -106,24 +84,11 @@ public class UserDaoImpl implements UserDao {
 		}, keyHolder);
 		long id = keyHolder.getKey().longValue();
 		user.setId(id);
-		logger.info("exection UserDaoImpl.add successfully finished");
 	}
 
 	@Override
-	public boolean deleteById(long id) throws DaoException {
-		logger.info("exection UserDaoImpl.deleteById");
-		logger.info(id);
+	public boolean update(User user) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		logger.info("exection UserDaoImpl.deleteById successfully finished");
-		return template.update(DELETE_USERS_BY_ID, id) == 1;
-	}
-
-	@Override
-	public boolean updateById(User user) throws DaoException {
-		logger.info("exection UserDaoImpl.updateById");
-		logger.info(user);
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		logger.info("exection UserDaoImpl.updateById successfully finished");
 		return template.update(UPDATE_USERS_BY_ID, user.getLogin(), user.getPassword(), user.getCompanyId(),
 				user.getId()) == 1;
 	}

@@ -29,7 +29,7 @@ private static PreDeal pred;
 	}
 	@Test
 	public void update() throws DaoException{
-		DaoFactory.getPreDealDao().updateById(pred);
+		DaoFactory.getPreDealDao().update(pred);
 	}
 
 }

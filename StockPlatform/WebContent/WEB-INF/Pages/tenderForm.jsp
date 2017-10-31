@@ -9,7 +9,7 @@
 <title>Application form</title>
 </head>
 <body>
-	<form action="TenderSaveAuth.spr">
+	<form action="/tender/Save.spr">
 	
 		<input type="hidden" name="id" value="${tender.id}"> 
 		<input type="hidden" name="customerId" value="${tender.customerId}">
@@ -18,11 +18,11 @@
 		description <input name="description" value="${tender.description}"><br>
 		volume of tender  <input name="volumeOfTender" value="${tender.volumeOfTender}"><br>
 		<c:choose>
-			<c:when test="${id == '-1'}">
+			<c:when test="${tender.id == '-1'}">
 				product id  <select name="productId">
 					<option>choose product</option>
 					<c:forEach var="product" items="${listOfProducts}">
-						<option>${product.name}</option>
+						<option value="${product.id}">${product.name}</option>
 					</c:forEach>
 				</select><br> 
 				maxPrice  <input name="maxPrice" value="${tender.maxPrice}"><br>	    
@@ -45,7 +45,7 @@
 		<input type="button" name="back" value="Welcome page" onclick="document.location = 'Index.spr'">
 	</form>
 	
-	<form action="MyTenderListAuth.spr">
+	<form action="/tender/MyList.spr">
 		<input type="submit" value="My list of Tenders">
 	</form>
 	

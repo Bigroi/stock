@@ -8,13 +8,13 @@
 </head>
 <body>
 ${message}
-	<form action="ChangeUserPass.spr">
+	<form action="/user/admin/ChangeUserPass.spr">
 		<input type="submit" value="ChangeUserPass.spr">
 	</form>
-	<form action="ProductListAdmin.spr">
+	<form action="/product/admin/List.spr">
 		<input type="submit" value="ProductListAdmin.spr">
 	</form>
-	<form action="CompanyList.spr">
+	<form action="/company/admin/List.spr">
 		<input type="submit" value="CompanyList.spr">
 	</form>
 </body>

@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="com.bigroi.stock.controller" />
+	<context:component-scan base-package="com.bigroi.stock.controller/**" />
 
 	<!-- <mvc:interceptors>
 		<mvc:interceptor>
@@ -28,33 +28,33 @@
 
 	                   <!-- localization -->
 
-	 <bean id="messageSource"
+	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="classpath:messages" />
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
-	 <bean id="localeChangeInterceptor"
+	<bean id="localeChangeInterceptor"
 		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 		<property name="paramName" value="lang" />
 	</bean>
 
-	 <bean id="localeResolver"
+	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
 		<property name="defaultLocale" value="en" />
 	</bean>
 
-	 <bean id="handlerMapping"
+	<bean id="handlerMapping"
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<property name="interceptors">
 			<ref bean="localeChangeInterceptor" />
 		</property>
-		</bean> 
-		 <mvc:interceptors>
-			<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-				<property name="paramName" value="lang" />
-			</bean>
-		</mvc:interceptors> 
+	</bean>
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang" />
+		</bean>
+	</mvc:interceptors> 
 	
  
 </beans>

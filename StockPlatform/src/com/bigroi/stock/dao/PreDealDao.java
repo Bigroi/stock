@@ -3,7 +3,6 @@ package com.bigroi.stock.dao;
 import java.util.List;
 
 import com.bigroi.stock.bean.PreDeal;
-import com.bigroi.stock.util.TmprCountEdges;
 
 public interface PreDealDao {
 
@@ -13,12 +12,10 @@ public interface PreDealDao {
 
 	void deleteAll() throws DaoException;
 
-	boolean updateById(PreDeal preDeal) throws DaoException;
+	boolean update(PreDeal preDeal) throws DaoException;
 
-	List<PreDeal> getAllPreDeal() throws DaoException;
+	List<PreDeal> getAll() throws DaoException;
 
 	PreDeal getById(long id) throws DaoException;
-
-	List<TmprCountEdges> getAllEdges(long productId) throws DaoException;
 
 }
