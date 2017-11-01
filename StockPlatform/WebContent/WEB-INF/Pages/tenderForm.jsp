@@ -42,7 +42,7 @@
 		</c:choose>
 		customer id - ${tender.customerId}<br> status - ${tender.status}<br>
 		<input type="submit" name="save" value="SAVE"><br> 
-		<input type="button" name="back" value="Welcome page" onclick="document.location = 'Index.spr'">
+		<input type="button" name="back" value="Welcome page" onclick="document.location = '/Index.spr'">
 	</form>
 	
 	<form action="/tender/MyList.spr">

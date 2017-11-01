@@ -41,6 +41,16 @@
 		<property name="tenderDao" ref="tenderDao" />
 		<property name="companyDao" ref="companyDao" />
 	</bean>
+	
+	<bean id="marketService" class="com.bigroi.stock.service.impl.MarketServiceImpl">
+		<property name="lotDao" ref="lotDao" />
+		<property name="tenderDao" ref="tenderDao" />
+		<property name="preDealDao" ref="preDealDao" />
+	</bean>
+	
+	<bean id="messageService" class="com.bigroi.stock.service.impl.MessageServiceImpl">
+		<property name="emailDao" ref="emailDao" />
+	</bean>
 
 	<bean id="tenderService" class="com.bigroi.stock.service.impl.TenderServiceImpl">
 		<property name="tenderDao" ref="tenderDao"></property>

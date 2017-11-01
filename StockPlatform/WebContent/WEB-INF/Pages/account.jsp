@@ -11,7 +11,7 @@
 		<p>${user.login}</p>
 		<%-- <input type="hidden" name="id" value="${id}"> --%>
 		<input type="hidden" name="status" value="${company.status}">
-		 <p>password <input name="password" value="${user.password}"></p>
+		 <p>password <input name="password" type="password"></p>
 		 name <input name="name" value="${company.name}"><br>
 		 email <input name="email" value="${company.email}"><br>
 		 phone <input name="phone" value="${company.phone}"><br>

@@ -27,7 +27,7 @@
 			<c:forEach var="product" items="${listOfProducts}">
 				<tr>
 					<td>
-						<a href="/product/Form.spr?id=${product.id}">
+						<a href="/product/admin/Form.spr?id=${product.id}">
 						${product.name}
 						</a>
 					</td>
@@ -39,7 +39,7 @@
 
 	</table>
 	<br>
-	<form action="/product/Form.spr" method="post">
+	<form action="/product/admin/Form.spr" method="post">
 		<input type="submit" value="Add">
 	</form>
 	<br>

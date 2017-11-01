@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<form action="/product/Save.spr">
+	<form action="/product/admin/Save.spr">
 	
 		<input type="hidden" name="id" value="${product.id}"> <br>
 		
@@ -20,9 +20,15 @@
 		
 
 		<input type="submit" name="save" value="SAVE"><br> 
-		<input type="button" name="back" value="Welcome page" onclick="document.location = 'Index.spr'">
+		<input type="button" name="back" value="Welcome page" onclick="document.location = '/admin/Index.spr'">
 	</form>
-	<form action="/product/List.spr">
+	<c:if test="${product.id != -1}">
+		<form action="/product/admin/Delete.spr">
+			<input type="hidden" name="id" value="${product.id}"> <br>
+			<input type="submit" value="Delete">
+		</form>
+	</c:if>
+	<form action="/product/admin/List.spr">
 		<input type="submit" value="List of products">
 	</form>
 

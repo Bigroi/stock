@@ -6,14 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Product list</title>
-<link rel="stylesheet" href="css/tableStyle.css">
+<link rel="stylesheet" href="/css/tableStyle.css">
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script> 
-<script src="js/tableMaker.js"></script>	
-<script src="js/tableSorter.js"></script>	
+<script src="/js/tableMaker.js"></script>	
+<script src="/js/tableSorter.js"></script>	
 </head>
 <body>
 	Продукты
-	<div id = "tableContainer" data-url = "json/product/List.spr">	
+	<div id = "tableContainer" data-url = "/product/json/List.spr">	
 <!-- !!!Обязательно использовать имя атрибута "data-url" для передачи url плагину tableMaker. -->	
 			<script>
 			$(function(){
@@ -21,7 +21,7 @@
 			});
 			</script>
 	</div>
-	<form action="Index.spr">
+	<form action="/Index.spr">
 		<input type="submit" value="Welcome page">
 	</form>
 </body>

@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.controller.resource.BaseResourseController;
-import com.bigroi.stock.market.ClearPreDeal;
-import com.bigroi.stock.market.Trade;
-import com.bigroi.stock.messager.SendEmail;
+import com.bigroi.stock.jobs.ClearPreDeal;
+import com.bigroi.stock.jobs.SendEmail;
+import com.bigroi.stock.jobs.Trading;
 
 @Controller
 public class TestBackgroundController extends BaseResourseController {
@@ -26,7 +26,7 @@ public class TestBackgroundController extends BaseResourseController {
  
 	@RequestMapping(value = "/StartTrade.spr")
 	public ModelAndView startTrade() {
-		new Trade().run();
+		new Trading().run();
 		String message = "Trade().run() is finished";
 		return new ModelAndView("test/testBackgroundFunctions",  "message", message);
 	}

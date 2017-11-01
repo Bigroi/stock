@@ -1,4 +1,4 @@
-package com.bigroi.stock.market;
+package com.bigroi.stock.jobs;
 
 public class MarketException extends Exception {
 

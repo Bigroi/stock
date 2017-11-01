@@ -44,7 +44,7 @@
 		seller id - ${lot.sellerId}<br> 
 		status - ${lot.status}<br> 
 		<input type="submit" name="save" value="SAVE"><br> 
-		<input type="button" name="back" value="Welcome page" onclick="document.location = 'Index.spr'">
+		<input type="button" name="back" value="Welcome page" onclick="document.location = '/Index.spr'">
 	</form>
 	
 	<form action="/lot/MyList.spr">

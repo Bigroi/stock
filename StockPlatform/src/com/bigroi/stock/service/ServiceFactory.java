@@ -30,13 +30,13 @@ public class ServiceFactory {
 	public static ReferenceService getPreDealService(){
 		return (ReferenceService) CONTEX.getBean("referenceService");
 	}
-
-	public static ApplicationContext getContext() {
-		return  CONTEX;
-		
+	
+	public static MarketService getMarketService(){
+		return (MarketService) CONTEX.getBean("marketService");
 	}
 	
-	
-	
-	
+	public static MessageService getMessageService(){
+		return (MessageService) CONTEX.getBean("messageService");
+	}
+
 }

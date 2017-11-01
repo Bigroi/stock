@@ -36,15 +36,15 @@ public class ProductRenderingController {
 		return new ModelAndView("productListForAdmin", "listOfProducts", allProducts);
 	}
 
-	@RequestMapping("/admin/form.spr")
+	@RequestMapping("/admin/Form.spr")
 	public ModelAndView form(
 			@RequestParam(value = "id", defaultValue = "-1") long id) 
 					throws ServiceException {
 		Product product = ServiceFactory.getProductService().getProductById(id);
-		return new ModelAndView("productFormForAdmin", "product", product);
+		return new ModelAndView("productForm", "product", product);
 	}
 
-	@RequestMapping("/admin/save.spr")
+	@RequestMapping("/admin/Save.spr")
 	public ModelAndView save(
 			@RequestParam(value = "id", defaultValue = "-1") long id, 
 			@RequestParam("name") String name,

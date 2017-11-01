@@ -17,7 +17,7 @@
    </c:if>
    <p><a href="/account/Form.spr"><spring:message code="label.account"/></a> </p>
 
-	<input type="button" value="<spring:message code="label.logout"/>" onclick="document.location = 'Logout.spr'">
+	<input type="button" value="<spring:message code="label.logout"/>" onclick="document.location = '/access/Logout.spr'">
 	<p style="font-family: cursive; font-size: 13px">${outMessage}</p>
 
 	<ul>
@@ -36,14 +36,11 @@
 			</form>
         </li>
         <li>
-        <a href="/company/admin/List.spr"> Company list with status</a>
+        <a href="/admin/Index.spr"> Admin page</a>
        
         </li>
         
 	</ul>
 	
-	<a href="/product/admin/List.spr" > Product list for admin's panel</a>
-	
-
 </body>
 </html>

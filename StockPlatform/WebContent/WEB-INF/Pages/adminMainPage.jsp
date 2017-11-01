@@ -17,5 +17,7 @@ ${message}
 	<form action="/company/admin/List.spr">
 		<input type="submit" value="CompanyList.spr">
 	</form>
+	
+	<br> <a href="/Index.spr">WelcomePage</a>
 </body>
 </html>
