@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="property"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:mail.properties</value>
+				<value>classpath:link.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id = "link" 
+		class="com.bigroi.stock.messager.Link">
+		<property name="sellerConfirmationLink" value="${link.seller.confirmation}" />
+		<property name="customerConfirmationLink" value="${link.sustomer.confirmation}" />
+	</bean>
+	
+	<bean id="mailManager" class="com.bigroi.stock.messager.MailManagerImpl">
+		<property name="mailProperties">
+			<props>
+				<prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+				<prop key="mail.smtp.starttls.enable">${mail.smtp.starttls.enable}</prop>
+				<prop key="mail.smtp.host">${mail.smtp.host}</prop>
+				<prop key="mail.smtp.port">${mail.smtp.port}</prop>
+				<prop key="mail.mime.charset">${mail.mime.charset}</prop>
+			</props>
+		</property>
+		<property name="user" value="${mail.user}" />
+		<property name="password" value="${mail.password}" />
+		<property name="adminUser" value="${mail.adminUser}"/>
+	</bean>
+	
+	<bean id="customerCanceledMessage" class="com.bigroi.stock.messager.message.CustomerCanceledMessage">
+		<constructor-arg name="fileName" value="cancelUTF8.txt"/>
+	</bean>
+	
+	<bean id="dealConfirmationMessageForCustomer" class="com.bigroi.stock.messager.message.DealConfirmationMessageForCustomer">
+		<constructor-arg name="fileName" value="customerConfirmationUTF8.txt"/>
+	</bean>
+	
+	<bean id="dealConfirmationMessageForSeller" class="com.bigroi.stock.messager.message.DealConfirmationMessageForSeller">
+		<constructor-arg name="fileName" value="sellerConfirmationUTF8.txt"/>
+	</bean>
+	
+	<bean id="resetUserPasswordMessage" class="com.bigroi.stock.messager.message.ResetUserPasswordMessage">
+		<constructor-arg name="fileName" value="changeUserPasswordUTF8.txt"/>
+	</bean>
+	
+	<bean id="sellerCanceledMessage" class="com.bigroi.stock.messager.message.SellerCanceledMessage">
+		<constructor-arg name="fileName" value="cancelUTF8.txt"/>
+	</bean>
+	
+	<bean id="successDealMessageForCustomer" class="com.bigroi.stock.messager.message.SuccessDealMessageForCustomer">
+		<constructor-arg name="fileName" value="successUTF8.txt"/>
+	</bean>
+	
+	<bean id="successDealMessageForSeller" class="com.bigroi.stock.messager.message.SuccessDealMessageForSeller">
+		<constructor-arg name="fileName" value="successUTF8.txt"/>
+	</bean>
+	
+	<bean id="dealExparationMessageForCustomer" class="com.bigroi.stock.messager.message.DealExparationMessageForCustomer">
+		<constructor-arg name="fileName" value="expiredDealUTF8.txt"/>
+	</bean>
+	
+	<bean id="dealExparationMessageForCustomerByOpponent" class="com.bigroi.stock.messager.message.DealExparationMessageForCustomer">
+		<constructor-arg name="fileName" value="expiredDealOpponentUTF8.txt"/>
+	</bean>
+	
+	<bean id="dealExparationMessageForSeller" class="com.bigroi.stock.messager.message.DealExparationMessageForSeller">
+		<constructor-arg name="fileName" value="expiredDealUTF8.txt"/>
+	</bean>
+	
+	<bean id="dealExparationMessageForSellerByOpponent" class="com.bigroi.stock.messager.message.DealExparationMessageForSeller">
+		<constructor-arg name="fileName" value="expiredDealOpponentUTF8.txt"/>
+	</bean>
+	
+</beans>

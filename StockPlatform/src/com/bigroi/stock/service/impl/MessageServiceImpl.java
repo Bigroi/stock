@@ -35,4 +35,16 @@ public class MessageServiceImpl implements MessageService{
 			throw new ServiceException(e);
 		}
 	}
+
+	@Override
+	public void add(Email email) throws ServiceException {
+		try {
+			emailDao.add(email);
+		} catch (DaoException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException(e);
+		}
+		
+	}
+	
 }

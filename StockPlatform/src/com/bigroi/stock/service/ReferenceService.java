@@ -8,7 +8,7 @@ public interface ReferenceService {
 	
 	void setApprovedByCustomer(long id) throws ServiceException;
 	
-	void cancel(long preDealId) throws ServiceException;
-	
 	void setApprovedBySeller(long preDealId) throws ServiceException;
+
+	void cancel(long preDealId, boolean seller) throws ServiceException;
 }

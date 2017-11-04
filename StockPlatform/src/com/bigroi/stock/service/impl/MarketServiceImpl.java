@@ -12,9 +12,9 @@ import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.PreDealDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.messager.MailManagerException;
-import com.bigroi.stock.messager.Message;
 import com.bigroi.stock.messager.MessagerFactory;
+import com.bigroi.stock.messager.message.Message;
+import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.service.MarketService;
 import com.bigroi.stock.service.ServiceException;
 
@@ -68,11 +68,35 @@ public class MarketServiceImpl implements MarketService {
 			for (PreDeal preDeal : predials) {
 				if (preDeal.getSellerApprovBool() && preDeal.getCustApprovBool())
 					continue;
+				else if (preDeal.getSellerApprovBool()){
+					Message<PreDeal> message = MessagerFactory.getDealExparationMessageForSellerByOpponent();
+					message.setDataObject(preDeal);
+					message.send();
+					
+					message = MessagerFactory.getDealExparationMessageForCustomer();
+					message.setDataObject(preDeal);
+					message.send();
+				} else if (preDeal.getCustApprovBool()){
+					Message<PreDeal> message = MessagerFactory.getDealExparationMessageForSeller();
+					message.setDataObject(preDeal);
+					message.send();
+					
+					message = MessagerFactory.getDealExparationMessageForCustomerByOpponent();
+					message.setDataObject(preDeal);
+					message.send();
+				} else {
+					Message<PreDeal> message = MessagerFactory.getDealExparationMessageForSeller();
+					message.setDataObject(preDeal);
+					message.send();
+					
+					message = MessagerFactory.getDealExparationMessageForCustomer();
+					message.setDataObject(preDeal);
+					message.send();
+				}
 				setStatuses(preDeal);
-				new Message().sendMessageClearPredeal(preDeal);
 			}
 			preDealDao.deleteAll();
-		} catch (DaoException | MailManagerException e) {
+		} catch (DaoException | MessageException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
@@ -106,9 +130,16 @@ public class MarketServiceImpl implements MarketService {
 			for (PreDeal preDeal : preDials) {
 				lotDao.setStatusById(preDeal.getLotId(), Status.ON_APPROVAL);
 				tenderDao.setStatusById(preDeal.getTenderId(), Status.ON_APPROVAL);
-				new Message().sendMessageForConfirmation(preDeal);
+				
+				Message<PreDeal> message = MessagerFactory.getDealConfirmationMessageForCustomer();
+				message.setDataObject(preDeal);
+				message.send();
+				
+				message = MessagerFactory.getDealConfirmationMessageForSeller();
+				message.setDataObject(preDeal);
+				message.send();
 			}
-		} catch (DaoException | MailManagerException e) {
+		} catch (DaoException | MessageException e) {
 			throw new ServiceException(e);
 		}
 	}

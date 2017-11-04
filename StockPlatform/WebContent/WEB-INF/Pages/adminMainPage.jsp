@@ -18,6 +18,8 @@ ${message}
 		<input type="submit" value="CompanyList.spr">
 	</form>
 	
+	<br> <a href="/test/background/Index.spr">Test background functions</a>
 	<br> <a href="/Index.spr">WelcomePage</a>
+	
 </body>
 </html>

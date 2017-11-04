@@ -12,9 +12,9 @@ import com.bigroi.stock.dao.DealsDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.PreDealDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.messager.MailManagerException;
-import com.bigroi.stock.messager.Message;
 import com.bigroi.stock.messager.MessagerFactory;
+import com.bigroi.stock.messager.message.Message;
+import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.service.ReferenceService;
 import com.bigroi.stock.service.ServiceException;
 
@@ -89,10 +89,16 @@ public class ReferenceServiceImpl implements ReferenceService{
 			lotDao.setStatusById(preDeal.getLotId(), Status.SUCCESS);
 			tenderDao.setStatusById(preDeal.getTenderId(), Status.SUCCESS);	
 			
-			new Message().sendMessageSuccess(preDeal);
+			Message<PreDeal> message = MessagerFactory.getSuccessDealMessageForCustomer();
+			message.setDataObject(preDeal);
+			message.send();
 			
+			message = MessagerFactory.getSuccessDealMessageForSeller();
+			message.setDataObject(preDeal);
+			message.send();
+
 			preDealDao.deletedById(preDeal.getId());
-		}catch (DaoException | MailManagerException e) {
+		}catch (DaoException | MessageException e) {
 			throw new ServiceException(e);
 		}
 	}
@@ -113,15 +119,23 @@ public class ReferenceServiceImpl implements ReferenceService{
 	}
 	
 	@Override
-	public void cancel(long preDealId) throws ServiceException{
+	public void cancel(long preDealId, boolean seller) throws ServiceException{
 		try{
 			PreDeal preDeal = getById(preDealId);
 			addBlackList(preDeal.getLotId(), preDeal.getTenderId());
 			lotDao.setStatusById(preDeal.getLotId(), Status.IN_GAME);
 			tenderDao.setStatusById(preDeal.getTenderId(), Status.IN_GAME);
 			preDealDao.deletedById(preDeal.getId());
-			new Message().sendMessageCancelSeller(preDeal);
-		}catch (DaoException | MailManagerException e) {
+			
+			Message<PreDeal> message;
+			if (seller){
+				message = MessagerFactory.getSellerCanceledMessage();
+			} else {
+				message = MessagerFactory.getCustomerCanceledMessage();
+			}
+			message.setDataObject(preDeal);
+			message.send();
+		}catch (DaoException | MessageException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}

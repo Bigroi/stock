@@ -35,7 +35,7 @@ public class MailLinkRendeling {
 			ServiceFactory.getPreDealService().setApprovedBySeller(id);
 			return new ModelAndView("approveLink", "message", APPROVE_MESSAGE);
 		case CANCEL:
-			ServiceFactory.getPreDealService().cancel(id);		
+			ServiceFactory.getPreDealService().cancel(id, true);		
 			return new ModelAndView("approveLink", "message", CANCEL_MESSAGE);
 		default:
 			throw new ServiceException("unknown action: " + action);
@@ -57,7 +57,7 @@ public class MailLinkRendeling {
 			ServiceFactory.getPreDealService().setApprovedByCustomer(id);
 			return new ModelAndView("approveLink", "message", APPROVE_MESSAGE);
 		case CANCEL:
-			ServiceFactory.getPreDealService().cancel(id);		
+			ServiceFactory.getPreDealService().cancel(id, false);		
 			return new ModelAndView("approveLink", "message", CANCEL_MESSAGE);
 		default:
 			throw new ServiceException("unknown action: " + action);

@@ -9,9 +9,9 @@ import com.bigroi.stock.bean.User;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserDao;
-import com.bigroi.stock.messager.MailManagerException;
-import com.bigroi.stock.messager.Message;
 import com.bigroi.stock.messager.MessagerFactory;
+import com.bigroi.stock.messager.message.Message;
+import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.UserService;
 import com.bigroi.stock.util.Generator;
@@ -92,8 +92,10 @@ public class UserServiceImpl implements UserService {
 			User user = userDao.getByLogin(login);
 			user.setPassword(Generator.generatePass(8));
 			userDao.update(user);
-			new Message().sendMessageChangeUserPass(user);
-		} catch (DaoException | MailManagerException e) {
+			Message<User> message = MessagerFactory.getResetUserPasswordMessage();
+			message.setDataObject(user);
+			message.send();
+		} catch (DaoException | MessageException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
