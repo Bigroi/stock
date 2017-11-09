@@ -23,8 +23,8 @@ public class ProductDaoImpl implements ProductDao {
 
 	private static final String GET_ALL_ACTIVE_PRODUCTS = "SELECT id, name, description, archive FROM product WHERE archive = 'Y'";
 	
-	private static final String ADD_PRODUCTS_BY_ID = "INSERT INTO product (id, name, description, archive) " 
-	        + "VALUES (?, ?, ?, ?)";
+	private static final String ADD_PRODUCTS_BY_ID = "INSERT INTO product (name, description, archive) " 
+	        + "VALUES (?, ?, ?)";
 
 	private static final String UPDATE_PRODUCTS_BY_ID = "UPDATE product SET name = ?, "
 			+ " description = ? WHERE id = ?";
@@ -66,10 +66,9 @@ public class ProductDaoImpl implements ProductDao {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(ADD_PRODUCTS_BY_ID, PreparedStatement.RETURN_GENERATED_KEYS);
-				ps.setLong(1, product.getId());
-				ps.setString(2, product.getName());
-				ps.setString(3, product.getDescription());
-				ps.setString(4, product.getArchiveData());
+				ps.setString(1, product.getName());
+				ps.setString(2, product.getDescription());
+				ps.setString(3, product.getArchiveData());
 				return ps;
 			}
 		}, keyHolder);

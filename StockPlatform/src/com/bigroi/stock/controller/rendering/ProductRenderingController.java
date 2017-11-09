@@ -52,6 +52,7 @@ public class ProductRenderingController {
 			HttpSession session)
 			throws ServiceException {
 		Product product = new Product();
+		product.setId(id);
 		product.setName(name);
 		product.setDescription(description);
 		ServiceFactory.getProductService().merge(product);

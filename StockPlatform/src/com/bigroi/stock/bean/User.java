@@ -1,10 +1,18 @@
 package com.bigroi.stock.bean;
 
+import com.bigroi.stock.json.Column;
+import com.bigroi.stock.json.Id;
+
 public class User {
 	
+	@Id
 	private long id;
+	
+	@Column("skock.table.tender.login")
 	private String login;
 	private String password;
+	
+	@Column("skock.table.tender.companyId")
 	private long companyId;
 	
 	public long getId() {

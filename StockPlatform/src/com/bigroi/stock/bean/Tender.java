@@ -5,19 +5,36 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.json.Column;
+import com.bigroi.stock.json.Id;
 import com.bigroi.stock.util.DateUtil;
 
 public class Tender {
 
 	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
 
+	@Id
 	private long id;
+	
+	@Column("skock.table.tender.description")
 	private String description;
+	
+	@Column("skock.table.tender.productId")
 	private long productId;
+	
+	@Column("skock.table.tender.maxPrice")
 	private double maxPrice;
+	
+	@Column("skock.table.tender.customerId")
 	private long customerId;
+	
+	@Column("skock.table.tender.status")
 	private Status status;
+	
+	@Column("skock.table.tender.expDate")
 	private Date expDate = new Date();
+	
+	@Column("skock.table.tender.volumeOfTender")
 	private int volumeOfTender;
 
 	public boolean isExpired() {

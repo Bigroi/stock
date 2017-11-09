@@ -16,4 +16,6 @@ public interface TenderService {
 
 	void startTrading(long id) throws ServiceException;
 
+	List<Tender> getByProduct(int productId) throws ServiceException;
+
 }

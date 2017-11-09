@@ -12,7 +12,7 @@ import com.bigroi.stock.service.ServiceException;
 
 public class LotServiceImpl implements LotService {
 
-	LotDao lotDao;
+	private LotDao lotDao;
 
 	public void setLotDao(LotDao lotDao) {
 		this.lotDao = lotDao;
@@ -77,6 +77,16 @@ public class LotServiceImpl implements LotService {
 	public void cancel(long id) throws ServiceException {
 		try {
 			lotDao.setStatusById(id, Status.CANCELED);
+		} catch (DaoException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	public List<Lot> getByProduct(int productId) throws ServiceException {
+		try{
+			return lotDao.getActiveByProductId(productId);
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);

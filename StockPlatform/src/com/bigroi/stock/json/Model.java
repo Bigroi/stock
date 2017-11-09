@@ -9,6 +9,16 @@ class Model {
 	
 	private Map<Integer, Boolean> allowSorting = new HashMap<>();
 	
+	private int idColumn;
+	
+	public void setIdColumn(int idColumn) {
+		this.idColumn = idColumn;
+	}
+	
+	public int getIdColumn() {
+		return idColumn;
+	}
+	
 	public Map<Integer, String> getCustSortFn() {
 		return custSortFn;
 	}

@@ -15,7 +15,6 @@ import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.ProductDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.messager.MailManagerException;
 import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.ProductService;
 import com.bigroi.stock.service.ServiceException;
@@ -118,8 +117,8 @@ public class ProductServiceImpl implements ProductService {
 			tenderDao.setStatusByProductId(id, Status.CANCELED);
 			Company company = companyDao.getById(companyId);
 			//TODO send correct text
-			MessagerFactory.getMailManager().send(company.getEmail(), "deleteComapny", " some text");
-		} catch (DaoException | MailManagerException e) {
+			//MessagerFactory.getMailManager().send(company.getEmail(), "deleteComapny", " some text");
+		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}

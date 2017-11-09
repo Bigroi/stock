@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.bean.User;
 import com.bigroi.stock.json.ResultBean;
+import com.bigroi.stock.json.Table;
+import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 import com.google.gson.Gson;
@@ -44,10 +46,11 @@ public class TenderResourseController extends BaseResourseController {
 	@RequestMapping("/MyList.spr")
 	public @ResponseBody String myList(
 			HttpSession session) 
-					throws ServiceException {
+					throws ServiceException, TableException {
 		User user = (User) session.getAttribute("user");
 		List<Tender> tenders = ServiceFactory.getTenderService().getMyList(user.getCompanyId());
-		return new ResultBean(1, tenders).toString();
+		Table<Tender> table = new Table<>(Tender.class, tenders);
+		return new ResultBean(1, table).toString();
 	}
 
 	@RequestMapping("/StartTrading.spr")

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.json.ResultBean;
+import com.bigroi.stock.json.Table;
+import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -17,9 +19,10 @@ import com.bigroi.stock.service.ServiceFactory;
 public class CompanyResourceController extends BaseResourseController {
 
 	@RequestMapping("/List.spr")
-	public @ResponseBody String getListCompanyAll() throws ServiceException {
+	public @ResponseBody String getListCompanyAll() throws ServiceException, TableException {
 		List<Company> list = ServiceFactory.getCompanyService().getAllCompanies();
-		return new ResultBean(1, list).toString();
+		Table<Company> table = new Table<>(Company.class, list);
+		return new ResultBean(1, table).toString();
 	}
 
 	@RequestMapping("/ChangeStatus.spr")

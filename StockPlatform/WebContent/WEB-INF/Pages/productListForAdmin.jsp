@@ -21,6 +21,7 @@
 			<tr>
 				<td>name</td>
 				<td>description</td>
+				<td>status</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -32,6 +33,7 @@
 						</a>
 					</td>
 					<td>${product.description}</td>
+					<td>${product.archive}</td>
 				</tr>
 			</c:forEach>
 

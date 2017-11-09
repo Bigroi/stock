@@ -1,16 +1,33 @@
 package com.bigroi.stock.bean;
 
 import com.bigroi.stock.bean.common.CompanyStatus;
+import com.bigroi.stock.json.Column;
+import com.bigroi.stock.json.Id;
 
 public class Company {
 
+	@Id
 	private long id;
+	
+	@Column("skock.table.company.name")
 	private String name;
+	
+	@Column("skock.table.company.email")
 	private String email;
+	
+	@Column("skock.table.company.phone")
 	private String phone;
+	
+	@Column("skock.table.company.regNumber")
 	private String regNumber;
+	
+	@Column("skock.table.company.country")
 	private String country;
+	
+	@Column("skock.table.company.city")
 	private String city;
+	
+	@Column("skock.table.company.status")
 	private CompanyStatus status;
 
 	public long getId() {

@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Table {
+public class Table<T> {
 
 	private Model model = new Model();
 	
@@ -12,7 +12,7 @@ public class Table {
 	
 	private List<List<String>> rows = new ArrayList<>();
 	
-	public Table(Class<?> clazz, List<?> objects) throws TableException {
+	public Table(Class<T> clazz, List<T> objects) throws TableException {
 		try{
 			int i = 0;
 			for (Field field : clazz.getDeclaredFields()){
@@ -22,13 +22,18 @@ public class Table {
 					model.addCustSortFn(i, column.customSortFunction());
 					headers.add(column.value());
 					i++;
+				} else if (field.getAnnotation(Id.class) != null){
+					model.setIdColumn(i);
+					headers.add("id");
+					i++;
 				}
 			}
 			
 			for (Object object : objects){
 				List<String> row = new ArrayList<>();
 				for (Field field : clazz.getDeclaredFields()){
-					if (field.getAnnotation(Column.class) != null){
+					if (field.getAnnotation(Column.class) != null ||
+							field.getAnnotation(Id.class) != null){
 						field.setAccessible(true);
 						Object value = field.get(object);
 						row.add(value == null ? "" : value.toString());
@@ -54,11 +59,12 @@ public class Table {
 		return model;
 	}
 
-	public void exclude(int index) {
+	public Table<T> exclude(int index) {
 		model.exclude(index);
 		headers.remove(index);
 		for (List<String> row : rows){
 			row.remove(index);
 		}
+		return this;
 	}
 }

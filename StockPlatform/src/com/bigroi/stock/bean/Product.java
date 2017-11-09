@@ -16,10 +16,10 @@ public class Product {
 	@Column("skock.table.product.name")
 	private String name;
 	
-	@Column("stock.table.product.")
+	@Column("stock.table.product.description")
 	private String description;
 	
-	@Column("stock.table.product.")
+	@Column("stock.table.product.archive")
 	private boolean archive;
 	
 	public String getArchiveData(){
@@ -55,7 +55,7 @@ public class Product {
 		this.description = description;
 	}
 	
-	public boolean getArchive() {
+	public boolean isArchive() {
 		return archive;
 	}
 

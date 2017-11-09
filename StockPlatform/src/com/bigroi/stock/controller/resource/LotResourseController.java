@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.User;
 import com.bigroi.stock.json.ResultBean;
+import com.bigroi.stock.json.Table;
+import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 import com.google.gson.Gson;
@@ -35,11 +37,12 @@ public class LotResourseController extends BaseResourseController {
 	@RequestMapping(value = "/MyList.spr")
 	public @ResponseBody String myLotList(
 			HttpSession session) 
-					throws ServiceException {
+					throws ServiceException, TableException {
 		
 		User userBean = (User) session.getAttribute("user");
 		List<Lot> lots = ServiceFactory.getLotService().getBySellerId(userBean.getCompanyId());
-		return new ResultBean(1, lots).toString();
+		Table<Lot> table = new Table<>(Lot.class, lots);
+		return new ResultBean(1, table).toString();
 		
 	}
 

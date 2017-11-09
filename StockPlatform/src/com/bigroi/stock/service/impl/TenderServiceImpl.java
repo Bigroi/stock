@@ -81,4 +81,14 @@ public class TenderServiceImpl implements TenderService{
 			throw new ServiceException(e);
 		}
 	}
+	
+	@Override
+	public List<Tender> getByProduct(int productId) throws ServiceException {
+		try{
+			return tenderDao.getActiveByProductId(productId);
+		} catch (DaoException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException(e);
+		}
+	}
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.User;
 import com.bigroi.stock.json.ResultBean;
+import com.bigroi.stock.json.Table;
+import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -17,9 +19,10 @@ import com.bigroi.stock.service.ServiceFactory;
 public class UserResourceController extends BaseResourseController{
 
 	@RequestMapping(value = "/List.spr")
-	public @ResponseBody String list() throws ServiceException {
+	public @ResponseBody String list() throws ServiceException, TableException {
 		List<User> users = ServiceFactory.getUserService().getAllUsers();
-		return new ResultBean(1, users).toString();
+		Table<User> table = new Table<>(User.class, users);
+		return new ResultBean(1, table).toString();
 	}
 	
 	@RequestMapping(value = "/ResetPassword.spr")
