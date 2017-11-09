@@ -3,10 +3,12 @@ package com.bigroi.stock.service;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.User;
 
-public interface UserService {
+public interface UserService extends UserDetailsService{
 
 	void addUser(Company company, User user)throws ServiceException;
 	

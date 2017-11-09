@@ -11,13 +11,6 @@
 
 	<context:component-scan base-package="com.bigroi.stock.controller/**" />
 
-	<!-- <mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/*Auth.spr" />
-			<bean id="auth" class="com.bigroi.stock.interceptor.AuthInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors> -->
-
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass"

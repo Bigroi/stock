@@ -1,7 +1,11 @@
 package com.bigroi.stock.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.Company;
@@ -109,6 +113,15 @@ public class UserServiceImpl implements UserService {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
+	}
+
+	@Override
+	//TODO use dao to load user
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ADMIN");
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(authority);
+		return new org.springframework.security.core.userdetails.User("admin", "1", authorities);
 	}
 
 }
