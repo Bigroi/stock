@@ -162,4 +162,5 @@ public class TenderDaoImpl implements TenderDao{
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_STATUS_BY_ID, status.toString(), id) == 1;
 	}
+	
 }

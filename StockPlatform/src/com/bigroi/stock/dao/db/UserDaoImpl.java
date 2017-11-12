@@ -16,6 +16,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import com.bigroi.stock.bean.User;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserDao;
+import com.bigroi.stock.util.TmprUserLoad;
 
 public class UserDaoImpl implements UserDao {
 	
@@ -32,6 +33,10 @@ public class UserDaoImpl implements UserDao {
 
 	private static final String UPDATE_USERS_BY_ID = "UPDATE user SET  login = ?, password = ?, "
 			+ " company_Id = ? WHERE id= ? ";
+	
+	private static final String LOAD_USER_BY_JOIN_TABLES = "SELECT user.login, user.password, company.status, user_role.role fROM  user "
+			+ " INNER JOIN company ON user.company_Id = company.id  "
+			+ " INNER JOIN user_role ON user.id = user_role.user_id ";
 
 	private DataSource datasource;
 
@@ -92,4 +97,17 @@ public class UserDaoImpl implements UserDao {
 		return template.update(UPDATE_USERS_BY_ID, user.getLogin(), user.getPassword(), user.getCompanyId(),
 				user.getId()) == 1;
 	}
+
+	@Override
+	public List<TmprUserLoad> loadUser() throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<TmprUserLoad> list = template.query(LOAD_USER_BY_JOIN_TABLES, new BeanPropertyRowMapper<TmprUserLoad>(TmprUserLoad.class));
+		return list;
+		/*if (list.size() == 0) {
+			return null;
+		} else {
+			return list.get(0);
+		}*/
+	}
+	
 }
