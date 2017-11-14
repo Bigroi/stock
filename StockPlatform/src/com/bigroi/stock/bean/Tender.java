@@ -35,7 +35,7 @@ public class Tender {
 	private Date expDate = new Date();
 	
 	@Column("skock.table.tender.volumeOfTender")
-	private int volumeOfTender;
+	private int volume;
 
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
@@ -108,18 +108,18 @@ public class Tender {
 		this.status = status;
 	}
 	
-	public int getVolumeOfTender() {
-		return volumeOfTender;
+	public int getVolume() {
+		return volume;
 	}
 
-	public void setVolumeOfTender(int volumeOfTender) {
-		this.volumeOfTender = volumeOfTender;
+	public void setVolume(int volume) {
+		this.volume = volume;
 	}
 
 
 	@Override
 	public String toString() {
 		return "Tender [id=" + id + ", description=" + description + ", productId=" + productId + ", maxPrice="
-				+ maxPrice + ", customerId=" + customerId + ", status=" + status + ", expDate=" + expDate + ", volumeOfTender=" + volumeOfTender + "]";
+				+ maxPrice + ", customerId=" + customerId + ", status=" + status + ", expDate=" + expDate + ", volumeOfTender=" + volume + "]";
 	}
 }

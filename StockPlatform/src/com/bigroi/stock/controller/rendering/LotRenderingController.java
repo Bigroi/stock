@@ -50,7 +50,7 @@ public class LotRenderingController {
 		lot.setMinPrice(minPrice);
 		lot.setSellerId(salerId);
 		lot.setDateStr(expDateStr);
-		lot.setVolumeOfLot(volumeOfLot);
+		lot.setVolume(volumeOfLot);
 		lot.setStatus(status);		
 		
 		ServiceFactory.getLotService().merge(lot);

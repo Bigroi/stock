@@ -51,7 +51,7 @@ public class TenderRenderingController {
 		tender.setMaxPrice(maxPrice);
 		tender.setCustomerId(customerId);
 		tender.setDateStr(expDateStr);
-		tender.setVolumeOfTender(volumeOfTender);
+		tender.setVolume(volumeOfTender);
 		tender.setStatus(status);
 		
 		ServiceFactory.getTenderService().merge(tender);

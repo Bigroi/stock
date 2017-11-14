@@ -17,7 +17,16 @@ public class PreDeal {
 	private boolean sellerApprov;
 	private boolean custApprov;
 	private Date dealDate = new Date();
+	private int volume;
 
+	public int getVolume() {
+		return volume;
+	}
+	
+	public void setVolume(int volume) {
+		this.volume = volume;
+	}
+	
 	public String getSellerApprov() {
 		if (this.sellerApprov) {
 			return YES;

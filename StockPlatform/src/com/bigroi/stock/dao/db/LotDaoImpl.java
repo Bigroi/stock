@@ -84,7 +84,7 @@ public class LotDaoImpl implements LotDao {
 				ps.setLong(4, lot.getSellerId());
 				ps.setString(5, lot.getStatus().name().toUpperCase());
 				ps.setDate(6, new Date(lot.getExpDate().getTime()));
-				ps.setInt(7, lot.getVolumeOfLot());
+				ps.setInt(7, lot.getVolume());
 				return ps;
 			}
 		}, keyHolder);
@@ -102,7 +102,7 @@ public class LotDaoImpl implements LotDao {
 				lot.getSellerId(), 
 				lot.getStatus().name().toUpperCase(), 
 				lot.getExpDate(), 
-				lot.getVolumeOfLot(), 
+				lot.getVolume(), 
 				lot.getId()) == 1;
 
 	}
@@ -132,7 +132,7 @@ public class LotDaoImpl implements LotDao {
 				lot.setSellerId(rs.getLong("seller_Id"));
 				lot.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				lot.setExpDate(rs.getDate("exp_date"));
-				lot.setVolumeOfLot(rs.getInt("volume_of_lot"));
+				lot.setVolume(rs.getInt("volume_of_lot"));
 				return lot;
 			}
 		}, sellerId);

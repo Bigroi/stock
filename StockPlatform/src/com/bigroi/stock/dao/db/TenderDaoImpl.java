@@ -80,7 +80,7 @@ public class TenderDaoImpl implements TenderDao{
 				ps.setLong(4, tender.getCustomerId());
 				ps.setString(5, tender.getStatus().name().toUpperCase());
 				ps.setDate(6, new Date(tender.getExpDate().getTime()));
-				ps.setInt(7, tender.getVolumeOfTender());
+				ps.setInt(7, tender.getVolume());
 				return ps;
 			}
 		},keyHolder);
@@ -94,7 +94,7 @@ public class TenderDaoImpl implements TenderDao{
 		return	template.update(UPDATE_TENDER_BY_ID, tender.getDescription(), tender.getProductId(),
 				tender.getMaxPrice(), tender.getCustomerId(), 
 				tender.getStatus().name().toUpperCase(), tender.getExpDate(), 
-				tender.getVolumeOfTender(), tender.getId()) == 1;
+				tender.getVolume(), tender.getId()) == 1;
 	}
 
 	@Override
@@ -122,7 +122,7 @@ public class TenderDaoImpl implements TenderDao{
 				tender.setCustomerId(rs.getLong("customer_Id"));
 				tender.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				tender.setExpDate(rs.getDate("exp_date"));
-				tender.setVolumeOfTender(rs.getInt("volume_of_tender"));
+				tender.setVolume(rs.getInt("volume_of_tender"));
 				return tender;
 			}
 		},customerId);

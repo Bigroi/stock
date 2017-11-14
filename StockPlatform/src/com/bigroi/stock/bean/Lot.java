@@ -35,7 +35,7 @@ public class Lot {
 	private Status status;
 	
 	@Column("skock.table.lot.volumeOfLot")
-	private int volumeOfLot;
+	private int volume;
 
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
@@ -108,19 +108,19 @@ public class Lot {
 		this.status = status;
 	}
 
-	public int getVolumeOfLot() {
-		return volumeOfLot;
+	public int getVolume() {
+		return volume;
 	}
 
-	public void setVolumeOfLot(int volumeOfLot) {
-		this.volumeOfLot = volumeOfLot;
+	public void setVolume(int volume) {
+		this.volume = volume;
 	}
 
 	
 	@Override
 	public String toString() {
 		return "Lot [id=" + id + ", description=" + description + ", poductId=" + poductId + ", minPrice=" + minPrice
-				+ ", sallerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + ", volumeOfLot=" + volumeOfLot +"]";
+				+ ", sallerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + ", volumeOfLot=" + volume +"]";
 	}
 
 }

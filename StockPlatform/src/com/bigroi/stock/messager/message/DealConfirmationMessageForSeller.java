@@ -7,7 +7,6 @@ import com.bigroi.stock.bean.common.Action;
 import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
-import com.bigroi.stock.util.TradingPrice;
 
 public class DealConfirmationMessageForSeller extends BaseMessage<PreDeal> {
 
@@ -37,7 +36,7 @@ public class DealConfirmationMessageForSeller extends BaseMessage<PreDeal> {
 					.replaceAll("@lotId", preDeal.getLotId() + "")
 					.replaceAll("@lotDate", lot.getDateStr())
 					.replaceAll("@lotPrice", lot.getMinPrice() + "")
-					.replaceAll("@price", TradingPrice.getPrice(lot.getMinPrice(), tender.getMaxPrice()) + "")
+					.replaceAll("@price", (lot.getMinPrice() + tender.getMaxPrice()) / 2 + "")
 					.replaceAll("@sellerLinkApprove", sellerLink + Action.APPROVE)
 					.replaceAll("@sellerLinkCancel", sellerLink + Action.CANCEL);
 		}catch (ServiceException e) {

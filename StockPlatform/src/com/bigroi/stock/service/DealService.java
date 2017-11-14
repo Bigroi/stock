@@ -1,8 +1,12 @@
 package com.bigroi.stock.service;
 
-import com.bigroi.stock.bean.PreDeal;
+import java.util.List;
 
-public interface ReferenceService {
+import com.bigroi.stock.bean.PreDeal;
+import com.bigroi.stock.jobs.trade.TradeLot;
+import com.bigroi.stock.jobs.trade.TradeTender;
+
+public interface DealService {
 
 	PreDeal getById(long id) throws ServiceException;
 	
@@ -11,4 +15,8 @@ public interface ReferenceService {
 	void setApprovedBySeller(long preDealId) throws ServiceException;
 
 	void cancel(long preDealId, boolean seller) throws ServiceException;
+
+	void getPosibleDeals(List<TradeLot> tradeLots, List<TradeTender> tradeTenders, long productId) throws ServiceException;
+
+	void add(PreDeal preDeal) throws ServiceException;
 }

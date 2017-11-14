@@ -1,5 +1,7 @@
 package com.bigroi.stock.service.impl;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.Blacklist;
@@ -12,13 +14,15 @@ import com.bigroi.stock.dao.DealsDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.PreDealDao;
 import com.bigroi.stock.dao.TenderDao;
+import com.bigroi.stock.jobs.trade.TradeLot;
+import com.bigroi.stock.jobs.trade.TradeTender;
 import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.messager.message.Message;
 import com.bigroi.stock.messager.message.MessageException;
-import com.bigroi.stock.service.ReferenceService;
+import com.bigroi.stock.service.DealService;
 import com.bigroi.stock.service.ServiceException;
 
-public class ReferenceServiceImpl implements ReferenceService{
+public class DealServiceImpl implements DealService{
 	
 	private PreDealDao preDealDao;
 	private BlacklistDao blacklistDao;
@@ -133,6 +137,33 @@ public class ReferenceServiceImpl implements ReferenceService{
 			} else {
 				message = MessagerFactory.getCustomerCanceledMessage();
 			}
+			message.setDataObject(preDeal);
+			message.send();
+		}catch (DaoException | MessageException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	public void getPosibleDeals(List<TradeLot> tradeLots, List<TradeTender> tradeTenders, long productId) throws ServiceException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void add(PreDeal preDeal) throws ServiceException {
+		try{
+			preDealDao.add(preDeal);
+			
+			lotDao.setStatusById(preDeal.getId(), Status.ON_APPROVAL);
+			tenderDao.setStatusById(preDeal.getId(), Status.ON_APPROVAL);
+			
+			Message<PreDeal> message = MessagerFactory.getDealConfirmationMessageForCustomer();
+			message.setDataObject(preDeal);
+			message.send();
+			
+			message = MessagerFactory.getDealConfirmationMessageForSeller();
 			message.setDataObject(preDeal);
 			message.send();
 		}catch (DaoException | MessageException e) {
