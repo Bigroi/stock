@@ -3,8 +3,6 @@ package com.bigroi.stock.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.relation.Role;
-
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,7 +19,6 @@ import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.UserService;
 import com.bigroi.stock.util.Generator;
-import com.bigroi.stock.util.TmprUserLoad;
 
 public class UserServiceImpl implements UserService {
 
@@ -107,7 +104,7 @@ public class UserServiceImpl implements UserService {
 			throw new ServiceException(e);
 		}
 	}
-	
+
 	@Override
 	public List<User> getAllUsers() throws ServiceException {
 		try {
@@ -119,25 +116,24 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	//TODO use dao to load user
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		try {
-			List<TmprUserLoad> temp = userDao.loadUser();
-			for (TmprUserLoad list : temp){
-				if(username.equals(list.getLogin())){
-					SimpleGrantedAuthority authority = new SimpleGrantedAuthority(list.getRole());//"ADMIN"
-					List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-					authorities.add(authority);
-					return new org.springframework.security.core.userdetails.User(list.getLogin(), list.getPassword(), authorities);//"Admin" "1"
-				}			 
+			List<User> userLoad = userDao.loadUser(username);
+			User user = null;
+			SimpleGrantedAuthority authority = null;
+			List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+			for (User userList : userLoad) {
+				user = userList;
+				authority = new SimpleGrantedAuthority(userList.getRole());
+				authorities.add(authority);
 			}
-		} catch (DaoException e) {
+			return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(),
+					authorities);
+		} catch (UsernameNotFoundException | DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 		}
 		return null;
-		
+
 	}
-	
-	
 
 }

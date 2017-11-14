@@ -11,6 +11,7 @@ public class User {
 	@Column("skock.table.tender.login")
 	private String login;
 	private String password;
+	private String role;
 	
 	@Column("skock.table.tender.companyId")
 	private long companyId;
@@ -46,10 +47,21 @@ public class User {
 	public void setCompanyId(long companyId) {
 		this.companyId = companyId;
 	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", login=" + login + ", password=" + password + ", companyId=" + companyId + "]";
+		return "User [id=" + id + ", login=" + login + ", password=" + password + ", role="
+				+ role + ", companyId=" + companyId + "]";
 	}
+
+	
 
 }
