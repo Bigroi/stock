@@ -56,7 +56,7 @@
 		<property name="tenderDao" ref="tenderDao"></property>
 	</bean>
 
-	<bean id="referenceService" class="com.bigroi.stock.service.impl.ReferenceServiceImpl">
+	<bean id="dealService" class="com.bigroi.stock.service.impl.DealServiceImpl">
 		<property name="preDealDao" ref="preDealDao" />
 		<property name="blacklistDao" ref="blacklistDao"/>
 		<property name="dealsDao" ref="dealsDao"/>

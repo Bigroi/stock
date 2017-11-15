@@ -28,7 +28,7 @@ public class ServiceFactory {
 	}
 	
 	public static DealService getPreDealService(){
-		return (DealService) CONTEX.getBean("referenceService");
+		return (DealService) CONTEX.getBean("dealService");
 	}
 	
 	public static MarketService getMarketService(){

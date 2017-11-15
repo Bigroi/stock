@@ -1,11 +1,12 @@
 package com.bigroi.stock.jobs;
 
+import com.bigroi.stock.jobs.trade.TradeJob;
+
 public class Trading implements Runnable {
 	
 	@Override
 	public void run() {
-		//TODO create trading algorithm
-		System.out.println("Trading");
+		new TradeJob().run();
 	}
 
 }
