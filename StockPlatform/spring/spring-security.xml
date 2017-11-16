@@ -1,22 +1,32 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
-    xmlns:beans="http://www.springframework.org/schema/beans" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
     http://www.springframework.org/schema/security
     http://www.springframework.org/schema/security/spring-security-4.2.xsd ">
 
-    <http />
+	<http auto-config='true'>
+	<!-- <intercept-url pattern="/access/**" access="hasAnyRole('USER','ADMIN')"/>  -->
+		<form-login 
+   login-page="/Login.spr" 
+   authentication-failure-forward-url="/Login.spr" 
+   authentication-success-forward-url="/Index.spr"  />
+		<http-basic  />
+		<logout 
+		
+		 /><!-- logout-success-url="Index.spr" invalidate-session="true" delete-cookies="JSESSIONID"  -->
+		<csrf disabled="true" />
+	</http>
 
 	<beans:import resource="classpath:spring-service.xml" />
 
-	<beans:bean id="daoAuthenticationProvider" 
+	<beans:bean id="daoAuthenticationProvider"
 		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
-		<beans:property name="userDetailsService" ref="userService"/>
+		<beans:property name="userDetailsService" ref="userService" />
 	</beans:bean>
 
-    <authentication-manager>
-        <authentication-provider ref="daoAuthenticationProvider"/>
-    </authentication-manager>
+	<authentication-manager>
+		<authentication-provider ref="daoAuthenticationProvider" />
+	</authentication-manager>
 
 </beans:beans>

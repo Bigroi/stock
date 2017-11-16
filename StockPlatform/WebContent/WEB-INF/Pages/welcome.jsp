@@ -9,17 +9,16 @@
 <title>Welcome page</title>
 </head>
 <body>
-   <p> WELCOME !!! ${user.login}</p>  
+   <p> WELCOME !!! ${userName}</p>  
    <a href="?lang=en">en</a> |  <a href="?lang=ru">ru</a>
-   <c:if test="${user.login == null }">
+   <c:if test="${user == null }">
    <p><a href="/Login.spr"><spring:message code="label.login"/></a> </p>
    <p><a href="/Registration.spr"><spring:message code="label.registration"/></a> </p>
    </c:if>
    <p><a href="/account/Form.spr"><spring:message code="label.account"/></a> </p>
 
-	<input type="button" value="<spring:message code="label.logout"/>" onclick="document.location = '/access/Logout.spr'">
+	<input type="button" value="<spring:message code="label.logout"/>" onclick="document.location = '<c:url value="/logout" />'"><!--  /access/Logout.spr  <c:url value="/logout" /> -->
 	<p style="font-family: cursive; font-size: 13px">${outMessage}</p>
-
 	<ul>
     	<li><a href="/product/List.spr"><spring:message code="label.productList"/></a>
 		</li>

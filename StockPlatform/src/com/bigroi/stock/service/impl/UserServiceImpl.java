@@ -119,6 +119,9 @@ public class UserServiceImpl implements UserService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		try {
 			List<User> userLoad = userDao.loadUser(username);
+			if(userLoad.size() == 0){
+				throw new UsernameNotFoundException(username);
+			}
 			User user = null;
 			SimpleGrantedAuthority authority = null;
 			List<SimpleGrantedAuthority> authorities = new ArrayList<>();
@@ -131,8 +134,9 @@ public class UserServiceImpl implements UserService {
 					authorities);
 		} catch (UsernameNotFoundException | DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new UsernameNotFoundException("", e);
 		}
-		return null;
+		
 
 	}
 

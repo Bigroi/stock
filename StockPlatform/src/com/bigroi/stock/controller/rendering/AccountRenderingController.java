@@ -5,6 +5,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +26,8 @@ public class AccountRenderingController {
 	@RequestMapping("/Form.spr")
 	public ModelAndView form(HttpSession session) throws ServiceException{
 		Map<String, Object> map = new HashMap<>();
-		User user = (User) session.getAttribute("user");
+		User user = //SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+				(User) session.getAttribute("user");
 		map.put("user", user);
 		Company company = ServiceFactory.getUserService().getById(user.getCompanyId());
 		map.put("company", company);	
