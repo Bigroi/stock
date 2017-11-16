@@ -9,7 +9,7 @@
 <title>Welcome page</title>
 </head>
 <body>
-   <p> WELCOME !!! ${userName}</p>  
+   <p> WELCOME !!! ${user.name}</p>  
    <a href="?lang=en">en</a> |  <a href="?lang=ru">ru</a>
    <c:if test="${user == null }">
    <p><a href="/Login.spr"><spring:message code="label.login"/></a> </p>

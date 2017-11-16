@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -17,7 +17,7 @@ public class UserRenderingController {
 
 	@RequestMapping(value = "/ChangeUserPass.spr")
 	public ModelAndView listOfUser() throws ServiceException {
-		List<User> user = ServiceFactory.getUserService().getAllUsers();
+		List<StockUser> user = ServiceFactory.getUserService().getAllUsers();
 		return new ModelAndView("changeUserPass", "listOfUser", user);
 	}
 

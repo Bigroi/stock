@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Tender;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
@@ -24,7 +24,7 @@ public class TenderRenderingController {
 	public ModelAndView form(
 			@RequestParam(value = "id", defaultValue = "-1") long id, 
 			HttpSession session) throws ServiceException {
-		User user = (User)session.getAttribute("user");
+		StockUser user = (StockUser)session.getAttribute("user");
 		Tender tender = ServiceFactory.getTenderService().getTender(id, user.getCompanyId());
 		ModelAndView modelAndView = new ModelAndView("tenderForm", "tender", tender);
 		modelAndView.addObject("listOfProducts", 
@@ -61,7 +61,7 @@ public class TenderRenderingController {
 	
 	@RequestMapping("/MyList.spr")
 	public ModelAndView myList(HttpSession session) throws  ServiceException {
-		User user = (User)session.getAttribute("user");
+		StockUser user = (StockUser)session.getAttribute("user");
 		List<Tender> tenders = ServiceFactory.getTenderService().getMyList(user.getCompanyId());
 		return new ModelAndView("myTenderList", "listOfTenders", tenders);
 	}

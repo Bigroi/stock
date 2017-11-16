@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.Company;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.service.ServiceException;
@@ -24,8 +24,8 @@ public class AccessResourceController extends BaseResourseController {
 			@RequestParam("json") String json, 
 			HttpSession session) 
 					throws ServiceException {
-		User bean = new Gson().fromJson(json, User.class);
-		User user = ServiceFactory.getUserService().checkUserByPassword(bean.getLogin(), bean.getPassword());
+		StockUser bean = new Gson().fromJson(json, StockUser.class);
+		StockUser user = ServiceFactory.getUserService().checkUserByPassword(bean.getLogin(), bean.getPassword());
 		if (user != null) {
 			session.setAttribute("user", user);
 			return new ResultBean(1, "authenticate.success").toString();
@@ -40,7 +40,7 @@ public class AccessResourceController extends BaseResourseController {
 			@RequestParam("jsonUser") String jsonUser,
 			@RequestParam("jsonCompany") String jsonCompany, 
 			HttpSession session) throws ServiceException {
-		User user = new Gson().fromJson(jsonUser, User.class);
+		StockUser user = new Gson().fromJson(jsonUser, StockUser.class);
 		
 		if (getUser(user.getLogin()) != null) {
 			return new ResultBean(-1, "registration.login.error").toString();
@@ -53,7 +53,7 @@ public class AccessResourceController extends BaseResourseController {
 		return new ResultBean(1, "registration.success").toString();
 	}
 
-	private User getUser(String login) throws ServiceException {
+	private StockUser getUser(String login) throws ServiceException {
 		return ServiceFactory.getUserService().getByLogin(login);
 	}
 

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.Table;
 import com.bigroi.stock.json.TableException;
@@ -20,8 +20,8 @@ public class UserResourceController extends BaseResourseController{
 
 	@RequestMapping(value = "/List.spr")
 	public @ResponseBody String list() throws ServiceException, TableException {
-		List<User> users = ServiceFactory.getUserService().getAllUsers();
-		Table<User> table = new Table<>(User.class, users);
+		List<StockUser> users = ServiceFactory.getUserService().getAllUsers();
+		Table<StockUser> table = new Table<>(StockUser.class, users);
 		return new ResultBean(1, table).toString();
 	}
 	

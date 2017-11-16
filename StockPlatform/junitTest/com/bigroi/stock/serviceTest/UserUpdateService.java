@@ -7,14 +7,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bigroi.stock.bean.Company;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
 public class UserUpdateService {
 	
-public static User user;
+public static StockUser user;
 	
 	public static Company company;
 	
@@ -31,7 +31,7 @@ public static User user;
 		company.setCity("TEST");
 		company.setStatus(CompanyStatus.VERIFIED);
 		
-		user = new User();
+		user = new StockUser();
 		user.setId(22);
 		user.setLogin("ROLBACK");
 		user.setPassword("ROLBACK");

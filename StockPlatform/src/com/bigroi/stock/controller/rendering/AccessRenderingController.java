@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Company;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
@@ -43,7 +43,7 @@ public class AccessRenderingController {
 			@RequestParam("city") String city,
 			HttpSession session) throws ServiceException{
 		
-		User oldUser = ServiceFactory.getUserService().getByLogin(login);
+		StockUser oldUser = ServiceFactory.getUserService().getByLogin(login);
 		if (oldUser != null) {
 			return new ModelAndView("registration","message", "registration.login.error" );
 		}
@@ -58,7 +58,7 @@ public class AccessRenderingController {
 		company.setCountry(country);
 		company.setCity(city);
 		company.setStatus(CompanyStatus.NOT_VERIFIED);		
-		User user = new User();
+		StockUser user = new StockUser();
 		user.setLogin(login);
 		user.setPassword(password);
 		user.setCompanyId(company.getId());

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.Table;
 import com.bigroi.stock.json.TableException;
@@ -28,7 +28,7 @@ public class LotResourseController extends BaseResourseController {
 			HttpSession session) 
 					throws ServiceException {
 		
-		User user = (User) session.getAttribute("user");
+		StockUser user = (StockUser) session.getAttribute("user");
 		Lot lot = ServiceFactory.getLotService().getLot(id, user.getCompanyId());
 		return new ResultBean(1, lot).toString();
 		
@@ -39,7 +39,7 @@ public class LotResourseController extends BaseResourseController {
 			HttpSession session) 
 					throws ServiceException, TableException {
 		
-		User userBean = (User) session.getAttribute("user");
+		StockUser userBean = (StockUser) session.getAttribute("user");
 		List<Lot> lots = ServiceFactory.getLotService().getBySellerId(userBean.getCompanyId());
 		Table<Lot> table = new Table<>(Lot.class, lots);
 		return new ResultBean(1, table).toString();

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.Product;
 import com.bigroi.stock.bean.Tender;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.Table;
 import com.bigroi.stock.json.TableException;
@@ -64,7 +64,7 @@ public class ProductResourseController extends BaseResourseController {
 			@RequestParam("id") long id, 
 			HttpSession session)
 					throws ServiceException {
-		User user = (User) session.getAttribute("user");
+		StockUser user = (StockUser) session.getAttribute("user");
 		ServiceFactory.getProductService().delete(id, user.getCompanyId());
 		return new ResultBean(1, "success").toString();
 

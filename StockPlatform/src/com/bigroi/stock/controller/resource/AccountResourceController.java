@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.Company;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
@@ -27,7 +27,7 @@ public class AccountResourceController extends BaseResourseController {
 					throws ServiceException {
 		
 		Map<String, Object> map = new HashMap<>();
-		User user = (User) session.getAttribute("user");
+		StockUser user = (StockUser) session.getAttribute("user");
 		map.put("user", user);
 		Company company = ServiceFactory.getCompanyService().getCompanyById(user.getCompanyId());
 		map.put("company", company);
@@ -41,9 +41,9 @@ public class AccountResourceController extends BaseResourseController {
 			HttpSession session) 
 					throws ServiceException {
 
-		User newUser = new Gson().fromJson(newUserJson, User.class);
+		StockUser newUser = new Gson().fromJson(newUserJson, StockUser.class);
 		Company newCompany = new Gson().fromJson(newCompanyJson, Company.class);
-		User oldUser = (User) session.getAttribute("user");
+		StockUser oldUser = (StockUser) session.getAttribute("user");
 		
 		if (!newUser.equals(oldUser)){
 			return new ResultBean(-1, "account.edit.names.error").toString();

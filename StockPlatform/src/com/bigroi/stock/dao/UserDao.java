@@ -3,21 +3,23 @@ package com.bigroi.stock.dao;
 
 import java.util.List;
 
-import com.bigroi.stock.bean.User;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.bigroi.stock.bean.StockUser;
 
 public interface UserDao {
 	
-	List<User> getAllUser() throws DaoException;
+	List<StockUser> getAllUser() throws DaoException;
 
-	User getByLoginAndPassword(String login, String password) throws DaoException;
+	StockUser getByLoginAndPassword(String login, String password) throws DaoException;
 
-	User getByLogin(String login) throws DaoException;
+	StockUser getByLogin(String login) throws DaoException;
 	
-	void add(User user)throws DaoException;
+	void add(StockUser user)throws DaoException;
 	
-	boolean update(User user) throws DaoException;
+	boolean update(StockUser user) throws DaoException;
 	
-	List<User> loadUser(String username) throws DaoException;
+	UserDetails loadUser(String username) throws DaoException;
 	
 	
 }

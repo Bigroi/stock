@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.bigroi.stock.bean.PreDeal;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.messager.message.Message;
 
 @SuppressWarnings("unchecked")
@@ -32,8 +32,8 @@ public class MessagerFactory {
 		return (Message<PreDeal>) CONTEXT.getBean("dealConfirmationMessageForSeller");
 	}
 
-	public static Message<User> getResetUserPasswordMessage(){
-		return (Message<User>) CONTEXT.getBean("resetUserPasswordMessage");
+	public static Message<StockUser> getResetUserPasswordMessage(){
+		return (Message<StockUser>) CONTEXT.getBean("resetUserPasswordMessage");
 	}
 	
 	public static Message<PreDeal> getSellerCanceledMessage(){

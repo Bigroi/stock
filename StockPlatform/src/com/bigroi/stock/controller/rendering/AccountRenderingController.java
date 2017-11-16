@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextHolderStrategy;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Company;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
@@ -24,10 +25,10 @@ import com.bigroi.stock.service.ServiceFactory;
 public class AccountRenderingController {
 	
 	@RequestMapping("/Form.spr")
+	@Secured("USER")
 	public ModelAndView form(HttpSession session) throws ServiceException{
 		Map<String, Object> map = new HashMap<>();
-		User user = //SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
-				(User) session.getAttribute("user");
+		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		map.put("user", user);
 		Company company = ServiceFactory.getUserService().getById(user.getCompanyId());
 		map.put("company", company);	
@@ -46,7 +47,7 @@ public class AccountRenderingController {
 			@RequestParam("status") CompanyStatus status,
 			HttpSession session) throws ServiceException {
 		
-		User user = (User) session.getAttribute("user");
+		StockUser user = (StockUser) session.getAttribute("user");
 		user.setPassword(password);
 		session.setAttribute("user", user);
 		Company company = new Company();

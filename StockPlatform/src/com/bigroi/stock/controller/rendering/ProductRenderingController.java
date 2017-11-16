@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Product;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -62,7 +62,7 @@ public class ProductRenderingController {
 	@RequestMapping("/admin/Delete.spr")
 	public ModelAndView delete(@RequestParam("id") long id, HttpSession session)
 			throws ServiceException {
-		User user = (User) session.getAttribute("user");
+		StockUser user = (StockUser) session.getAttribute("user");
 		ServiceFactory.getProductService().delete(id, user.getCompanyId());
 		return allProducts(session);
 	}

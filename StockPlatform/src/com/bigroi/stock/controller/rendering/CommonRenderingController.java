@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigroi.stock.bean.StockUser;
+
 
 @Controller
 public class CommonRenderingController {
@@ -28,15 +30,13 @@ public class CommonRenderingController {
 
 	@RequestMapping("/Index.spr")
 	public ModelAndView goToWelcomePage() {
-		ModelMap map = new ModelMap();
+	ModelAndView modelAndView = new ModelAndView("welcome");
 		Authentication loggedInUser =  SecurityContextHolder.getContext().getAuthentication();
-		if (!(loggedInUser instanceof AnonymousAuthenticationToken)) {
-			String username = loggedInUser.getName();
+		if (loggedInUser instanceof StockUser) {
 			Object objUser = loggedInUser.getPrincipal();
-			map.addAttribute("userName", username);
-			map.addAttribute("user", objUser);
+			modelAndView.addObject("user", objUser);
 		}
-			return new ModelAndView("welcome", map);
+			return modelAndView;
 	}
 
 	@RequestMapping("/Login.spr")
@@ -50,7 +50,7 @@ public class CommonRenderingController {
 	}
 	
 	@RequestMapping(value = "/admin/Index.spr")
-	//@Secured("ADMIN")
+	@Secured("ADMIN")
 	private String mainPage(Authentication loggedInUser) {
 		loggedInUser =  SecurityContextHolder.getContext().getAuthentication();
 		return (!(loggedInUser instanceof AnonymousAuthenticationToken)) ?  "adminMainPage" : "welcome";

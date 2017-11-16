@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.Tender;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.Table;
 import com.bigroi.stock.json.TableException;
@@ -28,7 +28,7 @@ public class TenderResourseController extends BaseResourseController {
 			@RequestParam(value = "id", defaultValue = "-1") long id,
 			HttpSession session) 
 					throws ServiceException {
-		User user = (User)session.getAttribute("user");
+		StockUser user = (StockUser)session.getAttribute("user");
 		Tender tender = ServiceFactory.getTenderService()
 				.getTender(id, user.getCompanyId());
 		return new ResultBean(1, tender).toString();
@@ -47,7 +47,7 @@ public class TenderResourseController extends BaseResourseController {
 	public @ResponseBody String myList(
 			HttpSession session) 
 					throws ServiceException, TableException {
-		User user = (User) session.getAttribute("user");
+		StockUser user = (StockUser) session.getAttribute("user");
 		List<Tender> tenders = ServiceFactory.getTenderService().getMyList(user.getCompanyId());
 		Table<Tender> table = new Table<>(Tender.class, tenders);
 		return new ResultBean(1, table).toString();

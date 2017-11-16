@@ -1,11 +1,11 @@
 package com.bigroi.stock.messager.message;
 
 import com.bigroi.stock.bean.Company;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
-public class ResetUserPasswordMessage extends BaseMessage<User> {
+public class ResetUserPasswordMessage extends BaseMessage<StockUser> {
 
 	public ResetUserPasswordMessage(String fileName) throws MessageException {
 		super(fileName);
@@ -25,7 +25,7 @@ public class ResetUserPasswordMessage extends BaseMessage<User> {
 
 	@Override
 	protected String getText() throws MessageException {
-		User user = getDataObject();
+		StockUser user = getDataObject();
 		return super.getText()
 				.replaceAll("@login", user.getLogin())
 				.replaceAll("@password", user.getPassword());

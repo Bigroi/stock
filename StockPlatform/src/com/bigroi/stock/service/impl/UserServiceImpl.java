@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.Company;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserDao;
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void addUser(Company company, User user) throws ServiceException {
+	public void addUser(Company company, StockUser user) throws ServiceException {
 		try {
 			companyDao.add(company);
 			user.setCompanyId(company.getId());
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void updateCompanyAndUser(User user, Company company) throws ServiceException {
+	public void updateCompanyAndUser(StockUser user, Company company) throws ServiceException {
 		try {
 			userDao.update(user);
 			companyDao.update(company);
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User checkUserByPassword(String login, String password) throws ServiceException {
+	public StockUser checkUserByPassword(String login, String password) throws ServiceException {
 		try {
 			return userDao.getByLoginAndPassword(login, password);
 		} catch (DaoException e) {
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getByLogin(String login) throws ServiceException {
+	public StockUser getByLogin(String login) throws ServiceException {
 		try {
 			return userDao.getByLogin(login);
 		} catch (DaoException e) {
@@ -93,10 +93,10 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public void resetPassword(String login) throws ServiceException {
 		try {
-			User user = userDao.getByLogin(login);
+			StockUser user = userDao.getByLogin(login);
 			user.setPassword(Generator.generatePass(8));
 			userDao.update(user);
-			Message<User> message = MessagerFactory.getResetUserPasswordMessage();
+			Message<StockUser> message = MessagerFactory.getResetUserPasswordMessage();
 			message.setDataObject(user);
 			message.send();
 		} catch (DaoException | MessageException e) {
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getAllUsers() throws ServiceException {
+	public List<StockUser> getAllUsers() throws ServiceException {
 		try {
 			return userDao.getAllUser();
 		} catch (DaoException e) {
@@ -118,20 +118,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		try {
-			List<User> userLoad = userDao.loadUser(username);
-			if(userLoad.size() == 0){
-				throw new UsernameNotFoundException(username);
-			}
-			User user = null;
-			SimpleGrantedAuthority authority = null;
-			List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-			for (User userList : userLoad) {
-				user = userList;
-				authority = new SimpleGrantedAuthority(userList.getRole());
-				authorities.add(authority);
-			}
-			return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(),
-					authorities);
+			return userDao.loadUser(username);
 		} catch (UsernameNotFoundException | DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new UsernameNotFoundException("", e);

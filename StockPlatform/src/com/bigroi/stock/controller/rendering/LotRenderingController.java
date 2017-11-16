@@ -5,13 +5,15 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.User;
+import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
@@ -24,7 +26,7 @@ public class LotRenderingController {
 	public ModelAndView form(
 			@RequestParam(value = "id", defaultValue = "-1") long id, 
 			HttpSession session) throws ServiceException {
-		User user = (User)session.getAttribute("user");
+		StockUser user = (StockUser)session.getAttribute("user");
 		Lot lot = ServiceFactory.getLotService().getLot(id, user.getCompanyId());
 		ModelAndView modelAndView = new ModelAndView("lotForm", "lot", lot);
 		modelAndView.addObject("listOfProducts", 
@@ -59,21 +61,22 @@ public class LotRenderingController {
 	}
 	
 	@RequestMapping("/MyList.spr")
-	public ModelAndView myList(HttpSession session) throws  ServiceException {
-		User user = (User) session.getAttribute("user");		
+	@Secured("USER")
+	public ModelAndView myList(Authentication loggedInUser) throws  ServiceException {
+		StockUser user = (StockUser) loggedInUser.getPrincipal();	
 		List<Lot> lots = ServiceFactory.getLotService().getBySellerId(user.getCompanyId());
 		return new ModelAndView("myLotList", "listOfLots", lots);
 	}
 	
 	@RequestMapping("/StartTrading.spr")
-	public ModelAndView startTrading(@RequestParam("id") long id, HttpSession session) throws ServiceException {
+	public ModelAndView startTrading(@RequestParam("id") long id, Authentication loggedInUser) throws ServiceException {
 		ServiceFactory.getLotService().startTrading(id);
-		return myList(session);
+		return myList(loggedInUser);
 	}
 	
 	@RequestMapping("/Cancel.spr")
-	public ModelAndView lotCancel(@RequestParam("id") long id, HttpSession session) throws ServiceException {
+	public ModelAndView lotCancel(@RequestParam("id") long id, Authentication loggedInUser) throws ServiceException {
 		ServiceFactory.getLotService().cancel(id);
-		return myList(session);
+		return myList(loggedInUser);
 	}
 }
