@@ -6,15 +6,15 @@
     http://www.springframework.org/schema/security/spring-security-4.2.xsd ">
 
 	<http auto-config='true'>
-	<!-- <intercept-url pattern="/access/**" access="hasAnyRole('USER','ADMIN')"/>  -->
+	
+	<!-- <intercept-url pattern="/lot/**" access="hasAnyRole('USER','ADMIN')" requires-channel="any"/>   -->
+	
 		<form-login 
    login-page="/Login.spr" 
    authentication-failure-forward-url="/Login.spr" 
    authentication-success-forward-url="/Index.spr"  />
 		<http-basic  />
-		<logout 
-		
-		 /><!-- logout-success-url="Index.spr" invalidate-session="true" delete-cookies="JSESSIONID"  -->
+		<logout  />
 		<csrf disabled="true" />
 	</http>
 
@@ -28,5 +28,6 @@
 	<authentication-manager>
 		<authentication-provider ref="daoAuthenticationProvider" />
 	</authentication-manager>
+
 
 </beans:beans>

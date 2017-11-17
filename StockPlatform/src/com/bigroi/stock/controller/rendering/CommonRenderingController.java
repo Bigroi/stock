@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.SystemPropertyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,14 +20,6 @@ import com.bigroi.stock.bean.StockUser;
 
 @Controller
 public class CommonRenderingController {
-	
-/*
-	@RequestMapping("/Index.spr")
-	public String goToWelcomePage() {
-		User user =  (User)SecurityContextHolder.getContext().getAuthentication();
-			return "welcome";
-	}*/
-	
 
 	@RequestMapping("/Index.spr")
 	public ModelAndView goToWelcomePage() {
@@ -50,9 +43,12 @@ public class CommonRenderingController {
 	}
 	
 	@RequestMapping(value = "/admin/Index.spr")
-	@Secured("ADMIN")
-	private String mainPage(Authentication loggedInUser) {
-		loggedInUser =  SecurityContextHolder.getContext().getAuthentication();
-		return (!(loggedInUser instanceof AnonymousAuthenticationToken)) ?  "adminMainPage" : "welcome";
+	@Secured(value = {"ADMIN"})
+	private  ModelAndView mainPage(Authentication loggedInUser) {
+		ModelAndView modelAndView = new ModelAndView("adminMainPage");
+		StockUser user = (StockUser) loggedInUser.getPrincipal();
+		modelAndView.addObject(user);
+		//return (!(loggedInUser instanceof AnonymousAuthenticationToken)) ?  "adminMainPage" : "welcome";
+		return modelAndView;
 	}
 }

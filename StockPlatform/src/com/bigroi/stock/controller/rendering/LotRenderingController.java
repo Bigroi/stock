@@ -23,10 +23,11 @@ import com.bigroi.stock.service.ServiceFactory;
 public class LotRenderingController {
 	
 	@RequestMapping("/Form.spr")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView form(
 			@RequestParam(value = "id", defaultValue = "-1") long id, 
-			HttpSession session) throws ServiceException {
-		StockUser user = (StockUser)session.getAttribute("user");
+			Authentication loggedInUser) throws ServiceException {
+		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Lot lot = ServiceFactory.getLotService().getLot(id, user.getCompanyId());
 		ModelAndView modelAndView = new ModelAndView("lotForm", "lot", lot);
 		modelAndView.addObject("listOfProducts", 
@@ -35,6 +36,7 @@ public class LotRenderingController {
 	}
 	
 	@RequestMapping("/Save.spr")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView save(@RequestParam("id") long id, 
 			@RequestParam("description") String description,			
 			@RequestParam("productId") long productId,
@@ -43,7 +45,7 @@ public class LotRenderingController {
 			@RequestParam("expDate") String expDateStr,
 			@RequestParam("volumeOfLot") int volumeOfLot,
 			@RequestParam("status") Status status,
-			HttpSession session) throws ParseException, ServiceException {
+			Authentication loggedInUser) throws ParseException, ServiceException {
 		
 		Lot lot = new Lot();
 		lot.setId(id);
@@ -57,11 +59,11 @@ public class LotRenderingController {
 		
 		ServiceFactory.getLotService().merge(lot);
 		
-		return form(lot.getId(), session);
+		return form(lot.getId(), loggedInUser);
 	}
 	
 	@RequestMapping("/MyList.spr")
-	@Secured("USER")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView myList(Authentication loggedInUser) throws  ServiceException {
 		StockUser user = (StockUser) loggedInUser.getPrincipal();	
 		List<Lot> lots = ServiceFactory.getLotService().getBySellerId(user.getCompanyId());
@@ -69,12 +71,14 @@ public class LotRenderingController {
 	}
 	
 	@RequestMapping("/StartTrading.spr")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView startTrading(@RequestParam("id") long id, Authentication loggedInUser) throws ServiceException {
 		ServiceFactory.getLotService().startTrading(id);
 		return myList(loggedInUser);
 	}
 	
 	@RequestMapping("/Cancel.spr")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView lotCancel(@RequestParam("id") long id, Authentication loggedInUser) throws ServiceException {
 		ServiceFactory.getLotService().cancel(id);
 		return myList(loggedInUser);
