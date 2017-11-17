@@ -40,7 +40,7 @@ public class MarketServiceImpl implements MarketService {
 	
 	@Override
 	@Transactional
-	public void setExparation() throws ServiceException{
+	public void checkExparations() throws ServiceException{
 		try {
 			List<Lot> lots = lotDao.getActive();
 			for (Lot lot : lots) {
@@ -117,24 +117,22 @@ public class MarketServiceImpl implements MarketService {
 		}
 	}
 
-//	@Override
-//	public void sendConfimationMails() throws ServiceException{
-//		try {
-//			List<PreDeal> preDials = preDealDao.getAll();
-//			for (PreDeal preDeal : preDials) {
-//				lotDao.setStatusById(preDeal.getLotId(), Status.ON_APPROVAL);
-//				tenderDao.setStatusById(preDeal.getTenderId(), Status.ON_APPROVAL);
-//				
-//				Message<PreDeal> message = MessagerFactory.getDealConfirmationMessageForCustomer();
-//				message.setDataObject(preDeal);
-//				message.send();
-//				
-//				message = MessagerFactory.getDealConfirmationMessageForSeller();
-//				message.setDataObject(preDeal);
-//				message.send();
-//			}
-//		} catch (DaoException | MessageException e) {
-//			throw new ServiceException(e);
-//		}
-//	}
+	@Override
+	@Transactional
+	public void sendConfirmationMessages() throws ServiceException {
+		try {
+			List<PreDeal> preDials = preDealDao.getAll();
+			for (PreDeal preDeal : preDials) {
+				Message<PreDeal> message = MessagerFactory.getDealConfirmationMessageForCustomer();
+				message.setDataObject(preDeal);
+				message.send();
+				
+				message = MessagerFactory.getDealConfirmationMessageForSeller();
+				message.setDataObject(preDeal);
+				message.send();
+			}
+		} catch (DaoException | MessageException e) {
+			throw new ServiceException(e);
+		}
+	}
 }

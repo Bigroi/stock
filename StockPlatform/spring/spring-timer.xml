@@ -6,12 +6,6 @@
 		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
         http://www.springframework.org/schema/task 
         http://www.springframework.org/schema/task/spring-task-4.3.xsd ">
-
-	<bean id="clear" class="com.bigroi.stock.jobs.ClearPreDeal"></bean>
-	
-	<task:scheduled-tasks>
-		<task:scheduled ref="clear" method="run" cron="0 58 8,20 * * *"/>
-	</task:scheduled-tasks>
 	
 	<bean id="send" class="com.bigroi.stock.jobs.SendEmail"></bean>
 	
@@ -23,12 +17,6 @@
 
 	<task:scheduled-tasks>
 		<task:scheduled ref="trading" method="run" cron="0 0 9,21 * * *"/>
-	</task:scheduled-tasks>
-	
-	<bean id="status" class="com.bigroi.stock.jobs.CheckStatus"></bean>
-
-	<task:scheduled-tasks>
-		<task:scheduled ref="status" method="run" cron="0 55 8,20 * * *"/>
 	</task:scheduled-tasks>
 
 </beans>
