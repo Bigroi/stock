@@ -9,7 +9,7 @@ import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Id;
 import com.bigroi.stock.util.DateUtil;
 
-public class Lot {
+public class Lot implements Bid{
 	
 	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
 	
@@ -68,11 +68,11 @@ public class Lot {
 		this.description = description;
 	}
 
-	public long getPoductId() {
+	public long getProductId() {
 		return poductId;
 	}
 
-	public void setPoductId(long poductId) {
+	public void setProductId(long poductId) {
 		this.poductId = poductId;
 	}
 
@@ -108,6 +108,7 @@ public class Lot {
 		this.status = status;
 	}
 
+	@Override
 	public int getVolume() {
 		return volume;
 	}
@@ -115,7 +116,6 @@ public class Lot {
 	public void setVolume(int volume) {
 		this.volume = volume;
 	}
-
 	
 	@Override
 	public String toString() {
@@ -123,4 +123,8 @@ public class Lot {
 				+ ", sallerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + ", volumeOfLot=" + volume +"]";
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof Lot && ((Lot)obj).getId() == this.getId();
+	}
 }

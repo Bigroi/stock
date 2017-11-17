@@ -4436,3 +4436,45 @@
 2017-11-15 13:17:37 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
 2017-11-15 13:17:37 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
 2017-11-15 13:17:38 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-11-17 01:08:18 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2781e022: startup date [Fri Nov 17 01:08:18 MSK 2017]; root of context hierarchy
+2017-11-17 01:08:19 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-11-17 01:08:21 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-11-17 01:08:24 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-11-17 01:08:25 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.bigroi.stock.dao.db.DealDaoImpl] for bean with name 'dealDao' defined in class path resource [spring-dao.xml]; nested exception is java.lang.ClassNotFoundException: com.bigroi.stock.dao.db.DealDaoImpl
+2017-11-17 01:09:17 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2781e022: startup date [Fri Nov 17 01:09:17 MSK 2017]; root of context hierarchy
+2017-11-17 01:09:17 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-11-17 01:09:17 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-11-17 01:09:18 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-11-17 01:09:18 WARN: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dealService' defined in class path resource [spring-service.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'dealDao' of bean class [com.bigroi.stock.service.impl.DealServiceImpl]: Bean property 'dealDao' is not writable or has an invalid setter method. Did you mean 'dealsDao'?
+2017-11-17 01:10:45 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2781e022: startup date [Fri Nov 17 01:10:45 MSK 2017]; root of context hierarchy
+2017-11-17 01:10:46 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-11-17 01:10:48 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-11-17 01:10:53 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-11-17 01:11:52 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2781e022: startup date [Fri Nov 17 01:11:52 MSK 2017]; root of context hierarchy
+2017-11-17 01:11:53 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-11-17 01:11:53 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-11-17 01:11:53 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-11-17 01:13:41 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2781e022: startup date [Fri Nov 17 01:13:41 MSK 2017]; root of context hierarchy
+2017-11-17 01:13:41 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-11-17 01:13:41 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-11-17 01:13:42 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-11-17 01:29:20 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2781e022: startup date [Fri Nov 17 01:29:20 MSK 2017]; root of context hierarchy
+2017-11-17 01:29:20 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-11-17 01:29:21 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-11-17 01:29:21 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-11-17 01:33:32 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2781e022: startup date [Fri Nov 17 01:33:32 MSK 2017]; root of context hierarchy
+2017-11-17 01:33:32 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-11-17 01:33:32 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-11-17 01:33:33 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-11-17 01:34:26 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2781e022: startup date [Fri Nov 17 01:34:26 MSK 2017]; root of context hierarchy
+2017-11-17 01:34:26 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-11-17 01:34:26 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-11-17 01:34:26 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-11-17 01:41:36 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2781e022: startup date [Fri Nov 17 01:41:36 MSK 2017]; root of context hierarchy
+2017-11-17 01:41:36 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-11-17 01:41:36 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-11-17 01:41:36 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2017-11-17 01:47:42 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@161cd475: startup date [Fri Nov 17 01:47:42 MSK 2017]; root of context hierarchy
+2017-11-17 01:47:42 INFO: Loading XML bean definitions from class path resource [spring-service.xml]
+2017-11-17 01:47:42 INFO: Loading XML bean definitions from class path resource [spring-dao.xml]
+2017-11-17 01:47:42 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver

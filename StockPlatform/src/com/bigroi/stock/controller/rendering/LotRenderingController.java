@@ -48,7 +48,7 @@ public class LotRenderingController {
 		Lot lot = new Lot();
 		lot.setId(id);
 		lot.setDescription(description);
-		lot.setPoductId(productId);
+		lot.setProductId(productId);
 		lot.setMinPrice(minPrice);
 		lot.setSellerId(salerId);
 		lot.setDateStr(expDateStr);

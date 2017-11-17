@@ -6,11 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
 
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -27,9 +29,10 @@ public class TenderDaoImpl implements TenderDao{
 			+ " (description, product_Id, max_price, customer_Id, "
 			+ " status, exp_date, volume_of_tender) VALUES ( ?, ?, ?, ?, ?, ?, ?) ";
 		
-	private static final String UPDATE_TENDER_BY_ID = "UPDATE tender SET description = ?, "
-			+ "product_Id = ?, max_price = ?, customer_Id = ?, status = ?, exp_date = ?, "
-			+ "volume_of_tender = ? WHERE id = ? ";
+	private static final String UPDATE_TENDER_BY_ID = "UPDATE tender SET "
+			+ " description = ?, product_Id = ?, max_price = ?, customer_Id = ?, "
+			+ " status = ?, exp_date = ?, volume_of_tender = ? "
+			+ " WHERE id = ? ";
 	
 	private static final String SELECT_TENDER_BY_ID = "SELECT id, description, product_Id, "
 			+ " max_price, customer_Id, status, exp_date, volume_of_tender FROM tender WHERE id = ? ";
@@ -163,4 +166,22 @@ public class TenderDaoImpl implements TenderDao{
 		return template.update(UPDATE_STATUS_BY_ID, status.toString(), id) == 1;
 	}
 	
+	@Override
+	public void update(Set<Tender> tendersToUpdate) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		template.batchUpdate(UPDATE_TENDER_BY_ID, tendersToUpdate, tendersToUpdate.size(), new ParameterizedPreparedStatementSetter<Tender>() {
+
+			@Override
+			public void setValues(PreparedStatement ps, Tender tender) throws SQLException {
+				ps.setString(1, tender.getDescription());
+				ps.setLong(2, tender.getProductId());
+				ps.setDouble(3, tender.getMaxPrice());
+				ps.setLong(4, tender.getCustomerId());
+				ps.setString(5, tender.getStatus().name());
+				ps.setDate(6, new Date(tender.getExpDate().getTime()));
+				ps.setInt(7, tender.getVolume());
+				ps.setLong(8, tender.getId());
+			}
+		});
+	}
 }

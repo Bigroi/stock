@@ -1,21 +1,17 @@
 package com.bigroi.stock.service.impl;
 
-import java.util.List;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.Blacklist;
-import com.bigroi.stock.bean.Deals;
+import com.bigroi.stock.bean.Deal;
 import com.bigroi.stock.bean.PreDeal;
 import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.BlacklistDao;
 import com.bigroi.stock.dao.DaoException;
-import com.bigroi.stock.dao.DealsDao;
+import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.PreDealDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.jobs.trade.TradeLot;
-import com.bigroi.stock.jobs.trade.TradeTender;
 import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.messager.message.Message;
 import com.bigroi.stock.messager.message.MessageException;
@@ -26,7 +22,7 @@ public class DealServiceImpl implements DealService{
 	
 	private PreDealDao preDealDao;
 	private BlacklistDao blacklistDao;
-	private DealsDao dealsDao;
+	private DealDao dealDao;
 	private LotDao lotDao;
 	private TenderDao tenderDao;
 	
@@ -38,8 +34,8 @@ public class DealServiceImpl implements DealService{
 		this.blacklistDao = blacklistDao;
 	}
 	
-	public void setDealsDao(DealsDao dealsDao) {
-		this.dealsDao = dealsDao;
+	public void setDealDao(DealDao dealDao) {
+		this.dealDao = dealDao;
 	}
 	
 	public void setLotDao(LotDao lotDao) {
@@ -85,10 +81,10 @@ public class DealServiceImpl implements DealService{
 	
 	private void finalizeDeal(PreDeal preDeal) throws ServiceException{
 		try{
-			Deals deal = new Deals();
+			Deal deal = new Deal();
 			deal.setLotId(preDeal.getLotId());
 			deal.setTenderId(preDeal.getTenderId());
-			dealsDao.add(deal);
+			dealDao.add(deal);
 			
 			lotDao.setStatusById(preDeal.getLotId(), Status.SUCCESS);
 			tenderDao.setStatusById(preDeal.getTenderId(), Status.SUCCESS);	
@@ -143,12 +139,6 @@ public class DealServiceImpl implements DealService{
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
-	}
-
-	@Override
-	public void getPosibleDeals(List<TradeLot> tradeLots, List<TradeTender> tradeTenders, long productId) throws ServiceException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

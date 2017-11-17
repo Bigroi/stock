@@ -59,9 +59,16 @@
 	<bean id="dealService" class="com.bigroi.stock.service.impl.DealServiceImpl">
 		<property name="preDealDao" ref="preDealDao" />
 		<property name="blacklistDao" ref="blacklistDao"/>
-		<property name="dealsDao" ref="dealsDao"/>
+		<property name="dealDao" ref="dealDao"/>
 		<property name="lotDao" ref="lotDao" />
 		<property name="tenderDao" ref="tenderDao" />
+	</bean>
+	
+	<bean id="tradeService" class="com.bigroi.stock.service.impl.TradeServiceImpl">
+		<property name="preDealDao" ref="preDealDao" />
+		<property name="lotDao" ref="lotDao" />
+		<property name="tenderDao" ref="tenderDao" />
+		<property name="productDao" ref="productDao" />
 	</bean>
 
 </beans>

@@ -12,11 +12,11 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.bigroi.stock.bean.Deals;
+import com.bigroi.stock.bean.Deal;
 import com.bigroi.stock.dao.DaoException;
-import com.bigroi.stock.dao.DealsDao;
+import com.bigroi.stock.dao.DealDao;
 
-public class DealsDaoImpl implements DealsDao {
+public class DealDaoImpl implements DealDao {
 	
 	private static final String ADD_DEALS_BY_ID = "INSERT INTO deals(id, lot_Id, tender_Id, deals_Time) "
 			+ "VALUES (?, ?, ?, ?) ";
@@ -32,7 +32,7 @@ public class DealsDaoImpl implements DealsDao {
 	}
 
 	@Override
-	public void add(Deals deals) throws DaoException {
+	public void add(Deal deals) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {

@@ -39,4 +39,8 @@ public class ServiceFactory {
 		return (MessageService) CONTEX.getBean("messageService");
 	}
 
+	public static TradeService getTradeService() {
+		return (TradeService) CONTEX.getBean("tradeService");
+	}
+
 }

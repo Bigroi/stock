@@ -21,7 +21,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	private static final String GET_ALL_PRODUCTS = "SELECT id, name, description, archive FROM product ";
 
-	private static final String GET_ALL_ACTIVE_PRODUCTS = "SELECT id, name, description, archive FROM product WHERE archive = 'Y'";
+	private static final String GET_ALL_ACTIVE_PRODUCTS = "SELECT id, name, description, archive FROM product WHERE archive = 'N'";
 	
 	private static final String ADD_PRODUCTS_BY_ID = "INSERT INTO product (name, description, archive) " 
 	        + "VALUES (?, ?, ?)";

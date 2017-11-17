@@ -1,28 +1,56 @@
 package com.bigroi.stock.jobs.trade;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.bigroi.stock.bean.Lot;
 
-public class TradeLot extends Lot {
+public class TradeLot extends Lot implements TradeBid{
 
-	private List<TradeTender> posibleTenders = new ArrayList<>();
+	private List<TradeTender> posiblePartners = new ArrayList<>();
 	
-	public void addPosibleTender(TradeTender tender){
-		posibleTenders.add(tender);
+	@Override
+	public List<? extends TradeBid> getPosiblePartners() {
+		return posiblePartners;
 	}
 	
-	public boolean removePosibleTender(TradeTender tender){
-		if (tender.getVolume() > this.getVolume()){
-			posibleTenders.remove(tender);
-			return true;
-		} else {
-			return false;
+	@Override
+	public int getTotalPosibleVolume(){
+		int result = 0;
+		for (TradeTender tender : posiblePartners){
+			result += tender.getVolume();
 		}
+		return result;
 	}
-	
-	public List<TradeTender> getPosibleTenders() {
-		return posibleTenders;
+
+	@Override
+	public void addPosiblePartner(TradeBid bid) {
+		posiblePartners.add((TradeTender)bid);
+	}
+
+	@Override
+	public TradeBid getBestPartner() {
+		return Collections.max(posiblePartners, new Comparator<TradeTender>() {
+			@Override
+			public int compare(TradeTender o1, TradeTender o2) {
+				int result = (int)((o2.getMaxPrice() - o1.getMaxPrice()) * 100);
+				if (result == 0){
+					return (int)(o2.getExpDate().getTime() - o1.getExpDate().getTime());
+				} else {
+					return result;
+				}
+			}
+		
+		});
+	}
+
+	@Override
+	public void removeFromPosiblePartners() {
+		for (TradeBid partner : posiblePartners){
+			partner.getPosiblePartners().remove(this);
+		}
+		posiblePartners = new ArrayList<>();
 	}
 }
