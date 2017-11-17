@@ -14,8 +14,6 @@ public interface UserService extends UserDetailsService{
 	
 	void updateCompanyAndUser(StockUser user, Company company)throws ServiceException;
 	
-	StockUser checkUserByPassword(String login, String password) throws ServiceException;
-	
 	StockUser getByLogin(String login) throws ServiceException;
 	
 	Company getById(long id) throws ServiceException;

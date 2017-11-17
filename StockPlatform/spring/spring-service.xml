@@ -64,7 +64,8 @@
 		<property name="tenderDao" ref="tenderDao" />
 	</bean>
 	
-	<bean id="tradeService" class="com.bigroi.stock.service.impl.TradeServiceImpl">
+	<bean id="tradeService" scope="prototype"
+		class="com.bigroi.stock.service.impl.TradeServiceImpl">
 		<property name="preDealDao" ref="preDealDao" />
 		<property name="lotDao" ref="lotDao" />
 		<property name="tenderDao" ref="tenderDao" />

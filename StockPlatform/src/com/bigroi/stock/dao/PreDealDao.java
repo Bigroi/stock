@@ -8,8 +8,6 @@ import com.bigroi.stock.jobs.trade.TradeTender;
 
 public interface PreDealDao {
 
-	void add(PreDeal preDeal) throws DaoException;
-
 	boolean deletedById(long id) throws DaoException;
 
 	void deleteAll() throws DaoException;

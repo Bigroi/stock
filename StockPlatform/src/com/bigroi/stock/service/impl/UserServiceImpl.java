@@ -1,9 +1,7 @@
 package com.bigroi.stock.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,16 +51,6 @@ public class UserServiceImpl implements UserService {
 		try {
 			userDao.update(user);
 			companyDao.update(company);
-		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
-			throw new ServiceException(e);
-		}
-	}
-
-	@Override
-	public StockUser checkUserByPassword(String login, String password) throws ServiceException {
-		try {
-			return userDao.getByLoginAndPassword(login, password);
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);

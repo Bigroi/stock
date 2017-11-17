@@ -108,6 +108,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	@Override
 	@Transactional
 	public void delete(long id, long companyId) throws ServiceException {

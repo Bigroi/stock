@@ -6,6 +6,4 @@ public interface BlacklistDao {
 	
     void add(Blacklist blacklist) throws DaoException;
 	
-    @Deprecated
-	boolean getTenderIdAndLotId(long tenderId, long lotId) throws DaoException;
 }

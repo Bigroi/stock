@@ -19,22 +19,6 @@ import com.google.gson.Gson;
 @RequestMapping("/access/json")
 public class AccessResourceController extends BaseResourseController {
 
-	@RequestMapping(value = "/Authenticate.spr")
-	public @ResponseBody String authenticate(
-			@RequestParam("json") String json, 
-			HttpSession session) 
-					throws ServiceException {
-		StockUser bean = new Gson().fromJson(json, StockUser.class);
-		StockUser user = ServiceFactory.getUserService().checkUserByPassword(bean.getLogin(), bean.getPassword());
-		if (user != null) {
-			session.setAttribute("user", user);
-			return new ResultBean(1, "authenticate.success").toString();
-		} else {
-			return new ResultBean(-1, "authenticate.fail").toString();
-		}
-
-	}
-
 	@RequestMapping(value = "/Registration.spr")
 	public @ResponseBody String registration(
 			@RequestParam("jsonUser") String jsonUser,

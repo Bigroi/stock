@@ -25,43 +25,43 @@ import com.bigroi.stock.dao.LotDao;
 
 public class LotDaoImpl implements LotDao {
 	
-	private static final String ADD_LOT = "INSERT INTO lot "
-			+ "(description, poduct_Id, min_price, seller_Id, status, exp_date, volume_of_lot) "
+	private static final String ADD_LOT = "INSERT INTO LOT "
+			+ "(DESCRIPTION, PODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME_OF_LOT) "
 			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?) ";
 
-	private static final String UPDATE_LOTS_BY_ID = "UPDATE lot SET "
-			+ " description = ?, poduct_Id = ?, min_price = ?, seller_Id = ?, " 
-			+ " status = ?, exp_date = ?, volume_of_lot = ? "
-			+ " WHERE id = ? ";
+	private static final String UPDATE_LOT_BY_ID = "UPDATE LOT SET "
+			+ " DESCRIPTION = ?, PODUCT_ID = ?, MIN_PRICE = ?, SELLER_ID = ?, " 
+			+ " STATUS = ?, EXP_DATE = ?, VOLUME_OF_LOT = ? "
+			+ " WHERE ID = ? ";
 	
-	private static final String SELECT_LOTS_BY_ID = "SELECT id, description, poduct_Id, "
-			+ " min_price, seller_Id, status, exp_date, volume_of_lot FROM lot WHERE id = ? ";
+	private static final String GET_LOT_BY_ID = "SELECT ID, DESCRIPTION, PODUCT_ID, "
+			+ " MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME_OF_LOT FROM LOT WHERE ID = ? ";
 	
-	private static final String SELECT_LOTS_BY_SALLER_ID = "SELECT id, description, "
-			+ " poduct_Id, min_price, seller_Id, status, exp_date, volume_of_lot FROM lot WHERE seller_Id  = ? ";
+	private static final String GET_LOTS_BY_SALLER_ID = "SELECT ID, DESCRIPTION, "
+			+ " PODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME_OF_LOT FROM LOT WHERE SELLER_ID  = ? ";
 	
-	private static final String SELECT_LOTS_BY_PRODUCT_ID_IN_GAME = "SELECT id, description, "
-			+ " poduct_Id, min_price, seller_Id, status, exp_date, volume_of_lot FROM lot WHERE "
-			+ " poduct_Id = ? AND status = 'IN_GAME' ORDER BY min_price ";
+	private static final String GET_ACTIVE_LOTS_BY_PRODUCT_ID = "SELECT ID, DESCRIPTION, "
+			+ " PODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME_OF_LOT FROM LOT WHERE "
+			+ " PODUCT_ID = ? AND STATUS = '" + Status.IN_GAME +"' ORDER BY MIN_PRICE ";
 	
-	private static final String SELECT_ALL_LOTS_BY_IN_GAME = "SELECT id, description,"
-			+ " poduct_Id, min_price, seller_Id, status, exp_date, volume_of_lot FROM lot "
-			+ " WHERE status ='IN_GAME' ";
+	private static final String GET_ALL_ACTIVE_LOTS = "SELECT ID, DESCRIPTION,"
+			+ " PODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME_OF_LOT FROM LOT "
+			+ " WHERE STATUS ='" + Status.IN_GAME +"' ";
 	
 	private static final String SET_STATUS_BY_SELLER_ID =
-			  "UPDATE lot SET "
-			+ "status = ? "
-			+ "WHERE seller_Id = ?";
+			  "UPDATE LOT SET "
+			+ "STATUS = ? "
+			+ "WHERE SELLER_ID = ?";
 	
 	private static final String SET_STATUS_BY_ID =
-			  "UPDATE lot SET "
-			+ "status = ? "
-			+ "WHERE id = ?";
+			  "UPDATE LOT SET "
+			+ "STATUS = ? "
+			+ "WHERE ID = ?";
 	
 	private static final String SET_STATUS_BY_PRODUCT_ID =
-			  "UPDATE lot SET "
-			+ "status = ? "
-			+ "WHERE poduct_id = ?";
+			  "UPDATE LOT SET "
+			+ "STATUS = ? "
+			+ "WHERE PODUCT_ID = ?";
 	
 	private DataSource datasource;
 
@@ -98,7 +98,7 @@ public class LotDaoImpl implements LotDao {
 	@Override
 	public boolean update(Lot lot) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_LOTS_BY_ID, 
+		return template.update(UPDATE_LOT_BY_ID, 
 				lot.getDescription(), 
 				lot.getProductId(), 
 				lot.getMinPrice(),
@@ -113,7 +113,7 @@ public class LotDaoImpl implements LotDao {
 	@Override
 	public Lot getById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Lot> lot = template.query(SELECT_LOTS_BY_ID, new BeanPropertyRowMapper<Lot>(Lot.class), id);
+		List<Lot> lot = template.query(GET_LOT_BY_ID, new BeanPropertyRowMapper<Lot>(Lot.class), id);
 		if(lot.size() == 0){
 			return null;
 		}else{
@@ -124,7 +124,7 @@ public class LotDaoImpl implements LotDao {
 	@Override
 	public List<Lot> getBySellerId(long sellerId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(SELECT_LOTS_BY_SALLER_ID, new RowMapper<Lot>(){
+		return template.query(GET_LOTS_BY_SALLER_ID, new RowMapper<Lot>(){
 			@Override
 			public Lot mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Lot lot = new Lot();
@@ -144,14 +144,14 @@ public class LotDaoImpl implements LotDao {
 	@Override
 	public List<Lot> getActiveByProductId(long productId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(SELECT_LOTS_BY_PRODUCT_ID_IN_GAME, 
+		return template.query(GET_ACTIVE_LOTS_BY_PRODUCT_ID, 
 				new BeanPropertyRowMapper<Lot>(Lot.class),productId);
 	}
 
 	@Override
 	public List<Lot> getActive() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(SELECT_ALL_LOTS_BY_IN_GAME, 
+		return template.query(GET_ALL_ACTIVE_LOTS, 
 				new BeanPropertyRowMapper<Lot>(Lot.class));
 	}
 
@@ -177,7 +177,7 @@ public class LotDaoImpl implements LotDao {
 	@Override
 	public void update(Set<Lot> lotsToUpdate) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.batchUpdate(UPDATE_LOTS_BY_ID, lotsToUpdate, lotsToUpdate.size(), new ParameterizedPreparedStatementSetter<Lot>() {
+		template.batchUpdate(UPDATE_LOT_BY_ID, lotsToUpdate, lotsToUpdate.size(), new ParameterizedPreparedStatementSetter<Lot>() {
 
 			@Override
 			public void setValues(PreparedStatement ps, Lot lot) throws SQLException {

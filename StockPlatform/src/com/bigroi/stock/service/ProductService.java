@@ -9,6 +9,7 @@ public interface ProductService {
 
 	List<Product> getAllProducts() throws ServiceException;
 
+	@Deprecated
 	Map<String, ?> getTradeOffers(long id) throws ServiceException;
 
 	List<Product> getAllActiveProducts() throws ServiceException;

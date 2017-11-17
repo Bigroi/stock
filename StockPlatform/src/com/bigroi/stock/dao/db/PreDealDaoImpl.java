@@ -1,11 +1,9 @@
 package com.bigroi.stock.dao.db;
 
-import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,10 +13,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 
 import com.bigroi.stock.bean.PreDeal;
 import com.bigroi.stock.bean.common.Status;
@@ -60,8 +55,8 @@ public class PreDealDaoImpl implements PreDealDao {
 			+ "FROM LOT L "
 			+ "JOIN TENDER T "
 			+ "ON L.PODUCT_ID = T.PRODUCT_ID "
-			+ "AND L.`STATUS` = 'IN_GAME' "
-			+ "AND T.`STATUS` = 'IN_GAME' "
+			+ "AND L.`STATUS` = '" + Status.IN_GAME +"' "
+			+ "AND T.`STATUS` = '" + Status.IN_GAME +"' "
 			+ "AND L.VOLUME_OF_LOT > 0 "
 			+ "AND T.VOLUME_OF_TENDER > 0 "
 			+ "AND T.MAX_PRICE <= L.MIN_PRICE "
@@ -77,29 +72,6 @@ public class PreDealDaoImpl implements PreDealDao {
 
 	public void setDatasource(DataSource datasource) {
 		this.datasource = datasource;
-	}
-
-	@Override
-	public void add(PreDeal preDeal) throws DaoException {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		KeyHolder keyHolder = new GeneratedKeyHolder();
-		template.update(new PreparedStatementCreator() {
-			@Override
-			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement ps = con.prepareStatement(ADD_PREDEAL, Statement.RETURN_GENERATED_KEYS);
-				ps.setString(1, preDeal.getSellerHashCode());
-				ps.setString(2, preDeal.getCustomerHashCode());
-				ps.setLong(3, preDeal.getTenderId());
-				ps.setLong(4, preDeal.getLotId());
-				ps.setString(5, preDeal.getSellerApprov());
-				ps.setString(6, preDeal.getCustApprov());
-				ps.setDate(7, new Date(preDeal.getDealDate().getTime()));
-				ps.setInt(8, preDeal.getVolume());
-				return ps;
-			}
-		},keyHolder);
-		long id = keyHolder.getKey().longValue();
-		preDeal.setId(id);
 	}
 
 	@Override

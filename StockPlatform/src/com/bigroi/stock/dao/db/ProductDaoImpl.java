@@ -19,20 +19,20 @@ import com.bigroi.stock.dao.ProductDao;
 
 public class ProductDaoImpl implements ProductDao {
 	
-	private static final String GET_ALL_PRODUCTS = "SELECT id, name, description, archive FROM product ";
+	private static final String GET_ALL_PRODUCTS = "SELECT ID, NAME, DESCRIPTION, ARCHIVE FROM PRODUCT ";
 
-	private static final String GET_ALL_ACTIVE_PRODUCTS = "SELECT id, name, description, archive FROM product WHERE archive = 'N'";
+	private static final String GET_ALL_ACTIVE_PRODUCTS = "SELECT ID, NAME, DESCRIPTION, ARCHIVE FROM PRODUCT WHERE ARCHIVE = 'N'";
 	
-	private static final String ADD_PRODUCTS_BY_ID = "INSERT INTO product (name, description, archive) " 
+	private static final String ADD_PRODUCT = "INSERT INTO PRODUCT (NAME, DESCRIPTION, ARCHIVE) " 
 	        + "VALUES (?, ?, ?)";
 
-	private static final String UPDATE_PRODUCTS_BY_ID = "UPDATE product SET name = ?, "
-			+ " description = ? WHERE id = ?";
+	private static final String UPDATE_PRODUCTS_BY_ID = "UPDATE PRODUCT SET NAME = ?, "
+			+ " DESCRIPTION = ? WHERE ID = ?";
 
-	private static final String SELECT_PRODUCTS_BY_ID = "SELECT id, name, description "
-			+ " FROM product WHERE id = ? ";
+	private static final String GET_PRODUCT_BY_ID = "SELECT ID, NAME, DESCRIPTION "
+			+ " FROM PRODUCT WHERE ID = ? ";
 	
-	private static final String SWITCH_ON_YES_BY_ID = "UPDATE product SET archive = 'Y' WHERE id = ?";
+	private static final String SET_ARCHIVE_PRODUCT_BY_ID = "UPDATE product SET archive = 'Y' WHERE id = ?";
 	
 	private DataSource datasource;
 
@@ -65,7 +65,7 @@ public class ProductDaoImpl implements ProductDao {
 		template.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement ps = con.prepareStatement(ADD_PRODUCTS_BY_ID, PreparedStatement.RETURN_GENERATED_KEYS);
+				PreparedStatement ps = con.prepareStatement(ADD_PRODUCT, PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, product.getName());
 				ps.setString(2, product.getDescription());
 				ps.setString(3, product.getArchiveData());
@@ -86,7 +86,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public Product getById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Product> product =  template.query(SELECT_PRODUCTS_BY_ID,
+		List<Product> product =  template.query(GET_PRODUCT_BY_ID,
 				new BeanPropertyRowMapper<Product>(Product.class), id);
 		if (product.size() == 0) {
 			return null;
@@ -98,7 +98,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public void setArchived(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(SWITCH_ON_YES_BY_ID,  id);
+		template.update(SET_ARCHIVE_PRODUCT_BY_ID,  id);
 	}
 
 }

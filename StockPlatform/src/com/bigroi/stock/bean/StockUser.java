@@ -12,6 +12,8 @@ import com.bigroi.stock.json.Id;
 
 public class StockUser implements UserDetails {
 	
+	private static final long serialVersionUID = 3098775983055977418L;
+
 	@Id
 	private long id;
 	

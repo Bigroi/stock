@@ -6,7 +6,4 @@ public interface MarketService {
 	
 	void clearPreDeal() throws ServiceException;
 	
-	void trade() throws ServiceException;
-
-	void sendConfimationMails() throws ServiceException;
 }

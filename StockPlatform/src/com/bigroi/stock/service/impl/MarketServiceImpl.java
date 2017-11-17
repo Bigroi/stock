@@ -117,30 +117,24 @@ public class MarketServiceImpl implements MarketService {
 		}
 	}
 
-	@Override
-	public void trade() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void sendConfimationMails() throws ServiceException{
-		try {
-			List<PreDeal> preDials = preDealDao.getAll();
-			for (PreDeal preDeal : preDials) {
-				lotDao.setStatusById(preDeal.getLotId(), Status.ON_APPROVAL);
-				tenderDao.setStatusById(preDeal.getTenderId(), Status.ON_APPROVAL);
-				
-				Message<PreDeal> message = MessagerFactory.getDealConfirmationMessageForCustomer();
-				message.setDataObject(preDeal);
-				message.send();
-				
-				message = MessagerFactory.getDealConfirmationMessageForSeller();
-				message.setDataObject(preDeal);
-				message.send();
-			}
-		} catch (DaoException | MessageException e) {
-			throw new ServiceException(e);
-		}
-	}
+//	@Override
+//	public void sendConfimationMails() throws ServiceException{
+//		try {
+//			List<PreDeal> preDials = preDealDao.getAll();
+//			for (PreDeal preDeal : preDials) {
+//				lotDao.setStatusById(preDeal.getLotId(), Status.ON_APPROVAL);
+//				tenderDao.setStatusById(preDeal.getTenderId(), Status.ON_APPROVAL);
+//				
+//				Message<PreDeal> message = MessagerFactory.getDealConfirmationMessageForCustomer();
+//				message.setDataObject(preDeal);
+//				message.send();
+//				
+//				message = MessagerFactory.getDealConfirmationMessageForSeller();
+//				message.setDataObject(preDeal);
+//				message.send();
+//			}
+//		} catch (DaoException | MessageException e) {
+//			throw new ServiceException(e);
+//		}
+//	}
 }

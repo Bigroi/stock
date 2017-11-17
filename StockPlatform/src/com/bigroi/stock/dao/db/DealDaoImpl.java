@@ -18,8 +18,8 @@ import com.bigroi.stock.dao.DealDao;
 
 public class DealDaoImpl implements DealDao {
 	
-	private static final String ADD_DEALS_BY_ID = "INSERT INTO deals(id, lot_Id, tender_Id, deals_Time) "
-			+ "VALUES (?, ?, ?, ?) ";
+	private static final String ADD_DEALS_BY_ID = "INSERT INTO DEALS(LOT_ID, TENDER_ID, DEALS_TIME) "
+			+ "VALUES (?, ?, ?) ";
 
 	private DataSource datasource;
 
@@ -39,10 +39,9 @@ public class DealDaoImpl implements DealDao {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(ADD_DEALS_BY_ID, PreparedStatement.RETURN_GENERATED_KEYS);
-				ps.setLong(1, deals.getId());
-				ps.setLong(2, deals.getLotId());
-				ps.setLong(3, deals.getTenderId());
-				ps.setDate(4, new Date(deals.getDealsTime().getTime()));
+				ps.setLong(1, deals.getLotId());
+				ps.setLong(2, deals.getTenderId());
+				ps.setDate(3, new Date(deals.getDealsTime().getTime()));
 				return ps;
 			}
 		}, keyHolder);

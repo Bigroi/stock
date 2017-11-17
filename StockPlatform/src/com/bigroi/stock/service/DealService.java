@@ -12,5 +12,5 @@ public interface DealService {
 
 	void cancel(long preDealId, boolean seller) throws ServiceException;
 
-	void add(PreDeal preDeal) throws ServiceException;
+	//void add(PreDeal preDeal) throws ServiceException;
 }

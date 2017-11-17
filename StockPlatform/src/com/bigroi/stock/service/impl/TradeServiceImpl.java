@@ -74,7 +74,6 @@ public class TradeServiceImpl implements TradeService{
 			List<TradeLot> tradeLots = new ArrayList<>();
 			List<TradeTender> tradeTenders = new ArrayList<>();
 			preDealDao.getPosibleDeals(tradeLots, tradeTenders, productId);
-			removeAllZeroBids(tradeTenders, tradeLots);
 			
 			while(tradeTenders.size() > 0 && tradeLots.size() > 0){
 				

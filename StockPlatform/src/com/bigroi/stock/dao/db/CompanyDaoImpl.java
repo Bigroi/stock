@@ -20,23 +20,24 @@ import com.bigroi.stock.dao.DaoException;
 
 public class CompanyDaoImpl implements CompanyDao {
 	
-	private static final String SELECT_COMPANY_BY_ID = "SELECT id, name, email, phone, "
-			+ "reg_number, country, city, status FROM company WHERE id = ?";
+	private static final String GET_COMPANY_BY_ID = "SELECT ID, NAME, EMAIL, PHONE, "
+			+ "REG_NUMBER, COUNTRY, CITY, STATUS FROM COMPANY WHERE ID = ?";
 
-	private static final String ADD_COMPANY_BY_ID = "INSERT INTO company"
-			+ " (id, name, email, phone, reg_number, country, city,status) " 
-			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String ADD_COMPANY = "INSERT INTO COMPANY"
+			+ " (NAME, EMAIL, PHONE, REG_NUMBER, COUNTRY, CITY,STATUS) " 
+			+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
 
-	private static final String UPDATE_COMPANY_BY_ID = "UPDATE company SET  name = ?, "
-			+ "email = ?, phone = ?, reg_number = ?, country = ?, city = ?, "
-			+ "status = ? WHERE id = ? ";
-	private static final String SELECT_ALL_COMPANY_LIST ="SELECT id, name, email, "
-			+ "phone, reg_number, country, city, status FROM company";
+	private static final String UPDATE_COMPANY_BY_ID = "UPDATE COMPANY SET  NAME = ?, "
+			+ "EMAIL = ?, PHONE = ?, REG_NUMBER = ?, COUNTRY = ?, CITY = ?, "
+			+ "STATUS = ? WHERE ID = ? ";
+	
+	private static final String GET_ALL_COMPANIES ="SELECT ID, NAME, EMAIL, "
+			+ "PHONE, REG_NUMBER, COUNTRY, CITY, STATUS FROM COMPANY";
 	
 	private static final String SET_STATUS_BY_ID = 
-			"UPDATE company SET "
-			+ "status = ? "
-			+ "WHERE id = ?";
+			"UPDATE COMPANY SET "
+			+ "STATUS = ? "
+			+ "WHERE ID = ?";
 	
 	private DataSource datasource;
 
@@ -51,7 +52,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
 	public Company getById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Company> companys = template.query(SELECT_COMPANY_BY_ID, new BeanPropertyRowMapper<Company>(Company.class),id);
+		List<Company> companys = template.query(GET_COMPANY_BY_ID, new BeanPropertyRowMapper<Company>(Company.class),id);
 		if (companys.size() == 0) {
 			return null;
 		} else {
@@ -67,15 +68,14 @@ public class CompanyDaoImpl implements CompanyDao {
 		template.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement ps = con.prepareStatement(ADD_COMPANY_BY_ID, PreparedStatement.RETURN_GENERATED_KEYS);
-				ps.setLong(1, company.getId());
-				ps.setString(2, company.getName());
-				ps.setString(3, company.getEmail());
-				ps.setString(4, company.getPhone());
-				ps.setString(5, company.getRegNumber());
-				ps.setString(6, company.getCountry());
-				ps.setString(7, company.getCity());
-				ps.setString(8, company.getStatus().name().toUpperCase());
+				PreparedStatement ps = con.prepareStatement(ADD_COMPANY, PreparedStatement.RETURN_GENERATED_KEYS);
+				ps.setString(1, company.getName());
+				ps.setString(2, company.getEmail());
+				ps.setString(3, company.getPhone());
+				ps.setString(4, company.getRegNumber());
+				ps.setString(5, company.getCountry());
+				ps.setString(6, company.getCity());
+				ps.setString(7, company.getStatus().name().toUpperCase());
 				return ps;
 			}
 		}, keyHolder);
@@ -95,7 +95,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
 	public List<Company> getAllCompany() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(SELECT_ALL_COMPANY_LIST, 
+		return template.query(GET_ALL_COMPANIES, 
 				new BeanPropertyRowMapper<Company>(Company.class));
 	}
 

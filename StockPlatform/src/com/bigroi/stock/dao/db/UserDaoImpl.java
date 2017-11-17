@@ -24,23 +24,23 @@ import com.bigroi.stock.dao.UserDao;
 
 public class UserDaoImpl implements UserDao {
 
-	private static final String GET_USER_BY_LOGIN = "SELECT id, login, password, company_Id FROM user "
-			+ " WHERE login = ? ";
+	private static final String GET_USER_BY_LOGIN = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID FROM USER "
+			+ " WHERE LOGIN = ? ";
 
-	private static final String GET_ALL_USERS = "SELECT id, login, password, company_Id FROM user ";
+	private static final String GET_ALL_USERS = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID FROM USER ";
 
-	private static final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT id, login, password, company_Id FROM user "
-			+ " WHERE login = ? AND password = ? ";
+	private static final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID FROM USER "
+			+ " WHERE LOGIN = ? AND PASSWORD = ? ";
 
-	private static final String ADD_USERS_BY_ID = "INSERT INTO user (id, login, password, company_Id) "
+	private static final String ADD_USERS_BY_ID = "INSERT INTO USER (ID, LOGIN, PASSWORD, COMPANY_ID) "
 			+ " VALUES (?, ?, ?, ?) ";
 
-	private static final String UPDATE_USERS_BY_ID = "UPDATE user SET  login = ?, password = ?, "
-			+ " company_Id = ? WHERE id= ? ";
+	private static final String UPDATE_USERS_BY_ID = "UPDATE USER SET  LOGIN = ?, PASSWORD = ?, "
+			+ " COMPANY_ID = ? WHERE ID= ? ";
 
-	private static final String LOAD_USER_BY_JOIN_TABLES = "SELECT user.login, user.password, user_role.role fROM  user "
-			+ " INNER JOIN company ON user.company_Id = company.id AND company.`status` = '" + CompanyStatus.VERIFIED +"' "
-			+ " LEFT JOIN user_role ON user.id = user_role.user_id WHERE user.login = ? ";
+	private static final String LOAD_USER_BY_JOIN_TABLES = "SELECT USER.LOGIN, USER.PASSWORD, USER_ROLE.ROLE FROM  USER "
+			+ " INNER JOIN COMPANY ON USER.COMPANY_ID = COMPANY.ID AND COMPANY.`STATUS` = '" + CompanyStatus.VERIFIED +"' "
+			+ " LEFT JOIN USER_ROLE ON USER.ID = USER_ROLE.USER_ID WHERE USER.LOGIN = ? ";
 
 	private DataSource datasource;
 

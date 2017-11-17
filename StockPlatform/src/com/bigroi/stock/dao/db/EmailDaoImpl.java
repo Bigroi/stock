@@ -20,15 +20,15 @@ import com.bigroi.stock.dao.EmailDao;
 
 public class EmailDaoImpl implements EmailDao {
 
-	private static final String GET_ALL_EMAILS = "SELECT id, to_email, " 
-	        + " email_subject, email_text FROM email ";
+	private static final String GET_ALL_EMAILS = "SELECT ID, TO_EMAIL, " 
+	        + " EMAIL_SUBJECT, EMAIL_TEXT FROM EMAIL ";
 
-	private static final String ADD_EMAILS_BY_ID = "INSERT INTO email " 
-	        + " (id, to_email, email_subject, email_text) "
-			+ " VALUES (?, ?, ?, ?) ";
+	private static final String ADD_EMAILS = "INSERT INTO EMAIL " 
+	        + " (TO_EMAIL, EMAIL_SUBJECT, EMAIL_TEXT) "
+			+ " VALUES (?, ?, ?) ";
 
-	private static final String DELETE_EMAILS_BY_ID = " DELETE FROM email "
-			+ " WHERE id =  ? ";
+	private static final String DELETE_EMAILS_BY_ID = " DELETE FROM EMAIL "
+			+ " WHERE ID =  ? ";
 
 	private DataSource datasource;
 
@@ -54,11 +54,10 @@ public class EmailDaoImpl implements EmailDao {
 		template.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement ps = con.prepareStatement(ADD_EMAILS_BY_ID, Statement.RETURN_GENERATED_KEYS);
-				ps.setLong(1, email.getId());
-				ps.setString(2, email.getToEmail());
-				ps.setString(3, email.getEmailSubject());
-				ps.setString(4, email.getEmailText());
+				PreparedStatement ps = con.prepareStatement(ADD_EMAILS, Statement.RETURN_GENERATED_KEYS);
+				ps.setString(1, email.getToEmail());
+				ps.setString(2, email.getEmailSubject());
+				ps.setString(3, email.getEmailText());
 				return ps;
 			}
 		}, keyHolder);

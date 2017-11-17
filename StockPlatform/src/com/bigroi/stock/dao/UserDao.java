@@ -11,8 +11,6 @@ public interface UserDao {
 	
 	List<StockUser> getAllUser() throws DaoException;
 
-	StockUser getByLoginAndPassword(String login, String password) throws DaoException;
-
 	StockUser getByLogin(String login) throws DaoException;
 	
 	void add(StockUser user)throws DaoException;

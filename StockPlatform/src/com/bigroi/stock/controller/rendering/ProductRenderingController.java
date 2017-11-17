@@ -26,6 +26,8 @@ public class ProductRenderingController {
 
 	@RequestMapping("/TradeOffers.spr")
 	public ModelAndView tradeOffers(@RequestParam("id") long id) throws ServiceException {
+		@SuppressWarnings("deprecation")
+		//TODO remove after Viktor commits
 		Map<String, ?> map = ServiceFactory.getProductService().getTradeOffers(id);
 		return new ModelAndView("tradeOffers", map);
 	}

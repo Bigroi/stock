@@ -141,25 +141,25 @@ public class DealServiceImpl implements DealService{
 		}
 	}
 
-	@Override
-	public void add(PreDeal preDeal) throws ServiceException {
-		try{
-			preDealDao.add(preDeal);
-			
-			lotDao.setStatusById(preDeal.getId(), Status.ON_APPROVAL);
-			tenderDao.setStatusById(preDeal.getId(), Status.ON_APPROVAL);
-			
-			Message<PreDeal> message = MessagerFactory.getDealConfirmationMessageForCustomer();
-			message.setDataObject(preDeal);
-			message.send();
-			
-			message = MessagerFactory.getDealConfirmationMessageForSeller();
-			message.setDataObject(preDeal);
-			message.send();
-		}catch (DaoException | MessageException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
-			throw new ServiceException(e);
-		}
-	}
+//	@Override
+//	public void add(PreDeal preDeal) throws ServiceException {
+//		try{
+//			preDealDao.add(preDeal);
+//			
+//			lotDao.setStatusById(preDeal.getId(), Status.ON_APPROVAL);
+//			tenderDao.setStatusById(preDeal.getId(), Status.ON_APPROVAL);
+//			
+//			Message<PreDeal> message = MessagerFactory.getDealConfirmationMessageForCustomer();
+//			message.setDataObject(preDeal);
+//			message.send();
+//			
+//			message = MessagerFactory.getDealConfirmationMessageForSeller();
+//			message.setDataObject(preDeal);
+//			message.send();
+//		}catch (DaoException | MessageException e) {
+//			MessagerFactory.getMailManager().sendToAdmin(e);
+//			throw new ServiceException(e);
+//		}
+//	}
 
 }
