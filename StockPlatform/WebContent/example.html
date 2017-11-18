@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TestAJAX</title>
+		<meta charset = "utf-8">
+		<link rel="stylesheet" href="/css/tableStyle.css">
+        <link rel="stylesheet" href="/css/menuStyle.css">
+		<script src="https://code.jquery.com/jquery-3.1.1.js"></script> 
+		<script src="/js/tableMaker.js"></script>	
+		<script src="/js/tableSorter.js"></script>	
+
+	</head>
+	<body>
+        <nav class = "main-menu">
+            <a href = "#">Главная</a>
+            <a class = "active" href = "#">Мои лоты</a>
+            <a href = "#">Мои тендера</a>
+            <a href = "#">Продукты</a>
+            <a href = "#">Войти</a>
+        </nav>
+		<h1>Мои лоты</h1>
+	    <div id = "tableContainer">	
+			<script>
+				$(function(){
+					$("#tableContainer").tableMaker("/testJson/table.json", "json/product/form.spr?id={id}");
+/*Параметрами в плагин tableMaker идут url'ы ........ и .........*/
+				});
+			</script>
+		</div>
+	</body>
+</html>

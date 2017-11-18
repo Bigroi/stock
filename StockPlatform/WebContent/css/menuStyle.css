@@ -1,0 +1,38 @@
+.main-menu {
+    display: table;
+    width: 100%;
+    background-color:#7999a1;
+}
+.main-menu a{
+    display: table-cell;
+    width: 20%;
+    height: 50px;
+    color: #c5d7d2;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 22px;
+    border: 1px solid black;
+    border-right: 0;
+    } 
+.main-menu a:last-child {
+    border-right:1px solid black;
+}   
+.main-menu a:hover {
+    box-shadow: inset 0 0 9px;
+	/*color: black;*/
+}
+.main-menu a:active{
+    color: #c5d7d2; 
+}
+a.active {
+	background-color: #cfcfcf;
+	color: #7999a1;
+	/*border-top: 0;*/
+	border-bottom: 0;
+	
+}
+a.active:hover{
+	box-shadow: none;
+}
