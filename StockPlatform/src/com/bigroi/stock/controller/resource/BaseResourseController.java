@@ -8,8 +8,6 @@ import com.bigroi.stock.json.ResultBean;
 
 public abstract class BaseResourseController {
 
-	
-	
 	@ExceptionHandler(Throwable.class)
 	@ResponseBody
 	public String handlerException(Throwable t){

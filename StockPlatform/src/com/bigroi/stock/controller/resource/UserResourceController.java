@@ -19,15 +19,16 @@ import com.bigroi.stock.service.ServiceFactory;
 public class UserResourceController extends BaseResourseController{
 
 	@RequestMapping(value = "/List.spr")
-	public @ResponseBody String list() throws ServiceException, TableException {
+	@ResponseBody
+	public String list() throws ServiceException, TableException {
 		List<StockUser> users = ServiceFactory.getUserService().getAllUsers();
 		Table<StockUser> table = new Table<>(StockUser.class, users);
 		return new ResultBean(1, table).toString();
 	}
 	
 	@RequestMapping(value = "/ResetPassword.spr")
-	public @ResponseBody String ResetPassword(@RequestParam("login") String login) 
-			throws ServiceException {
+	@ResponseBody
+	public String ResetPassword(@RequestParam("login") String login) throws ServiceException {
 		ServiceFactory.getUserService().resetPassword(login);
 		return new ResultBean(1, "user.password.reset.success").toString();
 	}

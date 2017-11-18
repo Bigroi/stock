@@ -10,11 +10,11 @@
 	<!-- <intercept-url pattern="/lot/**" access="hasAnyRole('USER','ADMIN')" requires-channel="any"/>   -->
 	
 		<form-login 
-   login-page="/Login.spr" 
-   authentication-failure-forward-url="/Login.spr" 
-   authentication-success-forward-url="/Index.spr"  />
+		   login-page="/Login.spr" 
+		   authentication-failure-forward-url="/Login.spr" 
+		   authentication-success-forward-url="/Index.spr"  />
 		<http-basic  />
-		<logout  />
+		<logout  logout-success-url="/Index.spr"/>
 		<csrf disabled="true" />
 	</http>
 

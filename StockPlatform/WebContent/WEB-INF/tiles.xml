@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+ 
+<tiles-definitions>  
+  
+   <!-- Base Definition -->
+   <definition name="base-definition"
+       template="/WEB-INF/jsp/layouts/defaultLayout.jsp">  
+       <put-attribute name="body" value="" />  
+       <put-attribute name="userHeader" value="/WEB-INF/jsp/templates/userHeader.jsp"/> 
+       <put-attribute name="anonimusHeader" value="/WEB-INF/jsp/templates/anonimusHeader.jsp"/>
+       <put-attribute name="footer" value="/WEB-INF/jsp/templates/defaultFooter.jsp" />  
+   </definition>  
+  
+   <!-- Home Page -->
+   <definition name="welcome" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/welcome.jsp" /> 
+   </definition>
+   
+   <definition name="login" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/login.jsp" /> 
+   </definition>
+   
+   <definition name="registration" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/registration.jsp" /> 
+   </definition>
+  
+  <definition name="account" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/account.jsp" /> 
+   </definition>
+   
+   <definition name="adminMainPage" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/adminMainPage.jsp" /> 
+   </definition>
+   
+   <definition name="approveLink" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/approveLink.jsp" /> 
+   </definition>
+   
+   <definition name="changeUserPass" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/changeUserPass.jsp" /> 
+   </definition>
+   
+   <definition name="companyList" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/companyList.jsp" /> 
+   </definition>
+   
+   <definition name="lotForm" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/lotForm.jsp" /> 
+   </definition>
+   
+   <definition name="myLotList" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/myLotList.jsp" /> 
+   </definition>
+   
+   <definition name="myTenderList" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/myTenderList.jsp" /> 
+   </definition>
+   
+   <definition name="productForm" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/productForm.jsp" /> 
+   </definition>
+   
+   <definition name="productList" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/productList.jsp" /> 
+   </definition>
+   
+   <definition name="productListForAdmin" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/productListForAdmin.jsp" /> 
+   </definition>
+   
+   <definition name="tenderForm" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/tenderForm.jsp" /> 
+   </definition>
+   
+   <definition name="tradeOffers" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/tradeOffers.jsp" /> 
+   </definition>
+   
+   <definition name="testBackgroundFunctions" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/test/testBackgroundFunctions.jsp" /> 
+   </definition>
+   
+</tiles-definitions>

@@ -1,7 +1,5 @@
 package com.bigroi.stock.controller.resource;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,10 +18,10 @@ import com.google.gson.Gson;
 public class AccessResourceController extends BaseResourseController {
 
 	@RequestMapping(value = "/Registration.spr")
-	public @ResponseBody String registration(
-			@RequestParam("jsonUser") String jsonUser,
-			@RequestParam("jsonCompany") String jsonCompany, 
-			HttpSession session) throws ServiceException {
+	@ResponseBody
+	public String registration(@RequestParam("jsonUser") String jsonUser,
+			@RequestParam("jsonCompany") String jsonCompany) throws ServiceException {
+		
 		StockUser user = new Gson().fromJson(jsonUser, StockUser.class);
 		
 		if (getUser(user.getLogin()) != null) {
@@ -33,7 +31,8 @@ public class AccessResourceController extends BaseResourseController {
 		Company company = new Gson().fromJson(jsonCompany, Company.class);
 		company.setStatus(CompanyStatus.NOT_VERIFIED);
 		ServiceFactory.getUserService().addUser(company, user);
-		session.setAttribute("user", user);
+		//FIXME login new user
+		//session.setAttribute("user", user);
 		return new ResultBean(1, "registration.success").toString();
 	}
 

@@ -12,7 +12,7 @@ import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
-public class MailLinkRendeling {
+public class MailLinkRendeling extends BaseRenderingController{
 
 	private static final String EXPIRED_LINK = "link.exparied";
 	private static final String WRONG_LINK = "link.incorrect";
@@ -24,44 +24,50 @@ public class MailLinkRendeling {
 	public ModelAndView sellerCheck(@RequestParam("id") long id, @RequestParam("key") String key,
 			@RequestParam("action") Action action)
 			throws ServiceException {
+		ModelAndView modelAndView = createModelAndView("approveLink");
 		
 		String message = checkLink(id, key, action);
 		if (message != null){
-			return new ModelAndView("approveLink", "message", message);
-		}
+			modelAndView.addObject("message", message);
+		} else {
 		
-		switch (action) {
-		case APPROVE:
-			ServiceFactory.getPreDealService().setApprovedBySeller(id);
-			return new ModelAndView("approveLink", "message", APPROVE_MESSAGE);
-		case CANCEL:
-			ServiceFactory.getPreDealService().cancel(id, true);		
-			return new ModelAndView("approveLink", "message", CANCEL_MESSAGE);
-		default:
-			throw new ServiceException("unknown action: " + action);
+			switch (action) {
+			case APPROVE:
+				ServiceFactory.getPreDealService().setApprovedBySeller(id);
+				modelAndView.addObject("message", APPROVE_MESSAGE);
+			case CANCEL:
+				ServiceFactory.getPreDealService().cancel(id, true);		
+				modelAndView.addObject("message", CANCEL_MESSAGE);
+			default:
+				throw new ServiceException("unknown action: " + action);
+			}
 		}
+		return modelAndView;
 	}
 
 	@RequestMapping("/CustomerCheck.spr")
 	public ModelAndView customerCheck(@RequestParam("id") long id, @RequestParam("key") String key,
 			@RequestParam("action") Action action)
 			throws ServiceException {
+		ModelAndView modelAndView = createModelAndView("approveLink");
 		
 		String message = checkLink(id, key, action);
 		if (message != null){
-			return new ModelAndView("approveLink", "message", message);
-		}
+			modelAndView.addObject("message", message);
+		} else {
 		
-		switch (action) {
-		case APPROVE:
-			ServiceFactory.getPreDealService().setApprovedByCustomer(id);
-			return new ModelAndView("approveLink", "message", APPROVE_MESSAGE);
-		case CANCEL:
-			ServiceFactory.getPreDealService().cancel(id, false);		
-			return new ModelAndView("approveLink", "message", CANCEL_MESSAGE);
-		default:
-			throw new ServiceException("unknown action: " + action);
+			switch (action) {
+			case APPROVE:
+				ServiceFactory.getPreDealService().setApprovedByCustomer(id);
+				modelAndView.addObject("message", APPROVE_MESSAGE);
+			case CANCEL:
+				ServiceFactory.getPreDealService().cancel(id, false);		
+				modelAndView.addObject("message", CANCEL_MESSAGE);
+			default:
+				throw new ServiceException("unknown action: " + action);
+			}
 		}
+		return modelAndView;
 	}
 	
 	private String checkLink(long id, String key, Action action) throws ServiceException{

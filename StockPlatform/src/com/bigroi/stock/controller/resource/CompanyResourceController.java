@@ -19,14 +19,16 @@ import com.bigroi.stock.service.ServiceFactory;
 public class CompanyResourceController extends BaseResourseController {
 
 	@RequestMapping("/List.spr")
-	public @ResponseBody String getListCompanyAll() throws ServiceException, TableException {
+	@ResponseBody
+	public String getListCompanyAll() throws ServiceException, TableException {
 		List<Company> list = ServiceFactory.getCompanyService().getAllCompanies();
 		Table<Company> table = new Table<>(Company.class, list);
 		return new ResultBean(1, table).toString();
 	}
 
 	@RequestMapping("/ChangeStatus.spr")
-	public @ResponseBody String changeStatus(@RequestParam("id") long id) throws ServiceException {
+	@ResponseBody
+	public String changeStatus(@RequestParam("id") long id) throws ServiceException {
 		ServiceFactory.getCompanyService().changeStatusCompany(id);
 		return new ResultBean(1, "company.status.change.success").toString();
 	}

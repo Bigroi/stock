@@ -1,10 +1,5 @@
 package com.bigroi.stock.controller.rendering;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,17 +15,20 @@ import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 @RequestMapping("/account")
-public class AccountRenderingController {
+public class AccountRenderingController extends BaseRenderingController{
 	
 	@RequestMapping("/Form.spr")
-	@Secured("USER")
-	public ModelAndView form(HttpSession session) throws ServiceException{
-		Map<String, Object> map = new HashMap<>();
+	@Secured("ROLE_USER")
+	public ModelAndView form() throws ServiceException{
+		ModelAndView modelAndView = createModelAndView("account");
+		
 		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
-		map.put("user", user);
+		modelAndView.addObject("user", user);
+		
 		Company company = ServiceFactory.getUserService().getById(user.getCompanyId());
-		map.put("company", company);	
-		return new ModelAndView("account", map);		
+		modelAndView.addObject("company", company);
+		
+		return modelAndView;		
 	}
 	
 	@RequestMapping("/Save.spr")
@@ -42,12 +40,12 @@ public class AccountRenderingController {
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
 			@RequestParam("city") String city,
-			@RequestParam("status") CompanyStatus status,
-			HttpSession session) throws ServiceException {
+			@RequestParam("status") CompanyStatus status
+			) throws ServiceException {
 		
-		StockUser user = (StockUser) session.getAttribute("user");
+		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		user.setPassword(password);
-		session.setAttribute("user", user);
+		
 		Company company = new Company();
 		company.setId(user.getCompanyId());
 		company.setName(name);
@@ -59,7 +57,7 @@ public class AccountRenderingController {
 		company.setStatus(status);
 		ServiceFactory.getUserService().updateCompanyAndUser(user, company);
 		
-		return form(session);
+		return form();
 	}
 
 }

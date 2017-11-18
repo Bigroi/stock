@@ -1,15 +1,7 @@
 package com.bigroi.stock.controller.rendering;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,7 +13,7 @@ import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 @RequestMapping("/access")
-public class AccessRenderingController {
+public class AccessRenderingController extends BaseRenderingController{
 	
 	
 	@RequestMapping("/Registation.spr")
@@ -34,8 +26,8 @@ public class AccessRenderingController {
 			@RequestParam("phone") String phone,
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
-			@RequestParam("city") String city,
-			HttpSession session) throws ServiceException{
+			@RequestParam("city") String city
+			) throws ServiceException{
 		
 		StockUser oldUser = ServiceFactory.getUserService().getByLogin(login);
 		if (oldUser != null) {
@@ -57,27 +49,12 @@ public class AccessRenderingController {
 		user.setPassword(password);
 		user.setCompanyId(company.getId());
 		ServiceFactory.getUserService().addUser(company, user);
-		session.setAttribute("user", user);
-		return new ModelAndView("welcome", "user", user);
+		
+		//FIXME login new user
+//		session.setAttribute("user", user);
+		
+		ModelAndView modelAndView = createModelAndView("welcome");
+		modelAndView.addObject("user", user);
+		return modelAndView;
 	}
-
-	/*@RequestMapping("/Logout.spr")
-	public ModelAndView logout(HttpSession session){
-		if(session != null){
-			session.invalidate();
-		}
-		return new ModelAndView("welcome","outMessage","you lefted account");
-	}*/
-	
-	@RequestMapping(value="/logout", method = RequestMethod.GET)
-	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
-	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    if (auth != null){    
-	        new SecurityContextLogoutHandler().logout(request, response, auth);
-	    }
-	    return "redirect:/login?logout";//return new ModelAndView ()???
-	}
-	
-	
-	
 }

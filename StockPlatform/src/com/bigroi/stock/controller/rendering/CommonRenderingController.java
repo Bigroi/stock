@@ -2,7 +2,6 @@ package com.bigroi.stock.controller.rendering;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,36 +10,26 @@ import com.bigroi.stock.bean.StockUser;
 
 
 @Controller
-public class CommonRenderingController {
+public class CommonRenderingController extends BaseRenderingController{
 
 	@RequestMapping("/Index.spr")
 	public ModelAndView goToWelcomePage() {
-	ModelAndView modelAndView = new ModelAndView("welcome");
-		Authentication loggedInUser =  SecurityContextHolder.getContext().getAuthentication();
-		if (loggedInUser instanceof StockUser) {
-			Object objUser = loggedInUser.getPrincipal();
-			modelAndView.addObject("user", objUser);
-		}
-			return modelAndView;
+		return createModelAndView("welcome");
 	}
 
 	@RequestMapping("/Login.spr")
-	public String goToLoginPage() {
-		return "login";
+	public ModelAndView goToLoginPage() {
+		return createModelAndView("login");
 	}
 
 	@RequestMapping("/Registration.spr")
-	public String goToRegistrationPage() {
-		return "registration";
+	public ModelAndView goToRegistrationPage() {
+		return createModelAndView("registration");
 	}
 	
 	@RequestMapping(value = "/admin/Index.spr")
 	@Secured(value = {"ADMIN"})
-	private  ModelAndView mainPage(Authentication loggedInUser) {
-		ModelAndView modelAndView = new ModelAndView("adminMainPage");
-		StockUser user = (StockUser) loggedInUser.getPrincipal();
-		modelAndView.addObject(user);
-		//return (!(loggedInUser instanceof AnonymousAuthenticationToken)) ?  "adminMainPage" : "welcome";
-		return modelAndView;
+	private  ModelAndView mainPage() {
+		return createModelAndView("adminMainPage");
 	}
 }

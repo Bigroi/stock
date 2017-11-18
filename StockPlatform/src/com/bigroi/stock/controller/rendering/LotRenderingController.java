@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Lot;
+import com.bigroi.stock.bean.Product;
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.service.ServiceException;
@@ -18,18 +19,21 @@ import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 @RequestMapping("/lot")
-public class LotRenderingController {
+public class LotRenderingController extends BaseRenderingController{
 	
 	@RequestMapping("/Form.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView form(
 			@RequestParam(value = "id", defaultValue = "-1") long id, 
 			Authentication loggedInUser) throws ServiceException {
+		ModelAndView modelAndView = createModelAndView("lotForm");
+		
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Lot lot = ServiceFactory.getLotService().getLot(id, user.getCompanyId());
-		ModelAndView modelAndView = new ModelAndView("lotForm", "lot", lot);
-		modelAndView.addObject("listOfProducts", 
-				ServiceFactory.getProductService().getAllActiveProducts());
+		List<Product> productList = ServiceFactory.getProductService().getAllActiveProducts();
+		
+		modelAndView.addObject("lot", lot);
+		modelAndView.addObject("listOfProducts", productList);
 		return modelAndView;
 	}
 	
@@ -39,20 +43,20 @@ public class LotRenderingController {
 			@RequestParam("description") String description,			
 			@RequestParam("productId") long productId,
 			@RequestParam("minPrice") double minPrice,
-			@RequestParam("sellerId") long salerId,
 			@RequestParam("expDate") String expDateStr,
-			@RequestParam("volumeOfLot") int volumeOfLot,
-			@RequestParam("status") Status status,
+			@RequestParam("volume") int volume,
+			@RequestParam(value = "status", defaultValue = "DRAFT") Status status,
 			Authentication loggedInUser) throws ParseException, ServiceException {
+		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		
 		Lot lot = new Lot();
 		lot.setId(id);
 		lot.setDescription(description);
 		lot.setProductId(productId);
 		lot.setMinPrice(minPrice);
-		lot.setSellerId(salerId);
+		lot.setSellerId(user.getId());
 		lot.setDateStr(expDateStr);
-		lot.setVolume(volumeOfLot);
+		lot.setVolume(volume);
 		lot.setStatus(status);		
 		
 		ServiceFactory.getLotService().merge(lot);
@@ -62,23 +66,21 @@ public class LotRenderingController {
 	
 	@RequestMapping("/MyList.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView myList(Authentication loggedInUser) throws  ServiceException {
-		StockUser user = (StockUser) loggedInUser.getPrincipal();	
-		List<Lot> lots = ServiceFactory.getLotService().getBySellerId(user.getCompanyId());
-		return new ModelAndView("myLotList", "listOfLots", lots);
+	public ModelAndView myList() throws  ServiceException {
+		return createModelAndView("myLotList");
 	}
 	
 	@RequestMapping("/StartTrading.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView startTrading(@RequestParam("id") long id, Authentication loggedInUser) throws ServiceException {
+	public ModelAndView startTrading(@RequestParam("id") long id) throws ServiceException {
 		ServiceFactory.getLotService().startTrading(id);
-		return myList(loggedInUser);
+		return myList();
 	}
 	
 	@RequestMapping("/Cancel.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView lotCancel(@RequestParam("id") long id, Authentication loggedInUser) throws ServiceException {
+	public ModelAndView lotCancel(@RequestParam("id") long id) throws ServiceException {
 		ServiceFactory.getLotService().cancel(id);
-		return myList(loggedInUser);
+		return myList();
 	}
 }

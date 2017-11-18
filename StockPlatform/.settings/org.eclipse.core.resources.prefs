@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//SQL/stock.sql=UTF-8
 encoding//WebContent/WEB-INF/Pages/account.jsp=UTF-8
 encoding//WebContent/testJson/table.json=UTF-8
+encoding//lables/navigationLables.properties=UTF-8
 encoding//resourse/messages_ru.properties=UTF-8
 encoding//templates/cancelUTF8.txt=UTF-8
 encoding//templates/changeUserPasswordUTF8.txt=UTF-8

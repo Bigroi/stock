@@ -38,7 +38,8 @@ public class UserDaoImpl implements UserDao {
 	private static final String UPDATE_USERS_BY_ID = "UPDATE USER SET  LOGIN = ?, PASSWORD = ?, "
 			+ " COMPANY_ID = ? WHERE ID= ? ";
 
-	private static final String LOAD_USER_BY_JOIN_TABLES = "SELECT USER.LOGIN, USER.PASSWORD, USER_ROLE.ROLE FROM  USER "
+	private static final String LOAD_USER_BY_JOIN_TABLES = "SELECT USER.ID, USER.COMPANY_ID, USER.LOGIN, USER.PASSWORD, USER_ROLE.ROLE "
+			+ " FROM  USER "
 			+ " INNER JOIN COMPANY ON USER.COMPANY_ID = COMPANY.ID AND COMPANY.`STATUS` = '" + CompanyStatus.VERIFIED +"' "
 			+ " LEFT JOIN USER_ROLE ON USER.ID = USER_ROLE.USER_ID WHERE USER.LOGIN = ? ";
 
@@ -110,9 +111,11 @@ public class UserDaoImpl implements UserDao {
 
 			@Override
 			public StockUser mapRow(ResultSet rs, int rowNum) throws SQLException {
-				user.setLogin(rs.getString("login"));
-				user.setPassword(rs.getString("password"));
-				String role = rs.getString("role");
+				user.setId(rs.getLong("ID"));
+				user.setCompanyId(rs.getLong("COMPANY_ID"));
+				user.setLogin(rs.getString("LOGIN"));
+				user.setPassword(rs.getString("PASSWORD"));
+				String role = rs.getString("ROLE");
 				if(role != null){
 					user.addAuthority(new SimpleGrantedAuthority(role));
 				}
