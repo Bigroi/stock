@@ -1,81 +1,66 @@
 'use strict'; 
-$.fn.tableMaker = function () {
+$.fn.tableMaker = function (srcTable, srcForm) {
 		
 	var divToAdd = this;
-    var srcTable = this[0].getAttribute("data-url");
-	
-	
+    	
 	$.getJSON(srcTable,  function (answer){ 
-/* !!!Обязательно использовать имя параметра функции answer, т.к. оно используется в json'e */	
+	/* !!!Обязательно использовать имя параметра функции answer, т.к. оно используется в json'e 
+	в поле customSortFn (строки 6  и 7).*/	
+		if(answer.result !== 1){
+			alert(answer.data);
+			return;
+		}
 		try{
 			for(var key in answer.data.model.custSortFn){
-				if(typeof answer.data.model.custSortFn[key] === "string"){ //нужна ли проверка???
-					eval(answer.data.model.custSortFn[key]);
-				}
+				eval(answer.data.model.custSortFn[key]);
 			}
-			divToAdd[0].append(createTable (answer.data.headers, answer.data.rows));
+			divToAdd[0].append(createTable (answer));
 			divToAdd.find("table").tableSorter(answer.data.model); 
-			// кривовато, но find работает только на коллекции
+			//кривовато, но find работает только на коллекции
 		}catch(e){
 			console.log(e);
 		}
 	});	
 	
-	/*
-	var answer = {
-		"result": 1,
-		"data": {
-			"model":{
-				"custSortFn":{
-					"1": function (a, b){
-						return (a - b);
-					},
-					"2": function (a, b){
-						return (a - b);
-					}
-				},
-				"allowSorting":{	
-					"3": false
-				}
-			},
-			"headers":["Наименование", "Количество, т", "Цена за тонну, руб", "Место загрузки"],
-			"rows":[
-				["Картофель", "10.5", "700", "Барановичи"],
-				["Яблоки", "5.35", "1200", "Логойск"],
-				["Хурма", "3.5", "5000", "Минск"],
-				["Ананас", "50.0", "100", "Витебск"]
-			]
-		}
-	}	
-	*/
-	function createTable (arrHeaders, arrRows) {	//добавить обработку answer.result
+	function createTable (dataObj) {
 		var table = document.createElement("table");
+		table.classList.add("baseTable");
 		var tHead = document.createElement("thead");
 		var tBody = document.createElement("tbody");
 		var tRow = [];
+		
 		tRow[0] = document.createElement("tr");	
-		for(var i = 0; i < arrHeaders.length; i++){
+		for(var i = 0; i < dataObj.data.headers.length; i++){
+			if(i == dataObj.data.model.idColumn){
+				continue;
+			} 
 			var th = document.createElement("th");
-			th.textContent = arrHeaders[i];
+			th.textContent = dataObj.data.headers[i];
 			tRow[0].appendChild(th);
 		}
 		tHead.appendChild(tRow[0]);	
-		for(var j = 0; j < arrRows.length; j++){
+		
+		for(var j = 0; j < dataObj.data.rows.length; j++){
 			tRow[j+1] = document.createElement("tr");
-				for(var k = 0;  k <arrRows[j].length; k++){
+			var formUrl = srcForm.replace("{id}", dataObj.data.rows[j][dataObj.data.model.idColumn]); 
+			tRow[j+1].setAttribute("href", formUrl);//??????attrName
+				for(var k = 0;  k < dataObj.data.rows[j].length; k++){
+					if(k == dataObj.data.model.idColumn){
+						continue;
+					}
 					var td = document.createElement("td");
-					td.textContent = arrRows[j][k];
+					td.textContent = dataObj.data.rows[j][k];
 					tRow[j+1].appendChild(td);
 				}
 			tBody.appendChild(tRow[j+1]);			
 		}
-				
+		
+		tBody.addEventListener("click", function (e){
+			document.location.href = e.target.parentNode.getAttribute("href");
+		});	
+		
 		table.appendChild(tHead);
 		table.appendChild(tBody);
 		return table;
 	}
-	
-	//this[0].append(createTable (answer.data.headers, answer.data.rows));	
-	//this.find("table").tableSorter(answer.data.model); //почему не работает this[0]?
-	
 }

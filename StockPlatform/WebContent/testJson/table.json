@@ -1,21 +1,29 @@
 {
-"result": 1,
-"data": {
-    "model":{
-     "custSortFn":{
-    "1": "answer.data.model.custSortFn[key] = function (a, b){ return (a - b); }",
-    "2": "answer.data.model.custSortFn[key] = function (a, b){ return (a - b); }"
-   },
-   "allowSorting":{ 
-    "3": false
-   }
-  },
-  "headers":["Наименование", "Количество, т", "Цена за тонну, кг", "Место загрузки"],
-  "rows":[
-   ["Картофель", "10.5", "700", "Барановичи"],
-   ["Яблоки", "5.35", "1200", "Логойск"],
-   ["Хурма", "3.5", "500", "Минск"],
-   ["Ананас", "50.0", "100", "Витебск"]
-  ]
- }
+	"result": 1,
+	"data": {
+		"model":{
+			"custSortFn":{
+				"1": "answer.data.model.custSortFn[key] = function (a, b){ return (a - b); }",
+				"2": "answer.data.model.custSortFn[key] = function (a, b){ return (a - b); }"
+			},
+			"allowSorting":{ 
+				"3": false
+			},
+			"idColumn": "0"
+		},
+		"headers":[
+			"ID",
+			"Наименование",  
+			"Цена за кг, руб", 
+			"Количество, кг", 
+			"Место загрузки"
+		],
+		"rows":[
+			["3k45","Картофель", "35.5", "7000", "Барановичи"],
+			["8j23","Яблоки", "5.3", "12000", "Логойск"],
+			["1h87","Хурма", "3.5", "5000", "Минск"],
+			["9a54","Ананас", "50.0", "100", "Витебск"],
+			["6k37","Клубника", "8.0", "1500", "Брест"]
+		]
+	}
 }

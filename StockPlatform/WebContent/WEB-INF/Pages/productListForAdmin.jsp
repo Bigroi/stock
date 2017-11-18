@@ -4,43 +4,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Product list for Admin</title>
-<script>
-	function noDelete() {
-		alert("Sorry, but it can't be temporarily deleted!");
-		return false;
-	}
-</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Product list for Admin</title>
+	<link rel="stylesheet" href="/css/tableStyle.css">
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script> 
+	<script src="/js/tableMaker.js"></script>	
+	<script src="/js/tableSorter.js"></script>
+	<script>
+		function noDelete() {
+			alert("Sorry, but it can't be temporarily deleted!");
+			return false;
+		}
+	</script>
 </head>
 <body>
-<h2 style="color: red;"> Все продукты видит только АДМИН(log:Admin)</h2>
-	<p>Product list:</p>
-	<table border="2">
-		<thead>
-			<tr>
-				<td>name</td>
-				<td>description</td>
-				<td>status</td>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="product" items="${listOfProducts}">
-				<tr>
-					<td>
-						<a href="/product/admin/Form.spr?id=${product.id}">
-						${product.name}
-						</a>
-					</td>
-					<td>${product.description}</td>
-					<td>${product.archive}</td>
-				</tr>
-			</c:forEach>
-
-		</tbody>
-
-	</table>
-	<br>
+	<p style="color: red;"> Все продукты видит только АДМИН (log:Admin)!!!</p>
+	<h1>Product list:</h1>
+	<div id = "tableContainer">	
+		<script>
+			$(function(){
+				$("#tableContainer").tableMaker("/product/json/admin/List.spr", "json/product/form.spr?id={id}");
+				/*Параметрами в плагин tableMaker идут url'ы ........ и .........*/
+			});
+		</script>
+	</div>
 	<form action="/product/admin/Form.spr" method="post">
 		<input type="submit" value="Add">
 	</form>
@@ -48,6 +35,5 @@
 	<form action="/admin/Index.spr" method="get">
 		<input type="submit" value="Back">
 	</form>
-
 </body>
 </html>

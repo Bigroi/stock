@@ -4,60 +4,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/tableStyle.css">
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script> 
+	<script src="/js/tableMaker.js"></script>	
+	<script src="/js/tableSorter.js"></script>
 </head>
 <body>
-	Мои лоты
-	<table border="1">
-		<thead>
-			<tr>
-				<td>description</td>
-				<td>poductId</td>
-				<td>min price</td>
-				<td>sellerId</td>
-				<td>expDate</td>
-				<td>volumeOfLot</td>
-				<td>status</td>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="lot" items="${listOfLots}">
-				<tr>
-					<td>${lot.description}</td>
-					<td>${lot.poductId}</td>
-					<td>${lot.minPrice}</td>
-					<td>${lot.sellerId}</td>
-					<td>${lot.dateStr}</td>
-					<td>${lot.volumeOfLot}</td>
-					<td>${lot.status}</td>
-
-					<c:if test="${lot.status eq 'DRAFT'}">
-						<td><form action="/lot/StartTrading.spr" method="get">
-								<input type="hidden" name="id" value="${lot.id}"> <input
-									type="submit" value="In game">
-							</form></td>
-					</c:if>
-					<c:if
-						test="${(lot.status eq 'DRAFT') || (lot.status eq 'IN_GAME')}">
-						<td><form action="/lot/Form.spr" method="get">
-								<input type="hidden" name="id" value="${lot.id}"> <input
-									type="submit" value="Modify">
-							</form></td>
-						<td><form action="/lot/Cancel.spr" method="get">
-								<input type="hidden" name="id" value="${lot.id}"> <input
-									type="submit" value="Cancel">
-							</form></td>
-					</c:if>
-
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
+	<h1>My lots</h1>
+	<div id = "tableContainer">	
+		<script>
+			$(function(){
+				$("#tableContainer").tableMaker("/lot/json/MyList.spr", "json/product/form.spr?id={id}");
+				/*Параметрами в плагин tableMaker идут url'ы ........ и .........*/
+			});
+		</script>
+	</div>
 	<form action="/lot/Form.spr">
 		<input type="hidden" name="id" value="-1" /> <input type="submit"
-			value="Add lot">
+		value="Add lot">
 	</form>
 	<form action="/Index.spr">
 		<input type="submit" value="Welcome page">

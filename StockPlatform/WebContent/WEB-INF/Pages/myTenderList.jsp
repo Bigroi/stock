@@ -5,56 +5,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/tableStyle.css">
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script> 
+	<script src="/js/tableMaker.js"></script>	
+	<script src="/js/tableSorter.js"></script>
 </head>
 <body>
-	Мои тендера
-	<table border="1">
-		<thead>
-			<tr>
-				<td>description</td>
-				<td>productId</td>
-				<td>max price</td>
-				<td>customerId</td>
-				<td>expDate</td>
-				<td>volumeOfTender</td>
-				<td>status</td>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="tender" items="${listOfTenders}">
-				<tr>
-					<td>${tender.description}</td>
-					<td>${tender.productId}</td>
-					<td>${tender.maxPrice}</td>
-					<td>${tender.customerId}</td>
-					<td>${tender.dateStr}</td>
-					<td>${tender.volumeOfTender}</td>
-					<td>${tender.status}</td>
-
-					<c:if test="${tender.status eq 'DRAFT'}">
-						<td><form action="/tender/StartTrading.spr" method="get">
-								<input type="hidden" name="id" value="${tender.id}"> <input
-									type="submit" value="Activate">
-							</form></td>
-					</c:if>
-					<c:if
-						test="${(tender.status eq 'DRAFT') || (tender.status eq 'IN_GAME')}">
-						<td><form action="/tender/Form.spr" method="get">
-								<input type="hidden" name="id" value="${tender.id}"> <input
-									type="submit" value="Modify">
-							</form></td>
-						<td><form action="/tender/Cancel.spr" method="get">
-								<input type="hidden" name="id" value="${tender.id}"> <input
-									type="submit" value="Cancel">
-							</form></td>
-					</c:if>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
+	<h1>My tenders</h1>
+	<div id = "tableContainer">	
+		<script>
+			$(function(){
+				$("#tableContainer").tableMaker("testJson/table.json", "json/product/form.spr?id={id}");
+				/*Параметрами в плагин tableMaker идут url'ы ........ и .........*/
+			});
+		</script>
+	</div>
 	<form action="/tender/Form.spr">
 		<input type="submit" value="Add tender">
 	</form>

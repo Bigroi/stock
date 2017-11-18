@@ -7,12 +7,13 @@ body {
     padding: 5px 25px;
     font-size: 18px;
     margin: 0;
-    color: #444;
+    color: #000;
 }
 h1 {
     margin: 50px auto;
     text-align: center;
     font-size: 36px;
+	color: inherit;
 }
 table.sortable {
     display: table;
@@ -22,7 +23,10 @@ table.sortable {
 	border: 1px black solid;
     border-collapse: collapse;
     background-color: #aaddd0;
-} 
+}
+tbody tr:nth-of-type(odd){
+	background-color: #c4e7de;
+}	 
 table.sortable th, 
 table.sortable td {
     border: 1px black solid;
@@ -30,7 +34,11 @@ table.sortable td {
 }
 table.sortable th.sort:hover {
 	background-color: #F8E80A;
-	cursor:pointer;
+	color: black;
+	/*background-color: #80baab;
+	color: black;*/
+	/*color: #c4e7de;*/
+	cursor: pointer;
 }
 table.sortable th.sort::before {
 	content: "\25bc\25b2";
@@ -41,4 +49,23 @@ table.sortable th.sort.sortby-asc::before {
 table.sortable th.sort.sortby-desc::before {
 	content: "\25bc";
 }
-
+/*
+table a{
+	color: inherit;
+	cursor: pointer;
+}
+table a:hover {
+	color: blue;
+	cursor: pointer;
+}
+table a:active {
+	color: red;
+}
+*/
+table.sortable tbody tr:hover {
+	background-color: #F8E80A;
+	color: black;	
+	/*background-color: #80baab;
+	color: #c4e7de;*/
+	cursor: pointer;
+}
