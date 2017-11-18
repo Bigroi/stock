@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <p>${message}</p>
 <form action="/login" method="post">
-		<p>Login:<input type="text" name="username"></p> 
-		<p>Password:<input type="password" name="password"></p> 
-		<input type="submit" value="LOGIN">
+		<p>${lable.login.login}:<input type="text" name="username"></p> 
+		<p>${lable.login.password}:<input type="password" name="password"></p> 
+		<input type="submit" value="${lable.button.login }">
 </form>

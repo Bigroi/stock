@@ -17,7 +17,7 @@ public class CompanyRenderingController extends BaseRenderingController{
 	@RequestMapping("/List.spr")
 	@Secured("ROLE_ADMIN")
 	public ModelAndView getListCompanyAll() throws ServiceException {
-		return createModelAndView("companyList");
+		return createModelAndView("companies");
 	}
 
 	@RequestMapping("/ChangeStatus.spr")

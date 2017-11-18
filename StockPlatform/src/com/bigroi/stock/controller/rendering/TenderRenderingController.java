@@ -61,9 +61,9 @@ public class TenderRenderingController extends BaseRenderingController{
 		return myList();
 	}
 	
-	@RequestMapping("/MyList.spr")
+	@RequestMapping("/MyTenders.spr")
 	public ModelAndView myList() throws  ServiceException {
-		return createModelAndView("myTenderList");
+		return createModelAndView("myTenders");
 	}
 	
 	@RequestMapping("/StartTrading.spr")

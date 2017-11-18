@@ -14,12 +14,12 @@ public class TestBackgroundController extends BaseRenderingController {
 	
 	@RequestMapping(value = "/Index.spr")
 	public ModelAndView showPage(){
-		return createModelAndView("testBackgroundFunctions");
+		return createModelAndView("testBG");
 	} 
 
 	@RequestMapping(value = "/ClearPreDeals.spr")
 	public ModelAndView startClearPredeal() throws ServiceException {
-		ModelAndView modelAndView = createModelAndView("testBackgroundFunctions");
+		ModelAndView modelAndView = createModelAndView("testBG");
 		
 		ServiceFactory.getMarketService().clearPreDeal();
 		String message = "ClearPreDeal is finished";
@@ -30,7 +30,7 @@ public class TestBackgroundController extends BaseRenderingController {
  
 	@RequestMapping(value = "/Trading.spr")
 	public ModelAndView startTrade() throws ServiceException {
-		ModelAndView modelAndView = createModelAndView("testBackgroundFunctions");
+		ModelAndView modelAndView = createModelAndView("testBG");
 		
 		ServiceFactory.getTradeService().trade();
 		String message = "Trade is finished";
@@ -41,7 +41,7 @@ public class TestBackgroundController extends BaseRenderingController {
 
 	@RequestMapping(value = "/SendEmails.spr")
 	public ModelAndView startSendMail() throws ServiceException {
-		ModelAndView modelAndView = createModelAndView("testBackgroundFunctions");
+		ModelAndView modelAndView = createModelAndView("testBG");
 		
 		ServiceFactory.getMessageService().sendAllEmails();
 		String message = "SendEmails is finished";
@@ -52,7 +52,7 @@ public class TestBackgroundController extends BaseRenderingController {
 	
 	@RequestMapping(value = "/CheckStatus.spr")
 	public ModelAndView checkStatus() throws ServiceException {
-		ModelAndView modelAndView = createModelAndView("testBackgroundFunctions");
+		ModelAndView modelAndView = createModelAndView("testBG");
 		
 		ServiceFactory.getMarketService().checkExparations();
 		String message = "CheckStatus is finished";
@@ -63,7 +63,7 @@ public class TestBackgroundController extends BaseRenderingController {
 	
 	@RequestMapping(value = "/sendConfMessages.spr")
 	public ModelAndView sendConfMessages() throws ServiceException {
-		ModelAndView modelAndView = createModelAndView("testBackgroundFunctions");
+		ModelAndView modelAndView = createModelAndView("testBG");
 		
 		ServiceFactory.getMarketService().checkExparations();
 		String message = "sendConfMessages is finished";

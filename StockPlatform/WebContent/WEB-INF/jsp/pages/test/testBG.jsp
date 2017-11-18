@@ -18,6 +18,3 @@
 	<form action="/test/background/sendConfMessages.spr">
 		<input type="submit" value="Send Conformation Messages">
 	</form>
-	
-	<a href="/Index.spr">Index</a>
-	<a href="/admin/Index.spr">Admin page</a>

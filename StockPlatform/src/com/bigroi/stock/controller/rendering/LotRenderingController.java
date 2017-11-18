@@ -64,10 +64,10 @@ public class LotRenderingController extends BaseRenderingController{
 		return form(lot.getId(), loggedInUser);
 	}
 	
-	@RequestMapping("/MyList.spr")
+	@RequestMapping("/MyLots.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView myList() throws  ServiceException {
-		return createModelAndView("myLotList");
+		return createModelAndView("myLots");
 	}
 	
 	@RequestMapping("/StartTrading.spr")

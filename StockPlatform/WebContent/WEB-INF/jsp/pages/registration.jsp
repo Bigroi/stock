@@ -3,16 +3,16 @@
 	
 <p>${message}</p>
 <form action="/access/Registation.spr" method="post">
-	 Login:<input name="login"><br> 
-	 Password:<input type="password" name="password"><br> 
-	 Repeat Password:<input type="password" name="passwordRepeat"><br> 
+	 ${lable.registration.login}<input name="login"><br> 
+	 ${lable.registration.password}<input type="password" name="password"><br> 
+	 ${lable.registration.repeat_password}<input type="password" name="passwordRepeat"><br> 
 	
-	 name <input name="name" ><br>
-	 email <input name="email" ><br>
-	 phone <input name="phone" ><br>
-	 reg_number <input name="regNumber" ><br>
-	 country <input name="country" ><br>
-	 city <input name="city" ><br>
+	 ${lable.registration.name} <input name="name" ><br>
+	 ${lable.registration.email} <input name="email" ><br>
+	 ${lable.registration.phone} <input name="phone" ><br>
+	 ${lable.registration.reg_number} <input name="regNumber" ><br>
+	 ${lable.registration.country} <input name="country" ><br>
+	 ${lable.registration.city} <input name="city" ><br>
 	
-	<input type="submit" value="Save">
+	<input type="submit" value="${lable.button.save}">
 </form>

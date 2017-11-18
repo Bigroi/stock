@@ -9,12 +9,13 @@
        <put-attribute name="body" value="" />  
        <put-attribute name="userHeader" value="/WEB-INF/jsp/templates/userHeader.jsp"/> 
        <put-attribute name="anonimusHeader" value="/WEB-INF/jsp/templates/anonimusHeader.jsp"/>
+       <put-attribute name="adminHeader" value="/WEB-INF/jsp/templates/adminHeader.jsp"/>
        <put-attribute name="footer" value="/WEB-INF/jsp/templates/defaultFooter.jsp" />  
    </definition>  
   
    <!-- Home Page -->
-   <definition name="welcome" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/welcome.jsp" /> 
+   <definition name="mian" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/mian.jsp" /> 
    </definition>
    
    <definition name="login" extends="base-definition">  
@@ -29,44 +30,40 @@
        <put-attribute name="body" value="/WEB-INF/jsp/pages/account.jsp" /> 
    </definition>
    
-   <definition name="adminMainPage" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/adminMainPage.jsp" /> 
-   </definition>
-   
    <definition name="approveLink" extends="base-definition">  
        <put-attribute name="body" value="/WEB-INF/jsp/pages/approveLink.jsp" /> 
    </definition>
    
-   <definition name="changeUserPass" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/changeUserPass.jsp" /> 
+   <definition name="users" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/users.jsp" /> 
    </definition>
    
-   <definition name="companyList" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/companyList.jsp" /> 
+   <definition name="companies" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/companies.jsp" /> 
    </definition>
    
    <definition name="lotForm" extends="base-definition">  
        <put-attribute name="body" value="/WEB-INF/jsp/pages/lotForm.jsp" /> 
    </definition>
    
-   <definition name="myLotList" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/myLotList.jsp" /> 
+   <definition name="myLots" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/myLots.jsp" /> 
    </definition>
    
-   <definition name="myTenderList" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/myTenderList.jsp" /> 
+   <definition name="myTenders" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/myTenders.jsp" /> 
    </definition>
    
    <definition name="productForm" extends="base-definition">  
        <put-attribute name="body" value="/WEB-INF/jsp/pages/productForm.jsp" /> 
    </definition>
    
-   <definition name="productList" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/productList.jsp" /> 
+   <definition name="products" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/products.jsp" /> 
    </definition>
    
-   <definition name="productListForAdmin" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/productListForAdmin.jsp" /> 
+   <definition name="productsForAdmin" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/productsForAdmin.jsp" /> 
    </definition>
    
    <definition name="tenderForm" extends="base-definition">  
@@ -77,8 +74,8 @@
        <put-attribute name="body" value="/WEB-INF/jsp/pages/tradeOffers.jsp" /> 
    </definition>
    
-   <definition name="testBackgroundFunctions" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/test/testBackgroundFunctions.jsp" /> 
+   <definition name="testBG" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/test/testBG.jsp" /> 
    </definition>
    
 </tiles-definitions>

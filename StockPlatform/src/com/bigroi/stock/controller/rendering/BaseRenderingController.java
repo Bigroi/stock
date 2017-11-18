@@ -13,25 +13,54 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class BaseRenderingController {
 
-	private static final String NAVIGATION_LABLES = "navigationLables.properties";
+	private static final String[] PAGE_LABELS_FILES = {
+			"navigation.properties",
+			"account.properties",
+			"approveLink.properties",
+			"companies.properties",
+			"login.properties",
+			"lotForm.properties",
+			"mian.properties",
+			"myLots.properties",
+			"myTenders.properties",
+			"productForm.properties",
+			"products.properties",
+			"productsForAdmin.properties",
+			"registration.properties",
+			"tenderForm.properties",
+			"tradeOffers.properties",
+			"users.properties",
+			"button.properties"
+			};
+	
 	public static Map<String, Object> defaultLabls = new HashMap<>();
 	public static Properties pageTitles = new Properties();
 	
 	private static final String PAGE_NAMES = "pageNames.properties";
 	
 	static{
-		try(InputStream navigationInputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(NAVIGATION_LABLES);
-			InputStream pageNamesInputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(PAGE_NAMES);
-			){
-			
+		initPageNames();
+		Map<String, Object> map = new HashMap<>();
+		for (String fileName : PAGE_LABELS_FILES){
+			map.put(fileName.split("\\.")[0], initPageLables(fileName));
+		}
+		defaultLabls.put("lable", map);
+	}
+	private static Properties initPageLables(String fileName){
+		try(InputStream navigationInputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName)){
 			BufferedReader navigationReader = new BufferedReader(new InputStreamReader(navigationInputStream, StandardCharsets.UTF_8));
 			Properties properties = new Properties();
 			properties.load(navigationReader);
-			defaultLabls.put("navigation", properties);
-			
+			return properties;
+		}catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	private static void initPageNames(){
+		try(InputStream pageNamesInputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(PAGE_NAMES)){
 			BufferedReader pageNameReader = new BufferedReader(new InputStreamReader(pageNamesInputStream, StandardCharsets.UTF_8));
 			pageTitles.load(pageNameReader);
-			
 		}catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -39,7 +68,7 @@ public class BaseRenderingController {
 	
 	protected final ModelAndView createModelAndView(String pageName){
 		ModelAndView view = new ModelAndView(pageName, defaultLabls);
-		view.addObject("page.title", pageTitles.getProperty(pageName, pageName));
+		view.addObject("page_title", pageTitles.getProperty(pageName, pageName));
 		return view;
 	}
 }

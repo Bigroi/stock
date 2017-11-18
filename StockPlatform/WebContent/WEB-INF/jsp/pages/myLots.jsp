@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<h1>My lots</h1>
+	<h1>${lable.myLots.title}</h1>
 	<div id = "tableContainer">	
 		<script>
 			$(function(){
@@ -9,9 +9,5 @@
 		</script>
 	</div>
 	<form action="/lot/Form.spr">
-		<input type="hidden" name="id" value="-1" /> <input type="submit"
-		value="Add lot">
-	</form>
-	<form action="/Index.spr">
-		<input type="submit" value="Welcome page">
+		<input type="submit" value="${lable.button.create}">
 	</form>

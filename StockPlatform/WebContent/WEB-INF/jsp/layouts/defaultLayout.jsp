@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>${page.title}</title>
+		<title>${page_title}</title>
 		<link rel="stylesheet" href="/css/tableStyle.css">
         <link rel="stylesheet" href="/css/menuStyle.css">
 		<script src="/js/jQuery.js"></script> 
@@ -17,6 +17,9 @@
 	<body>
 		<sec:authorize access="hasAnyRole('ADMIN', 'USER')">
 	    	<tiles:insertAttribute name="userHeader" />
+		</sec:authorize>
+		<sec:authorize access="hasAnyRole('ADMIN')">
+	    	<tiles:insertAttribute name="adminHeader" />
 		</sec:authorize>
 		<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
 			<tiles:insertAttribute name="anonimusHeader" />

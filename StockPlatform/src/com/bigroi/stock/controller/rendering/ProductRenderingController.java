@@ -15,7 +15,7 @@ public class ProductRenderingController extends BaseRenderingController{
 
 	@RequestMapping("/List.spr")
 	public ModelAndView activeProductList() throws ServiceException {
-		return createModelAndView("productList");
+		return createModelAndView("products");
 	}
 
 	@RequestMapping("/TradeOffers.spr")
@@ -27,7 +27,7 @@ public class ProductRenderingController extends BaseRenderingController{
 
 	@RequestMapping("/admin/List.spr")
 	public ModelAndView allProducts() throws ServiceException {
-		return createModelAndView("productListForAdmin");
+		return createModelAndView("productsForAdmin");
 	}
 
 	@RequestMapping("/admin/Form.spr")

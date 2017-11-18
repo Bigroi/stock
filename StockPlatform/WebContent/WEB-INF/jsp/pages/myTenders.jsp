@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<h1>My tenders</h1>
+	<h1>${lable.myTenders.title}</h1>
 	<div id = "tableContainer">	
 		<script>
 			$(function(){
@@ -10,8 +10,5 @@
 		</script>
 	</div>
 	<form action="/tender/Form.spr">
-		<input type="submit" value="Add tender">
-	</form>
-	<form action="/Index.spr">
-		<input type="submit" value="Welcome page">
+		<input type="submit" value="${lable.button.create }">
 	</form>

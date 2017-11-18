@@ -8,6 +8,3 @@
 		});
 	</script>
 </div>
-<form action="/admin/Index.spr">
-	<input type="submit" value="Welcome page">
-</form>

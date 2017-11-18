@@ -12,9 +12,9 @@ import com.bigroi.stock.service.ServiceFactory;
 @RequestMapping("/user/admin")
 public class UserRenderingController extends BaseRenderingController{
 
-	@RequestMapping(value = "/ChangeUserPass.spr")
+	@RequestMapping(value = "/Users.spr")
 	public ModelAndView listOfUser() throws ServiceException {
-		return createModelAndView("changeUserPass");
+		return createModelAndView("users");
 	}
 
 	@RequestMapping(value = "/ResetPassword.spr")

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<h1>Company list</h1>
+<h1>${lable.companies.title}</h1>
 <div id = "tableContainer">	
 	<script>
 		$(function(){
@@ -9,7 +9,3 @@
 		});
 	</script>
 </div>
-
-<form action="/admin/Index.spr">
-	<input type="submit" value="Back">
-</form>
