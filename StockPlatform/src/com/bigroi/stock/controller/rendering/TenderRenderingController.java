@@ -45,25 +45,25 @@ public class TenderRenderingController extends BaseRenderingController{
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView save(@RequestParam("id") long id, 
 			@RequestParam("description") String description,			
-			@RequestParam("productId") long productId,
-			@RequestParam("maxPrice") double maxPrice,
-			@RequestParam("expDate") String expDateStr,
+			@RequestParam(value = "productId", defaultValue = "-1") long productId,
+			@RequestParam(value = "maxPrice", defaultValue = "0") double maxPrice,
+			@RequestParam(value = "expDate", defaultValue = "") String expDateStr,
 			@RequestParam("volume") int volume,
-			@RequestParam(value = "status", defaultValue = "DRAFT") Status status,
 			Authentication loggedInUser) throws ParseException, ServiceException {
 		checkTender(id);
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		
-		Tender tender = new Tender();
-		tender.setId(id);
+		Tender tender = ServiceFactory.getTenderService().getTender(id, user.getCompanyId());
+		if (tender.getId() < 0){
+			tender.setProductId(productId);
+			tender.setCustomerId(user.getCompanyId());
+			tender.setDateStr(expDateStr);
+			tender.setStatus(Status.DRAFT);
+		}
 		tender.setDescription(description);
-		tender.setProductId(productId);
-		tender.setMaxPrice(maxPrice);
-		tender.setCustomerId(user.getCompanyId());
-		tender.setDateStr(expDateStr);
 		tender.setVolume(volume);
-		tender.setStatus(status);
-		
+		tender.setMaxPrice(maxPrice);
+
 		ServiceFactory.getTenderService().merge(tender);
 
 		return myList();

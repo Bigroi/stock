@@ -56,25 +56,25 @@ public class LotRenderingController extends BaseRenderingController{
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView save(@RequestParam("id") long id, 
 			@RequestParam("description") String description,			
-			@RequestParam("productId") long productId,
-			@RequestParam("minPrice") double minPrice,
-			@RequestParam("expDate") String expDateStr,
+			@RequestParam(value = "productId", defaultValue = "-1") long productId,
+			@RequestParam(value = "minPrice", defaultValue = "0") double minPrice,
+			@RequestParam(value = "expDate", defaultValue = "") String expDateStr,
 			@RequestParam("volume") int volume,
-			@RequestParam(value = "status", defaultValue = "DRAFT") Status status,
 			Authentication loggedInUser) throws ParseException, ServiceException {
 		checkLot(id);
 		
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		
-		Lot lot = new Lot();
-		lot.setId(id);
-		lot.setDescription(description);
-		lot.setProductId(productId);
-		lot.setMinPrice(minPrice);
-		lot.setSellerId(user.getCompanyId());
-		lot.setDateStr(expDateStr);
+		Lot lot = ServiceFactory.getLotService().getLot(id, user.getCompanyId());
+		if (lot.getId() < 0){
+			lot.setProductId(productId);
+			lot.setSellerId(user.getCompanyId());
+			lot.setDateStr(expDateStr);
+			lot.setStatus(Status.DRAFT);	
+			lot.setMinPrice(minPrice);
+		}
 		lot.setVolume(volume);
-		lot.setStatus(status);		
+		lot.setDescription(description);
 		
 		ServiceFactory.getLotService().merge(lot);
 		

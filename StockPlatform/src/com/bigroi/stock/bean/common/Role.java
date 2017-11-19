@@ -1,7 +1,8 @@
 package com.bigroi.stock.bean.common;
 
-public enum UserRole {
+public enum Role {
 
-	ROLE_USER
+	ROLE_USER,
+	ROLE_ADMIN
 	
 }

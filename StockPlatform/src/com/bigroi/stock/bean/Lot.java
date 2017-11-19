@@ -20,7 +20,7 @@ public class Lot implements Bid{
 	private String description;
 	
 	@Column("skock.table.lot.poductId")
-	private long poductId;
+	private long productId;
 	
 	@Column("skock.table.lot.minPrice")
 	private double minPrice;
@@ -69,11 +69,11 @@ public class Lot implements Bid{
 	}
 
 	public long getProductId() {
-		return poductId;
+		return productId;
 	}
 
-	public void setProductId(long poductId) {
-		this.poductId = poductId;
+	public void setProductId(long productId) {
+		this.productId = productId;
 	}
 
 	public double getMinPrice() {
@@ -119,7 +119,7 @@ public class Lot implements Bid{
 	
 	@Override
 	public String toString() {
-		return "Lot [id=" + id + ", description=" + description + ", poductId=" + poductId + ", minPrice=" + minPrice
+		return "Lot [id=" + id + ", description=" + description + ", poductId=" + productId + ", minPrice=" + minPrice
 				+ ", sallerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + ", volumeOfLot=" + volume +"]";
 	}
 
@@ -127,4 +127,5 @@ public class Lot implements Bid{
 	public boolean equals(Object obj) {
 		return obj instanceof Lot && ((Lot)obj).getId() == this.getId();
 	}
+	
 }

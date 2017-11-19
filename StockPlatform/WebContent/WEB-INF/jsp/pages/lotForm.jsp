@@ -22,10 +22,7 @@
 				${lable.lotForm.exp_date}<input name="expDate" value="${lot.dateStr}"><br>
 			</c:when>
 			<c:otherwise>
-				<input type="hidden" name="productId" value="${lot.productId}">
-				<input type="hidden" name="minPrice" value="${lot.minPrice}">
-				<input type="hidden" name="expDate" value="${lot.dateStr}">
-				${lable.lotForm.product} - ${listOfProducts.get(lot.productId).name}<br>		
+				${lable.lotForm.product} - ${lot.productId}<br>		
 				${lable.lotForm.min_price} - ${lot.minPrice}<br>
 				${lable.lotForm.exp_date} - ${lot.dateStr}<br>
 			</c:otherwise>

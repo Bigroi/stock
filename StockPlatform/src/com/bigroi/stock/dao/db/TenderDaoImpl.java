@@ -27,26 +27,26 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String ADD_TENDER = "INSERT INTO TENDER "
 			+ " (DESCRIPTION, PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, "
-			+ " STATUS, EXP_DATE, VOLUME_OF_TENDER) VALUES ( ?, ?, ?, ?, ?, ?, ?) ";
+			+ " STATUS, EXP_DATE, VOLUME) VALUES ( ?, ?, ?, ?, ?, ?, ?) ";
 		
 	private static final String UPDATE_TENDER_BY_ID = "UPDATE TENDER SET "
 			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MAX_PRICE = ?, CUSTOMER_ID = ?, "
-			+ " STATUS = ?, EXP_DATE = ?, VOLUME_OF_TENDER = ? "
+			+ " STATUS = ?, EXP_DATE = ?, VOLUME = ? "
 			+ " WHERE ID = ? ";
 	
 	private static final String GET_TENDER_BY_ID = "SELECT ID, DESCRIPTION, PRODUCT_ID, "
-			+ " MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME_OF_TENDER FROM TENDER WHERE ID = ? ";
+			+ " MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME FROM TENDER WHERE ID = ? ";
 	
 	private static final String GET_TENDERS_BY_CUSTOMER_ID = "SELECT ID, DESCRIPTION, "
-			+ "PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME_OF_TENDER "
+			+ "PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME "
 			+ "FROM TENDER WHERE CUSTOMER_ID = ? ";
 	
 	private static final String GET_ACTIVE_TENDERS_BY_PRODUCT_ID = "SELECT ID, DESCRIPTION, "
-			+ "PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME_OF_TENDER FROM TENDER WHERE "
+			+ "PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME FROM TENDER WHERE "
 			+ "PRODUCT_ID = ? AND STATUS = '" + Status.ACTIVE +"' ORDER BY MAX_PRICE DESC";
 	
 	private static final String GET_ALL_ACTIVE_TENDERS = "SELECT ID, DESCRIPTION, "
-			+ " PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME_OF_TENDER FROM TENDER "
+			+ " PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME FROM TENDER "
 			+ " WHERE STATUS = '" + Status.ACTIVE +"' ";
 	
 	private static final String UPDATE_STATUS_BY_CUSTOMER_ID ="UPDATE TENDER SET "
@@ -125,7 +125,7 @@ public class TenderDaoImpl implements TenderDao{
 				tender.setCustomerId(rs.getLong("customer_Id"));
 				tender.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				tender.setExpDate(rs.getDate("exp_date"));
-				tender.setVolume(rs.getInt("volume_of_tender"));
+				tender.setVolume(rs.getInt("VOLUME"));
 				return tender;
 			}
 		},customerId);

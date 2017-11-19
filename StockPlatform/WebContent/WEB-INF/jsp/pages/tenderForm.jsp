@@ -21,10 +21,7 @@
 			    ${lable.tenderForm.exp_date} <input name="expDate" value="${tender.dateStr}"><br>
 			</c:when>
 			<c:otherwise>
-				<input type="hidden" name="productId" value="${tender.productId}">
-				<input type="hidden" name="maxPrice" value="${tender.maxPrice}">
-				<input type="hidden" name="expDate" value="${tender.dateStr}">
-			    ${lable.tenderForm.product} - ${listOfProducts.get(tender.productId).name}<br>
+			    ${lable.tenderForm.product} - ${tender.productId}<br>
 				${lable.tenderForm.max_rice} - ${tender.maxPrice}<br>	    
 			    ${lable.tenderForm.exp_date} - ${tender.dateStr}<br>
 			</c:otherwise>

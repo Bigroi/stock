@@ -8,9 +8,9 @@ import org.junit.Test;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.StockUser;
-import com.bigroi.stock.bean.UserRoles;
+import com.bigroi.stock.bean.UserRole;
 import com.bigroi.stock.bean.common.CompanyStatus;
-import com.bigroi.stock.bean.common.UserRole;
+import com.bigroi.stock.bean.common.Role;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -20,7 +20,7 @@ public class UserAddService {
 	
 	public static Company company;
 	
-	public static UserRoles userRole;
+	public static UserRole userRole;
 	
 	
 	@BeforeClass
@@ -41,9 +41,9 @@ public class UserAddService {
 		user.setPassword("!!");
 		user.setCompanyId(22);
 		
-		userRole = new UserRoles();
+		userRole = new UserRole();
 		userRole.setUserId(22);
-		userRole.setRole(UserRole.ROLE_USER.toString());
+		userRole.setRole(Role.ROLE_USER);
 	}
 	
 	@Test

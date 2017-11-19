@@ -26,26 +26,26 @@ import com.bigroi.stock.dao.LotDao;
 public class LotDaoImpl implements LotDao {
 	
 	private static final String ADD_LOT = "INSERT INTO LOT "
-			+ "(DESCRIPTION, PODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME_OF_LOT) "
+			+ "(DESCRIPTION, PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME) "
 			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?) ";
 
 	private static final String UPDATE_LOT_BY_ID = "UPDATE LOT SET "
-			+ " DESCRIPTION = ?, PODUCT_ID = ?, MIN_PRICE = ?, SELLER_ID = ?, " 
-			+ " STATUS = ?, EXP_DATE = ?, VOLUME_OF_LOT = ? "
+			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MIN_PRICE = ?, SELLER_ID = ?, " 
+			+ " STATUS = ?, EXP_DATE = ?, VOLUME = ? "
 			+ " WHERE ID = ? ";
 	
-	private static final String GET_LOT_BY_ID = "SELECT ID, DESCRIPTION, PODUCT_ID, "
-			+ " MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME_OF_LOT FROM LOT WHERE ID = ? ";
+	private static final String GET_LOT_BY_ID = "SELECT ID, DESCRIPTION, PRODUCT_ID, "
+			+ " MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME FROM LOT WHERE ID = ? ";
 	
 	private static final String GET_LOTS_BY_SALLER_ID = "SELECT ID, DESCRIPTION, "
-			+ " PODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME_OF_LOT FROM LOT WHERE SELLER_ID  = ? ";
+			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME FROM LOT WHERE SELLER_ID  = ? ";
 	
 	private static final String GET_ACTIVE_LOTS_BY_PRODUCT_ID = "SELECT ID, DESCRIPTION, "
-			+ " PODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME_OF_LOT FROM LOT WHERE "
-			+ " PODUCT_ID = ? AND STATUS = '" + Status.ACTIVE +"' ORDER BY MIN_PRICE ";
+			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME FROM LOT WHERE "
+			+ " PRODUCT_ID = ? AND STATUS = '" + Status.ACTIVE +"' ORDER BY MIN_PRICE ";
 	
 	private static final String GET_ALL_ACTIVE_LOTS = "SELECT ID, DESCRIPTION,"
-			+ " PODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME_OF_LOT FROM LOT "
+			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME FROM LOT "
 			+ " WHERE STATUS ='" + Status.ACTIVE +"' ";
 	
 	private static final String SET_STATUS_BY_SELLER_ID =
@@ -61,7 +61,7 @@ public class LotDaoImpl implements LotDao {
 	private static final String SET_STATUS_BY_PRODUCT_ID =
 			  "UPDATE LOT SET "
 			+ "STATUS = ? "
-			+ "WHERE PODUCT_ID = ?";
+			+ "WHERE PRODUCT_ID = ?";
 	
 	private DataSource datasource;
 
@@ -107,7 +107,6 @@ public class LotDaoImpl implements LotDao {
 				lot.getExpDate(), 
 				lot.getVolume(), 
 				lot.getId()) == 1;
-
 	}
 
 	@Override
@@ -130,12 +129,12 @@ public class LotDaoImpl implements LotDao {
 				Lot lot = new Lot();
 				lot.setId(rs.getLong("id"));
 				lot.setDescription(rs.getString("description"));
-				lot.setProductId(rs.getLong("poduct_Id"));
+				lot.setProductId(rs.getLong("PRODUCT_ID"));
 				lot.setMinPrice(rs.getDouble("min_price"));
 				lot.setSellerId(rs.getLong("seller_Id"));
 				lot.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				lot.setExpDate(rs.getDate("exp_date"));
-				lot.setVolume(rs.getInt("volume_of_lot"));
+				lot.setVolume(rs.getInt("VOLUME"));
 				return lot;
 			}
 		}, sellerId);

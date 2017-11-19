@@ -1,9 +1,11 @@
 package com.bigroi.stock.bean;
 
-public class UserRoles {
+import com.bigroi.stock.bean.common.Role;
+
+public class UserRole {
 	
 	private long userId;
-	private String role;
+	private Role role;
 	
 	public long getUserId() {
 		return userId;
@@ -11,10 +13,10 @@ public class UserRoles {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 	

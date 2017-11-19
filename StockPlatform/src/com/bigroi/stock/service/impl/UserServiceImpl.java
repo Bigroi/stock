@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.StockUser;
-import com.bigroi.stock.bean.UserRoles;
+import com.bigroi.stock.bean.UserRole;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserDao;
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void addUser(Company company, StockUser user, UserRoles userRole) throws ServiceException {
+	public void addUser(Company company, StockUser user, UserRole userRole) throws ServiceException {
 		try {
 			companyDao.add(company);
 			user.setCompanyId(company.getId());

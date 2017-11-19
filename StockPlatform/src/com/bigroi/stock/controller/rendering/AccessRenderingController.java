@@ -7,9 +7,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.StockUser;
-import com.bigroi.stock.bean.UserRoles;
+import com.bigroi.stock.bean.UserRole;
 import com.bigroi.stock.bean.common.CompanyStatus;
-import com.bigroi.stock.bean.common.UserRole;
+import com.bigroi.stock.bean.common.Role;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -50,9 +50,11 @@ public class AccessRenderingController extends BaseRenderingController{
 		user.setLogin(login);
 		user.setPassword(password);
 		user.setCompanyId(company.getId());
-		UserRoles userRole = new UserRoles();
+		
+		UserRole userRole = new UserRole();
+		//XXX user.getId is always 0. Will have non 0 value only after DB inserting.
 		userRole.setUserId(user.getId());
-		userRole.setRole(UserRole.ROLE_USER.toString());
+		userRole.setRole(Role.ROLE_USER);
 		ServiceFactory.getUserService().addUser(company, user, userRole);
 		
 		ModelAndView modelAndView = createModelAndView("registrationSuccess");
