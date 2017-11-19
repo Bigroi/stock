@@ -63,4 +63,8 @@
 		<property name="datasource" ref="datasource" />
 	</bean>
 
+	<bean id="userRoleDao" class="com.bigroi.stock.dao.db.UserRoleDaoImpl">
+		<property name="datasource" ref="datasource" />
+	</bean>
+
 </beans>

@@ -7,7 +7,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.StockUser;
+import com.bigroi.stock.bean.UserRoles;
 import com.bigroi.stock.bean.common.CompanyStatus;
+import com.bigroi.stock.bean.common.UserRole;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -48,7 +50,10 @@ public class AccessRenderingController extends BaseRenderingController{
 		user.setLogin(login);
 		user.setPassword(password);
 		user.setCompanyId(company.getId());
-		ServiceFactory.getUserService().addUser(company, user);
+		UserRoles userRole = new UserRoles();
+		userRole.setUserId(user.getId());
+		userRole.setRole(UserRole.ROLE_USER.toString());
+		ServiceFactory.getUserService().addUser(company, user, userRole);
 		
 		ModelAndView modelAndView = createModelAndView("registrationSuccess");
 		modelAndView.addObject("user", user);

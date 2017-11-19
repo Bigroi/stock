@@ -3,6 +3,7 @@ package com.bigroi.stock.controller.rendering;
 import java.text.ParseException;
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ public class TenderRenderingController extends BaseRenderingController{
 	
 	//TODO move to js
 	@RequestMapping("/Form.spr")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView form(
 			@RequestParam(value = "id", defaultValue = "-1") long id, 
 			Authentication loggedInUser) throws ServiceException {
@@ -40,6 +42,7 @@ public class TenderRenderingController extends BaseRenderingController{
 
 	//TODO move to js
 	@RequestMapping("/Save.spr")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView save(@RequestParam("id") long id, 
 			@RequestParam("description") String description,			
 			@RequestParam("productId") long productId,
@@ -67,12 +70,14 @@ public class TenderRenderingController extends BaseRenderingController{
 	}
 	
 	@RequestMapping("/MyTenders.spr")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView myList() throws  ServiceException {
 		return createModelAndView("myTenders");
 	}
 	
 	//TODO move to js
 	@RequestMapping("/StartTrading.spr")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView startTrading(@RequestParam("id") long id) throws  ServiceException {
 		checkTender(id);
 		ServiceFactory.getTenderService().startTrading(id);
@@ -81,6 +86,7 @@ public class TenderRenderingController extends BaseRenderingController{
 	
 	//TODO move to js
 	@RequestMapping("/Cancel.spr")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView cancel(@RequestParam("id") long id) throws  ServiceException {
 		checkTender(id);
 		ServiceFactory.getTenderService().cancel(id);

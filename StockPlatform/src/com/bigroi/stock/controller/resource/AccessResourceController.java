@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.StockUser;
+import com.bigroi.stock.bean.UserRoles;
 import com.bigroi.stock.bean.common.CompanyStatus;
+import com.bigroi.stock.bean.common.UserRole;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
@@ -20,7 +22,8 @@ public class AccessResourceController extends BaseResourseController {
 	@RequestMapping(value = "/Registration.spr")
 	@ResponseBody
 	public String registration(@RequestParam("jsonUser") String jsonUser,
-			@RequestParam("jsonCompany") String jsonCompany) throws ServiceException {
+			@RequestParam("jsonCompany") String jsonCompany, 
+			@RequestParam("jsonUserRole") String jsonUserRole) throws ServiceException {
 		
 		StockUser user = new Gson().fromJson(jsonUser, StockUser.class);
 		
@@ -30,7 +33,12 @@ public class AccessResourceController extends BaseResourseController {
 		
 		Company company = new Gson().fromJson(jsonCompany, Company.class);
 		company.setStatus(CompanyStatus.NOT_VERIFIED);
-		ServiceFactory.getUserService().addUser(company, user);
+		//-------------------------------------------------
+		UserRoles userRole = new Gson().fromJson(jsonUserRole, UserRoles.class) ;// check plz this code area
+		userRole.setRole(UserRole.ROLE_USER.toString());
+		
+		ServiceFactory.getUserService().addUser(company, user, userRole);
+		//-------------------------------------------------
 		return new ResultBean(1, "registration.success").toString();
 	}
 
