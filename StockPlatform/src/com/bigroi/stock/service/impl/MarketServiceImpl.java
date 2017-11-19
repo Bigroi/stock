@@ -45,17 +45,25 @@ public class MarketServiceImpl implements MarketService {
 			List<Lot> lots = lotDao.getActive();
 			for (Lot lot : lots) {
 				if (lot.isExpired()){
-					lotDao.setStatusById(lot.getId(), Status.EXPIRED);
+					lot.setStatus(Status.EXPIRED);
+					Message<Lot> message = MessagerFactory.getLotExparationMessage();
+					message.setDataObject(lot);
+					message.send();
 				}
 			}
+			lotDao.update(lots);
+			
 			List<Tender> tenders = tenderDao.getAllActive();
 			for (Tender tender : tenders) {
 				if (tender.isExpired()){
-					tenderDao.setStatusById(tender.getId(), Status.EXPIRED);
+					tender.setStatus(Status.EXPIRED);
+					Message<Tender> message = MessagerFactory.getTenderExparationMessage();
+					message.setDataObject(tender);
+					message.send();
 				}
 			}
-		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
+			tenderDao.update(tenders);
+		} catch (DaoException | MessageException e) {
 			throw new ServiceException(e);
 		}
 	}
@@ -67,7 +75,7 @@ public class MarketServiceImpl implements MarketService {
 			List<PreDeal> predials = preDealDao.getAll();
 			for (PreDeal preDeal : predials) {
 				if (preDeal.getSellerApprovBool() && preDeal.getCustApprovBool())
-					continue;
+					throw new ServiceException("Deal approved by both sides. It should not be in preDeal.");
 				else if (preDeal.getSellerApprovBool()){
 					Message<PreDeal> message = MessagerFactory.getDealExparationMessageForSellerByOpponent();
 					message.setDataObject(preDeal);
@@ -97,7 +105,6 @@ public class MarketServiceImpl implements MarketService {
 			}
 			preDealDao.deleteAll();
 		} catch (DaoException | MessageException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -105,16 +112,17 @@ public class MarketServiceImpl implements MarketService {
 	private void setStatuses(PreDeal predeal) throws DaoException {
 		Lot lot = lotDao.getById(predeal.getLotId());
 		if (lot.isExpired()) {
-			lotDao.setStatusById(lot.getId(), Status.EXPIRED);
-		} else {
-			lotDao.setStatusById(lot.getId(), Status.IN_GAME);
-		}
+			lot.setStatus(Status.EXPIRED);
+		} 
+		lot.setVolume(lot.getVolume() + predeal.getVolume());
+		lotDao.update(lot);
+		
 		Tender tender = tenderDao.getById(predeal.getTenderId());
 		if (tender.isExpired()) {
-			tenderDao.setStatusById(tender.getId(), Status.EXPIRED);
-		} else {
-			tenderDao.setStatusById(tender.getId(), Status.IN_GAME);
-		}
+			tender.setStatus(Status.EXPIRED);
+		} 
+		tender.setVolume(tender.getVolume() + predeal.getVolume());
+		tenderDao.update(tender);
 	}
 
 	@Override

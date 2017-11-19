@@ -11,7 +11,6 @@ import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.CompanyService;
 import com.bigroi.stock.service.ServiceException;
 
@@ -53,7 +52,6 @@ public class CompanyServiceImpl implements CompanyService {
 				break;
 			}
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 
@@ -64,7 +62,6 @@ public class CompanyServiceImpl implements CompanyService {
 		try {
 			return companyDao.getAllCompany();
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -74,7 +71,6 @@ public class CompanyServiceImpl implements CompanyService {
 		try {
 			return companyDao.getById(id);
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}

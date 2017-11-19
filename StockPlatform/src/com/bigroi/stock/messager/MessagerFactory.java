@@ -3,8 +3,10 @@ package com.bigroi.stock.messager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.PreDeal;
 import com.bigroi.stock.bean.StockUser;
+import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.messager.message.Message;
 
 @SuppressWarnings("unchecked")
@@ -62,5 +64,13 @@ public class MessagerFactory {
 
 	public static Message<PreDeal> getDealExparationMessageForSellerByOpponent(){
 		return (Message<PreDeal>) CONTEXT.getBean("dealExparationMessageForSellerByOpponent");
+	}
+
+	public static Message<Lot> getLotExparationMessage() {
+		return (Message<Lot>) CONTEXT.getBean("lotExparationMessage");
+	}
+
+	public static Message<Tender> getTenderExparationMessage() {
+		return (Message<Tender>) CONTEXT.getBean("tenderExparationMessage");
 	}
 }

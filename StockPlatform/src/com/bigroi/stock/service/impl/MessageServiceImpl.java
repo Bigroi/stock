@@ -31,7 +31,6 @@ public class MessageServiceImpl implements MessageService{
 			} while (!emails.isEmpty());
 			
 		} catch (DaoException | MailManagerException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -41,7 +40,6 @@ public class MessageServiceImpl implements MessageService{
 		try {
 			emailDao.add(email);
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 		

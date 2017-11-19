@@ -1,7 +1,7 @@
 package com.bigroi.stock.dao;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.common.Status;
@@ -26,5 +26,5 @@ public interface LotDao {
 	 
 	boolean setStatusById(long id, Status status) throws DaoException;
 
-	void update(Set<Lot> lotsToUpdate) throws DaoException;
+	void update(Collection<Lot> lotsToUpdate) throws DaoException;
 }

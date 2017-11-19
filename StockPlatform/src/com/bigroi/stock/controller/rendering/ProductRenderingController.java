@@ -57,8 +57,7 @@ public class ProductRenderingController extends BaseRenderingController{
 	@RequestMapping("/admin/Delete.spr")
 	public ModelAndView delete(@RequestParam("id") long id)
 			throws ServiceException {
-		//FIXME productId is not necessary
-		ServiceFactory.getProductService().delete(id, 0);
+		ServiceFactory.getProductService().delete(id);
 		return allProducts();
 	}
 }

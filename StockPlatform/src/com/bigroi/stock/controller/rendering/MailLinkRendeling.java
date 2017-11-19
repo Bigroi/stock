@@ -33,10 +33,10 @@ public class MailLinkRendeling extends BaseRenderingController{
 		
 			switch (action) {
 			case APPROVE:
-				ServiceFactory.getPreDealService().setApprovedBySeller(id);
+				ServiceFactory.getDealService().setApprovedBySeller(id);
 				modelAndView.addObject("message", APPROVE_MESSAGE);
 			case CANCEL:
-				ServiceFactory.getPreDealService().cancel(id, true);		
+				ServiceFactory.getDealService().cancel(id, true);		
 				modelAndView.addObject("message", CANCEL_MESSAGE);
 			default:
 				throw new ServiceException("unknown action: " + action);
@@ -58,10 +58,10 @@ public class MailLinkRendeling extends BaseRenderingController{
 		
 			switch (action) {
 			case APPROVE:
-				ServiceFactory.getPreDealService().setApprovedByCustomer(id);
+				ServiceFactory.getDealService().setApprovedByCustomer(id);
 				modelAndView.addObject("message", APPROVE_MESSAGE);
 			case CANCEL:
-				ServiceFactory.getPreDealService().cancel(id, false);		
+				ServiceFactory.getDealService().cancel(id, false);		
 				modelAndView.addObject("message", CANCEL_MESSAGE);
 			default:
 				throw new ServiceException("unknown action: " + action);
@@ -71,7 +71,7 @@ public class MailLinkRendeling extends BaseRenderingController{
 	}
 	
 	private String checkLink(long id, String key, Action action) throws ServiceException{
-		PreDeal preDeal = ServiceFactory.getPreDealService().getById(id);
+		PreDeal preDeal = ServiceFactory.getDealService().getById(id);
 		if (preDeal == null) {
 			return EXPIRED_LINK;
 		}

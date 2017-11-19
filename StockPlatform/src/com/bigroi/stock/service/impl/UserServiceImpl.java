@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService {
 			user.setCompanyId(company.getId());
 			userDao.add(user);
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 
@@ -52,7 +51,6 @@ public class UserServiceImpl implements UserService {
 			userDao.update(user);
 			companyDao.update(company);
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -62,7 +60,6 @@ public class UserServiceImpl implements UserService {
 		try {
 			return userDao.getByLogin(login);
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -72,7 +69,6 @@ public class UserServiceImpl implements UserService {
 		try {
 			return companyDao.getById(id);
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -88,7 +84,6 @@ public class UserServiceImpl implements UserService {
 			message.setDataObject(user);
 			message.send();
 		} catch (DaoException | MessageException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -108,7 +103,6 @@ public class UserServiceImpl implements UserService {
 		try {
 			return userDao.loadUser(username);
 		} catch (UsernameNotFoundException | DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new UsernameNotFoundException("", e);
 		}
 		

@@ -6,7 +6,6 @@ import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
-import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.LotService;
 import com.bigroi.stock.service.ServiceException;
 
@@ -32,7 +31,6 @@ public class LotServiceImpl implements LotService {
 			}
 			return lot;
 		}catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -46,7 +44,6 @@ public class LotServiceImpl implements LotService {
 				lotDao.update(lot);
 			}
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 
@@ -57,7 +54,6 @@ public class LotServiceImpl implements LotService {
 		try {
 			return lotDao.getBySellerId(salerId);
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -65,9 +61,8 @@ public class LotServiceImpl implements LotService {
 	@Override
 	public void startTrading(long id) throws ServiceException {
 		try {
-			lotDao.setStatusById(id, Status.IN_GAME);
+			lotDao.setStatusById(id, Status.ACTIVE);
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 
@@ -78,7 +73,6 @@ public class LotServiceImpl implements LotService {
 		try {
 			lotDao.setStatusById(id, Status.CANCELED);
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -88,7 +82,6 @@ public class LotServiceImpl implements LotService {
 		try{
 			return lotDao.getActiveByProductId(productId);
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}

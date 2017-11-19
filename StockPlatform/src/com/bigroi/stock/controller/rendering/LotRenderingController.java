@@ -54,7 +54,7 @@ public class LotRenderingController extends BaseRenderingController{
 		lot.setDescription(description);
 		lot.setProductId(productId);
 		lot.setMinPrice(minPrice);
-		lot.setSellerId(user.getId());
+		lot.setSellerId(user.getCompanyId());
 		lot.setDateStr(expDateStr);
 		lot.setVolume(volume);
 		lot.setStatus(status);		

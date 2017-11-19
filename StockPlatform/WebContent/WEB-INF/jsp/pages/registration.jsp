@@ -7,7 +7,7 @@
 	 ${lable.registration.password}<input type="password" name="password"><br> 
 	 ${lable.registration.repeat_password}<input type="password" name="passwordRepeat"><br> 
 	
-	 ${lable.registration.name} <input name="name" ><br>
+	 ${lable.registration.company_name} <input name="name" ><br>
 	 ${lable.registration.email} <input name="email" ><br>
 	 ${lable.registration.phone} <input name="phone" ><br>
 	 ${lable.registration.reg_number} <input name="regNumber" ><br>

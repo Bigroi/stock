@@ -6,7 +6,6 @@ import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.TenderService;
 
@@ -32,7 +31,6 @@ public class TenderServiceImpl implements TenderService{
 			}
 			return tender;
 		}catch(DaoException e){
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -42,7 +40,6 @@ public class TenderServiceImpl implements TenderService{
 		try{
 			return tenderDao.getByCustomerId(companyId);
 		}catch(DaoException e){
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -52,7 +49,6 @@ public class TenderServiceImpl implements TenderService{
 		try{
 			tenderDao.setStatusById(id, Status.CANCELED);
 		}catch(DaoException e){
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -66,7 +62,6 @@ public class TenderServiceImpl implements TenderService{
 				tenderDao.update(tender);
 			}
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 
@@ -75,9 +70,8 @@ public class TenderServiceImpl implements TenderService{
 	@Override
 	public void startTrading(long id) throws ServiceException {
 		try{
-			tenderDao.setStatusById(id, Status.IN_GAME);
+			tenderDao.setStatusById(id, Status.ACTIVE);
 		}catch(DaoException e){
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -87,7 +81,6 @@ public class TenderServiceImpl implements TenderService{
 		try{
 			return tenderDao.getActiveByProductId(productId);
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}

@@ -32,8 +32,6 @@ public class ProductDaoImpl implements ProductDao {
 	private static final String GET_PRODUCT_BY_ID = "SELECT ID, NAME, DESCRIPTION "
 			+ " FROM PRODUCT WHERE ID = ? ";
 	
-	private static final String SET_ARCHIVE_PRODUCT_BY_ID = "UPDATE product SET archive = 'Y' WHERE id = ?";
-	
 	private DataSource datasource;
 
 	public DataSource getDatasource() {
@@ -93,12 +91,6 @@ public class ProductDaoImpl implements ProductDao {
 		} else {
 			return product.get(0);
 		}
-	}
-
-	@Override
-	public void setArchived(long id) throws DaoException {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(SET_ARCHIVE_PRODUCT_BY_ID,  id);
 	}
 
 }

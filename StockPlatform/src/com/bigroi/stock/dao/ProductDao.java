@@ -16,6 +16,4 @@ public interface ProductDao {
 	
 	Product getById(long id) throws DaoException;
 	
-	void setArchived(long id) throws DaoException;
-	
 }

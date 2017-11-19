@@ -5,8 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import javax.sql.DataSource;
 
@@ -43,11 +43,11 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String GET_ACTIVE_TENDERS_BY_PRODUCT_ID = "SELECT ID, DESCRIPTION, "
 			+ "PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME_OF_TENDER FROM TENDER WHERE "
-			+ "PRODUCT_ID = ? AND STATUS = '" + Status.IN_GAME +"' ORDER BY MAX_PRICE DESC";
+			+ "PRODUCT_ID = ? AND STATUS = '" + Status.ACTIVE +"' ORDER BY MAX_PRICE DESC";
 	
 	private static final String GET_ALL_ACTIVE_TENDERS = "SELECT ID, DESCRIPTION, "
 			+ " PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME_OF_TENDER FROM TENDER "
-			+ " WHERE STATUS = '" + Status.IN_GAME +"' ";
+			+ " WHERE STATUS = '" + Status.ACTIVE +"' ";
 	
 	private static final String UPDATE_STATUS_BY_CUSTOMER_ID ="UPDATE TENDER SET "
 			+ "STATUS = ? WHERE CUSTOMER_ID = ?";
@@ -167,7 +167,7 @@ public class TenderDaoImpl implements TenderDao{
 	}
 	
 	@Override
-	public void update(Set<Tender> tendersToUpdate) throws DaoException {
+	public void update(Collection<Tender> tendersToUpdate) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.batchUpdate(UPDATE_TENDER_BY_ID, tendersToUpdate, tendersToUpdate.size(), new ParameterizedPreparedStatementSetter<Tender>() {
 

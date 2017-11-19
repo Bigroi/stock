@@ -5,8 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import javax.sql.DataSource;
 
@@ -42,11 +42,11 @@ public class LotDaoImpl implements LotDao {
 	
 	private static final String GET_ACTIVE_LOTS_BY_PRODUCT_ID = "SELECT ID, DESCRIPTION, "
 			+ " PODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME_OF_LOT FROM LOT WHERE "
-			+ " PODUCT_ID = ? AND STATUS = '" + Status.IN_GAME +"' ORDER BY MIN_PRICE ";
+			+ " PODUCT_ID = ? AND STATUS = '" + Status.ACTIVE +"' ORDER BY MIN_PRICE ";
 	
 	private static final String GET_ALL_ACTIVE_LOTS = "SELECT ID, DESCRIPTION,"
 			+ " PODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME_OF_LOT FROM LOT "
-			+ " WHERE STATUS ='" + Status.IN_GAME +"' ";
+			+ " WHERE STATUS ='" + Status.ACTIVE +"' ";
 	
 	private static final String SET_STATUS_BY_SELLER_ID =
 			  "UPDATE LOT SET "
@@ -168,14 +168,15 @@ public class LotDaoImpl implements LotDao {
 		return template.update(SET_STATUS_BY_PRODUCT_ID, status.toString(), productId) == 1;
 	}
 
+	
 	@Override
-	public boolean setStatusById(long id, Status status) {
+	public boolean setStatusById(long id, Status status) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(SET_STATUS_BY_ID, status.toString(), id) == 1;
 	}
 
 	@Override
-	public void update(Set<Lot> lotsToUpdate) throws DaoException {
+	public void update(Collection<Lot> lotsToUpdate) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.batchUpdate(UPDATE_LOT_BY_ID, lotsToUpdate, lotsToUpdate.size(), new ParameterizedPreparedStatementSetter<Lot>() {
 

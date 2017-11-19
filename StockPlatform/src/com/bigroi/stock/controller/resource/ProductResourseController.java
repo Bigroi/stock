@@ -2,7 +2,6 @@ package com.bigroi.stock.controller.resource;
 
 import java.util.List;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.Product;
-import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.Table;
@@ -57,10 +55,8 @@ public class ProductResourseController extends BaseResourseController {
 	
 	@RequestMapping("/admin/Delete.spr")
 	@ResponseBody
-	public String delete(@RequestParam("id") long id, 
-			Authentication loggedInUser) throws ServiceException {
-		StockUser user = (StockUser) loggedInUser.getPrincipal();
-		ServiceFactory.getProductService().delete(id, user.getCompanyId());
+	public String delete(@RequestParam("id") long id) throws ServiceException {
+		ServiceFactory.getProductService().delete(id);
 		return new ResultBean(1, "success").toString();
 
 	}

@@ -1,7 +1,7 @@
 package com.bigroi.stock.dao;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.bean.common.Status;
@@ -26,6 +26,6 @@ public interface TenderDao {
 	
 	boolean  setStatusById(long id, Status status) throws DaoException;
 
-	void update(Set<Tender> tendersToUpdate) throws DaoException;
+	void update(Collection<Tender> tendersToUpdate) throws DaoException;
 
 }

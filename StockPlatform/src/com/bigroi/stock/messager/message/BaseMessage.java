@@ -11,7 +11,7 @@ import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
-public abstract class BaseMessage<T> implements Message<T>{
+abstract class BaseMessage<T> implements Message<T>{
 	
 	private String subject;
 	

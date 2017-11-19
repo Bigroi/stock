@@ -10,7 +10,5 @@ public interface DealService {
 	
 	void setApprovedBySeller(long preDealId) throws ServiceException;
 
-	void cancel(long preDealId, boolean seller) throws ServiceException;
-
-	//void add(PreDeal preDeal) throws ServiceException;
+	void cancel(long preDealId, boolean canceledBySeller) throws ServiceException;
 }

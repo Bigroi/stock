@@ -54,6 +54,7 @@ public class TradeServiceImpl implements TradeService{
 		this.productDao = productDao;
 	}
 	
+	@Override
 	@Transactional
 	public void trade() throws ServiceException{
 		try{
@@ -91,7 +92,6 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 
-	//Circle 3
 	private void createDealsForBid(TradeBid bid){
 		while(bid.getVolume() > 0 && bid.getPosiblePartners().size() > 0){
 			TradeBid partner = bid.getBestPartner();
@@ -108,7 +108,6 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 	
-	//step 5
 	private PreDeal createPreDeal(TradeBid bid, TradeBid partner) {
 		int volume = getVolume(bid, partner);
 		
@@ -143,7 +142,6 @@ public class TradeServiceImpl implements TradeService{
 		return volume;
 	}
 
-	//step 3
 	private TradeBid getMinVolumeBid(List<? extends TradeBid> majorBids) {
 		return Collections.min(majorBids, new Comparator<TradeBid>() {
 
@@ -154,7 +152,6 @@ public class TradeServiceImpl implements TradeService{
 		});
 	}
 
-	//step 2
 	private List<? extends TradeBid> getMinVolumeBids(List<TradeLot> tradeLots, List<TradeTender> tradeTenders) {
 		if (getTotalVolume(tradeLots) < getTotalVolume(tradeTenders)){
 			return tradeLots;
@@ -171,7 +168,6 @@ public class TradeServiceImpl implements TradeService{
 		return result;
 	}
 	
-	//step 1
 	private void removeAllZeroBids(List<TradeTender> tradeTenders, List<TradeLot> tradeLots) {
 		for (TradeTender tender : new ArrayList<>(tradeTenders)){
 			if (tender.getPosiblePartners().size() == 0){

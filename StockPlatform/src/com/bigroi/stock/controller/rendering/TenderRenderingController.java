@@ -51,7 +51,7 @@ public class TenderRenderingController extends BaseRenderingController{
 		tender.setDescription(description);
 		tender.setProductId(productId);
 		tender.setMaxPrice(maxPrice);
-		tender.setCustomerId(user.getId());
+		tender.setCustomerId(user.getCompanyId());
 		tender.setDateStr(expDateStr);
 		tender.setVolume(volume);
 		tender.setStatus(status);
