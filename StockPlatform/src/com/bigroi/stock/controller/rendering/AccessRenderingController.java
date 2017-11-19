@@ -50,7 +50,7 @@ public class AccessRenderingController extends BaseRenderingController{
 		user.setCompanyId(company.getId());
 		ServiceFactory.getUserService().addUser(company, user);
 		
-		ModelAndView modelAndView = createModelAndView("registrationSuccess.jsp");
+		ModelAndView modelAndView = createModelAndView("registrationSuccess");
 		modelAndView.addObject("user", user);
 		return modelAndView;
 	}
