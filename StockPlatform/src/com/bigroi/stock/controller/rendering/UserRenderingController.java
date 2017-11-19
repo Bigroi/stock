@@ -17,9 +17,10 @@ public class UserRenderingController extends BaseRenderingController{
 		return createModelAndView("users");
 	}
 
+	//TODO move to js
 	@RequestMapping(value = "/ResetPassword.spr")
-	public ModelAndView changePass(@RequestParam("login") String login) throws ServiceException {
-		ServiceFactory.getUserService().resetPassword(login);
+	public ModelAndView changePass(@RequestParam("id") long id) throws ServiceException {
+		ServiceFactory.getUserService().resetPassword(id);
 		return listOfUser();
 	}
 }

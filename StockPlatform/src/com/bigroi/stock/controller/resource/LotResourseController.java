@@ -3,6 +3,7 @@ package com.bigroi.stock.controller.resource;
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +27,7 @@ public class LotResourseController extends BaseResourseController {
 	public String form(
 			@RequestParam(value = "id", defaultValue = "-1") long id,
 			Authentication loggedInUser) throws ServiceException {
-
+		checkLot(id);
 		StockUser user = (StockUser) loggedInUser.getPrincipal();
 		Lot lot = ServiceFactory.getLotService().getLot(id, user.getCompanyId());
 		return new ResultBean(1, lot).toString();
@@ -45,6 +46,7 @@ public class LotResourseController extends BaseResourseController {
 	@ResponseBody
 	public String lotSave(@RequestParam("jsonLot") String jsonLot) throws ServiceException {
 		Lot lotBean = new Gson().fromJson(jsonLot, Lot.class);
+		checkLot(lotBean.getId());
 		ServiceFactory.getLotService().merge(lotBean);
 		return new ResultBean(1, "lot.update.success").toString();
 	}
@@ -52,6 +54,7 @@ public class LotResourseController extends BaseResourseController {
 	@RequestMapping(value = "/StartTrading.spr")
 	@ResponseBody
 	public String startTrading(@RequestParam("id") long id) throws ServiceException {
+		checkLot(id);
 		ServiceFactory.getLotService().startTrading(id);
 		return new ResultBean(1, "lot.update.success").toString();
 	}
@@ -59,7 +62,19 @@ public class LotResourseController extends BaseResourseController {
 	@RequestMapping(value = "/Cancel.spr")
 	@ResponseBody
 	public String cancel(@RequestParam("id") long id) throws ServiceException {
+		checkLot(id);
 		ServiceFactory.getLotService().cancel(id);
 		return new ResultBean(1, "lot.update.success").toString();
+	}
+	
+	private void checkLot(long id) throws ServiceException{
+		if (id < 0){
+			return;
+		}
+		StockUser user = (StockUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Lot lot = ServiceFactory.getLotService().getLot(id, 0);
+		if (lot.getSellerId() != user.getCompanyId()){
+			throw new SecurityException("User have no permission to modify Lot with id = " + id);
+		}
 	}
 }

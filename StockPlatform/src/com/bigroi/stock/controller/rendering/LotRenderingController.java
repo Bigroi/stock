@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,11 +22,13 @@ import com.bigroi.stock.service.ServiceFactory;
 @RequestMapping("/lot")
 public class LotRenderingController extends BaseRenderingController{
 	
+	//TODO move to js
 	@RequestMapping("/Form.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView form(
 			@RequestParam(value = "id", defaultValue = "-1") long id, 
 			Authentication loggedInUser) throws ServiceException {
+		checkLot(id);
 		ModelAndView modelAndView = createModelAndView("lotForm");
 		
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
@@ -37,6 +40,18 @@ public class LotRenderingController extends BaseRenderingController{
 		return modelAndView;
 	}
 	
+	private void checkLot(long id) throws ServiceException{
+		if (id < 0){
+			return;
+		}
+		StockUser user = (StockUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Lot lot = ServiceFactory.getLotService().getLot(id, 0);
+		if (lot.getSellerId() != user.getCompanyId()){
+			throw new SecurityException("User have no permission to modify Lot with id = " + id);
+		}
+	}
+
+	//TODO move to js
 	@RequestMapping("/Save.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView save(@RequestParam("id") long id, 
@@ -47,6 +62,8 @@ public class LotRenderingController extends BaseRenderingController{
 			@RequestParam("volume") int volume,
 			@RequestParam(value = "status", defaultValue = "DRAFT") Status status,
 			Authentication loggedInUser) throws ParseException, ServiceException {
+		checkLot(id);
+		
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		
 		Lot lot = new Lot();
@@ -70,16 +87,20 @@ public class LotRenderingController extends BaseRenderingController{
 		return createModelAndView("myLots");
 	}
 	
+	//TODO move to js
 	@RequestMapping("/StartTrading.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView startTrading(@RequestParam("id") long id) throws ServiceException {
+		checkLot(id);
 		ServiceFactory.getLotService().startTrading(id);
 		return myList();
 	}
 	
+	//TODO move to js
 	@RequestMapping("/Cancel.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView lotCancel(@RequestParam("id") long id) throws ServiceException {
+		checkLot(id);
 		ServiceFactory.getLotService().cancel(id);
 		return myList();
 	}

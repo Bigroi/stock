@@ -15,7 +15,7 @@ import com.bigroi.stock.service.ServiceFactory;
 @RequestMapping("/access")
 public class AccessRenderingController extends BaseRenderingController{
 	
-	
+	//TODO move to js
 	@RequestMapping("/Registation.spr")
 	public ModelAndView registration(
 			@RequestParam("login") String login, 
@@ -50,10 +50,7 @@ public class AccessRenderingController extends BaseRenderingController{
 		user.setCompanyId(company.getId());
 		ServiceFactory.getUserService().addUser(company, user);
 		
-		//FIXME login new user
-//		session.setAttribute("user", user);
-		
-		ModelAndView modelAndView = createModelAndView("welcome");
+		ModelAndView modelAndView = createModelAndView("registrationSuccess.jsp");
 		modelAndView.addObject("user", user);
 		return modelAndView;
 	}

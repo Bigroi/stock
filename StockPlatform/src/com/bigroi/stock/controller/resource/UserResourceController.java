@@ -28,8 +28,8 @@ public class UserResourceController extends BaseResourseController{
 	
 	@RequestMapping(value = "/ResetPassword.spr")
 	@ResponseBody
-	public String ResetPassword(@RequestParam("login") String login) throws ServiceException {
-		ServiceFactory.getUserService().resetPassword(login);
+	public String ResetPassword(@RequestParam("id") long id) throws ServiceException {
+		ServiceFactory.getUserService().resetPassword(id);
 		return new ResultBean(1, "user.password.reset.success").toString();
 	}
 }

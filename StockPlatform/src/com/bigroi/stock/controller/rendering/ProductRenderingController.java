@@ -30,6 +30,7 @@ public class ProductRenderingController extends BaseRenderingController{
 		return createModelAndView("productsForAdmin");
 	}
 
+	//TODO move to js
 	@RequestMapping("/admin/Form.spr")
 	public ModelAndView form(
 			@RequestParam(value = "id", defaultValue = "-1") long id) 
@@ -40,6 +41,7 @@ public class ProductRenderingController extends BaseRenderingController{
 		return modelAndView;
 	}
 
+	//TODO move to js
 	@RequestMapping("/admin/Save.spr")
 	public ModelAndView save(
 			@RequestParam(value = "id", defaultValue = "-1") long id, 
@@ -54,6 +56,7 @@ public class ProductRenderingController extends BaseRenderingController{
 		return allProducts();
 	}
 
+	//TODO move to js
 	@RequestMapping("/admin/Delete.spr")
 	public ModelAndView delete(@RequestParam("id") long id)
 			throws ServiceException {

@@ -75,9 +75,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void resetPassword(String login) throws ServiceException {
+	public void resetPassword(long id) throws ServiceException {
 		try {
-			StockUser user = userDao.getByLogin(login);
+			StockUser user = userDao.getById(id);
 			user.setPassword(Generator.generatePass(8));
 			userDao.update(user);
 			Message<StockUser> message = MessagerFactory.getResetUserPasswordMessage();
@@ -99,9 +99,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 		try {
-			return userDao.loadUser(username);
+			return userDao.getByLoginWithRoles(login);
 		} catch (UsernameNotFoundException | DaoException e) {
 			throw new UsernameNotFoundException("", e);
 		}

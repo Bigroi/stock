@@ -4,7 +4,7 @@
 <div id = "tableContainer">	
 	<script>
 		$(function(){
-			$("#tableContainer").tableMaker("/user/json/admin/List.spr", "/json/product/form.spr?id={id}");
+			$("#tableContainer").tableMaker("/user/json/admin/List.spr", "/user/admin/ResetPassword.spr?id={id}");
 		});
 	</script>
 </div>

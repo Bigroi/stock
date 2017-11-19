@@ -78,4 +78,7 @@
        <put-attribute name="body" value="/WEB-INF/jsp/pages/test/testBG.jsp" /> 
    </definition>
    
+   <definition name="registrationSuccess" extends="base-definition">  
+       <put-attribute name="body" value="/WEB-INF/jsp/pages/test/registrationSuccess.jsp" /> 
+   </definition>
 </tiles-definitions>

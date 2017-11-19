@@ -15,7 +15,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.CompanyStatus;
@@ -24,24 +23,35 @@ import com.bigroi.stock.dao.UserDao;
 
 public class UserDaoImpl implements UserDao {
 
-	private static final String GET_USER_BY_LOGIN = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID FROM USER "
-			+ " WHERE LOGIN = ? ";
+	private static final String GET_USER_BY_LOGIN = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID "
+			+ "FROM USER "
+			+ "WHERE LOGIN = ? ";
 
-	private static final String GET_ALL_USERS = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID FROM USER ";
+	private static final String GET_ALL_USERS = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID "
+			+ "FROM USER ";
 
-	private static final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID FROM USER "
-			+ " WHERE LOGIN = ? AND PASSWORD = ? ";
+	private static final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID "
+			+ "FROM USER "
+			+ "WHERE LOGIN = ? AND PASSWORD = ? ";
 
 	private static final String ADD_USERS_BY_ID = "INSERT INTO USER (ID, LOGIN, PASSWORD, COMPANY_ID) "
 			+ " VALUES (?, ?, ?, ?) ";
 
-	private static final String UPDATE_USERS_BY_ID = "UPDATE USER SET  LOGIN = ?, PASSWORD = ?, "
-			+ " COMPANY_ID = ? WHERE ID= ? ";
+	private static final String UPDATE_USERS_BY_ID = "UPDATE USER "
+			+ "SET  LOGIN = ?, PASSWORD = ?, COMPANY_ID = ? "
+			+ "WHERE ID = ? ";
 
 	private static final String LOAD_USER_BY_JOIN_TABLES = "SELECT USER.ID, USER.COMPANY_ID, USER.LOGIN, USER.PASSWORD, USER_ROLE.ROLE "
 			+ " FROM  USER "
-			+ " INNER JOIN COMPANY ON USER.COMPANY_ID = COMPANY.ID AND COMPANY.`STATUS` = '" + CompanyStatus.VERIFIED +"' "
-			+ " LEFT JOIN USER_ROLE ON USER.ID = USER_ROLE.USER_ID WHERE USER.LOGIN = ? ";
+			+ " INNER JOIN COMPANY "
+			+ " ON USER.COMPANY_ID = COMPANY.ID AND COMPANY.`STATUS` = '" + CompanyStatus.VERIFIED +"' "
+			+ " LEFT JOIN USER_ROLE "
+			+ " ON USER.ID = USER_ROLE.USER_ID "
+			+ " WHERE USER.LOGIN = ? ";
+
+	private static final String GET_USER_BY_ID = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID "
+			+ "FROM USER "
+			+ "WHERE ID = ?";
 
 	private DataSource datasource;
 
@@ -104,7 +114,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public UserDetails loadUser(String username) throws DaoException {
+	public StockUser getByLoginWithRoles(String login) throws DaoException {
 		StockUser user = new StockUser();
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<StockUser> list = template.query(LOAD_USER_BY_JOIN_TABLES, new RowMapper<StockUser>(){
@@ -122,14 +132,27 @@ public class UserDaoImpl implements UserDao {
 				return user;
 			}
 			
-		}, username);
+		}, login);
 		if(list.size() == 0){
 			return null;
 		}else{
 			return list.get(0);
 		}
-
-		
+	}
+	
+	@Override
+	public StockUser getById(long id) throws DaoException {
+		try{
+			JdbcTemplate template = new JdbcTemplate(datasource);
+			List<StockUser> list = template.query(GET_USER_BY_ID, new BeanPropertyRowMapper<StockUser>(StockUser.class), id);
+			if (list.size() == 0){
+				return null;
+			} else {
+				return list.get(0);
+			}
+		}catch (Exception e) {
+			throw new DaoException(e);
+		}
 	}
 
 }

@@ -18,7 +18,7 @@ public interface UserService extends UserDetailsService{
 	
 	Company getById(long id) throws ServiceException;
 	
-	void resetPassword(String login) throws ServiceException;
+	void resetPassword(long id) throws ServiceException;
 	
 	List<StockUser> getAllUsers() throws ServiceException;
 	

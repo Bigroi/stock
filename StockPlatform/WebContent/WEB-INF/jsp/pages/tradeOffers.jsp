@@ -27,5 +27,5 @@
 		</tbody>
 	</table>
 	<form action="/product/List.spr">
-		<input type="submit" value="{lable.button.back}">
+		<input type="submit" value="${lable.button.back}">
 	</form>

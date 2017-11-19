@@ -26,11 +26,11 @@ public class MailLinkRendeling extends BaseRenderingController{
 			throws ServiceException {
 		ModelAndView modelAndView = createModelAndView("approveLink");
 		
-		String message = checkLink(id, key, action);
+		String message = checkSellerLink(id, key, action);
 		if (message != null){
 			modelAndView.addObject("message", message);
 		} else {
-		
+			//TODO authorize user
 			switch (action) {
 			case APPROVE:
 				ServiceFactory.getDealService().setApprovedBySeller(id);
@@ -51,11 +51,11 @@ public class MailLinkRendeling extends BaseRenderingController{
 			throws ServiceException {
 		ModelAndView modelAndView = createModelAndView("approveLink");
 		
-		String message = checkLink(id, key, action);
+		String message = checkCustommerLink(id, key, action);
 		if (message != null){
 			modelAndView.addObject("message", message);
 		} else {
-		
+			//TODO authorize user
 			switch (action) {
 			case APPROVE:
 				ServiceFactory.getDealService().setApprovedByCustomer(id);
@@ -70,7 +70,7 @@ public class MailLinkRendeling extends BaseRenderingController{
 		return modelAndView;
 	}
 	
-	private String checkLink(long id, String key, Action action) throws ServiceException{
+	private String checkCustommerLink(long id, String key, Action action) throws ServiceException{
 		PreDeal preDeal = ServiceFactory.getDealService().getById(id);
 		if (preDeal == null) {
 			return EXPIRED_LINK;
@@ -79,6 +79,20 @@ public class MailLinkRendeling extends BaseRenderingController{
 			return WRONG_LINK;
 		}
 		if (preDeal.getCustApprovBool()) {
+			return RECONFIRMATION;
+		}
+		return null;
+	}
+	
+	private String checkSellerLink(long id, String key, Action action) throws ServiceException{
+		PreDeal preDeal = ServiceFactory.getDealService().getById(id);
+		if (preDeal == null) {
+			return EXPIRED_LINK;
+		}
+		if (!preDeal.getSellerHashCode().equals(key)) {
+			return WRONG_LINK;
+		}
+		if (preDeal.getSellerApprovBool()) {
 			return RECONFIRMATION;
 		}
 		return null;

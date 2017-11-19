@@ -20,6 +20,7 @@ public class CompanyRenderingController extends BaseRenderingController{
 		return createModelAndView("companies");
 	}
 
+	//TODO move to js
 	@RequestMapping("/ChangeStatus.spr")
 	@Secured("ROLE_ADMIN")
 	public ModelAndView changeStatus(@RequestParam("id") long id) throws ServiceException {

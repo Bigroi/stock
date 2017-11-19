@@ -31,8 +31,6 @@ public class AccessResourceController extends BaseResourseController {
 		Company company = new Gson().fromJson(jsonCompany, Company.class);
 		company.setStatus(CompanyStatus.NOT_VERIFIED);
 		ServiceFactory.getUserService().addUser(company, user);
-		//FIXME login new user
-		//session.setAttribute("user", user);
 		return new ResultBean(1, "registration.success").toString();
 	}
 

@@ -3,8 +3,6 @@ package com.bigroi.stock.dao;
 
 import java.util.List;
 
-import org.springframework.security.core.userdetails.UserDetails;
-
 import com.bigroi.stock.bean.StockUser;
 
 public interface UserDao {
@@ -17,7 +15,9 @@ public interface UserDao {
 	
 	boolean update(StockUser user) throws DaoException;
 	
-	UserDetails loadUser(String username) throws DaoException;
+	StockUser getByLoginWithRoles(String login) throws DaoException;
+
+	StockUser getById(long id) throws DaoException;
 	
 	
 }

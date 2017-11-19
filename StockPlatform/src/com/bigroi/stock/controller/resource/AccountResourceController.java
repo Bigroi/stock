@@ -41,12 +41,18 @@ public class AccountResourceController extends BaseResourseController {
 		StockUser newUser = new Gson().fromJson(newUserJson, StockUser.class);
 		Company newCompany = new Gson().fromJson(newCompanyJson, Company.class);
 		StockUser oldUser = (StockUser) loggedInUser.getPrincipal();
+		Company oldCompany = ServiceFactory.getCompanyService().getCompanyById(oldUser.getCompanyId());
 		
 		if (!newUser.equals(oldUser)){
 			return new ResultBean(-1, "account.edit.names.error").toString();
 		}
+		oldUser.setPassword(newUser.getPassword());
+		oldCompany.setCity(newCompany.getCity());
+		oldCompany.setCountry(newCompany.getCountry());
+		oldCompany.setEmail(newCompany.getEmail());
+		oldCompany.setPhone(newCompany.getPhone());
 		
-		ServiceFactory.getUserService().updateCompanyAndUser(newUser, newCompany);
+		ServiceFactory.getUserService().updateCompanyAndUser(oldUser, oldCompany);
 		return new ResultBean(1, "account.edit.success").toString();
 	}
 }
