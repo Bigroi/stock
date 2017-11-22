@@ -1,5 +1,8 @@
 package com.bigroi.stock.controller.rendering;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,17 +48,21 @@ public class AccessRenderingController extends BaseRenderingController{
 		company.setRegNumber(regNumber);
 		company.setCountry(country);
 		company.setCity(city);
-		company.setStatus(CompanyStatus.NOT_VERIFIED);		
+		company.setStatus(CompanyStatus.NOT_VERIFIED);
+		
 		StockUser user = new StockUser();
+		StockUser userId = ServiceFactory.getUserService().getUserId();
+		user.setId(userId.getId()+1);
 		user.setLogin(login);
 		user.setPassword(password);
 		user.setCompanyId(company.getId());
 		
 		UserRole userRole = new UserRole();
-		//XXX user.getId is always 0. Will have non 0 value only after DB inserting.
+		List<UserRole> listRole = new ArrayList<>();
 		userRole.setUserId(user.getId());
 		userRole.setRole(Role.ROLE_USER);
-		ServiceFactory.getUserService().addUser(company, user, userRole);
+		listRole.add(userRole);
+		ServiceFactory.getUserService().addUser(company, user, listRole);
 		
 		ModelAndView modelAndView = createModelAndView("registrationSuccess");
 		modelAndView.addObject("user", user);

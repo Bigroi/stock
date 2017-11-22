@@ -1,5 +1,6 @@
 package com.bigroi.stock.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,13 +41,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void addUser(Company company, StockUser user, UserRole userRole) throws ServiceException {
+	public void addUser(Company company, StockUser user, List<UserRole> userRole) throws ServiceException {
 		try {
 			companyDao.add(company);
 			user.setCompanyId(company.getId());
 			userDao.add(user);
-			userRole.setUserId(user.getId());
-			userRoleDao.add(userRole);
+			List<UserRole> listRole = new ArrayList<>();
+			for (UserRole list : userRole) {
+				list.setUserId(user.getId());
+				listRole.add(list);
+			}
+			userRoleDao.add(listRole);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -116,6 +121,15 @@ public class UserServiceImpl implements UserService {
 		}
 		
 
+	}
+
+	@Override
+	public StockUser getUserId() throws ServiceException {
+		try {
+			 return userDao.getUserId();
+		} catch ( DaoException e) {
+			throw new ServiceException(e);
+		}
 	}
 
 }

@@ -11,7 +11,7 @@ import com.bigroi.stock.bean.UserRole;
 
 public interface UserService extends UserDetailsService{
 
-	void addUser(Company company, StockUser user, UserRole userRole)throws ServiceException;
+	void addUser(Company company, StockUser user, List<UserRole> userRole)throws ServiceException;
 	
 	void updateCompanyAndUser(StockUser user, Company company)throws ServiceException;
 	
@@ -22,5 +22,7 @@ public interface UserService extends UserDetailsService{
 	void resetPassword(long id) throws ServiceException;
 	
 	List<StockUser> getAllUsers() throws ServiceException;
+	
+	StockUser getUserId() throws ServiceException;
 	
 }

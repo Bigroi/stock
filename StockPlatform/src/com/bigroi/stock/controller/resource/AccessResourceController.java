@@ -1,5 +1,8 @@
 package com.bigroi.stock.controller.resource;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,9 +37,11 @@ public class AccessResourceController extends BaseResourseController {
 		company.setStatus(CompanyStatus.NOT_VERIFIED);
 		
 		UserRole userRole = new UserRole();
+		List<UserRole> listRole = new ArrayList<>();
 		userRole.setRole(Role.ROLE_USER);
+		listRole.add(userRole);
 		//XXX the same as in rendering controller
-		ServiceFactory.getUserService().addUser(company, user, userRole);
+		ServiceFactory.getUserService().addUser(company, user, listRole);
 		return new ResultBean(1, "registration.success").toString();
 	}
 

@@ -1,9 +1,11 @@
 package com.bigroi.stock.dao;
 
+import java.util.List;
+
 import com.bigroi.stock.bean.UserRole;
 
 public interface UserRoleDao {
 	
-	void add(UserRole userRole) throws DaoException;
+	List<UserRole> add(List<UserRole> userRole) throws DaoException;
 	
 }

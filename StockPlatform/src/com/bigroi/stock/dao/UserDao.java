@@ -19,5 +19,7 @@ public interface UserDao {
 
 	StockUser getById(long id) throws DaoException;
 	
+	StockUser getUserId() throws DaoException;
+	
 	
 }
