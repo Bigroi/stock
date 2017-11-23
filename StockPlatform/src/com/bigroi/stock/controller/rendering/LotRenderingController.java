@@ -60,25 +60,27 @@ public class LotRenderingController extends BaseRenderingController{
 			@RequestParam(value = "minPrice", defaultValue = "0") double minPrice,
 			@RequestParam(value = "expDate", defaultValue = "") String expDateStr,
 			@RequestParam("volume") int volume,
+			@RequestParam("minVolume") int minVol,
 			Authentication loggedInUser) throws ParseException, ServiceException {
 		checkLot(id);
 		
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		
 		Lot lot = ServiceFactory.getLotService().getLot(id, user.getCompanyId());
-		if (lot.getId() < 0){
+		if (lot.getId() < 0) {
 			lot.setProductId(productId);
 			lot.setSellerId(user.getCompanyId());
 			lot.setDateStr(expDateStr);
-			lot.setStatus(Status.DRAFT);	
+			lot.setStatus(Status.DRAFT);
 			lot.setMinPrice(minPrice);
 		}
 		lot.setVolume(volume);
+		lot.setMinVolume(minVol);
 		lot.setDescription(description);
-		
+
 		ServiceFactory.getLotService().merge(lot);
-		
-		return form(lot.getId(), loggedInUser);
+
+		return myList();
 	}
 	
 	@RequestMapping("/MyLots.spr")

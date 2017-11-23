@@ -10,6 +10,7 @@
 
 		${lable.lotForm.description}<input name="description" value="${lot.description}"><br>
 		${lable.lotForm.volume}<input name="volume" value="${lot.volume}"><br>
+		${lable.lotForm.min_volume}<input name="minVolume" value="${lot.minVolume }"><br>
 		<c:choose>
 			<c:when test="${lot.id == '-1'}">
 				${lable.lotForm.product}<select name="productId">

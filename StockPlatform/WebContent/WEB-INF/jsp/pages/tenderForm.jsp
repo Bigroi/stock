@@ -9,6 +9,7 @@
 
 		${lable.tenderForm.description} <input name="description" value="${tender.description}"><br>
 		${lable.tenderForm.volume} <input name="volume" value="${tender.volume}"><br>
+		${lable.tenderForm.max_Volume } <input name="maxVolume" value="${tender.maxVolume }"><br>
 		<c:choose>
 			<c:when test="${tender.id == '-1'}">
 				${lable.tenderForm.product}  <select name="productId">

@@ -49,6 +49,7 @@ public class TenderRenderingController extends BaseRenderingController{
 			@RequestParam(value = "maxPrice", defaultValue = "0") double maxPrice,
 			@RequestParam(value = "expDate", defaultValue = "") String expDateStr,
 			@RequestParam("volume") int volume,
+			@RequestParam("maxVolume") int maxVol,
 			Authentication loggedInUser) throws ParseException, ServiceException {
 		checkTender(id);
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
@@ -63,6 +64,7 @@ public class TenderRenderingController extends BaseRenderingController{
 		tender.setDescription(description);
 		tender.setVolume(volume);
 		tender.setMaxPrice(maxPrice);
+		tender.setMaxVolume(maxVol);
 
 		ServiceFactory.getTenderService().merge(tender);
 

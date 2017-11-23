@@ -36,6 +36,9 @@ public class Lot implements Bid{
 	
 	@Column("skock.table.lot.volumeOfLot")
 	private int volume;
+	
+	@Column("skock.table.lot.minVolume")
+	private int minVolume;
 
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
@@ -117,10 +120,21 @@ public class Lot implements Bid{
 		this.volume = volume;
 	}
 	
+	
+	
+	public int getMinVolume() {
+		return minVolume;
+	}
+
+	public void setMinVolume(int minVolume) {
+		this.minVolume = minVolume;
+	}
+
 	@Override
 	public String toString() {
-		return "Lot [id=" + id + ", description=" + description + ", poductId=" + productId + ", minPrice=" + minPrice
-				+ ", sallerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + ", volumeOfLot=" + volume +"]";
+		return "Lot [id=" + id + ", description=" + description + ", productId=" + productId + ", minPrice=" + minPrice
+				+ ", sellerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + ", volume=" + volume
+				+ ", minVolume=" + minVolume + "]";
 	}
 
 	@Override
