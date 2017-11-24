@@ -5,6 +5,7 @@
 }
 .main-menu a{
     display: table-cell;
+    width: 20%;
     height: 50px;
     color: #c5d7d2;
     text-decoration: none;
@@ -20,7 +21,7 @@
 }   
 .main-menu a:hover {
     box-shadow: inset 0 0 9px;
-	/*color: black;*/
+	color: black;
 }
 .main-menu a:active{
     color: #c5d7d2; 
@@ -34,4 +35,28 @@ a.active {
 }
 a.active:hover{
 	box-shadow: none;
+    color: #7999a1;
+    cursor: auto;
+}
+.footer {
+    display: table;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    
+    width: 100%;
+    height: 100px;
+    
+    background-color:#7999a1;
+    border: 1px solid black;
+}
+.section {
+    display: table-cell;
+    width: 33%;
+    color: #c5d7d2;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 22px;
+    border: 1px solid #c5d7d2;
 }
