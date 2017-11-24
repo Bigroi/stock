@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `company` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.company: ~12 rows (приблизительно)
+-- Дамп данных таблицы stock.company: ~6 rows (приблизительно)
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
 INSERT IGNORE INTO `company` (`id`, `name`, `email`, `phone`, `reg_number`, `country`, `city`, `status`) VALUES
 	(1, 'aaa', 'bbb', '09988776', 'df', 'bl', 'minsk', 'VERIFIED'),
@@ -116,20 +116,15 @@ CREATE TABLE IF NOT EXISTS `lot` (
   KEY `product` (`product_Id`),
   CONSTRAINT `FK_lot_company` FOREIGN KEY (`seller_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_lot_product` FOREIGN KEY (`product_Id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.lot: ~7 rows (приблизительно)
+-- Дамп данных таблицы stock.lot: ~9 rows (приблизительно)
 /*!40000 ALTER TABLE `lot` DISABLE KEYS */;
 INSERT IGNORE INTO `lot` (`id`, `description`, `product_Id`, `min_price`, `seller_Id`, `status`, `exp_date`, `volume`, `min_Volume`) VALUES
 	(1, 'test', 1, 10.00, 1, 'CANCELED', '2017-08-23', 400, 1),
 	(3, 'ааа', 111, 5.00, 1, 'CANCELED', '2017-06-28', 120, 1),
 	(4, 'JAVATEST', 1, 110.00, 1, 'CANCELED', '2017-09-20', 0, 1),
-	(5, 'test Add', 1, 10.00, 1, 'CANCELED', '2017-08-23', 600, 1),
-	(11, 'ввв', 1, 10.00, 10, 'CANCELED', '2017-08-25', 600, 1),
-	(15, '234234', 111, 11.00, 1, 'CANCELED', '2017-11-18', 123, 6667777),
-	(16, '234234', 111, 11.00, 1, 'CANCELED', '2017-11-18', 1235, 111),
-	(17, 'dsfdsfdsf', 111, 110.20, 1, 'DRAFT', '2017-11-23', 3432, 3424),
-	(18, 'VIRA', 111, 30.33, 1, 'DRAFT', '2017-11-23', 3330, 3330);
+	(5, 'test Add', 1, 10.00, 1, 'CANCELED', '2017-08-23', 600, 1);
 /*!40000 ALTER TABLE `lot` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.predeal
@@ -186,24 +181,23 @@ CREATE TABLE IF NOT EXISTS `tender` (
   `status` varchar(50) DEFAULT NULL,
   `exp_date` date DEFAULT NULL,
   `volume` int(11) DEFAULT NULL,
-  `max_Volume` int(11) DEFAULT NULL,
+  `min_Volume` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_application_product` (`product_Id`),
   KEY `FK_application_company` (`customer_Id`),
   CONSTRAINT `FK_tender_company` FOREIGN KEY (`customer_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_tender_product` FOREIGN KEY (`product_Id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.tender: ~8 rows (приблизительно)
+-- Дамп данных таблицы stock.tender: ~7 rows (приблизительно)
 /*!40000 ALTER TABLE `tender` DISABLE KEYS */;
-INSERT IGNORE INTO `tender` (`id`, `description`, `product_Id`, `max_price`, `customer_Id`, `status`, `exp_date`, `volume`, `max_Volume`) VALUES
-	(1, 'Javatest', 1, 0.00, 1, 'CANCELED', '2017-08-23', 500, 777),
+INSERT IGNORE INTO `tender` (`id`, `description`, `product_Id`, `max_price`, `customer_Id`, `status`, `exp_date`, `volume`, `min_Volume`) VALUES
+	(1, 'Javatest', 1, 0.00, 1, 'CANCELED', '2017-08-23', 500, 777888),
 	(2, 'киви', 126, 3.00, 10, 'CANCELED', '2017-11-14', 100, 1),
 	(3, 'бананы', 111, 2.00, 10, 'CANCELED', '2017-06-28', 16, 1),
-	(11, 'Javatest', 1, 0.00, 1, 'CANCELED', '2017-07-10', 170, 34),
+	(11, 'Javatest', 1, 0.00, 1, 'CANCELED', '2017-07-10', 170, 340),
 	(12, 'lotCancel', 1, 0.00, 1, 'CANCELED', '2017-08-23', 6663, 1),
-	(13, 'sdsd', 111, 12.00, 1, 'CANCELED', '2017-11-20', 123, 1),
-	(15, 'Test', 111, 0.00, 1, 'DRAFT', '2017-11-23', 10, 666);
+	(13, 'sdsd', 111, 12.00, 1, 'CANCELED', '2017-11-20', 123, 1);
 /*!40000 ALTER TABLE `tender` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.user
@@ -217,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   CONSTRAINT `FK_user_company` FOREIGN KEY (`company_Id`) REFERENCES `company` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.user: ~9 rows (приблизительно)
+-- Дамп данных таблицы stock.user: ~6 rows (приблизительно)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT IGNORE INTO `user` (`id`, `login`, `password`, `company_Id`) VALUES
 	(1, 'Admin', '1', 1),
@@ -236,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   CONSTRAINT `FK_user_role_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.user_role: ~8 rows (приблизительно)
+-- Дамп данных таблицы stock.user_role: ~5 rows (приблизительно)
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
 INSERT IGNORE INTO `user_role` (`user_id`, `role`) VALUES
 	(1, 'ROLE_ADMIN'),

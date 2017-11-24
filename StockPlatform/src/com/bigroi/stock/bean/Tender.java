@@ -37,8 +37,8 @@ public class Tender implements Bid{
 	@Column("skock.table.tender.volumeOfTender")
 	private int volume;
 	
-	@Column("skock.table.tender.maxVolume")
-	private int maxVolume;
+	@Column("skock.table.tender.minVolume")
+	private int minVolume;
 
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
@@ -121,22 +121,19 @@ public class Tender implements Bid{
 		this.volume = volume;
 	}
 
-	 
-	public int getMaxVolume() {
-		return maxVolume;
+	public int getMinVolume() {
+		return minVolume;
 	}
 
-	public void setMaxVolume(int maxVolume) {
-		this.maxVolume = maxVolume;
+	public void setMinVolume(int minVolume) {
+		this.minVolume = minVolume;
 	}
-
-	
 	
 	@Override
 	public String toString() {
 		return "Tender [id=" + id + ", description=" + description + ", productId=" + productId + ", maxPrice="
 				+ maxPrice + ", customerId=" + customerId + ", status=" + status + ", expDate=" + expDate + ", volume="
-				+ volume + ", maxVolume=" + maxVolume + "]";
+				+ volume + ", minVolume=" + minVolume + "]";
 	}
 
 	@Override

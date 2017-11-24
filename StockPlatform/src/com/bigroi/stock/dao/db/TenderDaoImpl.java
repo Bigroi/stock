@@ -27,26 +27,26 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String ADD_TENDER = "INSERT INTO TENDER "
 			+ " (DESCRIPTION, PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, "
-			+ " STATUS, EXP_DATE, VOLUME, MAX_VOLUME) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?) ";
+			+ " STATUS, EXP_DATE, VOLUME, MIN_VOLUME) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?) ";
 		
 	private static final String UPDATE_TENDER_BY_ID = "UPDATE TENDER SET "
 			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MAX_PRICE = ?, CUSTOMER_ID = ?, "
-			+ " STATUS = ?, EXP_DATE = ?, VOLUME = ?, MAX_VOLUME = ? "
+			+ " STATUS = ?, EXP_DATE = ?, VOLUME = ?, MIN_VOLUME = ? "
 			+ " WHERE ID = ? ";
 	
 	private static final String GET_TENDER_BY_ID = "SELECT ID, DESCRIPTION, PRODUCT_ID, "
-			+ " MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME, MAX_VOLUME FROM TENDER WHERE ID = ? ";
+			+ " MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME FROM TENDER WHERE ID = ? ";
 	
 	private static final String GET_TENDERS_BY_CUSTOMER_ID = "SELECT ID, DESCRIPTION, "
-			+ "PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME, MAX_VOLUME "
+			+ "PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME "
 			+ "FROM TENDER WHERE CUSTOMER_ID = ? ";
 	
 	private static final String GET_ACTIVE_TENDERS_BY_PRODUCT_ID = "SELECT ID, DESCRIPTION, "
-			+ "PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME, MAX_VOLUME FROM TENDER WHERE "
+			+ "PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME FROM TENDER WHERE "
 			+ "PRODUCT_ID = ? AND STATUS = '" + Status.ACTIVE +"' ORDER BY MAX_PRICE DESC";
 	
 	private static final String GET_ALL_ACTIVE_TENDERS = "SELECT ID, DESCRIPTION, "
-			+ " PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME, MAX_VOLUME FROM TENDER "
+			+ " PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME FROM TENDER "
 			+ " WHERE STATUS = '" + Status.ACTIVE +"' ";
 	
 	private static final String UPDATE_STATUS_BY_CUSTOMER_ID ="UPDATE TENDER SET "
@@ -84,7 +84,7 @@ public class TenderDaoImpl implements TenderDao{
 				ps.setString(5, tender.getStatus().name().toUpperCase());
 				ps.setDate(6, new Date(tender.getExpDate().getTime()));
 				ps.setInt(7, tender.getVolume());
-				ps.setInt(8, tender.getMaxVolume());
+				ps.setInt(8, tender.getMinVolume());
 				return ps;
 			}
 		},keyHolder);
@@ -98,7 +98,7 @@ public class TenderDaoImpl implements TenderDao{
 		return	template.update(UPDATE_TENDER_BY_ID, tender.getDescription(), tender.getProductId(),
 				tender.getMaxPrice(), tender.getCustomerId(), 
 				tender.getStatus().name().toUpperCase(), tender.getExpDate(), 
-				tender.getVolume(), tender.getMaxVolume(), tender.getId()) == 1;
+				tender.getVolume(), tender.getMinVolume(), tender.getId()) == 1;
 	}
 
 	@Override
@@ -127,7 +127,7 @@ public class TenderDaoImpl implements TenderDao{
 				tender.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
 				tender.setExpDate(rs.getDate("exp_date"));
 				tender.setVolume(rs.getInt("VOLUME"));
-				tender.setMaxVolume(rs.getInt("MAX_VOLUME"));
+				tender.setMinVolume(rs.getInt("MIN_VOLUME"));
 				return tender;
 			}
 		},customerId);
@@ -182,7 +182,7 @@ public class TenderDaoImpl implements TenderDao{
 				ps.setString(5, tender.getStatus().name());
 				ps.setDate(6, new Date(tender.getExpDate().getTime()));
 				ps.setInt(7, tender.getVolume());
-				ps.setInt(8, tender.getMaxVolume());
+				ps.setInt(8, tender.getMinVolume());
 				ps.setLong(9, tender.getId());
 			}
 		});
