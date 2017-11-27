@@ -37,15 +37,22 @@ public class LotDaoImpl implements LotDao {
 	private static final String GET_LOT_BY_ID = "SELECT ID, DESCRIPTION, PRODUCT_ID, "
 			+ " MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME FROM LOT WHERE ID = ? ";
 	
-	private static final String GET_LOTS_BY_SALLER_ID = "SELECT ID, DESCRIPTION, "
-			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME FROM LOT WHERE SELLER_ID  = ? ";
+	private static final String GET_LOTS_BY_SELLER_ID = "SELECT L.ID, L.DESCRIPTION, "
+			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME, P.NAME AS PRODUCT_NAME "
+			+ " FROM LOT L "
+			+ " JOIN PRODUCT P "
+			+ " ON L.PRODUCT_ID = P.ID "
+			+ " WHERE SELLER_ID  = ? ";
 	
 	private static final String GET_ACTIVE_LOTS_BY_PRODUCT_ID = "SELECT ID, DESCRIPTION, "
 			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME FROM LOT WHERE "
 			+ " PRODUCT_ID = ? AND STATUS = '" + Status.ACTIVE +"' ORDER BY MIN_PRICE ";
 	
-	private static final String GET_ALL_ACTIVE_LOTS = "SELECT ID, DESCRIPTION,"
-			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME FROM LOT "
+	private static final String GET_ALL_ACTIVE_LOTS = "SELECT L.ID, L.DESCRIPTION,"
+			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME, P.NAME AS PRODUCT_NAME "
+			+ " FROM LOT L "
+			+ " JOIN PRODUCT P "
+			+ " ON L.PRODUCT_ID = P.ID "
 			+ " WHERE STATUS ='" + Status.ACTIVE +"' ";
 	
 	private static final String SET_STATUS_BY_SELLER_ID =
@@ -125,7 +132,7 @@ public class LotDaoImpl implements LotDao {
 	@Override
 	public List<Lot> getBySellerId(long sellerId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(GET_LOTS_BY_SALLER_ID, new RowMapper<Lot>(){
+		return template.query(GET_LOTS_BY_SELLER_ID, new RowMapper<Lot>(){
 			@Override
 			public Lot mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Lot lot = new Lot();
@@ -138,6 +145,7 @@ public class LotDaoImpl implements LotDao {
 				lot.setExpDate(rs.getDate("exp_date"));
 				lot.setVolume(rs.getInt("VOLUME"));
 				lot.setMinVolume(rs.getInt("MIN_VOLUME"));
+				lot.setProductName(rs.getString("PRODUCT_NAME"));
 				return lot;
 			}
 		}, sellerId);

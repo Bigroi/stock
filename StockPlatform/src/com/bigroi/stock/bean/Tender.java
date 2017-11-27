@@ -16,29 +16,31 @@ public class Tender implements Bid{
 	@Id
 	private long id;
 	
-	@Column("skock.table.tender.description")
-	private String description;
-	
-	@Column("skock.table.tender.productId")
 	private long productId;
 	
-	@Column("skock.table.tender.maxPrice")
-	private double maxPrice;
+	@Column("stock.table.tender.description")
+	private String description;
 	
-	@Column("skock.table.tender.customerId")
-	private long customerId;
-	
-	@Column("skock.table.tender.status")
+	@Column("stock.table.tender.status")
 	private Status status;
 	
-	@Column("skock.table.tender.expDate")
-	private Date expDate = new Date();
+	@Column("stock.table.tender.maxPrice")
+	private double maxPrice;
 	
-	@Column("skock.table.tender.volumeOfTender")
+	@Column("stock.table.tender.minVolume")
+	private int minVolume;
+	
+	@Column("stock.table.tender.volume")
 	private int volume;
 	
-	@Column("skock.table.tender.minVolume")
-	private int minVolume;
+	private long customerId;
+	
+	@Column("stock.table.tender.expDate")
+	private Date expDate = new Date();
+	
+	
+	
+	
 
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {

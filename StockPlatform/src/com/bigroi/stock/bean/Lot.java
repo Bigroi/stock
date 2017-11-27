@@ -16,30 +16,31 @@ public class Lot implements Bid{
 	@Id
 	private long id;
 	
-	@Column("skock.table.lot.description")
+	@Column("stock.table.lot.poductName")
+	private String productName;
+	
+	@Column("stock.table.lot.description")
 	private String description;
 	
-	@Column("skock.table.lot.poductId")
-	private long productId;
-	
-	@Column("skock.table.lot.minPrice")
-	private double minPrice;
-	
-	@Column("skock.table.lot.sellerId")
-	private long sellerId;
-	
-	@Column("skock.table.lot.expDate")
-	private Date expDate = new Date();
-	
-	@Column("skock.table.lot.status")
+	@Column("stock.table.lot.status")
 	private Status status;
 	
-	@Column("skock.table.lot.volumeOfLot")
+	private long productId;	
+	
+	@Column("stock.table.lot.minPrice")
+	private double minPrice;
+	
+	private long sellerId;
+	
+	@Column("stock.table.lot.minVolume")
+	private int minVolume;
+	
+	@Column("stock.table.lot.volume")
 	private int volume;
 	
-	@Column("skock.table.lot.minVolume")
-	private int minVolume;
-
+	@Column("stock.table.lot.expDate")
+	private Date expDate = new Date();
+	
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
 			return true;
@@ -47,6 +48,14 @@ public class Lot implements Bid{
 		return false;
 	}
 
+	public String getProductName() {
+		return productName;
+	}
+	
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	
 	public String getDateStr() {
 		return FORMATTER.format(expDate);
 	}

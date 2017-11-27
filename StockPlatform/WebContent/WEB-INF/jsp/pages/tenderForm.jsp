@@ -23,7 +23,7 @@
 			</c:when>
 			<c:otherwise>
 			    ${lable.tenderForm.product} - ${tender.productId}<br>
-				${lable.tenderForm.max_rice} - ${tender.maxPrice}<br>	    
+				${lable.tenderForm.max_price} - ${tender.maxPrice}<br>	    
 			    ${lable.tenderForm.exp_date} - ${tender.dateStr}<br>
 			</c:otherwise>
 		</c:choose>
