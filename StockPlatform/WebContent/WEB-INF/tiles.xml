@@ -1,84 +1,114 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
- 
-<tiles-definitions>  
-  
-   <!-- Base Definition -->
-   <definition name="base-definition"
-       template="/WEB-INF/jsp/layouts/defaultLayout.jsp">  
-       <put-attribute name="body" value="" />  
-       <put-attribute name="userHeader" value="/WEB-INF/jsp/templates/userHeader.jsp"/> 
-       <put-attribute name="anonimusHeader" value="/WEB-INF/jsp/templates/anonimusHeader.jsp"/>
-       <put-attribute name="adminHeader" value="/WEB-INF/jsp/templates/adminHeader.jsp"/>
-       <put-attribute name="footer" value="/WEB-INF/jsp/templates/defaultFooter.jsp" />  
-   </definition>  
-  
-   <!-- Home Page -->
-   <definition name="mian" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/mian.jsp" /> 
-   </definition>
-   
-   <definition name="login" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/login.jsp" /> 
-   </definition>
-   
-   <definition name="registration" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/registration.jsp" /> 
-   </definition>
-  
-  <definition name="account" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/account.jsp" /> 
-   </definition>
-   
-   <definition name="approveLink" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/approveLink.jsp" /> 
-   </definition>
-   
-   <definition name="users" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/users.jsp" /> 
-   </definition>
-   
-   <definition name="companies" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/companies.jsp" /> 
-   </definition>
-   
-   <definition name="lotForm" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/lotForm.jsp" /> 
-   </definition>
-   
-   <definition name="myLots" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/myLots.jsp" /> 
-   </definition>
-   
-   <definition name="myTenders" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/myTenders.jsp" /> 
-   </definition>
-   
-   <definition name="productForm" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/productForm.jsp" /> 
-   </definition>
-   
-   <definition name="products" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/products.jsp" /> 
-   </definition>
-   
-   <definition name="productsForAdmin" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/productsForAdmin.jsp" /> 
-   </definition>
-   
-   <definition name="tenderForm" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/tenderForm.jsp" /> 
-   </definition>
-   
-   <definition name="tradeOffers" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/tradeOffers.jsp" /> 
-   </definition>
-   
-   <definition name="testBG" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/test/testBG.jsp" /> 
-   </definition>
-   
-   <definition name="registrationSuccess" extends="base-definition">  
-       <put-attribute name="body" value="/WEB-INF/jsp/pages/registrationSuccess.jsp" /> 
-   </definition>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Base Definition -->
+	<definition name="base-definition" template="/WEB-INF/jsp/layouts/defaultLayout.jsp">
+		<put-attribute name="body" value="" />
+		<put-attribute name="userHeader" value="/WEB-INF/jsp/templates/userHeader.jsp"/>
+		<put-attribute name="nav-account" value="" cascade="true"/>
+		<put-attribute name="nav-products" value="" cascade="true"/>
+		<put-attribute name="nav-tenders" value="" cascade="true"/>
+		<put-attribute name="nav-lots" value="" cascade="true"/>
+		<put-attribute name="nav-welcome" value="" cascade="true"/>
+
+		<put-attribute name="anonimusHeader" value="/WEB-INF/jsp/templates/anonimusHeader.jsp" />
+		<put-attribute name="nav-regestration" value="" cascade="true"/>
+		<put-attribute name="nav-login" value="" cascade="true"/>
+		
+		<put-attribute name="adminHeader" value="/WEB-INF/jsp/templates/adminHeader.jsp"/>
+		<put-attribute name="nav-users" value="" cascade="true"/>
+		<put-attribute name="nav-productsExt" value="" cascade="true"/>
+		<put-attribute name="nav-company" value="" cascade="true"/>
+		<put-attribute name="nav-testBG" value="" cascade="true"/>
+		
+		<put-attribute name="footer" value="/WEB-INF/jsp/templates/defaultFooter.jsp" />
+	</definition>
+
+	<!-- Home Page -->
+	<definition name="mian" extends="base-definition">
+		<put-attribute name="nav-welcome" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/mian.jsp" />
+	</definition>
+
+	<definition name="login" extends="base-definition">
+		<put-attribute name="nav-login" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/login.jsp" />
+	</definition>
+
+	<definition name="registration" extends="base-definition">
+		<put-attribute name="nav-regestration" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/registration.jsp" />
+	</definition>
+
+	<definition name="account" extends="base-definition">
+		<put-attribute name="nav-account" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/account.jsp" />
+	</definition>
+
+	<definition name="approveLink" extends="base-definition">
+		<put-attribute name="nav-productsExt" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/approveLink.jsp" />
+	</definition>
+
+	<definition name="users" extends="base-definition">
+		<put-attribute name="nav-users" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/users.jsp" />
+	</definition>
+
+	<definition name="companies" extends="base-definition">
+		<put-attribute name="nav-company" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/companies.jsp" />
+	</definition>
+
+	<definition name="lotForm" extends="base-definition">
+		<put-attribute name="nav-lots" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/lotForm.jsp" />
+	</definition>
+
+	<definition name="myLots" extends="base-definition">
+		<put-attribute name="nav-lots" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/myLots.jsp" />
+	</definition>
+
+	<definition name="myTenders" extends="base-definition">
+		<put-attribute name="nav-tenders" value="active" cascade="true" />
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/myTenders.jsp" />
+	</definition>
+
+	<definition name="productForm" extends="base-definition">
+		<put-attribute name="nav-welcome" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/productForm.jsp" />
+	</definition>
+
+	<definition name="products" extends="base-definition">
+		<put-attribute name="nav-products" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/products.jsp" />
+	</definition>
+
+	<definition name="productsForAdmin" extends="base-definition">
+		<put-attribute name="nav-productsExt" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/productsForAdmin.jsp" />
+	</definition>
+
+	<definition name="tenderForm" extends="base-definition">
+		<put-attribute name="nav-tenders" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/tenderForm.jsp" />
+	</definition>
+
+	<definition name="tradeOffers" extends="base-definition">
+		<put-attribute name="nav-products" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/tradeOffers.jsp" />
+	</definition>
+
+	<definition name="testBG" extends="base-definition">
+		<put-attribute name="nav-testBG" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/test/testBG.jsp" />
+	</definition>
+
+	<definition name="registrationSuccess" extends="base-definition">
+		<put-attribute name="nav-regestration" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/registrationSuccess.jsp" />
+	</definition>
 </tiles-definitions>
