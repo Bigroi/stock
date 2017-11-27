@@ -1,8 +1,6 @@
 package com.bigroi.stock.serviceTest;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -24,9 +22,6 @@ public class UserAddService {
 	
 	public static UserRole userRole;
 	
-	public static List<UserRole> listRole = new ArrayList<>();
-	
-	
 	@BeforeClass
 	public static void init(){
 		company = new Company();
@@ -44,17 +39,11 @@ public class UserAddService {
 		user.setLogin("TEST!!!!!!!");
 		user.setPassword("!!");
 		user.setCompanyId(22);
-		
-		userRole = new UserRole();
-		userRole.setUserId(22);
-		userRole.setRole(Role.ROLE_USER);
-		
-		listRole.add(userRole);
 	}
 	
 	@Test
 	public void userAdd() throws ServiceException, SQLException{
-		ServiceFactory.getUserService().addUser(company, user, listRole );
+		ServiceFactory.getUserService().addUser(company, user, new Role[]{Role.ROLE_USER} );
 		Assert.assertNotNull(user);
 	}
 
