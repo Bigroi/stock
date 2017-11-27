@@ -1,8 +1,5 @@
 package com.bigroi.stock.controller.resource;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +7,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.StockUser;
-import com.bigroi.stock.bean.UserRole;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.bean.common.Role;
 import com.bigroi.stock.json.ResultBean;
@@ -36,12 +32,7 @@ public class AccessResourceController extends BaseResourseController {
 		Company company = new Gson().fromJson(jsonCompany, Company.class);
 		company.setStatus(CompanyStatus.NOT_VERIFIED);
 		
-		UserRole userRole = new UserRole();
-		List<UserRole> listRole = new ArrayList<>();
-		userRole.setRole(Role.ROLE_USER);
-		listRole.add(userRole);
-		//XXX the same as in rendering controller
-		ServiceFactory.getUserService().addUser(company, user, listRole);
+		ServiceFactory.getUserService().addUser(company, user, new Role[]{Role.ROLE_USER});
 		return new ResultBean(1, "registration.success").toString();
 	}
 

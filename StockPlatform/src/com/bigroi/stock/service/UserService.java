@@ -7,11 +7,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.StockUser;
-import com.bigroi.stock.bean.UserRole;
+import com.bigroi.stock.bean.common.Role;
 
 public interface UserService extends UserDetailsService{
 
-	void addUser(Company company, StockUser user, List<UserRole> userRole)throws ServiceException;
+	void addUser(Company company, StockUser user, Role[] roles)throws ServiceException;
 	
 	void updateCompanyAndUser(StockUser user, Company company)throws ServiceException;
 	

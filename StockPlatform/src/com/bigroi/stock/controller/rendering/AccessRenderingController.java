@@ -1,8 +1,5 @@
 package com.bigroi.stock.controller.rendering;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.StockUser;
-import com.bigroi.stock.bean.UserRole;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.bean.common.Role;
 import com.bigroi.stock.service.ServiceException;
@@ -51,18 +47,10 @@ public class AccessRenderingController extends BaseRenderingController{
 		company.setStatus(CompanyStatus.NOT_VERIFIED);
 		
 		StockUser user = new StockUser();
-		StockUser userId = ServiceFactory.getUserService().getUserId();
-		user.setId(userId.getId()+1);
 		user.setLogin(login);
 		user.setPassword(password);
-		user.setCompanyId(company.getId());
 		
-		UserRole userRole = new UserRole();
-		List<UserRole> listRole = new ArrayList<>();
-		userRole.setUserId(user.getId());
-		userRole.setRole(Role.ROLE_USER);
-		listRole.add(userRole);
-		ServiceFactory.getUserService().addUser(company, user, listRole);
+		ServiceFactory.getUserService().addUser(company, user, new Role[]{Role.ROLE_USER});
 		
 		ModelAndView modelAndView = createModelAndView("registrationSuccess");
 		modelAndView.addObject("user", user);

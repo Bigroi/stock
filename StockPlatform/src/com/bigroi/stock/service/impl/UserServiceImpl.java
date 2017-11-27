@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.UserRole;
+import com.bigroi.stock.bean.common.Role;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserDao;
@@ -41,15 +42,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void addUser(Company company, StockUser user, List<UserRole> userRole) throws ServiceException {
+	public void addUser(Company company, StockUser user, Role[] roles) throws ServiceException {
 		try {
 			companyDao.add(company);
 			user.setCompanyId(company.getId());
 			userDao.add(user);
 			List<UserRole> listRole = new ArrayList<>();
-			for (UserRole list : userRole) {
-				list.setUserId(user.getId());
-				listRole.add(list);
+			for (Role role : roles) {
+				UserRole userRole = new UserRole();
+				userRole.setRole(role);
+				userRole.setUserId(user.getId());
+				listRole.add(userRole);
 			}
 			userRoleDao.add(listRole);
 		} catch (DaoException e) {
