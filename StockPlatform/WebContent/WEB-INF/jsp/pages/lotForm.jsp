@@ -30,7 +30,16 @@
 		</c:choose>
 		<input type="submit" name="save" value="${lable.button.save}"><br> 
 	</form>
+	<br>
 	
+	<form action="/lot/StartTrading.spr">
+		<input type="submit" value="${lable.lotForm.start_trading}">
+	</form><br>
+	
+	<form action="/lot/Cancel.spr">
+		<input type="submit" value="${lable.lotForm.cancel}">
+	</form>
+	<br>
 	<form action="/lot/MyList.spr">
 		<input type="submit" value="${lable.lotForm.my_lots}">
 	</form>

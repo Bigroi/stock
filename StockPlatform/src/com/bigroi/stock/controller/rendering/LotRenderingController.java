@@ -92,18 +92,20 @@ public class LotRenderingController extends BaseRenderingController{
 	//TODO move to js
 	@RequestMapping("/StartTrading.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView startTrading(@RequestParam("id") long id) throws ServiceException {
+	public ModelAndView startTrading(@RequestParam("id") long id, 
+			Authentication loggedInUser) throws ServiceException {
 		checkLot(id);
 		ServiceFactory.getLotService().startTrading(id);
-		return myList();
+		return form(id, loggedInUser);
 	}
 	
 	//TODO move to js
 	@RequestMapping("/Cancel.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView lotCancel(@RequestParam("id") long id) throws ServiceException {
+	public ModelAndView lotCancel(@RequestParam("id") long id, 
+			Authentication loggedInUser) throws ServiceException {
 		checkLot(id);
 		ServiceFactory.getLotService().cancel(id);
-		return myList();
+		return form(id, loggedInUser);
 	}
 }

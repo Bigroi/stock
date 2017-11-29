@@ -30,6 +30,15 @@
 		<input type="submit" name="save" value="${lable.button.save}"><br> 
 	</form>
 	
+	<form action="/tender/StartTrading.spr">
+		<input type="submit" value="${lable.tenderForm.start_trading}">
+	</form>
+	
+	<br>
+	<form action="/tender/Cancel.spr">
+		<input type="submit" value="${lable.tenderForm.cancel}">
+	</form>
+	<br>
 	<form action="/tender/MyList.spr">
 		<input type="submit" value="${lable.tenderForm.my_tenders}">
 	</form>

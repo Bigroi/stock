@@ -80,19 +80,21 @@ public class TenderRenderingController extends BaseRenderingController{
 	//TODO move to js
 	@RequestMapping("/StartTrading.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView startTrading(@RequestParam("id") long id) throws  ServiceException {
+	public ModelAndView startTrading(@RequestParam("id") long id,
+			Authentication loggedInUser) throws  ServiceException {
 		checkTender(id);
 		ServiceFactory.getTenderService().startTrading(id);
-		return myList();
+		return form(id, loggedInUser);
 	}
 	
 	//TODO move to js
 	@RequestMapping("/Cancel.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView cancel(@RequestParam("id") long id) throws  ServiceException {
+	public ModelAndView cancel(@RequestParam("id") long id,
+			Authentication loggedInUser) throws  ServiceException {
 		checkTender(id);
 		ServiceFactory.getTenderService().cancel(id);
-		return myList();
+		return form(id, loggedInUser);
 	}
 	
 	private void checkTender(long id) throws ServiceException{
