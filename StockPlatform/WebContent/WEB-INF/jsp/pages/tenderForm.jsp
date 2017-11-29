@@ -31,14 +31,16 @@
 	</form>
 	
 	<form action="/tender/StartTrading.spr">
+		<input type="hidden" name="id" value="${tender.id}"> 
 		<input type="submit" value="${lable.tenderForm.start_trading}">
 	</form>
 	
 	<br>
 	<form action="/tender/Cancel.spr">
+		<input type="hidden" name="id" value="${tender.id}"> 
 		<input type="submit" value="${lable.tenderForm.cancel}">
 	</form>
 	<br>
-	<form action="/tender/MyList.spr">
+	<form action="/tender/MyTenders.spr">
 		<input type="submit" value="${lable.tenderForm.my_tenders}">
 	</form>

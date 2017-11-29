@@ -33,13 +33,15 @@
 	<br>
 	
 	<form action="/lot/StartTrading.spr">
+		<input type="hidden" name="id" value="${lot.id}">
 		<input type="submit" value="${lable.lotForm.start_trading}">
 	</form><br>
 	
 	<form action="/lot/Cancel.spr">
+		<input type="hidden" name="id" value="${lot.id}">
 		<input type="submit" value="${lable.lotForm.cancel}">
 	</form>
 	<br>
-	<form action="/lot/MyList.spr">
+	<form action="/lot/MyLots.spr">
 		<input type="submit" value="${lable.lotForm.my_lots}">
 	</form>
