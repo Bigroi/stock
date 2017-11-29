@@ -46,17 +46,17 @@ CREATE TABLE IF NOT EXISTS `company` (
   `city` varchar(50) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы stock.company: ~6 rows (приблизительно)
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
 INSERT IGNORE INTO `company` (`id`, `name`, `email`, `phone`, `reg_number`, `country`, `city`, `status`) VALUES
-	(1, 'aaa', 'bbb', '09988776', 'df', 'bl', 'minsk', 'VERIFIED'),
-	(2, 'evgen', 'evgen', 'evgen', 'evgen', 'evgen', 'evgen', 'VERIFIED'),
-	(3, 'user', 'userMail', '12314', '443asd12', 'Bel', 'Mn', 'VERIFIED'),
-	(10, 'user', 'we', '23', '23qwe', 'bel', 'mn', 'VERIFIED'),
-	(11, 'asdasd', 'asdasdas', 'asdas', '123123', 'asdasd', 'asdasd', 'NOT_VERIFIED'),
-	(12, 'asdasd', 'asdasdas', 'asdas', '123123', 'asdasd', 'asdasd', 'NOT_VERIFIED');
+	(1, 'aaa', 'appcc@mail.ru', '09988776', 'df', 'bl', 'minsk', 'VERIFIED'),
+	(2, 'evgen', 'appcc@mail.ru', 'evgen', 'evgen', 'evgen', 'evgen', 'VERIFIED'),
+	(3, 'user', 'javadev6891@gmail.com', '12314', '443asd12', 'Bel', 'Mn', 'VERIFIED'),
+	(10, 'user', 'javadev6891@gmail.com', '23', '23qwe', 'bel', 'mn', 'VERIFIED'),
+	(11, 'asdasd', 'asd@mail.ru', 'asdas', '123123', 'asdasd', 'asdasd', 'NOT_VERIFIED'),
+	(12, 'asdasd', 'asdwe@mail.ru', 'asdas', '123123', 'asdasd', 'asdasd', 'NOT_VERIFIED');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.deals
@@ -91,13 +91,6 @@ CREATE TABLE IF NOT EXISTS `email` (
 
 -- Дамп данных таблицы stock.email: ~6 rows (приблизительно)
 /*!40000 ALTER TABLE `email` DISABLE KEYS */;
-INSERT IGNORE INTO `email` (`id`, `to_email`, `email_subject`, `email_text`) VALUES
-	(2, 'asd@asd,com', 'sdfsdf', 'asfsdf'),
-	(5, '@todo', 'subj', 'text'),
-	(6, 'abc@mail.ru', 'Bingo!!!', '?? ? ??? ????????????? ??????? ??????????? ?????? ?? ?????? ???? ?1'),
-	(7, 'abc@mail.ru', 'Bingo!!!', '?? ? ??? ????????????? ??????? ??????????? ?????? ?? ?????? ???? ?1'),
-	(8, 'abc@mail.ru', '????? ?? ??????.', '? ?????????, ??? ????????????? ??????? ????????? ?? ?????? ???? ?3.'),
-	(9, 'we', 'Ваш пароль сброшен.', 'Здравствуйте!\r\nПароль пользователя user2 был изменён.\r\nНовый пароль: .*kTaSpk .\r\nС уважением, администрация ресурса.');
 /*!40000 ALTER TABLE `email` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.lot
@@ -116,9 +109,9 @@ CREATE TABLE IF NOT EXISTS `lot` (
   KEY `product` (`product_Id`),
   CONSTRAINT `FK_lot_company` FOREIGN KEY (`seller_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_lot_product` FOREIGN KEY (`product_Id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.lot: ~9 rows (приблизительно)
+-- Дамп данных таблицы stock.lot: ~4 rows (приблизительно)
 /*!40000 ALTER TABLE `lot` DISABLE KEYS */;
 INSERT IGNORE INTO `lot` (`id`, `description`, `product_Id`, `min_price`, `seller_Id`, `status`, `exp_date`, `volume`, `min_Volume`) VALUES
 	(1, 'test', 1, 10.00, 1, 'CANCELED', '2017-08-23', 400, 1),
@@ -187,9 +180,9 @@ CREATE TABLE IF NOT EXISTS `tender` (
   KEY `FK_application_company` (`customer_Id`),
   CONSTRAINT `FK_tender_company` FOREIGN KEY (`customer_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_tender_product` FOREIGN KEY (`product_Id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.tender: ~7 rows (приблизительно)
+-- Дамп данных таблицы stock.tender: ~6 rows (приблизительно)
 /*!40000 ALTER TABLE `tender` DISABLE KEYS */;
 INSERT IGNORE INTO `tender` (`id`, `description`, `product_Id`, `max_price`, `customer_Id`, `status`, `exp_date`, `volume`, `min_Volume`) VALUES
 	(1, 'Javatest', 1, 0.00, 1, 'CANCELED', '2017-08-23', 500, 777888),
@@ -209,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   KEY `FK_user_company` (`company_Id`),
   CONSTRAINT `FK_user_company` FOREIGN KEY (`company_Id`) REFERENCES `company` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы stock.user: ~6 rows (приблизительно)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
