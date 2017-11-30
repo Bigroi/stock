@@ -7,10 +7,18 @@
 		<input type="hidden" name="id" value="${tender.id}"> 
 		<input type="hidden" name="status" value="${tender.status}">
 
-		${lable.tenderForm.description} <input name="description" value="${tender.description}"><br>
-		${lable.tenderForm.volume} <input name="volume" value="${tender.volume}"><br>
-		${lable.tenderForm.min_Volume } <input name="minVolume" value="${tender.minVolume }"><br>
-		<c:choose>
+	<c:forEach var="product" items="${listOfProducts}">
+		<c:if test="${tender.productId == product.id }">
+			${lable.tenderForm.product} <input value="${product.name}" /><br>
+		</c:if>
+	</c:forEach>
+	     ${lable.tenderForm.description} <input name="description" value="${tender.description}"><br>
+	     ${lable.tenderForm.status}-<c:out value="${tender.status}"></c:out><br>
+	     ${lable.tenderForm.max_price}  <input name="maxPrice" value="${tender.maxPrice}"><br>
+	     ${lable.tenderForm.min_Volume } <input name="minVolume" value="${tender.minVolume }"><br>
+		 ${lable.tenderForm.max_volume} <input name="volume" value="${tender.volume}"><br>
+		 ${lable.tenderForm.exp_date} <input name="expDate" value="${tender.dateStr}"><br>
+	<c:choose>
 			<c:when test="${tender.id == '-1'}">
 				${lable.tenderForm.product}  <select name="productId">
 					<option>choose product</option>
@@ -22,14 +30,13 @@
 			    ${lable.tenderForm.exp_date} <input name="expDate" value="${tender.dateStr}"><br>
 			</c:when>
 			<c:otherwise>
-			    ${lable.tenderForm.product} - ${tender.productId}<br>
-				${lable.tenderForm.max_price} - ${tender.maxPrice}<br>	    
-			    ${lable.tenderForm.exp_date} - ${tender.dateStr}<br>
+			   <%--  ${lable.tenderForm.product} - ${tender.productId}<br>
+				 ${lable.tenderForm.max_price} - ${tender.maxPrice}<br>	    
+			    ${lable.tenderForm.exp_date} - ${tender.dateStr}<br> --%>
 			</c:otherwise>
 		</c:choose>
 		<input type="submit" name="save" value="${lable.button.save}"><br> 
 	</form>
-	
 	<form action="/tender/StartTrading.spr">
 		<input type="hidden" name="id" value="${tender.id}"> 
 		<input type="submit" value="${lable.tenderForm.start_trading}">
