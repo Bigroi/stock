@@ -26,7 +26,7 @@ public class ProductResourseController extends BaseResourseController {
 	public String list() throws TableException, ServiceException {
 		List<Product> products = ServiceFactory.getProductService().getAllActiveProducts();
 		Table<Product> table = new Table<>(Product.class, products)
-		.exclude(2);
+		.exclude(3);
 		return new ResultBean(1, table).toString();
 	}
 

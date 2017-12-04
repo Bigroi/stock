@@ -25,8 +25,7 @@
 					<c:forEach var="product" items="${listOfProducts}">
 						<option value="${product.id}">${product.name}</option>
 					</c:forEach>
-				</select><br> 
-				${lable.tenderForm.max_price}  <input name="maxPrice" value="${tender.maxPrice}"><br>	    
+				</select><br>     
 			    ${lable.tenderForm.exp_date} <input name="expDate" value="${tender.dateStr}"><br>
 			</c:when>
 			<c:otherwise>

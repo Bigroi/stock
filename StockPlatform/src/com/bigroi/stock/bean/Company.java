@@ -29,6 +29,12 @@ public class Company {
 	
 	@Column("skock.table.company.status")
 	private CompanyStatus status;
+	
+	@Column("skock.table.company.length")
+	private double length;
+	
+	@Column("skock.table.company.width")
+	private double width;
 
 	public long getId() {
 		return id;
@@ -94,10 +100,27 @@ public class Company {
 		this.status = status;
 	}
 
+	public double getLength() {
+		return length;
+	}
+
+	public void setLength(double length) {
+		this.length = length;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public void setWidth(double width) {
+		this.width = width;
+	}
+
 	@Override
 	public String toString() {
 		return "Company [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", regNumber="
-				+ regNumber + ", country=" + country + ", city=" + city + ", status=" + status + "]";
+				+ regNumber + ", country=" + country + ", city=" + city + ", status=" + status + ", length=" + length
+				+ ", width=" + width + "]";
 	}
 
 }

@@ -27,7 +27,6 @@
 						<option value="${product.id}">${product.name}</option>
 					</c:forEach>
 				</select><br>                         	
-				${lable.lotForm.min_price}<input name="minPrice" value="${lot.minPrice}"><br>
 				${lable.lotForm.exp_date}<input name="expDate" value="${lot.dateStr}"><br>
 			</c:when>
 			<c:otherwise>
