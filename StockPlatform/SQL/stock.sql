@@ -45,18 +45,20 @@ CREATE TABLE IF NOT EXISTS `company` (
   `country` varchar(50) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
+  `length` decimal(10,2) DEFAULT NULL,
+  `width` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы stock.company: ~6 rows (приблизительно)
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT IGNORE INTO `company` (`id`, `name`, `email`, `phone`, `reg_number`, `country`, `city`, `status`) VALUES
-	(1, 'aaa', 'appcc@mail.ru', '09988776', 'df', 'bl', 'minsk', 'VERIFIED'),
-	(2, 'evgen', 'appcc@mail.ru', 'evgen', 'evgen', 'evgen', 'evgen', 'VERIFIED'),
-	(3, 'user', 'javadev6891@gmail.com', '12314', '443asd12', 'Bel', 'Mn', 'VERIFIED'),
-	(10, 'user', 'javadev6891@gmail.com', '23', '23qwe', 'bel', 'mn', 'VERIFIED'),
-	(11, 'asdasd', 'asd@mail.ru', 'asdas', '123123', 'asdasd', 'asdasd', 'NOT_VERIFIED'),
-	(12, 'asdasd', 'asdwe@mail.ru', 'asdas', '123123', 'asdasd', 'asdasd', 'NOT_VERIFIED');
+INSERT IGNORE INTO `company` (`id`, `name`, `email`, `phone`, `reg_number`, `country`, `city`, `status`, `length`, `width`) VALUES
+	(1, 'aaa', 'appcc@mail.ru', '09988776', 'df', 'bl', 'minsk', 'VERIFIED', 27.24, 53.57),
+	(2, 'evgen', 'appcc@mail.ru', 'evgen', 'evgen', 'evgen', 'evgen', 'VERIFIED', 1.00, 1.00),
+	(3, 'user', 'javadev6891@gmail.com', '12314', '443asd12', 'Bel', 'Mn', 'VERIFIED', 1.00, 1.00),
+	(10, 'user', 'javadev6891@gmail.com', '23', '23qwe', 'bel', 'mn', 'VERIFIED', 1.00, 1.00),
+	(11, 'asdasd', 'asd@mail.ru', 'asdas', '123123', 'asdasd', 'asdasd', 'NOT_VERIFIED', 1.00, 1.00),
+	(12, 'asdasd', 'asdwe@mail.ru', 'asdas', '123123', 'asdasd', 'asdasd', 'NOT_VERIFIED', 1.00, 1.00);
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.deals
@@ -87,9 +89,9 @@ CREATE TABLE IF NOT EXISTS `email` (
   `email_subject` varchar(100) DEFAULT NULL,
   `email_text` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.email: ~6 rows (приблизительно)
+-- Дамп данных таблицы stock.email: ~0 rows (приблизительно)
 /*!40000 ALTER TABLE `email` DISABLE KEYS */;
 /*!40000 ALTER TABLE `email` ENABLE KEYS */;
 
@@ -114,10 +116,10 @@ CREATE TABLE IF NOT EXISTS `lot` (
 -- Дамп данных таблицы stock.lot: ~4 rows (приблизительно)
 /*!40000 ALTER TABLE `lot` DISABLE KEYS */;
 INSERT IGNORE INTO `lot` (`id`, `description`, `product_Id`, `min_price`, `seller_Id`, `status`, `exp_date`, `volume`, `min_Volume`) VALUES
-	(1, 'test', 1, 10.00, 1, 'CANCELED', '2017-08-23', 400, 1),
-	(3, 'ааа', 111, 5.00, 1, 'CANCELED', '2017-06-28', 120, 1),
-	(4, 'JAVATEST', 1, 110.00, 1, 'CANCELED', '2017-09-20', 0, 1),
-	(5, 'test Add', 1, 10.00, 1, 'CANCELED', '2017-08-23', 600, 1);
+	(1, 'LOT', 1, 10.00, 1, 'ACTIVE', '2017-08-23', 400, 1),
+	(3, 'ааа', 111, 5.00, 11, 'CANCELED', '2017-06-28', 120, 1),
+	(4, 'JAVATEST', 127, 110.00, 11, 'CANCELED', '2017-09-20', 0, 1),
+	(5, 'test Add', 13, 10.00, 12, 'CANCELED', '2017-08-23', 600, 1);
 /*!40000 ALTER TABLE `lot` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.predeal
@@ -154,14 +156,14 @@ CREATE TABLE IF NOT EXISTS `product` (
 -- Дамп данных таблицы stock.product: ~8 rows (приблизительно)
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
 INSERT IGNORE INTO `product` (`id`, `name`, `description`, `archive`) VALUES
-	(1, 'apple', 'product', 'Y'),
-	(13, 'TEST_ARCHIVE', 'product', 'Y'),
+	(1, 'apple', 'product', 'N'),
+	(13, 'banan', 'product', 'N'),
 	(111, 'киви', 'вкусно', 'N'),
-	(126, 'test', 'tse', 'Y'),
-	(127, 'rt1222323', 'rt', 'N'),
-	(131, 'TRUE1', 'TRUE', 'N'),
-	(132, 'Stock', 'StockPlatform1', 'Y'),
-	(133, '1', '1', 'N');
+	(126, 'morkovka', 'tse', 'N'),
+	(127, 'kapusta', 'rt', 'N'),
+	(131, 'tikva', 'TRUE', 'N'),
+	(132, 'ukrop', 'StockPlatform1', 'N'),
+	(133, 'kartoxa!', '1', 'N');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.tender
@@ -180,17 +182,18 @@ CREATE TABLE IF NOT EXISTS `tender` (
   KEY `FK_application_company` (`customer_Id`),
   CONSTRAINT `FK_tender_company` FOREIGN KEY (`customer_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_tender_product` FOREIGN KEY (`product_Id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.tender: ~6 rows (приблизительно)
+-- Дамп данных таблицы stock.tender: ~7 rows (приблизительно)
 /*!40000 ALTER TABLE `tender` DISABLE KEYS */;
 INSERT IGNORE INTO `tender` (`id`, `description`, `product_Id`, `max_price`, `customer_Id`, `status`, `exp_date`, `volume`, `min_Volume`) VALUES
-	(1, 'Javatest', 1, 0.00, 1, 'CANCELED', '2017-08-23', 500, 777888),
+	(1, 'Javatest', 1, 1230.01, 1, 'ACTIVE', '2017-08-23', 500, 777888),
 	(2, 'киви', 126, 3.00, 10, 'CANCELED', '2017-11-14', 100, 1),
 	(3, 'бананы', 111, 2.00, 10, 'CANCELED', '2017-06-28', 16, 1),
-	(11, 'Javatest', 1, 0.00, 1, 'CANCELED', '2017-07-10', 170, 340),
-	(12, 'lotCancel', 1, 0.00, 1, 'CANCELED', '2017-08-23', 6663, 1),
-	(13, 'sdsd', 111, 12.00, 1, 'CANCELED', '2017-11-20', 123, 1);
+	(11, 'Javatest', 127, 0.00, 11, 'CANCELED', '2017-07-10', 170, 340),
+	(12, 'lotCancel', 132, 0.00, 12, 'CANCELED', '2017-08-23', 6663, 1),
+	(13, 'sdsd', 111, 12.00, 12, 'CANCELED', '2017-11-20', 123, 1),
+	(14, 'бомба!', 111, 10.01, 1, 'CANCELED', '2017-11-30', 10, 4);
 /*!40000 ALTER TABLE `tender` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.user
