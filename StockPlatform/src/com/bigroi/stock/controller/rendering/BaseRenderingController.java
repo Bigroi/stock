@@ -57,6 +57,19 @@ public class BaseRenderingController {
 		}
 	}
 	
+	protected final String getLableValue(String lable){
+		Object object = defaultLabls;
+		for (String key : lable.split("\\.")){
+			@SuppressWarnings("unchecked")
+			Map<String, Object> map = (Map<String, Object>)object;
+			object = map.get(key);
+			if (object == null){
+				break;
+			}
+		}
+		return object == null ? lable : object.toString();
+	}
+	
 	private static void initPageNames(){
 		try(InputStream pageNamesInputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(PAGE_NAMES)){
 			BufferedReader pageNameReader = new BufferedReader(new InputStreamReader(pageNamesInputStream, StandardCharsets.UTF_8));

@@ -12,7 +12,7 @@
 		<script src="/js/jQuery.js"></script> 
 		<script src="/js/tableMaker.js"></script>	
 		<script src="/js/tableSorter.js"></script>	
-
+		<script src="/js/map.js"></script>	
 	</head>
 	<body>
 		<sec:authorize access="hasAnyRole('ADMIN', 'USER')">

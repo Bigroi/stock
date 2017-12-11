@@ -31,10 +31,10 @@ public class Company {
 	private CompanyStatus status;
 	
 	@Column("skock.table.company.length")
-	private double length;
+	private double length = 26.001813399999946;
 	
 	@Column("skock.table.company.width")
-	private double width;
+	private double width = 53.1568911;
 
 	public long getId() {
 		return id;

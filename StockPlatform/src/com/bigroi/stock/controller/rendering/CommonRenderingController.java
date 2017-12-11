@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigroi.stock.bean.Company;
 
 @Controller
 public class CommonRenderingController extends BaseRenderingController{
@@ -20,6 +21,8 @@ public class CommonRenderingController extends BaseRenderingController{
 
 	@RequestMapping("/Registration.spr")
 	public ModelAndView goToRegistrationPage() {
-		return createModelAndView("registration");
+		ModelAndView modelAndView = createModelAndView("registration");
+		modelAndView.addObject("company", new Company());
+		return modelAndView;
 	}
 }

@@ -27,16 +27,12 @@ public class AccessRenderingController extends BaseRenderingController{
 			@RequestParam("phone") String phone,
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
-			@RequestParam("city") String city
+			@RequestParam("city") String city,
+			@RequestParam("width") float width,
+			@RequestParam("length") float length
 			) throws ServiceException{
 		
 		StockUser oldUser = ServiceFactory.getUserService().getByLogin(login);
-		if (oldUser != null) {
-			return new ModelAndView("registration","message", "registration.login.error" );
-		}
-		if (!password.equals(passwordRepeat)) {
-			return new ModelAndView("registration","message", "registration.password.error" );		
-		}
 		Company company = new Company();
 		company.setName(name);
 		company.setEmail(email);
@@ -45,15 +41,32 @@ public class AccessRenderingController extends BaseRenderingController{
 		company.setCountry(country);
 		company.setCity(city);
 		company.setStatus(CompanyStatus.NOT_VERIFIED);
+		company.setLength(length);
+		company.setWidth(width);
 		
 		StockUser user = new StockUser();
 		user.setLogin(login);
 		user.setPassword(password);
 		
+		if (oldUser != null) {
+			ModelAndView modelAndView = createModelAndView("registration");
+			modelAndView.addObject("message", getLableValue("lable.registration.loggin_error"));
+			modelAndView.addObject("user", user);
+			modelAndView.addObject("company", company);
+			return modelAndView;
+		}
+		if (!password.equals(passwordRepeat)) {
+			ModelAndView modelAndView = createModelAndView("registration");
+			modelAndView.addObject("message", getLableValue("lable.registration.password_error"));
+			modelAndView.addObject("user", user);
+			modelAndView.addObject("company", company);
+			return modelAndView;
+		}
+		
+		
 		ServiceFactory.getUserService().addUser(company, user, new Role[]{Role.ROLE_USER});
 		
 		ModelAndView modelAndView = createModelAndView("registrationSuccess");
-		modelAndView.addObject("user", user);
 		return modelAndView;
 	}
 }
