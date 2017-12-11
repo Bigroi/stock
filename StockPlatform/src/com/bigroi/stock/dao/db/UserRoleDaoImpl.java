@@ -17,7 +17,7 @@ import com.bigroi.stock.dao.UserRoleDao;
 
 public class UserRoleDaoImpl implements UserRoleDao {
 	
-	private static final String ADD_USER_ROLE_BY_USER_ID = " INSERT INTO user_role (user_id, ROLE) VALUES(?,?) ";
+	private static final String ADD_USER_ROLE_BY_USER_ID = " INSERT INTO USER_ROLE (USER_ID, ROLE) VALUES(?,?) ";
 	
 	private DataSource datasource;
 
