@@ -28,8 +28,31 @@ function initMap() {
 	});
   
 	map.addListener('click', function(event) {
-		addMarker(event.latLng);
+		geocodeCoordinate(event.latLng);
 	});
+	
+	function geocodeCoordinate(location){
+		addMarker(location);
+		$.get(
+			"https://maps.googleapis.com/maps/api/geocode/json", 
+			{ 
+				latlng: location.lat() + "," + location.lng(), 
+				sensor: "true" 
+			})
+		  .done(function( data ) {
+			  var address = data.results[0].formatted_address.trim();
+			  var index = address.lastIndexOf(",");
+			  var country = address.substr(index + 1);
+			  address = address.substr(0, index);
+			  index = address.lastIndexOf(",");
+			  var city = address.substr(index + 1);
+			  address = address.substr(0, index);
+			  
+			  $("input[name='country']")[0].value = country;
+			  $("input[name='city']")[0].value = city;
+			  $("input[type='submit']")[0].removeAttribute("disabled");
+		  });
+	}
 
 	function geocodeAddress(geocoder) {
 		var address = getAddress();
@@ -38,8 +61,10 @@ function initMap() {
 				var location = results[0].geometry.location;
 				map.setCenter(location);
 				addMarker(location);
+				$("input[type='submit']")[0].removeAttribute("disabled");
 			} else {
-				alert('Geocode was not successful for the following reason: ' + status);
+				marker.setMap(null);
+				$("input[type='submit']")[0].setAttribute("disabled", "disabled");
 			}
 		});
 	}
