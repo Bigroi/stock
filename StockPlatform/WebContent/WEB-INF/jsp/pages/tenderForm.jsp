@@ -14,9 +14,9 @@
 	</c:forEach>
 	     ${lable.tenderForm.description} <input name="description" value="${tender.description}"><br>
 	     ${lable.tenderForm.status}-<c:out value="${tender.status}"></c:out><br>
-	     ${lable.tenderForm.max_price}  <input name="maxPrice" value="${tender.maxPrice}"><br>
-	     ${lable.tenderForm.min_Volume } <input name="minVolume" value="${tender.minVolume }"><br>
-		 ${lable.tenderForm.max_volume} <input name="volume" value="${tender.volume}"><br>
+	     ${lable.tenderForm.max_price}  <input type="number" name="maxPrice" value="${tender.maxPrice}"><br>
+	     ${lable.tenderForm.min_Volume } <input type="number" name="minVolume" value="${tender.minVolume }"><br>
+		 ${lable.tenderForm.max_volume} <input type="number" name="volume" value="${tender.volume}"><br>
 		 ${lable.tenderForm.exp_date} <input name="expDate" value="${tender.dateStr}"><br>
 	<c:choose>
 			<c:when test="${tender.id == '-1'}">
@@ -29,9 +29,6 @@
 			    ${lable.tenderForm.exp_date} <input name="expDate" value="${tender.dateStr}"><br>
 			</c:when>
 			<c:otherwise>
-			   <%--  ${lable.tenderForm.product} - ${tender.productId}<br>
-				 ${lable.tenderForm.max_price} - ${tender.maxPrice}<br>	    
-			    ${lable.tenderForm.exp_date} - ${tender.dateStr}<br> --%>
 			</c:otherwise>
 		</c:choose>
 		<input type="submit" name="save" value="${lable.button.save}"><br> 

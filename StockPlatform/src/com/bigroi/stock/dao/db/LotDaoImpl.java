@@ -137,12 +137,12 @@ public class LotDaoImpl implements LotDao {
 			public Lot mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Lot lot = new Lot();
 				lot.setId(rs.getLong("id"));
-				lot.setDescription(rs.getString("description"));
+				lot.setDescription(rs.getString("DESCRIPTION"));
 				lot.setProductId(rs.getLong("PRODUCT_ID"));
-				lot.setMinPrice(rs.getDouble("min_price"));
-				lot.setSellerId(rs.getLong("seller_Id"));
-				lot.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
-				lot.setExpDate(rs.getDate("exp_date"));
+				lot.setMinPrice(rs.getDouble("MIN_PRICE"));
+				lot.setSellerId(rs.getLong("SELLER_ID"));
+				lot.setStatus(Status.valueOf(rs.getString("STATUS").toUpperCase()));
+				lot.setExpDate(rs.getDate("EXP_DATE"));
 				lot.setVolume(rs.getInt("VOLUME"));
 				lot.setMinVolume(rs.getInt("MIN_VOLUME"));
 				lot.setProductName(rs.getString("PRODUCT_NAME"));

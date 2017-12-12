@@ -12,6 +12,7 @@
 
 
 -- Дамп структуры базы данных stock
+DROP DATABASE IF EXISTS `stock`;
 CREATE DATABASE IF NOT EXISTS `stock` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `stock`;
 
@@ -45,14 +46,14 @@ CREATE TABLE IF NOT EXISTS `company` (
   `country` varchar(50) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
-  `length` decimal(10,2) DEFAULT NULL,
-  `width` decimal(10,2) DEFAULT NULL,
+  `longitude` decimal(10,2) DEFAULT NULL,
+  `latitude` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы stock.company: ~6 rows (приблизительно)
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT IGNORE INTO `company` (`id`, `name`, `email`, `phone`, `reg_number`, `country`, `city`, `status`, `length`, `width`) VALUES
+INSERT IGNORE INTO `company` (`id`, `name`, `email`, `phone`, `reg_number`, `country`, `city`, `status`, `longitude`, `latitude`) VALUES
 	(1, 'aaa', 'appcc@mail.ru', '09988776', 'df', 'bl', 'minsk', 'VERIFIED', 27.24, 53.57),
 	(2, 'evgen', 'appcc@mail.ru', 'evgen', 'evgen', 'evgen', 'evgen', 'VERIFIED', 1.00, 1.00),
 	(3, 'user', 'javadev6891@gmail.com', '12314', '443asd12', 'Bel', 'Mn', 'VERIFIED', 1.00, 1.00),
@@ -205,17 +206,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   KEY `FK_user_company` (`company_Id`),
   CONSTRAINT `FK_user_company` FOREIGN KEY (`company_Id`) REFERENCES `company` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.user: ~6 rows (приблизительно)
+-- Дамп данных таблицы stock.user: ~7 rows (приблизительно)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT IGNORE INTO `user` (`id`, `login`, `password`, `company_Id`) VALUES
-	(1, 'Admin', '1', 1),
+	(1, 'Admin@stock.by', '1', 1),
 	(2, 'user', '2', 10),
 	(3, 'user2', '.*kTaSpk', 10),
 	(4, 'юзер', '1', 2),
-	(5, 'admin1w', '1', 11),
-	(6, 'admin1w1', '1', 12);
+	(10, 'test@mail.ru', '1', 2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.user_role
@@ -226,14 +226,15 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   CONSTRAINT `FK_user_role_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.user_role: ~5 rows (приблизительно)
+-- Дамп данных таблицы stock.user_role: ~6 rows (приблизительно)
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
 INSERT IGNORE INTO `user_role` (`user_id`, `role`) VALUES
 	(1, 'ROLE_ADMIN'),
 	(1, 'ROLE_USER'),
 	(3, 'ROLE_USER'),
 	(4, 'ROLE_USER'),
-	(2, 'ROLE_USER');
+	(2, 'ROLE_USER'),
+	(10, 'ROLE_USER');
 /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

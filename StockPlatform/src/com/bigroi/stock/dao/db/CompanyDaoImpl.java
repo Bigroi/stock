@@ -21,18 +21,18 @@ import com.bigroi.stock.dao.DaoException;
 public class CompanyDaoImpl implements CompanyDao {
 	
 	private static final String GET_COMPANY_BY_ID = "SELECT ID, NAME, EMAIL, PHONE, "
-			+ "REG_NUMBER, COUNTRY, CITY, STATUS, LENGTH, WIDTH FROM COMPANY WHERE ID = ?";
+			+ "REG_NUMBER, COUNTRY, CITY, STATUS, LONGITUDE, LATITUDE FROM COMPANY WHERE ID = ?";
 
 	private static final String ADD_COMPANY = "INSERT INTO COMPANY"
-			+ " (NAME, EMAIL, PHONE, REG_NUMBER, COUNTRY, CITY, STATUS, LENGTH, WIDTH ) " 
+			+ " (NAME, EMAIL, PHONE, REG_NUMBER, COUNTRY, CITY, STATUS, LONGITUDE, LATITUDE ) " 
 			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String UPDATE_COMPANY_BY_ID = "UPDATE COMPANY SET  NAME = ?, "
 			+ "EMAIL = ?, PHONE = ?, REG_NUMBER = ?, COUNTRY = ?, CITY = ?, "
-			+ "STATUS = ?, LENGTH = ?, WIDTH = ? WHERE ID = ? ";
+			+ "STATUS = ?, LONGITUDE = ?, LATITUDE = ? WHERE ID = ? ";
 	
 	private static final String GET_ALL_COMPANIES ="SELECT ID, NAME, EMAIL, "
-			+ "PHONE, REG_NUMBER, COUNTRY, CITY, STATUS, LENGTH, WIDTH FROM COMPANY";
+			+ "PHONE, REG_NUMBER, COUNTRY, CITY, STATUS, LONGITUDE, LATITUDE FROM COMPANY";
 	
 	private static final String SET_STATUS_BY_ID = 
 			"UPDATE COMPANY SET "
@@ -76,8 +76,8 @@ public class CompanyDaoImpl implements CompanyDao {
 				ps.setString(5, company.getCountry());
 				ps.setString(6, company.getCity());
 				ps.setString(7, company.getStatus().name().toUpperCase());
-				ps.setDouble(8, company.getLength());
-				ps.setDouble(9, company.getWidth());
+				ps.setDouble(8, company.getLongitude());
+				ps.setDouble(9, company.getLatitude());
 				return ps;
 			}
 		}, keyHolder);
@@ -90,7 +90,7 @@ public class CompanyDaoImpl implements CompanyDao {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_COMPANY_BY_ID, company.getName(), company.getEmail(),
 				company.getPhone(), company.getRegNumber(), company.getCountry(), 
-				company.getCity(),company.getStatus().name().toUpperCase(), company.getLength(), company.getWidth(),
+				company.getCity(),company.getStatus().name().toUpperCase(), company.getLongitude(), company.getLatitude(),
 				company.getId()) == 1;
 	}
 

@@ -1,6 +1,6 @@
 function initMap() {
-	var lat = parseFloat($("input[name='width']")[0].value);
-	var lng = parseFloat($("input[name='length']")[0].value);
+	var lat = parseFloat($("input[name='latitude']")[0].value);
+	var lng = parseFloat($("input[name='longitude']")[0].value);
 	var map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 8,
 		center: {
@@ -77,8 +77,8 @@ function initMap() {
 			map: map,
 			position: location
 		});
-		$("input[name='width']")[0].value = location.lat();
-		$("input[name='length']")[0].value = location.lng();
+		$("input[name='latitude']")[0].value = location.lat();
+		$("input[name='longitude']")[0].value = location.lng();
 	}
 	
 	function getAddress(){

@@ -39,8 +39,8 @@ public class AccountRenderingController extends BaseRenderingController{
 			@RequestParam("phone") String phone,
 			@RequestParam("country") String country,
 			@RequestParam("city") String city,
-			@RequestParam("width") double width,
-			@RequestParam("length") double length
+			@RequestParam("latitude") double latitude,
+			@RequestParam("longitude") double longitude
 			) throws ServiceException {
 		
 		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
@@ -53,8 +53,8 @@ public class AccountRenderingController extends BaseRenderingController{
 		company.setPhone(phone);
 		company.setCountry(country);
 		company.setCity(city);
-		company.setWidth(width);
-		company.setLength(length);
+		company.setLatitude(latitude);
+		company.setLongitude(longitude);
 		ServiceFactory.getUserService().updateCompanyAndUser(user, company);
 		
 		return form();

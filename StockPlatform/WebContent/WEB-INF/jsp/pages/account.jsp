@@ -11,8 +11,8 @@
 			<p>${lable.account.reg_number} <input disabled="disabled" name="regNumber" value="${company.regNumber}"><br>
 			<p>${lable.account.country} <input name="country" value="${company.country}"><br>
 			<p>${lable.account.city} <input name="city" value="${company.city}"><br>
-			<input type="hidden" name="width" value="${company.width}">
-			<input type="hidden" name="length" value="${company.length}" >
+			<input type="hidden" name="latitude" value="${company.latitude}">
+			<input type="hidden" name="longitude" value="${company.longitude}" >
 			<input type="submit" value="${lable.button.modify }">
 		</form>
 	</div>

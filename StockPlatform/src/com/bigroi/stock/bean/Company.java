@@ -30,11 +30,11 @@ public class Company {
 	@Column("skock.table.company.status")
 	private CompanyStatus status;
 	
-	@Column("skock.table.company.length")
-	private double length = 26.001813399999946;
+	@Column("skock.table.company.longitude")
+	private double longitude = 26.001813399999946;
 	
-	@Column("skock.table.company.width")
-	private double width = 53.1568911;
+	@Column("skock.table.company.latitude")
+	private double latitude = 53.1568911;
 
 	public long getId() {
 		return id;
@@ -100,27 +100,29 @@ public class Company {
 		this.status = status;
 	}
 
-	public double getLength() {
-		return length;
+	public double getLongitude() {
+		return longitude;
 	}
 
-	public void setLength(double length) {
-		this.length = length;
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
-	public double getWidth() {
-		return width;
+	public double getLatitude() {
+		return latitude;
 	}
 
-	public void setWidth(double width) {
-		this.width = width;
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
 	@Override
 	public String toString() {
 		return "Company [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", regNumber="
-				+ regNumber + ", country=" + country + ", city=" + city + ", status=" + status + ", length=" + length
-				+ ", width=" + width + "]";
+				+ regNumber + ", country=" + country + ", city=" + city + ", status=" + status + ", longitude="
+				+ longitude + ", latitude=" + latitude + "]";
 	}
+
+  
 
 }

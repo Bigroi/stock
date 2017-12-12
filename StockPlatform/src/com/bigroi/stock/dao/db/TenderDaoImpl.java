@@ -119,13 +119,13 @@ public class TenderDaoImpl implements TenderDao{
 			@Override
 			public Tender mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Tender tender = new Tender();
-				tender.setId(rs.getLong("id"));
-				tender.setDescription(rs.getString("description"));
-				tender.setProductId(rs.getLong("product_Id"));
-				tender.setMaxPrice(rs.getDouble("max_price"));
-				tender.setCustomerId(rs.getLong("customer_Id"));
-				tender.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
-				tender.setExpDate(rs.getDate("exp_date"));
+				tender.setId(rs.getLong("ID"));
+				tender.setDescription(rs.getString("DESCRIPTION"));
+				tender.setProductId(rs.getLong("PRODUCT_ID"));
+				tender.setMaxPrice(rs.getDouble("MAX_PRICE"));
+				tender.setCustomerId(rs.getLong("CUSTOMER_ID"));
+				tender.setStatus(Status.valueOf(rs.getString("STATUS").toUpperCase()));
+				tender.setExpDate(rs.getDate("EXP_DATE"));
 				tender.setVolume(rs.getInt("VOLUME"));
 				tender.setMinVolume(rs.getInt("MIN_VOLUME"));
 				return tender;

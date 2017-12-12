@@ -28,8 +28,8 @@ public class AccessRenderingController extends BaseRenderingController{
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
 			@RequestParam("city") String city,
-			@RequestParam("width") float width,
-			@RequestParam("length") float length
+			@RequestParam("latitude") float latitude,
+			@RequestParam("longitude") float longitude
 			) throws ServiceException{
 		
 		StockUser oldUser = ServiceFactory.getUserService().getByLogin(login);
@@ -41,8 +41,8 @@ public class AccessRenderingController extends BaseRenderingController{
 		company.setCountry(country);
 		company.setCity(city);
 		company.setStatus(CompanyStatus.NOT_VERIFIED);
-		company.setLength(length);
-		company.setWidth(width);
+		company.setLongitude(longitude);
+		company.setLatitude(latitude);
 		
 		StockUser user = new StockUser();
 		user.setLogin(login);

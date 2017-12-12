@@ -14,8 +14,8 @@
 			 ${lable.registration.reg_number} <input name="regNumber" value="${company.regNumber}"><br>
 			 ${lable.registration.country} <input name="country" value="${company.country}"><br>
 			 ${lable.registration.city} <input name="city" value="${company.city}"><br>
-			<input type="hidden" name="width" value="${company.width}">
-			<input type="hidden" name="length" value="${company.length}" >
+			<input type="hidden" name="latitude" value="${company.latitude}">
+			<input type="hidden" name="longitude" value="${company.longitude}" >
 			
 			<input type="submit" value="${lable.button.save}">
 		</form>

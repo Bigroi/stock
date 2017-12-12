@@ -62,7 +62,6 @@ public class UserServiceImpl implements UserService {
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
-
 	}
 
 	@Override
@@ -122,7 +121,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 		try {
-			if(validate(login) == true || login.equals("Admin")){
+			if(validate(login) == true){
 			return userDao.getByLoginWithRoles(login);
 			}
 			return null;
