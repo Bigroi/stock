@@ -49,9 +49,9 @@ public class PreDealDaoImpl implements PreDealDao {
 			+ "CUSTAPPROV, DEALDATE, VOLUME FROM PREDEAL WHERE ID = ? ";
 	
 	private static final String GET_POSIBLE_BIDS = "SELECT L.ID LOT_ID, L.DESCRIPTION LOT_DESCRIPTION, L.PRODUCT_ID PRODUCT_ID, L.MIN_PRICE LOT_PRICE, "
-			+ "L.SELLER_ID SELLER_ID, L.`STATUS` LOT_STATUS, L.EXP_DATE LOT_EXP_DATE, L.VOLUME LOT_VOLUME, "
+			+ "L.SELLER_ID SELLER_ID, L.`STATUS` LOT_STATUS, L.EXP_DATE LOT_EXP_DATE, L.VOLUME LOT_VOLUME, L.MIN_VOLUME LOT_MIN_VOLUME, "
 			+ "T.ID TENDER_ID, T.DESCRIPTION TENDER_DESCRIPTION, T.MAX_PRICE TENDER_PRICE, T.CUSTOMER_ID CUSTOMER_ID, "
-			+ "T.`STATUS` TENDER_STATUS, T.EXP_DATE TENDER_EXP_DATE, T.VOLUME TENDER_VOLUME "
+			+ "T.`STATUS` TENDER_STATUS, T.EXP_DATE TENDER_EXP_DATE, T.VOLUME TENDER_VOLUME, T.MIN_VOLUME TENDET_MIN_VOLUME "
 			+ "FROM LOT L "
 			+ "JOIN TENDER T "
 			+ "ON L.PRODUCT_ID = T.PRODUCT_ID "
@@ -60,6 +60,8 @@ public class PreDealDaoImpl implements PreDealDao {
 			+ "AND L.VOLUME > 0 "
 			+ "AND T.VOLUME > 0 "
 			+ "AND T.MAX_PRICE <= L.MIN_PRICE "
+			+ "AND T.MIN_VOLUME > L.VOLUME "
+			+ "AND L.MIN_VOLUME > T.VOLUME "
 			+ "LEFT JOIN BLACKLIST BL "
 			+ "ON BL.TENDER_ID = T.ID AND BL.LOT_ID = L.ID "
 			+ "WHERE BL.ID IS NULL AND T.PRODUCT_ID = ?";
@@ -154,6 +156,7 @@ public class PreDealDaoImpl implements PreDealDao {
 					lot.setSellerId(rs.getLong("SELLER_ID"));
 					lot.setStatus(Status.valueOf(rs.getString("LOT_STATUS")));
 					lot.setVolume(rs.getInt("LOT_VOLUME"));
+					lot.setMinVolume(rs.getInt("LOT_MIN_VOLUME"));
 					lots.put(lotId, lot);
 				}
 				
@@ -169,6 +172,7 @@ public class PreDealDaoImpl implements PreDealDao {
 					tender.setCustomerId(rs.getLong("CUSTOMER_ID"));
 					tender.setStatus(Status.valueOf(rs.getString("TENDER_STATUS")));
 					tender.setVolume(rs.getInt("TENDER_VOLUME"));
+					tender.setMinVolume(rs.getInt("TENDER_MIN_VOLUME"));
 					tenders.put(tenderId, tender);
 				}
 				tender.addPosiblePartner(lot);

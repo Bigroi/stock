@@ -53,4 +53,14 @@ public class TradeLot extends Lot implements TradeBid{
 		}
 		posiblePartners = new ArrayList<>();
 	}
+	
+	@Override
+	public void setVolume(int volume) {
+		super.setVolume(volume);
+		for (TradeTender partner : new ArrayList<>(posiblePartners)){
+			if (partner.getMinVolume() > volume){
+				posiblePartners.remove(partner);
+			}
+		}
+	}
 }

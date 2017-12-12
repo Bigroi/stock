@@ -53,4 +53,14 @@ public class TradeTender extends Tender implements TradeBid{
 		}
 		posiblePartners = new ArrayList<>();
 	}
+	
+	@Override
+	public void setVolume(int volume) {
+		super.setVolume(volume);
+		for (TradeLot partner : new ArrayList<>(posiblePartners)){
+			if (partner.getMinVolume() > volume){
+				posiblePartners.remove(partner);
+			}
+		}
+	}
 }
