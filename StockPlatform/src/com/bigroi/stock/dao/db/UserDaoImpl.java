@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.sql.DataSource;
 
@@ -18,6 +20,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.CompanyStatus;
+import com.bigroi.stock.bean.common.Role;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserDao;
 
@@ -54,6 +57,9 @@ public class UserDaoImpl implements UserDao {
 			+ "WHERE ID = ?";
 	
 	private static final String GET_USER_ID =  " SELECT ID  FROM USER ";//MAX(id)
+	
+   /* private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";*/
 
 	private DataSource datasource;
 
@@ -119,8 +125,10 @@ public class UserDaoImpl implements UserDao {
 	public StockUser getByLoginWithRoles(String login) throws DaoException {
 		StockUser user = new StockUser();
 		JdbcTemplate template = new JdbcTemplate(datasource);
+		//List<StockUser> list = null;
+		//if(validate(login) == true || login.equals("Admin")){
+		
 		List<StockUser> list = template.query(LOAD_USER_BY_JOIN_TABLES, new RowMapper<StockUser>(){
-
 			@Override
 			public StockUser mapRow(ResultSet rs, int rowNum) throws SQLException {
 				user.setId(rs.getLong("ID"));
@@ -134,13 +142,20 @@ public class UserDaoImpl implements UserDao {
 				return user;
 			}
 			
-		}, login);
+		 }, login);
+		//}
 		if(list.size() == 0){
 			return null;
 		}else{
 			return list.get(0);
 		}
 	}
+	
+	/*public static boolean validate(String email) {
+		Pattern p = Pattern.compile(EMAIL_PATTERN);
+		Matcher matcher = p.matcher(email);
+		return matcher.matches();
+	}*/
 	
 	@Override
 	public StockUser getById(long id) throws DaoException {

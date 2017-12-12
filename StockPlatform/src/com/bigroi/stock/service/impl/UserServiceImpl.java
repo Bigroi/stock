@@ -2,6 +2,8 @@ package com.bigroi.stock.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,6 +29,8 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 	private CompanyDao companyDao;
 	private UserRoleDao userRoleDao;
+	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
@@ -118,12 +122,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 		try {
+			if(validate(login) == true || login.equals("Admin")){
 			return userDao.getByLoginWithRoles(login);
+			}
+			return null;
 		} catch (UsernameNotFoundException | DaoException e) {
 			throw new UsernameNotFoundException("", e);
 		}
-		
-
+	}
+	
+	public static boolean validate(String email) {
+		Pattern p = Pattern.compile(EMAIL_PATTERN);
+		Matcher matcher = p.matcher(email);
+		return matcher.matches();
 	}
 
 	@Override
