@@ -79,7 +79,7 @@
 
 	<definition name="productForm" extends="base-definition">
 		<put-attribute name="nav-welcome" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/productForm.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/product.jsp" />
 	</definition>
 
 	<definition name="products" extends="base-definition">
