@@ -44,7 +44,7 @@
 
 	<definition name="account" extends="base-definition">
 		<put-attribute name="nav-account" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/account.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/account.jsp" />
 	</definition>
 
 	<definition name="approveLink" extends="base-definition">

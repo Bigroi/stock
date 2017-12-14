@@ -9,6 +9,7 @@
 		<title>${page_title}</title>
 		<link rel="stylesheet" href="/css/tableStyle.css">
         <link rel="stylesheet" href="/css/menuStyle.css">
+        <link rel="stylesheet" media="screen" href="/css/formStyle.css" >
 		<script src="/js/jQuery.js"></script> 
 		<script src="/js/tableMaker.js"></script>	
 		<script src="/js/tableSorter.js"></script>	
@@ -26,6 +27,6 @@
 		</sec:authorize>
         
 		<tiles:insertAttribute name="body" />
-		<tiles:insertAttribute name="footer" />
+		<%-- <tiles:insertAttribute name="footer" /> --%>
 	</body>
 </html>
