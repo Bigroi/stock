@@ -39,7 +39,7 @@
 
 	<definition name="registration" extends="base-definition">
 		<put-attribute name="nav-regestration" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/registration.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/registration.jsp" />
 	</definition>
 
 	<definition name="account" extends="base-definition">
