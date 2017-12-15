@@ -10,15 +10,22 @@
 	<!-- <intercept-url pattern="/lot/**" access="hasAnyRole('USER','ADMIN')" requires-channel="any"/>   -->
 	
 		<form-login 
-		   login-page="/Login.spr" 
-		   authentication-failure-forward-url="/Login.spr" 
-		   authentication-success-forward-url="/Index.spr"  />
+			authentication-failure-handler-ref="authenticationHandler"
+			authentication-success-handler-ref="authenticationHandler"
+			login-processing-url="/access/Login.spr"
+		/>
+		
 		<http-basic  />
-		<logout  logout-success-url="/Index.spr"/>
+		<logout logout-success-url="/Index.spr" logout-url="/access/Logout.spr"/>
 		<csrf disabled="true" />
+		<access-denied-handler error-page="/AccessDenied.spr"/>
 	</http>
 
 	<beans:import resource="classpath:spring-service.xml" />
+
+	<beans:bean id="authenticationHandler"
+		class="com.bigroi.stock.dispatcher.AuthenticationHandler">
+	</beans:bean>
 
 	<beans:bean id="daoAuthenticationProvider"
 		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">

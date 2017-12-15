@@ -23,6 +23,4 @@ public interface UserService extends UserDetailsService{
 	
 	List<StockUser> getAllUsers() throws ServiceException;
 	
-	StockUser getUserId() throws ServiceException;
-	
 }

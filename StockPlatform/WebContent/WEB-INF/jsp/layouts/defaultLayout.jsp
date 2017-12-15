@@ -15,7 +15,8 @@
 		<script src="/js/tableMaker.js"></script>	
 		<script src="/js/tableSorter.js"></script>	
 		<script src="/js/map.js"></script>
-		<script src="/js/dialogbox.js"></script>	
+		<script src="/js/dialogbox.js"></script>
+		<script src="/js/form.js"></script>
 	</head>
 	<body>
 		<div class="wrapper">

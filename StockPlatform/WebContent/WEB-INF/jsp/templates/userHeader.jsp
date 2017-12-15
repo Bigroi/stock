@@ -1,26 +1,21 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <nav class="main-menu">
-	<a href="${lable.navigation.get('url.welcome')}"
-	class='<tiles:getAsString name="nav-welcome"/>'>
-		${lable.navigation.get('name.welcome')}
+	<a href="/Index.spr" class='<tiles:getAsString name="nav-welcome"/>'>
+		${lable.navigation.welcome}
 	</a>
-	<a href="${lable.navigation.get('url.lots')}"
-	class='<tiles:getAsString name="nav-lots"/>'>
-		${lable.navigation.get('name.lots')}
+	<a href="/lot/MyLots.spr" class='<tiles:getAsString name="nav-lots"/>'>
+		${lable.navigation.lots}
 	</a>
-	<a href="${lable.navigation.get('url.tenders')}"
-	class='<tiles:getAsString name="nav-tenders"/>'>
-		${lable.navigation.get('name.tenders')}
+	<a href="/tender/MyTenders.spr" class='<tiles:getAsString name="nav-tenders"/>'>
+		${lable.navigation.tenders}
 	</a>
-	<a href="${lable.navigation.get('url.products')}"
-	class='<tiles:getAsString name="nav-products"/>'>
-		${lable.navigation.get('name.products')}
+	<a href="/product/List.spr" class='<tiles:getAsString name="nav-products"/>'>
+		${lable.navigation.products}
 	</a>
-	<a href="${lable.navigation.get('url.account')}"
-	class='<tiles:getAsString name="nav-account"/>'>
-		${lable.navigation.get('name.account')}
+	<a href="/account/Form.spr" class='<tiles:getAsString name="nav-account"/>'>
+		${lable.navigation.account}
 	</a>
-	<a href="${lable.navigation.get('url.logout')}">
-		${lable.navigation.get('name.logout')}
+	<a href="/access/Logout.spr">
+		${lable.navigation.logout}
 	</a>
 </nav>

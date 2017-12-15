@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService {
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 		try {
 			if(validate(login) == true){
-			return userDao.getByLoginWithRoles(login);
+				return userDao.getByLoginWithRoles(login);
 			}
 			return null;
 		} catch (UsernameNotFoundException | DaoException e) {
@@ -134,15 +134,6 @@ public class UserServiceImpl implements UserService {
 		Pattern p = Pattern.compile(EMAIL_PATTERN);
 		Matcher matcher = p.matcher(email);
 		return matcher.matches();
-	}
-
-	@Override
-	public StockUser getUserId() throws ServiceException {
-		try {
-			 return userDao.getUserId();
-		} catch ( DaoException e) {
-			throw new ServiceException(e);
-		}
 	}
 
 }

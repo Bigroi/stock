@@ -1,17 +1,13 @@
 "use strict";
 $.fn.dialogbox = function(params) {
 	var params = $.extend({
-		'element'         : $('<div>Insert any Element</div>'),
-		'buttons' 		  : ["exempleBtn","exempleBtn1"],
 		"hasCloseButton"  : true,
 		"hasCloseOverlay" : true,
 		"prvDft"		  : true,
-		
-		
 	},params);
 
 	return this.on("click",function() {	
-		$("#form-container").load("file:///D:/Stock/оы/dialogbox.html",function() {
+		params.container.load(params.formUrl, function() {
 
 			var $dialogbox = $(".dialogbox");
 			var $dialogboxChild = $(".dialogbox-child");
@@ -19,17 +15,8 @@ $.fn.dialogbox = function(params) {
 			var $dialogboxButtons = $(".dialogbox-Buttons");
 			var $dialogboxHead = $(".dialogbox-Head"); 				
 			$dialogboxChild.css("width",params.width);
-			$dialogboxChild.css("height",params.height);	
-			var $spanClose = $("<span class='dialogbox-spanClose'>&times</span>");
-
-			if(typeof params.element == "string"){
-				$(".dialogbox-elementContent").load(params.element);
-			}else{
-				$(params.element)
-				.clone()
-				.appendTo($dialogboxElementContent)
+			$dialogboxChild.css("min-height",params.height);	
 			
-			}
 				
 			for(var i = 0; i < params.buttons.length; i++){
 				var $button = $("<button>");
@@ -41,17 +28,19 @@ $.fn.dialogbox = function(params) {
 				var close = params.buttons[i].close;
 				if (url && close){
 					$button.attr("url",url);
-					$button.on("click",sendFormDataAndClose);
+					$button.on("click",applayFormAndClose);
 				} else if (url){
 					$button.attr("url",url);
-					$button.on("click",sendFormData);
+					$button.on("click",applayForm);
 				} else {
 					$button.on("click",deleting);	    		
 				}
 				$dialogboxButtons.append($button);
 			}	 
 
-			if(params.hasCloseButton){	    	
+			if(params.hasCloseButton){	
+				var $spanClose = $("<span class='dialogbox-spanClose'>&times</span>");
+				$spanClose.css("color",params.spanCloseColor);
 				$dialogboxHead.append($spanClose);
 			}
 
@@ -64,8 +53,7 @@ $.fn.dialogbox = function(params) {
 				}   			
 			})      
 			$button.css("background",params.btnBackground);
-			$spanClose.css("color",params.spanCloseColor);
-
+			
 			if(params.prvDft){
 				$(this).on("click",function(e) {
 					e.preventDefault();
@@ -76,51 +64,37 @@ $.fn.dialogbox = function(params) {
 				$dialogbox.remove();
 			}
 			
-			function getFormData(event, button){
-				var $form = button.parent().parent().find("[name]");
-				var $form_Length = $form.children("[name]").length;
+			function applayForm(event) {
 				event.preventDefault();
-				var  data = {};              
-				for(var i = 0; i < $form_Length;i++){
-					var name = $form[i].getAttribute("name");
-					var value = $form[i].value;
-					data[name]=value;                   
-				}
-				data = JSON.stringify(data,"",1);
-				return data;
-			}
-			
-			function sendFormData(event) {
-				var button = $(this);
-				var data = getFormData(event, button);
-				$.post(button.attr("url"),{json:data},function(answer){
+				sendFormData($dialogboxElementContent, $(this).attr("url"), function(answer){
 					var $message = $(".dialogbox-message");
 					if (answer.result > 0){
 						$message.css("background-color", "green");
-					} else {
+					} else if (answer.result < 0){
 						$message.css("background-color", "red");
+					} else {
+						document.location = answer.data;
 					}
 					$message.html(answer.data);
-				}, "json");
-
+				});
 			};
 			
-			function sendFormDataAndClose(event){
-				var button = $(this);
-				var data = getFormData(event, button);
-				$.post(button.attr("url"),{json:data},function(answer){
+			function applayFormAndClose(event){
+				event.preventDefault();
+				sendFormData($dialogboxElementContent, $(this).attr("url"), function(answer){
+					var $message = $(".dialogbox-message");
 					if (answer.result > 0){
 						deleting();
-					} else {
-						var $message = $(".dialogbox-message");
+						return;
+					} else if (answer.result < 0){
 						$message.css("background-color", "red");
-						$message.html(answer.data);
+					} else {
+						document.location = answer.data;
 					}
-				}, "json");
+					$message.html(answer.data);
+				});
 			}
-		})	 
-
-				
+		});	 
 	});		
 }
 
