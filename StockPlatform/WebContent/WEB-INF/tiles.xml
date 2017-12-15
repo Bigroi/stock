@@ -64,7 +64,7 @@
 
 	<definition name="lotForm" extends="base-definition">
 		<put-attribute name="nav-lots" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/lotForm.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/lot.jsp" />
 	</definition>
 
 	<definition name="myLots" extends="base-definition">

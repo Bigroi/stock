@@ -48,11 +48,17 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
 	width:220px; 
 	padding:5px 8px;
 }
+
+.form select {
+	width:220px; 
+	padding:5px 8px;
+}
+
 .form textarea {padding:8px; width:300px;}
 .form button {margin-left:156px;}
 
 	/* form element visual styles */
-	.form input, .form textarea { 
+	.form input, .form textarea, .form select { 
 		border:1px solid #aaa;
 		box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
 		border-radius:2px;
@@ -62,7 +68,7 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
 		-o-transition: padding .25s;
 		transition: padding .25s;
 	}
-	.form input:focus, .form textarea:focus {
+	.form input:focus, .form textarea:focus, form select:focus {
 		background: #fff; 
 		border:1px solid #555; 
 		box-shadow: 0 0 3px #aaa; 
@@ -70,15 +76,15 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
 	}
 
 /* === HTML5 validation styles === */	
-.form input:required, .form textarea:required {
+.form input:required, .form textarea:required, .form select:required {
 	background: #fff url(/img/red_asterisk.png) no-repeat 98% center;
 }
-.form input:required:valid, .form textarea:required:valid {
+.form input:required:valid, .form textarea:required:valid, .form select:required:valid {
 	background: #fff url(/img/valid.png) no-repeat 98% center;
 	box-shadow: 0 0 5px #5cd053;
 	border-color: #28921f;
 }
-.form input:focus:invalid, .form textarea:focus:invalid {
+.form input:focus:invalid, .form textarea:focus:invalid, .form select:focus:invalid {
 	background: #fff url(/img/invalid.png) no-repeat 98% center;
 	box-shadow: 0 0 5px #d45252;
 	border-color: #b03535
