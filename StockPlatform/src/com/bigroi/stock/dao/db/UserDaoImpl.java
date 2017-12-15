@@ -52,8 +52,6 @@ public class UserDaoImpl implements UserDao {
 			+ "FROM USER "
 			+ "WHERE ID = ?";
 	
-	private static final String GET_USER_ID =  " SELECT ID  FROM USER ";//MAX(id)
-	
 	private DataSource datasource;
 
 	public void setDatasource(DataSource datasource) {
@@ -151,24 +149,6 @@ public class UserDaoImpl implements UserDao {
 			}
 		}catch (Exception e) {
 			throw new DaoException(e);
-		}
-	}
-
-	@Override
-	public StockUser getUserId() throws DaoException {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		StockUser user = new StockUser();
-		List<StockUser> list =   template.query(GET_USER_ID, new RowMapper<StockUser>(){
-			@Override
-			public StockUser mapRow(ResultSet rs, int rowNum) throws SQLException {
-				user.setId(rs.getLong("ID"));
-				return user;
-			}
-		});
-		if (list.size() == 0){
-			return null;
-		} else {
-			return list.get(0);
 		}
 	}
 }

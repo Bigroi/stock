@@ -8,7 +8,7 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
 
 /* === List Styles === */
 .form ul {
-    width:750px;
+    width:100%;
     list-style-type:none;
 	list-style-position:outside;
 	margin:0px;
@@ -37,7 +37,7 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
 
 /* === Form Elements === */
 .form label {
-	width:150px;
+	width:30%;
 	margin-top: 3px;
 	display:inline-block;
 	float:left;
@@ -45,17 +45,17 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
 }
 .form input {
 	height:20px; 
-	width:220px; 
+	width:40%; 
 	padding:5px 8px;
 }
 
 .form select {
-	width:220px; 
+	width:40%; 
 	padding:5px 8px;
 }
 
-.form textarea {padding:8px; width:300px;}
-.form button {margin-left:156px;}
+.form textarea {padding:8px; width:42%;}
+.form button {margin-left:2%;}
 
 	/* form element visual styles */
 	.form input, .form textarea, .form select { 

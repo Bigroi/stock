@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<form class="form" action="/login" method="post" name="form">
-    <ul>
+<form class="form" action="#" method="post" name="form">
+    <ul id="form-list">
         <li>
              <h2>Contact Us</h2>
              <span class="required_notification">* Denotes Required Field</span>
@@ -14,9 +14,6 @@
         <li>
             <label for="password">${lable.login.password}</label>
             <input type="password" name="password" placeholder="***********" required />
-        </li>
-        <li>
-        	<button class="submit" type="submit">${lable.button.login }</button>
         </li>
     </ul>
 </form>

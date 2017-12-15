@@ -1,6 +1,8 @@
 package com.bigroi.stock.json;
 
+import com.bigroi.stock.bean.Bid;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class ResultBean {
 
@@ -35,7 +37,8 @@ public class ResultBean {
 
 	@Override
 	public String toString() {
-		return new Gson().toJson(this);
+		Gson gson = new GsonBuilder().setDateFormat(Bid.FORMATTER.toPattern()).create();
+		return gson.toJson(this);
 	}
 
 }

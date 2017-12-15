@@ -1,7 +1,5 @@
 package com.bigroi.stock.bean;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.bigroi.stock.bean.common.Status;
@@ -10,8 +8,6 @@ import com.bigroi.stock.json.Id;
 import com.bigroi.stock.util.DateUtil;
 
 public class Lot implements Bid{
-	
-	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
 	
 	@Id
 	private long id;
@@ -54,14 +50,6 @@ public class Lot implements Bid{
 	
 	public void setProductName(String productName) {
 		this.productName = productName;
-	}
-	
-	public String getDateStr() {
-		return FORMATTER.format(expDate);
-	}
-
-	public void setDateStr(String dateStr) throws ParseException {
-		expDate = FORMATTER.parse(dateStr);
 	}
 
 	public long getId() {

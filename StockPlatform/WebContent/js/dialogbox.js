@@ -12,31 +12,38 @@ $.fn.dialogbox = function(params) {
 			var $dialogbox = $(".dialogbox");
 			var $dialogboxChild = $(".dialogbox-child");
 			var $dialogboxElementContent = $(".dialogbox-elementContent");
-			var $dialogboxButtons = $(".dialogbox-Buttons");
-			var $dialogboxHead = $(".dialogbox-Head"); 				
-			$dialogboxChild.css("width",params.width);
-			$dialogboxChild.css("min-height",params.height);	
+			var $formList = $("#form-list");
+			var $dialogboxHead = $(".dialogbox-Head");
+			if (params.width){
+				$dialogboxChild.css("width",params.width);
+			}
+			if (params.height){
+				$dialogboxChild.css("height",params.height);
+			}
 			
-				
+			var $listelement = $("<li>");
+			$listelement.css("text-align", "center");
 			for(var i = 0; i < params.buttons.length; i++){
 				var $button = $("<button>");
-				$button.addClass("dialogbox-btn "+i+"button");
+				$button.addClass("submit "+i+"button");
 				$button.text(params.buttons[i].text);	    	
+				$button.attr("id", params.buttons[i].id);
 				
-				
-				var url = params.buttons[i].url;
+				var url = getUrl(params.buttons[i]);
 				var close = params.buttons[i].close;
 				if (url && close){
 					$button.attr("url",url);
 					$button.on("click",applayFormAndClose);
 				} else if (url){
+					
 					$button.attr("url",url);
 					$button.on("click",applayForm);
 				} else {
 					$button.on("click",deleting);	    		
 				}
-				$dialogboxButtons.append($button);
-			}	 
+				$listelement.append($button);
+			}	
+			$formList.append($listelement);
 
 			if(params.hasCloseButton){	
 				var $spanClose = $("<span class='dialogbox-spanClose'>&times</span>");
@@ -60,8 +67,40 @@ $.fn.dialogbox = function(params) {
 				});
 			
 			}
+			
+			loadData();
+			
+			function getUrl(button){
+				if (!button.url){
+					return;
+				} else if (!button.formParams){
+					return button.url;
+				} else {
+					var paramsStr = "";
+					for (var name in button.formParams){
+						if (button.formParams[name]){
+							if (paramsStr != ""){
+								paramsStr += "&";
+							}
+							paramsStr += encodeURIComponent(name) + "=" 
+								+ encodeURIComponent(button.formParams[name]);
+						}
+					}
+					return button.url + "?" + paramsStr
+				}
+			}
+			
 			function deleting() {
 				$dialogbox.remove();
+			}
+			
+			function loadData(){
+				if (params.formData){
+					setFormData($dialogboxElementContent, 
+							params.formData, 
+							params.formParams,
+							params.afterLoad);
+				}
 			}
 			
 			function applayForm(event) {

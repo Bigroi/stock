@@ -9,19 +9,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bigroi.stock.bean.Bid;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.StockUser;
+import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.Table;
 import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 @RequestMapping("/lot/json")
 public class LotResourseController extends BaseResourseController {
 
+	private Gson gson = new GsonBuilder().setDateFormat(Bid.FORMATTER.toPattern()).create();
+	
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	public String form(
@@ -44,27 +49,43 @@ public class LotResourseController extends BaseResourseController {
 
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
-	public String lotSave(@RequestParam("jsonLot") String jsonLot) throws ServiceException {
-		Lot lotBean = new Gson().fromJson(jsonLot, Lot.class);
-		checkLot(lotBean.getId());
-		ServiceFactory.getLotService().merge(lotBean);
-		return new ResultBean(1, "lot.update.success").toString();
+	public String lotSave(@RequestParam("json") String jsonLot, 
+				Authentication loggedInUser) throws ServiceException {
+		StockUser user = (StockUser)loggedInUser.getPrincipal();
+		
+		Lot newLot = gson.fromJson(jsonLot, Lot.class);
+		checkLot(newLot.getId());
+		
+		if (newLot.getId() < 0) {
+			newLot.setSellerId(user.getCompanyId());;
+			newLot.setStatus(Status.DRAFT);
+		} else {
+			Lot oldLot = ServiceFactory.getLotService().getLot(newLot.getId(), user.getCompanyId());
+			newLot.setProductId(oldLot.getProductId());
+			newLot.setStatus(oldLot.getStatus());
+			newLot.setSellerId(oldLot.getSellerId());
+		}
+		
+		ServiceFactory.getLotService().merge(newLot);
+		return new ResultBean(0, "/lot/MyLots.spr").toString();
 	}
 
 	@RequestMapping(value = "/StartTrading.spr")
 	@ResponseBody
-	public String startTrading(@RequestParam("id") long id) throws ServiceException {
-		checkLot(id);
-		ServiceFactory.getLotService().startTrading(id);
-		return new ResultBean(1, "lot.update.success").toString();
+	public String startTrading(@RequestParam("json") String jsonLot) throws ServiceException {
+		Lot lot = gson.fromJson(jsonLot, Lot.class);
+		checkLot(lot.getId());
+		ServiceFactory.getLotService().startTrading(lot.getId());
+		return new ResultBean(0, "/lot/MyLots.spr").toString();
 	}
 
 	@RequestMapping(value = "/Cancel.spr")
 	@ResponseBody
-	public String cancel(@RequestParam("id") long id) throws ServiceException {
-		checkLot(id);
-		ServiceFactory.getLotService().cancel(id);
-		return new ResultBean(1, "lot.update.success").toString();
+	public String cancel(@RequestParam("json") String jsonLot) throws ServiceException {
+		Lot lot = gson.fromJson(jsonLot, Lot.class);
+		checkLot(lot.getId());
+		ServiceFactory.getLotService().cancel(lot.getId());
+		return new ResultBean(0, "/lot/MyLots.spr").toString();
 	}
 	
 	private void checkLot(long id) throws ServiceException{

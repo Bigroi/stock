@@ -1,5 +1,6 @@
 package com.bigroi.stock.messager.message;
 
+import com.bigroi.stock.bean.Bid;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.PreDeal;
 import com.bigroi.stock.bean.Tender;
@@ -34,7 +35,7 @@ public class DealConfirmationMessageForSeller extends BaseMessage<PreDeal> {
 					+ preDeal.getSellerHashCode() + "&action=";
 			return super.getText()
 					.replaceAll("@lotId", preDeal.getLotId() + "")
-					.replaceAll("@lotDate", lot.getDateStr())
+					.replaceAll("@lotDate", Bid.FORMATTER.format(lot.getExpDate()))
 					.replaceAll("@lotPrice", lot.getMinPrice() + "")
 					.replaceAll("@price", (lot.getMinPrice() + tender.getMaxPrice()) / 2 + "")
 					.replaceAll("@sellerLinkApprove", sellerLink + Action.APPROVE)

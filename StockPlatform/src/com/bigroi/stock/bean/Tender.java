@@ -1,7 +1,6 @@
 package com.bigroi.stock.bean;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.bigroi.stock.bean.common.Status;
@@ -10,8 +9,6 @@ import com.bigroi.stock.json.Id;
 import com.bigroi.stock.util.DateUtil;
 
 public class Tender implements Bid{
-
-	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
 
 	@Id
 	private long id;

@@ -3,7 +3,7 @@
 	
     position: fixed;
     z-index: 1; 
-    padding-top: 100px; 
+    padding-top: 10%; 
     left: 0;
     top: 0;
     width: 100%; 
@@ -25,16 +25,13 @@
 
 }
 
-
-
-
  .dialogbox .dialogbox-Content{
 	
     background-color: white;
     margin: auto;
     overflow: auto;
     border: 1px  solid transparent;
-    height: 300px;
+    height: 100%;
     border-radius: 5px;
     border-bottom: none;
     padding:0 6px; 
@@ -46,9 +43,9 @@
 }
 
  .dialogbox .dialogbox-Head{
-     border-radius: 5px;
+    border-radius: 5px;
 	height: 30px;
-    width: 96.5%;
+    width: calc(100% - 30px);
     background-color: #fff;
     color: white;
     position: relative;
@@ -60,46 +57,14 @@
     color:  #601532;
     font-size: 45px;
     font-weight: bold;
-    line-height: 30px;
     cursor: pointer;
     position: fixed;
-    
-
 }
 .dialogbox .dialogbox-spanClose:hover{
-	color: red;
-    
+	color: red;   
 }
-.dialogbox .dialogbox-Buttons{
-    position: relative;   
-    text-align: center;
-}
-
-.dialogbox .dialogbox-btn{
-	cursor: pointer;
-	color: white;
-	height: 28px;
-	min-width: 70px;
-	margin-right: 8px;
-	background: #601532;
-	border-radius: 5px;
-    
-}
-.dialogbox .dialogbox-btn:hover{
-	background: red;
-	font-style: italic;
-}
-
-
-
 
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0; } 
     to {top:0; opacity:1}
 }
-
-
-
-
-
-

@@ -14,6 +14,6 @@
 	</a>
 	<a href="#" id="loginLink">
 		${lable.navigation.login}
-		<script type="text/javascript">setLoginDialogPlagin($("#loginLink"))</script>
+		<script type="text/javascript">setLoginDialogPlugin($("#loginLink"))</script>
 	</a>
 </nav>
