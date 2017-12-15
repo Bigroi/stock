@@ -94,7 +94,7 @@
 
 	<definition name="tenderForm" extends="base-definition">
 		<put-attribute name="nav-tenders" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/tenderForm.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/tender.jsp" />
 	</definition>
 
 	<definition name="tradeOffers" extends="base-definition">
