@@ -1,7 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<p>${lable.productForm.name}: ${product.name}</p>
-	<p>${lable.productForm.description}: ${product.description}</p>
+	
+	<form class="form" action="#" method="post" name="form">
+	    <ul>
+	        <li>
+	            <label for="name">${lable.productForm.name}</label>
+	            <input type="text" disabled value="${product.name}"/>
+	        </li>
+	        <li>
+	            <label for="description">${lable.productForm.description}</label>
+	            <textarea cols="40" rows="6" disabled>${product.description}</textarea>
+	        </li>
+	    </ul>
+	</form>
+
 	<table>
 		<tbody>
 			<tr>
@@ -26,6 +38,10 @@
 			</tr>
 		</tbody>
 	</table>
-	<form action="/product/List.spr">
-		<input type="submit" value="${lable.button.back}">
+	<form class="form" action="/product/List.spr" method="post">
+		<ul>
+			<li>
+				<button class="submit" type="submit">${lable.button.back}</button>
+			</li>
+		</ul>
 	</form>
