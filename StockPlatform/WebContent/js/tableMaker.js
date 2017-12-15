@@ -40,7 +40,7 @@ $.fn.tableMaker = function (srcTable, formPage) {
 				var formUrl = formPage.replace("{id}", idValue); 
 				tRow.setAttribute("href", formUrl);
 			} else {
-				formPage(tRow);
+				formPage(tRow, idValue);
 			}
 			for(var k = 0;  k < dataObj.data.rows[j].length; k++){
 				if(k == dataObj.data.model.idColumn){

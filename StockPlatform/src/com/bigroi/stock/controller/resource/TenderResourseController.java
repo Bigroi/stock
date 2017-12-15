@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.Tender;
+import com.bigroi.stock.bean.common.Status;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.Table;
 import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
-import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/tender/json")
@@ -29,18 +29,31 @@ public class TenderResourseController extends BaseResourseController {
 			Authentication loggedInUser) throws ServiceException {
 		checkTender(id);
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
-		Tender tender = ServiceFactory.getTenderService()
-				.getTender(id, user.getCompanyId());
+		Tender tender = ServiceFactory.getTenderService().getTender(id, user.getCompanyId());
 		return new ResultBean(1, tender).toString();
 	}
 
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
-	public String save(@RequestParam("json") String json) throws ServiceException, ParseException {
-		Tender tender = new Gson().fromJson(json, Tender.class);
-		checkTender(tender.getId());
-		ServiceFactory.getTenderService().merge(tender);
-		return new ResultBean(1, "tender.update.success").toString();
+	public String save(
+			@RequestParam("json") String json,
+			Authentication loggedInUser) throws ServiceException, ParseException {
+		StockUser user = (StockUser)loggedInUser.getPrincipal();
+		Tender newTender = gson.fromJson(json, Tender.class);
+		checkTender(newTender.getId());
+		
+		if (newTender.getId() < 0) {
+			newTender.setCustomerId(user.getCompanyId());;
+			newTender.setStatus(Status.DRAFT);
+		} else {
+			Tender oldTender = ServiceFactory.getTenderService().getTender(newTender.getId(), user.getCompanyId());
+			newTender.setProductId(oldTender.getProductId());
+			newTender.setStatus(oldTender.getStatus());
+			newTender.setCustomerId(oldTender.getCustomerId());
+		}
+		
+		ServiceFactory.getTenderService().merge(newTender);
+		return new ResultBean(0, "/tender/MyTenders.spr").toString();
 	}
 
 	@RequestMapping("/MyList.spr")
@@ -54,18 +67,20 @@ public class TenderResourseController extends BaseResourseController {
 
 	@RequestMapping("/StartTrading.spr")
 	@ResponseBody
-	public String StartTrading(@RequestParam("id") long id) throws ServiceException {
-		checkTender(id);
-		ServiceFactory.getTenderService().startTrading(id);
-		return new ResultBean(1, "tender.update.success").toString();
+	public String StartTrading(@RequestParam("json") String json) throws ServiceException {
+		Tender tender = gson.fromJson(json, Tender.class);
+		checkTender(tender.getId());
+		ServiceFactory.getTenderService().startTrading(tender.getId());
+		return new ResultBean(0, "/tender/MyTenders.spr").toString();
 	}
 
 	@RequestMapping("/Cancel.spr")
 	@ResponseBody
-	public String cancel(@RequestParam("id") long id) throws ServiceException {
-		checkTender(id);
-		ServiceFactory.getTenderService().cancel(id);
-		return new ResultBean(1, "tender.update.success").toString();
+	public String cancel(@RequestParam("json") String json) throws ServiceException {
+		Tender tender = gson.fromJson(json, Tender.class);
+		checkTender(tender.getId());
+		ServiceFactory.getTenderService().cancel(tender.getId());
+		return new ResultBean(0, "/tender/MyTenders.spr").toString();
 	}
 
 	private void checkTender(long id) throws ServiceException{

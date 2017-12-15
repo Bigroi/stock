@@ -72,7 +72,7 @@ function setLoginDialogPlugin(element){
 	});
 }
 
-function setLotDialogPlugin(element){
+function setLotDialogPlugin(element, id){
 	var buttons = [{
 		text:"Save",
 		id:"save",
@@ -115,7 +115,7 @@ function setLotDialogPlugin(element){
 	});
 }
 
-function setTenderDialogPlugin(element){
+function setTenderDialogPlugin(element, id){
 	var buttons = [{
 		text:"Save",
 		id:"save",
@@ -146,11 +146,11 @@ function setTenderDialogPlugin(element){
 		formParams:{id:id},
 		formData:"/tender/json/Form.spr",
 		height:"80%",
-		afterLoad:function(lot){
-			if (lot.id < 0){
+		afterLoad:function(tender){
+			if (tender.id < 0){
 				$("#delete").remove();
 				$("#start-trading").remove();
-			} else if (lot.status != "DRAFT"){
+			} else if (tender.status != "DRAFT"){
 				$("#start-trading").remove();
 			}
 		},

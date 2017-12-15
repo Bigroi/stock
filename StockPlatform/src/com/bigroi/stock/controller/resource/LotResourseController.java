@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bigroi.stock.bean.Bid;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.Status;
@@ -18,15 +17,11 @@ import com.bigroi.stock.json.Table;
 import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 @Controller
 @RequestMapping("/lot/json")
 public class LotResourseController extends BaseResourseController {
 
-	private Gson gson = new GsonBuilder().setDateFormat(Bid.FORMATTER.toPattern()).create();
-	
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	public String form(
@@ -52,7 +47,6 @@ public class LotResourseController extends BaseResourseController {
 	public String lotSave(@RequestParam("json") String jsonLot, 
 				Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
-		
 		Lot newLot = gson.fromJson(jsonLot, Lot.class);
 		checkLot(newLot.getId());
 		

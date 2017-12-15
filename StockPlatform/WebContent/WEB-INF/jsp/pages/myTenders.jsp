@@ -1,14 +1,20 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<h1>${lable.myTenders.title}</h1>
-	<div id = "tableContainer">	
-		<script>
-			$(function(){
-				$("#tableContainer").tableMaker("/tender/json/MyList.spr", "/tender/Form.spr?id={id}");
-			});
-		</script>
-	</div>
-	<form action="/tender/Form.spr">
-		<input type="submit" value="${lable.button.create }">
-	</form>
+<div id="tender-form-container"></div>
+<h1>${lable.myTenders.title}</h1>
+<div id = "tableContainer">	
+	<script>
+		$(function(){
+			$("#tableContainer").tableMaker("/tender/json/MyList.spr", setTenderDialogPlugin);
+		});
+	</script>
+</div>
+<form action="#" class="form">
+	<ul>
+		<li>
+			<button class="submit" id="new-lot-button" >${lable.button.create }</button>
+			<script type="text/javascript">setTenderDialogPlugin($("#new-lot-button"))</script>
+		</li>
+	</ul>
+</form>

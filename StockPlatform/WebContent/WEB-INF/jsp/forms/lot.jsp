@@ -31,12 +31,12 @@
         </li>
         <li>
             <label for="minVolume">${lable.lotForm.min_volume}</label>
-            <input type="number" name="minVolume" placeholder="150" required/>
+            <input type="text" name="minVolume" placeholder="150" pattern="^\d+$" required/>
             <span class="form_hint">Proper format "150"</span>
         </li>
           <li>
             <label for="volume">${lable.lotForm.max_volume}</label>
-            <input type="number" name="volume" placeholder="15000" required/>
+            <input type="text" name="volume" placeholder="15000" pattern="^\d+$" required/>
             <span class="form_hint">Proper format "15000"</span>
         </li>
          <li>
