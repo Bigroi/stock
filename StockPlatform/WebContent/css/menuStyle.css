@@ -38,18 +38,7 @@ a.active:hover{
     color: #7999a1;
     cursor: auto;
 }
-.footer {
-    display: table;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    
-    width: 100%;
-    height: 100px;
-    
-    background-color:#7999a1;
-    border: 1px solid black;
-}
+
 .section {
     display: table-cell;
     width: 33%;
@@ -59,4 +48,33 @@ a.active:hover{
     font-weight: bold;
     font-size: 22px;
     border: 1px solid #c5d7d2;
+}
+
+.footer {
+	position: absolute;
+ 	right: 0;
+ 	bottom: 0;
+  	left: 0;
+    display: table;
+    width: 100%;
+    height: 100px;
+    background-color:#7999a1;
+    border: 1px solid black;
+    width: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
+.content {
+  padding-bottom: 100px;
 }

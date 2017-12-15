@@ -1,0 +1,105 @@
+
+.dialogbox{
+	
+    position: fixed;
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.8); 
+
+}
+.dialogbox .dialogbox-child{
+    width: 50%;
+    margin: 0 auto ;
+    background: white;
+    border-radius: 5px;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+
+}
+
+
+
+
+ .dialogbox .dialogbox-Content{
+	
+    background-color: white;
+    margin: auto;
+    overflow: auto;
+    border: 1px  solid transparent;
+    height: 300px;
+    border-radius: 5px;
+    border-bottom: none;
+    padding:0 6px; 
+    
+
+}
+.dialogbox .dialogbox-message{
+	height: 30px;
+}
+
+ .dialogbox .dialogbox-Head{
+     border-radius: 5px;
+	height: 30px;
+    width: 96.5%;
+    background-color: #fff;
+    color: white;
+    position: relative;
+    text-align: right;
+    
+
+}
+.dialogbox .dialogbox-spanClose{
+    color:  #601532;
+    font-size: 45px;
+    font-weight: bold;
+    line-height: 30px;
+    cursor: pointer;
+    position: fixed;
+    
+
+}
+.dialogbox .dialogbox-spanClose:hover{
+	color: red;
+    
+}
+.dialogbox .dialogbox-Buttons{
+    position: relative;   
+    text-align: center;
+}
+
+.dialogbox .dialogbox-btn{
+	cursor: pointer;
+	color: white;
+	height: 28px;
+	min-width: 70px;
+	margin-right: 8px;
+	background: #601532;
+	border-radius: 5px;
+    
+}
+.dialogbox .dialogbox-btn:hover{
+	background: red;
+	font-style: italic;
+}
+
+
+
+
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0; } 
+    to {top:0; opacity:1}
+}
+
+
+
+
+
+
