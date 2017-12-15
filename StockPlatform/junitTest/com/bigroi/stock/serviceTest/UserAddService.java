@@ -27,11 +27,11 @@ public class UserAddService {
 		company = new Company();
 		company.setId(22);
 		company.setName("TEST!!!!!!!");
-		company.setEmail("TEST!!!!!!");
 		company.setPhone("TEST!!!!!!");
 		company.setRegNumber("TEST");
 		company.setCountry("TEST");
 		company.setCity("TEST");
+		company.setAddress("TEST!!!!!!");
 		company.setStatus(CompanyStatus.REVOKED);
 		
 		user = new StockUser();

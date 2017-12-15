@@ -49,7 +49,7 @@ public class AccountResourceController extends BaseResourseController {
 		oldUser.setPassword(newUser.getPassword());
 		oldCompany.setCity(newCompany.getCity());
 		oldCompany.setCountry(newCompany.getCountry());
-		oldCompany.setEmail(newCompany.getEmail());
+		oldCompany.setAddress(newCompany.getAddress());
 		oldCompany.setPhone(newCompany.getPhone());
 		
 		ServiceFactory.getUserService().updateCompanyAndUser(oldUser, oldCompany);

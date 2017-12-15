@@ -14,7 +14,7 @@ public class TenderExparationMessage extends BaseMessage<Tender> {
 	protected String getEmail() throws MessageException {
 		try {
 			long companyId = getDataObject().getCustomerId();
-			return ServiceFactory.getCompanyService().getCompanyById(companyId).getEmail();
+			return ServiceFactory.getCompanyService().getCompanyById(companyId).getAddress();// TODO get email
 		} catch (ServiceException e) {
 			throw new MessageException(e);
 		}

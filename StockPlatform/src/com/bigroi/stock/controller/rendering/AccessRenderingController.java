@@ -22,12 +22,12 @@ public class AccessRenderingController extends BaseRenderingController{
 			@RequestParam("login") String login, 
 			@RequestParam("password") String password,
 			@RequestParam("passwordRepeat") String passwordRepeat, 
-			@RequestParam("name") String name,
-			@RequestParam("email") String email, 
+			@RequestParam("name") String name, 
 			@RequestParam("phone") String phone,
 			@RequestParam("regNumber") String regNumber, 
 			@RequestParam("country") String country,
 			@RequestParam("city") String city,
+			@RequestParam("address") String address,
 			@RequestParam("latitude") float latitude,
 			@RequestParam("longitude") float longitude
 			) throws ServiceException{
@@ -35,11 +35,11 @@ public class AccessRenderingController extends BaseRenderingController{
 		StockUser oldUser = ServiceFactory.getUserService().getByLogin(login);
 		Company company = new Company();
 		company.setName(name);
-		company.setEmail(email);
 		company.setPhone(phone);
 		company.setRegNumber(regNumber);
 		company.setCountry(country);
 		company.setCity(city);
+		company.setAddress(address);
 		company.setStatus(CompanyStatus.NOT_VERIFIED);
 		company.setLongitude(longitude);
 		company.setLatitude(latitude);

@@ -20,19 +20,19 @@ import com.bigroi.stock.dao.DaoException;
 
 public class CompanyDaoImpl implements CompanyDao {
 	
-	private static final String GET_COMPANY_BY_ID = "SELECT ID, NAME, EMAIL, PHONE, "
-			+ "REG_NUMBER, COUNTRY, CITY, STATUS, LONGITUDE, LATITUDE FROM COMPANY WHERE ID = ?";
+	private static final String GET_COMPANY_BY_ID = "SELECT ID, NAME, PHONE, "
+			+ "REG_NUMBER, COUNTRY, CITY, ADDRESS, STATUS, LONGITUDE, LATITUDE FROM COMPANY WHERE ID = ?";
 
 	private static final String ADD_COMPANY = "INSERT INTO COMPANY"
-			+ " (NAME, EMAIL, PHONE, REG_NUMBER, COUNTRY, CITY, STATUS, LONGITUDE, LATITUDE ) " 
+			+ " (NAME, PHONE, REG_NUMBER, COUNTRY, CITY, ADDRESS, STATUS, LONGITUDE, LATITUDE ) " 
 			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String UPDATE_COMPANY_BY_ID = "UPDATE COMPANY SET  NAME = ?, "
-			+ "EMAIL = ?, PHONE = ?, REG_NUMBER = ?, COUNTRY = ?, CITY = ?, "
+			+ " PHONE = ?, REG_NUMBER = ?, COUNTRY = ?, CITY = ?, ADDRESS = ?, "
 			+ "STATUS = ?, LONGITUDE = ?, LATITUDE = ? WHERE ID = ? ";
 	
-	private static final String GET_ALL_COMPANIES ="SELECT ID, NAME, EMAIL, "
-			+ "PHONE, REG_NUMBER, COUNTRY, CITY, STATUS, LONGITUDE, LATITUDE FROM COMPANY";
+	private static final String GET_ALL_COMPANIES ="SELECT ID, NAME,  "
+			+ "PHONE, REG_NUMBER, COUNTRY, CITY, ADDRESS, STATUS, LONGITUDE, LATITUDE FROM COMPANY";
 	
 	private static final String SET_STATUS_BY_ID = 
 			"UPDATE COMPANY SET "
@@ -70,11 +70,11 @@ public class CompanyDaoImpl implements CompanyDao {
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(ADD_COMPANY, PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, company.getName());
-				ps.setString(2, company.getEmail());
 				ps.setString(3, company.getPhone());
 				ps.setString(4, company.getRegNumber());
 				ps.setString(5, company.getCountry());
 				ps.setString(6, company.getCity());
+				ps.setString(2, company.getAddress());
 				ps.setString(7, company.getStatus().name().toUpperCase());
 				ps.setDouble(8, company.getLongitude());
 				ps.setDouble(9, company.getLatitude());
@@ -88,9 +88,10 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
 	public boolean update(Company company) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_COMPANY_BY_ID, company.getName(), company.getEmail(),
+		return template.update(UPDATE_COMPANY_BY_ID, company.getName(), 
 				company.getPhone(), company.getRegNumber(), company.getCountry(), 
-				company.getCity(),company.getStatus().name().toUpperCase(), company.getLongitude(), company.getLatitude(),
+				company.getCity(), company.getAddress(), company.getStatus().name().toUpperCase(), 
+				company.getLongitude(), company.getLatitude(),
 				company.getId()) == 1;
 	}
 

@@ -16,7 +16,7 @@ public class SuccessDealMessageForSeller extends BaseMessage<PreDeal>{
 		try{
 			Lot lot = ServiceFactory.getLotService()
 					.getLot(getDataObject().getLotId(), 0);
-			return ServiceFactory.getCompanyService().getCompanyById(lot.getSellerId()).getEmail();
+			return ServiceFactory.getCompanyService().getCompanyById(lot.getSellerId()).getAddress();// TODO get email
 		}catch (ServiceException e) {
 			throw new MessageException(e);
 		}

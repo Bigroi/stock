@@ -24,11 +24,11 @@ public static StockUser user;
 		company = new Company();
 		company.setId(22);
 		company.setName("updROLBACK");
-		company.setEmail("updatROLBACK!!!!!!!!!!");
 		company.setPhone("upROLBACK");
 		company.setRegNumber("ROLBACK");
 		company.setCountry("TEST");
 		company.setCity("TEST");
+		company.setAddress("updatROLBACK!!!!!!!!!!");
 		company.setStatus(CompanyStatus.VERIFIED);
 		
 		user = new StockUser();

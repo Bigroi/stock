@@ -35,10 +35,10 @@ public class AccountRenderingController extends BaseRenderingController{
 	@RequestMapping("/Save.spr")
 	public ModelAndView save(
 			@RequestParam("password") String password,
-			@RequestParam("email") String email, 
 			@RequestParam("phone") String phone,
 			@RequestParam("country") String country,
 			@RequestParam("city") String city,
+			@RequestParam("address") String address, 
 			@RequestParam("latitude") double latitude,
 			@RequestParam("longitude") double longitude
 			) throws ServiceException {
@@ -49,10 +49,10 @@ public class AccountRenderingController extends BaseRenderingController{
 		}
 		Company company = ServiceFactory.getCompanyService().getCompanyById(user.getCompanyId());
 		company.setId(user.getCompanyId());
-		company.setEmail(email);
 		company.setPhone(phone);
 		company.setCountry(country);
 		company.setCity(city);
+		company.setAddress(address);
 		company.setLatitude(latitude);
 		company.setLongitude(longitude);
 		ServiceFactory.getUserService().updateCompanyAndUser(user, company);

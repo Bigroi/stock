@@ -16,7 +16,7 @@ public class ResetUserPasswordMessage extends BaseMessage<StockUser> {
 		try {
 			Company company = ServiceFactory
 					.getCompanyService().getCompanyById(getDataObject().getCompanyId());
-			return company.getEmail();
+			return company.getAddress();// TODO get email
 		} catch (ServiceException e) {
 			throw new MessageException(e);
 		}

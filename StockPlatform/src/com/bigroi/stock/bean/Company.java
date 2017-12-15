@@ -12,9 +12,6 @@ public class Company {
 	@Column("skock.table.company.name")
 	private String name;
 	
-	@Column("skock.table.company.email")
-	private String email;
-	
 	@Column("skock.table.company.phone")
 	private String phone;
 	
@@ -26,6 +23,9 @@ public class Company {
 	
 	@Column("skock.table.company.city")
 	private String city;
+	
+	@Column("skock.table.company.address")
+	private String address;
 	
 	@Column("skock.table.company.status")
 	private CompanyStatus status;
@@ -50,14 +50,6 @@ public class Company {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getPhone() {
@@ -116,12 +108,21 @@ public class Company {
 		this.latitude = latitude;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
-		return "Company [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", regNumber="
-				+ regNumber + ", country=" + country + ", city=" + city + ", status=" + status + ", longitude="
+		return "Company [id=" + id + ", name=" + name + ", phone=" + phone + ", regNumber=" + regNumber + ", country="
+				+ country + ", city=" + city + ", address=" + address + ", status=" + status + ", longitude="
 				+ longitude + ", latitude=" + latitude + "]";
 	}
+ 
 
   
 

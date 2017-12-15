@@ -10,12 +10,13 @@ public class CustomerCanceledMessage extends BaseMessage<PreDeal> {
 	public CustomerCanceledMessage(String fileName) throws MessageException {
 		super(fileName);
 	}
+	
 
 	@Override
 	protected String getEmail() throws MessageException {
 		try{
 			Lot lot = ServiceFactory.getLotService().getLot(getDataObject().getLotId(), 0);
-			return ServiceFactory.getCompanyService().getCompanyById(lot.getSellerId()).getEmail();
+			return ServiceFactory.getCompanyService().getCompanyById(lot.getSellerId()).getAddress();//TODO : get email
 		}catch (ServiceException e) {
 			throw new MessageException(e);
 		}
@@ -24,6 +25,17 @@ public class CustomerCanceledMessage extends BaseMessage<PreDeal> {
 	@Override
 	protected String getText() throws MessageException {
 		return super.getText().replaceAll("@id", getDataObject().getLotId() + "");
+	}
+	
+	
+	public static void main(String[] args) throws MessageException{
+		String str = "test";
+		CustomerCanceledMessage test = new CustomerCanceledMessage(str);
+		test.getSubject();
+		
+		
+		
+		
 	}
 
 }

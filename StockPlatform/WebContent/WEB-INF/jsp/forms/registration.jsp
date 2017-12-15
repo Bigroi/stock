@@ -29,11 +29,6 @@
 		            <input type="text" name="name" placeholder="Stock lmt" required value="${company.name}"/>
 		        </li>
 		        <li>
-		            <label for="email">${lable.registration.email}</label>
-		            <input type="email" name="email" placeholder="john_doe@example.com" required value="${company.email}"/>
-		            <span class="form_hint">Proper format "john_doe@example.com"</span>
-		        </li>
-		        <li>
 		            <label for="phone">${lable.registration.phone}</label>
 		            <input type="text" name="phone" placeholder="+375290000000" pattern="^\+375[\d\- ]{5,13}$" required value="${company.phone}"/>
 		            <span class="form_hint">Proper format "+375290000000"</span>
@@ -50,6 +45,11 @@
 		        <li>
 		            <label for="city">${lable.registration.city}</label>
 		            <input type="text" name="city" placeholder="Minsk" required value="${company.city}"/>
+		        </li>
+		         <li>
+		            <label for="address">${lable.registration.address}</label>
+		            <input type="email" name="address" placeholder="address" required value="${company.address}"/>
+		            <span class="form_hint">Proper format "john_doe@example.com"</span>
 		        </li>
 		        <li>
 		        	<button class="submit" type="submit">${lable.button.save}</button>

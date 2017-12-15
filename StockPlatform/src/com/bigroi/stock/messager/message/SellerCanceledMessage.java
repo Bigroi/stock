@@ -16,7 +16,7 @@ public class SellerCanceledMessage extends BaseMessage<PreDeal> {
 		try{
 			Tender tender = ServiceFactory.getTenderService()
 					.getTender(getDataObject().getTenderId(), 0);
-			return ServiceFactory.getCompanyService().getCompanyById(tender.getCustomerId()).getEmail();
+			return ServiceFactory.getCompanyService().getCompanyById(tender.getCustomerId()).getAddress();// TODO get email
 		}catch (ServiceException e) {
 			throw new MessageException(e);
 		}
