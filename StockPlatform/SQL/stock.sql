@@ -40,11 +40,11 @@ INSERT IGNORE INTO `blacklist` (`id`, `tender_Id`, `lot_Id`) VALUES
 CREATE TABLE IF NOT EXISTS `company` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
   `phone` varchar(50) DEFAULT NULL,
   `reg_number` varchar(100) DEFAULT NULL,
   `country` varchar(50) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
+  `address` varchar(50) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   `longitude` decimal(10,2) DEFAULT NULL,
   `latitude` decimal(10,2) DEFAULT NULL,
@@ -53,13 +53,13 @@ CREATE TABLE IF NOT EXISTS `company` (
 
 -- Дамп данных таблицы stock.company: ~6 rows (приблизительно)
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT IGNORE INTO `company` (`id`, `name`, `email`, `phone`, `reg_number`, `country`, `city`, `status`, `longitude`, `latitude`) VALUES
-	(1, 'aaa', 'appcc@mail.ru', '09988776', 'df', 'bl', 'minsk', 'VERIFIED', 27.24, 53.57),
-	(2, 'evgen', 'appcc@mail.ru', 'evgen', 'evgen', 'evgen', 'evgen', 'VERIFIED', 1.00, 1.00),
-	(3, 'user', 'javadev6891@gmail.com', '12314', '443asd12', 'Bel', 'Mn', 'VERIFIED', 1.00, 1.00),
-	(10, 'user', 'javadev6891@gmail.com', '23', '23qwe', 'bel', 'mn', 'VERIFIED', 1.00, 1.00),
-	(11, 'asdasd', 'asd@mail.ru', 'asdas', '123123', 'asdasd', 'asdasd', 'NOT_VERIFIED', 1.00, 1.00),
-	(12, 'asdasd', 'asdwe@mail.ru', 'asdas', '123123', 'asdasd', 'asdasd', 'NOT_VERIFIED', 1.00, 1.00);
+INSERT IGNORE INTO `company` (`id`, `name`, `phone`, `reg_number`, `country`, `city`, `address`, `status`, `longitude`, `latitude`) VALUES
+	(1, 'aaa', '+37529165571', 'df', 'Belarus', 'Minsk,Kupriyanova 5/16', 'Kupriyanova 5/16', 'VERIFIED', 27.56, 53.90),
+	(2, 'evgen', 'evgen', 'evgen', 'evgen', 'evgen', 'Gomelskaya 2a/67', 'VERIFIED', 1.00, 1.00),
+	(3, 'user', '12314', '443asd12', 'Bel', 'Mn', 'Sovetkaya 20', 'VERIFIED', 1.00, 1.00),
+	(10, 'user', '23', '23qwe', 'bel', 'mn', 'Marksa 1', 'VERIFIED', 1.00, 1.00),
+	(11, 'asdasd', 'asdas', '123123', 'asdasd', 'asdasd', 'Engelsa 18', 'VERIFIED', 1.00, 1.00),
+	(12, 'asdasd', 'asdas', '123123', 'asdasd', 'asdasd', 'Krasnaya 17', 'VERIFIED', 1.00, 1.00);
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.deals
@@ -208,13 +208,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   CONSTRAINT `FK_user_company` FOREIGN KEY (`company_Id`) REFERENCES `company` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.user: ~7 rows (приблизительно)
+-- Дамп данных таблицы stock.user: ~5 rows (приблизительно)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT IGNORE INTO `user` (`id`, `login`, `password`, `company_Id`) VALUES
 	(1, 'Admin@stock.by', '1', 1),
-	(2, 'user', '2', 10),
-	(3, 'user2', '.*kTaSpk', 10),
-	(4, 'юзер', '1', 2),
+	(2, 'appcc@mail.ru', '2', 10),
+	(3, 'javadev6891@gmail.com', '.*kTaSpk', 10),
+	(4, 'asd@mail.ru', '1', 2),
 	(10, 'test@mail.ru', '1', 2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
