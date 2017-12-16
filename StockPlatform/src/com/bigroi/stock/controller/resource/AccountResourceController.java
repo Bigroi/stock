@@ -1,9 +1,9 @@
 package com.bigroi.stock.controller.resource;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +14,6 @@ import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
-import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/account/json")
@@ -23,36 +22,35 @@ public class AccountResourceController extends BaseResourseController {
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	public String accountPage(Authentication loggedInUser) throws ServiceException {
-		Map<String, Object> map = new HashMap<>();
 		StockUser user = (StockUser) loggedInUser.getPrincipal();
-		map.put("user", user);
 		Company company = ServiceFactory.getCompanyService().getCompanyById(user.getCompanyId());
-		map.put("company", company);
-		return new ResultBean(1, map).toString();
+		return new ResultBean(1, company).toString();
 	}
 
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
 	public String editAccount(
-			@RequestParam("user") String newUserJson,
-			@RequestParam("company") String newCompanyJson, 
+			@RequestParam("json") String json,
 			Authentication loggedInUser) throws ServiceException {
 
-		StockUser newUser = new Gson().fromJson(newUserJson, StockUser.class);
-		Company newCompany = new Gson().fromJson(newCompanyJson, Company.class);
-		StockUser oldUser = (StockUser) loggedInUser.getPrincipal();
-		Company oldCompany = ServiceFactory.getCompanyService().getCompanyById(oldUser.getCompanyId());
+		@SuppressWarnings("unchecked")
+		Map<String, String> map = gson.fromJson(json, Map.class);
 		
-		if (!newUser.equals(oldUser)){
-			return new ResultBean(-1, "account.edit.names.error").toString();
+		
+		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		String password = map.get("password");
+		if (password != null && !password.equals("")){
+			user.setPassword(password);
 		}
-		oldUser.setPassword(newUser.getPassword());
-		oldCompany.setCity(newCompany.getCity());
-		oldCompany.setCountry(newCompany.getCountry());
-		oldCompany.setAddress(newCompany.getAddress());
-		oldCompany.setPhone(newCompany.getPhone());
+		Company company = ServiceFactory.getCompanyService().getCompanyById(user.getCompanyId());
+		company.setPhone(map.get("phone"));
+		company.setCountry(map.get("country"));
+		company.setCity(map.get("city"));
+		company.setAddress(map.get("address"));
+		company.setLatitude(Double.parseDouble(map.get("latitude")));
+		company.setLongitude(Double.parseDouble(map.get("longitude")));
+		ServiceFactory.getUserService().updateCompanyAndUser(user, company);
 		
-		ServiceFactory.getUserService().updateCompanyAndUser(oldUser, oldCompany);
 		return new ResultBean(1, "account.edit.success").toString();
 	}
 }

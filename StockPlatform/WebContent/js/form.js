@@ -32,6 +32,19 @@ function sendFormData(formContainer, url, successFunction) {
 
 };
 
+function processRequestResult(answer, messageDiv){
+	if (answer.result > 0){
+		messageDiv.css("background-color", "green");
+	} else if (answer.result < 0){
+		messageDiv.css("background-color", "red");
+	} else {
+		document.location = answer.data;
+		return 0;
+	}
+	messageDiv.text(answer.data);
+	return answe.result;
+}
+
 function setFormData(formContainer, url, params, afterLoad){
 	$.post(url, params, function(answer){
 		var formElementNames = ["input", "select", "textarea"];

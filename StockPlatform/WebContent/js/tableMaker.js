@@ -38,7 +38,7 @@ $.fn.tableMaker = function (srcTable, formPage) {
 			var idValue = dataObj.data.rows[j][dataObj.data.model.idColumn];
 			if (typeof(formPage) === "string"){
 				var formUrl = formPage.replace("{id}", idValue); 
-				tRow.setAttribute("href", formUrl);
+				tRow.attr("href", formUrl);
 			} else {
 				formPage(tRow, idValue);
 			}

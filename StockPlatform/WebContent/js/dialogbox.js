@@ -107,14 +107,7 @@ $.fn.dialogbox = function(params) {
 				event.preventDefault();
 				sendFormData($dialogboxElementContent, $(this).attr("url"), function(answer){
 					var $message = $(".dialogbox-message");
-					if (answer.result > 0){
-						$message.css("background-color", "green");
-					} else if (answer.result < 0){
-						$message.css("background-color", "red");
-					} else {
-						document.location = answer.data;
-					}
-					$message.html(answer.data);
+					processRequestResult(answer, $message);
 				});
 			};
 			
@@ -122,15 +115,9 @@ $.fn.dialogbox = function(params) {
 				event.preventDefault();
 				sendFormData($dialogboxElementContent, $(this).attr("url"), function(answer){
 					var $message = $(".dialogbox-message");
-					if (answer.result > 0){
+					if (processRequestResult(answer, $message)){
 						deleting();
-						return;
-					} else if (answer.result < 0){
-						$message.css("background-color", "red");
-					} else {
-						document.location = answer.data;
 					}
-					$message.html(answer.data);
 				});
 			}
 		});	 
