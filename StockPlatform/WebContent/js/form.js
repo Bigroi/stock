@@ -77,19 +77,19 @@ function setLotDialogPlugin(element, id){
 		text:"Save",
 		id:"save",
 		url:"/lot/json/Save.spr",
-		close:false 
+		close:true 
 	},
 	{
 		text:"start-trading",
 		id:"start-trading",
 		url:"/lot/json/StartTrading.spr",
-		close:false
+		close:true
 	},
 	{
 		text:"Delete",
 		id:"delete",
 		url:"/lot/json/Cancel.spr",
-		close:false 
+		close:true 
 	},
 	{
 		text:"Cancel",
@@ -120,19 +120,19 @@ function setTenderDialogPlugin(element, id){
 		text:"Save",
 		id:"save",
 		url:"/tender/json/Save.spr",
-		close:false 
+		close:true 
 	},
 	{
 		text:"start-trading",
 		id:"start-trading",
 		url:"/tender/json/StartTrading.spr",
-		close:false
+		close:true
 	},
 	{
 		text:"Delete",
 		id:"delete",
 		url:"/tender/json/Cancel.spr",
-		close:false 
+		close:true 
 	},
 	{
 		text:"Cancel",
@@ -152,6 +152,40 @@ function setTenderDialogPlugin(element, id){
 				$("#start-trading").remove();
 			} else if (tender.status != "DRAFT"){
 				$("#start-trading").remove();
+			}
+		},
+		buttons:buttons,
+	});
+}
+
+function setProductDialogPlugin(element, id){
+	var buttons = [{
+		text:"Save",
+		id:"save",
+		url:"/product/json/admin/Save.spr",
+		close:true 
+	},
+	{
+		text:"Delete",
+		id:"delete",
+		url:"/product/json/admin/Delete.spr",
+		close:true 
+	},
+	{
+		text:"Cancel",
+		id:"cancel",
+		close:true
+	}];
+	
+	element.dialogbox({
+		container:$("#product-form-container"),
+		formUrl:"/product/admin/Form.spr", 
+		formParams:{id:id},
+		formData:"/product/json/admin/Form.spr",
+		height:"60%",
+		afterLoad:function(product){
+			if (product.id < 0){
+				$("#delete").remove();
 			}
 		},
 		buttons:buttons,

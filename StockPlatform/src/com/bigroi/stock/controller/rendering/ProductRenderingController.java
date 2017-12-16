@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bigroi.stock.bean.Product;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -30,37 +29,11 @@ public class ProductRenderingController extends BaseRenderingController{
 		return createModelAndView("productsForAdmin");
 	}
 
-	//TODO move to js
 	@RequestMapping("/admin/Form.spr")
 	public ModelAndView form(
 			@RequestParam(value = "id", defaultValue = "-1") long id) 
 					throws ServiceException {
-		ModelAndView modelAndView = createModelAndView("productForm");
-		Product product = ServiceFactory.getProductService().getProductById(id);
-		modelAndView.addObject("product", product);
-		return modelAndView;
+		return createModelAndView("productForm");
 	}
 
-	//TODO move to js
-	@RequestMapping("/admin/Save.spr")
-	public ModelAndView save(
-			@RequestParam(value = "id", defaultValue = "-1") long id, 
-			@RequestParam("name") String name,
-			@RequestParam("description") String description)
-			throws ServiceException {
-		Product product = new Product();
-		product.setId(id);
-		product.setName(name);
-		product.setDescription(description);
-		ServiceFactory.getProductService().merge(product);
-		return allProducts();
-	}
-
-	//TODO move to js
-	@RequestMapping("/admin/Delete.spr")
-	public ModelAndView delete(@RequestParam("id") long id)
-			throws ServiceException {
-		ServiceFactory.getProductService().delete(id);
-		return allProducts();
-	}
 }

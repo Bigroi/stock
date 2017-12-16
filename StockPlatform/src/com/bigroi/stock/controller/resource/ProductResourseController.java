@@ -15,7 +15,6 @@ import com.bigroi.stock.json.Table;
 import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
-import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/product/json/")
@@ -48,17 +47,17 @@ public class ProductResourseController extends BaseResourseController {
 	@RequestMapping("/admin/Save.spr")
 	@ResponseBody
 	public String save(@RequestParam("json") String json) throws ServiceException {
-		Product product = new Gson().fromJson(json, Product.class);
+		Product product = gson.fromJson(json, Product.class);
 		ServiceFactory.getProductService().merge(product);
-		return new ResultBean(1, product).toString();
+		return new ResultBean(0, "/product/admin/List.spr").toString();
 	}
 	
 	@RequestMapping("/admin/Delete.spr")
 	@ResponseBody
-	public String delete(@RequestParam("id") long id) throws ServiceException {
-		ServiceFactory.getProductService().delete(id);
-		return new ResultBean(1, "success").toString();
-
+	public String delete(@RequestParam("json") String json) throws ServiceException {
+		Product product = gson.fromJson(json, Product.class);
+		ServiceFactory.getProductService().delete(product.getId());
+		return new ResultBean(0, "/product/admin/List.spr").toString();
 	}
 	
 	@RequestMapping("/lots.spr")
