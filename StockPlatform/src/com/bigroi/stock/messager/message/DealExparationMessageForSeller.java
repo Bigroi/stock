@@ -1,11 +1,11 @@
 package com.bigroi.stock.messager.message;
 
+import com.bigroi.stock.bean.Deal;
 import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.PreDeal;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
-public class DealExparationMessageForSeller extends BaseMessage<PreDeal>{
+public class DealExparationMessageForSeller extends BaseMessage<Deal>{
 
 	public DealExparationMessageForSeller(String fileName) throws MessageException {
 		super(fileName);

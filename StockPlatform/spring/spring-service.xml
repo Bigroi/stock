@@ -45,7 +45,7 @@
 	<bean id="marketService" class="com.bigroi.stock.service.impl.MarketServiceImpl">
 		<property name="lotDao" ref="lotDao" />
 		<property name="tenderDao" ref="tenderDao" />
-		<property name="preDealDao" ref="preDealDao" />
+		<property name="dealDao" ref="dealDao" />
 	</bean>
 	
 	<bean id="messageService" class="com.bigroi.stock.service.impl.MessageServiceImpl">
@@ -57,7 +57,6 @@
 	</bean>
 
 	<bean id="dealService" class="com.bigroi.stock.service.impl.DealServiceImpl">
-		<property name="preDealDao" ref="preDealDao" />
 		<property name="blacklistDao" ref="blacklistDao"/>
 		<property name="dealDao" ref="dealDao"/>
 		<property name="lotDao" ref="lotDao" />
@@ -66,7 +65,7 @@
 	
 	<bean id="tradeService" scope="prototype"
 		class="com.bigroi.stock.service.impl.TradeServiceImpl">
-		<property name="preDealDao" ref="preDealDao" />
+		<property name="dealDao" ref="dealDao" />
 		<property name="lotDao" ref="lotDao" />
 		<property name="tenderDao" ref="tenderDao" />
 		<property name="productDao" ref="productDao" />

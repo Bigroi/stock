@@ -3,7 +3,7 @@ package com.bigroi.stock.bean;
 import java.text.ParseException;
 import java.util.Date;
 
-import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Id;
 import com.bigroi.stock.util.DateUtil;
@@ -19,7 +19,7 @@ public class Tender implements Bid{
 	private String description;
 	
 	@Column("stock.table.tender.status")
-	private Status status;
+	private BidStatus status;
 	
 	@Column("stock.table.tender.maxPrice")
 	private double maxPrice;
@@ -28,7 +28,7 @@ public class Tender implements Bid{
 	private int minVolume;
 	
 	@Column("stock.table.tender.volume")
-	private int volume;
+	private int maxVolume;
 	
 	private long customerId;
 	
@@ -102,22 +102,22 @@ public class Tender implements Bid{
 		this.customerId = customerId;
 	}
 
-	public Status getStatus() {
+	public BidStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(BidStatus status) {
 		this.status = status;
 	}
 	
 	@Override
-	public int getVolume() {
-		return volume;
+	public int getMaxVolume() {
+		return maxVolume;
 	}
 
 	@Override
-	public void setVolume(int volume) {
-		this.volume = volume;
+	public void setMaxVolume(int maxVolume) {
+		this.maxVolume = maxVolume;
 	}
 
 	public int getMinVolume() {
@@ -132,7 +132,7 @@ public class Tender implements Bid{
 	public String toString() {
 		return "Tender [id=" + id + ", description=" + description + ", productId=" + productId + ", maxPrice="
 				+ maxPrice + ", customerId=" + customerId + ", status=" + status + ", expDate=" + expDate + ", volume="
-				+ volume + ", minVolume=" + minVolume + "]";
+				+ maxVolume + ", minVolume=" + minVolume + "]";
 	}
 
 	@Override

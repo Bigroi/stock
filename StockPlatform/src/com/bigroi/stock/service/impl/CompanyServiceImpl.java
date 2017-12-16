@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.common.CompanyStatus;
-import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
@@ -44,8 +44,8 @@ public class CompanyServiceImpl implements CompanyService {
 				break;
 			case VERIFIED:
 				companyDao.setStatus(company.getId(), CompanyStatus.REVOKED);
-				lotDao.setStatusBySellerId(companyId, Status.CANCELED);
-				tenderDao.setStatusByCustomerId(companyId, Status.CANCELED);
+				lotDao.setStatusBySellerId(companyId, BidStatus.INACTIVE);
+				tenderDao.setStatusByCustomerId(companyId, BidStatus.INACTIVE);
 				break;
 			case REVOKED:
 				companyDao.setStatus(company.getId(), CompanyStatus.VERIFIED);

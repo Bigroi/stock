@@ -3,7 +3,6 @@ package com.bigroi.stock.service.impl;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,13 +10,13 @@ import java.util.Set;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.Bid;
+import com.bigroi.stock.bean.Deal;
 import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.PreDeal;
 import com.bigroi.stock.bean.Product;
 import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.dao.DaoException;
+import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
-import com.bigroi.stock.dao.PreDealDao;
 import com.bigroi.stock.dao.ProductDao;
 import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.jobs.trade.TradeBid;
@@ -25,18 +24,17 @@ import com.bigroi.stock.jobs.trade.TradeLot;
 import com.bigroi.stock.jobs.trade.TradeTender;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.TradeService;
-import com.bigroi.stock.util.Generator;
 
 public class TradeServiceImpl implements TradeService{
 
 	private ProductDao productDao;
-	private PreDealDao preDealDao;
+	private DealDao dealDao;
 	private LotDao lotDao;
 	private TenderDao tenderDao;
 	
 	private Set<Tender> tendersToUpdate = new HashSet<>();
 	private Set<Lot> lotsToUpdate = new HashSet<>();
-	private List<PreDeal> deals = new ArrayList<>();
+	private List<Deal> deals = new ArrayList<>();
 	
 	public void setLotDao(LotDao lotDao) {
 		this.lotDao = lotDao;
@@ -46,8 +44,8 @@ public class TradeServiceImpl implements TradeService{
 		this.tenderDao = tenderDao;
 	}
 
-	public void setPreDealDao(PreDealDao preDealDao) {
-		this.preDealDao = preDealDao;
+	public void setPreDealDao(DealDao dealDao) {
+		this.dealDao = dealDao;
 	}
 	
 	public void setProductDao(ProductDao productDao) {
@@ -64,7 +62,7 @@ public class TradeServiceImpl implements TradeService{
 			}
 			lotDao.update(lotsToUpdate);
 			tenderDao.update(tendersToUpdate);
-			preDealDao.add(deals);
+			dealDao.add(deals);
 		}catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -74,7 +72,7 @@ public class TradeServiceImpl implements TradeService{
 		try{
 			List<TradeLot> tradeLots = new ArrayList<>();
 			List<TradeTender> tradeTenders = new ArrayList<>();
-			preDealDao.getPosibleDeals(tradeLots, tradeTenders, productId);
+			dealDao.getPosibleDeals(tradeLots, tradeTenders, productId);
 			
 			while(tradeTenders.size() > 0 && tradeLots.size() > 0){
 				
@@ -93,22 +91,22 @@ public class TradeServiceImpl implements TradeService{
 	}
 
 	private void createDealsForBid(TradeBid bid){
-		while(bid.getVolume() > 0 && bid.getPosiblePartners().size() > 0){
+		while(bid.getMaxVolume() > 0 && bid.getPosiblePartners().size() > 0){
 			TradeBid partner = bid.getBestPartner();
 			
-			deals.add(createPreDeal(bid, partner));
+			deals.add(createDeal(bid, partner));
 			
-			if (partner.getVolume() == 0 || partner.getVolume() < partner.getMinVolume()){
+			if (partner.getMaxVolume() == 0 || partner.getMaxVolume() < partner.getMinVolume()){
 				partner.removeFromPosiblePartners();
 			}
 			
-			if (bid.getVolume() == 0 || bid.getVolume() < bid.getMinVolume()){
+			if (bid.getMaxVolume() == 0 || bid.getMaxVolume() < bid.getMinVolume()){
 				bid.removeFromPosiblePartners();
 			}
 		}
 	}
 	
-	private PreDeal createPreDeal(TradeBid bid, TradeBid partner) {
+	private Deal createDeal(TradeBid bid, TradeBid partner) {
 		int volume = getVolume(bid, partner);
 		
 		Lot lot;
@@ -120,25 +118,17 @@ public class TradeServiceImpl implements TradeService{
 			lot = (Lot) partner;
 			tender = (Tender) bid;
 		}
-		PreDeal preDeal = new PreDeal();
-		preDeal.setCustApprovBool(false);
-		preDeal.setCustomerHashCode(Generator.generateLinkKey(15));
-		preDeal.setDealDate(new Date());
-		preDeal.setLotId(lot.getId());
-		preDeal.setSellerApprovBool(false);
-		preDeal.setSellerHashCode(Generator.generateLinkKey(15));
-		preDeal.setTenderId(tender.getId());
-		preDeal.setVolume(volume);
+		Deal deal = new Deal(lot, tender, volume);
 		
 		lotsToUpdate.add(lot);
 		tendersToUpdate.add(tender);
-		return preDeal;
+		return deal;
 	}
 	
 	private int getVolume(TradeBid bid, TradeBid partner) {
-		int volume = Math.min(bid.getVolume(), partner.getVolume());
-		bid.setVolume(bid.getVolume() - volume);
-		partner.setVolume(partner.getVolume() - volume);
+		int volume = Math.min(bid.getMaxVolume(), partner.getMaxVolume());
+		bid.setMaxVolume(bid.getMaxVolume() - volume);
+		partner.setMaxVolume(partner.getMaxVolume() - volume);
 		return volume;
 	}
 
@@ -163,7 +153,7 @@ public class TradeServiceImpl implements TradeService{
 	private int getTotalVolume(List<? extends Bid> tradeBids) {
 		int result = 0;
 		for (Bid bid : tradeBids){
-			result += bid.getVolume();
+			result += bid.getMaxVolume();
 		}
 		return result;
 	}

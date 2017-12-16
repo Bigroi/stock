@@ -20,7 +20,7 @@ public class TradeLot extends Lot implements TradeBid{
 	public int getTotalPosibleVolume(){
 		int result = 0;
 		for (TradeTender tender : posiblePartners){
-			result += tender.getVolume();
+			result += tender.getMaxVolume();
 		}
 		return result;
 	}
@@ -55,8 +55,8 @@ public class TradeLot extends Lot implements TradeBid{
 	}
 	
 	@Override
-	public void setVolume(int volume) {
-		super.setVolume(volume);
+	public void setMaxVolume(int volume) {
+		super.setMaxVolume(volume);
 		for (TradeTender partner : new ArrayList<>(posiblePartners)){
 			if (partner.getMinVolume() > volume){
 				posiblePartners.remove(partner);

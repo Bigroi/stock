@@ -3,7 +3,7 @@ package com.bigroi.stock.service.impl;
 import java.util.List;
 
 import com.bigroi.stock.bean.Tender;
-import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.service.ServiceException;
@@ -24,7 +24,7 @@ public class TenderServiceImpl implements TenderService{
 			if (id == -1) {
 				tender = new Tender();
 				tender.setCustomerId(companyId);
-				tender.setStatus(Status.DRAFT);
+				tender.setStatus(BidStatus.INACTIVE);
 				tender.setId(-1);
 			} else {
 				tender = tenderDao.getById(id);
@@ -45,9 +45,9 @@ public class TenderServiceImpl implements TenderService{
 	}
 
 	@Override
-	public void cancel(long id) throws ServiceException {
+	public void deleteById(long id) throws ServiceException {
 		try{
-			tenderDao.setStatusById(id, Status.CANCELED);
+			tenderDao.deleteById(id);
 		}catch(DaoException e){
 			throw new ServiceException(e);
 		}
@@ -70,7 +70,7 @@ public class TenderServiceImpl implements TenderService{
 	@Override
 	public void startTrading(long id) throws ServiceException {
 		try{
-			tenderDao.setStatusById(id, Status.ACTIVE);
+			tenderDao.setStatusById(id, BidStatus.ACTIVE);
 		}catch(DaoException e){
 			throw new ServiceException(e);
 		}

@@ -3,7 +3,6 @@ package com.bigroi.stock.dao.db;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
@@ -14,46 +13,45 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
 
 public class LotDaoImpl implements LotDao {
 	
 	private static final String ADD_LOT = "INSERT INTO LOT "
-			+ "(DESCRIPTION, PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME) "
+			+ "(DESCRIPTION, PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME) "
 			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?) ";
 
 	private static final String UPDATE_LOT_BY_ID = "UPDATE LOT SET "
 			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MIN_PRICE = ?, SELLER_ID = ?, " 
-			+ " STATUS = ?, EXP_DATE = ?, VOLUME = ?, MIN_VOLUME = ? "
+			+ " STATUS = ?, EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ? "
 			+ " WHERE ID = ? ";
 	
 	private static final String GET_LOT_BY_ID = "SELECT ID, DESCRIPTION, PRODUCT_ID, "
-			+ " MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME FROM LOT WHERE ID = ? ";
+			+ " MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME FROM LOT WHERE ID = ? ";
 	
 	private static final String GET_LOTS_BY_SELLER_ID = "SELECT L.ID, L.DESCRIPTION, "
-			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME, P.NAME AS PRODUCT_NAME "
+			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, P.NAME AS PRODUCT_NAME "
 			+ " FROM LOT L "
 			+ " JOIN PRODUCT P "
 			+ " ON L.PRODUCT_ID = P.ID "
 			+ " WHERE SELLER_ID  = ? ";
 	
 	private static final String GET_ACTIVE_LOTS_BY_PRODUCT_ID = "SELECT ID, DESCRIPTION, "
-			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME FROM LOT WHERE "
-			+ " PRODUCT_ID = ? AND STATUS = '" + Status.ACTIVE +"' ORDER BY MIN_PRICE ";
+			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME FROM LOT WHERE "
+			+ " PRODUCT_ID = ? AND STATUS = '" + BidStatus.ACTIVE +"' ORDER BY MIN_PRICE ";
 	
 	private static final String GET_ALL_ACTIVE_LOTS = "SELECT L.ID, L.DESCRIPTION,"
-			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, VOLUME, MIN_VOLUME, P.NAME AS PRODUCT_NAME "
+			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, P.NAME AS PRODUCT_NAME "
 			+ " FROM LOT L "
 			+ " JOIN PRODUCT P "
 			+ " ON L.PRODUCT_ID = P.ID "
-			+ " WHERE STATUS ='" + Status.ACTIVE +"' ";
+			+ " WHERE STATUS ='" + BidStatus.ACTIVE +"' ";
 	
 	private static final String SET_STATUS_BY_SELLER_ID =
 			  "UPDATE LOT SET "
@@ -69,6 +67,11 @@ public class LotDaoImpl implements LotDao {
 			  "UPDATE LOT SET "
 			+ "STATUS = ? "
 			+ "WHERE PRODUCT_ID = ?";
+
+	private static final String DELETE_BY_ID = 
+			"DELETE "
+			+ " FROM LOT "
+			+ " WHERE ID = ?";
 	
 	private DataSource datasource;
 
@@ -94,7 +97,7 @@ public class LotDaoImpl implements LotDao {
 				ps.setLong(4, lot.getSellerId());
 				ps.setString(5, lot.getStatus().name().toUpperCase());
 				ps.setDate(6, new Date(lot.getExpDate().getTime()));
-				ps.setInt(7, lot.getVolume());
+				ps.setInt(7, lot.getMaxVolume());
 				ps.setInt(8, lot.getMinVolume());
 				return ps;
 			}
@@ -113,7 +116,7 @@ public class LotDaoImpl implements LotDao {
 				lot.getSellerId(), 
 				lot.getStatus().name().toUpperCase(), 
 				lot.getExpDate(), 
-				lot.getVolume(), 
+				lot.getMaxVolume(), 
 				lot.getMinVolume(),
 				lot.getId()) == 1;
 	}
@@ -132,23 +135,7 @@ public class LotDaoImpl implements LotDao {
 	@Override
 	public List<Lot> getBySellerId(long sellerId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(GET_LOTS_BY_SELLER_ID, new RowMapper<Lot>(){
-			@Override
-			public Lot mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Lot lot = new Lot();
-				lot.setId(rs.getLong("id"));
-				lot.setDescription(rs.getString("DESCRIPTION"));
-				lot.setProductId(rs.getLong("PRODUCT_ID"));
-				lot.setMinPrice(rs.getDouble("MIN_PRICE"));
-				lot.setSellerId(rs.getLong("SELLER_ID"));
-				lot.setStatus(Status.valueOf(rs.getString("STATUS").toUpperCase()));
-				lot.setExpDate(rs.getDate("EXP_DATE"));
-				lot.setVolume(rs.getInt("VOLUME"));
-				lot.setMinVolume(rs.getInt("MIN_VOLUME"));
-				lot.setProductName(rs.getString("PRODUCT_NAME"));
-				return lot;
-			}
-		}, sellerId);
+		return template.query(GET_LOTS_BY_SELLER_ID, new BeanPropertyRowMapper<Lot>(Lot.class), sellerId);
 	}
 
 	@Override
@@ -166,21 +153,21 @@ public class LotDaoImpl implements LotDao {
 	}
 
 	@Override
-	public  boolean setStatusBySellerId(long sellerId, Status status) throws DaoException {
+	public  boolean setStatusBySellerId(long sellerId, BidStatus status) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(SET_STATUS_BY_SELLER_ID, status.toString(), sellerId) == 1;
 		 
 	}
 
 	@Override
-	public boolean setStatusByProductId(long productId, Status status) throws DaoException {
+	public boolean setStatusByProductId(long productId, BidStatus status) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(SET_STATUS_BY_PRODUCT_ID, status.toString(), productId) == 1;
 	}
 
 	
 	@Override
-	public boolean setStatusById(long id, Status status) throws DaoException {
+	public boolean setStatusById(long id, BidStatus status) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(SET_STATUS_BY_ID, status.toString(), id) == 1;
 	}
@@ -198,11 +185,17 @@ public class LotDaoImpl implements LotDao {
 				ps.setLong(4, lot.getSellerId());
 				ps.setString(5, lot.getStatus().name());
 				ps.setDate(6, new Date(lot.getExpDate().getTime()));
-				ps.setInt(7, lot.getVolume());
+				ps.setInt(7, lot.getMaxVolume());
 				ps.setInt(8, lot.getMinVolume());
 				ps.setLong(9, lot.getId());
 			}
 		});
 		
+	}
+
+	@Override
+	public void deleteById(long id) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		template.update(DELETE_BY_ID, id);
 	}
 }

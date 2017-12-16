@@ -3,7 +3,7 @@ package com.bigroi.stock.service.impl;
 import java.util.List;
 
 import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.service.LotService;
@@ -24,7 +24,7 @@ public class LotServiceImpl implements LotService {
 			if (id == -1) {
 				lot = new Lot();
 				lot.setSellerId(companyId);
-				lot.setStatus(Status.DRAFT);
+				lot.setStatus(BidStatus.INACTIVE);
 				lot.setId(-1);
 			} else {
 				lot = lotDao.getById(id);
@@ -59,9 +59,9 @@ public class LotServiceImpl implements LotService {
 	}
 
 	@Override
-	public void startTrading(long id) throws ServiceException {
+	public void activate(long id) throws ServiceException {
 		try {
-			lotDao.setStatusById(id, Status.ACTIVE);
+			lotDao.setStatusById(id, BidStatus.ACTIVE);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -69,9 +69,9 @@ public class LotServiceImpl implements LotService {
 	}
 
 	@Override
-	public void cancel(long id) throws ServiceException {
+	public void deleteById(long id) throws ServiceException {
 		try {
-			lotDao.setStatusById(id, Status.CANCELED);
+			lotDao.deleteById(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}

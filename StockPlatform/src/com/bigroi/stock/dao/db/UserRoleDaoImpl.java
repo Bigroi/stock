@@ -1,15 +1,13 @@
 package com.bigroi.stock.dao.db;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 
 import com.bigroi.stock.bean.UserRole;
 import com.bigroi.stock.dao.DaoException;
@@ -25,23 +23,16 @@ public class UserRoleDaoImpl implements UserRoleDao {
 		this.datasource = datasource;
 	}
 
-	
 	@Override
-	public List<UserRole> add(List<UserRole> userRole) throws DaoException {
+	public void add(List<UserRole> userRoles) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<UserRole> listRole = new ArrayList<>();
-		template.update(new PreparedStatementCreator() {
+		template.batchUpdate(ADD_USER_ROLE_BY_USER_ID, userRoles, userRoles.size(), 
+				new ParameterizedPreparedStatementSetter<UserRole>() {
 			@Override
-			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement ps = con.prepareStatement(ADD_USER_ROLE_BY_USER_ID);
-				for (UserRole list : userRole) {
-					ps.setLong(1,list.getUserId());
-					ps.setString(2, list.getRole().name());
-					listRole.add(list);
-				}
-				return ps;
+			public void setValues(PreparedStatement ps, UserRole userRole) throws SQLException {
+				ps.setLong(1, userRole.getUserId());
+				ps.setString(2, userRole.getRole().name());
 			}
 		});
-		return listRole;
 	}
 }

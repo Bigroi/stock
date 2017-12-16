@@ -25,7 +25,7 @@ public class TenderExparationMessage extends BaseMessage<Tender> {
 		return super.getText()
 				.replaceAll("@price", getDataObject().getMaxPrice() + "")
 				.replaceAll("@description", getDataObject().getDescription())
-				.replaceAll("@volume", getDataObject().getVolume() + "");
+				.replaceAll("@volume", getDataObject().getMaxVolume() + "");
 	}
 
 }

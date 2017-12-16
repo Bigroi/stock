@@ -10,7 +10,7 @@ public interface TenderService {
 	
 	List<Tender> getMyList(long companyId) throws ServiceException;
 	
-	void  cancel(long id) throws ServiceException;
+	void  deleteById(long id) throws ServiceException;
 	
 	void merge(Tender tender) throws ServiceException;
 

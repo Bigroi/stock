@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.Tender;
-import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.Table;
 import com.bigroi.stock.json.TableException;
@@ -44,7 +44,7 @@ public class TenderResourseController extends BaseResourseController {
 		
 		if (newTender.getId() < 0) {
 			newTender.setCustomerId(user.getCompanyId());;
-			newTender.setStatus(Status.DRAFT);
+			newTender.setStatus(BidStatus.INACTIVE);
 		} else {
 			Tender oldTender = ServiceFactory.getTenderService().getTender(newTender.getId(), user.getCompanyId());
 			newTender.setProductId(oldTender.getProductId());
@@ -79,7 +79,7 @@ public class TenderResourseController extends BaseResourseController {
 	public String cancel(@RequestParam("json") String json) throws ServiceException {
 		Tender tender = gson.fromJson(json, Tender.class);
 		checkTender(tender.getId());
-		ServiceFactory.getTenderService().cancel(tender.getId());
+		ServiceFactory.getTenderService().deleteById(tender.getId());
 		return new ResultBean(0, "/tender/MyTenders.spr").toString();
 	}
 

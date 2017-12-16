@@ -1,14 +1,9 @@
 package com.bigroi.stock.service;
 
-import com.bigroi.stock.bean.PreDeal;
+import com.bigroi.stock.bean.Deal;
 
 public interface DealService {
 
-	PreDeal getById(long id) throws ServiceException;
-	
-	void setApprovedByCustomer(long id) throws ServiceException;
-	
-	void setApprovedBySeller(long preDealId) throws ServiceException;
+	Deal getById(long id) throws ServiceException;
 
-	void cancel(long preDealId, boolean canceledBySeller) throws ServiceException;
 }

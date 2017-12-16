@@ -25,7 +25,7 @@ public class LotExparationMessage extends BaseMessage<Lot> {
 		return super.getText()
 				.replaceAll("@price", getDataObject().getMinPrice() + "")
 				.replaceAll("@description", getDataObject().getDescription())
-				.replaceAll("@volume", getDataObject().getVolume() + "");
+				.replaceAll("@volume", getDataObject().getMaxVolume() + "");
 	}
 
 }

@@ -1,14 +1,14 @@
 package com.bigroi.stock.messager.message;
 
+import com.bigroi.stock.bean.Deal;
 import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.PreDeal;
 import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.bean.common.Action;
 import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
-public class DealConfirmationMessageForCustomer extends BaseMessage<PreDeal> {
+public class DealConfirmationMessageForCustomer extends BaseMessage<Deal> {
 
 	public DealConfirmationMessageForCustomer(String fileName) throws MessageException {
 		super(fileName);
@@ -27,13 +27,14 @@ public class DealConfirmationMessageForCustomer extends BaseMessage<PreDeal> {
 	@Override
 	protected String getText() throws MessageException {
 		try{
-			PreDeal preDeal = getDataObject();
-			Tender tender = ServiceFactory.getTenderService().getTender(preDeal.getTenderId(), 0);
-			Lot lot = ServiceFactory.getLotService().getLot(preDeal.getLotId(), 0);
-			String customerLink = MessagerFactory.getLink().getCustomerConfirmationLink() + "?id=" + preDeal.getId()
-			+ "&key=" + preDeal.getCustomerHashCode() + "&action=";
+			Deal deal = getDataObject();
+			Tender tender = ServiceFactory.getTenderService().getTender(deal.getTenderId(), 0);
+			Lot lot = ServiceFactory.getLotService().getLot(deal.getLotId(), 0);
+			String customerLink = MessagerFactory.getLink().getCustomerConfirmationLink() + "?id=" + deal.getId()
+			//TODO hash code
+			+ "&key=" + deal.getCustomerId() + "&action=";
 			
-			return super.getText().replaceAll("@tenderId", preDeal.getTenderId() + "")
+			return super.getText().replaceAll("@tenderId", deal.getTenderId() + "")
 					.replaceAll("@tenderDate", tender.getDateStr())
 					.replaceAll("@tenderPrice", tender.getMaxPrice() + "")
 					.replaceAll("@price", (lot.getMinPrice() + tender.getMaxPrice()) / 2 + "")

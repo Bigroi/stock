@@ -6,9 +6,10 @@ public interface Bid {
 
 	public static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
 	
-	public int getVolume();
+	public int getMaxVolume();
 
-	public void setVolume(int volume);
+	public void setMaxVolume(int volume);
 	
 	public int getMinVolume();
+
 }

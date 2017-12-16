@@ -35,8 +35,8 @@
             <span class="form_hint">Proper format "150"</span>
         </li>
           <li>
-            <label for="volume">${lable.lotForm.max_volume}</label>
-            <input type="text" name="volume" placeholder="15000" pattern="^\d+$" required/>
+            <label for="maxVolume">${lable.lotForm.max_volume}</label>
+            <input type="text" name="maxVolume" placeholder="15000" pattern="^\d+$" required/>
             <span class="form_hint">Proper format "15000"</span>
         </li>
          <li>

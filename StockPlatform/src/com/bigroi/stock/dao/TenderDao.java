@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.bigroi.stock.bean.Tender;
-import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.bean.common.BidStatus;
 
 public interface TenderDao {
 	
@@ -20,12 +20,14 @@ public interface TenderDao {
 	
 	List<Tender> getAllActive() throws DaoException;
 
-	boolean setStatusByCustomerId(long customerId, Status status) throws DaoException;
+	boolean setStatusByCustomerId(long customerId, BidStatus status) throws DaoException;
 
-	boolean  setStatusByProductId(long productId, Status status) throws DaoException;
+	boolean  setStatusByProductId(long productId, BidStatus status) throws DaoException;
 	
-	boolean  setStatusById(long id, Status status) throws DaoException;
+	boolean  setStatusById(long id, BidStatus status) throws DaoException;
 
 	void update(Collection<Tender> tendersToUpdate) throws DaoException;
+
+	void deleteById(long id) throws DaoException;
 
 }

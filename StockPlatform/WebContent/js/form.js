@@ -120,7 +120,7 @@ function setLotDialogPlugin(element, id){
 			if (lot.id < 0){
 				$("#delete").remove();
 				$("#start-trading").remove();
-			} else if (lot.status != "DRAFT"){
+			} else if (lot.status != "INACTIVE"){
 				$("#start-trading").remove();
 			}
 		},
@@ -163,7 +163,7 @@ function setTenderDialogPlugin(element, id){
 			if (tender.id < 0){
 				$("#delete").remove();
 				$("#start-trading").remove();
-			} else if (tender.status != "DRAFT"){
+			} else if (tender.status != "INACTIVE"){
 				$("#start-trading").remove();
 			}
 		},

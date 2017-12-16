@@ -10,9 +10,9 @@ public interface LotService {
 	
 	List<Lot> getBySellerId(long salerId) throws ServiceException;
 	
-	void startTrading(long id) throws ServiceException;
+	void activate(long id) throws ServiceException;
 	
-	void cancel(long id) throws ServiceException;
+	void deleteById(long id) throws ServiceException;
 	
 	void merge(Lot lot) throws ServiceException;
 

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.Product;
-import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.ProductDao;
@@ -85,8 +85,8 @@ public class ProductServiceImpl implements ProductService {
 			Product product = productDao.getById(id);
 			product.setArchive(true);
 			productDao.update(product);
-			lotDao.setStatusByProductId(id, Status.CANCELED);
-			tenderDao.setStatusByProductId(id, Status.CANCELED);
+			lotDao.setStatusByProductId(id, BidStatus.INACTIVE);
+			tenderDao.setStatusByProductId(id, BidStatus.INACTIVE);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}

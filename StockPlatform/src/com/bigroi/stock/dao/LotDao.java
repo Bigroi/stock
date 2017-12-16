@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.bean.common.BidStatus;
 
 public interface LotDao {
 	
@@ -20,11 +20,13 @@ public interface LotDao {
 	
 	List<Lot> getActive() throws DaoException;
 
-	boolean setStatusBySellerId(long sellerId, Status status) throws DaoException;
-	 
-	boolean setStatusByProductId(long productId, Status status) throws DaoException;
-	 
-	boolean setStatusById(long id, Status status) throws DaoException;
-
 	void update(Collection<Lot> lotsToUpdate) throws DaoException;
+
+	void deleteById(long id) throws DaoException;
+
+	boolean setStatusById(long id, BidStatus active) throws DaoException;
+
+	boolean setStatusBySellerId(long companyId, BidStatus inactive) throws DaoException;
+
+	boolean setStatusByProductId(long id, BidStatus inactive) throws DaoException;
 }

@@ -6,6 +6,6 @@ import com.bigroi.stock.bean.UserRole;
 
 public interface UserRoleDao {
 	
-	List<UserRole> add(List<UserRole> userRole) throws DaoException;
+	void add(List<UserRole> userRole) throws DaoException;
 	
 }

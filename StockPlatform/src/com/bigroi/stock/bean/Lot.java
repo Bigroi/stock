@@ -2,7 +2,7 @@ package com.bigroi.stock.bean;
 
 import java.util.Date;
 
-import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Id;
 import com.bigroi.stock.util.DateUtil;
@@ -19,7 +19,7 @@ public class Lot implements Bid{
 	private String description;
 	
 	@Column("stock.table.lot.status")
-	private Status status;
+	private BidStatus status;
 	
 	private long productId;	
 	
@@ -32,7 +32,7 @@ public class Lot implements Bid{
 	private int minVolume;
 	
 	@Column("stock.table.lot.volume")
-	private int volume;
+	private int maxVolume;
 	
 	@Column("stock.table.lot.expDate")
 	private Date expDate = new Date();
@@ -100,25 +100,25 @@ public class Lot implements Bid{
 		this.expDate = expDate;
 	}
 
-	public Status getStatus() {
+	public BidStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(BidStatus status) {
 		this.status = status;
 	}
 
 	@Override
-	public int getVolume() {
-		return volume;
+	public int getMaxVolume() {
+		return maxVolume;
 	}
 
-	public void setVolume(int volume) {
-		this.volume = volume;
+	@Override
+	public void setMaxVolume(int maxVolume) {
+		this.maxVolume = maxVolume;
 	}
 	
-	
-	
+	@Override
 	public int getMinVolume() {
 		return minVolume;
 	}
@@ -130,7 +130,7 @@ public class Lot implements Bid{
 	@Override
 	public String toString() {
 		return "Lot [id=" + id + ", description=" + description + ", productId=" + productId + ", minPrice=" + minPrice
-				+ ", sellerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + ", volume=" + volume
+				+ ", sellerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + ", maxVolume=" + maxVolume
 				+ ", minVolume=" + minVolume + "]";
 	}
 

@@ -1,11 +1,11 @@
 package com.bigroi.stock.messager.message;
 
-import com.bigroi.stock.bean.PreDeal;
+import com.bigroi.stock.bean.Deal;
 import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
-public class SuccessDealMessageForCustomer extends BaseMessage<PreDeal> {
+public class SuccessDealMessageForCustomer extends BaseMessage<Deal> {
 
 	public SuccessDealMessageForCustomer(String fileName) throws MessageException {
 		super(fileName);

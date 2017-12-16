@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.StockUser;
-import com.bigroi.stock.bean.common.Status;
+import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.Table;
 import com.bigroi.stock.json.TableException;
@@ -52,7 +52,7 @@ public class LotResourseController extends BaseResourseController {
 		
 		if (newLot.getId() < 0) {
 			newLot.setSellerId(user.getCompanyId());;
-			newLot.setStatus(Status.DRAFT);
+			newLot.setStatus(BidStatus.INACTIVE);
 		} else {
 			Lot oldLot = ServiceFactory.getLotService().getLot(newLot.getId(), user.getCompanyId());
 			newLot.setProductId(oldLot.getProductId());
@@ -69,7 +69,7 @@ public class LotResourseController extends BaseResourseController {
 	public String startTrading(@RequestParam("json") String jsonLot) throws ServiceException {
 		Lot lot = gson.fromJson(jsonLot, Lot.class);
 		checkLot(lot.getId());
-		ServiceFactory.getLotService().startTrading(lot.getId());
+		ServiceFactory.getLotService().activate(lot.getId());
 		return new ResultBean(0, "/lot/MyLots.spr").toString();
 	}
 
@@ -78,7 +78,7 @@ public class LotResourseController extends BaseResourseController {
 	public String cancel(@RequestParam("json") String jsonLot) throws ServiceException {
 		Lot lot = gson.fromJson(jsonLot, Lot.class);
 		checkLot(lot.getId());
-		ServiceFactory.getLotService().cancel(lot.getId());
+		ServiceFactory.getLotService().deleteById(lot.getId());
 		return new ResultBean(0, "/lot/MyLots.spr").toString();
 	}
 	

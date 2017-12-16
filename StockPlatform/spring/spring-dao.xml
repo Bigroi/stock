@@ -55,10 +55,6 @@
 		<property name="datasource" ref="datasource" />
 	</bean>
 
-	<bean id="preDealDao" class="com.bigroi.stock.dao.db.PreDealDaoImpl">
-		<property name="datasource" ref="datasource" />
-	</bean>
-
 	<bean id="emailDao" class="com.bigroi.stock.dao.db.EmailDaoImpl">
 		<property name="datasource" ref="datasource" />
 	</bean>
