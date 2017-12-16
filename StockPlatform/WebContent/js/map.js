@@ -26,6 +26,10 @@ function initMap() {
 	$("input[name='city']").focusout( function() {
 		geocodeAddress(geocoder);
 	});
+	
+	$("input[name='address']").focusout( function() {
+		geocodeAddress(geocoder);
+	});
   
 	map.addListener('click', function(event) {
 		geocodeCoordinate(event.latLng);
@@ -50,7 +54,8 @@ function initMap() {
 			  
 			  $("input[name='country']")[0].value = country;
 			  $("input[name='city']")[0].value = city;
-			  $("input[type='submit']")[0].removeAttribute("disabled");
+			  $("input[name='address']")[0].value = address;
+			  $("input[type='submit']").removeAttr("disabled");
 		  });
 	}
 
@@ -61,10 +66,10 @@ function initMap() {
 				var location = results[0].geometry.location;
 				map.setCenter(location);
 				addMarker(location);
-				$("input[type='submit']")[0].removeAttribute("disabled");
+				$("input[type='submit']").removeAttr("disabled");
 			} else {
 				marker.setMap(null);
-				$("input[type='submit']")[0].setAttribute("disabled", "disabled");
+				$("input[type='submit']").attr("disabled", "disabled");
 			}
 		});
 	}
@@ -82,6 +87,8 @@ function initMap() {
 	}
 	
 	function getAddress(){
-		return $("input[name='country']")[0].value + ' ' + $("input[name='city']")[0].value;
+		return $("input[name='country']")[0].value + 
+			' ' + $("input[name='city']")[0].value +
+			' ' + $("input[name='address']")[0].value;
 	}
 }

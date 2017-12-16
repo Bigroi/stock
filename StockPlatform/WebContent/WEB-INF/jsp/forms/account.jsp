@@ -6,7 +6,6 @@
 			<%-- <input type="hidden" name="status" value="${company.status}"> --%>
 			<input type="hidden" name="latitude" value="${company.latitude}">
 			<input type="hidden" name="longitude" value="${company.longitude}" >
-			<input type="hidden" name="email" value="${company.email}" >
 			
 		    <ul>
 		        <li>
@@ -37,6 +36,11 @@
 		        <li>
 		            <label for="city">${lable.account.city}</label>
 		            <input type="text" name="city" placeholder="Minsk" required value="${company.city}"/>
+		        </li>
+		        <li>
+		            <label for="address">${lable.account.address}</label>
+		            <input type="text" name="address" placeholder="Programmistov 11" 
+		            	required value="${company.address}"/>
 		        </li>
 		       
 		        <li>
