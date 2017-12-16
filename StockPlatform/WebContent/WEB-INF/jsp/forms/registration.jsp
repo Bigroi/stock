@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <div style="display: table; width:100%">
 	<div style="display: table-cell; width: 30%">
-		<span style="color: red">${message}</span>
-		<form class="form" action="/access/Registation.spr" method="post" name="form">
+		<div class="form-message"></div>
+		<form class="form" action="#" method="post" name="form">
 			<input type="hidden" name="latitude" value="${company.latitude}">
 			<input type="hidden" name="longitude" value="${company.longitude}" >
 		    <ul>
@@ -13,7 +13,7 @@
 		        </li>
 		        <li>
 		            <label for="login">${lable.registration.login}</label>
-		            <input type="email" name="login" placeholder="john_doe@example.com" required value="${user.login}"/>
+		            <input type="email" name="login" placeholder="john_doe@example.com" required/>
 		            <span class="form_hint">Proper format "john_doe@example.com"</span>
 		        </li>
 		        <li>
@@ -26,32 +26,39 @@
 		        </li>
 		        <li>
 		            <label for="name">${lable.registration.company_name}</label>
-		            <input type="text" name="name" placeholder="Stock lmt" required value="${company.name}"/>
+		            <input type="text" name="name" placeholder="Stock lmt" required/>
 		        </li>
 		        <li>
 		            <label for="phone">${lable.registration.phone}</label>
-		            <input type="text" name="phone" placeholder="+375290000000" pattern="^\+375[\d\- ]{5,13}$" required value="${company.phone}"/>
+		            <input type="text" name="phone" placeholder="+375290000000" pattern="^\+375[\d\- ]{5,13}$" required/>
 		            <span class="form_hint">Proper format "+375290000000"</span>
 		        </li>
 		        <li>
 		            <label for="regNumber">${lable.registration.reg_number}</label>
-		            <input type="text" name="regNumber" placeholder="1234567890" required value="${company.regNumber}"/>
+		            <input type="text" name="regNumber" placeholder="1234567890" required/>
 		            <span class="form_hint">Proper format "1234567890"</span>
 		        </li>
 		        <li>
 		            <label for="country">${lable.registration.country}</label>
-		            <input type="text" name="country" placeholder="Belarus" required value="${company.country}"/>
+		            <input type="text" name="country" placeholder="Belarus" required/>
 		        </li>
 		        <li>
 		            <label for="city">${lable.registration.city}</label>
-		            <input type="text" name="city" placeholder="Minsk" required value="${company.city}"/>
+		            <input type="text" name="city" placeholder="Minsk" required/>
 		        </li>
 		         <li>
 		            <label for="address">${lable.registration.address}</label>
-		            <input type="text" name="address" placeholder="Minsk" required value="${company.address}"/>
+		            <input type="text" name="address" placeholder="Minsk" required/>
 		        </li>
 		        <li>
-		        	<button class="submit" type="submit">${lable.button.save}</button>
+		        	<button class="submit" type="submit"
+		        			onclick="
+		        				sendFormData($('.form'), 
+			        				'/account/json/Registration.spr', 
+			        				function(answer){
+			        					processRequestResult(answer, $('.form-message'));
+			        				}); 
+		        				return false;">${lable.button.save}</button>
 		        </li>
 		    </ul>
 		</form>	

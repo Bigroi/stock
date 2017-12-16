@@ -42,7 +42,7 @@ function processRequestResult(answer, messageDiv){
 		return 0;
 	}
 	messageDiv.text(answer.data);
-	return answe.result;
+	return answer.result;
 }
 
 function setFormData(formContainer, url, params, afterLoad){

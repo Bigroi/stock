@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.StockUser;
+import com.bigroi.stock.bean.common.CompanyStatus;
+import com.bigroi.stock.bean.common.Role;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
@@ -36,7 +38,6 @@ public class AccountResourceController extends BaseResourseController {
 		@SuppressWarnings("unchecked")
 		Map<String, String> map = gson.fromJson(json, Map.class);
 		
-		
 		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		String password = map.get("password");
 		if (password != null && !password.equals("")){
@@ -52,5 +53,41 @@ public class AccountResourceController extends BaseResourseController {
 		ServiceFactory.getUserService().updateCompanyAndUser(user, company);
 		
 		return new ResultBean(1, "account.edit.success").toString();
+	}
+	
+	@RequestMapping(value = "/Registration.spr")
+	@ResponseBody
+	public String registration(@RequestParam("json") String json) 
+			throws ServiceException {
+		
+		@SuppressWarnings("unchecked")
+		Map<String, String> map = gson.fromJson(json, Map.class);
+		
+		StockUser user = new StockUser();
+		user.setLogin(map.get("login"));
+		user.setPassword(map.get("password"));
+		String passwordRepeat = map.get("passwordRepeat");
+		
+		if (ServiceFactory.getUserService().getByLogin(user.getLogin()) != null) {
+			return new ResultBean(-1, "registration.login.error").toString();
+		}
+		
+		if (!user.getPassword().equals(passwordRepeat)) {
+			return new ResultBean(-1, "registration.password.error").toString();
+		}
+		
+		Company company = new Company();
+		company.setName(map.get("name"));
+		company.setRegNumber(map.get("regNumber"));
+		company.setStatus(CompanyStatus.NOT_VERIFIED);
+		company.setPhone(map.get("phone"));
+		company.setCountry(map.get("country"));
+		company.setCity(map.get("city"));
+		company.setAddress(map.get("address"));
+		company.setLatitude(Double.parseDouble(map.get("latitude")));
+		company.setLongitude(Double.parseDouble(map.get("longitude")));
+		
+		ServiceFactory.getUserService().addUser(company, user, new Role[]{Role.ROLE_USER});
+		return new ResultBean(1, "registration.success").toString();
 	}
 }

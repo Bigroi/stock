@@ -9,7 +9,7 @@
 	<a href="/product/List.spr" class='<tiles:getAsString name="nav-products"/>'>
 		${lable.navigation.products}
 	</a>
-	<a href="/Registration.spr" class='<tiles:getAsString name="nav-regestration"/>'>
+	<a href="/account/Registration.spr" class='<tiles:getAsString name="nav-regestration"/>'>
 		${lable.navigation.regestration}
 	</a>
 	<a href="#" id="loginLink">

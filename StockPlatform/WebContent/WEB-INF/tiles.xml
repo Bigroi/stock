@@ -108,9 +108,4 @@
 		<put-attribute name="nav-testBG" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/test/testBG.jsp" />
 	</definition>
-
-	<definition name="registrationSuccess" extends="base-definition">
-		<put-attribute name="nav-regestration" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/registrationSuccess.jsp" />
-	</definition>
 </tiles-definitions>
