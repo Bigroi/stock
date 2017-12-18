@@ -278,6 +278,8 @@ public class DealDaoImpl implements DealDao {
 			deal.setTenderId(rs.getLong("TENDER_ID"));
 			deal.setLotId(rs.getLong("LOT_ID"));
 			deal.setProductId(rs.getLong("PRODUCT_ID"));
+			deal.setCustomerApproved(rs.getString("CUSTOMER_APPROVED"));
+			deal.setSellerApproved(rs.getString("SELLER_APPROVED"));
 
 			long customerId = rs.getLong("CUSTOMER_ID");
 			String you;
