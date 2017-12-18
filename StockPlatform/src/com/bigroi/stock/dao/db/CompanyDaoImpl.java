@@ -70,11 +70,11 @@ public class CompanyDaoImpl implements CompanyDao {
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(ADD_COMPANY, PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, company.getName());
-				ps.setString(3, company.getPhone());
-				ps.setString(4, company.getRegNumber());
-				ps.setString(5, company.getCountry());
-				ps.setString(6, company.getCity());
-				ps.setString(2, company.getAddress());
+				ps.setString(2, company.getPhone());
+				ps.setString(3, company.getRegNumber());
+				ps.setString(4, company.getCountry());
+				ps.setString(5, company.getCity());
+				ps.setString(6, company.getAddress());
 				ps.setString(7, company.getStatus().name().toUpperCase());
 				ps.setDouble(8, company.getLongitude());
 				ps.setDouble(9, company.getLatitude());

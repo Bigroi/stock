@@ -13,6 +13,16 @@
 		
 	<context:component-scan base-package="com.bigroi.stock.controller/**" />
 
+	<bean class = "org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	    <property name="messageConverters">
+	        <array>
+	            <bean class = "org.springframework.http.converter.StringHttpMessageConverter">
+	                <property name="supportedMediaTypes" value = "text/JSON;charset=UTF-8" />
+	            </bean>
+	        </array>
+	    </property>
+	</bean>
+
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		 <property name="viewClass">  
