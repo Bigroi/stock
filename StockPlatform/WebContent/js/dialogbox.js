@@ -121,6 +121,7 @@ $.fn.dialogbox = function(params) {
 				});
 			}
 		});	 
+		return false;
 	});		
 }
 
