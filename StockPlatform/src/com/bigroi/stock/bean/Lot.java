@@ -12,29 +12,27 @@ public class Lot implements Bid{
 	@Id
 	private long id;
 	
-	@Column("stock.table.lot.poductName")
+	@Column("lable.lot.poductName")
 	private String productName;
 	
-	@Column("stock.table.lot.description")
 	private String description;
 	
-	@Column("stock.table.lot.status")
+	@Column("lable.lot.status")
 	private BidStatus status;
 	
 	private long productId;	
 	
-	@Column("stock.table.lot.minPrice")
+	@Column("lable.lot.minPrice")
 	private double minPrice;
 	
 	private long sellerId;
 	
-	@Column("stock.table.lot.minVolume")
 	private int minVolume;
 	
-	@Column("stock.table.lot.volume")
+	@Column("lable.lot.volume")
 	private int maxVolume;
 	
-	@Column("stock.table.lot.expDate")
+	@Column("lable.lot.expDate")
 	private Date expDate = new Date();
 	
 	public boolean isExpired() {

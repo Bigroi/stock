@@ -13,13 +13,13 @@ public class Product {
 	@Id
 	private long id;
 	
-	@Column("stock.table.product.name")
+	@Column("lable.product.name")
 	private String name;
 	
-	@Column("stock.table.product.description")
+	@Column("lable.product.description")
 	private String description;
 	
-	@Column("stock.table.product.archive")
+	@Column("lable.product.archive")
 	private boolean archive;
 	
 	public String getArchiveData(){

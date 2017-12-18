@@ -15,10 +15,9 @@ public class Tender implements Bid{
 	
 	private long productId;
 	
-	@Column("lable.tender.productName")
+	@Column("lable.productName")
 	private String product;
 	
-	@Column("lable.tender.description")
 	private String description;
 	
 	@Column("lable.tender.status")
@@ -27,7 +26,6 @@ public class Tender implements Bid{
 	@Column("lable.tender.maxPrice")
 	private double maxPrice;
 	
-	@Column("lable.tender.minVolume")
 	private int minVolume;
 	
 	@Column("lable.tender.volume")

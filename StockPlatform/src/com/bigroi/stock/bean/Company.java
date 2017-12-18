@@ -9,31 +9,26 @@ public class Company {
 	@Id
 	private long id;
 	
-	@Column("stock.table.company.name")
+	@Column("lable.company.name")
 	private String name;
 	
-	@Column("stock.table.company.phone")
+	@Column("lable.company.phone")
 	private String phone;
 	
-	@Column("stock.table.company.regNumber")
+	@Column("lable.company.regNumber")
 	private String regNumber;
 	
-	@Column("stock.table.company.country")
 	private String country;
 	
-	@Column("stock.table.company.city")
 	private String city;
 	
-	@Column("stock.table.company.address")
 	private String address;
 	
 	@Column("stock.table.company.status")
 	private CompanyStatus status;
 	
-	@Column("stock.table.company.longitude")
 	private double longitude = 26.001813399999946;
 	
-	@Column("stock.table.company.latitude")
 	private double latitude = 53.1568911;
 
 	public long getId() {
