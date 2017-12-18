@@ -22,6 +22,8 @@ public class BaseRenderingController {
 			"lotForm.properties",
 			"main.properties",
 			"myLots.properties",
+			"myDeals.properties",
+			"deal.properties",
 			"myTenders.properties",
 			"productForm.properties",
 			"products.properties",

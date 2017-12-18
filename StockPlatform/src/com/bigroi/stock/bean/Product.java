@@ -13,7 +13,7 @@ public class Product {
 	@Id
 	private long id;
 	
-	@Column("skock.table.product.name")
+	@Column("stock.table.product.name")
 	private String name;
 	
 	@Column("stock.table.product.description")

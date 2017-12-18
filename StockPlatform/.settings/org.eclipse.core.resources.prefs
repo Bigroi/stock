@@ -1,12 +1,15 @@
 eclipse.preferences.version=1
+encoding//SQL/stock.sql=UTF-8
 encoding//WebContent/testJson/table.json=UTF-8
 encoding//lables/account.properties=UTF-8
 encoding//lables/approveLink.properties=UTF-8
 encoding//lables/button.properties=UTF-8
 encoding//lables/companies.properties=UTF-8
+encoding//lables/deal.properties=UTF-8
 encoding//lables/login.properties=UTF-8
 encoding//lables/lotForm.properties=UTF-8
 encoding//lables/main.properties=UTF-8
+encoding//lables/myDeals.properties=UTF-8
 encoding//lables/myLots.properties=UTF-8
 encoding//lables/myTenders.properties=UTF-8
 encoding//lables/navigation.properties=UTF-8

@@ -9,6 +9,7 @@
 		<put-attribute name="userHeader" value="/WEB-INF/jsp/templates/userHeader.jsp"/>
 		<put-attribute name="nav-account" value="" cascade="true"/>
 		<put-attribute name="nav-products" value="" cascade="true"/>
+		<put-attribute name="nav-deals" value="" cascade="true"/>
 		<put-attribute name="nav-tenders" value="" cascade="true"/>
 		<put-attribute name="nav-lots" value="" cascade="true"/>
 		<put-attribute name="nav-welcome" value="" cascade="true"/>
@@ -72,6 +73,16 @@
 	<definition name="myLots" extends="base-definition">
 		<put-attribute name="nav-lots" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/myLots.jsp" />
+	</definition>
+	
+	<definition name="myDeals" extends="base-definition">
+		<put-attribute name="nav-deals" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/myDeals.jsp" />
+	</definition>
+	
+	<definition name="deal" extends="base-definition">
+		<put-attribute name="nav-deals" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/deal.jsp" />
 	</definition>
 
 	<definition name="myTenders" extends="base-definition">

@@ -26,10 +26,15 @@ CREATE TABLE IF NOT EXISTS `blacklist` (
   KEY `FK_blacklist_lot` (`lot_Id`),
   CONSTRAINT `FK_blacklist_application` FOREIGN KEY (`tender_Id`) REFERENCES `tender` (`id`),
   CONSTRAINT `FK_blacklist_lot` FOREIGN KEY (`lot_Id`) REFERENCES `lot` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.blacklist: ~0 rows (приблизительно)
+-- Дамп данных таблицы stock.blacklist: ~4 rows (приблизительно)
 /*!40000 ALTER TABLE `blacklist` DISABLE KEYS */;
+INSERT INTO `blacklist` (`id`, `tender_Id`, `lot_Id`) VALUES
+	(4, 18, 9),
+	(5, 18, 9),
+	(6, 18, 9),
+	(7, 18, 9);
 /*!40000 ALTER TABLE `blacklist` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.company
@@ -50,8 +55,8 @@ CREATE TABLE IF NOT EXISTS `company` (
 -- Дамп данных таблицы stock.company: ~2 rows (приблизительно)
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
 INSERT INTO `company` (`id`, `name`, `phone`, `reg_number`, `country`, `city`, `address`, `status`, `longitude`, `latitude`) VALUES
-	(1, 'aaa', '+37529165573s', 'df', 'ÐÐµÐ»Ð°ÑÑÑÑ', 'ÐÐ¸Ð½ÑÐº', 'ÐÐµÐ·Ð°Ð²Ð¸ÑÐ¸Ð¼Ð¾ÑÑÐ¸ 125', 'VERIFIED', 27.64, 53.94),
-	(16, 'nasia', 'Независимости 125', '+375298202264', '123', 'belarus', 'minsk', 'VERIFIED', 27.64, 53.94);
+	(1, 'aaa', '+375291655733', 'df', 'ÐÐµÐ»Ð°ÑÑÑÑ', 'ÐÐ¸Ð½ÑÐº', 'ÐÐµÐ·Ð°Ð²Ð¸ÑÐ¸Ð¼Ð¾ÑÑÐ¸ 125', 'VERIFIED', 27.64, 53.94),
+	(16, 'nasia', '+375298202264', '123', 'belarus', 'minsk', 'Независимости 125', 'VERIFIED', 27.64, 53.94);
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.deal
@@ -66,19 +71,24 @@ CREATE TABLE IF NOT EXISTS `deal` (
   `customer_id` bigint(20) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `volume` int(11) NOT NULL,
+  `product_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_deals_lot` (`lot_Id`),
   KEY `FK_deals_tender` (`tender_Id`),
   KEY `FK_deal_company` (`seller_id`),
   KEY `FK_deal_company_2` (`customer_id`),
+  KEY `FK_deal_product` (`product_id`),
+  CONSTRAINT `FK_deal_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   CONSTRAINT `FK_deals_lot` FOREIGN KEY (`lot_Id`) REFERENCES `lot` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_deals_tender` FOREIGN KEY (`tender_Id`) REFERENCES `tender` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_deal_company` FOREIGN KEY (`seller_id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_deal_company_2` FOREIGN KEY (`customer_id`) REFERENCES `company` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.deal: ~0 rows (приблизительно)
+-- Дамп данных таблицы stock.deal: ~1 rows (приблизительно)
 /*!40000 ALTER TABLE `deal` DISABLE KEYS */;
+INSERT INTO `deal` (`id`, `lot_Id`, `tender_Id`, `time`, `customer_approved`, `seller_id`, `seller_approved`, `customer_id`, `price`, `volume`, `product_id`) VALUES
+	(4, 9, 18, '2017-12-18 14:45:08', NULL, 1, 'N', 16, 34.00, 344, 13);
 /*!40000 ALTER TABLE `deal` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.email
@@ -88,10 +98,15 @@ CREATE TABLE IF NOT EXISTS `email` (
   `email_subject` varchar(100) DEFAULT NULL,
   `email_text` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.email: ~0 rows (приблизительно)
+-- Дамп данных таблицы stock.email: ~4 rows (приблизительно)
 /*!40000 ALTER TABLE `email` DISABLE KEYS */;
+INSERT INTO `email` (`id`, `to_email`, `email_subject`, `email_text`) VALUES
+	(1, 'Независимости 125', 'Отказ от сделки.', 'К сожалению, Ваш потенциальный партнер отказался от Вашего лота №18.'),
+	(2, 'Независимости 125', 'Отказ от сделки.', 'К сожалению, Ваш потенциальный партнер отказался от Вашего лота №18.'),
+	(3, 'Независимости 125', 'Отказ от сделки.', 'К сожалению, Ваш потенциальный партнер отказался от Вашего лота №18.'),
+	(4, 'Независимости 125', 'Отказ от сделки.', 'К сожалению, Ваш потенциальный партнер отказался от Вашего лота №18.');
 /*!40000 ALTER TABLE `email` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.lot
@@ -112,10 +127,11 @@ CREATE TABLE IF NOT EXISTS `lot` (
   CONSTRAINT `FK_lot_product` FOREIGN KEY (`product_Id`) REFERENCES `product` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.lot: ~1 rows (приблизительно)
+-- Дамп данных таблицы stock.lot: ~2 rows (приблизительно)
 /*!40000 ALTER TABLE `lot` DISABLE KEYS */;
 INSERT INTO `lot` (`id`, `description`, `product_Id`, `min_price`, `seller_Id`, `status`, `exp_date`, `max_volume`, `min_Volume`) VALUES
-	(8, 'kjkhkhj', 13, 123.00, 1, 'ACTIVE', '2017-12-17', 123333, 1233);
+	(8, 'kjkhkhj', 13, 123.00, 1, 'ACTIVE', '2017-12-17', 123333, 1233),
+	(9, 'test Lot', 13, 100.00, 1, 'ACTIVE', '2017-12-17', 123124499, 123);
 /*!40000 ALTER TABLE `lot` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.product
@@ -157,10 +173,12 @@ CREATE TABLE IF NOT EXISTS `tender` (
   KEY `FK_application_company` (`customer_Id`),
   CONSTRAINT `FK_tender_company` FOREIGN KEY (`customer_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_tender_product` FOREIGN KEY (`product_Id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы stock.tender: ~0 rows (приблизительно)
+-- Дамп данных таблицы stock.tender: ~1 rows (приблизительно)
 /*!40000 ALTER TABLE `tender` DISABLE KEYS */;
+INSERT INTO `tender` (`id`, `description`, `product_Id`, `max_price`, `customer_Id`, `status`, `exp_date`, `max_volume`, `min_Volume`) VALUES
+	(18, 'TEST TENDER', 13, 29.00, 16, 'ACTIVE', '2017-12-17', 24610, 234);
 /*!40000 ALTER TABLE `tender` ENABLE KEYS */;
 
 -- Дамп структуры для таблица stock.user

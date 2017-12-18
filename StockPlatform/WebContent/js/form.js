@@ -204,3 +204,25 @@ function setProductDialogPlugin(element, id){
 		buttons:buttons,
 	});
 }
+
+function sendDealFormData(formContainer, url, id){
+	sendFormData(formContainer, 
+			url, 
+			function(answer){
+				processRequestResult(answer, $('.form-message'));
+				setFormData($('#form-container'), '/deal/json/Form.spr', {id:id}, function(){
+					$("#approve").remove();
+					$('#reject').remove();
+				})
+			}); 
+}
+
+function initDealForm(formContainer, url, id){
+	setFormData(formContainer, url, {id:id}, function(deal){
+		if (deal.status != 'ON_APPROVE'){
+			$("#approve").remove();
+			$('#reject').remove();
+		}
+		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initMap");
+	})
+}

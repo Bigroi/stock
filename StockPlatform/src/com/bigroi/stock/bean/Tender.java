@@ -15,30 +15,29 @@ public class Tender implements Bid{
 	
 	private long productId;
 	
-	@Column("stock.table.tender.description")
+	@Column("lable.tender.productName")
+	private String product;
+	
+	@Column("lable.tender.description")
 	private String description;
 	
-	@Column("stock.table.tender.status")
+	@Column("lable.tender.status")
 	private BidStatus status;
 	
-	@Column("stock.table.tender.maxPrice")
+	@Column("lable.tender.maxPrice")
 	private double maxPrice;
 	
-	@Column("stock.table.tender.minVolume")
+	@Column("lable.tender.minVolume")
 	private int minVolume;
 	
-	@Column("stock.table.tender.volume")
+	@Column("lable.tender.volume")
 	private int maxVolume;
 	
 	private long customerId;
 	
-	@Column("stock.table.tender.expDate")
+	@Column("lable.tender.expDate")
 	private Date expDate = new Date();
 	
-	
-	
-	
-
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
 			return true;
@@ -126,6 +125,14 @@ public class Tender implements Bid{
 
 	public void setMinVolume(int minVolume) {
 		this.minVolume = minVolume;
+	}
+	
+	public String getProduct() {
+		return product;
+	}
+	
+	public void setProduct(String product) {
+		this.product = product;
 	}
 	
 	@Override

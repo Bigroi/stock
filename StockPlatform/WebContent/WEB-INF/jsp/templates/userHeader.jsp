@@ -9,6 +9,9 @@
 	<a href="/tender/MyTenders.spr" class='<tiles:getAsString name="nav-tenders"/>'>
 		${lable.navigation.tenders}
 	</a>
+	<a href="/deal/MyDeals.spr" class='<tiles:getAsString name="nav-deals"/>'>
+		${lable.navigation.deals}
+	</a>
 	<a href="/product/List.spr" class='<tiles:getAsString name="nav-products"/>'>
 		${lable.navigation.products}
 	</a>

@@ -99,7 +99,7 @@ public class MarketServiceImpl implements MarketService {
 					message.setDataObject(deal);
 					message.send();
 				}
-				setStatuses(deal);
+				returnVolumeToBids(deal);
 			}
 			dealDao.deleteOnApprove();
 		} catch (DaoException | MessageException e) {
@@ -107,18 +107,12 @@ public class MarketServiceImpl implements MarketService {
 		}
 	}
 	
-	private void setStatuses(Deal deal) throws DaoException {
+	private void returnVolumeToBids(Deal deal) throws DaoException {
 		Lot lot = lotDao.getById(deal.getLotId());
-		if (lot.isExpired()) {
-			lot.setStatus(BidStatus.INACTIVE);
-		} 
 		lot.setMaxVolume(lot.getMaxVolume() + deal.getVolume());
 		lotDao.update(lot);
 		
 		Tender tender = tenderDao.getById(deal.getTenderId());
-		if (tender.isExpired()) {
-			tender.setStatus(BidStatus.INACTIVE);
-		} 
 		tender.setMaxVolume(tender.getMaxVolume() + deal.getVolume());
 		tenderDao.update(tender);
 	}

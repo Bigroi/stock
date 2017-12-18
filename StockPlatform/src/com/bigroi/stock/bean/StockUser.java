@@ -17,13 +17,13 @@ public class StockUser implements UserDetails {
 	@Id
 	private long id;
 	
-	@Column("skock.table.tender.login")
+	@Column("stock.table.tender.login")
 	private String login;
 	private String password;
 	private List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 	
 	
-	@Column("skock.table.tender.companyId")
+	@Column("stock.table.tender.companyId")
 	private long companyId;
 	
 	public long getId() {
