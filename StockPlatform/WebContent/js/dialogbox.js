@@ -115,7 +115,7 @@ $.fn.dialogbox = function(params) {
 				event.preventDefault();
 				sendFormData($dialogboxElementContent, $(this).attr("url"), function(answer){
 					var $message = $(".dialogbox-message");
-					if (processRequestResult(answer, $message)){
+					if (processRequestResult(answer, $message) > 0){
 						deleting();
 					}
 				});
