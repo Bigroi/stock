@@ -7,9 +7,6 @@ import com.bigroi.stock.json.TableRow;
 @TableRow
 public class Product {
 	
-	private static final String YES = "Y";
-	private static final String NO = "N";
-	
 	@Id
 	private long id;
 	
@@ -20,14 +17,14 @@ public class Product {
 	private String description;
 	
 	@Column("lable.product.archive")
-	private boolean archive;
+	private String archive;
 	
-	public String getArchiveData(){
-		return archive ? YES : NO;
+	public String getArchive(){
+		return archive;
 	}
 	
-	public void setArchiveData(String archive){
-		this.archive = YES.equalsIgnoreCase(archive);
+	public void setArchive(String archive){
+		this.archive = archive;
 	}
 	
 
@@ -53,14 +50,6 @@ public class Product {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	
-	public boolean isArchive() {
-		return archive;
-	}
-
-	public void setArchive(boolean archive) {
-		this.archive = archive;
 	}
 	
 	@Override

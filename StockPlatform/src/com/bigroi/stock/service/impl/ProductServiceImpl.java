@@ -83,7 +83,7 @@ public class ProductServiceImpl implements ProductService {
 	public void delete(long id) throws ServiceException {
 		try {
 			Product product = productDao.getById(id);
-			product.setArchive(true);
+			product.setArchive("Y");
 			productDao.update(product);
 			lotDao.setStatusByProductId(id, BidStatus.INACTIVE);
 			tenderDao.setStatusByProductId(id, BidStatus.INACTIVE);

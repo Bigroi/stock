@@ -27,9 +27,9 @@ public class ProductDaoImpl implements ProductDao {
 	        + "VALUES (?, ?, ?)";
 
 	private static final String UPDATE_PRODUCTS_BY_ID = "UPDATE PRODUCT SET NAME = ?, "
-			+ " DESCRIPTION = ? WHERE ID = ?";
+			+ " DESCRIPTION = ?, ARCHIVE =?  WHERE ID = ?";
 
-	private static final String GET_PRODUCT_BY_ID = "SELECT ID, NAME, DESCRIPTION "
+	private static final String GET_PRODUCT_BY_ID = "SELECT ID, NAME, DESCRIPTION, ARCHIVE "
 			+ " FROM PRODUCT WHERE ID = ? ";
 	
 	private DataSource datasource;
@@ -66,7 +66,7 @@ public class ProductDaoImpl implements ProductDao {
 				PreparedStatement ps = con.prepareStatement(ADD_PRODUCT, PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, product.getName());
 				ps.setString(2, product.getDescription());
-				ps.setString(3, product.getArchiveData());
+				ps.setString(3, product.getArchive());
 				return ps;
 			}
 		}, keyHolder);
@@ -78,7 +78,7 @@ public class ProductDaoImpl implements ProductDao {
 	public boolean update(Product product) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return	template.update(UPDATE_PRODUCTS_BY_ID, product.getName(), 
-								product.getDescription(), product.getId()) == 1;
+								product.getDescription(), product.getArchive(), product.getId()) == 1;
 	}
 
 	@Override
