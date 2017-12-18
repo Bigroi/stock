@@ -11,12 +11,12 @@
         </li>
         <li>
             <label for="name">${lable.productForm.name}</label>
-            <input type="text" name="name" required value="${product.name}"/>
+            <input type="text" name="name" required/>
             
         </li>
         <li>
             <label for=description>${lable.productForm.description}</label>
-            <textarea name="description" cols="40" rows="6" required>"${product.description}"</textarea>
+            <textarea name="description" cols="40" rows="6" required></textarea>
         </li>
     </ul>
 </form>
