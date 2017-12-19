@@ -44,7 +44,7 @@ public class TradeServiceImpl implements TradeService{
 		this.tenderDao = tenderDao;
 	}
 
-	public void setPreDealDao(DealDao dealDao) {
+	public void setDealDao(DealDao dealDao) {
 		this.dealDao = dealDao;
 	}
 	

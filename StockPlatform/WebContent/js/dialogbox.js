@@ -3,7 +3,6 @@ $.fn.dialogbox = function(params) {
 	var params = $.extend({
 		"hasCloseButton"  : true,
 		"hasCloseOverlay" : true,
-		"prvDft"		  : true,
 	},params);
 
 	return this.on("click",function() {	

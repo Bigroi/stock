@@ -52,6 +52,7 @@ public class Deal {
 		this.price = (lot.getMinPrice() + tender.getMaxPrice()) / 2.;
 		this.volume = volume;
 		this.time = new Date();
+		this.productId = lot.getProductId();
 	}
 	
 	public Deal() {
