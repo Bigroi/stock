@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<form class="form" action="/lot/Save.spr" method="post" name="form">
+<form class="form" action="#" method="post" name="form">
 	<input type="hidden" name="id" value=""> 
 	
 	<ul id="form-list">

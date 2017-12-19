@@ -44,12 +44,11 @@
 		        <li>
 		        	<button class="submit" type="submit"
 		        		onclick="
-		        				sendFormData($('.form'), 
+		        				return sendFormData($('#form-container'), 
 			        				'/account/json/Save.spr', 
 			        				function(answer){
 			        					processRequestResult(answer, $('.form-message'));
-			        				}); 
-		        				return false;">
+			        				}); ">
 		        		${lable.button.modify }
 		        	</button>
 		        </li>

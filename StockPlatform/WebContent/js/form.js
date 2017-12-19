@@ -15,21 +15,25 @@ function getFormData(formContainer){
 }
 
 function sendFormData(formContainer, url, successFunction) {
-	var data = getFormData(formContainer);
-	
-	//XXX fix for Login to redo
-	var param;
-	if (url.indexOf("Login") >= 0){
-		console.log(data);
-		param = JSON.parse(data);
+	if (formContainer.find("form")[0].checkValidity()){
+		var data = getFormData(formContainer);
+		
+		//XXX fix for Login to redo
+		var param;
+		if (url.indexOf("Login") >= 0){
+			console.log(data);
+			param = JSON.parse(data);
+		} else {
+			param = {json:data};
+		}
+		
+		$.post(url, param, function(answer){
+			successFunction(answer);
+		}, "json");
+		return false;
 	} else {
-		param = {json:data};
+		return true;
 	}
-	
-	$.post(url, param, function(answer){
-		successFunction(answer);
-	}, "json");
-
 };
 
 function processRequestResult(answer, messageDiv){

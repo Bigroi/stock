@@ -28,6 +28,7 @@ $.fn.dialogbox = function(params) {
 				$button.addClass("submit "+i+"button");
 				$button.text(params.buttons[i].text);	    	
 				$button.attr("id", params.buttons[i].id);
+				$button.attr("type", "submit");
 				
 				var url = getUrl(params.buttons[i]);
 				var close = params.buttons[i].close;
@@ -60,13 +61,6 @@ $.fn.dialogbox = function(params) {
 				}   			
 			})      
 			$button.css("background",params.btnBackground);
-			
-			if(params.prvDft){
-				$(this).on("click",function(e) {
-					e.preventDefault();
-				});
-			
-			}
 			
 			loadData();
 			
@@ -104,16 +98,14 @@ $.fn.dialogbox = function(params) {
 			}
 			
 			function applayForm(event) {
-				event.preventDefault();
-				sendFormData($dialogboxElementContent, $(this).attr("url"), function(answer){
+				return sendFormData($dialogboxElementContent, $(this).attr("url"), function(answer){
 					var $message = $(".dialogbox-message");
 					processRequestResult(answer, $message);
 				});
 			};
 			
 			function applayFormAndClose(event){
-				event.preventDefault();
-				sendFormData($dialogboxElementContent, $(this).attr("url"), function(answer){
+				return sendFormData($dialogboxElementContent, $(this).attr("url"), function(answer){
 					var $message = $(".dialogbox-message");
 					if (processRequestResult(answer, $message) > 0){
 						deleting();
