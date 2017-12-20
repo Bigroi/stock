@@ -61,14 +61,14 @@
 		        <li>
 		        	<button class="submit" type="submit" id="approve"
 		        		onclick="
-		        				return sendDealFormData($('#form-container'), 
+		        				sendDealFormData($('#form-container'), 
 		        				'/deal/json/Approve.spr', ${id}); 
 		        				return false;">
 		        		${lable.deal.approve }
 		        	</button>
 		        	<button class="submit" type="submit" id="reject"
 		        		onclick="
-		        			return sendDealFormData($('#form-container'), 
+		        			sendDealFormData($('#form-container'), 
 		        			'/deal/json/Reject.spr', ${id});
 		        			return false;">
 		        		${lable.deal.reject }
