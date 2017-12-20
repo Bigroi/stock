@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div style="display: table; width:100%">
+<div style="display: table; width:100%" id="form-container">
 	<div style="display: table-cell; width: 30%">
 		<div class="form-message"></div>
 		<form class="form" action="#" method="post" name="form">
@@ -53,7 +53,7 @@
 		        <li>
 		        	<button class="submit" type="submit"
 		        			onclick="
-		        				sendFormData($('.form'), 
+		        				sendFormData($('#form-container'), 
 			        				'/account/json/Registration.spr', 
 			        				function(answer){
 			        					processRequestResult(answer, $('.form-message'));
