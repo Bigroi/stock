@@ -38,7 +38,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			+ " PHONE = ?, REG_NUMBER = ?, COUNTRY = ?, CITY = ?, ADDRESS = ?, "
 			+ "STATUS = ?, LONGITUDE = ?, LATITUDE = ? WHERE ID = ? ";
 	
-	private static final String GET_ALL_COMPANIES ="SELECT ID, NAME, SELLER_ID, CUSTOMER_ID, "
+	private static final String GET_ALL_COMPANIES ="SELECT ID, NAME, "
 			+ "PHONE, REG_NUMBER, COUNTRY, CITY, ADDRESS, STATUS, LONGITUDE, LATITUDE FROM COMPANY";
 	
 	private static final String SET_STATUS_BY_ID = 
