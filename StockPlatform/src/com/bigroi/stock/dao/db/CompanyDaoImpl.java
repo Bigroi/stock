@@ -2,6 +2,7 @@ package com.bigroi.stock.dao.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -20,8 +22,13 @@ import com.bigroi.stock.dao.DaoException;
 
 public class CompanyDaoImpl implements CompanyDao {
 	
-	private static final String GET_COMPANY_BY_ID = "SELECT ID, NAME, PHONE, "
-			+ "REG_NUMBER, COUNTRY, CITY, ADDRESS, STATUS, LONGITUDE, LATITUDE FROM COMPANY WHERE ID = ?";
+	private static final String GET_COMPANY_BY_ID = 
+			  " SELECT C.ID, C.NAME, C.PHONE, C.REG_NUMBER, C.COUNTRY, C.CITY, "
+			+ " C.ADDRESS, C.STATUS, C.LONGITUDE, C.LATITUDE, U.LOGIN "
+			+ " FROM COMPANY C "
+			+ " JOIN USER U "
+			+ " ON C.ID = U.COMPANY_ID "
+			+ " WHERE C.ID = ?";
 
 	private static final String ADD_COMPANY = "INSERT INTO COMPANY"
 			+ " (NAME, PHONE, REG_NUMBER, COUNTRY, CITY, ADDRESS, STATUS, LONGITUDE, LATITUDE ) " 
@@ -31,7 +38,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			+ " PHONE = ?, REG_NUMBER = ?, COUNTRY = ?, CITY = ?, ADDRESS = ?, "
 			+ "STATUS = ?, LONGITUDE = ?, LATITUDE = ? WHERE ID = ? ";
 	
-	private static final String GET_ALL_COMPANIES ="SELECT ID, NAME,  "
+	private static final String GET_ALL_COMPANIES ="SELECT ID, NAME, SELLER_ID, CUSTOMER_ID, "
 			+ "PHONE, REG_NUMBER, COUNTRY, CITY, ADDRESS, STATUS, LONGITUDE, LATITUDE FROM COMPANY";
 	
 	private static final String SET_STATUS_BY_ID = 
@@ -52,12 +59,27 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
 	public Company getById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Company> companys = template.query(GET_COMPANY_BY_ID, new BeanPropertyRowMapper<Company>(Company.class),id);
-		if (companys.size() == 0) {
-			return null;
-		} else {
-			return companys.get(0);
-		}
+		final Company company = new Company();
+		template.query(GET_COMPANY_BY_ID, new RowMapper<Company>(){
+			@Override
+			public Company mapRow(ResultSet rs, int arg1) throws SQLException {
+				if (company.getName() == null){
+					company.setAddress(rs.getString("ADDRESS"));
+					company.setCity(rs.getString("CITY"));
+					company.setCountry(rs.getString("COUNTRY"));
+					company.setId(rs.getInt("ID"));
+					company.setLatitude(rs.getDouble("LATITUDE"));
+					company.setLongitude(rs.getDouble("LONGITUDE"));
+					company.setName(rs.getString("NAME"));
+					company.setPhone(rs.getString("PHONE"));
+					company.setRegNumber(rs.getString("REG_NUMBER"));
+					company.setStatus(CompanyStatus.valueOf(rs.getString("STATUS")));
+				}
+				company.addEmail(rs.getString("LOGIN"));
+				return company;
+			}
+		},id);
+		return company;
 		
 	}
 

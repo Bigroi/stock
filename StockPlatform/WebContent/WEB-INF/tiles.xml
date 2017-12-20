@@ -50,11 +50,6 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/account.jsp" />
 	</definition>
 
-	<definition name="approveLink" extends="base-definition">
-		<put-attribute name="nav-productsExt" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/approveLink.jsp" />
-	</definition>
-
 	<definition name="users" extends="base-definition">
 		<put-attribute name="nav-users" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/users.jsp" />

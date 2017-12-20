@@ -27,7 +27,6 @@ public class MailManagerImpl implements MailManager {
 	@Override
 	public void send(String fromEmail, String toEmail, String subject, String text) throws MailManagerException {
 		try {
-			mailProperties.put("mail.smtp.port", 587);
 			Session session = Session.getInstance(mailProperties, new Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication(user, password);
@@ -60,6 +59,7 @@ public class MailManagerImpl implements MailManager {
 	public void setMailProperties(Properties mailProperties) {
 		this.mailProperties = mailProperties;
 	}
+	
 	public void setAdminUser(String adminUser) {
 		this.adminUser = adminUser;
 	}
@@ -72,7 +72,4 @@ public class MailManagerImpl implements MailManager {
 		this.password = password;
 	}
 
-	public static void main(String[] args) {
-
-	}
 }

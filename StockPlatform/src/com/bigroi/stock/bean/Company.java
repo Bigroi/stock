@@ -1,5 +1,8 @@
 package com.bigroi.stock.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Id;
@@ -30,6 +33,8 @@ public class Company {
 	private double longitude = 26.001813399999946;
 	
 	private double latitude = 53.1568911;
+	
+	private List<String> emails = new ArrayList<>();
 
 	public long getId() {
 		return id;
@@ -110,6 +115,14 @@ public class Company {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
+	public List<String> getEmails() {
+		return emails;
+	}
+	
+	public void addEmail(String email){
+		emails.add(email);
+	}
 
 	@Override
 	public String toString() {
@@ -117,8 +130,16 @@ public class Company {
 				+ country + ", city=" + city + ", address=" + address + ", status=" + status + ", longitude="
 				+ longitude + ", latitude=" + latitude + "]";
 	}
- 
 
-  
+	public String getAllEmails() {
+		StringBuilder builder = new StringBuilder();
+		for (String email : emails){
+			if (builder.length() > 0){
+				builder.append(",");
+			}
+			builder.append(email);
+		}
+		return builder.toString();
+	}
 
 }

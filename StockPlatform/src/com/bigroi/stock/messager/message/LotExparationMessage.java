@@ -14,7 +14,7 @@ public class LotExparationMessage extends BaseMessage<Lot> {
 	protected String getEmail() throws MessageException {
 		try {
 			long companyId = getDataObject().getSellerId();
-			return ServiceFactory.getCompanyService().getCompanyById(companyId).getAddress();// TODO get email
+			return ServiceFactory.getCompanyService().getCompanyById(companyId).getAllEmails();
 		} catch (ServiceException e) {
 			throw new MessageException(e);
 		}

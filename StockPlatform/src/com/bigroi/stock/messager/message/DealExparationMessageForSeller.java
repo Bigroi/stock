@@ -1,7 +1,6 @@
 package com.bigroi.stock.messager.message;
 
 import com.bigroi.stock.bean.Deal;
-import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -20,9 +19,7 @@ public class DealExparationMessageForSeller extends BaseMessage<Deal>{
 	@Override
 	protected String getEmail() throws MessageException {
 		try{
-			Lot lot = ServiceFactory.getLotService()
-					.getLot(getDataObject().getLotId(), 0);
-			return ServiceFactory.getCompanyService().getCompanyById(lot.getSellerId()).getAddress();// TODO get email
+			return ServiceFactory.getCompanyService().getCompanyById(getDataObject().getSellerId()).getAllEmails();
 		}catch (ServiceException e) {
 			throw new MessageException(e);
 		}

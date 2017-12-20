@@ -74,8 +74,8 @@ public class DealDaoImpl implements DealDao {
 					+ " WHERE D.ID = ?";
 
 	private static final String GET_ON_APPROVE = 
-					  " SELECT ID, LOT_ID, TENDER_ID, SELLER_ID CUSTOMER_ID, "
-					+ " PRICE, VOLUME, TIME, CUSTOMER_APPROVED, SELLER_APPROVED "
+					  " SELECT ID, LOT_ID, TENDER_ID, SELLER_ID, CUSTOMER_ID, "
+					+ " PRICE, VOLUME, TIME, CUSTOMER_APPROVED, SELLER_APPROVED, PRODUCT_ID "
 					+ " FROM DEAL "
 					+ " WHERE (CUSTOMER_APPROVED IS NULL AND SELLER_APPROVED IS NULL) "
 					+ " OR (CUSTOMER_APPROVED = 'Y' AND SELLER_APPROVED IS NULL) "
@@ -202,7 +202,7 @@ public class DealDaoImpl implements DealDao {
 	@Override
 	public List<Deal> getOnApprove() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(GET_ON_APPROVE, new BeanPropertyRowMapper<Deal>());
+		return template.query(GET_ON_APPROVE, new BeanPropertyRowMapper<Deal>(Deal.class));
 	}
 
 	@Override

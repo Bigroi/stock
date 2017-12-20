@@ -74,6 +74,9 @@ public class MarketServiceImpl implements MarketService {
 		try {
 			List<Deal> deals = dealDao.getOnApprove();
 			for (Deal deal : deals) {
+				if (deal.getLotId() == null){
+					continue;
+				}
 				if (deal.getSellerApprovedBool() != null){
 					Message<Deal> message = MessagerFactory.getDealExparationMessageForSellerByOpponent();
 					message.setDataObject(deal);

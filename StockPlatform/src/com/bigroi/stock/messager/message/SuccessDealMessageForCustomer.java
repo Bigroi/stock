@@ -1,7 +1,6 @@
 package com.bigroi.stock.messager.message;
 
 import com.bigroi.stock.bean.Deal;
-import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -14,9 +13,7 @@ public class SuccessDealMessageForCustomer extends BaseMessage<Deal> {
 	@Override
 	protected String getEmail() throws MessageException {
 		try{
-			Tender tender = ServiceFactory.getTenderService()
-					.getTender(getDataObject().getTenderId(), 0);
-			return ServiceFactory.getCompanyService().getCompanyById(tender.getCustomerId()).getAddress();// TODO get email
+			return ServiceFactory.getCompanyService().getCompanyById(getDataObject().getCustomerId()).getAllEmails();
 		}catch (ServiceException e) {
 			throw new MessageException(e);
 		}
