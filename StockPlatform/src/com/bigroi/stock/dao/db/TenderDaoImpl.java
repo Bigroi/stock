@@ -38,7 +38,7 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String GET_TENDERS_BY_CUSTOMER_ID = "SELECT T.ID, T.DESCRIPTION, "
 			+ " T.PRODUCT_ID, T.MAX_PRICE, T.CUSTOMER_ID, T.STATUS, T.EXP_DATE, "
-			+ " T.MAX_VOLUME, T.MIN_VOLUME, P.NAME "
+			+ " T.MAX_VOLUME, T.MIN_VOLUME, P.NAME AS PRODUCT_NAME "
 			+ " FROM TENDER T "
 			+ " JOIN PRODUCT P "
 			+ " ON T.PRODUCT_ID = P.ID"
