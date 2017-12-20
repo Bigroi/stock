@@ -17,6 +17,7 @@
 		<script src="/js/map.js"></script>
 		<script src="/js/dialogbox.js"></script>
 		<script src="/js/form.js"></script>
+		<script src="/js/localization.js"></script>
 	</head>
 	<body>
 		<div class="wrapper">
