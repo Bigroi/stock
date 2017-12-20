@@ -48,6 +48,9 @@ public class ProductResourseController extends BaseResourseController {
 	@ResponseBody
 	public String save(@RequestParam("json") String json) throws ServiceException {
 		Product product = gson.fromJson(json, Product.class);
+		if (product.getId() < 0){
+			product.setArchive("N");
+		}
 		ServiceFactory.getProductService().merge(product);
 		return new ResultBean(0, "/product/admin/List.spr").toString();
 	}
