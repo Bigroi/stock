@@ -76,7 +76,16 @@ public class LotResourseController extends BaseResourseController {
 				Authentication loggedInUser) throws ServiceException {
 		Lot newLot = gson.fromJson(json, Lot.class);
 		checkLot(newLot.getId());
-		
+		//checkValue(newLot.getMinPrice(),newLot.getMinVolume(),newLot.getMaxVolume());
+		if (newLot.getMinPrice() < 0.1) {
+			return new ResultBean(-1, "lot.minPrice.error").toString();
+		}
+		if (newLot.getMinVolume() < 1) {
+			return new ResultBean(-1, "lot.minVolume.error").toString();
+		}
+		if (newLot.getMaxVolume() < 1) {
+			return new ResultBean(-1, "lot.maxVolume.error").toString();
+		}
 		if (newLot.getId() < 0) {
 			StockUser user = (StockUser)loggedInUser.getPrincipal();
 			newLot.setSellerId(user.getCompanyId());;
@@ -116,4 +125,19 @@ public class LotResourseController extends BaseResourseController {
 			throw new SecurityException("User have no permission to modify Lot with id = " + id);
 		}
 	}
+	
+	/*private void checkValue(double price, int minVolume, int  maxVolume){
+		if (price < 0.1) {
+			new ResultBean(-1, "lot.minPrice.error").toString();
+			return;// 
+		}
+		if (minVolume < 1) {
+			new ResultBean(-1, "lot.minVolume.error").toString();
+			return;// 
+		}
+		if (maxVolume < 1) {
+			new ResultBean(-1, "lot.maxVolume.error").toString();
+			return;// 
+		}
+	}*/
 }

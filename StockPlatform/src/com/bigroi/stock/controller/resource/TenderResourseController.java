@@ -69,7 +69,15 @@ public class TenderResourseController extends BaseResourseController {
 			Authentication loggedInUser) throws ServiceException, ParseException {
 		Tender newTender = gson.fromJson(json, Tender.class);
 		checkTender(newTender.getId());
-		
+		if (newTender.getMaxPrice() < 0.1) {
+			return new ResultBean(-1, "lot.minPrice.error").toString();
+		}
+		if (newTender.getMinVolume() < 1) {
+			return new ResultBean(-1, "lot.minVolume.error").toString();
+		}
+		if (newTender.getMaxVolume() < 1) {
+			return new ResultBean(-1, "lot.maxVolume.error").toString();
+		}
 		if (newTender.getId() < 0) {
 			StockUser user = (StockUser)loggedInUser.getPrincipal();
 			newTender.setCustomerId(user.getCompanyId());;
