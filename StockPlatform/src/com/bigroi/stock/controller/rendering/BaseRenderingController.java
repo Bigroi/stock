@@ -16,10 +16,9 @@ public class BaseRenderingController {
 	private static final String[] PAGE_LABELS_FILES = {
 			"navigation.properties",
 			"account.properties",
-			"approveLink.properties",
 			"companies.properties",
 			"login.properties",
-			"lotForm.properties",
+			"lot.properties",
 			"main.properties",
 			"myLots.properties",
 			"myDeals.properties",
@@ -29,7 +28,7 @@ public class BaseRenderingController {
 			"products.properties",
 			"productsForAdmin.properties",
 			"registration.properties",
-			"tenderForm.properties",
+			"tender.properties",
 			"tradeOffers.properties",
 			"users.properties",
 			"button.properties"

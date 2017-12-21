@@ -4,11 +4,11 @@
 	<form class="form" action="#" method="post" name="form">
 	    <ul>
 	        <li>
-	            <label for="name">${lable.productForm.name}</label>
+	            <label for="name">${lable.product.name}</label>
 	            <input type="text" disabled value="${product.name}"/>
 	        </li>
 	        <li>
-	            <label for="description">${lable.productForm.description}</label>
+	            <label for="description">${lable.product.description}</label>
 	            <textarea cols="40" rows="6" disabled>${product.description}</textarea>
 	        </li>
 	    </ul>
