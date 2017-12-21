@@ -63,6 +63,24 @@ public class LotResourseController extends BaseResourseController {
 		ServiceFactory.getLotService().merge(newLot);
 		return new ResultBean(0, "/lot/MyLots.spr").toString();
 	}
+	
+	@RequestMapping(value = "/SaveAndActivate.spr")
+	@ResponseBody
+	public String lotSaveAndActivate(@RequestParam("json") String json, 
+				Authentication loggedInUser) throws ServiceException {
+		Lot newLot = gson.fromJson(json, Lot.class);
+		checkLot(newLot.getId());
+		
+		if (newLot.getId() < 0) {
+			StockUser user = (StockUser)loggedInUser.getPrincipal();
+			newLot.setSellerId(user.getCompanyId());;
+			newLot.setStatus(BidStatus.ACTIVE);
+			ServiceFactory.getLotService().merge(newLot);
+			return new ResultBean(0, "/lot/MyLots.spr").toString();
+		} else {
+			return new ResultBean(-1, "lable.lot.sna_error").toString();
+		}
+	}
 
 	@RequestMapping(value = "/StartTrading.spr")
 	@ResponseBody

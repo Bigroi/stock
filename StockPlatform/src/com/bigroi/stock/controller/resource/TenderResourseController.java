@@ -55,6 +55,24 @@ public class TenderResourseController extends BaseResourseController {
 		ServiceFactory.getTenderService().merge(newTender);
 		return new ResultBean(0, "/tender/MyTenders.spr").toString();
 	}
+	
+	@RequestMapping(value = "/SaveAndActivate.spr")
+	@ResponseBody
+	public String saveAndActivate(@RequestParam("json") String json,
+			Authentication loggedInUser) throws ServiceException, ParseException {
+		Tender newTender = gson.fromJson(json, Tender.class);
+		checkTender(newTender.getId());
+		
+		if (newTender.getId() < 0) {
+			StockUser user = (StockUser)loggedInUser.getPrincipal();
+			newTender.setCustomerId(user.getCompanyId());;
+			newTender.setStatus(BidStatus.ACTIVE);
+			ServiceFactory.getTenderService().merge(newTender);
+			return new ResultBean(0, "/tender/MyTenders.spr").toString();
+		} else {
+			return new ResultBean(-1, "lable.tender.sna_error").toString();
+		}
+	}
 
 	@RequestMapping("/MyList.spr")
 	@ResponseBody
