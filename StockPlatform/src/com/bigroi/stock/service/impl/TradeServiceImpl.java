@@ -22,6 +22,9 @@ import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.jobs.trade.TradeBid;
 import com.bigroi.stock.jobs.trade.TradeLot;
 import com.bigroi.stock.jobs.trade.TradeTender;
+import com.bigroi.stock.messager.MessagerFactory;
+import com.bigroi.stock.messager.message.Message;
+import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.TradeService;
 
@@ -90,11 +93,12 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 
-	private void createDealsForBid(TradeBid bid){
+	private void createDealsForBid(TradeBid bid) throws ServiceException{
 		while(bid.getMaxVolume() > 0 && bid.getPosiblePartners().size() > 0){
 			TradeBid partner = bid.getBestPartner();
-			
-			deals.add(createDeal(bid, partner));
+			Deal deal = createDeal(bid, partner);
+			sendConfimationMails(deal);
+			deals.add(deal);
 			
 			if (partner.getMaxVolume() == 0 || partner.getMaxVolume() < partner.getMinVolume()){
 				partner.removeFromPosiblePartners();
@@ -106,6 +110,20 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 	
+	private void sendConfimationMails(Deal deal) throws ServiceException {
+		try{
+			Message<Deal> message = MessagerFactory.getDealConfirmationMessageForCustomer();
+			message.setDataObject(deal);
+			message.send();
+			
+			message = MessagerFactory.getDealConfirmationMessageForSeller();
+			message.setDataObject(deal);
+			message.send();
+		} catch (MessageException e) {
+			throw new ServiceException(e);
+		}
+	}
+
 	private Deal createDeal(TradeBid bid, TradeBid partner) {
 		int volume = getVolume(bid, partner);
 		
