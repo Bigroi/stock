@@ -55,7 +55,6 @@ public class LotResourseController extends BaseResourseController {
 			newLot.setStatus(BidStatus.INACTIVE);
 		} else {
 			Lot oldLot = ServiceFactory.getLotService().getLot(newLot.getId(), user.getCompanyId());
-			newLot.setProductId(oldLot.getProductId());
 			newLot.setStatus(oldLot.getStatus());
 			newLot.setSellerId(oldLot.getSellerId());
 		}

@@ -47,7 +47,6 @@ public class TenderResourseController extends BaseResourseController {
 			newTender.setStatus(BidStatus.INACTIVE);
 		} else {
 			Tender oldTender = ServiceFactory.getTenderService().getTender(newTender.getId(), user.getCompanyId());
-			newTender.setProductId(oldTender.getProductId());
 			newTender.setStatus(oldTender.getStatus());
 			newTender.setCustomerId(oldTender.getCustomerId());
 		}
