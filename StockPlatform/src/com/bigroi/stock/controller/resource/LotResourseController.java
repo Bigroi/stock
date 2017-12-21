@@ -49,7 +49,9 @@ public class LotResourseController extends BaseResourseController {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Lot newLot = gson.fromJson(jsonLot, Lot.class);
 		checkLot(newLot.getId());
-		
+		if(newLot.getMinPrice() < 1 || newLot.getMinVolume() < 1 || newLot.getMaxVolume() < 1 ){
+			return new ResultBean(-1, "/lot/MyLots.spr").toString();
+		}
 		if (newLot.getId() < 0) {
 			newLot.setSellerId(user.getCompanyId());;
 			newLot.setStatus(BidStatus.INACTIVE);
@@ -58,7 +60,6 @@ public class LotResourseController extends BaseResourseController {
 			newLot.setStatus(oldLot.getStatus());
 			newLot.setSellerId(oldLot.getSellerId());
 		}
-		
 		ServiceFactory.getLotService().merge(newLot);
 		return new ResultBean(0, "/lot/MyLots.spr").toString();
 	}
