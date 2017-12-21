@@ -41,7 +41,15 @@ public class TenderResourseController extends BaseResourseController {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Tender newTender = gson.fromJson(json, Tender.class);
 		checkTender(newTender.getId());
-		
+		if (newTender.getMaxPrice() < 0.1) {
+			return new ResultBean(-1, "tender.maxPrice.error").toString();
+		}
+		if (newTender.getMinVolume() < 1) {
+			return new ResultBean(-1, "tender.minVolume.error").toString();
+		}
+		if (newTender.getMaxVolume() < 1) {
+			return new ResultBean(-1, "tender.maxVolume.error").toString();
+		}
 		if (newTender.getId() < 0) {
 			newTender.setCustomerId(user.getCompanyId());;
 			newTender.setStatus(BidStatus.INACTIVE);

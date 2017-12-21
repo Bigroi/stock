@@ -49,8 +49,14 @@ public class LotResourseController extends BaseResourseController {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Lot newLot = gson.fromJson(jsonLot, Lot.class);
 		checkLot(newLot.getId());
-		if(newLot.getMinPrice() < 1 || newLot.getMinVolume() < 1 || newLot.getMaxVolume() < 1 ){
-			return new ResultBean(-1, "/lot/MyLots.spr").toString();
+		if (newLot.getMinPrice() < 0.1) {
+			return new ResultBean(-1, "lot.minPrice.error").toString();
+		}
+		if (newLot.getMinVolume() < 1) {
+			return new ResultBean(-1, "lot.minVolume.error").toString();
+		}
+		if (newLot.getMaxVolume() < 1) {
+			return new ResultBean(-1, "lot.maxVolume.error").toString();
 		}
 		if (newLot.getId() < 0) {
 			newLot.setSellerId(user.getCompanyId());;
