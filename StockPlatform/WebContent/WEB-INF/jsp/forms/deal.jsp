@@ -9,8 +9,7 @@
 			<input type="hidden" name="id">
 		    <ul>
 		        <li>
-		             <h2>Contact Us</h2>
-		             <span class="required_notification">* Denotes Required Field</span>
+		             <h2>${lable.deal.deal }</h2>
 		        </li>
 		        
 		        <li>

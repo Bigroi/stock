@@ -15,8 +15,8 @@ public class Tender implements Bid{
 	
 	private long productId;
 	
-	@Column("lable.productName")
-	private String product;
+	@Column("lable.tender.productName")
+	private String productName;
 	
 	private String description;
 	
@@ -125,14 +125,14 @@ public class Tender implements Bid{
 		this.minVolume = minVolume;
 	}
 	
-	public String getProduct() {
-		return product;
+	public String getProductName() {
+		return productName;
 	}
-	
-	public void setProduct(String product) {
-		this.product = product;
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Tender [id=" + id + ", description=" + description + ", productId=" + productId + ", maxPrice="

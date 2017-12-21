@@ -8,8 +8,7 @@
 			<input type="hidden" name="longitude" value="${company.longitude}" >
 		    <ul>
 		        <li>
-		             <h2>Contact Us</h2>
-		             <span class="required_notification">* Denotes Required Field</span>
+		             <h2>${lable.registration.registration}</h2>
 		        </li>
 		        <li>
 		            <label for="login">${lable.registration.login}</label>

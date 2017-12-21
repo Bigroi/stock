@@ -3,8 +3,7 @@
 <form class="form" action="#" method="post" name="form">
     <ul id="form-list">
         <li>
-             <h2>Contact Us</h2>
-             <span class="required_notification">* Denotes Required Field</span>
+             <h2>${lable.login.loginForm }</h2>
         </li>
         <li>
             <label for="username">${lable.login.login}</label>

@@ -8,8 +8,7 @@
 	
 	<ul id="form-list">
 		<li>
-            <h2>Contact Us</h2>
-            <span class="required_notification">* Denotes Required Field</span>
+            <h2>${lable.tenderForm.tenderForm}</h2>
        	</li>
        	<li>
 			<label for="productId">${lable.tenderForm.product}</label>

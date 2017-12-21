@@ -6,16 +6,15 @@
 	<input type="hidden" name="id" value="${product.id}">
     <ul id="form-list">
         <li>
-             <h2>Contact Us</h2>
-             <span class="required_notification">* Denotes Required Field</span>
+             <h2>${lable.product.productForm }</h2>
         </li>
         <li>
-            <label for="name">${lable.productForm.name}</label>
+            <label for="name">${lable.product.name}</label>
             <input type="text" name="name" required/>
             
         </li>
         <li>
-            <label for=description>${lable.productForm.description}</label>
+            <label for=description>${lable.product.description}</label>
             <textarea name="description" cols="40" rows="6" required></textarea>
         </li>
     </ul>

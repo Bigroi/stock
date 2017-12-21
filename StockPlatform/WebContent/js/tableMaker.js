@@ -28,7 +28,12 @@ $.fn.tableMaker = function (srcTable, formPage) {
 				continue;
 			} 
 			var th = $("<th>");
+			var lable = l10n[dataObj.data.headers[i]];
+			if(lable){
+				th.text(lable);
+			}else{
 			th.text(dataObj.data.headers[i]);
+			}
 			tRow.append(th);
 		}
 		tHead.append(tRow);	

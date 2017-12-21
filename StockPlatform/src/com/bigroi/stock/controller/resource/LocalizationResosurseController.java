@@ -28,9 +28,15 @@ public class LocalizationResosurseController extends BaseRenderingController{
 			Object map = lables;
 			for (String keyPathElement : keyPath){
 				map = ((Map<String, Object>)map).get(keyPathElement);
+				if(map == null){
+					break;
+				}
 			}
-			
-			result.put(key.toString(), map);
+			if(map != null){
+				result.put(key.toString(), map);
+			}else{
+				result.put(key.toString(), key.toString());
+			}
 		}
 		return new ResultBean(1, result).toString();
 	}

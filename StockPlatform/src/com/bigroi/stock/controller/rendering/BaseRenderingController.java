@@ -25,7 +25,7 @@ public class BaseRenderingController {
 			"myDeals.properties",
 			"deal.properties",
 			"myTenders.properties",
-			"productForm.properties",
+			"product.properties",
 			"products.properties",
 			"productsForAdmin.properties",
 			"registration.properties",
