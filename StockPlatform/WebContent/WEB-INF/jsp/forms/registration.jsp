@@ -65,7 +65,7 @@
 	<div style="display: table-cell; width: 10%">
 		
 	</div>
-	<div id="map" style="display: table-cell; width: 60%; hight:100%">
+	<div id="map" style="display: table-cell; width: 60%; height:100%">
 		
 	</div>
 </div>
