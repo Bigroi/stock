@@ -3,6 +3,10 @@
 	pageEncoding="UTF-8"%>
 <div id="tender-form-container"></div>
 <h1>${lable.myTenders.title}</h1>
+<div id = "lables">lable.tender.productName,lable.tender.status,lable.tender.maxPrice,lable.tender.volume,lable.tender.expDate</div>
+<script>
+$("#lables").localization();
+</script>
 <div id = "tableContainer">	
 	<script>
 		$(function(){

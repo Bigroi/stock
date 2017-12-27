@@ -3,6 +3,10 @@
 	
 <div id="product-form-container"></div>
 <h1>${lable.productsForAdmin.title}</h1>
+<div id = "lables">lable.product.name,lable.product.description,lable.product.archive</div>
+<script>
+$("#lables").localization();
+</script>
 <div id = "tableContainer">	
 	<script>
 		$(function(){
