@@ -1,3 +1,0 @@
-2017-09-20 16:13:34,037 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.updateById
-2017-09-20 16:13:34,052 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - Lot [id=4, description=JAVATEST, poductId=1, minPrice=110.0, sallerId=1, expDate=2017-09-20, status=DRAFT, volumeOfLot=0]
-2017-09-20 16:13:50,063 [INFO ][main            ][m.bigroi.stock.dao.db.LotDaoImpl] - exection LotDaoImpl.updateById successfully finished

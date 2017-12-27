@@ -1,7 +1,0 @@
-2017-09-11 15:02:25,086 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.myTenderList
-2017-09-11 15:02:25,135 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.controller.TenderRenderingController$1@a1bec0
-2017-09-11 15:03:14,694 [INFO ][main            ][roller.TenderRenderingController] - exection TenderRenderingController.myTenderList
-2017-09-11 15:03:16,429 [INFO ][main            ][roller.TenderRenderingController] - com.bigroi.stock.controller.TenderRenderingController$1@d2dae5
-2017-09-11 15:07:08,370 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByCustomerId
-2017-09-11 15:07:08,377 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - 0
-2017-09-11 15:07:09,701 [INFO ][main            ][igroi.stock.dao.db.TenderDaoImpl] - exection TenderDaoImpl.getByCustomerId successfully finished

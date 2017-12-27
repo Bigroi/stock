@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div style="display: table; width:100%" id="form-container">
-	<div style="display: table-cell; width: 30%">
+	<div style="width: 40%;display: table-cell;">
 		<div class="form-message"></div>
 		<form class="form" action="#" method="post" name="form">
 			<input type="hidden" name="latitude" value="${company.latitude}">
@@ -62,11 +62,12 @@
 		    </ul>
 		</form>	
 	</div>
-	<div style="display: table-cell; width: 10%">
-		
-	</div>
-	<div id="map" style="display: table-cell; width: 60%; height:100%">
-		
+	<div style="width: 5%; display: table-cell;"></div>
+	<div style="width: 55%; height: 100%;position:relative; display: table-cell;">
+		<div style="bottom:0;top: 0;right: 0; left: 0; position: absolute;">
+			<div id="map" style="width: 100%; height: 100%"></div>
+		</div>
 	</div>
 </div>
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initMap"></script>
