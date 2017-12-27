@@ -4,8 +4,8 @@
 	<div style="width: 40%;display: table-cell;">
 		<div class="form-message"></div>
 		<form class="form" action="#" method="post" name="form">
-			<input type="hidden" name="latitude" value="${company.latitude}">
-			<input type="hidden" name="longitude" value="${company.longitude}" >
+			<input type="hidden" name="latitude">
+			<input type="hidden" name="longitude">
 		    <ul>
 		        <li>
 		             <h2>${lable.registration.registration}</h2>
@@ -52,12 +52,11 @@
 		        <li>
 		        	<button class="submit" type="submit"
 		        			onclick="
-		        				sendFormData($('#form-container'), 
+		        				return sendFormData($('#form-container'), 
 			        				'/account/json/Registration.spr', 
 			        				function(answer){
 			        					processRequestResult(answer, $('.form-message'));
-			        				}); 
-		        				return false;">${lable.button.save}</button>
+			        				});">${lable.button.save}</button>
 		        </li>
 		    </ul>
 		</form>	

@@ -2,27 +2,31 @@ function initMap() {
 	$(document).ready(function(){
 		var lat = parseFloat($("input[name='latitude']")[0].value);
 		var lng = parseFloat($("input[name='longitude']")[0].value);
-		var mapElement = document.getElementById('map');
 		if (window.navigator.userAgent.indexOf("MSIE ") >=0 ||
 				window.navigator.userAgent.indexOf("Trident/") >= 0){
 			var height = $("#map").parent().parent().parent().height();
 			$("#map").css("height", height);
 		}
-		var map = new google.maps.Map(mapElement, {
+		var map = new google.maps.Map(document.getElementById('map'), {
 			zoom: 8,
 			center: {
-				lat: lat, 
-				lng: lng
+				lat: isNaN(lat)?53.1568911:lat, 
+				lng: isNaN(lng)?26.001813399999946:lng
 			}
 		});
 		var geocoder = new google.maps.Geocoder();
-		var marker = new google.maps.Marker({
-			map: map,
-			position: {
-				lat: lat, 
-				lng: lng
-			}
-		});
+		var marker;
+		if (!isNaN(lat)){
+			marker = new google.maps.Marker({
+				map: map,
+				position: {
+					lat: lat, 
+					lng: lng
+				}
+			});
+		} else {
+			$("button[type='submit']").prop("disabled", true);
+		}
 		
 		
 		$("input[name='country']").focusout( function() {
@@ -38,7 +42,7 @@ function initMap() {
 		});
 	  
 		map.addListener('click', function(event) {
-			geocodeCoordinate(event.latLng);
+			//geocodeCoordinate(event.latLng);
 		});
 		
 		function geocodeCoordinate(location){
@@ -61,7 +65,7 @@ function initMap() {
 				  $("input[name='country']")[0].value = country;
 				  $("input[name='city']")[0].value = city;
 				  $("input[name='address']")[0].value = address;
-				  $("input[type='submit']").removeAttr("disabled");
+				  $("button[type='submit']").prop("disabled", false);
 			  });
 		}
 	
@@ -72,10 +76,12 @@ function initMap() {
 					var location = results[0].geometry.location;
 					map.setCenter(location);
 					addMarker(location);
-					$("input[type='submit']").removeAttr("disabled");
+					$("button[type='submit']").prop("disabled", false);
 				} else {
-					marker.setMap(null);
-					$("input[type='submit']").attr("disabled", "disabled");
+					if (marker){
+						marker.setMap(null);
+					}
+					$("button[type='submit']").prop("disabled", true);
 				}
 			});
 		}

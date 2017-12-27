@@ -30,9 +30,9 @@ public class Company {
 	@Column("lable.account.status")
 	private CompanyStatus status;
 	
-	private double longitude = 26.001813399999946;
+	private double longitude;
 	
-	private double latitude = 53.1568911;
+	private double latitude;
 	
 	private List<String> emails = new ArrayList<>();
 
