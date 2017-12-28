@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div id="lot-form-container"></div>
 <h1>${lable.myLots.title}</h1>
-<div id = "lables">lable.lot.poductName,lable.lot.status,lable.lot.minPrice,lable.lot.volume,lable.lot.expDate</div>
+<div id = "lables">lable.lot.poduct,lable.lot.status,lable.lot.min_price,lable.lot.max_volume,lable.lot.exp_date</div>
 <script>
 $("#lables").localization();
 </script>

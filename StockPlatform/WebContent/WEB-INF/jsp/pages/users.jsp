@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <h1>User List</h1>
-<div id = "lables">lable.tender.login,lable.tender.companyId</div>
+<div id = "lables">lable.users.login,lable.users.company_id</div>
 <script>
 $("#lables").localization();
 </script>

@@ -15,7 +15,7 @@ public class Tender implements Bid{
 	
 	private long productId;
 	
-	@Column("lable.tender.productName")
+	@Column("lable.tender.product")
 	private String productName;
 	
 	private String description;
@@ -23,17 +23,17 @@ public class Tender implements Bid{
 	@Column("lable.tender.status")
 	private BidStatus status;
 	
-	@Column("lable.tender.maxPrice")
+	@Column("lable.tender.max_price")
 	private double maxPrice;
 	
 	private int minVolume;
 	
-	@Column("lable.tender.volume")
+	@Column("lable.tender.max_volume")
 	private int maxVolume;
 	
 	private long customerId;
 	
-	@Column("lable.tender.expDate")
+	@Column("lable.tender.exp_date")
 	private Date expDate = new Date();
 	
 	public boolean isExpired() {

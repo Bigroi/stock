@@ -17,13 +17,13 @@ public class StockUser implements UserDetails {
 	@Id
 	private long id;
 	
-	@Column("lable.tender.login")
+	@Column("lable.users.login")
 	private String login;
 	private String password;
 	private List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 	
 	
-	@Column("lable.tender.companyId")
+	@Column("lable.users.company_id")
 	private long companyId;
 	
 	public long getId() {

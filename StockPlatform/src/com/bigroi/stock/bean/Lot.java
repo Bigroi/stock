@@ -12,7 +12,7 @@ public class Lot implements Bid{
 	@Id
 	private long id;
 	
-	@Column("lable.lot.poductName")
+	@Column("lable.lot.poduct")
 	private String productName;
 	
 	private String description;
@@ -22,17 +22,17 @@ public class Lot implements Bid{
 	
 	private long productId;	
 	
-	@Column("lable.lot.minPrice")
+	@Column("lable.lot.min_price")
 	private double minPrice;
 	
 	private long sellerId;
 	
 	private int minVolume;
 	
-	@Column("lable.lot.volume")
+	@Column("lable.lot.max_volume")
 	private int maxVolume;
 	
-	@Column("lable.lot.expDate")
+	@Column("lable.lot.exp_date")
 	private Date expDate = new Date();
 	
 	public boolean isExpired() {
