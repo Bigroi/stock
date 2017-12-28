@@ -20,7 +20,7 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
 	position:relative;
 } 
 .form li:first-child, .form li:last-child {
-	border-bottom:1px solid #777;
+	border-bottom:0px solid #777;
 }
 
 /* === Form Header === */
