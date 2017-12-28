@@ -6,13 +6,6 @@
 <script>
 $("#lables").localization();
 </script>
-<div id = "tableContainer">	
-	<script>
-		$(function(){
-			$("#tableContainer").tableMaker("/lot/json/MyList.spr", setLotDialogPlugin);
-		});
-	</script>
-</div>
 <form action="#" class="form">
 	<ul>
 		<li>
@@ -21,3 +14,11 @@ $("#lables").localization();
 		</li>
 	</ul>
 </form>
+<div id = "tableContainer">	
+	<script>
+		$(function(){
+			$("#tableContainer").tableMaker("/lot/json/MyList.spr", setLotDialogPlugin);
+		});
+	</script>
+</div>
+

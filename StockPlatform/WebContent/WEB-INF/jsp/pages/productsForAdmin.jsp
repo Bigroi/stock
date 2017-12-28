@@ -7,13 +7,6 @@
 <script>
 $("#lables").localization();
 </script>
-<div id = "tableContainer">	
-	<script>
-		$(function(){
-			$("#tableContainer").tableMaker("/product/json/admin/List.spr", setProductDialogPlugin);
-		});
-	</script>
-</div>
 <form action="#" class="form">
 	<ul>
 		<li>
@@ -22,4 +15,10 @@ $("#lables").localization();
 		</li>
 	</ul>
 </form>
-<br>
+<div id = "tableContainer">	
+	<script>
+		$(function(){
+			$("#tableContainer").tableMaker("/product/json/admin/List.spr", setProductDialogPlugin);
+		});
+	</script>
+</div>
