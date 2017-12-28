@@ -15,10 +15,4 @@
 	<a href="/product/List.spr" class='<tiles:getAsString name="nav-products"/>'>
 		${lable.navigation.products}
 	</a>
-	<a href="/account/Form.spr" class='<tiles:getAsString name="nav-account"/>'>
-		${lable.navigation.account}
-	</a>
-	<a href="/access/Logout.spr">
-		${lable.navigation.logout}
-	</a>
 </nav>

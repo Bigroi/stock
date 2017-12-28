@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 
 public class BaseRenderingController {
@@ -81,8 +82,9 @@ public class BaseRenderingController {
 	}
 	
 	protected final ModelAndView createModelAndView(String pageName){
-		ModelAndView view = new ModelAndView(pageName, defaultLabls);
-		view.addObject("page_title", pageTitles.getProperty(pageName, pageName));
-		return view;
+		Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return new ModelAndView(pageName, defaultLabls)
+				.addObject("user", user)
+				.addObject("page_title", pageTitles.getProperty(pageName, pageName));
 	}
 }

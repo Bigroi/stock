@@ -22,6 +22,12 @@
 	<body>
 		<div class="wrapper">
 			<sec:authorize access="hasAnyRole('ADMIN', 'USER')">
+				<div class="welcome">
+					${lable.navigation.welcome} ${user.login} 
+					(<a href="/account/Form.spr">${lable.navigation.account}</a>, 
+					 <a href="/access/Logout.spr">${lable.navigation.logout}</a>
+					 )
+				</div>
 		    	<tiles:insertAttribute name="userHeader" />
 			</sec:authorize>
 		
@@ -29,6 +35,13 @@
 		    	<tiles:insertAttribute name="adminHeader" />
 			</sec:authorize>
 			<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
+				<div id="login-form-container"></div>
+				<div class="welcome">
+					<a href="#" id="loginLink">
+						${lable.navigation.login}
+						<script type="text/javascript">setLoginDialogPlugin($("#loginLink"))</script>
+					</a>
+				</div>
 				<tiles:insertAttribute name="anonimusHeader" />
 			</sec:authorize>
 			<div class="content">
