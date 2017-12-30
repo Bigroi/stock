@@ -24,8 +24,8 @@ import com.bigroi.stock.dao.LotDao;
 public class LotDaoImpl implements LotDao {
 	
 	private static final String ADD_LOT = "INSERT INTO LOT "
-			+ "(DESCRIPTION, PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME) "
-			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?) ";
+			+ "(DESCRIPTION, PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE) "
+			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
 	private static final String UPDATE_LOT_BY_ID = "UPDATE LOT SET "
 			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MIN_PRICE = ?, SELLER_ID = ?, " 
@@ -33,10 +33,10 @@ public class LotDaoImpl implements LotDao {
 			+ " WHERE ID = ? ";
 	
 	private static final String GET_LOT_BY_ID = "SELECT ID, DESCRIPTION, PRODUCT_ID, "
-			+ " MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME FROM LOT WHERE ID = ? ";
+			+ " MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE FROM LOT WHERE ID = ?  ";
 	
 	private static final String GET_LOTS_BY_SELLER_ID = "SELECT L.ID, L.DESCRIPTION, "
-			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, P.NAME AS PRODUCT_NAME "
+			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, P.NAME AS PRODUCT_NAME, CREATION_DATE "
 			+ " FROM LOT L "
 			+ " JOIN PRODUCT P "
 			+ " ON L.PRODUCT_ID = P.ID "
@@ -47,7 +47,7 @@ public class LotDaoImpl implements LotDao {
 			+ " PRODUCT_ID = ? AND STATUS = '" + BidStatus.ACTIVE +"' ORDER BY MIN_PRICE ";
 	
 	private static final String GET_ALL_ACTIVE_LOTS = "SELECT L.ID, L.DESCRIPTION,"
-			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, P.NAME AS PRODUCT_NAME "
+			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, P.NAME AS PRODUCT_NAME, CREATION_DATE "
 			+ " FROM LOT L "
 			+ " JOIN PRODUCT P "
 			+ " ON L.PRODUCT_ID = P.ID "
@@ -99,6 +99,7 @@ public class LotDaoImpl implements LotDao {
 				ps.setDate(6, new Date(lot.getExpDate().getTime()));
 				ps.setInt(7, lot.getMaxVolume());
 				ps.setInt(8, lot.getMinVolume());
+				ps.setDate(8, new Date(lot.getCreationDate().getTime()));
 				return ps;
 			}
 		}, keyHolder);

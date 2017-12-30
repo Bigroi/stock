@@ -25,8 +25,8 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String ADD_TENDER = "INSERT INTO TENDER "
 			+ " (DESCRIPTION, PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, "
-			+ " STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME) "
-			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?) ";
+			+ " STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE) "
+			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		
 	private static final String UPDATE_TENDER_BY_ID = "UPDATE TENDER SET "
 			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MAX_PRICE = ?, CUSTOMER_ID = ?, "
@@ -34,11 +34,11 @@ public class TenderDaoImpl implements TenderDao{
 			+ " WHERE ID = ? ";
 	
 	private static final String GET_TENDER_BY_ID = "SELECT ID, DESCRIPTION, PRODUCT_ID, "
-			+ " MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME FROM TENDER WHERE ID = ? ";
+			+ " MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE FROM TENDER WHERE ID = ? ";
 	
 	private static final String GET_TENDERS_BY_CUSTOMER_ID = "SELECT T.ID, T.DESCRIPTION, "
 			+ " T.PRODUCT_ID, T.MAX_PRICE, T.CUSTOMER_ID, T.STATUS, T.EXP_DATE, "
-			+ " T.MAX_VOLUME, T.MIN_VOLUME, P.NAME AS PRODUCT_NAME "
+			+ " T.MAX_VOLUME, T.MIN_VOLUME, P.NAME AS PRODUCT_NAME, CREATION_DATE "
 			+ " FROM TENDER T "
 			+ " JOIN PRODUCT P "
 			+ " ON T.PRODUCT_ID = P.ID"
@@ -93,6 +93,7 @@ public class TenderDaoImpl implements TenderDao{
 				ps.setDate(6, new Date(tender.getExpDate().getTime()));
 				ps.setInt(7, tender.getMaxVolume());
 				ps.setInt(8, tender.getMinVolume());
+				ps.setDate(9, new Date(tender.getCreationDate().getTime()));
 				return ps;
 			}
 		},keyHolder);

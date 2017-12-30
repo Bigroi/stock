@@ -36,6 +36,10 @@ public class Tender implements Bid{
 	@Column("lable.tender.exp_date")
 	private Date expDate = new Date();
 	
+	@Column("lable.tender.creationDate")
+	private Date creationDate = new Date();
+	
+	
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
 			return true;
@@ -132,12 +136,21 @@ public class Tender implements Bid{
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+	
+	public Date getCreationDate() {
+		return creationDate;
+	}
 
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+	
 	@Override
 	public String toString() {
-		return "Tender [id=" + id + ", description=" + description + ", productId=" + productId + ", maxPrice="
-				+ maxPrice + ", customerId=" + customerId + ", status=" + status + ", expDate=" + expDate + ", volume="
-				+ maxVolume + ", minVolume=" + minVolume + "]";
+		return "Tender [id=" + id + ", productId=" + productId + ", productName=" + productName + ", description="
+				+ description + ", status=" + status + ", maxPrice=" + maxPrice + ", minVolume=" + minVolume
+				+ ", maxVolume=" + maxVolume + ", customerId=" + customerId + ", expDate=" + expDate + ", creationDate="
+				+ creationDate + "]";
 	}
 
 	@Override

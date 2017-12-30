@@ -35,6 +35,10 @@ public class Lot implements Bid{
 	@Column("lable.lot.exp_date")
 	private Date expDate = new Date();
 	
+	@Column("lable.lot.creationDate")
+	private Date creationDate = new Date();
+	
+	
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
 			return true;
@@ -125,16 +129,26 @@ public class Lot implements Bid{
 		this.minVolume = minVolume;
 	}
 
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
 	@Override
 	public String toString() {
-		return "Lot [id=" + id + ", description=" + description + ", productId=" + productId + ", minPrice=" + minPrice
-				+ ", sellerId=" + sellerId + ", expDate=" + expDate + ", status=" + status + ", maxVolume=" + maxVolume
-				+ ", minVolume=" + minVolume + "]";
+		return "Lot [id=" + id + ", productName=" + productName + ", description=" + description + ", status=" + status
+				+ ", productId=" + productId + ", minPrice=" + minPrice + ", sellerId=" + sellerId + ", minVolume="
+				+ minVolume + ", maxVolume=" + maxVolume + ", expDate=" + expDate + ", creationDate=" + creationDate
+				+ "]";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof Lot && ((Lot)obj).getId() == this.getId();
 	}
+	
 	
 }
