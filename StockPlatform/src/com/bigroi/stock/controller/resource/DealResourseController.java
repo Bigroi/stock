@@ -2,6 +2,7 @@ package com.bigroi.stock.controller.resource;
 
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ public class DealResourseController extends BaseResourseController {
 
 	@RequestMapping(value = "/Form.spr", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String form(@RequestParam("id") long id, Authentication loggedInUser) 
 					throws ServiceException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
@@ -35,6 +37,7 @@ public class DealResourseController extends BaseResourseController {
 	
 	@RequestMapping(value = "/MyDeals.spr", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String myDealList(Authentication loggedInUser) 
 			throws ServiceException, TableException {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
@@ -45,6 +48,7 @@ public class DealResourseController extends BaseResourseController {
 	
 	@RequestMapping(value = "/Approve.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String approve(@RequestParam("json") String json, Authentication loggedInUser) 
 			throws ServiceException, TableException {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
@@ -58,6 +62,7 @@ public class DealResourseController extends BaseResourseController {
 	
 	@RequestMapping(value = "/Reject.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String reject(@RequestParam("json") String json, Authentication loggedInUser) 
 			throws ServiceException, TableException {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();

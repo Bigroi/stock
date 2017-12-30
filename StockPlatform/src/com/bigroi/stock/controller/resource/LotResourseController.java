@@ -2,6 +2,7 @@ package com.bigroi.stock.controller.resource;
 
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ public class LotResourseController extends BaseResourseController {
 
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String form(
 			@RequestParam(value = "id", defaultValue = "-1") long id,
 			Authentication loggedInUser) throws ServiceException {
@@ -35,6 +37,7 @@ public class LotResourseController extends BaseResourseController {
 	
 	@RequestMapping(value = "/MyList.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String myLotList(Authentication loggedInUser) throws ServiceException, TableException {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
 		List<Lot> lots = ServiceFactory.getLotService().getBySellerId(userBean.getCompanyId());
@@ -44,6 +47,7 @@ public class LotResourseController extends BaseResourseController {
 
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String lotSave(@RequestParam("json") String jsonLot, 
 				Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
@@ -72,6 +76,7 @@ public class LotResourseController extends BaseResourseController {
 	
 	@RequestMapping(value = "/SaveAndActivate.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String lotSaveAndActivate(@RequestParam("json") String json, 
 				Authentication loggedInUser) throws ServiceException {
 		Lot newLot = gson.fromJson(json, Lot.class);
@@ -108,6 +113,7 @@ public class LotResourseController extends BaseResourseController {
 
 	@RequestMapping(value = "/Cancel.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String cancel(@RequestParam("json") String jsonLot) throws ServiceException {
 		Lot lot = gson.fromJson(jsonLot, Lot.class);
 		checkLot(lot.getId());

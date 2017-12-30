@@ -3,6 +3,7 @@ package com.bigroi.stock.controller.resource;
 import java.text.ParseException;
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ public class TenderResourseController extends BaseResourseController {
 
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String form( @RequestParam(value = "id", defaultValue = "-1") long id,
 			Authentication loggedInUser) throws ServiceException {
 		checkTender(id);
@@ -35,6 +37,7 @@ public class TenderResourseController extends BaseResourseController {
 
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String save(
 			@RequestParam("json") String json,
 			Authentication loggedInUser) throws ServiceException, ParseException {
@@ -65,6 +68,7 @@ public class TenderResourseController extends BaseResourseController {
 	
 	@RequestMapping(value = "/SaveAndActivate.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String saveAndActivate(@RequestParam("json") String json,
 			Authentication loggedInUser) throws ServiceException, ParseException {
 		Tender newTender = gson.fromJson(json, Tender.class);
@@ -91,6 +95,7 @@ public class TenderResourseController extends BaseResourseController {
 
 	@RequestMapping("/MyList.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String myList(Authentication loggedInUser) throws ServiceException, TableException {
 		StockUser user = (StockUser) loggedInUser.getPrincipal();
 		List<Tender> tenders = ServiceFactory.getTenderService().getMyList(user.getCompanyId());
@@ -100,6 +105,7 @@ public class TenderResourseController extends BaseResourseController {
 
 	@RequestMapping("/StartTrading.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String StartTrading(@RequestParam("json") String json) throws ServiceException {
 		Tender tender = gson.fromJson(json, Tender.class);
 		checkTender(tender.getId());
@@ -109,6 +115,7 @@ public class TenderResourseController extends BaseResourseController {
 
 	@RequestMapping("/Cancel.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String cancel(@RequestParam("json") String json) throws ServiceException {
 		Tender tender = gson.fromJson(json, Tender.class);
 		checkTender(tender.getId());

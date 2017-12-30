@@ -2,6 +2,7 @@ package com.bigroi.stock.controller.resource;
 
 import java.util.Map;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ public class AccountResourceController extends BaseResourseController {
 
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String accountPage(Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser) loggedInUser.getPrincipal();
 		Company company = ServiceFactory.getCompanyService().getCompanyById(user.getCompanyId());
@@ -31,6 +33,7 @@ public class AccountResourceController extends BaseResourseController {
 
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String editAccount(
 			@RequestParam("json") String json,
 			Authentication loggedInUser) throws ServiceException {

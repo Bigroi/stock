@@ -2,6 +2,7 @@ package com.bigroi.stock.controller.resource;
 
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ public class UserResourceController extends BaseResourseController{
 
 	@RequestMapping(value = "/List.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_ADMIN"})
 	public String list() throws ServiceException, TableException {
 		List<StockUser> users = ServiceFactory.getUserService().getAllUsers();
 		Table<StockUser> table = new Table<>(StockUser.class, users);
@@ -28,6 +30,7 @@ public class UserResourceController extends BaseResourseController{
 	
 	@RequestMapping(value = "/ResetPassword.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_ADMIN"})
 	public String ResetPassword(@RequestParam("id") long id) throws ServiceException {
 		ServiceFactory.getUserService().resetPassword(id);
 		return new ResultBean(1, "user.password.reset.success").toString();

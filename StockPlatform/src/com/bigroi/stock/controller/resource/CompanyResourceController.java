@@ -2,6 +2,7 @@ package com.bigroi.stock.controller.resource;
 
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ public class CompanyResourceController extends BaseResourseController {
 
 	@RequestMapping("/List.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_ADMIN"})
 	public String getListCompanyAll() throws ServiceException, TableException {
 		List<Company> list = ServiceFactory.getCompanyService().getAllCompanies();
 		Table<Company> table = new Table<>(Company.class, list);
@@ -28,6 +30,7 @@ public class CompanyResourceController extends BaseResourseController {
 
 	@RequestMapping("/ChangeStatus.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_ADMIN"})
 	public String changeStatus(@RequestParam("id") long id) throws ServiceException {
 		ServiceFactory.getCompanyService().changeStatusCompany(id);
 		return new ResultBean(1, "company.status.change.success").toString();

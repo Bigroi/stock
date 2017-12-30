@@ -2,6 +2,7 @@ package com.bigroi.stock.controller.resource;
 
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +32,7 @@ public class ProductResourseController extends BaseResourseController {
 
 	@RequestMapping("/admin/List.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_ADMIN"})
 	public String listForAdmin() throws ServiceException, TableException {
 		List<Product> allProducts = ServiceFactory.getProductService().getAllProducts();
 		Table<Product> table = new Table<>(Product.class, allProducts);
@@ -39,6 +41,7 @@ public class ProductResourseController extends BaseResourseController {
 	
 	@RequestMapping("/admin/Form.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_ADMIN"})
 	public String get(@RequestParam(value = "id", defaultValue = "-1") long id) throws ServiceException {
 		Product product = ServiceFactory.getProductService().getProductById(id);
 		return new ResultBean(1, product).toString();
@@ -46,6 +49,7 @@ public class ProductResourseController extends BaseResourseController {
 	
 	@RequestMapping("/admin/Save.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_ADMIN"})
 	public String save(@RequestParam("json") String json) throws ServiceException {
 		Product product = gson.fromJson(json, Product.class);
 		if (product.getId() < 0){
@@ -57,6 +61,7 @@ public class ProductResourseController extends BaseResourseController {
 	
 	@RequestMapping("/admin/Delete.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_ADMIN"})
 	public String delete(@RequestParam("json") String json) throws ServiceException {
 		Product product = gson.fromJson(json, Product.class);
 		ServiceFactory.getProductService().delete(product.getId());
