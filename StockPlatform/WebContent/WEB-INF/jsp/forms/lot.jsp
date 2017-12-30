@@ -12,7 +12,8 @@
        	</li>
        	<li>
 			<label for="productId">${lable.lot.product}</label>
-			<select name="productId" <c:if test="${!newLot}">disabled</c:if>>
+			<select name="productId">
+			<option label="${lable.lot.list}" selected></option>
 				<c:forEach var="product" items="${listOfProducts}">
 					<option value="${product.id}">${product.name}</option>
 				</c:forEach>

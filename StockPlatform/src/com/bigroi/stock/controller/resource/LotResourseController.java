@@ -104,6 +104,7 @@ public class LotResourseController extends BaseResourseController {
 
 	@RequestMapping(value = "/StartTrading.spr")
 	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String startTrading(@RequestParam("json") String jsonLot) throws ServiceException {
 		Lot lot = gson.fromJson(jsonLot, Lot.class);
 		checkLot(lot.getId());

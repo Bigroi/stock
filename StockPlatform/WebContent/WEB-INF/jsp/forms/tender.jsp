@@ -13,6 +13,7 @@
        	<li>
 			<label for="productId">${lable.tender.product}</label>
 			<select name="productId" <c:if test="${!newTender}">disabled</c:if>>
+			<option label="${lable.tender.list}" selected></option>
 				<c:forEach var="product" items="${listOfProducts}">
 					<option value="${product.id}">${product.name}</option>
 				</c:forEach>
