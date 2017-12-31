@@ -52,7 +52,7 @@ public class TenderResourseController extends BaseResourseController {
 		if (newTender.getMinVolume() < 1) {
 			return new ResultBean(-1, "tender.minVolume.error").toString();
 		}
-		if (newTender.getMaxVolume() < 1) {
+		if (newTender.getMaxVolume() <= newTender.getMinVolume()) {
 			return new ResultBean(-1, "tender.maxVolume.error").toString();
 		}
 		if( new Date(newTender.getExpDate().getTime()).getTime() < new Date().getTime()){
@@ -86,7 +86,7 @@ public class TenderResourseController extends BaseResourseController {
 		if (newTender.getMinVolume() < 1) {
 			return new ResultBean(-1, "lot.minVolume.error").toString();
 		}
-		if (newTender.getMaxVolume() < 1) {
+		if (newTender.getMaxVolume() <= newTender.getMinVolume()) {
 			return new ResultBean(-1, "lot.maxVolume.error").toString();
 		}
 		if( new Date(newTender.getExpDate().getTime()).getTime() < new Date().getTime()){
