@@ -1,5 +1,6 @@
 package com.bigroi.stock.controller.resource;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -53,6 +54,9 @@ public class LotResourseController extends BaseResourseController {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Lot newLot = gson.fromJson(jsonLot, Lot.class);
 		checkLot(newLot.getId());
+		
+		//checkValue(newLot.getMinPrice(),newLot.getMinVolume(),newLot.getMaxVolume());
+		
 		if (newLot.getMinPrice() < 0.1) {
 			return new ResultBean(-1, "lot.minPrice.error").toString();
 		}
@@ -62,6 +66,10 @@ public class LotResourseController extends BaseResourseController {
 		if (newLot.getMaxVolume() < 1) {
 			return new ResultBean(-1, "lot.maxVolume.error").toString();
 		}
+		if( new Date(newLot.getExpDate().getTime()).getTime() < new Date().getTime()){
+			return new ResultBean(-1, "lot.ExpDate.error").toString();
+		}
+		
 		if (newLot.getId() < 0) {
 			newLot.setSellerId(user.getCompanyId());;
 			newLot.setStatus(BidStatus.INACTIVE);
@@ -81,7 +89,7 @@ public class LotResourseController extends BaseResourseController {
 				Authentication loggedInUser) throws ServiceException {
 		Lot newLot = gson.fromJson(json, Lot.class);
 		checkLot(newLot.getId());
-		//checkValue(newLot.getMinPrice(),newLot.getMinVolume(),newLot.getMaxVolume());
+	//	checkValue(newLot.getMinPrice(),newLot.getMinVolume(),newLot.getMaxVolume());
 		if (newLot.getMinPrice() < 0.1) {
 			return new ResultBean(-1, "lot.minPrice.error").toString();
 		}
@@ -90,6 +98,9 @@ public class LotResourseController extends BaseResourseController {
 		}
 		if (newLot.getMaxVolume() < 1) {
 			return new ResultBean(-1, "lot.maxVolume.error").toString();
+		}
+		if( new Date(newLot.getExpDate().getTime()).getTime() < new Date().getTime()){
+			return new ResultBean(-1, "lot.ExpDate.error").toString();
 		}
 		if (newLot.getId() < 0) {
 			StockUser user = (StockUser)loggedInUser.getPrincipal();
@@ -133,18 +144,17 @@ public class LotResourseController extends BaseResourseController {
 		}
 	}
 	
-	/*private void checkValue(double price, int minVolume, int  maxVolume){
+	/*private String checkValue(double price, int minVolume, int  maxVolume){
 		if (price < 0.1) {
-			new ResultBean(-1, "lot.minPrice.error").toString();
-			return;// 
+			return new ResultBean(-1, "lot.minPrice.error").toString();
 		}
 		if (minVolume < 1) {
-			new ResultBean(-1, "lot.minVolume.error").toString();
-			return;// 
+			return new ResultBean(-1, "lot.minVolume.error").toString();
 		}
 		if (maxVolume < 1) {
-			new ResultBean(-1, "lot.maxVolume.error").toString();
-			return;// 
+			return new ResultBean(-1, "lot.maxVolume.error").toString();
+			
 		}
+		return null;
 	}*/
 }

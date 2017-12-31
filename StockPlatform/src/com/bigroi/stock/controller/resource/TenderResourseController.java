@@ -1,6 +1,7 @@
 package com.bigroi.stock.controller.resource;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -44,6 +45,7 @@ public class TenderResourseController extends BaseResourseController {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Tender newTender = gson.fromJson(json, Tender.class);
 		checkTender(newTender.getId());
+		
 		if (newTender.getMaxPrice() < 0.1) {
 			return new ResultBean(-1, "tender.maxPrice.error").toString();
 		}
@@ -53,6 +55,10 @@ public class TenderResourseController extends BaseResourseController {
 		if (newTender.getMaxVolume() < 1) {
 			return new ResultBean(-1, "tender.maxVolume.error").toString();
 		}
+		if( new Date(newTender.getExpDate().getTime()).getTime() < new Date().getTime()){
+			return new ResultBean(-1, "lot.ExpDate.error").toString();
+		}
+		
 		if (newTender.getId() < 0) {
 			newTender.setCustomerId(user.getCompanyId());;
 			newTender.setStatus(BidStatus.INACTIVE);
@@ -73,6 +79,7 @@ public class TenderResourseController extends BaseResourseController {
 			Authentication loggedInUser) throws ServiceException, ParseException {
 		Tender newTender = gson.fromJson(json, Tender.class);
 		checkTender(newTender.getId());
+		
 		if (newTender.getMaxPrice() < 0.1) {
 			return new ResultBean(-1, "lot.minPrice.error").toString();
 		}
@@ -82,6 +89,10 @@ public class TenderResourseController extends BaseResourseController {
 		if (newTender.getMaxVolume() < 1) {
 			return new ResultBean(-1, "lot.maxVolume.error").toString();
 		}
+		if( new Date(newTender.getExpDate().getTime()).getTime() < new Date().getTime()){
+			return new ResultBean(-1, "lot.ExpDate.error").toString();
+		}
+		
 		if (newTender.getId() < 0) {
 			StockUser user = (StockUser)loggedInUser.getPrincipal();
 			newTender.setCustomerId(user.getCompanyId());;
