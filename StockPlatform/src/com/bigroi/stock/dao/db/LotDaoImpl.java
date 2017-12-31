@@ -99,7 +99,7 @@ public class LotDaoImpl implements LotDao {
 				ps.setDate(6, new Date(lot.getExpDate().getTime()));
 				ps.setInt(7, lot.getMaxVolume());
 				ps.setInt(8, lot.getMinVolume());
-				ps.setDate(8, new Date(lot.getCreationDate().getTime()));
+				ps.setDate(9, new Date(lot.getCreationDate().getTime()));
 				return ps;
 			}
 		}, keyHolder);
