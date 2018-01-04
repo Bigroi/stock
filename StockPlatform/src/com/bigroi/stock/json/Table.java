@@ -20,6 +20,9 @@ public class Table<T> {
 				if (column != null){
 					model.addAllowSorting(i, column.allowSorting());
 					model.addCustSortFn(i, column.customSortFunction());
+					if (column.floatColumn()){
+						model.addFloatColumn(i);
+					}
 					headers.add(column.value());
 					i++;
 				} else if (field.getAnnotation(Id.class) != null){

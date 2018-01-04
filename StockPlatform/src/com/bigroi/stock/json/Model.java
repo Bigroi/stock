@@ -1,6 +1,8 @@
 package com.bigroi.stock.json;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 class Model {
@@ -8,6 +10,8 @@ class Model {
 	private Map<Integer, String> custSortFn = new HashMap<>();
 	
 	private Map<Integer, Boolean> allowSorting = new HashMap<>();
+	
+	private List<Integer> floatColumns = new ArrayList<>();
 	
 	private int idColumn;
 	
@@ -49,5 +53,14 @@ class Model {
 			}
 		}
 		allowSorting = newMap;
+		floatColumns.remove((Integer)index);
+	}
+	
+	public List<Integer> getFloatColumns() {
+		return floatColumns;
+	}
+	
+	public void addFloatColumn(int index){
+		floatColumns.add(index);
 	}
 }

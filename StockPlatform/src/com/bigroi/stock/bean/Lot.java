@@ -22,7 +22,7 @@ public class Lot implements Bid{
 	
 	private long productId;	
 	
-	@Column("lable.lot.min_price")
+	@Column(value = "lable.lot.min_price", floatColumn = true)
 	private double minPrice;
 	
 	private long sellerId;

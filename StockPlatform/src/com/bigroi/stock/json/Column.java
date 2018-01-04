@@ -16,4 +16,6 @@ public @interface Column {
 	
 	public String value();
 	
+	public boolean floatColumn() default false;
+	
 }

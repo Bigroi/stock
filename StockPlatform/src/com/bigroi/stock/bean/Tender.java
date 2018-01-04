@@ -23,7 +23,7 @@ public class Tender implements Bid{
 	@Column("lable.tender.status")
 	private BidStatus status;
 	
-	@Column("lable.tender.max_price")
+	@Column(value = "lable.tender.max_price", floatColumn = true)
 	private double maxPrice;
 	
 	private int minVolume;
