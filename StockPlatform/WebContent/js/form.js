@@ -46,6 +46,7 @@ function processRequestResult(answer, messageDiv){
 		return 0;
 	}
 	messageDiv.text(answer.data);
+	messageDiv[0].scrollIntoView(true);
 	return answer.result;
 }
 
