@@ -27,7 +27,7 @@ public class ResetUserPasswordMessage extends BaseMessage<StockUser> {
 	protected String getText() throws MessageException {
 		StockUser user = getDataObject();
 		return super.getText()
-				.replaceAll("@login", user.getLogin())
+				.replaceAll("@username", user.getUsername())
 				.replaceAll("@password", user.getPassword());
 	}
 	

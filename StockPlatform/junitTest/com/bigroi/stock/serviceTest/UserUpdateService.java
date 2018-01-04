@@ -33,7 +33,7 @@ public static StockUser user;
 		
 		user = new StockUser();
 		user.setId(22);
-		user.setLogin("ROLBACK");
+		user.setUsername("ROLBACK");
 		user.setPassword("ROLBACK");
 		user.setCompanyId(22);
 	}

@@ -77,8 +77,14 @@ function setLoginDialogPlugin(element){
 		{
 			text:"Login",
 			id:"login",
-			url:"/access/Login.spr",
+			url:"/account/json/Login.spr",
 			close:true 
+		},
+		{
+			text:"Reset",
+			id:"reset",
+			url:"/account/json/ResetPassword.spr",
+			close:false 
 		},
 		{
 			text:"Cancel",

@@ -3,7 +3,6 @@ package com.bigroi.stock.messager.message;
 import com.bigroi.stock.bean.Deal;
 import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.bean.common.Action;
-import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -27,8 +26,9 @@ public class DealConfirmationMessageForCustomer extends BaseMessage<Deal> {
 		try{
 			Deal deal = getDataObject();
 			Tender tender = ServiceFactory.getTenderService().getTender(deal.getTenderId(), 0);
-			String customerLink = MessagerFactory.getLink().getCustomerConfirmationLink() + "?id=" + deal.getId()
-			+ "&key=" + deal.getCustomerId() + "&action=";
+			String customerLink = "";
+//					MessagerFactory.getLink().getCustomerConfirmationLink() + "?id=" + deal.getId()
+//			+ "&key=" + deal.getCustomerId() + "&action=";
 			
 			return super.getText().replaceAll("@tenderId", deal.getTenderId() + "")
 					.replaceAll("@tenderDate", tender.getDateStr())

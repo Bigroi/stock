@@ -18,10 +18,6 @@ public class MessagerFactory {
 		return (MailManager) CONTEXT.getBean("mailManager");
 	}
 	
-	public static Link getLink(){
-		return (Link) CONTEXT.getBean("link");
-	}
-	
 	public static Message<Deal> getCustomerCanceledMessage(){
 		return (Message<Deal>) CONTEXT.getBean("customerCanceledMessage");
 	}

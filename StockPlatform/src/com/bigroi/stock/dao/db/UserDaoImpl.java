@@ -22,33 +22,33 @@ import com.bigroi.stock.dao.UserDao;
 
 public class UserDaoImpl implements UserDao {
 
-	private static final String GET_USER_BY_LOGIN = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID "
+	private static final String GET_USER_BY_USERNAME = "SELECT ID, USERNAME, PASSWORD, COMPANY_ID "
 			+ "FROM USER "
-			+ "WHERE LOGIN = ? ";
+			+ "WHERE USERNAME = ? ";
 
-	private static final String GET_ALL_USERS = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID "
+	private static final String GET_ALL_USERS = "SELECT ID, USERNAME, PASSWORD, COMPANY_ID "
 			+ "FROM USER ";
 
-	private static final String GET_USER_BY_LOGIN_AND_PASSWORD = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID "
+	private static final String GET_USER_BY_USERNAME_AND_PASSWORD = "SELECT ID, USERNAME, PASSWORD, COMPANY_ID "
 			+ "FROM USER "
-			+ "WHERE LOGIN = ? AND PASSWORD = ? ";
+			+ "WHERE USERNAME = ? AND PASSWORD = ? ";
 
-	private static final String ADD_USERS_BY_ID = "INSERT INTO USER (ID, LOGIN, PASSWORD, COMPANY_ID) "
+	private static final String ADD_USERS_BY_ID = "INSERT INTO USER (ID, USERNAME, PASSWORD, COMPANY_ID) "
 			+ " VALUES (?, ?, ?, ?) ";
 
 	private static final String UPDATE_USERS_BY_ID = "UPDATE USER "
-			+ "SET  LOGIN = ?, PASSWORD = ?, COMPANY_ID = ? "
+			+ "SET  USERNAME = ?, PASSWORD = ?, COMPANY_ID = ? "
 			+ "WHERE ID = ? ";
 
-	private static final String LOAD_USER_BY_JOIN_TABLES = "SELECT USER.ID, USER.COMPANY_ID, USER.LOGIN, USER.PASSWORD, USER_ROLE.ROLE "
+	private static final String LOAD_USER_BY_JOIN_TABLES = "SELECT USER.ID, USER.COMPANY_ID, USER.USERNAME, USER.PASSWORD, USER_ROLE.ROLE "
 			+ " FROM  USER "
 			+ " INNER JOIN COMPANY "
 			+ " ON USER.COMPANY_ID = COMPANY.ID AND COMPANY.`STATUS` = '" + CompanyStatus.VERIFIED +"' "
 			+ " LEFT JOIN USER_ROLE "
 			+ " ON USER.ID = USER_ROLE.USER_ID "
-			+ " WHERE USER.LOGIN = ? ";
+			+ " WHERE USER.USERNAME = ? ";
 
-	private static final String GET_USER_BY_ID = "SELECT ID, LOGIN, PASSWORD, COMPANY_ID "
+	private static final String GET_USER_BY_ID = "SELECT ID, USERNAME, PASSWORD, COMPANY_ID "
 			+ "FROM USER "
 			+ "WHERE ID = ?";
 	
@@ -64,10 +64,10 @@ public class UserDaoImpl implements UserDao {
 		return users;
 	}
 
-	public StockUser getByLoginAndPassword(String login, String password) throws DaoException {
+	public StockUser getByUsernameAndPassword(String username, String password) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<StockUser> users = template.query(GET_USER_BY_LOGIN_AND_PASSWORD, new BeanPropertyRowMapper<StockUser>(StockUser.class),
-				login, password);
+		List<StockUser> users = template.query(GET_USER_BY_USERNAME_AND_PASSWORD, new BeanPropertyRowMapper<StockUser>(StockUser.class),
+				username, password);
 		if (users.size() == 0) {
 			return null;
 		} else {
@@ -76,9 +76,9 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public StockUser getByLogin(String login) throws DaoException {
+	public StockUser getByUsername(String username) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<StockUser> users = template.query(GET_USER_BY_LOGIN, new BeanPropertyRowMapper<StockUser>(StockUser.class), login);
+		List<StockUser> users = template.query(GET_USER_BY_USERNAME, new BeanPropertyRowMapper<StockUser>(StockUser.class), username);
 		if (users.size() == 0) {
 			return null;
 		} else {
@@ -95,7 +95,7 @@ public class UserDaoImpl implements UserDao {
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(ADD_USERS_BY_ID, PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setLong(1, user.getId());
-				ps.setString(2, user.getLogin());
+				ps.setString(2, user.getUsername());
 				ps.setString(3, user.getPassword());
 				ps.setLong(4, user.getCompanyId());
 				return ps;
@@ -108,12 +108,12 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean update(StockUser user) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_USERS_BY_ID, user.getLogin(), user.getPassword(), user.getCompanyId(),
+		return template.update(UPDATE_USERS_BY_ID, user.getUsername(), user.getPassword(), user.getCompanyId(),
 				user.getId()) == 1;
 	}
 
 	@Override
-	public StockUser getByLoginWithRoles(String login) throws DaoException {
+	public StockUser getByUsernameWithRoles(String username) throws DaoException {
 		StockUser user = new StockUser();
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<StockUser> list = template.query(LOAD_USER_BY_JOIN_TABLES, new RowMapper<StockUser>(){
@@ -121,7 +121,7 @@ public class UserDaoImpl implements UserDao {
 			public StockUser mapRow(ResultSet rs, int rowNum) throws SQLException {
 				user.setId(rs.getLong("ID"));
 				user.setCompanyId(rs.getLong("COMPANY_ID"));
-				user.setLogin(rs.getString("LOGIN"));
+				user.setUsername(rs.getString("USERNAME"));
 				user.setPassword(rs.getString("PASSWORD"));
 				String role = rs.getString("ROLE");
 				if(role != null){
@@ -129,7 +129,7 @@ public class UserDaoImpl implements UserDao {
 				}
 				return user;
 			}
-		 }, login);
+		 }, username);
 		if(list.size() == 0){
 			return null;
 		}else{

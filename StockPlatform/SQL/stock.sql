@@ -217,7 +217,7 @@ INSERT IGNORE INTO `tender` (`id`, `description`, `product_Id`, `max_price`, `cu
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `login` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `username` varchar(50) CHARACTER SET utf8 NOT NULL,
   `password` varchar(50) CHARACTER SET utf8 NOT NULL,
   `company_Id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
@@ -227,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 -- Дамп данных таблицы stock.user: ~2 rows (приблизительно)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT IGNORE INTO `user` (`id`, `login`, `password`, `company_Id`) VALUES
+INSERT IGNORE INTO `user` (`id`, `username`, `password`, `company_Id`) VALUES
 	(1, 'Admin@stock.by', '1', 1),
 	(14, 'ana@gmail.com', '1', 16);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;

@@ -51,11 +51,6 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/account.jsp" />
 	</definition>
 
-	<definition name="users" extends="base-definition">
-		<put-attribute name="nav-users" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/users.jsp" />
-	</definition>
-
 	<definition name="companies" extends="base-definition">
 		<put-attribute name="nav-company" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/companies.jsp" />

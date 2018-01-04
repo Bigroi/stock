@@ -7,23 +7,16 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.bigroi.stock.json.Column;
-import com.bigroi.stock.json.Id;
-
 public class StockUser implements UserDetails {
 	
 	private static final long serialVersionUID = 3098775983055977418L;
 
-	@Id
 	private long id;
 	
-	@Column("lable.users.login")
-	private String login;
+	private String username;
 	private String password;
 	private List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 	
-	
-	@Column("lable.users.company_id")
 	private long companyId;
 	
 	public long getId() {
@@ -32,14 +25,6 @@ public class StockUser implements UserDetails {
 	
 	public void setId(long id) {
 		this.id = id;
-	}
-	
-	public String getLogin() {
-		return login;
-	}
-	
-	public void setLogin(String login) {
-		this.login = login;
 	}
 	
 	public String getPassword() {
@@ -64,7 +49,7 @@ public class StockUser implements UserDetails {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", login=" + login + ", password=" + password + ", grantedAuthorities="
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", grantedAuthorities="
 				+ grantedAuthorities + ", companyId=" + companyId + "]";
 	}
 
@@ -76,7 +61,7 @@ public class StockUser implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return login;
+		return username;
 	}
 
 	@Override
@@ -99,6 +84,8 @@ public class StockUser implements UserDetails {
 		return true;
 	}
 
-	
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 }

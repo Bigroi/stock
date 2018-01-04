@@ -13,12 +13,12 @@ public class UserLoadTst {
 	@BeforeClass
 	public static  void init(){
 		user = new StockUser();
-		user.setLogin("Admin");
+		user.setUsername("Admin");
 	}
 	
 	@Test
 	public void loadUsesr(){
-		System.out.println(ServiceFactory.getUserService().loadUserByUsername(user.getLogin()));
+		System.out.println(ServiceFactory.getUserService().loadUserByUsername(user.getUsername()));
 	}
 
 }

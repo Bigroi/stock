@@ -31,7 +31,6 @@ public class BaseRenderingController {
 			"registration.properties",
 			"tender.properties",
 			"tradeOffers.properties",
-			"users.properties",
 			"button.properties"
 			};
 	

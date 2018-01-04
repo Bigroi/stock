@@ -24,7 +24,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	
 	private static final String GET_COMPANY_BY_ID = 
 			  " SELECT C.ID, C.NAME, C.PHONE, C.REG_NUMBER, C.COUNTRY, C.CITY, "
-			+ " C.ADDRESS, C.STATUS, C.LONGITUDE, C.LATITUDE, U.LOGIN "
+			+ " C.ADDRESS, C.STATUS, C.LONGITUDE, C.LATITUDE, U.USERNAME "
 			+ " FROM COMPANY C "
 			+ " JOIN USER U "
 			+ " ON C.ID = U.COMPANY_ID "
@@ -75,7 +75,7 @@ public class CompanyDaoImpl implements CompanyDao {
 					company.setRegNumber(rs.getString("REG_NUMBER"));
 					company.setStatus(CompanyStatus.valueOf(rs.getString("STATUS")));
 				}
-				company.addEmail(rs.getString("LOGIN"));
+				company.addEmail(rs.getString("USERNAME"));
 				return company;
 			}
 		},id);

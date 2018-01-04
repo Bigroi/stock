@@ -67,11 +67,11 @@ public class AccountResourceController extends BaseResourseController {
 		Map<String, String> map = gson.fromJson(json, Map.class);
 		
 		StockUser user = new StockUser();
-		user.setLogin(map.get("login"));
+		user.setUsername(map.get("username"));
 		user.setPassword(map.get("password"));
 		String passwordRepeat = map.get("passwordRepeat");
 		
-		if (ServiceFactory.getUserService().getByLogin(user.getLogin()) != null) {
+		if (ServiceFactory.getUserService().getByUsername(user.getUsername()) != null) {
 			return new ResultBean(-1, "registration.login.error").toString();
 		}
 		
@@ -92,5 +92,13 @@ public class AccountResourceController extends BaseResourseController {
 		
 		ServiceFactory.getUserService().addUser(company, user, new Role[]{Role.ROLE_USER});
 		return new ResultBean(1, "registration.success").toString();
+	}
+	
+	@RequestMapping(value = "/ResetPassword.spr")
+	@ResponseBody
+	public String ResetPassword(@RequestParam("json") String json) throws ServiceException {
+		StockUser user = gson.fromJson(json, StockUser.class);
+		ServiceFactory.getUserService().resetPassword(user.getUsername());
+		return new ResultBean(1, "user.password.reset.success").toString();
 	}
 }

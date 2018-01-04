@@ -13,11 +13,11 @@
 			login-page="/Index.spr" 
 			authentication-failure-handler-ref="authenticationHandler"
 			authentication-success-handler-ref="authenticationHandler"
-			login-processing-url="/access/Login.spr"
+			login-processing-url="/account/json/Login.spr"
 		/>
 		
 		<http-basic  />
-		<logout logout-success-url="/Index.spr" logout-url="/access/Logout.spr"/>
+		<logout logout-success-url="/Index.spr" logout-url="/account/json/Logout.spr"/>
 		<csrf disabled="true" />
 		<access-denied-handler error-page="/Index.spr"/>
 

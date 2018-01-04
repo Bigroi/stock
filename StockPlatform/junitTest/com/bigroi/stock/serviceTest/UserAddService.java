@@ -36,7 +36,7 @@ public class UserAddService {
 		
 		user = new StockUser();
 		user.setId(22);
-		user.setLogin("TEST!!!!!!!");
+		user.setUsername("TEST!!!!!!!");
 		user.setPassword("!!");
 		user.setCompanyId(22);
 	}

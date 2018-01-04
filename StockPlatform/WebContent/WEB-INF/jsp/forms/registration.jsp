@@ -11,8 +11,8 @@
 		             <h2>${lable.registration.registration}</h2>
 		        </li>
 		        <li>
-		            <label for="login">${lable.registration.login}</label>
-		            <input type="email" name="login" placeholder="john_doe@example.com" required/>
+		            <label for="username">${lable.registration.username}</label>
+		            <input type="email" name="username" placeholder="john_doe@example.com" required/>
 		            <span class="form_hint">Proper format "john_doe@example.com"</span>
 		        </li>
 		        <li>

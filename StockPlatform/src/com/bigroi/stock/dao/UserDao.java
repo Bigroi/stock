@@ -9,13 +9,13 @@ public interface UserDao {
 	
 	List<StockUser> getAllUser() throws DaoException;
 
-	StockUser getByLogin(String login) throws DaoException;
+	StockUser getByUsername(String username) throws DaoException;
 	
 	void add(StockUser user)throws DaoException;
 	
 	boolean update(StockUser user) throws DaoException;
 	
-	StockUser getByLoginWithRoles(String login) throws DaoException;
+	StockUser getByUsernameWithRoles(String username) throws DaoException;
 
 	StockUser getById(long id) throws DaoException;
 }

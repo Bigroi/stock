@@ -15,11 +15,11 @@ public interface UserService extends UserDetailsService{
 	
 	void updateCompanyAndUser(StockUser user, Company company)throws ServiceException;
 	
-	StockUser getByLogin(String login) throws ServiceException;
+	StockUser getByUsername(String username) throws ServiceException;
 	
 	Company getById(long id) throws ServiceException;
 	
-	void resetPassword(long id) throws ServiceException;
+	void resetPassword(String username) throws ServiceException;
 	
 	List<StockUser> getAllUsers() throws ServiceException;
 	

@@ -24,9 +24,9 @@
 		<div class="wrapper">
 			<sec:authorize access="hasAnyRole('ADMIN', 'USER')">
 				<div class="welcome">
-					${lable.navigation.welcome} ${user.login} 
+					${lable.navigation.welcome} ${user.username} 
 					(<a href="/account/Form.spr">${lable.navigation.account}</a>, 
-					 <a href="/access/Logout.spr">${lable.navigation.logout}</a>
+					 <a href="/account/json/Logout.spr">${lable.navigation.logout}</a>
 					 )
 				</div>
 		    	<tiles:insertAttribute name="userHeader" />
