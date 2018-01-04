@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 
 <form class="form" action="/tender/Save.spr" method="post" name="form">
-	<input type="hidden" name="id"> 
+	<input type="hidden" name="id" value="-1"> 
 	
 	<ul id="form-list">
 		<li>

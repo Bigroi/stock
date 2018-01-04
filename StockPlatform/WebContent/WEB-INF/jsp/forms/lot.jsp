@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 
 <form class="form" action="#" method="post" name="form">
-	<input type="hidden" name="id" value=""> 
+	<input type="hidden" name="id" value="-1"> 
 	
 	<ul id="form-list">
 		<li>

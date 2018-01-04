@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.bean.common.BidStatus;
@@ -24,6 +25,10 @@ import com.bigroi.stock.service.ServiceFactory;
 @Controller
 @RequestMapping("/tender/json")
 public class TenderResourseController extends BaseResourseController {
+	
+	public static void main(String[] args){
+		System.out.println("productId\t:\t");
+	}
 
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
@@ -43,9 +48,11 @@ public class TenderResourseController extends BaseResourseController {
 			@RequestParam("json") String json,
 			Authentication loggedInUser) throws ServiceException, ParseException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
-		if(json.contains("")){
-			return new ResultBean(-1, "tender.product.error").toString();
-		}
+		
+//		if (json.contains("")){
+//			return new ResultBean(-1, "tender.product.error").toString();
+//		}
+	
 		Tender newTender = gson.fromJson(json, Tender.class);
 		checkTender(newTender.getId());
 		
@@ -80,9 +87,9 @@ public class TenderResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String saveAndActivate(@RequestParam("json") String json,
 			Authentication loggedInUser) throws ServiceException, ParseException {
-		if(json.contains("")){
-			return new ResultBean(-1, "tender.product.error").toString();
-		}
+//		if(json.contains("productId"+":"+" ")){
+//			return new ResultBean(-1, "tender.product.error").toString();
+//		}
 		Tender newTender = gson.fromJson(json, Tender.class);
 		checkTender(newTender.getId());
 		

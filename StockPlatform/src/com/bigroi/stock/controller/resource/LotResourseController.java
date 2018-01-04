@@ -52,9 +52,9 @@ public class LotResourseController extends BaseResourseController {
 	public String lotSave(@RequestParam("json") String jsonLot, 
 				Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser) loggedInUser.getPrincipal();
-		if (jsonLot.contains("")) {
-			return new ResultBean(-1, "lot.product.error").toString();
-		}
+//		if (jsonLot.contains("productId"+":"+"")) {
+//			return new ResultBean(-1, "lot.product.error").toString();
+//		}
 		Lot newLot = gson.fromJson(jsonLot, Lot.class);
 		checkLot(newLot.getId());
 		
@@ -88,9 +88,9 @@ public class LotResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String lotSaveAndActivate(@RequestParam("json") String json, 
 				Authentication loggedInUser) throws ServiceException {
-		if (json.contains("")) {
-			return new ResultBean(-1, "lot.product.error").toString();
-		}
+//		if (json.contains("productId"+":"+" ")) {
+//			return new ResultBean(-1, "lot.product.error").toString();
+//		}
 		Lot newLot = gson.fromJson(json, Lot.class);
 		checkLot(newLot.getId());
 		if (newLot.getMinPrice() < 0.1) {
