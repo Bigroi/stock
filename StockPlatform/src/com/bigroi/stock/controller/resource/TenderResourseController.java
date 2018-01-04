@@ -43,6 +43,9 @@ public class TenderResourseController extends BaseResourseController {
 			@RequestParam("json") String json,
 			Authentication loggedInUser) throws ServiceException, ParseException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
+		if(json.contains("")){
+			return new ResultBean(-1, "tender.product.error").toString();
+		}
 		Tender newTender = gson.fromJson(json, Tender.class);
 		checkTender(newTender.getId());
 		
@@ -77,6 +80,9 @@ public class TenderResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String saveAndActivate(@RequestParam("json") String json,
 			Authentication loggedInUser) throws ServiceException, ParseException {
+		if(json.contains("")){
+			return new ResultBean(-1, "tender.product.error").toString();
+		}
 		Tender newTender = gson.fromJson(json, Tender.class);
 		checkTender(newTender.getId());
 		
