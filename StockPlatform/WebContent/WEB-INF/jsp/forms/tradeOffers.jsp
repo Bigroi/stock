@@ -13,10 +13,6 @@
 	        </li>
 	    </ul>
 	</form>
-	<div id = "lables">lable.lot.min_price,lable.lot.max_volume,lable.tender.max_price,lable.tender.max_volume</div>
-	<script>
-		$("#lables").localization();
-	</script>
 	<table>
 		<tbody>
 			<tr>

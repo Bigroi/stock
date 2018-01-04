@@ -20,6 +20,7 @@
 		<script src="/js/localization.js"></script>
 	</head>
 	<body>
+		<tiles:insertAttribute name="l10n" />
 		<div class="wrapper">
 			<sec:authorize access="hasAnyRole('ADMIN', 'USER')">
 				<div class="welcome">
