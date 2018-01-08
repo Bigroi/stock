@@ -52,7 +52,13 @@ $.fn.tableMaker = function (srcTable, formPage) {
 					continue;
 				}
 				var td = $("<td>");
-				td.text(dataObj.data.rows[j][k]);
+                var tdContent = dataObj.data.rows[j][k];
+				var floatColumns = dataObj.data.model.floatColumns;
+				if(floatColumns.indexOf(k) >= 0){
+					tdContent = tdContent*1;
+					tdContent = tdContent.toFixed(2);
+				}
+				td.text(tdContent);
 				tRow.append(td);
 			}
 			tBody.append(tRow);			
