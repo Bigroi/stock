@@ -73,7 +73,7 @@ public class ProductResourseController extends BaseResourseController {
 	public String getLots(@RequestParam int productId) throws ServiceException, TableException{
 		List<Lot> lots = ServiceFactory.getLotService().getByProduct(productId);
 		Table<Lot> table = new Table<>(Lot.class, lots)
-		.exclude(0).exclude(0).exclude(3);
+		.exclude(0).exclude(0).exclude(3).exclude(3);
 		
 		return new ResultBean(1, table).toString();
 	}
@@ -83,7 +83,7 @@ public class ProductResourseController extends BaseResourseController {
 	public String getTenders(@RequestParam int productId) throws TableException, ServiceException{
 		List<Tender> tenders = ServiceFactory.getTenderService().getByProduct(productId);
 		Table<Tender> table = new Table<>(Tender.class, tenders)
-		.exclude(0).exclude(0).exclude(3);
+		.exclude(0).exclude(0).exclude(3).exclude(3);
 		
 		return new ResultBean(1, table).toString();
 	}
