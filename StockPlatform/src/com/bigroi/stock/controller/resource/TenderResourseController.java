@@ -1,6 +1,7 @@
 package com.bigroi.stock.controller.resource;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.Tender;
@@ -26,10 +26,6 @@ import com.bigroi.stock.service.ServiceFactory;
 @RequestMapping("/tender/json")
 public class TenderResourseController extends BaseResourseController {
 	
-	public static void main(String[] args){
-		System.out.println("productId\t:\t");
-	}
-
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
@@ -49,24 +45,11 @@ public class TenderResourseController extends BaseResourseController {
 			Authentication loggedInUser) throws ServiceException, ParseException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		
-//		if (json.contains("")){
-//			return new ResultBean(-1, "tender.product.error").toString();
-//		}
-	
 		Tender newTender = gson.fromJson(json, Tender.class);
 		checkTender(newTender.getId());
-		
-		if (newTender.getMaxPrice() < 0.1) {
-			return new ResultBean(-1, "tender.maxPrice.error").toString();
-		}
-		if (newTender.getMinVolume() < 1) {
-			return new ResultBean(-1, "tender.minVolume.error").toString();
-		}
-		if (newTender.getMaxVolume() <= newTender.getMinVolume()) {
-			return new ResultBean(-1, "tender.maxVolume.error").toString();
-		}
-		if( new Date(newTender.getExpDate().getTime()).getTime() < new Date().getTime()){
-			return new ResultBean(-1, "lot.ExpDate.error").toString();
+		List<String> errors = activationCheck(newTender);
+		if (errors.size() > 0){
+			return new ResultBean(-1, errors).toString();
 		}
 		
 		if (newTender.getId() < 0) {
@@ -87,23 +70,11 @@ public class TenderResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String saveAndActivate(@RequestParam("json") String json,
 			Authentication loggedInUser) throws ServiceException, ParseException {
-//		if(json.contains("productId"+":"+" ")){
-//			return new ResultBean(-1, "tender.product.error").toString();
-//		}
 		Tender newTender = gson.fromJson(json, Tender.class);
 		checkTender(newTender.getId());
-		
-		if (newTender.getMaxPrice() < 0.1) {
-			return new ResultBean(-1, "lot.minPrice.error").toString();
-		}
-		if (newTender.getMinVolume() < 1) {
-			return new ResultBean(-1, "lot.minVolume.error").toString();
-		}
-		if (newTender.getMaxVolume() <= newTender.getMinVolume()) {
-			return new ResultBean(-1, "lot.maxVolume.error").toString();
-		}
-		if( new Date(newTender.getExpDate().getTime()).getTime() < new Date().getTime()){
-			return new ResultBean(-1, "lot.ExpDate.error").toString();
+		List<String> errors = activationCheck(newTender);
+		if (errors.size() > 0){
+			return new ResultBean(-1, errors).toString();
 		}
 		
 		if (newTender.getId() < 0) {
@@ -132,7 +103,13 @@ public class TenderResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String StartTrading(@RequestParam("json") String json) throws ServiceException {
 		Tender tender = gson.fromJson(json, Tender.class);
+		tender = ServiceFactory.getTenderService().getTender(tender.getId(), 0);
 		checkTender(tender.getId());
+		List<String> errors = activationCheck(tender);
+		if (errors.size() > 0){
+			return new ResultBean(-1, errors).toString();
+		}
+		
 		ServiceFactory.getTenderService().startTrading(tender.getId());
 		return new ResultBean(0, "/tender/MyTenders.spr").toString();
 	}
@@ -156,5 +133,23 @@ public class TenderResourseController extends BaseResourseController {
 		if (tender.getCustomerId() != user.getCompanyId()){
 			throw new SecurityException("User have no permission to modify Lot with id = " + id);
 		}
+	}
+	
+	private List<String> activationCheck(Tender tender){
+		List<String> errors = new ArrayList<String>();
+		
+		if (tender.getMaxPrice() < 0.1) {
+			errors.add("tender.maxPrice.error");
+		}
+		if (tender.getMinVolume() < 1) {
+			errors.add("tender.minVolume.error");
+		}
+		if (tender.getMaxVolume() <= tender.getMinVolume()) {
+			errors.add("tender.maxVolume.error");
+		}
+		if( new Date(tender.getExpDate().getTime()).getTime() < new Date().getTime()){
+			errors.add("lot.ExpDate.error");
+		}
+		return errors;
 	}
 }

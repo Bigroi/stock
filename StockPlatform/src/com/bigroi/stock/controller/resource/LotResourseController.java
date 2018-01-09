@@ -1,5 +1,6 @@
 package com.bigroi.stock.controller.resource;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,23 +53,11 @@ public class LotResourseController extends BaseResourseController {
 	public String lotSave(@RequestParam("json") String jsonLot, 
 				Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser) loggedInUser.getPrincipal();
-//		if (jsonLot.contains("productId"+":"+"")) {
-//			return new ResultBean(-1, "lot.product.error").toString();
-//		}
 		Lot newLot = gson.fromJson(jsonLot, Lot.class);
 		checkLot(newLot.getId());
-		
-		if (newLot.getMinPrice() < 0.1) {
-			return new ResultBean(-1, "lot.minPrice.error").toString();
-		}
-		if (newLot.getMinVolume() < 1) {
-			return new ResultBean(-1, "lot.minVolume.error").toString();
-		}
-		if (newLot.getMaxVolume() <= newLot.getMinVolume()) {
-			return new ResultBean(-1, "lot.maxVolume.error").toString();
-		}
-		if( new Date(newLot.getExpDate().getTime()).getTime() < new Date().getTime()){
-			return new ResultBean(-1, "lot.ExpDate.error").toString();
+		List<String> errors = activationCheck(newLot);
+		if (errors.size() > 0) {
+			return new ResultBean(-1, errors).toString();
 		}
 		
 		if (newLot.getId() < 0) {
@@ -83,28 +72,36 @@ public class LotResourseController extends BaseResourseController {
 		return new ResultBean(0, "/lot/MyLots.spr").toString();
 	}
 	
+	private List<String> activationCheck(Lot newLot){
+		List<String> errors = new ArrayList<String>();
+		
+		if (newLot.getMinPrice() < 0.1) {
+			errors.add("lot.minPrice.error");
+		}
+		if (newLot.getMinVolume() < 1) {
+			errors.add("lot.minVolume.error");
+		}
+		if (newLot.getMaxVolume() <= newLot.getMinVolume()) {
+			errors.add("lot.maxVolume.error");
+		}
+		if( new Date(newLot.getExpDate().getTime()).getTime() < new Date().getTime()){
+			errors.add("lot.expDate.error");
+		}
+		return errors;
+	}
+	
 	@RequestMapping(value = "/SaveAndActivate.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String lotSaveAndActivate(@RequestParam("json") String json, 
 				Authentication loggedInUser) throws ServiceException {
-//		if (json.contains("productId"+":"+" ")) {
-//			return new ResultBean(-1, "lot.product.error").toString();
-//		}
 		Lot newLot = gson.fromJson(json, Lot.class);
 		checkLot(newLot.getId());
-		if (newLot.getMinPrice() < 0.1) {
-			return new ResultBean(-1, "lot.minPrice.error").toString();
+		List<String> errors = activationCheck(newLot);
+		if (errors.size() > 0) {
+			return new ResultBean(-1, errors).toString();
 		}
-		if (newLot.getMinVolume() < 1) {
-			return new ResultBean(-1, "lot.minVolume.error").toString();
-		}
-		if (newLot.getMaxVolume() <= newLot.getMinVolume()) {
-			return new ResultBean(-1, "lot.maxVolume.error").toString();
-		}
-		if( new Date(newLot.getExpDate().getTime()).getTime() < new Date().getTime()){
-			return new ResultBean(-1, "lot.ExpDate.error").toString();
-		}
+		
 		if (newLot.getId() < 0) {
 			StockUser user = (StockUser)loggedInUser.getPrincipal();
 			newLot.setSellerId(user.getCompanyId());;
@@ -121,7 +118,13 @@ public class LotResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String startTrading(@RequestParam("json") String jsonLot) throws ServiceException {
 		Lot lot = gson.fromJson(jsonLot, Lot.class);
+		lot = ServiceFactory.getLotService().getLot(lot.getId(), 0);
 		checkLot(lot.getId());
+		List<String> errors = activationCheck(lot);
+		if (errors.size() > 0) {
+			return new ResultBean(-1, errors).toString();
+		}
+		
 		ServiceFactory.getLotService().activate(lot.getId());
 		return new ResultBean(0, "/lot/MyLots.spr").toString();
 	}
