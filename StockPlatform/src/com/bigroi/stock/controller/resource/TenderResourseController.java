@@ -2,7 +2,7 @@ package com.bigroi.stock.controller.resource;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -144,11 +144,17 @@ public class TenderResourseController extends BaseResourseController {
 		if (tender.getMinVolume() < 1) {
 			errors.add("tender.minVolume.error");
 		}
-		if (tender.getMaxVolume() <= tender.getMinVolume()) {
+		if (tender.getMaxVolume() < tender.getMinVolume()) {
 			errors.add("tender.maxVolume.error");
 		}
-		if( new Date(tender.getExpDate().getTime()).getTime() < new Date().getTime()){
-			errors.add("lot.ExpDate.error");
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.MILLISECOND, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		if( tender.getExpDate().getTime() < calendar.getTimeInMillis()){
+			errors.add("lot.expDate.error");
 		}
 		return errors;
 	}
