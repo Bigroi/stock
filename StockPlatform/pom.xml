@@ -16,6 +16,7 @@
 					<target>1.8</target>
 	                <fork>true</fork>
 	                <executable>${JAVA_HOME}/bin/javac</executable>
+	                <encoding>Cp1251</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
