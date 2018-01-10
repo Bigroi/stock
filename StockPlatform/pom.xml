@@ -15,8 +15,7 @@
 					<source>1.8</source>
 					<target>1.8</target>
 	                <fork>true</fork>
-	                <executable>$JAVA_HOME/bin/javac</executable>
-	                <encoding>UTF-8</encoding>
+	                <executable>${JAVA_HOME}/bin/javac</executable>
 				</configuration>
 			</plugin>
 			<plugin>
