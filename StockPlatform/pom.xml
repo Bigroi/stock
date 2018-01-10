@@ -26,15 +26,25 @@
 					<warSourceDirectory>WebContent</warSourceDirectory>
 				</configuration>
 			</plugin>
+			<plugin>
+			    <groupId>org.apache.tomcat.maven</groupId>
+			    <artifactId>tomcat8-maven-plugin</artifactId>
+			    <version>2.2</version>
+			    <configuration>
+			        <url>http://18.218.4.208:8080/manager/text</url>
+			        <server>test_server</server>
+			        <path>/</path>
+			    </configuration>
+			</plugin>
 		</plugins>
 	</build>
-	<distributionManagement>
+<!-- 	<distributionManagement>
 		<repository>
 	        <id>test_server</id>
 	        <name>RepositoryProxyRel</name>
 	        <url>http://18.218.4.208:8080/</url>
 	    </repository>
-	</distributionManagement>
+	</distributionManagement> -->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.integration</groupId>
