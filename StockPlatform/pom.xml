@@ -16,6 +16,7 @@
 					<target>1.8</target>
 	                <fork>true</fork>
 	                <executable>$JAVA_HOME/bin/javac</executable>
+	                <goal>compile</goal>
 				</configuration>
 			</plugin>
 			<plugin>
