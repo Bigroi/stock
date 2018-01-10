@@ -28,11 +28,13 @@
 			</plugin>
 		</plugins>
 	</build>
-	<repository>
-        <id>localSnap</id>
-        <name>RepositoryProxyRel</name>
-        <url>http://18.218.4.208:8080/manager/html</url>
-    </repository>
+	<distributionManagement>
+		<repository>
+	        <id>localSnap</id>
+	        <name>RepositoryProxyRel</name>
+	        <url>http://18.218.4.208:8080/manager/html</url>
+	    </repository>
+	</distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.integration</groupId>
