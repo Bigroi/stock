@@ -26,6 +26,12 @@
 					<warSourceDirectory>WebContent</warSourceDirectory>
 				</configuration>
 			</plugin>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<url>http://18.218.4.208:8080/manager/html</url>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
