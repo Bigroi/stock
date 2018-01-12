@@ -8,6 +8,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/resource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/labels"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src,resource,templates,spring,labels,testenv"/>
         <property name="java-output-path" value="/StockPlatform/build/classes"/>
         <property name="context-root" value="StockPlatform"/>
     </wb-module>

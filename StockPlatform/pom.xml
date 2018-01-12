@@ -6,7 +6,7 @@
 	<version>0.0.1</version>
 	<name>StockPlatform</name>
 	<build>
-		<sourceDirectory>src,resource,templates,spring,labels,testenv</sourceDirectory>
+		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -24,6 +24,28 @@
 				<version>3.0.0</version>
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
+					<webResources>
+						<webResource>
+							<targetPath>WEB-INF/classes</targetPath>
+							<directory>testenv</directory>
+						</webResource>
+						<webResource>
+							<targetPath>WEB-INF/classes</targetPath>
+							<directory>labels</directory>
+						</webResource>
+						<webResource>
+							<targetPath>WEB-INF/classes</targetPath>
+							<directory>resource</directory>
+						</webResource>
+						<webResource>
+							<targetPath>WEB-INF/classes</targetPath>
+							<directory>spring</directory>
+						</webResource>
+						<webResource>
+							<targetPath>WEB-INF/classes</targetPath>
+							<directory>templates</directory>
+						</webResource>
+					</webResources>
 				</configuration>
 			</plugin>
 			<plugin>
