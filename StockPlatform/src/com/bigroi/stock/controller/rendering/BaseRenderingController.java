@@ -17,6 +17,7 @@ public class BaseRenderingController {
 	private static final String[] PAGE_LABELS_FILES = {
 			"navigation.properties",
 			"account.properties",
+			"build.properties",
 			"companies.properties",
 			"login.properties",
 			"lot.properties",
