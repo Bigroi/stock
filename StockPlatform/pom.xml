@@ -6,7 +6,7 @@
 	<version>0.0.1</version>
 	<name>StockPlatform</name>
 	<build>
-		<sourceDirectory>src</sourceDirectory>
+		<sourceDirectory>src,resource,templates,spring,labels,testenv</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
