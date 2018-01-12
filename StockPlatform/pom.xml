@@ -39,13 +39,6 @@
 			</plugin>
 		</plugins>
 	</build>
-<!--  	<distributionManagement>
-		<repository>
-	        <id>test_server</id>
-	        <name>RepositoryProxyRel</name>
-	        <url>http://18.218.4.208:8080/manager</url>
-	    </repository>
-	</distributionManagement> -->
 	<dependencies> 
 		<dependency>
 			<groupId>org.springframework.integration</groupId>
