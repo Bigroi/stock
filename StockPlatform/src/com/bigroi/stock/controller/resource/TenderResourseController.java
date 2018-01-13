@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -44,7 +45,10 @@ public class TenderResourseController extends BaseResourseController {
 			@RequestParam("json") String json,
 			Authentication loggedInUser) throws ServiceException, ParseException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
-		
+		JSONObject obj = new JSONObject(json);
+		if(obj.getString("productId").equals("")){
+			return new ResultBean(-1, "tender.product.error").toString();
+		}
 		Tender newTender = gson.fromJson(json, Tender.class);
 		checkTender(newTender.getId());
 		List<String> errors = activationCheck(newTender);
