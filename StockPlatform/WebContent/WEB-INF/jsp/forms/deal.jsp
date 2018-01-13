@@ -74,7 +74,7 @@
 		        	</button>
 		        	<button class="submit" 
 		        		onclick = "document.location = '/deal/MyDeals.spr'; return false">
-		        		To list
+		        		to_list
 		        	</button>
 		        </li>
 		    </ul>
