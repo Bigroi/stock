@@ -150,5 +150,7 @@ button.submit:active {
 	-moz-box-shadow: 0 0 10px 5px #356b0b inset;
 	-ms-box-shadow: 0 0 10px 5px #356b0b inset;
 	-o-box-shadow: 0 0 10px 5px #356b0b inset;
-	
 }
+button[disabled] {
+	display: none;
+	}
