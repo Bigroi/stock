@@ -86,4 +86,14 @@ public class LotServiceImpl implements LotService {
 		}
 	}
 
+	@Override
+	public void deactivate(long id) throws ServiceException {
+		try {
+			lotDao.setStatusById(id, BidStatus.INACTIVE);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		
+	}
+
 }

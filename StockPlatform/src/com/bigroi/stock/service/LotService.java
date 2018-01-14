@@ -17,4 +17,6 @@ public interface LotService {
 	void merge(Lot lot) throws ServiceException;
 
 	List<Lot> getByProduct(int productId) throws ServiceException;
+	
+	void deactivate(long id) throws ServiceException;
 }

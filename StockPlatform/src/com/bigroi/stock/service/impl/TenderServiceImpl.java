@@ -84,4 +84,14 @@ public class TenderServiceImpl implements TenderService{
 			throw new ServiceException(e);
 		}
 	}
+
+	@Override
+	public void endTrading(long id) throws ServiceException {
+		try{
+			tenderDao.setStatusById(id, BidStatus.INACTIVE);
+		}catch(DaoException e){
+			throw new ServiceException(e);
+		}
+		
+	}
 }

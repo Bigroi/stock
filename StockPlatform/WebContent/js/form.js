@@ -110,6 +110,12 @@ function setLotDialogPlugin(element, id){
 		close:true
 	},
 	{
+		text:"end-trading",
+		id:"end-trading",
+		url:"/lot/json/EndTrading.spr",
+		close:true
+	},
+	{
 		text:"save-start-trading",
 		id:"save-start-trading",
 		url:"/lot/json/SaveAndActivate.spr",
@@ -144,6 +150,10 @@ function setLotDialogPlugin(element, id){
 			if (lot.status != "INACTIVE"){
 				$("#start-trading").remove();
 			} 
+			
+			if (lot.status != "ACTIVE"){
+				$("#end-trading").remove();
+			} 
 		},
 		buttons:buttons,
 	});
@@ -155,6 +165,12 @@ function setTenderDialogPlugin(element, id){
 		id:"save",
 		url:"/tender/json/Save.spr",
 		close:true 
+	},
+	{
+		text:"end-trading",
+		id:"end-trading",
+		url:"/tender/json/EndTrading.spr",
+		close:true
 	},
 	{
 		text:"start-trading",
@@ -195,6 +211,9 @@ function setTenderDialogPlugin(element, id){
 			}
 			if (tender.status != "INACTIVE"){
 				$("#start-trading").remove();
+			}
+			if (tender.status != "ACTIVE"){
+				$("#end-trading").remove();
 			}
 		},
 		buttons:buttons,

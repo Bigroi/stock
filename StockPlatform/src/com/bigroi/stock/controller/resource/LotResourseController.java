@@ -137,6 +137,22 @@ public class LotResourseController extends BaseResourseController {
 		ServiceFactory.getLotService().activate(lot.getId());
 		return new ResultBean(0, "/lot/MyLots.spr").toString();
 	}
+	
+	@RequestMapping(value = "/EndTrading.spr")
+	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	public String endTrading(@RequestParam("json") String jsonLot) throws ServiceException {
+		Lot lot = gson.fromJson(jsonLot, Lot.class);
+		lot = ServiceFactory.getLotService().getLot(lot.getId(), 0);
+		checkLot(lot.getId());
+		List<String> errors = activationCheck(lot);
+		if (errors.size() > 0) {
+			return new ResultBean(-1, errors).toString();
+		}
+		
+		ServiceFactory.getLotService().deactivate(lot.getId());
+		return new ResultBean(0, "/lot/MyLots.spr").toString();
+	}
 
 	@RequestMapping(value = "/Cancel.spr")
 	@ResponseBody

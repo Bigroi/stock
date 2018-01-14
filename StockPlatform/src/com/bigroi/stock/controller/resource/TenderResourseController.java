@@ -112,6 +112,22 @@ public class TenderResourseController extends BaseResourseController {
 		ServiceFactory.getTenderService().startTrading(tender.getId());
 		return new ResultBean(0, "/tender/MyTenders.spr").toString();
 	}
+	
+	@RequestMapping("/EndTrading.spr")
+	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	public String EndTrading(@RequestParam("json") String json) throws ServiceException {
+		Tender tender = gson.fromJson(json, Tender.class);
+		tender = ServiceFactory.getTenderService().getTender(tender.getId(), 0);
+		checkTender(tender.getId());
+		List<String> errors = activationCheck(tender);
+		if (errors.size() > 0){
+			return new ResultBean(-1, errors).toString();
+		}
+		
+		ServiceFactory.getTenderService().endTrading(tender.getId());
+		return new ResultBean(0, "/tender/MyTenders.spr").toString();
+	}
 
 	@RequestMapping("/Cancel.spr")
 	@ResponseBody
