@@ -11,7 +11,7 @@
 		             <h2>${lable.registration.registration}</h2>
 		        </li>
 		        <li>
-		            <label for="username">${lable.registration.username}</label>
+		            <label for="username">${lable.registration.login}</label>
 		            <input type="email" name="username" placeholder="john_doe@example.com" required/>
 		            <span class="form_hint">Proper format "john_doe@example.com"</span>
 		        </li>
