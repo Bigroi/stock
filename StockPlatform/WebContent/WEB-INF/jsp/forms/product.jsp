@@ -17,5 +17,8 @@
             <label for=description>${lable.product.description}</label>
             <textarea name="description" cols="40" rows="6" required></textarea>
         </li>
+         <li>
+            <input type="hidden" name="archive" required/>
+        </li>
     </ul>
 </form>
