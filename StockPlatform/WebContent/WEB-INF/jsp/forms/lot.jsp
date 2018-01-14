@@ -13,7 +13,7 @@
        	<li>
 			<label for="productId">${lable.lot.product}</label>
 			<select name="productId">
-			<option label="${lable.lot.list}" selected></option>
+				<option value="-1" selected>${lable.lot.list}</option>
 				<c:forEach var="product" items="${listOfProducts}">
 					<option value="${product.id}">${product.name}</option>
 				</c:forEach>

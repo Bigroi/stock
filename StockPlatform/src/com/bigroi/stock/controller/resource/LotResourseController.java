@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import org.json.JSONObject;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -54,10 +53,6 @@ public class LotResourseController extends BaseResourseController {
 	public String lotSave(@RequestParam("json") String jsonLot, 
 				Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser) loggedInUser.getPrincipal();
-		JSONObject obj = new JSONObject(jsonLot);
-		if(obj.getString("productId").equals("")){
-			return new ResultBean(-1, "lot.product.error").toString();
-		}
 		Lot newLot = gson.fromJson(jsonLot, Lot.class);
 		checkLot(newLot.getId());
 		List<String> errors = activationCheck(newLot);
@@ -82,6 +77,9 @@ public class LotResourseController extends BaseResourseController {
 		
 		if (newLot.getMinPrice() < 0.1) {
 			errors.add("lot.minPrice.error");
+		}
+		if (newLot.getProductId() < 0) {
+			errors.add("lot.product.error");
 		}
 		if (newLot.getMinVolume() < 1) {
 			errors.add("lot.minVolume.error");
