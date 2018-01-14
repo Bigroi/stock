@@ -4,7 +4,7 @@ lable.deal.productName
 lable.deal.partnerAddress
 lable.deal.partnerComment
 lable.deal.status
-lable.lot.poduct
+lable.lot.product
 lable.lot.status
 lable.lot.min_price
 lable.lot.max_volume

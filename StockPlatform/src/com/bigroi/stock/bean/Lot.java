@@ -12,7 +12,7 @@ public class Lot implements Bid{
 	@Id
 	private long id;
 	
-	@Column("lable.lot.poduct")
+	@Column("lable.lot.product")
 	private String productName;
 	
 	private String description;
