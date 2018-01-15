@@ -9,13 +9,15 @@ lable.lot.status
 lable.lot.min_price
 lable.lot.max_volume
 lable.lot.exp_date
-lable.lot.creationDate
+lable.lot.creation_date
+lable.lot.delivery
 lable.tender.product
 lable.tender.status
 lable.tender.max_price
 lable.tender.max_volume
 lable.tender.exp_date
-lable.tender.creationDate
+lable.tender.creation_date
+lable.tender.delivery
 lable.product.name
 lable.product.description
 lable.product.archive

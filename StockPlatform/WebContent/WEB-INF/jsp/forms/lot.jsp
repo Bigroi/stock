@@ -45,5 +45,12 @@
             	pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])\.(0[1-9]|1[012])\.[0-9]{4}"/>
             <span class="form_hint">Proper format "01.01.2018"</span>
         </li>
-    </ul>
+		<li>
+		   <label for="delivery">${lable.lot.delivery}</label> 
+		   <select name="delivery">
+				<option value="SELF">SELF</option>
+				<option value="NO">NO</option>
+		   </select>
+		</li>
+	</ul>
 </form>

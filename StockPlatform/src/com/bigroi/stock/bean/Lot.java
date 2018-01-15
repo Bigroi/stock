@@ -35,8 +35,11 @@ public class Lot implements Bid{
 	@Column("lable.lot.exp_date")
 	private Date expDate = new Date();
 	
-	@Column("lable.lot.creationDate")
+	@Column("lable.lot.creation_date")
 	private Date creationDate = new Date();
+	
+	@Column("lable.lot.delivery")
+	private String delivery;
 	
 	
 	public boolean isExpired() {
@@ -136,19 +139,24 @@ public class Lot implements Bid{
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
+	
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
+	}
+	public String getDelivery() {
+		return delivery;
+	}
 
 	@Override
 	public String toString() {
 		return "Lot [id=" + id + ", productName=" + productName + ", description=" + description + ", status=" + status
 				+ ", productId=" + productId + ", minPrice=" + minPrice + ", sellerId=" + sellerId + ", minVolume="
 				+ minVolume + ", maxVolume=" + maxVolume + ", expDate=" + expDate + ", creationDate=" + creationDate
-				+ "]";
+				+ ", delivery=" + delivery + "]";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof Lot && ((Lot)obj).getId() == this.getId();
 	}
-	
-	
 }
