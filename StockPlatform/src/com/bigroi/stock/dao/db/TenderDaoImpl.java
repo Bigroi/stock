@@ -25,20 +25,20 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String ADD_TENDER = "INSERT INTO TENDER "
 			+ " (DESCRIPTION, PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, "
-			+ " STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY) "
-			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			+ " STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY, PACKAGING) "
+			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		
 	private static final String UPDATE_TENDER_BY_ID = "UPDATE TENDER SET "
 			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MAX_PRICE = ?, CUSTOMER_ID = ?, "
-			+ " STATUS = ?, EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, DELIVERY = ? "
+			+ " STATUS = ?, EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, DELIVERY = ?, PACKAGING = ? "
 			+ " WHERE ID = ? ";
 	
 	private static final String GET_TENDER_BY_ID = "SELECT ID, DESCRIPTION, PRODUCT_ID, "
-			+ " MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY FROM TENDER WHERE ID = ? ";
+			+ " MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY, PACKAGING FROM TENDER WHERE ID = ? ";
 	
 	private static final String GET_TENDERS_BY_CUSTOMER_ID = "SELECT T.ID, T.DESCRIPTION, "
 			+ " T.PRODUCT_ID, T.MAX_PRICE, T.CUSTOMER_ID, T.STATUS, T.EXP_DATE, "
-			+ " T.MAX_VOLUME, T.MIN_VOLUME, P.NAME AS PRODUCT_NAME, CREATION_DATE, DELIVERY "
+			+ " T.MAX_VOLUME, T.MIN_VOLUME, P.NAME AS PRODUCT_NAME, CREATION_DATE, DELIVERY, PACKAGING "
 			+ " FROM TENDER T "
 			+ " JOIN PRODUCT P "
 			+ " ON T.PRODUCT_ID = P.ID"
@@ -95,6 +95,7 @@ public class TenderDaoImpl implements TenderDao{
 				ps.setInt(8, tender.getMinVolume());
 				ps.setDate(9, new Date(tender.getCreationDate().getTime()));
 				ps.setString(10, tender.getDelivery());
+				ps.setString(11, tender.getPackaging());
 				return ps;
 			}
 		},keyHolder);
@@ -108,7 +109,7 @@ public class TenderDaoImpl implements TenderDao{
 		return	template.update(UPDATE_TENDER_BY_ID, tender.getDescription(), tender.getProductId(),
 				tender.getMaxPrice(), tender.getCustomerId(), 
 				tender.getStatus().name().toUpperCase(), tender.getExpDate(), 
-				tender.getMaxVolume(), tender.getMinVolume(), tender.getDelivery(), tender.getId()) == 1;
+				tender.getMaxVolume(), tender.getMinVolume(), tender.getDelivery(), tender.getPackaging(), tender.getId()) == 1;
 	}
 
 	@Override
@@ -178,7 +179,8 @@ public class TenderDaoImpl implements TenderDao{
 				ps.setInt(7, tender.getMaxVolume());
 				ps.setInt(8, tender.getMinVolume());
 				ps.setString(9, tender.getDelivery());
-				ps.setLong(10, tender.getId());
+				ps.setString(10, tender.getPackaging());
+				ps.setLong(11, tender.getId());
 			}
 		});
 	}

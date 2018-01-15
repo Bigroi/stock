@@ -41,6 +41,8 @@ public class Lot implements Bid{
 	@Column("lable.lot.delivery")
 	private String delivery;
 	
+	@Column("lable.lot.packaging")
+	private String packaging;
 	
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
@@ -147,16 +149,28 @@ public class Lot implements Bid{
 		return delivery;
 	}
 
+	public String getPackaging() {
+		return packaging;
+	}
+	
+	public void setPackaging(String packaging) {
+		this.packaging = packaging;
+	}
+
 	@Override
 	public String toString() {
 		return "Lot [id=" + id + ", productName=" + productName + ", description=" + description + ", status=" + status
 				+ ", productId=" + productId + ", minPrice=" + minPrice + ", sellerId=" + sellerId + ", minVolume="
 				+ minVolume + ", maxVolume=" + maxVolume + ", expDate=" + expDate + ", creationDate=" + creationDate
-				+ ", delivery=" + delivery + "]";
+				+ ", delivery=" + delivery + ", packaging=" + packaging + "]";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof Lot && ((Lot)obj).getId() == this.getId();
+	}
+	
+	public static void main(String[] args){
+		System.out.println("packaging".toUpperCase());
 	}
 }

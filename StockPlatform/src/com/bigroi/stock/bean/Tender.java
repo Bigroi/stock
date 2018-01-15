@@ -42,6 +42,9 @@ public class Tender implements Bid{
 	@Column("lable.tender.delivery")
 	private String delivery;
 	
+	@Column("lable.tender.packaging")
+	private String packaging;
+	
 	
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
@@ -156,12 +159,20 @@ public class Tender implements Bid{
 		this.delivery = delivery;
 	}
 	
+	public void setPackaging(String packaging) {
+		this.packaging = packaging;
+	}
+	
+	public String getPackaging() {
+		return packaging;
+	}
+
 	@Override
 	public String toString() {
 		return "Tender [id=" + id + ", productId=" + productId + ", productName=" + productName + ", description="
 				+ description + ", status=" + status + ", maxPrice=" + maxPrice + ", minVolume=" + minVolume
 				+ ", maxVolume=" + maxVolume + ", customerId=" + customerId + ", expDate=" + expDate + ", creationDate="
-				+ creationDate + ", delivery=" + delivery + "]";
+				+ creationDate + ", delivery=" + delivery + ", packaging=" + packaging + "]";
 	}
 
 	@Override

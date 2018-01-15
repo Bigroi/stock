@@ -52,5 +52,12 @@
 				<option value="NO">NO</option>
 		   </select>
 		</li>
+		<li>
+		   <label for="packaging">${lable.tender.packaging}</label> 
+		   <select name="packaging">
+				<option value="YES">YES</option>
+				<option value="NO">NO</option>
+		   </select>
+		</li>
     </ul>
 </form>
