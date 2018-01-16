@@ -10,7 +10,7 @@ public class Table<T> {
 	
 	private List<String> headers = new ArrayList<>();
 	
-	private List<List<String>> rows = new ArrayList<>();
+	private List<List<Object>> rows = new ArrayList<>();
 	
 	public Table(Class<T> clazz, List<T> objects) throws TableException {
 		try{
@@ -33,13 +33,13 @@ public class Table<T> {
 			}
 			
 			for (Object object : objects){
-				List<String> row = new ArrayList<>();
+				List<Object> row = new ArrayList<>();
 				for (Field field : clazz.getDeclaredFields()){
 					if (field.getAnnotation(Column.class) != null ||
 							field.getAnnotation(Id.class) != null){
 						field.setAccessible(true);
 						Object value = field.get(object);
-						row.add(value == null ? "" : value.toString());
+						row.add(value == null ? "" : value);
 						field.setAccessible(false);
 					}
 				}
@@ -50,7 +50,7 @@ public class Table<T> {
 		}
 	}
 	
-	public List<List<String>> getRows() {
+	public List<List<Object>> getRows() {
 		return rows;
 	}
 	
@@ -65,7 +65,7 @@ public class Table<T> {
 	public Table<T> exclude(int index) {
 		model.exclude(index);
 		headers.remove(index);
-		for (List<String> row : rows){
+		for (List<Object> row : rows){
 			row.remove(index);
 		}
 		return this;
