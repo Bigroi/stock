@@ -39,10 +39,8 @@ public class Tender implements Bid{
 	@Column("lable.tender.creation_date")
 	private Date creationDate = new Date();
 	
-	@Column("lable.tender.delivery")
 	private String delivery;
 	
-	@Column("lable.tender.packaging")
 	private String packaging;
 	
 	

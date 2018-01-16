@@ -36,14 +36,14 @@ tbody tr:nth-of-type(odd){
 table.sortable th{
 	background-color:#7999a1;
     border: 1px black solid;
-   	width: 20%;	
+   	width: 1%;	
 	color: #c5d7d2;
 	/*font-weight: normal;*/
 }	 
  
 table.sortable td {
     border: 1px black solid;
-   	width: 20%;
+   	width: 1%;
 }
 table.sortable th.sort:hover {
 	/*background-color: #F8E80A;*/

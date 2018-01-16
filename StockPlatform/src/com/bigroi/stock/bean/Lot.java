@@ -38,10 +38,8 @@ public class Lot implements Bid{
 	@Column("lable.lot.creation_date")
 	private Date creationDate = new Date();
 	
-	@Column("lable.lot.delivery")
 	private String delivery;
 	
-	@Column("lable.lot.packaging")
 	private String packaging;
 	
 	public boolean isExpired() {
