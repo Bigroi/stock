@@ -145,6 +145,7 @@ public class Lot implements Bid{
 	public void setDelivery(String delivery) {
 		this.delivery = delivery;
 	}
+	
 	public String getDelivery() {
 		return delivery;
 	}
@@ -168,9 +169,5 @@ public class Lot implements Bid{
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof Lot && ((Lot)obj).getId() == this.getId();
-	}
-	
-	public static void main(String[] args){
-		System.out.println("packaging".toUpperCase());
 	}
 }
