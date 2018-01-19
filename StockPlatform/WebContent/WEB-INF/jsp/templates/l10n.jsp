@@ -25,6 +25,15 @@ lable.account.name
 lable.account.phone
 lable.account.reg_number
 lable.account.status
+lable.button.login
+lable.button.reset
+lable.button.cancel
+lable.button.delete
+lable.button.start_trading
+lable.button.stop_trading
+lable.button.save
+lable.button.save_start_trading
+lable.button.end_trading
 </div>
 <script>
 $("#lables").localization();

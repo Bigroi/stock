@@ -73,8 +73,8 @@
 		        		${lable.deal.reject }
 		        	</button>
 		        	<button class="submit" 
-		        		onclick = "document.location = '/deal/MyDeals.spr'; return false">
-		        		to_list
+		        		onclick ="document.location = '/deal/MyDeals.spr'; return false">
+		        		${lable.button.back }
 		        	</button>
 		        </li>
 		    </ul>
