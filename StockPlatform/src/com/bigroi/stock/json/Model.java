@@ -15,6 +15,8 @@ class Model {
 	
 	private int idColumn;
 	
+	private Button[] buttons;
+	
 	public void setIdColumn(int idColumn) {
 		this.idColumn = idColumn;
 	}
@@ -62,5 +64,13 @@ class Model {
 	
 	public void addFloatColumn(int index){
 		floatColumns.add(index);
+	}
+	
+	public void setButtons(Button[] buttons){
+		this.buttons = buttons;
+	}
+	
+	public Button[] getButtons() {
+		return buttons;
 	}
 }

@@ -14,6 +14,10 @@ public class Table<T> {
 	
 	public Table(Class<T> clazz, List<T> objects) throws TableException {
 		try{
+			Buttons buttons = clazz.getAnnotation(Buttons.class);
+			if (buttons != null){
+				model.setButtons(buttons.value());
+			}
 			int i = 0;
 			for (Field field : clazz.getDeclaredFields()){
 				Column column = field.getAnnotation(Column.class);

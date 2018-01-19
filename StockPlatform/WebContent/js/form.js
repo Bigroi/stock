@@ -7,7 +7,17 @@ function getFormData(formContainer){
 		for(var j = 0; j < formElements.length; j++){
 			var name = formElements[j].getAttribute("name");
 			var value = formElements[j].value;
-			data[name]=value;                   
+			if (formElements[j].type == "checkbox"){
+				if (formElements[j].checked){
+					if (data[name]){
+						data[name].push(value);
+					} else {
+						data[name] = [value];
+					}
+				}
+			} else {
+				data[name]=value;
+			}
 		}
 	}
 	data = JSON.stringify(data,"",1);

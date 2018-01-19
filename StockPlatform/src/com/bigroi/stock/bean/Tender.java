@@ -4,10 +4,14 @@ import java.text.ParseException;
 import java.util.Date;
 
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.json.Button;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Id;
 import com.bigroi.stock.util.DateUtil;
 
+@Button(url="/tender/json/StartTrading.spr", name="lable.button.start_trading")
+@Button(url="/tender/json/EndTrading.spr", name="lable.button.stop_trading")
+@Button(url="/tender/json/Cancel.spr", name="lable.button.delete")
 public class Tender implements Bid{
 
 	@Id
