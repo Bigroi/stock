@@ -103,7 +103,7 @@ $.fn.tableMaker = function (srcTable, formPage) {
 	function _addButtons(buttons){
 		for (var i = 0; i < buttons.length; i++){
 			var button = $("<button class='submit' url='" + buttons[i].url + "'>"
-								+ buttons[i].name + 
+								+ window.l10n[buttons[i].name] + 
 							"</button>");
 			button.on("click", function(e){
 				return sendFormData($("div[id$='form-container']"), $(e.target).attr("url"), function(answer){
