@@ -114,28 +114,10 @@ function setLotDialogPlugin(element, id){
 		close:true 
 	},
 	{
-		text: window.l10n["lable.button.start_trading"],
-		id:"start-trading",
-		url:"/lot/json/StartTrading.spr",
-		close:true
-	},
-	{
-		text: window.l10n["lable.button.end_trading"],
-		id:"end-trading",
-		url:"/lot/json/EndTrading.spr",
-		close:true
-	},
-	{
 		text: window.l10n["lable.button.save_start_trading"],
 		id:"save-start-trading",
 		url:"/lot/json/SaveAndActivate.spr",
 		close:true
-	},
-	{
-		text: window.l10n["lable.button.delete"],
-		id:"delete",
-		url:"/lot/json/Cancel.spr",
-		close:true 
 	},
 	{
 		text: window.l10n["lable.button.cancel"],
@@ -149,22 +131,6 @@ function setLotDialogPlugin(element, id){
 		formParams:{id:id},
 		formData:"/lot/json/Form.spr",
 		height:"80%",
-		afterLoad:function(lot){
-			if (lot.id < 0){
-				$("#delete").remove();
-				$("#start-trading").remove();
-			} else {
-				$("#save-start-trading").remove();
-			}
-			
-			if (lot.status != "INACTIVE"){
-				$("#start-trading").remove();
-			} 
-			
-			if (lot.status != "ACTIVE"){
-				$("#end-trading").remove();
-			} 
-		},
 		buttons:buttons,
 	});
 }
@@ -177,28 +143,10 @@ function setTenderDialogPlugin(element, id){
 		close:true 
 	},
 	{
-		text: window.l10n["lable.button.end_trading"],
-		id:"end-trading",
-		url:"/tender/json/EndTrading.spr",
-		close:true
-	},
-	{
-		text: window.l10n["lable.button.start_trading"],
-		id:"start-trading",
-		url:"/tender/json/StartTrading.spr",
-		close:true
-	},
-	{
 		text: window.l10n["lable.button.save_start_trading"],
 		id:"save-start-trading",
 		url:"/tender/json/SaveAndActivate.spr",
 		close:true
-	},
-	{
-		text: window.l10n["lable.button.delete"],
-		id:"delete",
-		url:"/tender/json/Cancel.spr",
-		close:true 
 	},
 	{
 		text: window.l10n["lable.button.cancel"],
@@ -212,20 +160,6 @@ function setTenderDialogPlugin(element, id){
 		formParams:{id:id},
 		formData:"/tender/json/Form.spr",
 		height:"80%",
-		afterLoad:function(tender){
-			if (tender.id < 0){
-				$("#delete").remove();
-				$("#start-trading").remove();
-			} else {
-				$("#save-start-trading").remove();
-			}
-			if (tender.status != "INACTIVE"){
-				$("#start-trading").remove();
-			}
-			if (tender.status != "ACTIVE"){
-				$("#end-trading").remove();
-			}
-		},
 		buttons:buttons,
 	});
 }

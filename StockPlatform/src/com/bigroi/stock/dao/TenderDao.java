@@ -10,9 +10,9 @@ public interface TenderDao {
 	
     void add(Tender tender) throws DaoException;
 	
-	boolean update(Tender tender) throws DaoException;
+	boolean update(Tender tender, long companyId) throws DaoException;
 	
-	Tender getById(long id) throws DaoException;
+	Tender getById(long id, long companyId) throws DaoException;
 	
 	List<Tender> getByCustomerId(long customerId) throws DaoException;
 	
@@ -24,10 +24,10 @@ public interface TenderDao {
 
 	boolean  setStatusByProductId(long productId, BidStatus status) throws DaoException;
 	
-	boolean  setStatusById(long id, BidStatus status) throws DaoException;
+	void setStatusById(List<Long> ids, long companyId, BidStatus status) throws DaoException;
 
 	void update(Collection<Tender> tendersToUpdate) throws DaoException;
 
-	void deleteById(long id) throws DaoException;
+	void delete(List<Long> ids, long companyId) throws DaoException;
 
 }

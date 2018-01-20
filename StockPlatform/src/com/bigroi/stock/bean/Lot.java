@@ -9,8 +9,8 @@ import com.bigroi.stock.json.Id;
 import com.bigroi.stock.util.DateUtil;
 
 @Button(url="/lot/json/StartTrading.spr", name="lable.button.start_trading")
-@Button(url="/lot/json/EndTrading.spr", name="lable.button.stop_trading")
-@Button(url="/lot/json/Cancel.spr", name="lable.button.delete")
+@Button(url="/lot/json/StopTrading.spr", name="lable.button.stop_trading")
+@Button(url="/lot/json/Delete.spr", name="lable.button.delete")
 public class Lot implements Bid{
 	
 	@Id

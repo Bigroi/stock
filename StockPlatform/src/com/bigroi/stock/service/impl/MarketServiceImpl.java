@@ -111,13 +111,13 @@ public class MarketServiceImpl implements MarketService {
 	}
 	
 	private void returnVolumeToBids(Deal deal) throws DaoException {
-		Lot lot = lotDao.getById(deal.getLotId());
+		Lot lot = lotDao.getById(deal.getLotId(), deal.getSellerId());
 		lot.setMaxVolume(lot.getMaxVolume() + deal.getVolume());
-		lotDao.update(lot);
+		lotDao.update(lot, lot.getSellerId());
 		
-		Tender tender = tenderDao.getById(deal.getTenderId());
+		Tender tender = tenderDao.getById(deal.getTenderId(), deal.getCustomerId());
 		tender.setMaxVolume(tender.getMaxVolume() + deal.getVolume());
-		tenderDao.update(tender);
+		tenderDao.update(tender, tender.getCustomerId());
 	}
 
 	@Override

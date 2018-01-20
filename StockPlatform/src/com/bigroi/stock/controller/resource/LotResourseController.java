@@ -2,10 +2,11 @@ package com.bigroi.stock.controller.resource;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,21 +29,17 @@ public class LotResourseController extends BaseResourseController {
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String form(
-			@RequestParam(value = "id", defaultValue = "-1") long id,
-			Authentication loggedInUser) throws ServiceException {
-		checkLot(id);
-		StockUser user = (StockUser) loggedInUser.getPrincipal();
-		Lot lot = ServiceFactory.getLotService().getLot(id, user.getCompanyId());
+	public String form(@RequestParam(value = "id", defaultValue = "-1") long id) 
+			throws ServiceException {
+		Lot lot = ServiceFactory.getLotService().getLot(id, getUserCompanyId());
 		return new ResultBean(1, lot).toString();
 	}
 	
 	@RequestMapping(value = "/MyList.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String myLotList(Authentication loggedInUser) throws ServiceException, TableException {
-		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
-		List<Lot> lots = ServiceFactory.getLotService().getBySellerId(userBean.getCompanyId());
+	public String myList() throws ServiceException, TableException {
+		List<Lot> lots = ServiceFactory.getLotService().getBySellerId(getUserCompanyId());
 		Table<Lot> table = new Table<>(Lot.class, lots);
 		return new ResultBean(1, table).toString();
 	}
@@ -50,26 +47,81 @@ public class LotResourseController extends BaseResourseController {
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String lotSave(@RequestParam("json") String jsonLot, 
-				Authentication loggedInUser) throws ServiceException {
-		StockUser user = (StockUser) loggedInUser.getPrincipal();
-		Lot newLot = gson.fromJson(jsonLot, Lot.class);
-		checkLot(newLot.getId());
-		List<String> errors = activationCheck(newLot);
+	public String save(@RequestParam("json") String jsonLot) 
+			throws ServiceException {
+		Lot lot = gson.fromJson(jsonLot, Lot.class);
+		if (lot.getId() < 0) {
+			lot.setStatus(BidStatus.INACTIVE);
+		} else {
+			Lot oldLot = (Lot)ServiceFactory.getLotService().getLot(lot.getId(), getUserCompanyId());
+			lot.setStatus(oldLot.getStatus());
+		}
+		return save(lot);
+	}
+	
+	@RequestMapping(value = "/SaveAndActivate.spr")
+	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	public String saveAndActivate(@RequestParam("json") String json) 
+			throws ServiceException {
+		Lot lot = gson.fromJson(json, Lot.class);
+		lot.setStatus(BidStatus.ACTIVE);
+		return save(lot);
+	}
+	
+	private String save(Lot lot) throws ServiceException{
+		List<String> errors = activationCheck(lot);
 		if (errors.size() > 0) {
 			return new ResultBean(-1, errors).toString();
 		}
 		
-		if (newLot.getId() < 0) {
-			newLot.setSellerId(user.getCompanyId());;
-			newLot.setStatus(BidStatus.INACTIVE);
-		} else {
-			Lot oldLot = ServiceFactory.getLotService().getLot(newLot.getId(), user.getCompanyId());
-			newLot.setStatus(oldLot.getStatus());
-			newLot.setSellerId(oldLot.getSellerId());
-		}
-		ServiceFactory.getLotService().merge(newLot);
+		ServiceFactory.getLotService().merge(lot, getUserCompanyId());
 		return new ResultBean(0, "/lot/MyLots.spr").toString();
+	}
+
+	@RequestMapping(value = "/StartTrading.spr")
+	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	public String startTrading(@RequestParam("json") String jsonLots) throws ServiceException {
+		Ids ids = gson.fromJson(jsonLots, Ids.class);
+		Set<String> errors = activationCheck(ids.getId());
+		if (errors.size() > 0) {
+			return new ResultBean(-1, errors).toString();
+		}
+		ServiceFactory.getLotService().activate(ids.getId(), getUserCompanyId());
+		return new ResultBean(0, "/lot/MyLots.spr").toString();
+	}
+	
+	@RequestMapping(value = "/StopTrading.spr")
+	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	public String stopTrading(@RequestParam("json") String jsonLots) throws ServiceException {
+		Ids ids = gson.fromJson(jsonLots, Ids.class);
+		ServiceFactory.getLotService().deactivate(ids.getId(), getUserCompanyId());
+		return new ResultBean(0, "/lot/MyLots.spr").toString();
+	}
+
+	@RequestMapping(value = "/Delete.spr")
+	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	public String delete(@RequestParam("json") String jsonLots) throws ServiceException {
+		Ids ids = gson.fromJson(jsonLots, Ids.class);
+		ServiceFactory.getLotService().delete(ids.getId(), getUserCompanyId());
+		return new ResultBean(0, "/lot/MyLots.spr").toString();
+	}
+	
+	private long getUserCompanyId(){
+		StockUser user = (StockUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return user.getCompanyId();
+	}
+	
+	private Set<String> activationCheck(List<Long> ids) throws ServiceException{
+		Set<String> errors = new HashSet<String>();
+		for (long id : ids){
+			Lot lot = ServiceFactory.getLotService().getLot(id, getUserCompanyId());
+			errors.addAll(activationCheck(lot));
+		}
+		return errors;
 	}
 	
 	private List<String> activationCheck(Lot newLot){
@@ -99,79 +151,16 @@ public class LotResourseController extends BaseResourseController {
 		return errors;
 	}
 	
-	@RequestMapping(value = "/SaveAndActivate.spr")
-	@ResponseBody
-	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String lotSaveAndActivate(@RequestParam("json") String json, 
-				Authentication loggedInUser) throws ServiceException {
-		Lot newLot = gson.fromJson(json, Lot.class);
-		checkLot(newLot.getId());
-		List<String> errors = activationCheck(newLot);
-		if (errors.size() > 0) {
-			return new ResultBean(-1, errors).toString();
+	public static class Ids{
+		private List<Long> id;
+		
+		public List<Long> getId() {
+			return id;
 		}
 		
-		if (newLot.getId() < 0) {
-			StockUser user = (StockUser)loggedInUser.getPrincipal();
-			newLot.setSellerId(user.getCompanyId());;
-			newLot.setStatus(BidStatus.ACTIVE);
-			ServiceFactory.getLotService().merge(newLot);
-			return new ResultBean(0, "/lot/MyLots.spr").toString();
-		} else {
-			return new ResultBean(-1, "lable.lot.sna_error").toString();
-		}
-	}
-
-	@RequestMapping(value = "/StartTrading.spr")
-	@ResponseBody
-	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String startTrading(@RequestParam("json") String jsonLot) throws ServiceException {
-		Lot lot = gson.fromJson(jsonLot, Lot.class);
-		lot = ServiceFactory.getLotService().getLot(lot.getId(), 0);
-		checkLot(lot.getId());
-		List<String> errors = activationCheck(lot);
-		if (errors.size() > 0) {
-			return new ResultBean(-1, errors).toString();
+		public void setId(List<Long> id) {
+			this.id = id;
 		}
 		
-		ServiceFactory.getLotService().activate(lot.getId());
-		return new ResultBean(0, "/lot/MyLots.spr").toString();
-	}
-	
-	@RequestMapping(value = "/EndTrading.spr")
-	@ResponseBody
-	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String endTrading(@RequestParam("json") String jsonLot) throws ServiceException {
-		Lot lot = gson.fromJson(jsonLot, Lot.class);
-		lot = ServiceFactory.getLotService().getLot(lot.getId(), 0);
-		checkLot(lot.getId());
-		List<String> errors = activationCheck(lot);
-		if (errors.size() > 0) {
-			return new ResultBean(-1, errors).toString();
-		}
-		
-		ServiceFactory.getLotService().deactivate(lot.getId());
-		return new ResultBean(0, "/lot/MyLots.spr").toString();
-	}
-
-	@RequestMapping(value = "/Cancel.spr")
-	@ResponseBody
-	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String cancel(@RequestParam("json") String jsonLot) throws ServiceException {
-		Lot lot = gson.fromJson(jsonLot, Lot.class);
-		checkLot(lot.getId());
-		ServiceFactory.getLotService().deleteById(lot.getId());
-		return new ResultBean(0, "/lot/MyLots.spr").toString();
-	}
-	
-	private void checkLot(long id) throws ServiceException{
-		if (id < 0){
-			return;
-		}
-		StockUser user = (StockUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Lot lot = ServiceFactory.getLotService().getLot(id, 0);
-		if (lot.getSellerId() != user.getCompanyId()){
-			throw new SecurityException("User have no permission to modify Lot with id = " + id);
-		}
 	}
 }

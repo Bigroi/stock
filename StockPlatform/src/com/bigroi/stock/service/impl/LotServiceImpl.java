@@ -27,7 +27,7 @@ public class LotServiceImpl implements LotService {
 				lot.setStatus(BidStatus.INACTIVE);
 				lot.setId(-1);
 			} else {
-				lot = lotDao.getById(id);
+				lot = lotDao.getById(id, companyId);
 			}
 			return lot;
 		}catch (DaoException e) {
@@ -36,12 +36,13 @@ public class LotServiceImpl implements LotService {
 	}
 
 	@Override
-	public void merge(Lot lot) throws ServiceException {
+	public void merge(Lot lot, long companyId) throws ServiceException {
 		try {
 			if (lot.getId() == -1){
+				lot.setSellerId(companyId);
 				lotDao.add(lot);
 			} else {
-				lotDao.update(lot);
+				lotDao.update(lot, companyId);
 			}
 		} catch (DaoException e) {
 			throw new ServiceException(e);
@@ -59,9 +60,9 @@ public class LotServiceImpl implements LotService {
 	}
 
 	@Override
-	public void activate(long id) throws ServiceException {
+	public void activate(List<Long> ids, long companyId) throws ServiceException {
 		try {
-			lotDao.setStatusById(id, BidStatus.ACTIVE);
+			lotDao.setStatusById(ids, companyId, BidStatus.ACTIVE);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -69,9 +70,9 @@ public class LotServiceImpl implements LotService {
 	}
 
 	@Override
-	public void deleteById(long id) throws ServiceException {
+	public void delete(List<Long> ids, long companyId) throws ServiceException {
 		try {
-			lotDao.deleteById(id);
+			lotDao.delete(ids, companyId);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -87,9 +88,9 @@ public class LotServiceImpl implements LotService {
 	}
 
 	@Override
-	public void deactivate(long id) throws ServiceException {
+	public void deactivate(List<Long> ids, long companyId) throws ServiceException {
 		try {
-			lotDao.setStatusById(id, BidStatus.INACTIVE);
+			lotDao.setStatusById(ids, companyId, BidStatus.INACTIVE);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}

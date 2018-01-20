@@ -3,10 +3,11 @@ package com.bigroi.stock.controller.resource;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,70 +30,52 @@ public class TenderResourseController extends BaseResourseController {
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String form( @RequestParam(value = "id", defaultValue = "-1") long id,
-			Authentication loggedInUser) throws ServiceException {
-		checkTender(id);
-		StockUser user = (StockUser)loggedInUser.getPrincipal();
-		Tender tender = ServiceFactory.getTenderService().getTender(id, user.getCompanyId());
+	public String form( @RequestParam(value = "id", defaultValue = "-1") long id) 
+			throws ServiceException {
+		Tender tender = ServiceFactory.getTenderService().getTender(id, getUserCompanyId());
 		return new ResultBean(1, tender).toString();
 	}
 
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String save(
-			@RequestParam("json") String json,
-			Authentication loggedInUser) throws ServiceException, ParseException {
-		StockUser user = (StockUser)loggedInUser.getPrincipal();
-		Tender newTender = gson.fromJson(json, Tender.class);
-		checkTender(newTender.getId());
-		List<String> errors = activationCheck(newTender);
-		if (errors.size() > 0){
-			return new ResultBean(-1, errors).toString();
-		}
-		
-		if (newTender.getId() < 0) {
-			newTender.setCustomerId(user.getCompanyId());;
-			newTender.setStatus(BidStatus.INACTIVE);
+	public String save(@RequestParam("json") String json) 
+					throws ServiceException, ParseException {
+		Tender tender = gson.fromJson(json, Tender.class);
+		if (tender.getId() < 0) {
+			tender.setStatus(BidStatus.INACTIVE);
 		} else {
-			Tender oldTender = ServiceFactory.getTenderService().getTender(newTender.getId(), user.getCompanyId());
-			newTender.setStatus(oldTender.getStatus());
-			newTender.setCustomerId(oldTender.getCustomerId());
+			Tender oldTender = ServiceFactory.getTenderService().getTender(tender.getId(), getUserCompanyId());
+			tender.setStatus(oldTender.getStatus());
 		}
-		
-		ServiceFactory.getTenderService().merge(newTender);
-		return new ResultBean(0, "/tender/MyTenders.spr").toString();
+		return save(tender);
 	}
 	
 	@RequestMapping(value = "/SaveAndActivate.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String saveAndActivate(@RequestParam("json") String json,
-			Authentication loggedInUser) throws ServiceException, ParseException {
-		Tender newTender = gson.fromJson(json, Tender.class);
-		checkTender(newTender.getId());
-		List<String> errors = activationCheck(newTender);
-		if (errors.size() > 0){
+	public String saveAndActivate(@RequestParam("json") String json) 
+			throws ServiceException, ParseException {
+		Tender tender = gson.fromJson(json, Tender.class);
+		tender.setStatus(BidStatus.ACTIVE);
+		
+		return save(tender);
+	}
+	
+	private String save(Tender tender) throws ServiceException{
+		List<String> errors = activationCheck(tender);
+		if (errors.size() > 0) {
 			return new ResultBean(-1, errors).toString();
 		}
-		
-		if (newTender.getId() < 0) {
-			StockUser user = (StockUser)loggedInUser.getPrincipal();
-			newTender.setCustomerId(user.getCompanyId());;
-			newTender.setStatus(BidStatus.ACTIVE);
-			ServiceFactory.getTenderService().merge(newTender);
-			return new ResultBean(0, "/tender/MyTenders.spr").toString();
-		} else {
-			return new ResultBean(-1, "lable.tender.sna_error").toString();
-		}
+		ServiceFactory.getTenderService().merge(tender, getUserCompanyId());
+		return new ResultBean(0, "/tender/MyTenders.spr").toString();
 	}
 
 	@RequestMapping("/MyList.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String myList(Authentication loggedInUser) throws ServiceException, TableException {
-		StockUser user = (StockUser) loggedInUser.getPrincipal();
-		List<Tender> tenders = ServiceFactory.getTenderService().getMyList(user.getCompanyId());
+	public String myList() throws ServiceException, TableException {
+		List<Tender> tenders = ServiceFactory.getTenderService().getMyList(getUserCompanyId());
 		Table<Tender> table = new Table<>(Tender.class, tenders);
 		return new ResultBean(1, table).toString();
 	}
@@ -100,54 +83,46 @@ public class TenderResourseController extends BaseResourseController {
 	@RequestMapping("/StartTrading.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String StartTrading(@RequestParam("json") String json) throws ServiceException {
-		Tender tender = gson.fromJson(json, Tender.class);
-		tender = ServiceFactory.getTenderService().getTender(tender.getId(), 0);
-		checkTender(tender.getId());
-		List<String> errors = activationCheck(tender);
-		if (errors.size() > 0){
+	public String startTrading(@RequestParam("json") String json) throws ServiceException {
+		Ids ids = gson.fromJson(json, Ids.class);
+		Set<String> errors = activationCheck(ids.getId());
+		if (errors.size() > 0) {
 			return new ResultBean(-1, errors).toString();
 		}
-		
-		ServiceFactory.getTenderService().startTrading(tender.getId());
+		ServiceFactory.getTenderService().activate(ids.getId(), getUserCompanyId());
 		return new ResultBean(0, "/tender/MyTenders.spr").toString();
 	}
 	
-	@RequestMapping("/EndTrading.spr")
+	@RequestMapping("/StopTrading.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String EndTrading(@RequestParam("json") String json) throws ServiceException {
-		Tender tender = gson.fromJson(json, Tender.class);
-		tender = ServiceFactory.getTenderService().getTender(tender.getId(), 0);
-		checkTender(tender.getId());
-		List<String> errors = activationCheck(tender);
-		if (errors.size() > 0){
-			return new ResultBean(-1, errors).toString();
-		}
-		
-		ServiceFactory.getTenderService().endTrading(tender.getId());
+	public String stopTrading(@RequestParam("json") String json) throws ServiceException {
+		Ids ids = gson.fromJson(json, Ids.class);
+		ServiceFactory.getTenderService().deactivate(ids.getId(), getUserCompanyId());
 		return new ResultBean(0, "/tender/MyTenders.spr").toString();
 	}
 
-	@RequestMapping("/Cancel.spr")
+	@RequestMapping("/Delete.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String cancel(@RequestParam("json") String json) throws ServiceException {
-		Tender tender = gson.fromJson(json, Tender.class);
-		checkTender(tender.getId());
-		ServiceFactory.getTenderService().deleteById(tender.getId());
+	public String delete(@RequestParam("json") String json) throws ServiceException {
+		Ids ids = gson.fromJson(json, Ids.class);
+		ServiceFactory.getTenderService().delete(ids.getId(), getUserCompanyId());
 		return new ResultBean(0, "/tender/MyTenders.spr").toString();
 	}
 
-	private void checkTender(long id) throws ServiceException{
-		if (id < 0){
-			return;
-		}
+	private long getUserCompanyId(){
 		StockUser user = (StockUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Tender tender = ServiceFactory.getTenderService().getTender(id, 0);
-		if (tender.getCustomerId() != user.getCompanyId()){
-			throw new SecurityException("User have no permission to modify Lot with id = " + id);
+		return user.getCompanyId();
+	}
+	
+	private Set<String> activationCheck(List<Long> ids) throws ServiceException{
+		Set<String> errors = new HashSet<String>();
+		for (long id : ids){
+			Tender tender = ServiceFactory.getTenderService().getTender(id, getUserCompanyId());
+			errors.addAll(activationCheck(tender));
 		}
+		return errors;
 	}
 	
 	private List<String> activationCheck(Tender tender){
@@ -175,5 +150,18 @@ public class TenderResourseController extends BaseResourseController {
 			errors.add("lot.expDate.error");
 		}
 		return errors;
+	}
+	
+	public static class Ids{
+		private List<Long> id;
+		
+		public List<Long> getId() {
+			return id;
+		}
+		
+		public void setId(List<Long> id) {
+			this.id = id;
+		}
+		
 	}
 }

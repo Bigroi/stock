@@ -27,7 +27,7 @@ public class TenderServiceImpl implements TenderService{
 				tender.setStatus(BidStatus.INACTIVE);
 				tender.setId(-1);
 			} else {
-				tender = tenderDao.getById(id);
+				tender = tenderDao.getById(id, companyId);
 			}
 			return tender;
 		}catch(DaoException e){
@@ -45,21 +45,22 @@ public class TenderServiceImpl implements TenderService{
 	}
 
 	@Override
-	public void deleteById(long id) throws ServiceException {
+	public void delete(List<Long> ids, long companyId) throws ServiceException {
 		try{
-			tenderDao.deleteById(id);
+			tenderDao.delete(ids, companyId);
 		}catch(DaoException e){
 			throw new ServiceException(e);
 		}
 	}
 	
 	@Override
-	public void merge(Tender tender) throws ServiceException {
+	public void merge(Tender tender, long companyId) throws ServiceException {
 		try {
 			if (tender.getId() == -1){
+				tender.setCustomerId(companyId);
 				tenderDao.add(tender);
 			} else {
-				tenderDao.update(tender);
+				tenderDao.update(tender, companyId);
 			}
 		} catch (DaoException e) {
 			throw new ServiceException(e);
@@ -68,9 +69,9 @@ public class TenderServiceImpl implements TenderService{
 	}
 
 	@Override
-	public void startTrading(long id) throws ServiceException {
+	public void activate(List<Long> ids, long companyId) throws ServiceException {
 		try{
-			tenderDao.setStatusById(id, BidStatus.ACTIVE);
+			tenderDao.setStatusById(ids, companyId, BidStatus.ACTIVE);
 		}catch(DaoException e){
 			throw new ServiceException(e);
 		}
@@ -86,9 +87,9 @@ public class TenderServiceImpl implements TenderService{
 	}
 
 	@Override
-	public void endTrading(long id) throws ServiceException {
+	public void deactivate(List<Long> ids, long companyId) throws ServiceException {
 		try{
-			tenderDao.setStatusById(id, BidStatus.INACTIVE);
+			tenderDao.setStatusById(ids, companyId, BidStatus.INACTIVE);
 		}catch(DaoException e){
 			throw new ServiceException(e);
 		}

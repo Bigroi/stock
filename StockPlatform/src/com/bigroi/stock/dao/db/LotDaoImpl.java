@@ -28,12 +28,13 @@ public class LotDaoImpl implements LotDao {
 			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
 	private static final String UPDATE_LOT_BY_ID = "UPDATE LOT SET "
-			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MIN_PRICE = ?, SELLER_ID = ?, " 
-			+ " STATUS = ?, EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, DELIVERY = ?, PACKAGING = ? "
-			+ " WHERE ID = ? ";
+			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MIN_PRICE = ?, STATUS = ?, " 
+			+ " EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, DELIVERY = ?, PACKAGING = ? "
+			+ " WHERE ID = ? AND SELLER_ID = ?";
 	
 	private static final String GET_LOT_BY_ID = "SELECT ID, DESCRIPTION, PRODUCT_ID, "
-			+ " MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY, PACKAGING FROM LOT WHERE ID = ?  ";
+			+ " MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY, PACKAGING FROM LOT "
+			+ " WHERE ID = ? AND SELLER_ID = ? ";
 	
 	private static final String GET_LOTS_BY_SELLER_ID = "SELECT L.ID, L.DESCRIPTION, "
 			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, "
@@ -62,7 +63,7 @@ public class LotDaoImpl implements LotDao {
 	private static final String SET_STATUS_BY_ID =
 			  "UPDATE LOT SET "
 			+ "STATUS = ? "
-			+ "WHERE ID = ?";
+			+ "WHERE ID = ? AND SELLER_ID = ?";
 	
 	private static final String SET_STATUS_BY_PRODUCT_ID =
 			  "UPDATE LOT SET "
@@ -72,7 +73,7 @@ public class LotDaoImpl implements LotDao {
 	private static final String DELETE_BY_ID = 
 			"DELETE "
 			+ " FROM LOT "
-			+ " WHERE ID = ?";
+			+ " WHERE ID = ? AND SELLER_ID = ?";
 	
 	private DataSource datasource;
 
@@ -111,26 +112,26 @@ public class LotDaoImpl implements LotDao {
 	}
 
 	@Override
-	public boolean update(Lot lot) throws DaoException {
+	public boolean update(Lot lot, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_LOT_BY_ID, 
 				lot.getDescription(), 
 				lot.getProductId(), 
-				lot.getMinPrice(),
-				lot.getSellerId(), 
-				lot.getStatus().name().toUpperCase(), 
+				lot.getMinPrice(), 
+				lot.getStatus().name(),
 				lot.getExpDate(), 
 				lot.getMaxVolume(), 
 				lot.getMinVolume(),
 				lot.getDelivery(),
 				lot.getPackaging(),
-				lot.getId()) == 1;
+				lot.getId(),
+				companyId) == 1;
 	}
 
 	@Override
-	public Lot getById(long id) throws DaoException {
+	public Lot getById(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Lot> lot = template.query(GET_LOT_BY_ID, new BeanPropertyRowMapper<Lot>(Lot.class), id);
+		List<Lot> lot = template.query(GET_LOT_BY_ID, new BeanPropertyRowMapper<Lot>(Lot.class), id, companyId);
 		if(lot.size() == 0){
 			return null;
 		}else{
@@ -173,9 +174,17 @@ public class LotDaoImpl implements LotDao {
 
 	
 	@Override
-	public boolean setStatusById(long id, BidStatus status) throws DaoException {
+	public boolean setStatusById(List<Long> ids, long companyId, BidStatus status) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(SET_STATUS_BY_ID, status.toString(), id) == 1;
+		template.batchUpdate(SET_STATUS_BY_ID, ids, ids.size(), new ParameterizedPreparedStatementSetter<Long>() {
+			@Override
+			public void setValues(PreparedStatement ps, Long id) throws SQLException {
+				ps.setString(1, status.name());
+				ps.setLong(2, id);
+				ps.setLong(3, companyId);
+			}
+		});
+		return true;
 	}
 
 	@Override
@@ -202,8 +211,14 @@ public class LotDaoImpl implements LotDao {
 	}
 
 	@Override
-	public void deleteById(long id) throws DaoException {
+	public void delete(List<Long> ids, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(DELETE_BY_ID, id);
+		template.batchUpdate(DELETE_BY_ID, ids, ids.size(), new ParameterizedPreparedStatementSetter<Long>() {
+			@Override
+			public void setValues(PreparedStatement ps, Long id) throws SQLException {
+				ps.setLong(1, id);
+				ps.setLong(2, companyId);
+			}
+		});
 	}
 }

@@ -23,48 +23,66 @@ import com.bigroi.stock.dao.TenderDao;
 
 public class TenderDaoImpl implements TenderDao{
 	
-	private static final String ADD_TENDER = "INSERT INTO TENDER "
+	private static final String ADD_TENDER = 
+			  " INSERT INTO TENDER "
 			+ " (DESCRIPTION, PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, "
-			+ " STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY, PACKAGING) "
+			+ " STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, "
+			+ " DELIVERY, PACKAGING) "
 			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		
-	private static final String UPDATE_TENDER_BY_ID = "UPDATE TENDER SET "
-			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MAX_PRICE = ?, CUSTOMER_ID = ?, "
-			+ " STATUS = ?, EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, DELIVERY = ?, PACKAGING = ? "
-			+ " WHERE ID = ? ";
+	private static final String UPDATE_TENDER_BY_ID = 
+			  " UPDATE TENDER "
+			+ " SET DESCRIPTION = ?, PRODUCT_ID = ?, MAX_PRICE = ?, "
+			+ " STATUS = ?, EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, "
+			+ " DELIVERY = ?, PACKAGING = ? "
+			+ " WHERE ID = ? AND CUSTOMER_ID = ? ";
 	
-	private static final String GET_TENDER_BY_ID = "SELECT ID, DESCRIPTION, PRODUCT_ID, "
-			+ " MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY, PACKAGING FROM TENDER WHERE ID = ? ";
+	private static final String GET_TENDER_BY_ID = 
+			  " SELECT ID, DESCRIPTION, PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, "
+			+ " STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY, PACKAGING "
+			+ " FROM TENDER WHERE ID = ? AND CUSTOMER_ID = ? ";
 	
-	private static final String GET_TENDERS_BY_CUSTOMER_ID = "SELECT T.ID, T.DESCRIPTION, "
-			+ " T.PRODUCT_ID, T.MAX_PRICE, T.CUSTOMER_ID, T.STATUS, T.EXP_DATE, "
-			+ " T.MAX_VOLUME, T.MIN_VOLUME, P.NAME AS PRODUCT_NAME, CREATION_DATE, DELIVERY, PACKAGING "
+	private static final String GET_TENDERS_BY_CUSTOMER_ID = 
+			  " SELECT T.ID, T.DESCRIPTION, T.PRODUCT_ID, T.MAX_PRICE, T.CUSTOMER_ID, "
+			+ " T.STATUS, T.EXP_DATE, T.MAX_VOLUME, T.MIN_VOLUME, "
+			+ " P.NAME AS PRODUCT_NAME, CREATION_DATE, DELIVERY, PACKAGING "
 			+ " FROM TENDER T "
 			+ " JOIN PRODUCT P "
 			+ " ON T.PRODUCT_ID = P.ID"
 			+ " WHERE CUSTOMER_ID = ? ";
 	
-	private static final String GET_ACTIVE_TENDERS_BY_PRODUCT_ID = "SELECT ID, DESCRIPTION, "
-			+ "PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME FROM TENDER WHERE "
-			+ "PRODUCT_ID = ? AND STATUS = '" + BidStatus.ACTIVE +"' ORDER BY MAX_PRICE DESC";
+	private static final String GET_ACTIVE_TENDERS_BY_PRODUCT_ID = 
+			  " SELECT ID, DESCRIPTION, PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, "
+			+ " STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME "
+			+ " FROM TENDER "
+			+ " WHERE PRODUCT_ID = ? AND STATUS = '" + BidStatus.ACTIVE +"' "
+			+ " ORDER BY MAX_PRICE DESC";
 	
-	private static final String GET_ALL_ACTIVE_TENDERS = "SELECT ID, DESCRIPTION, "
-			+ " PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME FROM TENDER "
+	private static final String GET_ALL_ACTIVE_TENDERS = 
+			  " SELECT ID, DESCRIPTION, PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, "
+			+ " STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME "
+			+ " FROM TENDER "
 			+ " WHERE STATUS = '" + BidStatus.ACTIVE +"' ";
 	
-	private static final String UPDATE_STATUS_BY_CUSTOMER_ID ="UPDATE TENDER SET "
-			+ "STATUS = ? WHERE CUSTOMER_ID = ?";
+	private static final String UPDATE_STATUS_BY_CUSTOMER_ID =
+			  " UPDATE TENDER "
+			+ " SET STATUS = ? "
+			+ " WHERE CUSTOMER_ID = ?";
 	
-	private static final String UPDATE_STATUS_BY_PRODUCT_ID ="UPDATE TENDER SET "
-			+ "STATUS = ? WHERE PRODUCT_ID = ?";
+	private static final String UPDATE_STATUS_BY_PRODUCT_ID =
+			  " UPDATE TENDER "
+			+ " SET STATUS = ? "
+			+ " WHERE PRODUCT_ID = ?";
 	
-	private static final String UPDATE_STATUS_BY_ID ="UPDATE TENDER SET "
-			+ "STATUS = ? WHERE ID = ?";
+	private static final String UPDATE_STATUS_BY_ID =
+			  " UPDATE TENDER "
+			+ " SET STATUS = ? "
+			+ " WHERE ID = ? AND CUSTOMER_ID = ? ";
 	
 	private static final String DELETE_BY_ID =
-			"DELETE "
+			  " DELETE "
 			+ " FROM TENDER "
-			+ " WHERE ID = ?";
+			+ " WHERE ID = ? AND CUSTOMER_ID = ? ";
 			
 			
 	private DataSource datasource;
@@ -104,18 +122,26 @@ public class TenderDaoImpl implements TenderDao{
 	}
 
 	@Override
-	public boolean update(Tender tender) throws DaoException {
+	public boolean update(Tender tender, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return	template.update(UPDATE_TENDER_BY_ID, tender.getDescription(), tender.getProductId(),
-				tender.getMaxPrice(), tender.getCustomerId(), 
-				tender.getStatus().name().toUpperCase(), tender.getExpDate(), 
-				tender.getMaxVolume(), tender.getMinVolume(), tender.getDelivery(), tender.getPackaging(), tender.getId()) == 1;
+		return	template.update(UPDATE_TENDER_BY_ID, 
+				tender.getDescription(), 
+				tender.getProductId(),
+				tender.getMaxPrice(), 
+				tender.getStatus().name(), 
+				tender.getExpDate(), 
+				tender.getMaxVolume(), 
+				tender.getMinVolume(), 
+				tender.getDelivery(), 
+				tender.getPackaging(), 
+				tender.getId(),
+				companyId) == 1;
 	}
 
 	@Override
-	public Tender getById(long id) throws DaoException {
+	public Tender getById(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Tender> tender = template.query(GET_TENDER_BY_ID, new BeanPropertyRowMapper<Tender>(Tender.class), id);
+		List<Tender> tender = template.query(GET_TENDER_BY_ID, new BeanPropertyRowMapper<Tender>(Tender.class), id, companyId);
 		if (tender.size() == 0) {
 			return null;
 		} else {
@@ -158,9 +184,16 @@ public class TenderDaoImpl implements TenderDao{
 	}
 
 	@Override
-	public boolean setStatusById(long id, BidStatus status) throws DaoException {
+	public void setStatusById(List<Long> ids, long companyId, BidStatus status) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_STATUS_BY_ID, status.toString(), id) == 1;
+		template.batchUpdate(UPDATE_STATUS_BY_ID, ids, ids.size(), new ParameterizedPreparedStatementSetter<Long>() {
+			@Override
+			public void setValues(PreparedStatement ps, Long id) throws SQLException {
+				ps.setString(1, status.name());
+				ps.setLong(2, id);
+				ps.setLong(3, companyId);
+			}
+		});
 	}
 	
 	@Override
@@ -186,8 +219,14 @@ public class TenderDaoImpl implements TenderDao{
 	}
 
 	@Override
-	public void deleteById(long id) throws DaoException {
+	public void delete(List<Long> ids, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(DELETE_BY_ID, id);
+		template.batchUpdate(DELETE_BY_ID, ids, ids.size(), new ParameterizedPreparedStatementSetter<Long>() {
+			@Override
+			public void setValues(PreparedStatement ps, Long id) throws SQLException {
+				ps.setLong(1, id);
+				ps.setLong(2, companyId);
+			}
+		});
 	}
 }
