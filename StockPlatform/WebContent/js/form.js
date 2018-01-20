@@ -86,19 +86,19 @@ function setLoginDialogPlugin(element){
 		formUrl:"/Login.spr", 
 		buttons:[
 		{
-			text: window.l10n["lable.button.login"],
+			text: window.l10n["label.button.login"],
 			id:"login",
 			url:"/account/json/Login.spr",
 			close:true 
 		},
 		{
-			text: window.l10n["lable.button.reset"],
+			text: window.l10n["label.button.reset"],
 			id:"reset",
 			url:"/account/json/ResetPassword.spr",
 			close:false 
 		},
 		{
-			text: window.l10n["lable.button.cancel"],
+			text: window.l10n["label.button.cancel"],
 			id:"cancel",
 			close:true
 		}], 
@@ -108,19 +108,19 @@ function setLoginDialogPlugin(element){
 
 function setLotDialogPlugin(element, id){
 	var buttons = [{
-		text: window.l10n["lable.button.save"],
+		text: window.l10n["label.button.save"],
 		id:"save",
 		url:"/lot/json/Save.spr",
 		close:true 
 	},
 	{
-		text: window.l10n["lable.button.save_start_trading"],
+		text: window.l10n["label.button.save_start_trading"],
 		id:"save-start-trading",
 		url:"/lot/json/SaveAndActivate.spr",
 		close:true
 	},
 	{
-		text: window.l10n["lable.button.cancel"],
+		text: window.l10n["label.button.cancel"],
 		id:"cancel",
 		close:true
 	}];
@@ -137,19 +137,19 @@ function setLotDialogPlugin(element, id){
 
 function setTenderDialogPlugin(element, id){
 	var buttons = [{
-		text: window.l10n["lable.button.save"],
+		text: window.l10n["label.button.save"],
 		id:"save",
 		url:"/tender/json/Save.spr",
 		close:true 
 	},
 	{
-		text: window.l10n["lable.button.save_start_trading"],
+		text: window.l10n["label.button.save_start_trading"],
 		id:"save-start-trading",
 		url:"/tender/json/SaveAndActivate.spr",
 		close:true
 	},
 	{
-		text: window.l10n["lable.button.cancel"],
+		text: window.l10n["label.button.cancel"],
 		id:"cancel",
 		close:true
 	}];
@@ -166,19 +166,19 @@ function setTenderDialogPlugin(element, id){
 
 function setProductDialogPlugin(element, id){
 	var buttons = [{
-		text: window.l10n["lable.button.save"],
+		text: window.l10n["label.button.save"],
 		id:"save",
 		url:"/product/json/admin/Save.spr",
 		close:true 
 	},
 	{
-		text: window.l10n["lable.button.delete"],
+		text: window.l10n["label.button.delete"],
 		id:"delete",
 		url:"/product/json/admin/Delete.spr",
 		close:true 
 	},
 	{
-		text: window.l10n["lable.button.cancel"],
+		text: window.l10n["label.button.cancel"],
 		id:"cancel",
 		close:true
 	}];

@@ -4,11 +4,11 @@
 	<form class="form" action="#" method="post" name="form">
 	    <ul>
 	        <li>
-	            <label for="name">${lable.product.name}</label>
+	            <label for="name">${label.product.name}</label>
 	            <input type="text" disabled value="${product.name}"/>
 	        </li>
 	        <li>
-	            <label for="description">${lable.product.description}</label>
+	            <label for="description">${label.product.description}</label>
 	            <textarea cols="40" rows="6" disabled>${product.description}</textarea>
 	        </li>
 	    </ul>
@@ -16,7 +16,7 @@
 	<table>
 		<tbody>
 			<tr>
-				<td>${lable.tradeOffers.lots}: <br>
+				<td>${label.tradeOffers.lots}: <br>
 					<div id = "tableContainerLots">	
 						<script>
 							$(function(){
@@ -25,7 +25,7 @@
 						</script>
 					</div>
 				</td>
-				<td>${lable.tradeOffers.tenders}: <br>
+				<td>${label.tradeOffers.tenders}: <br>
 					<div id = "tableContainerTenders">	
 						<script>
 							$(function(){
@@ -40,7 +40,7 @@
 	<form class="form" action="/product/List.spr" method="post">
 		<ul>
 			<li>
-				<button class="submit" type="submit">${lable.button.back}</button>
+				<button class="submit" type="submit">${label.button.back}</button>
 			</li>
 		</ul>
 	</form>

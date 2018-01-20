@@ -3,11 +3,11 @@
 	pageEncoding="UTF-8"%>
 <div id="tender-form-container"></div>
 <div id="table-form-container">
-	<h1>${lable.myTenders.title}</h1>
+	<h1>${label.myTenders.title}</h1>
 	<form action="#" class="form">
 		<ul>
 			<li>
-				<button class="submit" id="new-lot-button" >${lable.button.create }</button>
+				<button class="submit" id="new-lot-button" >${label.button.create }</button>
 				<script type="text/javascript">setTenderDialogPlugin($("#new-lot-button"))</script>
 			</li>
 		

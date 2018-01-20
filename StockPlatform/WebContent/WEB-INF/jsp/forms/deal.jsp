@@ -9,47 +9,47 @@
 			<input type="hidden" name="id">
 		    <ul>
 		        <li>
-		             <h2>${lable.deal.deal }</h2>
+		             <h2>${label.deal.deal }</h2>
 		        </li>
 		        
 		        <li>
-		            <label for="productName">${lable.deal.productName}</label>
+		            <label for="productName">${label.deal.productName}</label>
 		            <input type="text" name="productName" disabled/>
 		        </li>
 		        <li>
-		            <label for="price">${lable.deal.price}</label>
+		            <label for="price">${label.deal.price}</label>
 		            <input type="text" name="price" disabled/>
 		        </li>
 		        <li>
-		            <label for="volume">${lable.deal.volume}</label>
+		            <label for="volume">${label.deal.volume}</label>
 		            <input type="text" name="volume" disabled/>
 		        </li>
 		        <li>
-		            <label for="time">${lable.deal.time}</label>
+		            <label for="time">${label.deal.time}</label>
 		            <input type="text" name="time" disabled/>
 		        </li>
 		        <li>
-		            <label for="partnerName">${lable.deal.partnerName}</label>
+		            <label for="partnerName">${label.deal.partnerName}</label>
 		            <input type="text" name="partnerName" disabled/>
 		        </li>
 		        <li>
-		            <label for="partnerAddress">${lable.deal.partnerAddress}</label>
+		            <label for="partnerAddress">${label.deal.partnerAddress}</label>
 		            <textarea name="partnerAddress" disabled></textarea>
 		        </li>
 		        <li>
-		            <label for="partnerComment">${lable.deal.partnerComment}</label>
+		            <label for="partnerComment">${label.deal.partnerComment}</label>
 		            <input type="text" name="partnerComment" disabled/>
 		        </li>
 		        <li>
-		            <label for="partnerPhone">${lable.deal.partnerPhone}</label>
+		            <label for="partnerPhone">${label.deal.partnerPhone}</label>
 		            <input type="text" name="partnerPhone" disabled/>
 		        </li>
 		        <li>
-		            <label for="partnerRegNumber">${lable.deal.partnerRegNumber}</label>
+		            <label for="partnerRegNumber">${label.deal.partnerRegNumber}</label>
 		            <input type="text" name="partnerRegNumber" disabled/>
 		        </li>
 		        <li>
-		            <label for="status">${lable.deal.status}</label>
+		            <label for="status">${label.deal.status}</label>
 		            <input type="text" name="status" disabled/>
 		        </li>
 		        
@@ -63,18 +63,18 @@
 		        				sendDealFormData($('#form-container'), 
 		        				'/deal/json/Approve.spr', ${id}); 
 		        				return false;">
-		        		${lable.deal.approve }
+		        		${label.deal.approve }
 		        	</button>
 		        	<button class="submit" type="submit" id="reject"
 		        		onclick="
 		        			sendDealFormData($('#form-container'), 
 		        			'/deal/json/Reject.spr', ${id});
 		        			return false;">
-		        		${lable.deal.reject }
+		        		${label.deal.reject }
 		        	</button>
 		        	<button class="submit" 
 		        		onclick ="document.location = '/deal/MyDeals.spr'; return false">
-		        		${lable.button.back }
+		        		${label.button.back }
 		        	</button>
 		        </li>
 		    </ul>

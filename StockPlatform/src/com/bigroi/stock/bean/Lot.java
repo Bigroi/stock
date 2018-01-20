@@ -8,38 +8,38 @@ import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Id;
 import com.bigroi.stock.util.DateUtil;
 
-@Button(url="/lot/json/StartTrading.spr", name="lable.button.start_trading")
-@Button(url="/lot/json/StopTrading.spr", name="lable.button.stop_trading")
-@Button(url="/lot/json/Delete.spr", name="lable.button.delete")
+@Button(url="/lot/json/StartTrading.spr", name="label.button.start_trading")
+@Button(url="/lot/json/StopTrading.spr", name="label.button.stop_trading")
+@Button(url="/lot/json/Delete.spr", name="label.button.delete")
 public class Lot implements Bid{
 	
 	@Id
 	private long id;
 	
-	@Column("lable.lot.product")
+	@Column("label.lot.product")
 	private String productName;
 	
 	private String description;
 	
-	@Column("lable.lot.status")
+	@Column("label.lot.status")
 	private BidStatus status;
 	
 	private long productId;	
 	
-	@Column(value = "lable.lot.min_price", floatColumn = true)
+	@Column(value = "label.lot.min_price", floatColumn = true)
 	private double minPrice;
 	
 	private long sellerId;
 	
 	private int minVolume;
 	
-	@Column("lable.lot.max_volume")
+	@Column("label.lot.max_volume")
 	private int maxVolume;
 	
-	@Column("lable.lot.exp_date")
+	@Column("label.lot.exp_date")
 	private Date expDate = new Date();
 	
-	@Column("lable.lot.creation_date")
+	@Column("label.lot.creation_date")
 	private Date creationDate = new Date();
 	
 	private String delivery;

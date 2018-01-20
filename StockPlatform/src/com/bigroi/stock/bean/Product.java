@@ -10,13 +10,13 @@ public class Product {
 	@Id
 	private long id;
 	
-	@Column("lable.product.name")
+	@Column("label.product.name")
 	private String name;
 	
-	@Column("lable.product.description")
+	@Column("label.product.description")
 	private String description;
 	
-	@Column("lable.product.archive")
+	@Column("label.product.archive")
 	private String archive;
 	
 	public String getArchive(){

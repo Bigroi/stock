@@ -8,45 +8,45 @@
 			<input type="hidden" name="longitude">
 		    <ul>
 		        <li>
-		             <h2>${lable.registration.registration}</h2>
+		             <h2>${label.registration.registration}</h2>
 		        </li>
 		        <li>
-		            <label for="username">${lable.registration.login}</label>
+		            <label for="username">${label.registration.login}</label>
 		            <input type="email" name="username" placeholder="john_doe@example.com" required/>
 		            <span class="form_hint">Proper format "john_doe@example.com"</span>
 		        </li>
 		        <li>
-		            <label for="password">${lable.registration.password}</label>
+		            <label for="password">${label.registration.password}</label>
 		            <input type="password" name="password" required/>
 		        </li>
 		        <li>
-		            <label for="password">${lable.registration.repeat_password}</label>
+		            <label for="password">${label.registration.repeat_password}</label>
 		            <input type="password" name="passwordRepeat" required/>
 		        </li>
 		        <li>
-		            <label for="name">${lable.registration.company_name}</label>
+		            <label for="name">${label.registration.company_name}</label>
 		            <input type="text" name="name" placeholder="Stock lmt" required/>
 		        </li>
 		        <li>
-		            <label for="phone">${lable.registration.phone}</label>
+		            <label for="phone">${label.registration.phone}</label>
 		            <input type="text" name="phone" placeholder="+375290000000" pattern="^\+375[\d\- ]{5,13}$" required/>
 		            <span class="form_hint">Proper format "+375290000000"</span>
 		        </li>
 		        <li>
-		            <label for="regNumber">${lable.registration.reg_number}</label>
+		            <label for="regNumber">${label.registration.reg_number}</label>
 		            <input type="text" name="regNumber" placeholder="1234567890" required/>
 		            <span class="form_hint">Proper format "1234567890"</span>
 		        </li>
 		        <li>
-		            <label for="country">${lable.registration.country}</label>
+		            <label for="country">${label.registration.country}</label>
 		            <input type="text" name="country" placeholder="Belarus" required/>
 		        </li>
 		        <li>
-		            <label for="city">${lable.registration.city}</label>
+		            <label for="city">${label.registration.city}</label>
 		            <input type="text" name="city" placeholder="Minsk" required/>
 		        </li>
 		         <li>
-		            <label for="address">${lable.registration.address}</label>
+		            <label for="address">${label.registration.address}</label>
 		            <input type="text" name="address" placeholder="Minsk" required/>
 		        </li>
 		        <li>
@@ -56,7 +56,7 @@
 			        				'/account/json/Registration.spr', 
 			        				function(answer){
 			        					processRequestResult(answer, $('.form-message'));
-			        				});">${lable.button.save}</button>
+			        				});">${label.button.save}</button>
 		        </li>
 		    </ul>
 		</form>	

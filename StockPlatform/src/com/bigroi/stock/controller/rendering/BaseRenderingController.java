@@ -35,7 +35,7 @@ public class BaseRenderingController {
 			"button.properties"
 			};
 	
-	public static Map<String, Object> defaultLabls = new HashMap<>();
+	public static Map<String, Object> defaultLabels = new HashMap<>();
 	public static Properties pageTitles = new Properties();
 	
 	private static final String PAGE_NAMES = "pageNames.properties";
@@ -44,11 +44,11 @@ public class BaseRenderingController {
 		initPageNames();
 		Map<String, Object> map = new HashMap<>();
 		for (String fileName : PAGE_LABELS_FILES){
-			map.put(fileName.split("\\.")[0], initPageLables(fileName));
+			map.put(fileName.split("\\.")[0], initPageLabels(fileName));
 		}
-		defaultLabls.put("lable", map);
+		defaultLabels.put("label", map);
 	}
-	private static Properties initPageLables(String fileName){
+	private static Properties initPageLabels(String fileName){
 		try(InputStream navigationInputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName)){
 			BufferedReader navigationReader = new BufferedReader(new InputStreamReader(navigationInputStream, StandardCharsets.UTF_8));
 			Properties properties = new Properties();
@@ -59,9 +59,9 @@ public class BaseRenderingController {
 		}
 	}
 	
-	protected final String getLableValue(String lable){
-		Object object = defaultLabls;
-		for (String key : lable.split("\\.")){
+	protected final String getLabelValue(String label){
+		Object object = defaultLabels;
+		for (String key : label.split("\\.")){
 			@SuppressWarnings("unchecked")
 			Map<String, Object> map = (Map<String, Object>)object;
 			object = map.get(key);
@@ -69,7 +69,7 @@ public class BaseRenderingController {
 				break;
 			}
 		}
-		return object == null ? lable : object.toString();
+		return object == null ? label : object.toString();
 	}
 	
 	private static void initPageNames(){
@@ -83,7 +83,7 @@ public class BaseRenderingController {
 	
 	protected final ModelAndView createModelAndView(String pageName){
 		Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		return new ModelAndView(pageName, defaultLabls)
+		return new ModelAndView(pageName, defaultLabels)
 				.addObject("user", user)
 				.addObject("page_title", pageTitles.getProperty(pageName, pageName));
 	}

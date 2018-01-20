@@ -9,9 +9,9 @@ import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Id;
 import com.bigroi.stock.util.DateUtil;
 
-@Button(url="/tender/json/StartTrading.spr", name="lable.button.start_trading")
-@Button(url="/tender/json/StopTrading.spr", name="lable.button.stop_trading")
-@Button(url="/tender/json/Delete.spr", name="lable.button.delete")
+@Button(url="/tender/json/StartTrading.spr", name="label.button.start_trading")
+@Button(url="/tender/json/StopTrading.spr", name="label.button.stop_trading")
+@Button(url="/tender/json/Delete.spr", name="label.button.delete")
 public class Tender implements Bid{
 
 	@Id
@@ -19,28 +19,28 @@ public class Tender implements Bid{
 	
 	private long productId;
 	
-	@Column("lable.tender.product")
+	@Column("label.tender.product")
 	private String productName;
 	
 	private String description;
 	
-	@Column("lable.tender.status")
+	@Column("label.tender.status")
 	private BidStatus status;
 	
-	@Column(value = "lable.tender.max_price", floatColumn = true)
+	@Column(value = "label.tender.max_price", floatColumn = true)
 	private double maxPrice;
 	
 	private int minVolume;
 	
-	@Column("lable.tender.max_volume")
+	@Column("label.tender.max_volume")
 	private int maxVolume;
 	
 	private long customerId;
 	
-	@Column("lable.tender.exp_date")
+	@Column("label.tender.exp_date")
 	private Date expDate = new Date();
 	
-	@Column("lable.tender.creation_date")
+	@Column("label.tender.creation_date")
 	private Date creationDate = new Date();
 	
 	private String delivery;

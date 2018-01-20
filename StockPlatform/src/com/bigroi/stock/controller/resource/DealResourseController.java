@@ -29,7 +29,7 @@ public class DealResourseController extends BaseResourseController {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Deal deal = ServiceFactory.getDealService().getById(id, user.getCompanyId());
 		if (user.getCompanyId() != deal.getCustomerId() && user.getCompanyId() != deal.getSellerId()){
-			return new ResultBean(-1, "lable.deal.not_authorized").toString();
+			return new ResultBean(-1, "label.deal.not_authorized").toString();
 		} else {
 			return new ResultBean(1, deal).toString();
 		}
@@ -54,9 +54,9 @@ public class DealResourseController extends BaseResourseController {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
 		Deal deal = gson.fromJson(json, Deal.class);
 		if (ServiceFactory.getDealService().approve(deal.getId(), userBean.getCompanyId())){
-			return new ResultBean(1, "lable.deal.approved").toString();
+			return new ResultBean(1, "label.deal.approved").toString();
 		} else {
-			return new ResultBean(-1, "lable.deal.not_authorized").toString();
+			return new ResultBean(-1, "label.deal.not_authorized").toString();
 		}
 	}
 	
@@ -69,9 +69,9 @@ public class DealResourseController extends BaseResourseController {
 		Deal deal = gson.fromJson(json, Deal.class);
 		
 		if (ServiceFactory.getDealService().reject(deal.getId(), userBean.getCompanyId())){
-			return new ResultBean(1, "lable.deal.rejected").toString();
+			return new ResultBean(1, "label.deal.rejected").toString();
 		} else {
-			return new ResultBean(-1, "lable.deal.not_authorized").toString();
+			return new ResultBean(-1, "label.deal.not_authorized").toString();
 		}
 	}
 }

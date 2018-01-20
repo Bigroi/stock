@@ -2,11 +2,11 @@
 	pageEncoding="UTF-8"%>
 <div id="lot-form-container"></div>
 <div id="table-form-container">
-	<h1>${lable.myLots.title}</h1>
+	<h1>${label.myLots.title}</h1>
 	<form action="#" class="form">
 		<ul>
 			<li>
-				<button class="submit" id="new-lot-button">${lable.button.create}</button>
+				<button class="submit" id="new-lot-button">${label.button.create}</button>
 				<script type="text/javascript">setLotDialogPlugin($("#new-lot-button"))</script>
 			</li>
 			<li>	

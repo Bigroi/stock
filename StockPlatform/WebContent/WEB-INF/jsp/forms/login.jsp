@@ -3,7 +3,7 @@
 <form class="form" action="#" method="post" name="form">
     <ul id="form-list">
         <li>
-             <h2>${lable.login.loginForm }</h2>
+             <h2>${label.login.loginForm }</h2>
         </li>
         <li>
             <label for="username"></label>

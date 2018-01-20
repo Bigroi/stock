@@ -16,19 +16,19 @@ public class Deal {
 	private long customerId;
 	private double price;
 	private int volume;
-	@Column("lable.deal.time")
+	@Column("label.deal.time")
 	private Date time;
 	private String customerApproved;
 	private String sellerApproved;
 	private long productId;
 	
-	@Column("lable.deal.productName")
+	@Column("label.deal.productName")
 	private String productName;
 	
-	@Column("lable.deal.partnerAddress")
+	@Column("label.deal.partnerAddress")
 	private String partnerAddress;
 	
-	@Column("lable.deal.partnerComment")
+	@Column("label.deal.partnerComment")
 	private String partnerComment;
 	
 	private String partnerPhone;
@@ -41,7 +41,7 @@ public class Deal {
 	
 	private double longitude;
 	
-	@Column("lable.deal.status")
+	@Column("label.deal.status")
 	private DealStatus status;
 	
 	public Deal(Lot lot, Tender tender, int volume) {

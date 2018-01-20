@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<h1>${lable.companies.title}</h1>
+<h1>${label.companies.title}</h1>
 <div id = "tableContainer">	
 	<script>
 		$(function(){

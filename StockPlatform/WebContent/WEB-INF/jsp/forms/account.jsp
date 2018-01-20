@@ -8,35 +8,35 @@
 			<input type="hidden" name="longitude">
 		    <ul>
 		        <li>
-		             <h2>${lable.account.account}</h2>
+		             <h2>${label.account.account}</h2>
 		        </li>
 		        <li>
-		            <label for="password">${lable.account.password}</label>
+		            <label for="password">${label.account.password}</label>
 		            <input type="password" name="password" placeholder="************"/>
 		        </li>
 		         <li>
-		            <label for="name">${lable.account.name}</label>
+		            <label for="name">${label.account.name}</label>
 		            <input type="text" name="name" disabled="disabled"/>
 		        </li>
 		        <li>
-		            <label for="phone">${lable.account.phone}</label>
+		            <label for="phone">${label.account.phone}</label>
 		            <input type="text" name="phone" placeholder="+375290000000" pattern="^\+375[\d\- ]{5,13}$" required/>
 		            <span class="form_hint">Proper format "+375290000000"</span>
 		        </li>
 		        <li>
-		            <label for="regNumber">${lable.account.reg_number}</label>
+		            <label for="regNumber">${label.account.reg_number}</label>
 		            <input type="text" name="regNumber" disabled="disabled"/>
 		        </li>
 		        <li>
-		            <label for="country">${lable.account.country}</label>
+		            <label for="country">${label.account.country}</label>
 		            <input type="text" name="country" placeholder="Belarus" required/>
 		        </li>
 		        <li>
-		            <label for="city">${lable.account.city}</label>
+		            <label for="city">${label.account.city}</label>
 		            <input type="text" name="city" placeholder="Minsk" required />
 		        </li>
 		        <li>
-		            <label for="address">${lable.account.address}</label>
+		            <label for="address">${label.account.address}</label>
 		            <input type="text" name="address" placeholder="Programmistov 11" required/>
 		        </li>
 		       
@@ -48,7 +48,7 @@
 			        				function(answer){
 			        					processRequestResult(answer, $('.form-message'));
 			        				}); ">
-		        		${lable.button.modify }
+		        		${label.button.modify }
 		        	</button>
 		        </li>
 		    </ul>

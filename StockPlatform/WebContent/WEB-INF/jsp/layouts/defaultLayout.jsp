@@ -24,9 +24,9 @@
 		<div class="wrapper">
 			<sec:authorize access="hasAnyRole('ADMIN', 'USER')">
 				<div class="welcome">
-					${lable.navigation.welcome} ${user.username} 
-					(<a href="/account/Form.spr">${lable.navigation.account}</a>, 
-					 <a href="/account/json/Logout.spr">${lable.navigation.logout}</a>
+					${label.navigation.welcome} ${user.username} 
+					(<a href="/account/Form.spr">${label.navigation.account}</a>, 
+					 <a href="/account/json/Logout.spr">${label.navigation.logout}</a>
 					 )
 				</div>
 		    	<tiles:insertAttribute name="userHeader" />
@@ -39,7 +39,7 @@
 				<div id="login-form-container"></div>
 				<div class="welcome">
 					<a href="#" id="loginLink">
-						${lable.navigation.login}
+						${label.navigation.login}
 						<script type="text/javascript">setLoginDialogPlugin($("#loginLink"))</script>
 					</a>
 				</div>

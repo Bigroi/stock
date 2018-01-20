@@ -18,14 +18,14 @@ import com.google.gson.Gson;
 public class LocalizationResosurseController extends BaseRenderingController{
 
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/Lables.spr")
+	@RequestMapping(value = "/Labels.spr")
 	@ResponseBody
-	public String Lables(@RequestParam String json) {
+	public String Labels(@RequestParam String json) {
 		Map<String, Object> result = new HashMap<>();
-		Map<String, Object> lables = createModelAndView("").getModel();
+		Map<String, Object> labels = createModelAndView("").getModel();
 		for (Object key : new Gson().fromJson(json, List.class)) {
 			String[] keyPath = key.toString().split("\\.");
-			Object map = lables;
+			Object map = labels;
 			for (String keyPathElement : keyPath){
 				map = ((Map<String, Object>)map).get(keyPathElement);
 				if(map == null){

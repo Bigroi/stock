@@ -6,15 +6,15 @@
 	<input type="hidden" name="id" value="${product.id}">
     <ul id="form-list">
         <li>
-             <h2>${lable.product.productForm }</h2>
+             <h2>${label.product.productForm }</h2>
         </li>
         <li>
-            <label for="name">${lable.product.name}</label>
+            <label for="name">${label.product.name}</label>
             <input type="text" name="name" required/>
             
         </li>
         <li>
-            <label for=description>${lable.product.description}</label>
+            <label for=description>${label.product.description}</label>
             <textarea name="description" cols="40" rows="6" required></textarea>
         </li>
          <li>

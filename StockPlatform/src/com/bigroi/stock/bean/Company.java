@@ -12,13 +12,13 @@ public class Company {
 	@Id
 	private long id;
 	
-	@Column("lable.account.name")
+	@Column("label.account.name")
 	private String name;
 	
-	@Column("lable.account.phone")
+	@Column("label.account.phone")
 	private String phone;
 	
-	@Column("lable.account.reg_number")
+	@Column("label.account.reg_number")
 	private String regNumber;
 	
 	private String country;
@@ -27,7 +27,7 @@ public class Company {
 	
 	private String address;
 	
-	@Column("lable.account.status")
+	@Column("label.account.status")
 	private CompanyStatus status;
 	
 	private double longitude;

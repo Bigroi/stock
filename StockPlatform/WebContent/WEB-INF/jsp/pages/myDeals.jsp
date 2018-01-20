@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div id="tender-form-container"></div>
-<h1>${lable.myDeals.title}</h1>
+<h1>${label.myDeals.title}</h1>
 <div id = "tableContainer">	
 	<script>
 		$(function(){
