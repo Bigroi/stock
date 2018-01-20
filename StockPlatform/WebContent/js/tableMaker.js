@@ -106,7 +106,7 @@ $.fn.tableMaker = function (srcTable, formPage) {
 								+ window.l10n[buttons[i].name] + 
 							"</button>");
 			button.on("click", function(e){
-				return sendFormData($("div[id$='form-container']"), $(e.target).attr("url"), function(answer){
+				return sendFormData($("#table-form-container"), $(e.target).attr("url"), function(answer){
 					if (answer.result < 0){
 						alert(answer.data);
 					} else {

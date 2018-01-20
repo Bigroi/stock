@@ -1,7 +1,8 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div id="tender-form-container">
+<div id="tender-form-container"></div>
+<div id="table-form-container">
 	<h1>${lable.myTenders.title}</h1>
 	<form action="#" class="form">
 		<ul>
