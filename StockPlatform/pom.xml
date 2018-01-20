@@ -31,7 +31,7 @@
 						</webResource>
 						<webResource>
 							<targetPath>WEB-INF/classes</targetPath>
-							<directory>labels</directory>
+							<directory>labels_by</directory>
 						</webResource>
 						<webResource>
 							<targetPath>WEB-INF/classes</targetPath>
@@ -43,7 +43,7 @@
 						</webResource>
 						<webResource>
 							<targetPath>WEB-INF/classes</targetPath>
-							<directory>templates</directory>
+							<directory>templates_by</directory>
 						</webResource>
 					</webResources>
 				</configuration>
