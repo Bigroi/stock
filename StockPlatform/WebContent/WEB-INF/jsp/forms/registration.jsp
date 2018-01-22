@@ -56,6 +56,9 @@
 			        				'/account/json/Registration.spr', 
 			        				function(answer){
 			        					processRequestResult(answer, $('.form-message'));
+			        					if(answer.result > 0){
+			        						$('#save-button').remove();
+			        					}
 			        				});">${label.button.save}</button>
 		        </li>
 		    </ul>
