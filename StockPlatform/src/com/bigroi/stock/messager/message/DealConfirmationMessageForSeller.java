@@ -26,7 +26,7 @@ public class DealConfirmationMessageForSeller extends BaseMessage<Deal> {
 	protected String getText() throws MessageException {
 		try{
 			Deal deal = getDataObject();
-			Lot lot = ServiceFactory.getLotService().getLot(deal.getLotId(), 0);
+			Lot lot = ServiceFactory.getLotService().getLot(deal.getLotId(), -1);
 			String sellerLink = "";
 //			MessagerFactory.getLink().getSellerConfirmationLink() + "?id=" + deal.getId() + "&key="
 //					+ deal.getSellerId() + "&action=";

@@ -25,7 +25,7 @@ public class DealConfirmationMessageForCustomer extends BaseMessage<Deal> {
 	protected String getText() throws MessageException {
 		try{
 			Deal deal = getDataObject();
-			Tender tender = ServiceFactory.getTenderService().getTender(deal.getTenderId(), 0);
+			Tender tender = ServiceFactory.getTenderService().getTender(deal.getTenderId(), -1);
 			String customerLink = "";
 //					MessagerFactory.getLink().getCustomerConfirmationLink() + "?id=" + deal.getId()
 //			+ "&key=" + deal.getCustomerId() + "&action=";

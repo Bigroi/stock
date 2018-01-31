@@ -40,7 +40,7 @@ public class TenderDaoImpl implements TenderDao{
 	private static final String GET_TENDER_BY_ID = 
 			  " SELECT ID, DESCRIPTION, PRODUCT_ID, MAX_PRICE, CUSTOMER_ID, "
 			+ " STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY, PACKAGING "
-			+ " FROM TENDER WHERE ID = ? AND CUSTOMER_ID = ? ";
+			+ " FROM TENDER WHERE ID = ? ";
 	
 	private static final String GET_TENDERS_BY_CUSTOMER_ID = 
 			  " SELECT T.ID, T.DESCRIPTION, T.PRODUCT_ID, T.MAX_PRICE, T.CUSTOMER_ID, "
@@ -112,8 +112,8 @@ public class TenderDaoImpl implements TenderDao{
 				ps.setInt(7, tender.getMaxVolume());
 				ps.setInt(8, tender.getMinVolume());
 				ps.setDate(9, new Date(tender.getCreationDate().getTime()));
-				ps.setString(10, tender.getDelivery());
-				ps.setString(11, tender.getPackaging());
+				ps.setInt(10, tender.getDelivery());
+				ps.setInt(11, tender.getPackaging());
 				return ps;
 			}
 		},keyHolder);
@@ -141,11 +141,11 @@ public class TenderDaoImpl implements TenderDao{
 	@Override
 	public Tender getById(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Tender> tender = template.query(GET_TENDER_BY_ID, new BeanPropertyRowMapper<Tender>(Tender.class), id, companyId);
-		if (tender.size() == 0) {
+		List<Tender> tenders = template.query(GET_TENDER_BY_ID, new BeanPropertyRowMapper<Tender>(Tender.class), id);
+		if (tenders.size() == 0 || (companyId != -1 && tenders.get(0).getCustomerId() != companyId)) {
 			return null;
 		} else {
-			return tender.get(0);
+			return tenders.get(0);
 		}
 	}
 	
@@ -211,8 +211,8 @@ public class TenderDaoImpl implements TenderDao{
 				ps.setDate(6, new Date(tender.getExpDate().getTime()));
 				ps.setInt(7, tender.getMaxVolume());
 				ps.setInt(8, tender.getMinVolume());
-				ps.setString(9, tender.getDelivery());
-				ps.setString(10, tender.getPackaging());
+				ps.setInt(9, tender.getDelivery());
+				ps.setInt(10, tender.getPackaging());
 				ps.setLong(11, tender.getId());
 			}
 		});

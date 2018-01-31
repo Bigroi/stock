@@ -29,15 +29,6 @@ CREATE TABLE IF NOT EXISTS `blacklist` (
   CONSTRAINT `FK_blacklist_lot` FOREIGN KEY (`lot_Id`) REFERENCES `lot` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Dumping data for table stock.blacklist: ~4 rows (approximately)
-/*!40000 ALTER TABLE `blacklist` DISABLE KEYS */;
-INSERT INTO `blacklist` (`id`, `tender_Id`, `lot_Id`) VALUES
-	(4, 18, 9),
-	(5, 18, 9),
-	(6, 18, 9),
-	(7, 18, 9);
-/*!40000 ALTER TABLE `blacklist` ENABLE KEYS */;
-
 -- Dumping structure for table stock.company
 DROP TABLE IF EXISTS `company`;
 CREATE TABLE IF NOT EXISTS `company` (
@@ -104,35 +95,6 @@ CREATE TABLE IF NOT EXISTS `email` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
--- Dumping data for table stock.email: ~24 rows (approximately)
-/*!40000 ALTER TABLE `email` DISABLE KEYS */;
-INSERT INTO `email` (`id`, `to_email`, `email_subject`, `email_text`) VALUES
-	(1, 'Независимости 125', 'Отказ от сделки.', 'К сожалению, Ваш потенциальный партнер отказался от Вашего лота №18.'),
-	(2, 'Независимости 125', 'Отказ от сделки.', 'К сожалению, Ваш потенциальный партнер отказался от Вашего лота №18.'),
-	(3, 'Независимости 125', 'Отказ от сделки.', 'К сожалению, Ваш потенциальный партнер отказался от Вашего лота №18.'),
-	(4, 'Независимости 125', 'Отказ от сделки.', 'К сожалению, Ваш потенциальный партнер отказался от Вашего лота №18.'),
-	(5, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: горхqqrwer\r\nЦена: 123.0\r\nОбъём: 123333\r\n\r\nС уважением, администрация ресурса.'),
-	(6, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: test Lot\r\nЦена: 100.0\r\nОбъём: 123124499\r\n\r\nС уважением, администрация ресурса.'),
-	(7, 'ana@gmail.com', 'Ваша заявка на покупку устарела.', 'Здравствуйте!\r\nВаша заявка на покупку устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: TEST TENDER\r\nЦена: 29.0\r\nОбъём: 24610\r\n\r\nС уважением, администрация ресурса.'),
-	(8, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 0.0\r\nОбъём: 0\r\n\r\nС уважением, администрация ресурса.'),
-	(9, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 0.0\r\nОбъём: 0\r\n\r\nС уважением, администрация ресурса.'),
-	(10, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 0.0\r\nОбъём: 0\r\n\r\nС уважением, администрация ресурса.'),
-	(11, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 0.0\r\nОбъём: 0\r\n\r\nС уважением, администрация ресурса.'),
-	(12, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 1.0\r\nОбъём: 0\r\n\r\nС уважением, администрация ресурса.'),
-	(13, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 0.0\r\nОбъём: 0\r\n\r\nС уважением, администрация ресурса.'),
-	(14, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 0.0\r\nОбъём: 0\r\n\r\nС уважением, администрация ресурса.'),
-	(15, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 0.0\r\nОбъём: 0\r\n\r\nС уважением, администрация ресурса.'),
-	(16, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 0.0\r\nОбъём: 0\r\n\r\nС уважением, администрация ресурса.'),
-	(17, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 0.0\r\nОбъём: 0\r\n\r\nС уважением, администрация ресурса.'),
-	(18, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 10.0\r\nОбъём: 10\r\n\r\nС уважением, администрация ресурса.'),
-	(19, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 0.0\r\nОбъём: 0\r\n\r\nС уважением, администрация ресурса.'),
-	(20, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: test Lot\r\nЦена: 100.0\r\nОбъём: 123124499\r\n\r\nС уважением, администрация ресурса.'),
-	(21, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 11.0\r\nОбъём: 0\r\n\r\nС уважением, администрация ресурса.'),
-	(22, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 0.0\r\nОбъём: 0\r\n\r\nС уважением, администрация ресурса.'),
-	(23, 'Admin@stock.by', 'Ваша заявка на продажу устарела.', 'Здравствуйте!\r\nВаша заявка на продажу устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: kartoxa\r\nЦена: 111.0\r\nОбъём: 666\r\n\r\nС уважением, администрация ресурса.'),
-	(24, 'Admin@stock.by', 'Ваша заявка на покупку устарела.', 'Здравствуйте!\r\nВаша заявка на покупку устарела и блольше не будет участвовать в торгах\r\n\r\nДетали заявки:\r\nОписание: \r\nЦена: 10.0\r\nОбъём: 10\r\n\r\nС уважением, администрация ресурса.');
-/*!40000 ALTER TABLE `email` ENABLE KEYS */;
-
 -- Dumping structure for table stock.lot
 DROP TABLE IF EXISTS `lot`;
 CREATE TABLE IF NOT EXISTS `lot` (
@@ -146,8 +108,8 @@ CREATE TABLE IF NOT EXISTS `lot` (
   `max_volume` int(11) NOT NULL,
   `min_Volume` int(11) NOT NULL,
   `creation_date` date DEFAULT NULL,
-  `delivery` varchar(50) CHARACTER SET dec8 COLLATE dec8_bin DEFAULT NULL,
-  `packaging` varchar(50) CHARACTER SET dec8 COLLATE dec8_bin DEFAULT NULL,
+  `delivery` tinyint(4) NOT NULL,
+  `packaging` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `saler` (`seller_Id`),
   KEY `product` (`product_Id`),
@@ -158,8 +120,8 @@ CREATE TABLE IF NOT EXISTS `lot` (
 -- Dumping data for table stock.lot: ~2 rows (approximately)
 /*!40000 ALTER TABLE `lot` DISABLE KEYS */;
 INSERT INTO `lot` (`id`, `description`, `product_Id`, `min_price`, `seller_Id`, `status`, `exp_date`, `max_volume`, `min_Volume`, `creation_date`, `delivery`, `packaging`) VALUES
-	(9, 'test Lot', 1, 100.00, 1, 'ACTIVE', '2018-12-17', 123124499, 123, '2017-12-30', 'SELF', 'YES'),
-	(61, 'ds', 111, 10.00, 1, 'ACTIVE', '2018-01-15', 12133, 1, '2018-01-15', 'SELF', 'NO');
+	(9, 'test Lot', 1, 100.00, 1, 'ACTIVE', '2018-12-17', 123124499, 123, '2017-12-30', 0, 0),
+	(61, 'ds', 111, 10.00, 1, 'ACTIVE', '2018-01-15', 12133, 1, '2018-01-15', 0, 0);
 /*!40000 ALTER TABLE `lot` ENABLE KEYS */;
 
 -- Dumping structure for table stock.product
@@ -199,8 +161,8 @@ CREATE TABLE IF NOT EXISTS `tender` (
   `max_volume` int(11) NOT NULL,
   `min_Volume` int(11) NOT NULL,
   `creation_date` date DEFAULT NULL,
-  `delivery` varchar(50) CHARACTER SET dec8 COLLATE dec8_bin DEFAULT NULL,
-  `packaging` varchar(50) CHARACTER SET dec8 COLLATE dec8_bin DEFAULT NULL,
+  `delivery` tinyint(4) NOT NULL,
+  `packaging` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_application_product` (`product_Id`),
   KEY `FK_application_company` (`customer_Id`),
@@ -211,10 +173,10 @@ CREATE TABLE IF NOT EXISTS `tender` (
 -- Dumping data for table stock.tender: ~3 rows (approximately)
 /*!40000 ALTER TABLE `tender` DISABLE KEYS */;
 INSERT INTO `tender` (`id`, `description`, `product_Id`, `max_price`, `customer_Id`, `status`, `exp_date`, `max_volume`, `min_Volume`, `creation_date`, `delivery`, `packaging`) VALUES
-	(18, 'TEST TENDER', 13, 29.00, 16, 'INACTIVE', '2017-12-17', 24610, 234, NULL, 'NO', 'YES'),
-	(36, 'df', 126, 1.00, 1, 'INACTIVE', '2018-01-15', 12133, 1, '2018-01-15', 'SELF', 'YES'),
-	(37, 'asd', 1, 10.00, 1, 'INACTIVE', '2019-01-15', 12133, 1, '2018-01-15', 'SELF', 'YES'),
-	(38, 'sd', 131, 10.00, 1, 'INACTIVE', '2018-01-15', 12133, 1, '2018-01-15', 'SELF', 'YES');
+	(18, 'TEST TENDER', 13, 29.00, 16, 'INACTIVE', '2017-12-17', 24610, 234, NULL, 0, 0),
+	(36, 'df', 126, 1.00, 1, 'INACTIVE', '2018-01-15', 12133, 1, '2018-01-15', 0, 0),
+	(37, 'asd', 1, 10.00, 1, 'INACTIVE', '2019-01-15', 12133, 1, '2018-01-15', 0, 0),
+	(38, 'sd', 131, 10.00, 1, 'INACTIVE', '2018-01-15', 12133, 1, '2018-01-15', 0, 0);
 /*!40000 ALTER TABLE `tender` ENABLE KEYS */;
 
 -- Dumping structure for table stock.user

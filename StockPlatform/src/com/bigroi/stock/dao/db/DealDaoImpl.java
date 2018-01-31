@@ -46,6 +46,8 @@ public class DealDaoImpl implements DealDao {
 			+ " AND T.MIN_VOLUME <= L.MAX_VOLUME "
 			+ " AND L.MIN_VOLUME <= T.MAX_VOLUME "
 			+ " AND L.SELLER_ID <> T.CUSTOMER_ID "
+			+ " AND L.DELIVERY + T.DELIVERY <= 1 "
+			+ " AND L.PACKAGING - T.PACKAGING <= 0"  
 			+ " LEFT JOIN BLACKLIST BL "
 			+ " ON BL.TENDER_ID = T.ID AND BL.LOT_ID = L.ID "
 			+ " WHERE BL.ID IS NULL AND T.PRODUCT_ID = ?";

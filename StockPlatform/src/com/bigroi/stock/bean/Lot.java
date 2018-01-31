@@ -42,9 +42,9 @@ public class Lot implements Bid{
 	@Column("label.lot.creation_date")
 	private Date creationDate = new Date();
 	
-	private String delivery;
+	private int delivery;
 	
-	private String packaging;
+	private int packaging;
 	
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
@@ -144,19 +144,19 @@ public class Lot implements Bid{
 		this.creationDate = creationDate;
 	}
 	
-	public void setDelivery(String delivery) {
+	public void setDelivery(int delivery) {
 		this.delivery = delivery;
 	}
 	
-	public String getDelivery() {
+	public int getDelivery() {
 		return delivery;
 	}
 
-	public String getPackaging() {
+	public int getPackaging() {
 		return packaging;
 	}
 	
-	public void setPackaging(String packaging) {
+	public void setPackaging(int packaging) {
 		this.packaging = packaging;
 	}
 

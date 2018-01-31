@@ -48,15 +48,15 @@
 		<li>
 		   <label for="delivery">${label.lot.delivery}</label> 
 		   <select name="delivery">
-				<option value="SELF">SELF</option>
-				<option value="NO">NO</option>
+				<option value="0">SELF</option>
+				<option value="1">NO</option>
 		   </select>
 		</li>
 		<li>
 		   <label for="packaging">${label.lot.packaging}</label> 
 		   <select name="packaging">
-				<option value="YES">YES</option>
-				<option value="NO">NO</option>
+				<option value="0">YES</option>
+				<option value="1">NO</option>
 		   </select>
 		</li>
 	</ul>

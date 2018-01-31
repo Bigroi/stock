@@ -34,7 +34,7 @@ public class LotDaoImpl implements LotDao {
 	
 	private static final String GET_LOT_BY_ID = "SELECT ID, DESCRIPTION, PRODUCT_ID, "
 			+ " MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY, PACKAGING FROM LOT "
-			+ " WHERE ID = ? AND SELLER_ID = ? ";
+			+ " WHERE ID = ? ";
 	
 	private static final String GET_LOTS_BY_SELLER_ID = "SELECT L.ID, L.DESCRIPTION, "
 			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, "
@@ -102,8 +102,8 @@ public class LotDaoImpl implements LotDao {
 				ps.setInt(7, lot.getMaxVolume());
 				ps.setInt(8, lot.getMinVolume());
 				ps.setDate(9, new Date(lot.getCreationDate().getTime()));
-				ps.setString(10, lot.getDelivery());
-				ps.setString(11, lot.getPackaging());
+				ps.setInt(10, lot.getDelivery());
+				ps.setInt(11, lot.getPackaging());
 				return ps;
 			}
 		}, keyHolder);
@@ -131,11 +131,11 @@ public class LotDaoImpl implements LotDao {
 	@Override
 	public Lot getById(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Lot> lot = template.query(GET_LOT_BY_ID, new BeanPropertyRowMapper<Lot>(Lot.class), id, companyId);
-		if(lot.size() == 0){
+		List<Lot> lots = template.query(GET_LOT_BY_ID, new BeanPropertyRowMapper<Lot>(Lot.class), id);
+		if(lots.size() == 0 || (companyId != -1 && lots.get(0).getSellerId() != companyId)){
 			return null;
 		}else{
-			return lot.get(0);
+			return lots.get(0);
 		}
 	}
 
@@ -202,8 +202,8 @@ public class LotDaoImpl implements LotDao {
 				ps.setDate(6, new Date(lot.getExpDate().getTime()));
 				ps.setInt(7, lot.getMaxVolume());
 				ps.setInt(8, lot.getMinVolume());
-				ps.setString(9, lot.getDelivery());
-				ps.setString(10, lot.getPackaging());
+				ps.setInt(9, lot.getDelivery());
+				ps.setInt(10, lot.getPackaging());
 				ps.setLong(11, lot.getId());
 			}
 		});
