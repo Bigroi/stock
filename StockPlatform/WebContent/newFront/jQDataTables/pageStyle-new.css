@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+SC:700');
+div#lables{
+    display: none;
+}
+html{
+    height: 100%;
+}
+body{
+    display: flex;
+	height: inherit;
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+}
+.aside{
+    display: flex;
+    flex-direction: column;
+	justify-content: space-between;
+    background-color: #00aecc/*dodgerblue*/;
+    width: 15%;
+    min-width: 170px;
+    max-width: 220px;
+	color: white;
+    text-align: center;
+    padding: 5% 0 2% 0;
+}
+.aside .logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+    font-family: 'Alegreya SC', serif;
+    text-align: center;
+    vertical-align: middle;
+}
+.aside .logo p {
+    font-size: 90px;
+}
+.aside nav {
+	display: flex;
+	flex-direction: column;
+    margin-left: 20px;
+}
+.aside nav a {
+	display: block; 
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+	text-decoration: none;
+    text-align: center;
+    padding-top: 5px;
+    color: white;
+    border-radius: 5px 0 0 5px;
+}
+.aside nav a:hover {
+    background-color: rgb(30, 120, 220);
+}
+.aside nav a.active {
+    background: white;
+	color: black;
+ 
+}
+.section {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 85%;
+    height: 100%;
+    padding: 0 3% 0 3%;
+}
+.section .login {
+    display: flex;
+    justify-content: flex-end;
+	border-bottom: 1px solid silver;
+}
+.login a {
+    display: block; 
+    width: 10%;
+    min-width: 150px;
+    height: 40px;
+    font-size: 20px;
+	text-decoration: none;
+    text-align: center;
+	background: white;
+	color: #50C878;
+    border: 2px solid #50C878;
+    border-radius: 3px;
+    padding: 5px 5px 0;
+    margin: 10px;
+}
+.login a:nth-child(2) {
+    background: #50C878;
+    color: white;
+}
+.section .table-header {
+	display: flex;
+	justify-content: space-between; 
+	margin: 30px 0px;
+}
+h1 {
+    margin: 0;
+    font-size: 36px;
+}
+.section .add-button {
+	margin-right: 10px;
+    height: 50px;
+	background: #00aecc/*dodgerblue*/;
+    color: white;
+    font-size: 20px;
+	border-radius: 3px;
+}
+.section .add-button p {
+    float: right;
+    margin: 10px 20px 0 55px;
+}
+.plus {
+    float: left;
+    margin-left: 5px;
+	background: white;
+    height: 40px; 
+	width: 5px;
+    position: relative; 
+	left: 22px;
+	top: 5px;
+	border-radius: 4px;
+	}
+.plus:after {
+	content: "";
+	height: 5px; 
+	width: 40px;
+	background: white;
+	position: absolute; 
+	left: -18px; 
+	top: 17px;
+	border-radius: 4px;
+}
+.swtitch-row-on {
+    box-sizing: border-box;
+    height: 30px;
+    width: 60px;
+    background-color: #50C878;
+    border-radius: 15px;
+    position: relative;     
+}
+.swtitch-row-on:after{
+    content: "";
+    box-sizing: border-box;
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border: 3px solid #50C878;
+    border-radius: 50%; 
+    position: absolute;
+}
+.swtitch-row-off {
+    box-sizing: border-box;
+    height: 30px;
+    width: 60px;
+    background-color: darkgray;
+    border-radius: 15px;
+    position: relative;     
+}
+.swtitch-row-off:after{
+    content: "";
+    box-sizing: border-box;
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border: 3px solid darkgray;
+    border-radius: 50%; 
+    position: absolute;
+    left: 30px;
+}
+.edit{
+    display: inline-block;
+    width: 50%;
+    height: 30px;
+    background-image: url(images/edit-pencil.png);
+    background-size:  auto 100%;
+    background-repeat: no-repeat;
+    
+}
+.remove{
+    display: inline-block;
+    width: 50%;
+    height: 30px;
+    background-image: url(images/remove-trash-can.png);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}		
+
+
+
+

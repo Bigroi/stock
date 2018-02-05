@@ -1,0 +1,14 @@
+div#main-table_wrapper {
+    overflow: auto;
+}
+table#main-table tr:nth-child(even) {
+    background-color: whitesmoke;
+} 
+table#main-table td {
+    border-bottom: 1px solid black;
+}
+table#main-table th {
+    text-align: left;
+    background-color: whitesmoke;
+    border-top: 1px solid black;
+}

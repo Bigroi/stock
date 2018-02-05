@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>testjQDataTables</title>
+		<meta charset = "utf-8">
+		
+        <link rel= "stylesheet" href = "pageStyle-new.css">
+        <link rel= "stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" href = "table-custom-style.css">
+        <script src= "https://code.jquery.com/jquery-3.1.1.js"></script>
+        <script src= "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        
+        <script src= "localization.js"></script>
+		<script src= "tableMaker-new.js"></script>	
+		<!--<script src= "tableSorter.js"></script>-->	
+	</head>
+	<body>
+		<div id ="lables">lable1,lable2,lable3,label4</div>
+        <script>
+            <!--$("#lables").localization();-->
+        </script>
+        <div class = "aside">
+            <div class = "logo">
+                <p><b>GR</b></p>
+            </div>
+            <nav class = "main-menu">
+                    <a href = "#">Главная</a>
+                    <a class = "active" href = "#">Мои лоты</a>
+                    <a href = "#">Мои тендера</a>
+                    <a href = "#">Продукты</a>
+            </nav>
+            <div class = "aside-footer">
+                <h3>Контакты:</h3>
+                <p>stock@info.com</br>
+                +375 17 345 33 12</p>
+            </div>
+            
+        </div>
+        <div class = "section">
+            <div class = "login">
+				<a href="#">Регистрация</a>
+                <a href = "#">Вoйти</a>
+            </div>
+            <div class = "table-header">
+                <h1>Мои лоты</h1>
+                <div class="add-button">
+                    <div class="plus"></div><p>Добавить лот</p>
+				</div> 
+            </div>
+            <div id = "table-container">
+                <table id = "main-table">
+                    <script>
+                        makeTable("table-ao.json", $("#main-table"));
+                    </script>
+     
+         <!--<script>
+                    $(function(){
+                        $("#tableContainer").tableMaker("table.json", "json/product/form.spr?id={id}");
+/*Параметрами в плагин tableMaker идут url'ы ........ и .........*/
+                    });
+                </script>-->
+                </table>
+            </div>
+		</div>
+        
+
+    </body>
+</html>

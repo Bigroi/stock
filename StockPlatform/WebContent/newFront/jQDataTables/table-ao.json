@@ -1,0 +1,89 @@
+{
+  "model":{"statusColumn":1,
+			"editRemove":7,
+			"id":0},
+  "table":{
+  "data": [
+    {
+      "name":"Jennifer Acosta",
+	  "status":"ACTIVE",
+      "position":"Junior Javascript Developer",
+      "office":"Edinburgh",
+      "extn":"3431",
+      "startDate":"2013/02/01",
+      "salary":"$75,650",
+	  "editRemove":"YY"
+    },
+    {
+      "name":"Cara Stevens",
+	  "status":"INACTIVE",
+      "position":"Sales Assistant",
+      "office":"New York",
+      "extn":"3990",
+      "startDate":"2011/12/06",
+      "salary":"$145,600",
+	  "editRemove":"YY"
+    },
+	{
+      "name":"Cara Stevens",
+	  "status":"INACTIVE",
+      "position":"Sales Assistant",
+      "office":"New York",
+      "extn":"3990",
+      "startDate":"2011/12/06",
+      "salary":"$145,600",
+	  "editRemove":"YY"
+    },
+	{
+      "name":"Cara Stevens",
+	  "status":"INACTIVE",
+      "position":"Sales Assistant",
+      "office":"New York",
+      "extn":"3990",
+      "startDate":"2011/12/06",
+      "salary":"$145,600",
+	  "editRemove":"YY"
+    },
+	{
+      "name":"Cara Stevens",
+	  "status":"INACTIVE",
+      "position":"Sales Assistant",
+      "office":"New York",
+      "extn":"3990",
+      "startDate":"2011/12/06",
+      "salary":"$145,600",
+	  "editRemove":"YY"
+    },
+	{
+      "name":"Cara Stevens",
+	  "status":"INACTIVE",
+      "position":"Sales Assistant",
+      "office":"New York",
+      "extn":"3990",
+      "startDate":"2011/12/06",
+      "salary":"$145,600",
+	  "editRemove":"YY"
+    },
+	{
+      "name":"Cara Stevens",
+	  "status":"INACTIVE",
+      "position":"Sales Assistant",
+      "office":"New York",
+      "extn":"3990",
+      "startDate":"2011/12/06",
+      "salary":"$145,600",
+	  "editRemove":"YY"
+    }
+  ],
+  "columns": [
+            		{ "title": "Name", "data":"name" },
+					{ "title": "Status", "data":"status" },
+            		{ "title": "Position", "data":"position" },
+            		{ "title": "Office", "data":"office" },
+            		{ "title": "Extn.", "data":"extn" },
+            		{ "title": "Start date", "data":"startDate" },
+            		{ "title": "Salary", "data":"salary" },
+					{ "title": "Edit", "data":"editRemove" }
+            	]
+  }
+}
