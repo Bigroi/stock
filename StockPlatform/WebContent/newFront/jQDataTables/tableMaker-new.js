@@ -6,25 +6,39 @@ function makeTable(url, table){
 		tableData.rowCallback = function(row, data, index) {
 			var statusTd = row.children[model.statusColumn];
 			var fieldName = tableData.columns[model.statusColumn].data;
+            var $switcher = $("<div class='swtitch-row-off'>");
 			if (data[fieldName] == "ACTIVE"){
-				var switcher = document.createElement("div");
-				switcher.classList.add("swtitch-row-on");
-				statusTd.textContent = "";
-				statusTd.appendChild(switcher);
-			}else{
-				var switcher = $("<div class='swtitch-row-off'>");
-				statusTd.textContent = "";
-				statusTd.appendChild(switcher[0]);
+				$switcher.removeClass("swtitch-row-off");
+				$switcher.addClass("swtitch-row-on");
 			}
+            statusTd.textContent = "";
+            $switcher.click(function (event){
+                event.target.classList.toggle("swtitch-row-off");
+                event.target.classList.toggle("swtitch-row-on");
+				data[fieldName] = data[fieldName] == "ACTIVE" ? "INACTIVE" :"ACTIVE";
+            });
+            statusTd.appendChild($switcher[0]);
+            
 			if(model.editRemove){
-				var editRemove = row.children[model.editRemove];
-				var edit = document.createElement("div");
-				edit.classList.add("edit");
-				var remove = document.createElement("div");
-				remove.classList.add("remove");
-				editRemove.textContent = "";
-				editRemove.appendChild(edit);
-				editRemove.appendChild(remove);
+				var editRemove = row.children[model.editRemove];//получаем ячейку
+                editRemove.textContent = "";//убираем текст
+                
+                var $edit = $("<div class='no-edit'>");//создаём элемент для символа EDIT
+                //по умолчанию делаем фон элемента цвета строки 
+                var $remove = $("<div class='no-remove'>");//создаём элемент для символа REMOVE
+                //по умолчанию делаем фон элемента цвета строки 
+                
+                var fieldNameEdit = tableData.columns[model.editRemove].data;//получаем имя поля в объекте строки
+                if(data[fieldNameEdit][0] == "Y"){ 
+                    $edit.removeClass("no-edit");
+                    $edit.addClass("edit");
+                }
+				if(data[fieldNameEdit][1] == "Y"){ 
+                    $remove.removeClass("no-remove");
+                    $remove.addClass("remove");
+                }
+				editRemove.appendChild($edit[0]);
+				editRemove.appendChild($remove[0]);
 			}
 		}
 		$(table).DataTable(tableData);

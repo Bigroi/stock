@@ -12,7 +12,7 @@
       "extn":"3431",
       "startDate":"2013/02/01",
       "salary":"$75,650",
-	  "editRemove":"YY"
+	  "editRemove":"NY"
     },
     {
       "name":"Cara Stevens",
@@ -32,7 +32,7 @@
       "extn":"3990",
       "startDate":"2011/12/06",
       "salary":"$145,600",
-	  "editRemove":"YY"
+	  "editRemove":"YN"
     },
 	{
       "name":"Cara Stevens",
@@ -42,7 +42,7 @@
       "extn":"3990",
       "startDate":"2011/12/06",
       "salary":"$145,600",
-	  "editRemove":"YY"
+	  "editRemove":"NN"
     },
 	{
       "name":"Cara Stevens",
@@ -52,7 +52,7 @@
       "extn":"3990",
       "startDate":"2011/12/06",
       "salary":"$145,600",
-	  "editRemove":"YY"
+	  "editRemove":"NN"
     },
 	{
       "name":"Cara Stevens",
@@ -62,7 +62,7 @@
       "extn":"3990",
       "startDate":"2011/12/06",
       "salary":"$145,600",
-	  "editRemove":"YY"
+	  "editRemove":"YN"
     },
 	{
       "name":"Cara Stevens",
@@ -72,7 +72,7 @@
       "extn":"3990",
       "startDate":"2011/12/06",
       "salary":"$145,600",
-	  "editRemove":"YY"
+	  "editRemove":"NY"
     }
   ],
   "columns": [
