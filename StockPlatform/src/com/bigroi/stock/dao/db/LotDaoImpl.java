@@ -30,6 +30,11 @@ public class LotDaoImpl implements LotDao {
 	private static final String UPDATE_LOT_BY_ID = "UPDATE LOT SET "
 			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MIN_PRICE = ?, STATUS = ?, " 
 			+ " EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, DELIVERY = ?, PACKAGING = ? "
+			+ " WHERE ID = ?";
+	
+	private static final String UPDATE_LOT_BY_ID_AND_SELLER = "UPDATE LOT SET "
+			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MIN_PRICE = ?, STATUS = ?, " 
+			+ " EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, DELIVERY = ?, PACKAGING = ? "
 			+ " WHERE ID = ? AND SELLER_ID = ?";
 	
 	private static final String GET_LOT_BY_ID = "SELECT ID, DESCRIPTION, PRODUCT_ID, "
@@ -114,7 +119,7 @@ public class LotDaoImpl implements LotDao {
 	@Override
 	public boolean update(Lot lot, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_LOT_BY_ID, 
+		return template.update(UPDATE_LOT_BY_ID_AND_SELLER, 
 				lot.getDescription(), 
 				lot.getProductId(), 
 				lot.getMinPrice(), 
@@ -189,14 +194,13 @@ public class LotDaoImpl implements LotDao {
 				ps.setString(1, lot.getDescription());
 				ps.setLong(2, lot.getProductId());
 				ps.setDouble(3, lot.getMinPrice());
-				ps.setLong(4, lot.getSellerId());
-				ps.setString(5, lot.getStatus().name());
-				ps.setDate(6, new Date(lot.getExpDate().getTime()));
-				ps.setInt(7, lot.getMaxVolume());
-				ps.setInt(8, lot.getMinVolume());
-				ps.setInt(9, lot.getDelivery());
-				ps.setInt(10, lot.getPackaging());
-				ps.setLong(11, lot.getId());
+				ps.setString(4, lot.getStatus().name());
+				ps.setDate(5, new Date(lot.getExpDate().getTime()));
+				ps.setInt(6, lot.getMaxVolume());
+				ps.setInt(7, lot.getMinVolume());
+				ps.setInt(8, lot.getDelivery());
+				ps.setInt(9, lot.getPackaging());
+				ps.setLong(10, lot.getId());
 			}
 		});
 		

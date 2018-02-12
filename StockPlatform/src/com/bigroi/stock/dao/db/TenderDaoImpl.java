@@ -35,6 +35,13 @@ public class TenderDaoImpl implements TenderDao{
 			+ " SET DESCRIPTION = ?, PRODUCT_ID = ?, MAX_PRICE = ?, "
 			+ " STATUS = ?, EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, "
 			+ " DELIVERY = ?, PACKAGING = ? "
+			+ " WHERE ID = ? ";
+	
+	private static final String UPDATE_TENDER_BY_ID_AND_CUSTOMER = 
+			  " UPDATE TENDER "
+			+ " SET DESCRIPTION = ?, PRODUCT_ID = ?, MAX_PRICE = ?, "
+			+ " STATUS = ?, EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, "
+			+ " DELIVERY = ?, PACKAGING = ? "
 			+ " WHERE ID = ? AND CUSTOMER_ID = ? ";
 	
 	private static final String GET_TENDER_BY_ID = 
@@ -124,7 +131,7 @@ public class TenderDaoImpl implements TenderDao{
 	@Override
 	public boolean update(Tender tender, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return	template.update(UPDATE_TENDER_BY_ID, 
+		return	template.update(UPDATE_TENDER_BY_ID_AND_CUSTOMER, 
 				tender.getDescription(), 
 				tender.getProductId(),
 				tender.getMaxPrice(), 
@@ -199,14 +206,13 @@ public class TenderDaoImpl implements TenderDao{
 				ps.setString(1, tender.getDescription());
 				ps.setLong(2, tender.getProductId());
 				ps.setDouble(3, tender.getMaxPrice());
-				ps.setLong(4, tender.getCustomerId());
-				ps.setString(5, tender.getStatus().name());
-				ps.setDate(6, new Date(tender.getExpDate().getTime()));
-				ps.setInt(7, tender.getMaxVolume());
-				ps.setInt(8, tender.getMinVolume());
-				ps.setInt(9, tender.getDelivery());
-				ps.setInt(10, tender.getPackaging());
-				ps.setLong(11, tender.getId());
+				ps.setString(4, tender.getStatus().name());
+				ps.setDate(5, new Date(tender.getExpDate().getTime()));
+				ps.setInt(6, tender.getMaxVolume());
+				ps.setInt(7, tender.getMinVolume());
+				ps.setInt(8, tender.getDelivery());
+				ps.setInt(9, tender.getPackaging());
+				ps.setLong(10, tender.getId());
 			}
 		});
 	}
