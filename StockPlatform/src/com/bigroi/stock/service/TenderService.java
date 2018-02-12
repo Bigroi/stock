@@ -10,14 +10,14 @@ public interface TenderService {
 	
 	List<Tender> getMyList(long companyId) throws ServiceException;
 	
-	void  delete(List<Long> ids, long companyId) throws ServiceException;
+	void  delete(long id, long companyId) throws ServiceException;
 	
 	void merge(Tender tender, long companyId) throws ServiceException;
 
-	void activate(List<Long> ids, long companyId) throws ServiceException;
+	void activate(long id, long companyId) throws ServiceException;
 
 	List<Tender> getByProduct(int productId) throws ServiceException;
 	
-	void deactivate(List<Long> ids, long companyId) throws ServiceException;
+	void deactivate(long id, long companyId) throws ServiceException;
 
 }

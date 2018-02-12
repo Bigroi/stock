@@ -24,59 +24,75 @@ function getFormData(formContainer){
 	return data;
 }
 
-function sendFormData(formContainer, url, successFunction) {
-	if (formContainer.find("form")[0].checkValidity()){
+function sendFormData(formContainer, submitFunction, login) {
+	if (formContainer[0].checkValidity()){
 		var data = getFormData(formContainer);
 		
-		//XXX fix for Login to redo
 		var param;
-		if (url.indexOf("Login") >= 0){
-			console.log(data);
+		if (login){
 			param = JSON.parse(data);
 		} else {
 			param = {json:data};
 		}
-		
-		$.post(url, param, function(answer){
-			successFunction(answer);
-		}, "json");
+		submitFunction(formContainer, param);
 		return false;
 	} else {
 		return true;
 	}
 };
 
-function processRequestResult(answer, messageDiv){
+function processRequestResult(formContainer, answer, messageDiv){
 	if (answer.result > 0){
 		messageDiv.css("background-color", "green");
+		setFormInputs(formContainer, answer.data);
 	} else if (answer.result < 0){
 		messageDiv.css("background-color", "red");
 	} else {
 		document.location = answer.data;
 		return 0;
 	}
-	messageDiv.text(answer.data);
+	messageDiv.text(answer.message);
 	messageDiv[0].scrollIntoView(true);
 	return answer.result;
 }
 
 function setFormData(formContainer, url, params, afterLoad){
 	$.post(url, params, function(answer){
-		var formElementNames = ["input", "select", "textarea"];
-		for (var i =0; i < formElementNames.length; i++){
-			var formElementName = formElementNames[i];
-			var formElements = formContainer.find(formElementName);
-			for(var j = 0; j < formElements.length; j++){
-				var name = formElements[j].getAttribute("name");
-				if (answer.data[name]){
-					formElements[j].value = answer.data[name];
-				}
-			}
-		}
+		setFormInputs(formContainer, answer.data);
 		if (afterLoad){
 			afterLoad(answer.data);
 		}
 	}, "json");
+}
+
+function setFormInputs(formContainer, object){
+	var formElementNames = ["input", "select", "textarea"];
+	for (var i =0; i < formElementNames.length; i++){
+		var formElementName = formElementNames[i];
+		var formElements = formContainer.find(formElementName);
+		for(var j = 0; j < formElements.length; j++){
+			var name = formElements[j].getAttribute("name");
+			if (object[name]){
+				formElements[j].value = object[name];
+			}
+		}
+	}
+}
+
+function updateTable(table, model, idColumnValue, object){
+	if (idColumnValue == "" || idColumnValue == -1){
+		table.row.add(object).draw();
+	} else {
+		table.rows().every( function () {
+		    var d = this.data();
+		    if (d[model.idColumn] == idColumnValue){
+		    	this.data(object);
+		    	return;
+		    }
+		    this.invalidate();
+		} );
+		table.draw();
+	}
 }
 
 //form functions
@@ -88,41 +104,50 @@ function setLoginDialogPlugin(element){
 		{
 			text: window.l10n["label.button.login"],
 			id:"login",
-			url:"/account/json/Login.spr",
-			close:true 
+			submit:function(formContainer, params){
+				$.post("/account/json/Login.spr", params, function(answer){
+					answer = JSON.parse(answer);
+					processRequestResult(formContainer, answer, $('.dialogbox-message'));
+				});
+			},
+			login:true
 		},
 		{
 			text: window.l10n["label.button.reset"],
 			id:"reset",
-			url:"/account/json/ResetPassword.spr",
-			close:false 
-		},
-		{
-			text: window.l10n["label.button.cancel"],
-			id:"cancel",
-			close:true
+			submit:function(formContainer, params){
+				$.post("/account/json/ResetPassword.spr", params, function(answer){
+					answer = JSON.parse(answer);
+					processRequestResult(formContainer, answer, $('.dialogbox-message'));
+				});
+			}
 		}], 
 						
 	});
 }
 
-function setLotDialogPlugin(element, id){
+function setLotDialogPlugin(element, table, model, id){
 	var buttons = [{
 		text: window.l10n["label.button.save"],
 		id:"save",
-		url:"/lot/json/Save.spr",
-		close:true 
+		submit:function(formContainer, params){
+			var idColumnValue = JSON.parse(params.json)[model.idColumn];
+			$.post("/lot/json/Save.spr", params, function(answer){
+				processRequestResult(formContainer, answer, $('.dialogbox-message'));
+				updateTable(table, model, idColumnValue, answer.data);
+			});
+		}
 	},
 	{
 		text: window.l10n["label.button.save_start_trading"],
 		id:"save-start-trading",
-		url:"/lot/json/SaveAndActivate.spr",
-		close:true
-	},
-	{
-		text: window.l10n["label.button.cancel"],
-		id:"cancel",
-		close:true
+		submit:function(formContainer, params){
+			var id = params[model.idColumn];
+			$.post("/lot/json/SaveAndActivate.spr", params, function(answer){
+				processRequestResult(formContainer, answer, $('.dialogbox-message'));
+				updateTable(table, model, id, answer.data);
+			});
+		}
 	}];
 	
 	element.dialogbox({
@@ -135,23 +160,28 @@ function setLotDialogPlugin(element, id){
 	});
 }
 
-function setTenderDialogPlugin(element, id){
+function setTenderDialogPlugin(element, table, model, id){
 	var buttons = [{
 		text: window.l10n["label.button.save"],
 		id:"save",
-		url:"/tender/json/Save.spr",
-		close:true 
+		submit:function(formContainer, params){
+			var idColumnValue = JSON.parse(params.json)[model.idColumn];
+			$.post("/tender/json/Save.spr", params, function(answer){
+				processRequestResult(formContainer, answer, $('.dialogbox-message'));
+				updateTable(table, model, idColumnValue, answer.data);
+			});
+		}
 	},
 	{
 		text: window.l10n["label.button.save_start_trading"],
 		id:"save-start-trading",
-		url:"/tender/json/SaveAndActivate.spr",
-		close:true
-	},
-	{
-		text: window.l10n["label.button.cancel"],
-		id:"cancel",
-		close:true
+		submit:function(formContainer, params){
+			var idColumnValue = JSON.parse(params.json)[model.idColumn];
+			$.post("/tender/json/SaveAndActivate.spr", params, function(answer){
+				processRequestResult(formContainer, answer, $('.dialogbox-message'));
+				updateTable(table, model, idColumnValue, answer.data);
+			});
+		}
 	}];
 	
 	element.dialogbox({
@@ -164,23 +194,28 @@ function setTenderDialogPlugin(element, id){
 	});
 }
 
-function setProductDialogPlugin(element, id){
+function setProductDialogPlugin(element, table, model, id){
 	var buttons = [{
 		text: window.l10n["label.button.save"],
 		id:"save",
-		url:"/product/json/admin/Save.spr",
-		close:true 
+		submit:function(formContainer, params){
+			var idColumnValue = JSON.parse(params.json)[model.idColumn];
+			$.post("/product/json/admin/Save.spr", params, function(answer){
+				processRequestResult(formContainer, answer, $('.dialogbox-message'));
+				updateTable(table, model, idColumnValue, answer.data);
+			});
+		}
 	},
 	{
 		text: window.l10n["label.button.delete"],
 		id:"delete",
-		url:"/product/json/admin/Delete.spr",
-		close:true 
-	},
-	{
-		text: window.l10n["label.button.cancel"],
-		id:"cancel",
-		close:true
+		submit:function(formContainer, params){
+			var idColumnValue = JSON.parse(params.json)[model.idColumn];
+			$.post("/product/json/admin/Delete.spr", params, function(answer){
+				processRequestResult(formContainer, answer, $('.dialogbox-message'));
+				updateTable(table, model, idColumnValue, answer.data);
+			});
+		}
 	}];
 	
 	element.dialogbox({

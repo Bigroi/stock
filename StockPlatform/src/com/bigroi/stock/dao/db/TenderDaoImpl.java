@@ -184,16 +184,9 @@ public class TenderDaoImpl implements TenderDao{
 	}
 
 	@Override
-	public void setStatusById(List<Long> ids, long companyId, BidStatus status) throws DaoException {
+	public void setStatusById(long id, long companyId, BidStatus status) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.batchUpdate(UPDATE_STATUS_BY_ID, ids, ids.size(), new ParameterizedPreparedStatementSetter<Long>() {
-			@Override
-			public void setValues(PreparedStatement ps, Long id) throws SQLException {
-				ps.setString(1, status.name());
-				ps.setLong(2, id);
-				ps.setLong(3, companyId);
-			}
-		});
+		template.update(UPDATE_STATUS_BY_ID, status.name(), id, companyId);
 	}
 	
 	@Override
@@ -219,14 +212,8 @@ public class TenderDaoImpl implements TenderDao{
 	}
 
 	@Override
-	public void delete(List<Long> ids, long companyId) throws DaoException {
+	public void delete(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.batchUpdate(DELETE_BY_ID, ids, ids.size(), new ParameterizedPreparedStatementSetter<Long>() {
-			@Override
-			public void setValues(PreparedStatement ps, Long id) throws SQLException {
-				ps.setLong(1, id);
-				ps.setLong(2, companyId);
-			}
-		});
+		template.update(DELETE_BY_ID, id, companyId);
 	}
 }

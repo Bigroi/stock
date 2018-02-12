@@ -1,4 +1,4 @@
-<div id = "labels">
+<div id = "labels" style="display: none;">
 label.deal.time
 label.deal.productName
 label.deal.partnerAddress
@@ -34,6 +34,24 @@ label.button.stop_trading
 label.button.save
 label.button.save_start_trading
 label.button.end_trading
+label.table.decimal
+label.table.emptyTable
+label.table.info
+label.table.infoEmpty
+label.table.infoFiltered
+label.table.infoPostFix
+label.table.thousands
+label.table.lengthMenu
+label.table.loadingRecords
+label.table.processing
+label.table.search
+label.table.zeroRecords
+label.table.paginate_first
+label.table.paginate_last
+label.table.paginate_next
+label.table.paginate_previous
+label.table.aria_sortAscending
+label.table.aria_sortDescending
 </div>
 <script>
 $("#labels").localization();

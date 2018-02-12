@@ -2,9 +2,7 @@ package com.bigroi.stock.controller.resource;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,9 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
-import com.bigroi.stock.json.Table;
 import com.bigroi.stock.json.TableException;
+import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -32,7 +31,7 @@ public class LotResourseController extends BaseResourseController {
 	public String form(@RequestParam(value = "id", defaultValue = "-1") long id) 
 			throws ServiceException {
 		Lot lot = ServiceFactory.getLotService().getLot(id, getUserCompanyId());
-		return new ResultBean(1, lot).toString();
+		return new ResultBean(1, lot, null).toString();
 	}
 	
 	@RequestMapping(value = "/MyList.spr")
@@ -40,8 +39,8 @@ public class LotResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String myList() throws ServiceException, TableException {
 		List<Lot> lots = ServiceFactory.getLotService().getBySellerId(getUserCompanyId());
-		Table<Lot> table = new Table<>(Lot.class, lots);
-		return new ResultBean(1, table).toString();
+		TableResponse<Lot> table = new TableResponse<>(Lot.class, lots);
+		return new ResultBean(1, table, null).toString();
 	}
 
 	@RequestMapping(value = "/Save.spr")
@@ -49,7 +48,7 @@ public class LotResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String save(@RequestParam("json") String jsonLot) 
 			throws ServiceException {
-		Lot lot = gson.fromJson(jsonLot, Lot.class);
+		Lot lot = GsonUtil.getGson().fromJson(jsonLot, Lot.class);
 		if (lot.getId() < 0) {
 			lot.setStatus(BidStatus.INACTIVE);
 		} else {
@@ -64,7 +63,7 @@ public class LotResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String saveAndActivate(@RequestParam("json") String json) 
 			throws ServiceException {
-		Lot lot = gson.fromJson(json, Lot.class);
+		Lot lot = GsonUtil.getGson().fromJson(json, Lot.class);
 		lot.setStatus(BidStatus.ACTIVE);
 		return save(lot);
 	}
@@ -72,42 +71,41 @@ public class LotResourseController extends BaseResourseController {
 	private String save(Lot lot) throws ServiceException{
 		List<String> errors = activationCheck(lot);
 		if (errors.size() > 0) {
-			return new ResultBean(-1, errors).toString();
+			String str = errors.toString().substring(1, errors.toString().length() - 2);
+			return new ResultBean(-1, str).toString();
 		}
 		
 		ServiceFactory.getLotService().merge(lot, getUserCompanyId());
-		return new ResultBean(0, "/lot/MyLots.spr").toString();
+		return new ResultBean(1, lot, "label.lot.save_success").toString();
 	}
 
 	@RequestMapping(value = "/StartTrading.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String startTrading(@RequestParam("json") String jsonLots) throws ServiceException {
-		Ids ids = gson.fromJson(jsonLots, Ids.class);
-		Set<String> errors = activationCheck(ids.getId());
+	public String startTrading(@RequestParam("id") long id) throws ServiceException {
+		List<String> errors = activationCheck(id);
 		if (errors.size() > 0) {
-			return new ResultBean(-1, errors).toString();
+			String str = errors.toString().substring(1, errors.toString().length() - 2);
+			return new ResultBean(-1, str).toString();
 		}
-		ServiceFactory.getLotService().activate(ids.getId(), getUserCompanyId());
-		return new ResultBean(0, "/lot/MyLots.spr").toString();
+		ServiceFactory.getLotService().activate(id, getUserCompanyId());
+		return new ResultBean(1, "success").toString();
 	}
 	
 	@RequestMapping(value = "/StopTrading.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String stopTrading(@RequestParam("json") String jsonLots) throws ServiceException {
-		Ids ids = gson.fromJson(jsonLots, Ids.class);
-		ServiceFactory.getLotService().deactivate(ids.getId(), getUserCompanyId());
-		return new ResultBean(0, "/lot/MyLots.spr").toString();
+	public String stopTrading(@RequestParam("id") long id) throws ServiceException {
+		ServiceFactory.getLotService().deactivate(id, getUserCompanyId());
+		return new ResultBean(1, "success").toString();
 	}
 
 	@RequestMapping(value = "/Delete.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String delete(@RequestParam("json") String jsonLots) throws ServiceException {
-		Ids ids = gson.fromJson(jsonLots, Ids.class);
-		ServiceFactory.getLotService().delete(ids.getId(), getUserCompanyId());
-		return new ResultBean(0, "/lot/MyLots.spr").toString();
+	public String delete(@RequestParam("id") long id) throws ServiceException {
+		ServiceFactory.getLotService().delete(id, getUserCompanyId());
+		return new ResultBean(1, "success").toString();
 	}
 	
 	private long getUserCompanyId(){
@@ -115,13 +113,9 @@ public class LotResourseController extends BaseResourseController {
 		return user.getCompanyId();
 	}
 	
-	private Set<String> activationCheck(List<Long> ids) throws ServiceException{
-		Set<String> errors = new HashSet<String>();
-		for (long id : ids){
-			Lot lot = ServiceFactory.getLotService().getLot(id, getUserCompanyId());
-			errors.addAll(activationCheck(lot));
-		}
-		return errors;
+	private List<String> activationCheck(long id) throws ServiceException{
+		Lot lot = ServiceFactory.getLotService().getLot(id, getUserCompanyId());
+		return activationCheck(lot);
 	}
 	
 	private List<String> activationCheck(Lot newLot){
@@ -149,18 +143,5 @@ public class LotResourseController extends BaseResourseController {
 			errors.add("lot.expDate.error");
 		}
 		return errors;
-	}
-	
-	public static class Ids{
-		private List<Long> id;
-		
-		public List<Long> getId() {
-			return id;
-		}
-		
-		public void setId(List<Long> id) {
-			this.id = id;
-		}
-		
 	}
 }

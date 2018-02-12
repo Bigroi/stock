@@ -3,14 +3,12 @@ package com.bigroi.stock.bean;
 import java.util.Date;
 
 import com.bigroi.stock.bean.common.BidStatus;
-import com.bigroi.stock.json.Button;
 import com.bigroi.stock.json.Column;
+import com.bigroi.stock.json.Edit;
 import com.bigroi.stock.json.Id;
+import com.bigroi.stock.json.Status;
 import com.bigroi.stock.util.DateUtil;
 
-@Button(url="/lot/json/StartTrading.spr", name="label.button.start_trading")
-@Button(url="/lot/json/StopTrading.spr", name="label.button.stop_trading")
-@Button(url="/lot/json/Delete.spr", name="label.button.delete")
 public class Lot implements Bid{
 	
 	@Id
@@ -22,6 +20,7 @@ public class Lot implements Bid{
 	private String description;
 	
 	@Column("label.lot.status")
+	@Status(activate="/lot/json/StartTrading.spr", deactivate="/lot/json/StopTrading.spr")
 	private BidStatus status;
 	
 	private long productId;	
@@ -45,6 +44,10 @@ public class Lot implements Bid{
 	private int delivery;
 	
 	private int packaging;
+	
+	@Column("label.lot.edit")
+	@Edit(edit="setLotDialogPlugin", remove="/lot/json/Delete.spr")
+	private String edit = "YY";
 	
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
@@ -158,6 +161,14 @@ public class Lot implements Bid{
 	
 	public void setPackaging(int packaging) {
 		this.packaging = packaging;
+	}
+	
+	public String getEdit() {
+		return edit;
+	}
+	
+	public void setEdit(String edit) {
+		this.edit = edit;
 	}
 
 	@Override

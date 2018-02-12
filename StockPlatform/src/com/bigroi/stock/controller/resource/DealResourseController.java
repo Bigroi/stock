@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.Deal;
 import com.bigroi.stock.bean.StockUser;
+import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
-import com.bigroi.stock.json.Table;
 import com.bigroi.stock.json.TableException;
+import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -31,7 +32,7 @@ public class DealResourseController extends BaseResourseController {
 		if (user.getCompanyId() != deal.getCustomerId() && user.getCompanyId() != deal.getSellerId()){
 			return new ResultBean(-1, "label.deal.not_authorized").toString();
 		} else {
-			return new ResultBean(1, deal).toString();
+			return new ResultBean(1, deal, "").toString();
 		}
 	}
 	
@@ -42,8 +43,8 @@ public class DealResourseController extends BaseResourseController {
 			throws ServiceException, TableException {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
 		List<Deal> deals = ServiceFactory.getDealService().getByUserId(userBean.getCompanyId());
-		Table<Deal> table = new Table<>(Deal.class, deals);
-		return new ResultBean(1, table).toString();
+		TableResponse<Deal> table = new TableResponse<>(Deal.class, deals);
+		return new ResultBean(1, table, "").toString();
 	}
 	
 	@RequestMapping(value = "/Approve.spr")
@@ -52,9 +53,9 @@ public class DealResourseController extends BaseResourseController {
 	public String approve(@RequestParam("json") String json, Authentication loggedInUser) 
 			throws ServiceException, TableException {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
-		Deal deal = gson.fromJson(json, Deal.class);
+		Deal deal = GsonUtil.getGson().fromJson(json, Deal.class);
 		if (ServiceFactory.getDealService().approve(deal.getId(), userBean.getCompanyId())){
-			return new ResultBean(1, "label.deal.approved").toString();
+			return new ResultBean(1, deal, "label.deal.approved").toString();
 		} else {
 			return new ResultBean(-1, "label.deal.not_authorized").toString();
 		}
@@ -66,10 +67,10 @@ public class DealResourseController extends BaseResourseController {
 	public String reject(@RequestParam("json") String json, Authentication loggedInUser) 
 			throws ServiceException, TableException {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
-		Deal deal = gson.fromJson(json, Deal.class);
+		Deal deal = GsonUtil.getGson().fromJson(json, Deal.class);
 		
 		if (ServiceFactory.getDealService().reject(deal.getId(), userBean.getCompanyId())){
-			return new ResultBean(1, "label.deal.rejected").toString();
+			return new ResultBean(1, deal, "label.deal.rejected").toString();
 		} else {
 			return new ResultBean(-1, "label.deal.not_authorized").toString();
 		}

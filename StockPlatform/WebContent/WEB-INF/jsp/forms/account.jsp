@@ -8,7 +8,6 @@
 			<input type="hidden" name="longitude">
 		    <ul>
 		        <li>
-		             <h2>${label.account.account}</h2>
 		        </li>
 		        <li>
 		            <label for="password">${label.account.password}</label>

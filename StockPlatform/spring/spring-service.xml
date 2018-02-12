@@ -34,6 +34,7 @@
 
 	<bean id="lotService" class="com.bigroi.stock.service.impl.LotServiceImpl">
 		<property name="lotDao" ref="lotDao" />
+		<property name="productDao" ref="productDao" />
 	</bean>
 
 	<bean id="productService" class="com.bigroi.stock.service.impl.ProductServiceImpl">
@@ -54,6 +55,7 @@
 
 	<bean id="tenderService" class="com.bigroi.stock.service.impl.TenderServiceImpl">
 		<property name="tenderDao" ref="tenderDao"></property>
+		<property name="productDao" ref="productDao" />
 	</bean>
 
 	<bean id="dealService" class="com.bigroi.stock.service.impl.DealServiceImpl">

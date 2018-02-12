@@ -14,6 +14,7 @@ import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.bean.common.Role;
+import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
@@ -28,7 +29,7 @@ public class AccountResourceController extends BaseResourseController {
 	public String accountPage(Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser) loggedInUser.getPrincipal();
 		Company company = ServiceFactory.getCompanyService().getCompanyById(user.getCompanyId());
-		return new ResultBean(1, company).toString();
+		return new ResultBean(1, company, "").toString();
 	}
 
 	@RequestMapping(value = "/Save.spr")
@@ -39,7 +40,7 @@ public class AccountResourceController extends BaseResourseController {
 			Authentication loggedInUser) throws ServiceException {
 
 		@SuppressWarnings("unchecked")
-		Map<String, String> map = gson.fromJson(json, Map.class);
+		Map<String, String> map = GsonUtil.getGson().fromJson(json, Map.class);
 		
 		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 		String password = map.get("password");
@@ -55,7 +56,7 @@ public class AccountResourceController extends BaseResourseController {
 		company.setLongitude(Double.parseDouble(map.get("longitude")));
 		ServiceFactory.getUserService().updateCompanyAndUser(user, company);
 		
-		return new ResultBean(1, "account.edit.success").toString();
+		return new ResultBean(1, map, "account.edit.success").toString();
 	}
 	
 	@RequestMapping(value = "/Registration.spr")
@@ -64,7 +65,7 @@ public class AccountResourceController extends BaseResourseController {
 			throws ServiceException {
 		
 		@SuppressWarnings("unchecked")
-		Map<String, String> map = gson.fromJson(json, Map.class);
+		Map<String, String> map = GsonUtil.getGson().fromJson(json, Map.class);
 		
 		StockUser user = new StockUser();
 		user.setUsername(map.get("username"));
@@ -91,14 +92,14 @@ public class AccountResourceController extends BaseResourseController {
 		company.setLongitude(Double.parseDouble(map.get("longitude")));
 		
 		ServiceFactory.getUserService().addUser(company, user, new Role[]{Role.ROLE_USER});
-		return new ResultBean(1, "registration.success").toString();
+		return new ResultBean(1, map, "registration.success").toString();
 	}
 	
 	@RequestMapping(value = "/ResetPassword.spr")
 	@ResponseBody
 	public String ResetPassword(@RequestParam("json") String json) throws ServiceException {
-		StockUser user = gson.fromJson(json, StockUser.class);
+		StockUser user = GsonUtil.getGson().fromJson(json, StockUser.class);
 		ServiceFactory.getUserService().resetPassword(user.getUsername());
-		return new ResultBean(1, "user.password.reset.success").toString();
+		return new ResultBean(1, user, "user.password.reset.success").toString();
 	}
 }

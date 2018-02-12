@@ -4,14 +4,12 @@ import java.text.ParseException;
 import java.util.Date;
 
 import com.bigroi.stock.bean.common.BidStatus;
-import com.bigroi.stock.json.Button;
 import com.bigroi.stock.json.Column;
+import com.bigroi.stock.json.Edit;
 import com.bigroi.stock.json.Id;
+import com.bigroi.stock.json.Status;
 import com.bigroi.stock.util.DateUtil;
 
-@Button(url="/tender/json/StartTrading.spr", name="label.button.start_trading")
-@Button(url="/tender/json/StopTrading.spr", name="label.button.stop_trading")
-@Button(url="/tender/json/Delete.spr", name="label.button.delete")
 public class Tender implements Bid{
 
 	@Id
@@ -25,6 +23,7 @@ public class Tender implements Bid{
 	private String description;
 	
 	@Column("label.tender.status")
+	@Status(activate="/tender/json/StartTrading.spr", deactivate="/tender/json/StopTrading.spr")
 	private BidStatus status;
 	
 	@Column(value = "label.tender.max_price", floatColumn = true)
@@ -47,6 +46,9 @@ public class Tender implements Bid{
 	
 	private int packaging;
 	
+	@Edit(edit="setTenderDialogPlugin", remove="/tender/json/Delete.spr")
+	@Column("label.tender.edit")
+	private String edit = "YY";
 	
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
@@ -182,4 +184,11 @@ public class Tender implements Bid{
 		return obj instanceof Tender && ((Tender)obj).getId() == this.getId();
 	}
 
+	public String getEdit() {
+		return edit;
+	}
+	
+	public void setEdit(String edit) {
+		this.edit = edit;
+	}
 }

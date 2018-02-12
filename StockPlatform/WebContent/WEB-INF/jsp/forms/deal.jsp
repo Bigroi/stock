@@ -9,7 +9,6 @@
 			<input type="hidden" name="id">
 		    <ul>
 		        <li>
-		             <h2>${label.deal.deal }</h2>
 		        </li>
 		        
 		        <li>

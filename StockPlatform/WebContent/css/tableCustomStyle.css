@@ -1,0 +1,80 @@
+div#main-table_wrapper {
+    overflow: auto;
+}
+table#main-table tr:nth-child(even) {
+    background-color: whitesmoke;
+} 
+table#main-table td {
+    border-bottom: 1px solid black;
+}
+table#main-table th {
+    text-align: left;
+    background-color: whitesmoke;
+    border-top: 1px solid black;
+}
+.swtitch-row-on {
+    box-sizing: border-box;
+    height: 30px;
+    width: 60px;
+    background-color: #50C878;
+    border-radius: 15px;
+    position: relative;     
+}
+.swtitch-row-on:after{
+    content: "";
+    box-sizing: border-box;
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border: 3px solid #50C878;
+    border-radius: 50%; 
+    position: absolute;
+}
+.swtitch-row-off {
+    box-sizing: border-box;
+    height: 30px;
+    width: 60px;
+    background-color: darkgray;
+    border-radius: 15px;
+    position: relative;     
+}
+.swtitch-row-off:after{
+    content: "";
+    box-sizing: border-box;
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border: 3px solid darkgray;
+    border-radius: 50%; 
+    position: absolute;
+    left: 30px;
+}
+.edit{
+    display: inline-block;
+    width: 50%;
+    height: 30px;
+    background-image: url(/img/edit-pencil.png);
+    background-size:  auto 100%;
+    background-repeat: no-repeat;
+    
+}
+.remove{
+    display: inline-block;
+    width: 50%;
+    height: 30px;
+    background-image: url(/img/remove-trash-can.png);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+.no-edit{
+    display: inline-block;
+    width: 50%;
+    height: 30px;
+    background-color: white;
+}
+table#main-table tr:nth-child(even) td>div.no-edit{
+    background-color: whitesmoke;
+} 	
+table#main-table tr:nth-child(even) td>div.no-remove{
+    background-color: whitesmoke;
+} 		

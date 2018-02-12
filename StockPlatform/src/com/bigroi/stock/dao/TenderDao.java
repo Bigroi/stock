@@ -24,10 +24,10 @@ public interface TenderDao {
 
 	boolean  setStatusByProductId(long productId, BidStatus status) throws DaoException;
 	
-	void setStatusById(List<Long> ids, long companyId, BidStatus status) throws DaoException;
+	void setStatusById(long id, long companyId, BidStatus status) throws DaoException;
 
 	void update(Collection<Tender> tendersToUpdate) throws DaoException;
 
-	void delete(List<Long> ids, long companyId) throws DaoException;
+	void delete(long id, long companyId) throws DaoException;
 
 }

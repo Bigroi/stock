@@ -1,11 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<h1>${label.companies.title}</h1>
-<div id = "tableContainer">	
-	<script>
-		$(function(){
-			$("#tableContainer").tableMaker("/company/json/admin/List.spr", "/company/admin/ChangeStatus.spr?id={id}");
-		});
-	</script>
+<div id = "table-container">
+    <table id = "main-table"></table>
 </div>
+<script>
+	makeTable("/company/json/admin/List.spr", $("#main-table"));
+</script>

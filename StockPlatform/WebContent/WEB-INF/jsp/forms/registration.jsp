@@ -7,9 +7,7 @@
 			<input type="hidden" name="latitude">
 			<input type="hidden" name="longitude">
 		    <ul>
-		        <li>
-		             <h2>${label.registration.registration}</h2>
-		        </li>
+		    	<li></li>
 		        <li>
 		            <label for="username">${label.registration.login}</label>
 		            <input type="email" name="username" placeholder="john_doe@example.com" required/>

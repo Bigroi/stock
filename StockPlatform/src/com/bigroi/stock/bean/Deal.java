@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.bigroi.stock.bean.common.DealStatus;
 import com.bigroi.stock.json.Column;
+import com.bigroi.stock.json.Edit;
 import com.bigroi.stock.json.Id;
 
 public class Deal {
@@ -43,6 +44,10 @@ public class Deal {
 	
 	@Column("label.deal.status")
 	private DealStatus status;
+	
+	@Column("")
+	@Edit(edit="/deal/Form.spr", remove="")
+	private String edit = "YN";
 	
 	public Deal(Lot lot, Tender tender, int volume) {
 		this.lotId = lot.getId();
@@ -249,4 +254,7 @@ public class Deal {
 		this.longitude = partnerLongitude;
 	}
 
+	public String getEdit() {
+		return edit;
+	}
 }

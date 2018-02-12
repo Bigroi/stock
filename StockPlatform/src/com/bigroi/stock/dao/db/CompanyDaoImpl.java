@@ -127,10 +127,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
 	public void setStatus(long id, CompanyStatus status) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(SET_STATUS_BY_ID, status.toString(), id);
+		template.update(SET_STATUS_BY_ID, status.name(), id);
 	}
-
-	
-	
 
 }

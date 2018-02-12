@@ -3,18 +3,25 @@ package com.bigroi.stock.service.impl;
 import java.util.List;
 
 import com.bigroi.stock.bean.Lot;
+import com.bigroi.stock.bean.Product;
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
+import com.bigroi.stock.dao.ProductDao;
 import com.bigroi.stock.service.LotService;
 import com.bigroi.stock.service.ServiceException;
 
 public class LotServiceImpl implements LotService {
 
 	private LotDao lotDao;
+	private ProductDao productDao;
 
 	public void setLotDao(LotDao lotDao) {
 		this.lotDao = lotDao;
+	}
+	
+	public void setProductDao(ProductDao productDao) {
+		this.productDao = productDao;
 	}
 
 	@Override
@@ -44,6 +51,8 @@ public class LotServiceImpl implements LotService {
 			} else {
 				lotDao.update(lot, companyId);
 			}
+			Product product = productDao.getById(lot.getProductId());
+			lot.setProductName(product.getName());
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -60,9 +69,9 @@ public class LotServiceImpl implements LotService {
 	}
 
 	@Override
-	public void activate(List<Long> ids, long companyId) throws ServiceException {
+	public void activate(long id, long companyId) throws ServiceException {
 		try {
-			lotDao.setStatusById(ids, companyId, BidStatus.ACTIVE);
+			lotDao.setStatusById(id, companyId, BidStatus.ACTIVE);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -70,9 +79,9 @@ public class LotServiceImpl implements LotService {
 	}
 
 	@Override
-	public void delete(List<Long> ids, long companyId) throws ServiceException {
+	public void delete(long id, long companyId) throws ServiceException {
 		try {
-			lotDao.delete(ids, companyId);
+			lotDao.delete(id, companyId);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -88,9 +97,9 @@ public class LotServiceImpl implements LotService {
 	}
 
 	@Override
-	public void deactivate(List<Long> ids, long companyId) throws ServiceException {
+	public void deactivate(long id, long companyId) throws ServiceException {
 		try {
-			lotDao.setStatusById(ids, companyId, BidStatus.INACTIVE);
+			lotDao.setStatusById(id, companyId, BidStatus.INACTIVE);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}

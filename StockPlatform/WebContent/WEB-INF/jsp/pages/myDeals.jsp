@@ -1,12 +1,7 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<div id="tender-form-container"></div>
-<h1>${label.myDeals.title}</h1>
-<div id = "tableContainer">	
-	<script>
-		$(function(){
-			$("#tableContainer").tableMaker("/deal/json/MyDeals.spr", "/deal/Form.spr?id={id}");
-		});
-	</script>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div id = "table-container">
+    <table id = "main-table"></table>
 </div>
+<script>
+	makeTable("/deal/json/MyDeals.spr", $("#main-table"));
+</script>

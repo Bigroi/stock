@@ -1,141 +1,144 @@
-'use strict'; 
-$.fn.tableMaker = function (srcTable, formPage) {
-		
-	var divToAdd = $(this);
-	var tableDiv = this;
-    	
-	$.getJSON(srcTable,  function (answer){ 
-		if(answer.result !== 1){
-			alert(answer.data);
-			return;
-		}
-		for(var key in answer.data.model.custSortFn){
-			eval(answer.data.model.custSortFn[key]);
-		}
-		divToAdd.append(createTable (answer));
-		tableDiv.find("table").tableSorter(answer.data.model); 
-	});	
+'use strict';
+function makeTable(url, tableElement){
 	
-	function _createTableHead(tHead, data){
-		var headers = data.headers;
-		var model = data.model;
+	var model;
+	
+	var tableData;
+	
+	var table;
+	
+	$.getJSON(url, function(answer){
+		model = answer.data.model;
 		
-		var tRow = $("<tr>");	
-		if ($("#button-container").length > 0 && model.buttons){
-			var th = $("<th>");
-			tRow.append(th);
+		tableData = answer.data.table;
+		tableData.rowCallback = rowCallback;
+		tableData.language = getLanguage();
+		tableData.initComplete = localizeHeader;
+		table = $(tableElement).DataTable(tableData);
+		
+		if ($(".add-button").length > 0){
+			var editForm = window[model.editForm];
+			editForm($(".add-button"), table, model);
 		}
-		for(var i = 0; i < headers.length; i++){
-			if(i == model.idColumn){
-				continue;
-			} 
-			var th = $("<th>");
-			var label = l10n[headers[i]];
-			if(label){
-				th.text(label);
-			}else{
-				th.text(headers[i]);
-			}
-			tRow.append(th);
+		table.draw();
+	});
+	
+	function rowCallback($row, data, index) {
+		var edit = data[model.editColumn];
+		
+		if (model.statusColumn){
+			addStatusSwitcher(data, $row);
 		}
-		tHead.append(tRow);	
+		
+		if(model.editColumn){
+			addEditRemoveIcons(data, $row);
+		}
 	}
 	
-	function _createTableRow(tBody, row, model){
-		var tRow = $("<tr>");
-		var idValue = row[model.idColumn];
-		_addEventListenerOnRow(tRow, idValue);
-		if ($("#button-container").length > 0 && model.buttons){
-			_addCheckbox(tRow, idValue)
-		}
-		for(var k = 0;  k < row.length; k++){
-			if(k == model.idColumn){
-				continue;
-			}
-			var td = $("<td>");
-            var tdContent = row[k];
-			var floatColumns = model.floatColumns;
-			if(floatColumns.indexOf(k) >= 0){
-				tdContent = tdContent*1;
-				tdContent = tdContent.toFixed(2);
-			}
-			td.text(tdContent);
-			tRow.append(td);
-		}
-		tBody.append(tRow);
+	function addEditRemoveIcons(data, $row){
+		var id = data[model.idColumn];
+		var $editRemove = getCell(model.editColumn, $row);
+        $editRemove.textContent = "";
+        
+        var $edit = $("<div class='no-edit'>");
+        var $remove = $("<div class='no-remove'>");
+        
+        if(data[model.editColumn][0] == "Y"){ 
+            $edit.removeClass("no-edit");
+            $edit.addClass("edit");
+            var editForm = window[model.editForm];
+            if (editForm){
+				editForm($edit, table, model, id);
+            } else {
+            	$edit.click(function(){document.location = model.editForm + "?id=" + id});
+            }
+        }
+		if(data[model.editColumn][1] == "Y"){ 
+            $remove.removeClass("no-remove");
+            $remove.addClass("remove");
+            $remove.click(function(event){
+            	 $.getJSON(
+            			 model.removeUrl, 
+            			 {id:id}, 
+            			 function(answer){
+            				 table.row($(event.target).parents('tr')).remove().draw();
+            				 console.log(answer)
+            			 }
+            	);
+            });
+        }
+		$editRemove.append($edit[0]);
+		$editRemove.append($remove[0]);
 	}
 	
-	function _addCheckbox(tRow, id){
-		var td = $("<td><input type='checkbox' value='" + id + "' name='id'></td>");
-		td.on("click", function(e){
-			var chk = $(this).closest("tr").find("input:checkbox").get(0);
-		    if(e.target != chk){
-		        chk.checked = !chk.checked;
+	function getCell(columnName, $row){
+		for (var i = 0; i < $row.children.length; i++){
+			if (tableData.columns[i].data == columnName){
+				return $row.children[i];
+			}
+		}
+	}
+	
+	function addStatusSwitcher(data, $row){
+		var id = data[model.idColumn];
+		
+		var $statusTd = getCell(model.statusColumn, $row);
+        var $switcher = $("<div class='swtitch-row-off'>");
+		if (data[model.statusColumn] == "ACTIVE"){
+			$switcher.removeClass("swtitch-row-off");
+			$switcher.addClass("swtitch-row-on");
+		}
+        $statusTd.textContent = "";
+        $switcher.click(function (event){
+        	var url = data[model.statusColumn] == "ACTIVE" ? 
+        			model.deactivateUrl : 
+        			model.activateUrl;
+        	$.getJSON(url, {id:id}, function(answer){
+        		if (answer.result > 0){	
+        			event.target.classList.toggle("swtitch-row-off");
+                    event.target.classList.toggle("swtitch-row-on");
+        			data[model.statusColumn] == "ACTIVE" ?
+        					data[model.statusColumn] = "INACTIVE" :
+        					data[model.statusColumn] = "ACTIVE";
+        		}
+        	});
+        });
+        $statusTd.append($switcher[0]);
+	}
+
+	function getLanguage(){
+		return {
+		    decimal:		window.l10n["label.table.decimal"],
+		    emptyTable:		window.l10n["label.table.emptyTable"],
+		    info:			window.l10n["label.table.info"],
+		    infoEmpty:		window.l10n["label.table.infoEmpty"],
+		    infoFiltered:	window.l10n["label.table.infoFiltered"],
+		    infoPostFix:	window.l10n["label.table.infoPostFix"],
+		    thousands:		window.l10n["label.table.thousands"],
+		    lengthMenu:		window.l10n["label.table.lengthMenu"],
+		    loadingRecords:	window.l10n["label.table.loadingRecords"],
+		    processing:		window.l10n["label.table.processing"],
+		    search:			window.l10n["label.table.search"],
+		    zeroRecords:	window.l10n["label.table.zeroRecords"],
+		    paginate: {
+		        first:		window.l10n["label.table.paginate_first"],
+		        last:		window.l10n["label.table.paginate_last"],
+		        next:		window.l10n["label.table.paginate_next"],
+		        previous:	window.l10n["label.table.paginate_previous"]
+		    },
+		    aria: {
+		        sortAscending:	window.l10n["label.table.aria_sortAscending"],
+		        sortDescending:	window.l10n["label.table.aria_sortAscending"]
 		    }
-		    event.stopPropagation();
+		}
+	}
+	
+	
+	function localizeHeader(){
+		this.api().columns().every(function() {
+			var column = this;
+			var $header = $(column.header());
+			$header[0].textContent = window.l10n[$header[0].textContent];
 		});
-		tRow.append(td);
-	}
-	
-	function _addEventListenerOnRow(tRow, id){
-		if (typeof(formPage) === "string"){
-			var formUrl = formPage.replace("{id}", id); 
-			tRow.attr("href", formUrl);
-		} else {
-			formPage(tRow, id);
-		}
-	}
-	
-	function _createTableBody(tBody, data){
-		for(var j = 0; j < data.rows.length; j++){
-			_createTableRow(tBody, data.rows[j], data.model);
-		}
-	}
-	
-	function _addEventListener(tBody){
-		tBody.on("click", function (e){
-			if (e.target.parentNode.getAttribute("href")){
-				document.location.href = e.target.parentNode.getAttribute("href");
-			}
-		});	
-	}
-	
-	function _addButtons(buttons){
-		for (var i = 0; i < buttons.length; i++){
-			var button = $("<button class='submit' url='" + buttons[i].url + "'>"
-								+ window.l10n[buttons[i].name] + 
-							"</button>");
-			button.on("click", function(e){
-				return sendFormData($("#table-form-container"), $(e.target).attr("url"), function(answer){
-					if (answer.result < 0){
-						alert(answer.data);
-					} else {
-						document.location = answer.data;
-					}
-				});
-			});
-			$("#button-container").append(button);
-		}
-	}
-	
-	function createTable (dataObj) {
-		var buttonContainer = $("#button-container");
-		var table = $("<table class='baseTable'>");
-		var tHead = $("<thead>");
-		var tBody = $("<tbody>");
-		var ceckboxColumn = $("#button-container").length > 0 && dataObj.data.model.buttons;
-		
-		_createTableHead(tHead, dataObj.data);
-		_createTableBody(tBody, dataObj.data)
-		_addEventListener(tBody)
-		
-		table.append(tHead);
-		table.append(tBody);
-		
-		if ($("#button-container").length > 0 && dataObj.data.model.buttons){
-			_addButtons(dataObj.data.model.buttons);
-		}
-		
-		return table;
 	}
 }

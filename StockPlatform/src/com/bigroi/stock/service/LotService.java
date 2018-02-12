@@ -10,13 +10,13 @@ public interface LotService {
 	
 	List<Lot> getBySellerId(long salerId) throws ServiceException;
 	
-	void activate(List<Long> ids, long companyId) throws ServiceException;
+	void activate(long id, long companyId) throws ServiceException;
 	
-	void delete(List<Long> ids, long companyId) throws ServiceException;
+	void delete(long id, long companyId) throws ServiceException;
 	
 	void merge(Lot lot, long companyId) throws ServiceException;
 
 	List<Lot> getByProduct(int productId) throws ServiceException;
 	
-	void deactivate(List<Long> ids, long companyId) throws ServiceException;
+	void deactivate(long id, long companyId) throws ServiceException;
 }

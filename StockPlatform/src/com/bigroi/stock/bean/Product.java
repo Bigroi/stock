@@ -1,10 +1,9 @@
 package com.bigroi.stock.bean;
 
 import com.bigroi.stock.json.Column;
+import com.bigroi.stock.json.Edit;
 import com.bigroi.stock.json.Id;
-import com.bigroi.stock.json.TableRow;
 
-@TableRow
 public class Product {
 	
 	@Id
@@ -18,6 +17,11 @@ public class Product {
 	
 	@Column("label.product.archive")
 	private String archive;
+	
+	
+	@Edit(edit="setProductDialogPlugin", remove="/product/json/admin/Delete.spr")
+	@Column("label.product.edit")
+	private String edit = "YN";
 	
 	public String getArchive(){
 		return archive;
@@ -57,5 +61,7 @@ public class Product {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", archive=" +archive +"] \n";
 	}
 	
-	
+	public String getEdit() {
+		return edit;
+	}
 }

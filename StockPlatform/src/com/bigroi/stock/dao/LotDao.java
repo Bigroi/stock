@@ -22,9 +22,9 @@ public interface LotDao {
 
 	void update(Collection<Lot> lotsToUpdate) throws DaoException;
 
-	void delete(List<Long> ids, long companyId) throws DaoException;
+	void delete(long id, long companyId) throws DaoException;
 
-	boolean setStatusById(List<Long> id, long companyId, BidStatus active) throws DaoException;
+	boolean setStatusById(long id, long companyId, BidStatus active) throws DaoException;
 
 	boolean setStatusBySellerId(long companyId, BidStatus inactive) throws DaoException;
 

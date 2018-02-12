@@ -2,7 +2,6 @@
 window.l10n = { };
 $.fn.localization = function(){
   	var labels = this[0].textContent.split("\n");
-	console.log({json: labels});
     $.ajax("/l10n/json/Labels.spr",{
     	type: "POST",
     	data: {json: JSON.stringify(labels)}, 

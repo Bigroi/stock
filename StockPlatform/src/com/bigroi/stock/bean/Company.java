@@ -6,6 +6,7 @@ import java.util.List;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Id;
+import com.bigroi.stock.json.Status;
 
 public class Company {
 
@@ -28,6 +29,8 @@ public class Company {
 	private String address;
 	
 	@Column("label.account.status")
+	@Status(activate="/company/json/admin/ChangeStatus.spr", 
+			deactivate="/company/json/admin/ChangeStatus.spr")
 	private CompanyStatus status;
 	
 	private double longitude;

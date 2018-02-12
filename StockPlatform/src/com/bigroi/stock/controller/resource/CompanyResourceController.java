@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.json.ResultBean;
-import com.bigroi.stock.json.Table;
 import com.bigroi.stock.json.TableException;
+import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -24,8 +24,8 @@ public class CompanyResourceController extends BaseResourseController {
 	@Secured(value = {"ROLE_ADMIN"})
 	public String getListCompanyAll() throws ServiceException, TableException {
 		List<Company> list = ServiceFactory.getCompanyService().getAllCompanies();
-		Table<Company> table = new Table<>(Company.class, list);
-		return new ResultBean(1, table).toString();
+		TableResponse<Company> tableResponse = new TableResponse<>(Company.class, list);
+		return new ResultBean(1, tableResponse, "").toString();
 	}
 
 	@RequestMapping("/ChangeStatus.spr")

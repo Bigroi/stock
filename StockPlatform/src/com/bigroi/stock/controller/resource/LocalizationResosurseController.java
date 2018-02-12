@@ -38,7 +38,7 @@ public class LocalizationResosurseController extends BaseRenderingController{
 				result.put(key.toString(), key.toString());
 			}
 		}
-		return new ResultBean(1, result).toString();
+		return new ResultBean(1, result, "").toString();
 	}
 
 }

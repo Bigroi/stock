@@ -174,17 +174,9 @@ public class LotDaoImpl implements LotDao {
 
 	
 	@Override
-	public boolean setStatusById(List<Long> ids, long companyId, BidStatus status) throws DaoException {
+	public boolean setStatusById(long id, long companyId, BidStatus status) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.batchUpdate(SET_STATUS_BY_ID, ids, ids.size(), new ParameterizedPreparedStatementSetter<Long>() {
-			@Override
-			public void setValues(PreparedStatement ps, Long id) throws SQLException {
-				ps.setString(1, status.name());
-				ps.setLong(2, id);
-				ps.setLong(3, companyId);
-			}
-		});
-		return true;
+		return template.update(SET_STATUS_BY_ID, status.name(), id, companyId) == 1;
 	}
 
 	@Override
@@ -211,14 +203,8 @@ public class LotDaoImpl implements LotDao {
 	}
 
 	@Override
-	public void delete(List<Long> ids, long companyId) throws DaoException {
+	public void delete(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.batchUpdate(DELETE_BY_ID, ids, ids.size(), new ParameterizedPreparedStatementSetter<Long>() {
-			@Override
-			public void setValues(PreparedStatement ps, Long id) throws SQLException {
-				ps.setLong(1, id);
-				ps.setLong(2, companyId);
-			}
-		});
+		template.update(DELETE_BY_ID, id, companyId);
 	}
 }

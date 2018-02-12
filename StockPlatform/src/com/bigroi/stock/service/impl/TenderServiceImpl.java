@@ -2,9 +2,11 @@ package com.bigroi.stock.service.impl;
 
 import java.util.List;
 
+import com.bigroi.stock.bean.Product;
 import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.dao.DaoException;
+import com.bigroi.stock.dao.ProductDao;
 import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.TenderService;
@@ -12,6 +14,11 @@ import com.bigroi.stock.service.TenderService;
 public class TenderServiceImpl implements TenderService{
 	
 	private TenderDao tenderDao;
+	private ProductDao productDao;
+	
+	public void setProductDao(ProductDao productDao) {
+		this.productDao = productDao;
+	}
 	
 	public void setTenderDao(TenderDao tenderDao) {
 		this.tenderDao = tenderDao;
@@ -45,9 +52,9 @@ public class TenderServiceImpl implements TenderService{
 	}
 
 	@Override
-	public void delete(List<Long> ids, long companyId) throws ServiceException {
+	public void delete(long id, long companyId) throws ServiceException {
 		try{
-			tenderDao.delete(ids, companyId);
+			tenderDao.delete(id, companyId);
 		}catch(DaoException e){
 			throw new ServiceException(e);
 		}
@@ -62,6 +69,9 @@ public class TenderServiceImpl implements TenderService{
 			} else {
 				tenderDao.update(tender, companyId);
 			}
+			Product product = productDao.getById(tender.getProductId());
+			tender.setProductName(product.getName());
+			
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -69,9 +79,9 @@ public class TenderServiceImpl implements TenderService{
 	}
 
 	@Override
-	public void activate(List<Long> ids, long companyId) throws ServiceException {
+	public void activate(long id, long companyId) throws ServiceException {
 		try{
-			tenderDao.setStatusById(ids, companyId, BidStatus.ACTIVE);
+			tenderDao.setStatusById(id, companyId, BidStatus.ACTIVE);
 		}catch(DaoException e){
 			throw new ServiceException(e);
 		}
@@ -87,9 +97,9 @@ public class TenderServiceImpl implements TenderService{
 	}
 
 	@Override
-	public void deactivate(List<Long> ids, long companyId) throws ServiceException {
+	public void deactivate(long id, long companyId) throws ServiceException {
 		try{
-			tenderDao.setStatusById(ids, companyId, BidStatus.INACTIVE);
+			tenderDao.setStatusById(id, companyId, BidStatus.INACTIVE);
 		}catch(DaoException e){
 			throw new ServiceException(e);
 		}

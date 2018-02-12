@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
 	private static final String LOAD_USER_BY_JOIN_TABLES = "SELECT USER.ID, USER.COMPANY_ID, USER.USERNAME, USER.PASSWORD, USER_ROLE.ROLE "
 			+ " FROM  USER "
 			+ " INNER JOIN COMPANY "
-			+ " ON USER.COMPANY_ID = COMPANY.ID AND COMPANY.`STATUS` = '" + CompanyStatus.VERIFIED +"' "
+			+ " ON USER.COMPANY_ID = COMPANY.ID AND COMPANY.`STATUS` = '" + CompanyStatus.VERIFIED.name() +"' "
 			+ " LEFT JOIN USER_ROLE "
 			+ " ON USER.ID = USER_ROLE.USER_ID "
 			+ " WHERE USER.USERNAME = ? ";
