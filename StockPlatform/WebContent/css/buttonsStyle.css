@@ -37,7 +37,8 @@ button.submit:active {
 	-o-box-shadow: 0 0 10px 5px #356b0b inset;
 }
 button[disabled] {
-	display: none;
+	background: red;
+	border: 1px solid red;
 	}
 
 	

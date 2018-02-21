@@ -63,7 +63,7 @@
 		</form>	
 	</div>
 	<div style="width: 5%; display: table-cell;"></div>
-	<div style="width: 55%; height: 100%;position:relative; display: table-cell;">
+	<div style="width: 55%; height: 100%;position:relative; display: table-cell;" id="map-mob">
 		<div style="bottom:0;top: 0;right: 0; left: 0; position: absolute;">
 			<div id="map" style="width: 100%; height: 100%"></div>
 		</div>

@@ -5,8 +5,15 @@ $(document).ready(function(){
 	  $(".section").toggleClass("section-hidden");
 	});
 	
+	$(document).on('click', function(e) {
+		  if (!$(e.target).closest(".aside").length) {
+		    $('.aside nav.main-menu, .bgdark').fadeOut();
+		  }
+		  e.stopPropagation();
+	});
+	
 
-})
+});
 
 
 

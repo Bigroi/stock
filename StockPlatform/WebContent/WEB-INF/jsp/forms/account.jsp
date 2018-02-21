@@ -1,6 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div style="display: table; width:100%" id="account-mob">
+<div style="display: table; width:100%" id="table-style-mob">
 	<div style="display: table-cell; width: 40%" id="form-container">
 		<div class="form-message"></div>
 		<form class="form" action="#" method="post" name="form">

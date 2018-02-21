@@ -19,9 +19,7 @@ body{
 	justify-content: space-between;
 	align-items: center;
     background-color: #00aecc;
-    width: 15%;
-    min-width: 170px;
-    max-width: 220px;
+    width: 220px;
 	color: white;
     text-align: center;
     position: fixed;
@@ -76,7 +74,7 @@ body{
     width: 85%;
     height: 100%;
     padding: 0 3% 0 3%;
-    margin-left: 170px;
+    margin-left: 220px;
 }
 .section .login {
     display: flex;
@@ -182,13 +180,15 @@ form.form {
 .burger {
 	display: none;
 }
-/*@media (max-width:768px){
-  .section .login{
-    flex-direction: column;
-    align-items: flex-end;
+@media (max-width:768px){
+  .aside{
+    width: 170px;
   }
+  .section {
+    margin-left: 170px;
+}
   
-}*/
+}
 @media (max-width:375px){
   .section{
     margin-left: 0;
@@ -272,7 +272,8 @@ form.form {
 	.content p {
 		text-align: center;
 	}
-	#account-mob > div {
+	#table-style-mob > div,
+	#form-container > div {
 		wigth: 100% !important;
 		display: table-row !important;
 	}
@@ -282,6 +283,9 @@ form.form {
     	height: 270px !important;
     	position: absolute !important;
     	top: 925px !important;
+	}
+	#form-container #map-mob {
+		top: 980px !important;
 	}
 	.dialogbox .dialogbox-Content {
 		margin-bottom: 210px !important;
