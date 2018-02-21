@@ -21,7 +21,7 @@ public class SuccessDealMessageForSeller extends BaseMessage<Deal>{
 	
 	@Override
 	protected String getText() throws MessageException {
-		return super.getText().replaceAll("@id", getDataObject().getLotId() + "");
+		return super.getText().replaceAll("@id", getDataObject().getProductName() + "");
 	}
 	
 }

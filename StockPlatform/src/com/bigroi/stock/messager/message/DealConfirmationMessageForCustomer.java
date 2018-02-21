@@ -23,21 +23,13 @@ public class DealConfirmationMessageForCustomer extends BaseMessage<Deal> {
 
 	@Override
 	protected String getText() throws MessageException {
-		try{
-			Deal deal = getDataObject();
-			Tender tender = ServiceFactory.getTenderService().getTender(deal.getTenderId(), -1);
-			String customerLink = "";
-//					MessagerFactory.getLink().getCustomerConfirmationLink() + "?id=" + deal.getId()
-//			+ "&key=" + deal.getCustomerId() + "&action=";
-			
-			return super.getText().replaceAll("@tenderId", deal.getTenderId() + "")
-					.replaceAll("@tenderDate", tender.getDateStr())
-					.replaceAll("@tenderPrice", tender.getMaxPrice() + "")
-					.replaceAll("@price", deal.getPrice() + "")
-					.replaceAll("@customerLinkApprove", customerLink + Action.APPROVE) 
-					.replaceAll("@customerLinkCancel", customerLink + Action.CANCEL);
-		}catch (ServiceException e) {
-			throw new MessageException(e);
-		}
+		Deal deal = getDataObject();
+		String customerLink = "";
+		
+		return super.getText().replaceAll("@tenderId", deal.getProductName() + "")
+				.replaceAll("@price", deal.getPrice() + "")
+				.replaceAll("@price", deal.getPrice() + "")
+				.replaceAll("@customerLinkApprove", customerLink + Action.APPROVE) 
+				.replaceAll("@customerLinkCancel", customerLink + Action.CANCEL);
 	}
 }

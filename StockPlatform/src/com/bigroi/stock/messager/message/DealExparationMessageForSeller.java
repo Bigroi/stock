@@ -13,7 +13,7 @@ public class DealExparationMessageForSeller extends BaseMessage<Deal>{
 	@Override
 	protected String getText() throws MessageException {
 		return super.getText()
-				.replaceAll("@id", getDataObject().getTenderId() + "");
+				.replaceAll("@id", getDataObject().getProductName() + "");
 	}
 	
 	@Override

@@ -26,10 +26,8 @@ public class Deal {
 	@Column("label.deal.productName")
 	private String productName;
 	
-	@Column("label.deal.partnerAddress")
 	private String partnerAddress;
 	
-	@Column("label.deal.partnerComment")
 	private String partnerComment;
 	
 	private String partnerPhone;

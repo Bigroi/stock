@@ -79,7 +79,7 @@ public class DealServiceImpl implements DealService{
 			} else {
 				return false;
 			}
-			addBlackList(deal.getLotId(), deal.getTenderId());
+//			addBlackList(deal.getLotId(), deal.getTenderId());
 			setVolumeBack(deal);
 			dealDao.update(deal);
 			return true;

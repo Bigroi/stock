@@ -24,21 +24,13 @@ public class DealConfirmationMessageForSeller extends BaseMessage<Deal> {
 
 	@Override
 	protected String getText() throws MessageException {
-		try{
-			Deal deal = getDataObject();
-			Lot lot = ServiceFactory.getLotService().getLot(deal.getLotId(), -1);
-			String sellerLink = "";
-//			MessagerFactory.getLink().getSellerConfirmationLink() + "?id=" + deal.getId() + "&key="
-//					+ deal.getSellerId() + "&action=";
-			return super.getText()
-					.replaceAll("@lotId", deal.getLotId() + "")
-					.replaceAll("@lotDate", Bid.FORMATTER.format(lot.getExpDate()))
-					.replaceAll("@lotPrice", lot.getMinPrice() + "")
-					.replaceAll("@price", deal.getPrice() + "")
-					.replaceAll("@sellerLinkApprove", sellerLink + Action.APPROVE)
-					.replaceAll("@sellerLinkCancel", sellerLink + Action.CANCEL);
-		}catch (ServiceException e) {
-			throw new MessageException(e);
-		}
+		Deal deal = getDataObject();
+		String sellerLink = "";
+		return super.getText()
+				.replaceAll("@lotId", deal.getProductName() + "")
+				.replaceAll("@price", deal.getPrice() + "")
+				.replaceAll("@price", deal.getPrice() + "")
+				.replaceAll("@sellerLinkApprove", sellerLink + Action.APPROVE)
+				.replaceAll("@sellerLinkCancel", sellerLink + Action.CANCEL);
 	}
 }
