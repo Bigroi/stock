@@ -52,7 +52,7 @@ function processRequestResult(formContainer, answer, messageDiv){
 		return 0;
 	}
 	messageDiv.text(answer.message);
-	messageDiv[0].scrollIntoView(true);
+//	messageDiv[0].scrollIntoView(true);
 	return answer.result;
 }
 
@@ -142,7 +142,7 @@ function setLotDialogPlugin(element, table, model, id){
 		text: window.l10n["label.button.save_start_trading"],
 		id:"save-start-trading",
 		submit:function(formContainer, params){
-			var id = params[model.idColumn];
+			var idColumnValue = JSON.parse(params.json)[model.idColumn];
 			$.post("/lot/json/SaveAndActivate.spr", params, function(answer){
 				processRequestResult(formContainer, answer, $('.dialogbox-message'));
 				updateTable(table, model, id, answer.data);
