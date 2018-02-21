@@ -183,4 +183,9 @@ public class Lot implements Bid{
 	public boolean equals(Object obj) {
 		return obj instanceof Lot && ((Lot)obj).getId() == this.getId();
 	}
+
+	@Override
+	public double getPrice() {
+		return minPrice;
+	}
 }

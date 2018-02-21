@@ -1,6 +1,7 @@
 package com.bigroi.stock.bean;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public interface Bid {
 
@@ -11,5 +12,9 @@ public interface Bid {
 	public void setMaxVolume(int volume);
 	
 	public int getMinVolume();
+	
+	Date getCreationDate();
+	
+	public double getPrice();
 
 }

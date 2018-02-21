@@ -191,4 +191,9 @@ public class Tender implements Bid{
 	public void setEdit(String edit) {
 		this.edit = edit;
 	}
+
+	@Override
+	public double getPrice() {
+		return maxPrice;
+	}
 }
