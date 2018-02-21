@@ -5,7 +5,6 @@
 	<div class="dialogbox-child">
 		<div class="dialogbox-Head"></div>
 		<div class="dialogbox-Content">
-			<div class="dialogbox-message"></div>
 			<div class="dialogbox-inner">
 				<div class="dialogbox-elementContent">
 					<tiles:insertAttribute name="body" />

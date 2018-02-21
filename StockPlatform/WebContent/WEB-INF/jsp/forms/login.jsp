@@ -6,12 +6,10 @@
              <h2>${label.login.loginForm }</h2>
         </li>
         <li>
-            <label for="username"></label>
             <input type="email" name="username" placeholder="John Doe" required />
             <span class="form_hint">Proper format "name@something.com"</span>
         </li>
         <li>
-            <label for="password"></label>
             <input type="password" name="password" placeholder="***********" required />
         </li>
     </ul>

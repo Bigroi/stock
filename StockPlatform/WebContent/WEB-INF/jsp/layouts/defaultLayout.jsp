@@ -6,6 +6,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, width=device-width">
 		<title>${page_title}</title>
 		<link rel="stylesheet" href="/css/tableStyle.css">
         <link rel="stylesheet" href="/css/menuStyle.css">

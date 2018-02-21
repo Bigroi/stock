@@ -14,7 +14,7 @@
 
 }
 .dialogbox .dialogbox-child{
-    width: 50%;
+    width: 400px;
     margin: 0 auto ;
     background: white;
     border-radius: 5px;
@@ -26,26 +26,18 @@
 }
 
  .dialogbox .dialogbox-Content{
-	
     background-color: white;
     margin: auto;
-    overflow: auto;
     border: 1px  solid transparent;
-    height: 100%;
     border-radius: 5px;
     border-bottom: none;
-    padding:0 6px; 
-    
-
+    padding: 0 6px 15px 6px; 
+    margin-bottom: 150px;
 }
-.dialogbox .dialogbox-message{
-	height: 30px;
-}
-
  .dialogbox .dialogbox-Head{
     border-radius: 5px;
 	height: 30px;
-    width: calc(100% - 30px);
+    width: calc(100% - 25px);
     background-color: #fff;
     color: white;
     position: relative;
@@ -55,10 +47,11 @@
 }
 .dialogbox .dialogbox-spanClose{
     color:  #601532;
-    font-size: 45px;
+    font-size: 30px;
     font-weight: bold;
     cursor: pointer;
-    position: fixed;
+    position: absolute;
+    line-height: 32px;
 }
 .dialogbox .dialogbox-spanClose:hover{
 	color: red;   

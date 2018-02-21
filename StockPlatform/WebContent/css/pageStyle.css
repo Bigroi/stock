@@ -11,18 +11,22 @@ body{
 	height: inherit;
     margin: 0;
     font-family: "Open Sans", sans-serif;
+    overflow-x: hidden;
 }
 .aside{
     display: flex;
     flex-direction: column;
 	justify-content: space-between;
-    background-color: #00aecc/*dodgerblue*/;
+	align-items: center;
+    background-color: #00aecc;
     width: 15%;
     min-width: 170px;
     max-width: 220px;
 	color: white;
     text-align: center;
-    padding: 5% 0 2% 0;
+    position: fixed;
+    height: 100%;
+    
 }
 .aside .logo {
     display: flex;
@@ -42,18 +46,20 @@ body{
 .aside nav {
 	display: flex;
 	flex-direction: column;
-    margin-left: 20px;
+    width:150px;
 }
 .aside nav a {
 	display: block; 
     width: 100%;
-    height: 40px;
+    height: 38px;
     font-size: 20px;
 	text-decoration: none;
     text-align: center;
-    padding-top: 5px;
+    padding-top: 7px;
     color: white;
-    border-radius: 5px 0 0 5px;
+    border-radius: 3px;
+    margin: 2px 0;
+    background-color: rgb(0, 160, 187);
 }
 .aside nav a:hover {
     background-color: rgb(30, 120, 220);
@@ -70,35 +76,46 @@ body{
     width: 85%;
     height: 100%;
     padding: 0 3% 0 3%;
+    margin-left: 170px;
 }
 .section .login {
     display: flex;
     justify-content: flex-end;
 	border-bottom: 1px solid silver;
+	min-height: 62px;
+	width: 100%;
 }
 .login a {
-    display: block; 
+    display: block;
     width: 10%;
     min-width: 150px;
-    height: 40px;
+    height: 29px;
     font-size: 20px;
-	text-decoration: none;
+    text-decoration: none;
     text-align: center;
-	background: white;
-	color: #50C878;
+    background: white;
+    color: #50C878;
     border: 2px solid #50C878;
     border-radius: 3px;
-    padding: 5px 5px 0;
+    padding: 5px;
     margin: 10px;
+    box-shadow: none;
+    transition: 0.8s;
+}
+.login a:hover {
+    box-shadow: 0 0 5px 3px rgba(154, 154, 154, 0.3);
+    color: #3e9e5e;
+    border: 2px solid #3e9e5e;
 }
 .login a:nth-child(2) {
     background: #50C878;
     color: white;
 }
+.login a:nth-child(2):hover {
+    background: #3e9e5e;
+}
 .section .table-header {
-	display: flex;
-	justify-content: space-between; 
-	margin: 30px 0px;
+    margin: 10px 0px;
 }
 h1 {
     margin: 0;
@@ -111,10 +128,15 @@ h1 {
     color: white;
     font-size: 20px;
 	border-radius: 3px;
+	width: 160px;
+    float: right;
+    cursor:pointer;
 }
 .section .add-button p {
-    float: right;
-    margin: 10px 20px 0 55px;
+    float: left;
+    margin: 0;
+    padding-left: 50px;
+    padding-top: 10px;
 }
 .plus {
     float: left;
@@ -137,8 +159,138 @@ h1 {
 	top: 17px;
 	border-radius: 4px;
 }
+.aside-footer p:nth-child(2) a{
+	margin-bottom: 5px;
+    color: #c5c5c5;
+    text-decoration:none;
+}
+.phone-number {
+	width: 100%;
+    display: block;
+    font-size: 22px;
+    color: white;
+}
+.aside-footer > span {
+	font-size: 8px;
+    margin: 10px 0;
+    display: block;
+}
+form.form {
+	width: 270px;
+    margin: 0 auto;
+}
+.burger {
+	display: none;
+}
+/*@media (max-width:768px){
+  .section .login{
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+}*/
+@media (max-width:375px){
+  .section{
+    margin-left: 0;
+    margin-top: 85px;
+    width: calc(100% - 10px);
+    padding: 0 5px;
+    height: calc(100% - 85px);
+  }
+  .section .login {
+      padding-bottom: 5px;
+	}
+  .aside {
+    flex-direction: row;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%; 
+    height: 80px;
+    z-index: 4;
+    
+    }
+    .aside .logo p {
+    	font-size: 42px;
+    }
+    .aside-footer p,
+    .aside-footer span {
+    	margin:0;
+    }
+    .burger {
+		background-image: url(/img/burger.png);
+	    background-repeat: no-repeat;
+	    display: block;
+	    width: 100px;
+    	height: 100px;
+	    background-position: 50%;
+	    
+	}
+	.aside nav {
+		display:none;
+	    position: absolute;
+	    top: 80px;
+	    left: calc(50% - 80px);
+	}
+	.aside .logo {
+		margin: 0;
+	    width: 110px;
+	    height: 100px;
+	}
+	.aside-footer {
+		width: 120px;
+	    padding-top: 5px;
+	    height: 80px;
+	    padding-right: 5px;
+	}
+	.aside-show-menu {
+		/*height: 360px;*/
+		align-items: flex-start;
+	}
+	.bgdark {
+		display:none;
+		width: 100%;
+	    height: 100%;
+	    background-color: #000000;
+	    position: absolute;
+	    z-index: 3;
+	    opacity: 0.5;
+	}
+	.dialogbox .dialogbox-child {
+		 width: 320px !important;
+	}
+	.dialogbox {
+		 padding-top: 150px  !important;
+	}
+	.aside-footer p:nth-child(2) a,
+	.aside-footer p {
+		font-size: 14px;
+	}
+	.phone-number {
+		font-size: 16px;
+	}
+	h1,
+	.content p {
+		text-align: center;
+	}
+	#account-mob > div {
+		wigth: 100% !important;
+		display: table-row !important;
+	}
+	#map-mob {
+		width: 88% !important;
+    	margin: 5%;
+    	height: 270px !important;
+    	position: absolute !important;
+    	top: 925px !important;
+	}
+	.dialogbox .dialogbox-Content {
+		margin-bottom: 210px !important;
+	}
+	.section-hidden {
+		overflow-y: hidden;
+	}
+	
 
-
-
+}
 
 

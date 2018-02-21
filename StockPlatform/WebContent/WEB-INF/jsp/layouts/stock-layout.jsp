@@ -6,7 +6,7 @@
 	<head>
 		<title>${page_title}</title>
 		<meta charset = "utf-8">
-		
+		<meta name="viewport" content="initial-scale=1.0, width=device-width">
         <link rel="stylesheet" href="/css/pageStyle.css">
         <link rel="stylesheet" href="/css/jquery.dataTables.min.css">
 		<link rel="stylesheet" href="/css/tableCustomStyle.css">
@@ -21,6 +21,7 @@
 		<script src="/js/map.js"></script>
 		<script src="/js/dialogbox.js"></script>
 		<script src="/js/form.js"></script>
+		<script src="/js/script.js"></script>
 	</head>
 	<body>
 		<div id="login-form-container"></div>
@@ -29,6 +30,7 @@
             <div class = "logo">
                 <p><b>GR</b></p>
             </div>
+            <div class="burger"></div>
             <nav class = "main-menu">
             	<tiles:insertAttribute name="anonimusHeader" />
 	            <sec:authorize access="hasAnyRole('ADMIN', 'USER')">
@@ -40,6 +42,7 @@
             </nav>
             <tiles:insertAttribute name="footer" />
         </div>
+        <div class="bgdark"></div>
         <div class = "section">
         	<sec:authorize access="hasAnyRole('ADMIN', 'USER')">
 				<div class="login">

@@ -13,15 +13,14 @@
 	margin:0px;
 	padding:0px;
 }
+.form ul li:first-child {
+    padding-top: 0;
+    text-align: center;
+}
 .form li{
 	padding:12px; 
-	border-bottom:1px solid #eee;
-	position:relative;
+	text-align: center;
 } 
-.form li:first-child, .form li:last-child {
-	border-bottom:0px solid #777;
-}
-
 /* === Form Header === */
 .form h2 {
 	margin:0;
@@ -35,22 +34,16 @@
 }
 
 /* === Form Elements === */
-.form label {
-	width:30%;
-	margin-top: 3px;
-	display:inline-block;
-	float:left;
-	padding:3px;
-}
 .form input {
 	height:20px; 
-	width:40%; 
+	width: 52%;
 	padding:5px 8px;
 }
 
 .form select {
-	width:40%; 
+	width:250px !important; 
 	padding:5px 8px;
+	height: 32px;
 }
 
 .form textarea {padding:8px; width:42%;}
@@ -66,6 +59,7 @@
 		-webkit-transition: padding .25s; 
 		-o-transition: padding .25s;
 		transition: padding .25s;
+		width: 210px;
 	}
 	.form input:focus, .form textarea:focus, form select:focus {
 		background: #fff; 
@@ -73,7 +67,6 @@
 		box-shadow: 0 0 3px #aaa; 
 		padding-right:70px;
 	}
-
 /* === HTML5 validation styles === */	
 .form input:required, .form textarea:required, .form select:required {
 	background: #fff url(/img/red_asterisk.png) no-repeat 98% center;
@@ -88,7 +81,6 @@
 	box-shadow: 0 0 5px #d45252;
 	border-color: #b03535
 }
-
 /* === Form hints === */
 .form_hint {
 	background: #d45252;
@@ -110,3 +102,19 @@
 .form input:focus + .form_hint {display: inline;}
 .form input:required:valid + .form_hint {background: #28921f;}
 .form input:required:valid + .form_hint::before {color:#28921f;}
+
+.form button#login {
+	margin-left: 0;
+}
+.form button.but-sub,
+.form button#save,
+.form button#save-start-trading {
+	margin-left: 0;
+    width: 250px;
+    margin-bottom: 15px;
+    height: 35px;
+    margin-top: 10px;
+}
+.form button#save-start-trading {
+	margin-top: 0;
+}

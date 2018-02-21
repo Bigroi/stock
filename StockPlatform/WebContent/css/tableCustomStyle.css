@@ -51,11 +51,12 @@ table#main-table th {
 }
 .edit{
     display: inline-block;
-    width: 50%;
+    width: 100%;
     height: 30px;
     background-image: url(/img/edit-pencil.png);
     background-size:  auto 100%;
     background-repeat: no-repeat;
+    cursor: pointer;
     
 }
 .remove{
@@ -77,4 +78,60 @@ table#main-table tr:nth-child(even) td>div.no-edit{
 } 	
 table#main-table tr:nth-child(even) td>div.no-remove{
     background-color: whitesmoke;
+}
+
+ table#main-table{
+  	width: 100% !important;
+  }  
+table tbody tr td {
+ word-break: break-word;
+}
+  table#main-table{
+  	width: 100% !important;
+  } 
+    div.container {
+        width: 80%;
+    }
+    
+table#main-table tbody tr td:last-child,
+table#main-table thead tr th:last-child {
+	min-width:40px !important;
+	padding: 8px 2px 8px 4px !important;
+}    
+ table#main-table th,
+ table#main-table tbody tr td{
+  text-align: center;
+ }
+ 
+   table.dataTable thead th {
+  	padding: 10px 4px !important;
+  }
+  
+.dataTables_wrapper .dataTables_length, 
+.dataTables_wrapper .dataTables_filter, 
+.dataTables_wrapper .dataTables_info, 
+.dataTables_wrapper .dataTables_processing, 
+.dataTables_wrapper .dataTables_paginate {
+	padding: 15px 0;
+}
+.dataTables_wrapper .dataTables_filter input,
+select {
+	border-radius: 3px;
+    border: 1px solid #9E9E9E;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, 
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+	background: whitesmoke;
+}
+
+@media (max-width:830px){
+ 
+  table#main-table th{
+    font-size: 14px;
+  }
+  table#main-table td {
+  	font-size: 12px;
+  }
+
+  
 } 		
