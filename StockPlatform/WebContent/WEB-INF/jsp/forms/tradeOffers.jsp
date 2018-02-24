@@ -17,22 +17,20 @@
 		<tbody>
 			<tr>
 				<td>${label.tradeOffers.lots}: <br>
-					<div id = "tableContainerLots">	
-						<script>
-							$(function(){
-								$("#tableContainerLots").tableMaker("/product/json/lots.spr?productId=${product.id}", "#");
-							});
-						</script>
-					</div>
+				<div id = "table-container-lots">
+				    <table id = "lot-table"></table>
+				</div>
+				<script>
+					makeTable("/product/json/lots.spr?productId=${product.id}", $("#lot-table"));
+				</script>
 				</td>
 				<td>${label.tradeOffers.tenders}: <br>
-					<div id = "tableContainerTenders">	
-						<script>
-							$(function(){
-								$("#tableContainerTenders").tableMaker("/product/json/tenders.spr?productId=${product.id}", "#");
-							});
-						</script>
+					<div id = "table-container-tenders">
+					    <table id = "tender-table"></table>
 					</div>
+					<script>
+						makeTable("/product/json/tenders.spr?productId=${product.id}", $("#tender-table"));
+					</script>
 				</td>
 			</tr>
 		</tbody>
