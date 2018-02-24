@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div style="display: table; width:100%" id="form-container">
-	<div style="width: 40%;display: table-cell;">
+	<div style="width: 40%;display: table-cell;" id="form-container">
 		<div class="form-message"></div>
 		<form class="form" action="#" method="post" name="form">
 			<input type="hidden" name="latitude">
@@ -48,16 +48,17 @@
 		            <input type="text" name="address" placeholder="Minsk" required/>
 		        </li>
 		        <li>
-		        	<button class="submit" type="submit"
+		        	<button class="submit" type="submit" id="save-button"
 		        			onclick="
-		        				return sendFormData($('#form-container'), 
-			        				'/account/json/Registration.spr', 
-			        				function(answer){
-			        					processRequestResult(answer, $('.form-message'));
-			        					if(answer.result > 0){
-			        						$('#save-button').remove();
-			        					}
-			        				});">${label.button.save}</button>
+		        				return sendFormData($('#form-container > form'), 
+				        				function(formContainer, param){
+			        						$.post('/account/json/Registration.spr', param, function(answer){
+			        							processRequestResult($('#form-container > form'), answer, $('.form-message'));
+			        							if (answer.result > 0){
+			        								$('#save-button').remove();
+			        							}
+			        						});
+			        					});">${label.button.save}</button>
 		        </li>
 		    </ul>
 		</form>	

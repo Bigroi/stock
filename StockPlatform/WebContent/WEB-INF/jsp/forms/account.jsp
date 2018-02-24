@@ -42,11 +42,12 @@
 		        <li>
 		        	<button class="submit but-sub" type="submit"
 		        		onclick="
-		        				return sendFormData($('#form-container'), 
-			        				'/account/json/Save.spr', 
-			        				function(answer){
-			        					processRequestResult(answer, $('.form-message'));
-			        				}); ">
+		        				return sendFormData($('#form-container > form'), 
+			        				function(formContainer, param){
+		        						$.post('/account/json/Save.spr', param, function(answer){
+		        							processRequestResult($('#form-container > form'), answer, $('.form-message'));
+		        						});
+		        					}); ">
 		        		${label.button.modify }
 		        	</button>
 		        </li>
@@ -61,7 +62,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-	setFormData($("#form-container"), "/account/json/Form.spr", {}, function(){
+	setFormData($("#form-container > form"), "/account/json/Form.spr", {}, function(){
 		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initMap");
 	})
 </script>
