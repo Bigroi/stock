@@ -4,10 +4,12 @@ import java.util.Date;
 
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.json.Column;
+import com.bigroi.stock.json.DateTimeAdapter;
 import com.bigroi.stock.json.Edit;
 import com.bigroi.stock.json.Id;
 import com.bigroi.stock.json.Status;
 import com.bigroi.stock.util.DateUtil;
+import com.google.gson.annotations.JsonAdapter;
 
 public class Lot implements Bid{
 	
@@ -39,6 +41,7 @@ public class Lot implements Bid{
 	private Date expDate = new Date();
 	
 	@Column("label.lot.creation_date")
+	@JsonAdapter(DateTimeAdapter.class)
 	private Date creationDate = new Date();
 	
 	private int delivery;
