@@ -58,6 +58,6 @@
 }
 
 @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0; } 
-    to {top:0; opacity:1}
+    from {top:-300px; opacity:0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; } 
+    to {top:0; opacity:1; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"}
 }

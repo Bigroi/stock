@@ -18,7 +18,8 @@ table#main-table th {
     width: 60px;
     background-color: #50C878;
     border-radius: 15px;
-    position: relative;     
+    position: relative;
+    margin: 0 auto;     
 }
 .swtitch-row-on:after{
     content: "";
@@ -36,7 +37,8 @@ table#main-table th {
     width: 60px;
     background-color: darkgray;
     border-radius: 15px;
-    position: relative;     
+    position: relative;
+    margin: 0 auto;  
 }
 .swtitch-row-off:after{
     content: "";
@@ -47,15 +49,16 @@ table#main-table th {
     border: 3px solid darkgray;
     border-radius: 50%; 
     position: absolute;
-    left: 30px;
+    right: 30px;
 }
 .edit{
     display: inline-block;
-    width: 100%;
+    width: 50%;
     height: 30px;
     background-image: url(/img/edit-pencil.png);
-    background-size:  auto 100%;
+    background-size: auto 75%;
     background-repeat: no-repeat;
+    background-position: center;
     cursor: pointer;
     
 }
@@ -64,8 +67,11 @@ table#main-table th {
     width: 50%;
     height: 30px;
     background-image: url(/img/remove-trash-can.png);
-    background-size: auto 100%;
+    background-image: url(/img/remove-trash-can.png);
+    background-size: auto 75%;
     background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
 }
 .no-edit{
     display: inline-block;
@@ -89,24 +95,26 @@ table tbody tr td {
   table#main-table{
   	width: 100% !important;
   } 
-    div.container {
+  div.container {
         width: 80%;
-    }
-    
+  }
 table#main-table tbody tr td:last-child,
 table#main-table thead tr th:last-child {
 	min-width:40px !important;
-	padding: 8px 2px 8px 4px !important;
+	padding: 8px 4px !important;
+}   
+table#main-table thead tr td:last-child {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
 }    
  table#main-table th,
  table#main-table tbody tr td{
   text-align: center;
- }
- 
-   table.dataTable thead th {
-  	padding: 10px 4px !important;
-  }
-  
+}
+table.dataTable thead th {
+  	spadding: 5px 15px 5px 5px !important;
+}
 .dataTables_wrapper .dataTables_length, 
 .dataTables_wrapper .dataTables_filter, 
 .dataTables_wrapper .dataTables_info, 
@@ -123,7 +131,11 @@ select {
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
 	background: whitesmoke;
 }
-
+@media (max-width:1244px){
+	table#main-table th {
+    	font-size: 14px;
+	}
+}
 @media (max-width:830px){
  
   table#main-table th{
@@ -131,7 +143,5 @@ select {
   }
   table#main-table td {
   	font-size: 12px;
-  }
-
-  
+  } 
 } 		

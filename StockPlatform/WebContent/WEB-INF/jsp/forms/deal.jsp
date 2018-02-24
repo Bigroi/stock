@@ -1,6 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div style="display: table; width:100%">
+<div style="display: table; width:100%" id="deal-style-mob">
 	<div style="display: table-cell; width: 40%" id="form-container">
 		<div class="form-message"></div>
 		<form class="form" action="#" method="post" name="form">
@@ -83,7 +83,7 @@
 		
 	</div>
 	<div style="width: 55%; height: 100%;position:relative; display: table-cell;">
-		<div style="bottom:0;top: 0;right: 0; left: 0; position: absolute;">
+		<div style="bottom:0;top: 0;right: 0; left: 0; position: absolute;" id="map-mob-deal">
 			<div id="map" style="width: 100%; height: 100%"></div>
 		</div>
 	</div>

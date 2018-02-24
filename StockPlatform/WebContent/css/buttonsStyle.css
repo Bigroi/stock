@@ -2,9 +2,6 @@ button.submit {
 	background-color: #68b12f;
 	background: -webkit-gradient(linear, left top, left bottom, from(#68b12f), to(#50911e));
 	background: -webkit-linear-gradient(top, #68b12f, #50911e);
-	background: -moz-linear-gradient(top, #68b12f, #50911e);
-	background: -ms-linear-gradient(top, #68b12f, #50911e);
-	background: -o-linear-gradient(top, #68b12f, #50911e);
 	background: linear-gradient(top, #68b12f, #50911e);
 	border: 1px solid #509111;
 	border-bottom: 1px solid #5b992b;
@@ -26,6 +23,7 @@ button.submit {
 }
 button.submit:hover {
 	opacity:.85;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
 	cursor: pointer; 
 }
 button.submit:active {
@@ -39,6 +37,7 @@ button.submit:active {
 button[disabled] {
 	background: red;
 	border: 1px solid red;
+	box-shadow: none;
 	}
 
 	

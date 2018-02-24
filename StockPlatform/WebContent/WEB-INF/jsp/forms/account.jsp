@@ -54,7 +54,7 @@
 		</form>
 	</div>
 	<div style="display: table-cell; width: 5%"></div>
-	<div style="width: 55%; height: 100%;position:relative; top: 20px; display: table-cell;" id="map-mob">
+	<div style="width: 55%; height: 100%;position:relative; top: 20px; display: table-cell;" id="map-mob-acc">
 		<div style="bottom:0;top: 0;right: 0; left: 0; position: absolute;">
 			<div id="map" style="width: 100%; height: 100%"></div>
 		</div>
