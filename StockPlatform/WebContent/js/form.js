@@ -24,7 +24,7 @@ function getFormData(formContainer){
 	return data;
 }
 
-function sendFormData(formContainer, submitFunction, login) {
+function sendFormData(formContainer, submitFunction, $dialogbox, login) {
 	if (formContainer[0].checkValidity()){
 		var data = getFormData(formContainer);
 		
@@ -34,7 +34,8 @@ function sendFormData(formContainer, submitFunction, login) {
 		} else {
 			param = {json:data};
 		}
-		submitFunction(formContainer, param);
+		submitFunction(formContainer, param, $dialogbox);
+		
 		return false;
 	} else {
 		return true;
@@ -130,24 +131,31 @@ function setLotDialogPlugin(element, table, model, id){
 	var buttons = [{
 		text: window.l10n["label.button.save"],
 		id:"save",
-		submit:function(formContainer, params){
+		submit:function(formContainer, params, $dialogbox){
 			var idColumnValue = JSON.parse(params.json)[model.idColumn];
 			$.post("/lot/json/Save.spr", params, function(answer){
 				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				updateTable(table, model, idColumnValue, answer.data);
+				if (answer.result > 0){
+					updateTable(table, model, idColumnValue, answer.data);
+					$dialogbox.remove();
+				}
 			});
 		}
 	},
 	{
 		text: window.l10n["label.button.save_start_trading"],
 		id:"save-start-trading",
-		submit:function(formContainer, params){
+		submit:function(formContainer, params, $dialogbox){
 			var idColumnValue = JSON.parse(params.json)[model.idColumn];
 			$.post("/lot/json/SaveAndActivate.spr", params, function(answer){
 				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				updateTable(table, model, id, answer.data);
+				if (answer.result > 0){
+					updateTable(table, model, id, answer.data);
+					$dialogbox.remove();
+				}
 			});
-		}
+		},
+		close:true
 	}];
 	
 	element.dialogbox({
@@ -164,24 +172,32 @@ function setTenderDialogPlugin(element, table, model, id){
 	var buttons = [{
 		text: window.l10n["label.button.save"],
 		id:"save",
-		submit:function(formContainer, params){
+		submit:function(formContainer, params, $dialogbox){
 			var idColumnValue = JSON.parse(params.json)[model.idColumn];
 			$.post("/tender/json/Save.spr", params, function(answer){
 				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				updateTable(table, model, idColumnValue, answer.data);
+				if (answer.result > 0){
+					updateTable(table, model, idColumnValue, answer.data);
+					$dialogbox.remove();
+				}
 			});
-		}
+		},
+		close:true
 	},
 	{
 		text: window.l10n["label.button.save_start_trading"],
 		id:"save-start-trading",
-		submit:function(formContainer, params){
+		submit:function(formContainer, params, $dialogbox){
 			var idColumnValue = JSON.parse(params.json)[model.idColumn];
 			$.post("/tender/json/SaveAndActivate.spr", params, function(answer){
 				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				updateTable(table, model, idColumnValue, answer.data);
+				if (answer.result > 0){
+					updateTable(table, model, idColumnValue, answer.data);
+					$dialogbox.remove();
+				}
 			});
-		}
+		},
+		close:true
 	}];
 	
 	element.dialogbox({
@@ -198,24 +214,32 @@ function setProductDialogPlugin(element, table, model, id){
 	var buttons = [{
 		text: window.l10n["label.button.save"],
 		id:"save",
-		submit:function(formContainer, params){
+		submit:function(formContainer, params, $dialogbox){
 			var idColumnValue = JSON.parse(params.json)[model.idColumn];
 			$.post("/product/json/admin/Save.spr", params, function(answer){
 				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				updateTable(table, model, idColumnValue, answer.data);
+				if (answer.result > 0){
+					updateTable(table, model, idColumnValue, answer.data);
+					$dialogbox.remove();
+				}
 			});
-		}
+		},
+		close:true
 	},
 	{
 		text: window.l10n["label.button.delete"],
 		id:"delete",
-		submit:function(formContainer, params){
+		submit:function(formContainer, params, $dialogbox){
 			var idColumnValue = JSON.parse(params.json)[model.idColumn];
 			$.post("/product/json/admin/Delete.spr", params, function(answer){
 				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				updateTable(table, model, idColumnValue, answer.data);
+				if (answer.result > 0){
+					updateTable(table, model, idColumnValue, answer.data);
+					$dialogbox.remove();
+				}
 			});
-		}
+		},
+		close:true
 	}];
 	
 	element.dialogbox({
@@ -238,9 +262,13 @@ function sendDealFormData(formContainer, url, id){
 			url, 
 			function(answer){
 				processRequestResult(answer, $('.form-message'));
-				setFormData($('#form-container'), '/deal/json/Form.spr', {id:id}, function(){
-					$("#approve").remove();
-					$('#reject').remove();
+				setFormData($('#form-container'), '/deal/json/Form.spr', {id:id}, function(answer){
+					if (answer.result > 0){
+						$("#approve").remove();
+						$('#reject').remove();
+					} else {
+						alert(answer.message);
+					}
 				})
 			}); 
 }

@@ -46,7 +46,7 @@ $.fn.dialogbox = function(params) {
 			
 			function addButton($listelement, buttonDef){
 				var $button = $("<button>");
-				$button.addClass("submit "+i+"button");
+				$button.addClass("submit button");
 				$button.text(buttonDef.text);	    	
 				$button.attr("id", buttonDef.id);
 				$button.attr("type", "submit");
@@ -54,15 +54,12 @@ $.fn.dialogbox = function(params) {
 				$button.click(function(event){
 					return sendFormData(
 							$(event.target).parent().parent().parent(),  
-							buttonDef.submit, 
+							buttonDef.submit,
+							$dialogbox,
 							buttonDef.login);
 				});
 				
 				$listelement.append($button);
-			}
-			
-			function deleting() {
-				$dialogbox.remove();
 			}
 			
 			function loadData(){
