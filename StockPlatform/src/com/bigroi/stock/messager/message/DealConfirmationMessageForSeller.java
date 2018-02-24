@@ -1,8 +1,6 @@
 package com.bigroi.stock.messager.message;
 
-import com.bigroi.stock.bean.Bid;
 import com.bigroi.stock.bean.Deal;
-import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.common.Action;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;

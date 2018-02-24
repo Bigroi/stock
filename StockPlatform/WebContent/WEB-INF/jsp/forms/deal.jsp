@@ -51,24 +51,33 @@
 		            <label for="status">${label.deal.status}</label>
 		            <input type="text" name="status" disabled/>
 		        </li>
-		        
-		        
-		        
-		        
-		       
 		        <li>
-		        	<button class="submit" type="submit" id="approve"
+		        	<button class="submit" type="submit" id="approve-button"
 		        		onclick="
-		        				sendDealFormData($('#form-container'), 
-		        				'/deal/json/Approve.spr', ${id}); 
-		        				return false;">
+		        				return sendFormData($('#form-container > form'), 
+			        				function(formContainer, param){
+		        						$.post('/deal/json/Approve.spr', param, function(answer){
+		        							processRequestResult($('#form-container > form'), answer, $('.form-message'));
+		        							if (answer.result > 0){
+		        								$('#approve-button').remove();
+		        								$('#reject-button').remove();
+		        							}
+		        						});
+		        					}); ">
 		        		${label.deal.approve }
 		        	</button>
-		        	<button class="submit" type="submit" id="reject"
+		        	<button class="submit" type="submit" id="reject-button"
 		        		onclick="
-		        			sendDealFormData($('#form-container'), 
-		        			'/deal/json/Reject.spr', ${id});
-		        			return false;">
+		        			return sendFormData($('#form-container > form'), 
+			        				function(formContainer, param){
+		        						$.post('/deal/json/Reject.spr', param, function(answer){
+		        							processRequestResult($('#form-container > form'), answer, $('.form-message'));
+		        							if (answer.result > 0){
+		        								$('#approve-button').remove();
+		        								$('#reject-button').remove();
+		        							}
+		        						});
+		        					});">
 		        		${label.deal.reject }
 		        	</button>
 		        	<button class="submit" 

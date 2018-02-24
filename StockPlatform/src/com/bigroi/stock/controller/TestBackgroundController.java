@@ -60,15 +60,5 @@ public class TestBackgroundController extends BaseRenderingController {
 		
 		return modelAndView;
 	}
-	
-	@RequestMapping(value = "/sendConfMessages.spr")
-	public ModelAndView sendConfMessages() throws ServiceException {
-		ModelAndView modelAndView = createModelAndView("testBG");
-		
-		ServiceFactory.getMarketService().checkExparations();
-		String message = "sendConfMessages is finished";
-		modelAndView.addObject("message", message);
-		
-		return modelAndView;
-	}
+
 }
