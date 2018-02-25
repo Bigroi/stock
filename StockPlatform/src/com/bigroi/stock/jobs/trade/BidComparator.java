@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 public class BidComparator implements Comparator<TradeBid>{
 
+	@SuppressWarnings("unused")
 	private final int partnerVolume;
 	
 	public BidComparator(int partnerVolume){

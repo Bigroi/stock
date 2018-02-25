@@ -5,7 +5,13 @@ public class ColumnDef {
 	private String title;
 	
 	private String data;
-
+	
+	private boolean orderable; 
+	
+	public boolean isOrderable() {
+		return orderable;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -21,7 +27,9 @@ public class ColumnDef {
 	public void setData(String data) {
 		this.data = data;
 	}
-	
-	
+
+	public void setOrderable(boolean orderable) {
+		this.orderable = orderable;
+	}
 	
 }

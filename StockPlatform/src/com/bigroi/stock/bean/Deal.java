@@ -5,6 +5,7 @@ import java.util.Date;
 import com.bigroi.stock.bean.common.DealStatus;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Edit;
+import com.bigroi.stock.json.FilterMethod;
 import com.bigroi.stock.json.Id;
 
 public class Deal {
@@ -17,14 +18,18 @@ public class Deal {
 	private long customerId;
 	private double price;
 	private int volume;
-	@Column("label.deal.time")
+	
+	@Column(value = "label.deal.productName", filterMethod = FilterMethod.SELECT)
+	private String productName;
+	
+	@Column(value = "label.deal.time", allowSorting = true)
 	private Date time;
+	
 	private String customerApproved;
 	private String sellerApproved;
 	private long productId;
 	
-	@Column("label.deal.productName")
-	private String productName;
+	
 	
 	private String partnerAddress;
 	
@@ -40,7 +45,7 @@ public class Deal {
 	
 	private double longitude;
 	
-	@Column("label.deal.status")
+	@Column(value = "label.deal.status", filterMethod = FilterMethod.SELECT)
 	private DealStatus status;
 	
 	@Column("")

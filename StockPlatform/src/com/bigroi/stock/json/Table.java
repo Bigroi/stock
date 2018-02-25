@@ -18,6 +18,7 @@ class Table<T> {
 					ColumnDef columnDef = new ColumnDef();
 					columnDef.setData(field.getName());
 					columnDef.setTitle(column.value());
+					columnDef.setOrderable(column.allowSorting());
 					columns.add(columnDef);
 				}
 			}

@@ -7,6 +7,7 @@ import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.DateTimeAdapter;
 import com.bigroi.stock.json.Edit;
+import com.bigroi.stock.json.FilterMethod;
 import com.bigroi.stock.json.Id;
 import com.bigroi.stock.json.Status;
 import com.bigroi.stock.util.DateUtil;
@@ -19,16 +20,16 @@ public class Tender implements Bid{
 	
 	private long productId;
 	
-	@Column("label.tender.product")
+	@Column(value = "label.tender.product", filterMethod = FilterMethod.SELECT)
 	private String productName;
 	
 	private String description;
 	
-	@Column("label.tender.status")
+	@Column(value = "label.tender.status", filterMethod = FilterMethod.SELECT)
 	@Status(activate="/tender/json/StartTrading.spr", deactivate="/tender/json/StopTrading.spr")
 	private BidStatus status;
 	
-	@Column(value = "label.tender.max_price", floatColumn = true)
+	@Column("label.tender.max_price")
 	private double maxPrice;
 	
 	private int minVolume;
@@ -38,10 +39,10 @@ public class Tender implements Bid{
 	
 	private long customerId;
 	
-	@Column("label.tender.exp_date")
+	@Column(value = "label.tender.exp_date", allowSorting = true)
 	private Date expDate = new Date();
 	
-	@Column("label.tender.creation_date")
+	@Column(value = "label.tender.creation_date", allowSorting = true)
 	@JsonAdapter(DateTimeAdapter.class)
 	private Date creationDate = new Date();
 	
@@ -50,7 +51,7 @@ public class Tender implements Bid{
 	private int packaging;
 	
 	@Edit(edit="setTenderDialogPlugin", remove="/tender/json/Delete.spr")
-	@Column("label.tender.edit")
+	@Column("")
 	private String edit = "YY";
 	
 	public boolean isExpired() {

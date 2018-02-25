@@ -7,11 +7,21 @@ table#main-table tr:nth-child(even) {
 table#main-table td {
     border-bottom: 1px solid black;
 }
-table#main-table th {
+
+table.dataTable thead th.table-head-up{
     text-align: left;
     background-color: whitesmoke;
-    border-top: 1px solid black;
+    border-top: 1px solid black; 
+    border-bottom: 0px solid black;
+    padding-bottom: 0px;
 }
+
+table.dataTable thead th.table-head-down{
+    text-align: left;
+    background-color: whitesmoke;
+    padding-top: 0px;
+}
+
 .swtitch-row-on {
     box-sizing: border-box;
     height: 30px;
@@ -81,6 +91,7 @@ table#main-table th {
     height: 30px;
     background-color: white;
 }
+
 table#main-table tr:nth-child(even) td>div.no-edit{
     background-color: whitesmoke;
 } 	
@@ -124,10 +135,8 @@ table.dataTable thead th {
 .dataTables_wrapper .dataTables_paginate {
 	padding: 15px 0;
 }
-.dataTables_wrapper .dataTables_filter input,
-select {
-	border-radius: 3px;
-    border: 1px solid #9E9E9E;
+.dataTables_wrapper .dataTables_filter, .dataTables_info {
+	display: none;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {

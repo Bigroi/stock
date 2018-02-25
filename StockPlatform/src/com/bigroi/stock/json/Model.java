@@ -1,6 +1,8 @@
 package com.bigroi.stock.json;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 class Model<T> {
 
@@ -12,11 +14,15 @@ class Model<T> {
 	
 	private String removeUrl;
 	
+	private String detailsUrl;
+	
 	private String statusColumn;
 	
 	private String activateUrl;
 	
 	private String deactivateUrl;
+	
+	private Map<String, FilterMethod> filterColumns = new HashMap<>();
 	
 	public Model(Class<T> clazz) {
 		for (Field field : clazz.getDeclaredFields()){
@@ -35,12 +41,14 @@ class Model<T> {
 				editColumn = field.getName();
 				editForm = edit.edit();
 				removeUrl = edit.remove();
+				detailsUrl = edit.details();
+			}
+			
+			Column column = field.getAnnotation(Column.class);
+			if (column != null){
+				this.filterColumns.put(field.getName(), column.filterMethod());
 			}
 		}
-	}
-	
-	public void setIdColumn(String idColumn) {
-		this.idColumn = idColumn;
 	}
 	
 	public String getIdColumn() {
@@ -51,48 +59,32 @@ class Model<T> {
 		return editColumn;
 	}
 
-	public void setEditColumn(String editColumn) {
-		this.editColumn = editColumn;
-	}
-
 	public String getEditForm() {
 		return editForm;
-	}
-
-	public void setEditForm(String editForm) {
-		this.editForm = editForm;
 	}
 
 	public String getRemoveUrl() {
 		return removeUrl;
 	}
 
-	public void setRemoveUrl(String removeUrl) {
-		this.removeUrl = removeUrl;
-	}
-
 	public String getStatusColumn() {
 		return statusColumn;
-	}
-
-	public void setStatusColumn(String statusColumn) {
-		this.statusColumn = statusColumn;
 	}
 
 	public String getActivateUrl() {
 		return activateUrl;
 	}
 
-	public void setActivateUrl(String activateUrl) {
-		this.activateUrl = activateUrl;
-	}
-
 	public String getDeactivateUrl() {
 		return deactivateUrl;
 	}
 
-	public void setDeactivateUrl(String deactivateUrl) {
-		this.deactivateUrl = deactivateUrl;
+	public String getDetailsUrl() {
+		return detailsUrl;
+	}
+	
+	public Map<String, FilterMethod> getFilterColumns() {
+		return filterColumns;
 	}
 
 	public void removeColumn(String fieldName) {

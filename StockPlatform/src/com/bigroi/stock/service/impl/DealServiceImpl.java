@@ -126,6 +126,7 @@ public class DealServiceImpl implements DealService{
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void addBlackList(long lotId, long tenderId) throws DaoException {
 		Blacklist blackList = new Blacklist();
 		blackList.setLotId(lotId);

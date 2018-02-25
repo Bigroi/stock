@@ -6,6 +6,7 @@ import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.DateTimeAdapter;
 import com.bigroi.stock.json.Edit;
+import com.bigroi.stock.json.FilterMethod;
 import com.bigroi.stock.json.Id;
 import com.bigroi.stock.json.Status;
 import com.bigroi.stock.util.DateUtil;
@@ -16,18 +17,18 @@ public class Lot implements Bid{
 	@Id
 	private long id;
 	
-	@Column("label.lot.product")
+	@Column(value = "label.lot.product", filterMethod = FilterMethod.SELECT)
 	private String productName;
 	
 	private String description;
 	
-	@Column("label.lot.status")
+	@Column(value = "label.lot.status", filterMethod = FilterMethod.SELECT)
 	@Status(activate="/lot/json/StartTrading.spr", deactivate="/lot/json/StopTrading.spr")
 	private BidStatus status;
 	
 	private long productId;	
 	
-	@Column(value = "label.lot.min_price", floatColumn = true)
+	@Column("label.lot.min_price")
 	private double minPrice;
 	
 	private long sellerId;
@@ -37,10 +38,10 @@ public class Lot implements Bid{
 	@Column("label.lot.max_volume")
 	private int maxVolume;
 	
-	@Column("label.lot.exp_date")
+	@Column(value = "label.lot.exp_date", allowSorting = true)
 	private Date expDate = new Date();
 	
-	@Column("label.lot.creation_date")
+	@Column(value = "label.lot.creation_date", allowSorting = true)
 	@JsonAdapter(DateTimeAdapter.class)
 	private Date creationDate = new Date();
 	

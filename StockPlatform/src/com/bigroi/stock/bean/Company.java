@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.json.Column;
+import com.bigroi.stock.json.FilterMethod;
 import com.bigroi.stock.json.Id;
 import com.bigroi.stock.json.Status;
 
@@ -13,13 +14,13 @@ public class Company {
 	@Id
 	private long id;
 	
-	@Column("label.account.name")
+	@Column(value = "label.account.name", filterMethod = FilterMethod.TEXT)
 	private String name;
 	
-	@Column("label.account.phone")
+	@Column(value = "label.account.phone", filterMethod = FilterMethod.TEXT)
 	private String phone;
 	
-	@Column("label.account.reg_number")
+	@Column(value = "label.account.reg_number", filterMethod = FilterMethod.TEXT)
 	private String regNumber;
 	
 	private String country;
@@ -28,7 +29,7 @@ public class Company {
 	
 	private String address;
 	
-	@Column("label.account.status")
+	@Column(value = "label.account.status", filterMethod = FilterMethod.SELECT)
 	@Status(activate="/company/json/admin/ChangeStatus.spr", 
 			deactivate="/company/json/admin/ChangeStatus.spr")
 	private CompanyStatus status;

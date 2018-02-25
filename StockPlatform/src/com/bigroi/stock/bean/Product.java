@@ -2,6 +2,7 @@ package com.bigroi.stock.bean;
 
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Edit;
+import com.bigroi.stock.json.FilterMethod;
 import com.bigroi.stock.json.Id;
 
 public class Product {
@@ -9,13 +10,13 @@ public class Product {
 	@Id
 	private long id;
 	
-	@Column("label.product.name")
+	@Column(value = "label.product.name", allowSorting = true, filterMethod = FilterMethod.SELECT)
 	private String name;
 	
-	@Column("label.product.description")
+	@Column(value = "label.product.description", filterMethod = FilterMethod.TEXT)
 	private String description;
 	
-	@Column("label.product.archive")
+	@Column(value = "label.product.archive", filterMethod = FilterMethod.SELECT)
 	private String archive;
 	
 	

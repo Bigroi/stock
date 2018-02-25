@@ -13,14 +13,14 @@ function makeTable(url, tableElement){
 		tableData = answer.data.table;
 		tableData.rowCallback = rowCallback;
 		tableData.language = getLanguage();
-		tableData.initComplete = localizeHeader;
+		tableData.initComplete = initHeader;
 		table = $(tableElement).DataTable(tableData);
-		
+
 		if ($(".add-button").length > 0){
 			var editForm = window[model.editForm];
 			editForm($(".add-button"), table, model);
 		}
-		table.draw();
+		
 	});
 	
 	function rowCallback($row, data, index) {
@@ -95,12 +95,26 @@ function makeTable(url, tableElement){
         			model.activateUrl;
         	$.getJSON(url, {id:id}, function(answer){
         		if (answer.result > 0){	
-        			event.target.classList.toggle("swtitch-row-off");
-                    event.target.classList.toggle("swtitch-row-on");
-        			data[model.statusColumn] == "ACTIVE" ?
-        					data[model.statusColumn] = "INACTIVE" :
-        					data[model.statusColumn] = "ACTIVE";
+        			table.rows().every( function () {
+        			    var d = this.data();
+        			    if (d[model.idColumn] == id){
+        			    	d[model.statusColumn] == "ACTIVE" ?
+	        					d[model.statusColumn] = "INACTIVE" :
+	        					d[model.statusColumn] = "ACTIVE";
+        			    	this.data(d);
+        			    	return;
+        			    }
+        			} );
+        			table.draw();
         		}
+//        			event.target.classList.toggle("swtitch-row-off");
+//                    event.target.classList.toggle("swtitch-row-on");
+//        			table.
+//                    var d = data;
+//        			d[model.statusColumn] == "ACTIVE" ?
+//        					data[model.statusColumn] = "INACTIVE" :
+//        					data[model.statusColumn] = "ACTIVE";
+        			
         	});
         });
         $statusTd.append($switcher[0]);
@@ -134,11 +148,62 @@ function makeTable(url, tableElement){
 	}
 	
 	
-	function localizeHeader(){
-		this.api().columns().every(function() {
+	function localizeHeader(thisObject){
+		thisObject.api().columns().every(function() {
 			var column = this;
 			var $header = $(column.header());
 			$header[0].textContent = window.l10n[$header[0].textContent];
 		});
+	}
+	
+	function addFilters(tableObject){
+		tableElement.find('thead tr th').addClass('table-head-up');
+		tableElement.find('thead tr').clone(true).appendTo( tableElement.find('thead') );
+		tableElement.find('thead tr:eq(1) th').each( function (i) {
+			var column = tableObject.api().column(i);
+			var fieldName = column.dataSrc();
+			console.log(fieldName);
+			var $th =  $(this);
+	        var title = $th.text();
+	        $th.removeAttr('class');
+	        $th.addClass('table-head-down');
+			if (model.filterColumns[fieldName] == 'TEXT'){
+				addTextFilter($th, column, title);
+			} else if (model.filterColumns[fieldName] == 'SELECT'){
+				addSelectFilter($th, column, title);
+			} else {
+				$th.html('');
+			}
+	    } );
+		
+		function addTextFilter($th, column, title){
+			$th.html( '<input type="text" placeholder="Search '+title+'" />' );
+	        $( 'input', this ).on( 'keyup change', function () {
+	            if ( column.search() !== this.value ) {
+	            	column.search( this.value ).draw();
+	            }
+	            return false;
+	        } ).on('click', function(){return false;});
+		}
+		
+		function addSelectFilter($th, column, title){
+			$th.html( '<select><option value="">Select ' + title + '</option></select>');
+	        var $select = $( 'select', this );
+	        
+	        $select.on( 'change', function () {
+	        	var val = $.fn.dataTable.util.escapeRegex($(this).val());
+	        	column.search( val ? '^'+val+'$' : '', true, false ).draw();
+	        	return false;
+	        }).on('click', function(){return false;});
+	        
+	        column.data().unique().sort().each( function ( d, j ) {
+	        	$select.append( '<option value="'+d+'">'+d+'</option>' )
+            } );
+		}
+	}
+	
+	function initHeader(){
+		localizeHeader(this);
+		addFilters(this);
 	}
 }

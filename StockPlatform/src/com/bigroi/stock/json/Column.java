@@ -12,10 +12,8 @@ public @interface Column {
 
 	public boolean allowSorting() default false;
 	
-	public String customSortFunction() default "";
+	public FilterMethod filterMethod() default FilterMethod.NONE;
 	
 	public String value();
-	
-	public boolean floatColumn() default false;
 	
 }

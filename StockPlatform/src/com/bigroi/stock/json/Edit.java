@@ -13,4 +13,6 @@ public @interface Edit {
 	public String edit();
 	
 	public String remove();
+
+	public String details() default "";
 }
