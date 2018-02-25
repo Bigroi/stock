@@ -42,6 +42,7 @@ function makeTable(url, tableElement){
         
         var $edit = $("<div class='no-edit'>");
         var $remove = $("<div class='no-remove'>");
+        var $details = $("<div class='no-details'>");
         
         if(data[model.editColumn][0] == "Y"){ 
             $edit.removeClass("no-edit");
@@ -67,8 +68,19 @@ function makeTable(url, tableElement){
             	);
             });
         }
+		if(data[model.editColumn][2] == "Y"){ 
+			$details.removeClass("no-details");
+			$details.addClass("details");
+            var detailsForm = window[model.detailsUrl];
+            if (detailsForm){
+            	detailsForm($edit, table, model, id);
+            } else {
+            	$details.click(function(){document.location = model.detailsUrl + "?id=" + id});
+            }
+        }
 		$editRemove.append($edit[0]);
 		$editRemove.append($remove[0]);
+		$editRemove.append($details[0]);
 	}
 	
 	function getCell(columnName, $row){

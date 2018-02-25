@@ -74,6 +74,17 @@ table.dataTable thead th.table-head-down{
     cursor: pointer;
     
 }
+.details{
+    display: inline-block;
+    width: 50%;
+    height: 30px;
+    background-image: url(/img/details.png);
+    background-size: auto 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    
+}
 .remove{
     display: inline-block;
     width: 50%;
@@ -85,12 +96,18 @@ table.dataTable thead th.table-head-down{
     background-position: center;
     cursor: pointer;
 }
-.no-edit{
+/* .no-edit{
     display: inline-block;
     width: 50%;
     height: 30px;
     background-color: white;
 }
+.no-details{
+    display: inline-block;
+    width: 50%;
+    height: 30px;
+    background-color: white;
+} */
 
 table#main-table tr:nth-child(even) td>div.no-edit{
     background-color: whitesmoke;

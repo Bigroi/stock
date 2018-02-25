@@ -29,8 +29,6 @@ public class Deal {
 	private String sellerApproved;
 	private long productId;
 	
-	
-	
 	private String partnerAddress;
 	
 	private String partnerComment;
@@ -49,8 +47,8 @@ public class Deal {
 	private DealStatus status;
 	
 	@Column("")
-	@Edit(edit="/deal/Form.spr", remove="")
-	private String edit = "YN";
+	@Edit(details="/deal/Form.spr", remove="", edit="")
+	private String edit = "NNY";
 	
 	public Deal(Lot lot, Tender tender, int volume) {
 		this.lotId = lot.getId();

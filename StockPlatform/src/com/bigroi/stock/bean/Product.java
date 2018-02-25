@@ -20,9 +20,9 @@ public class Product {
 	private String archive;
 	
 	
-	@Edit(edit="setProductDialogPlugin", remove="/product/json/admin/Delete.spr")
+	@Edit(details = "/product/TradeOffers.spr", edit="setProductDialogPlugin", remove="/product/json/admin/Delete.spr")
 	@Column("label.product.edit")
-	private String edit = "YN";
+	private String edit = "YNY";
 	
 	public String getArchive(){
 		return archive;
@@ -64,5 +64,9 @@ public class Product {
 	
 	public String getEdit() {
 		return edit;
+	}
+	
+	public void setEdit(String edit) {
+		this.edit = edit;
 	}
 }
