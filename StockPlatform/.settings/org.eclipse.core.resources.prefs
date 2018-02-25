@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//SQL/stock.sql=UTF-8
+encoding//WebContent/WEB-INF/jsp/forms/addUser.jsp=UTF-8
 encoding//labels_by/account.properties=UTF-8
 encoding//labels_by/button.properties=UTF-8
 encoding//labels_by/companies.properties=UTF-8
@@ -24,6 +25,7 @@ encoding//templates_by/confirmationForSeller.txt=UTF-8
 encoding//templates_by/dealCancelled.txt=UTF-8
 encoding//templates_by/expiredDeal.txt=UTF-8
 encoding//templates_by/expiredDealOpponent.txt=UTF-8
+encoding//templates_by/inviteExparied.txt=UTF-8
 encoding//templates_by/lotExparied.txt=UTF-8
 encoding//templates_by/passwordReset.txt=UTF-8
 encoding//templates_by/successDeal.txt=UTF-8

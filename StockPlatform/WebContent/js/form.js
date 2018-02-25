@@ -168,6 +168,28 @@ function setLotDialogPlugin(element, table, model, id){
 	});
 }
 
+function setInviteDialogPlugin(element){
+	
+	element.dialogbox({
+		container:$("#invite-form-container"),
+		formUrl:"/account/AddUser.spr",
+		height:"15%",
+		buttons:[
+		{
+			text: window.l10n["label.button.invite"],
+			id:"invite",
+			url:"/account/json/AddUser.spr",
+			close:true 
+		},
+		{
+			text: window.l10n["label.button.cancel"],
+			id:"cancel",
+			close:true
+		}], 
+						
+	});
+}
+
 function setTenderDialogPlugin(element, table, model, id){
 	var buttons = [{
 		text: window.l10n["label.button.save"],

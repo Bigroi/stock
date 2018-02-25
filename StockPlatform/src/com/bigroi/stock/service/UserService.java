@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.bigroi.stock.bean.Company;
+import com.bigroi.stock.bean.InviteUser;
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.Role;
 
@@ -22,5 +23,12 @@ public interface UserService extends UserDetailsService{
 	void resetPassword(String username) throws ServiceException;
 	
 	List<StockUser> getAllUsers() throws ServiceException;
+	
+	void addInviteUser(InviteUser inviteUser, long id) throws ServiceException;
+
+	InviteUser  getInviteUserCode(String code) throws ServiceException;
+	
+	void addUserByInvite(StockUser user, Role[] roles) throws ServiceException;
+	
 	
 }

@@ -34,6 +34,7 @@ label.button.stop_trading
 label.button.save
 label.button.save_start_trading
 label.button.end_trading
+label.button.invite
 label.table.decimal
 label.table.emptyTable
 label.table.info

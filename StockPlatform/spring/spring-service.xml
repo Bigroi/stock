@@ -24,6 +24,7 @@
 		<property name="userDao" ref="userDao" />
 		<property name="companyDao" ref="companyDao" />
 		<property name="userRoleDao" ref="userRoleDao" />
+		<property name="inviteUserDao" ref="inviteUserDao"/>
 	</bean>
 
 	<bean id="companyService" class="com.bigroi.stock.service.impl.CompanyServiceImpl">

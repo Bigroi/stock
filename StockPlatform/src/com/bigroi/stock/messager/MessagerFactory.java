@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.bigroi.stock.bean.Deal;
+import com.bigroi.stock.bean.InviteUser;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.Tender;
@@ -68,5 +69,9 @@ public class MessagerFactory {
 
 	public static Message<Tender> getTenderExparationMessage() {
 		return (Message<Tender>) CONTEXT.getBean("tenderExparationMessage");
+	}
+	
+	public static Message<InviteUser> getInviteExparationMessage(){
+		return (Message<InviteUser>) CONTEXT.getBean("inviteExparationMessage");
 	}
 }

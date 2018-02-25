@@ -53,6 +53,14 @@
 		        </li>
 		    </ul>
 		</form>
+		
+			<form class="form" action="#" method="post" name="form">
+				
+				 <button class="submit" id="new-invite-button">${label.button.invite}</button>
+				<script type="text/javascript">setInviteDialogPlugin($("#new-invite-button"))</script> 
+
+		    </form>
+		
 	</div>
 	<div style="display: table-cell; width: 5%"></div>
 	<div style="width: 55%; height: 100%;position:relative; top: 20px; display: table-cell;" id="map-mob-acc">

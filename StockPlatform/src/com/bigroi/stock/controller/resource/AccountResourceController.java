@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.CompanyStatus;
+import com.bigroi.stock.bean.InviteUser;
 import com.bigroi.stock.bean.common.Role;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
@@ -30,6 +31,16 @@ public class AccountResourceController extends BaseResourseController {
 		StockUser user = (StockUser) loggedInUser.getPrincipal();
 		Company company = ServiceFactory.getCompanyService().getCompanyById(user.getCompanyId());
 		return new ResultBean(1, company, "").toString();
+	}
+	
+	@RequestMapping(value = "/AddUser.spr")
+	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	public String veryfiUser(@RequestParam("json") String json) throws ServiceException {
+		InviteUser inviteUser = GsonUtil.getGson().fromJson(json, InviteUser.class);
+		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+	    ServiceFactory.getUserService().addInviteUser(inviteUser, user.getCompanyId());
+		return new ResultBean(1, "account.invite.success").toString();
 	}
 
 	@RequestMapping(value = "/Save.spr")

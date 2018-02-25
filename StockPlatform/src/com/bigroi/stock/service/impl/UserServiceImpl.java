@@ -10,11 +10,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.Company;
+import com.bigroi.stock.bean.InviteUser;
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.UserRole;
 import com.bigroi.stock.bean.common.Role;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
+import com.bigroi.stock.dao.InviteUserDao;
 import com.bigroi.stock.dao.UserDao;
 import com.bigroi.stock.dao.UserRoleDao;
 import com.bigroi.stock.messager.MessagerFactory;
@@ -29,6 +31,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 	private CompanyDao companyDao;
 	private UserRoleDao userRoleDao;
+	private InviteUserDao inviteUserDao;
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 		     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
@@ -42,6 +45,10 @@ public class UserServiceImpl implements UserService {
 	
 	public void setUserRoleDao(UserRoleDao userRoleDao) {
 		this.userRoleDao = userRoleDao;
+	}
+	
+	public void setInviteUserDao(InviteUserDao inviteUserDao) {
+		this.inviteUserDao = inviteUserDao;
 	}
 
 	@Override
@@ -136,4 +143,57 @@ public class UserServiceImpl implements UserService {
 		return matcher.matches();
 	}
 
+	@Override
+	@Transactional
+	public void addInviteUser(InviteUser inviteUser, long id) throws ServiceException {
+		try {
+			inviteUser.setGeneratedKey(Generator.generateLinkKey(50));
+			inviteUser.setCompanyId(id);
+			inviteUserDao.add(inviteUser);
+			Message<InviteUser> message = MessagerFactory.getInviteExparationMessage();
+			message.setDataObject(inviteUser);
+			message.sendImediatly();
+		} catch (DaoException | MessageException e) {
+				throw new ServiceException(e);
+			}
+	}
+
+	@Override
+	public InviteUser getInviteUserCode(String code) throws ServiceException {
+		try {
+			InviteUser user = new InviteUser();
+			List<InviteUser> inviteUser = inviteUserDao.getAllInviteUser();
+			for (InviteUser list : inviteUser) {
+				if (code.equals(list.getGeneratedKey())) {
+					user.setId(Long.valueOf(list.getId()));
+					user.setInviteEmail(list.getInviteEmail());
+					user.setGeneratedKey(list.getGeneratedKey());
+					user.setCompanyId(Long.valueOf(list.getCompanyId()));
+					return user;
+				}
+			}
+			return null;
+		} catch (DaoException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	public void addUserByInvite(StockUser user, Role[] roles) throws ServiceException {
+		try {
+			userDao.add(user);
+			List<UserRole> listRole = new ArrayList<>();
+			for (Role role : roles) {
+				UserRole userRole = new UserRole();
+				userRole.setRole(role);
+				userRole.setUserId(user.getId());
+				listRole.add(userRole);
+			}
+			userRoleDao.add(listRole);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		
+	}
 }

@@ -114,4 +114,12 @@
 		<put-attribute name="nav-testBG" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/test/testBG.jsp" />
 	</definition>
+	
+	<definition name="addUser" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/addUser.jsp" />
+	</definition>
+	
+	 <definition name="checkPassw" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/checkPassw.jsp" />
+	</definition> 
 </tiles-definitions>

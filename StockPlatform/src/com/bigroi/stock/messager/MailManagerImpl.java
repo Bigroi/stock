@@ -18,6 +18,7 @@ public class MailManagerImpl implements MailManager {
 	private String adminUser;
 	private String user;
 	private String password;
+	private String serverAdress;
 
 	@Override
 	public void send(String toEmail, String subject, String text) throws MailManagerException {
@@ -71,5 +72,15 @@ public class MailManagerImpl implements MailManager {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getServerAdress() {
+		return serverAdress;
+	}
+	
+	public void setServerAdress(String serverAdress) {
+		this.serverAdress = serverAdress;
+	}
+	
+	
 
 }

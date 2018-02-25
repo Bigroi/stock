@@ -32,6 +32,7 @@
 		<property name="user" value="${mail.user}" />
 		<property name="password" value="${mail.password}" />
 		<property name="adminUser" value="${mail.adminUser}"/>
+		<property name="serverAdress" value="${mail.serverAdress}"/>
 	</bean>
 	
 	<bean id="customerCanceledMessage" class="com.bigroi.stock.messager.message.CustomerCanceledMessage">
@@ -84,6 +85,10 @@
 	
 	<bean id="tenderExparationMessage" class="com.bigroi.stock.messager.message.TenderExparationMessage">
 		<constructor-arg name="fileName" value="tenderExparied.txt"/>
+	</bean>
+	
+	<bean id="inviteExparationMessage" class="com.bigroi.stock.messager.message.InviteExparationMessage">
+		<constructor-arg name="fileName" value="inviteExparied.txt"/>
 	</bean>
 	
 </beans>
