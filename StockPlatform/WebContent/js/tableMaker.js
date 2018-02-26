@@ -119,14 +119,6 @@ function makeTable(url, tableElement){
         			} );
         			table.draw();
         		}
-//        			event.target.classList.toggle("swtitch-row-off");
-//                    event.target.classList.toggle("swtitch-row-on");
-//        			table.
-//                    var d = data;
-//        			d[model.statusColumn] == "ACTIVE" ?
-//        					data[model.statusColumn] = "INACTIVE" :
-//        					data[model.statusColumn] = "ACTIVE";
-        			
         	});
         });
         $statusTd.append($switcher[0]);
@@ -200,7 +192,7 @@ function makeTable(url, tableElement){
 		
 		function addSelectFilter($th, column, title){
 			$th.html( '<select><option value="">Select ' + title + '</option></select>');
-	        var $select = $( 'select', this );
+	        var $select = $( 'select', $th );
 	        
 	        $select.on( 'change', function () {
 	        	var val = $.fn.dataTable.util.escapeRegex($(this).val());
