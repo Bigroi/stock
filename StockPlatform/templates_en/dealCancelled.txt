@@ -1,0 +1,8 @@
+Deal was rejected
+We are sorry, but your potential partner rejected the deal with your request (created @requestDate).
+
+The deal you can find on your site @server on the Deals page.
+
+Your request will take a part in the next trade sessions.
+
+Your trader!

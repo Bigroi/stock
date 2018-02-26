@@ -1,0 +1,10 @@
+Please, approve the deal
+Buyer was found for your sell request (created @tenderDate). Deal price is @price.  
+
+The deal you can find on your site @server on the Deals page.
+
+The deal will be available in 12 hours or until your partner rejects it.
+
+In case of deal reject or no action from you and your partner within 12 hours your sell request will take a part in the next trade sessions.
+
+Your trader!

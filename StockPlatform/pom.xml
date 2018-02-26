@@ -31,7 +31,7 @@
 						</webResource>
 						<webResource>
 							<targetPath>WEB-INF/classes</targetPath>
-							<directory>labels_by</directory>
+							<directory>labels_${LOCALE}</directory>
 						</webResource>
 						<webResource>
 							<targetPath>WEB-INF/classes</targetPath>
@@ -43,7 +43,7 @@
 						</webResource>
 						<webResource>
 							<targetPath>WEB-INF/classes</targetPath>
-							<directory>templates_by</directory>
+							<directory>templates_${LOCALE}</directory>
 						</webResource>
 					</webResources>
 				</configuration>
@@ -52,7 +52,7 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>tomcat-maven-plugin</artifactId>
 				<configuration>
-					<url>http://18.218.4.208:8080/manager/text</url>
+					<url>http://localhost:8080/manager/text</url>
 					<server>test_server</server>
 					<path>/</path>
 					<username>admin</username>
