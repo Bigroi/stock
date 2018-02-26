@@ -1,6 +1,7 @@
 package com.bigroi.stock.messager.message;
 
 import com.bigroi.stock.bean.Deal;
+import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -13,7 +14,8 @@ public class DealExparationMessageForSeller extends BaseMessage<Deal>{
 	@Override
 	protected String getText() throws MessageException {
 		return super.getText()
-				.replaceAll("@id", getDataObject().getProductName() + "");
+				.replaceAll("@product", getDataObject().getProductName())
+				.replaceAll("@server", MessagerFactory.getMailManager().getServerAdress());
 	}
 	
 	@Override

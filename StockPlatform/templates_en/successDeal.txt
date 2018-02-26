@@ -1,7 +1,7 @@
 Deal was approved.
 Hello,
 
-Your partner and you approved the deal for your request (created @date).
+Your partner and you approved the deal for your request for @product.
 
 The deal with partner contacts can be found on our site @server on the Deals page.
 

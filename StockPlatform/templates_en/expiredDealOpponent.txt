@@ -1,7 +1,7 @@
 A deal decision was not made by your partner
-We are sorry, but the deal with your request (created @requestDate) was automatically rejected, because there was no action from your partner side. 
+We are sorry, but the deal with your request for @product was automatically rejected, because there was no action from your partner side. 
 
-The deal you can find on your site @server on the Deals page.
+The deal can be found on our site @server on the Deals page.
 
 Your request will take a part in the next trade sessions.
 

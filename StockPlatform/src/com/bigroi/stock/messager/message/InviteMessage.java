@@ -5,9 +5,9 @@ import com.bigroi.stock.bean.InviteUser;
 import com.bigroi.stock.messager.MessagerFactory;
 
 
-public class InviteExparationMessage extends BaseMessage<InviteUser>{
+public class InviteMessage extends BaseMessage<InviteUser>{
 
-	protected InviteExparationMessage(String fileName) throws MessageException {
+	protected InviteMessage(String fileName) throws MessageException {
 		super(fileName);
 	}
 

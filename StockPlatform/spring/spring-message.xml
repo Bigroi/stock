@@ -88,7 +88,7 @@
 	</bean>
 	
 	<bean id="inviteExparationMessage" class="com.bigroi.stock.messager.message.InviteExparationMessage">
-		<constructor-arg name="fileName" value="inviteExparied.txt"/>
+		<constructor-arg name="fileName" value="invite.txt"/>
 	</bean>
 	
 </beans>

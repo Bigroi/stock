@@ -1,7 +1,7 @@
 package com.bigroi.stock.messager.message;
 
 import com.bigroi.stock.bean.Deal;
-import com.bigroi.stock.bean.common.Action;
+import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -23,12 +23,10 @@ public class DealConfirmationMessageForCustomer extends BaseMessage<Deal> {
 	@Override
 	protected String getText() throws MessageException {
 		Deal deal = getDataObject();
-		String customerLink = "";
 		
-		return super.getText().replaceAll("@tenderId", deal.getProductName() + "")
+		return super.getText()
+				.replaceAll("@product", deal.getProductName())
 				.replaceAll("@price", deal.getPrice() + "")
-				.replaceAll("@price", deal.getPrice() + "")
-				.replaceAll("@customerLinkApprove", customerLink + Action.APPROVE) 
-				.replaceAll("@customerLinkCancel", customerLink + Action.CANCEL);
+				.replaceAll("@server", MessagerFactory.getMailManager().getServerAdress());
 	}
 }

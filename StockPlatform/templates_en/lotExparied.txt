@@ -7,7 +7,7 @@ Description: @description
 Price: @price
 Volume: @volume
 
-The request you can find on our site @server on the Selling page.
+The request can be found on our site @server on the Selling page.
 
 You can update expiration date and continue take a part in the next trade sessions.
 
