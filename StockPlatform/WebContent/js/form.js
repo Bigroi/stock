@@ -82,17 +82,15 @@ function setFormInputs(formContainer, object){
 
 function updateTable(table, model, idColumnValue, object){
 	if (idColumnValue == "" || idColumnValue == -1){
-		table.row.add(object).draw();
+		table.row.add(object).draw(false);
 	} else {
 		table.rows().every( function () {
 		    var d = this.data();
 		    if (d[model.idColumn] == idColumnValue){
-		    	this.data(object);
+		    	this.data(object).draw(false);
 		    	return;
 		    }
-		    this.invalidate();
 		} );
-		table.draw();
 	}
 }
 

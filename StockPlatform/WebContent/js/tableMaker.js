@@ -113,11 +113,10 @@ function makeTable(url, tableElement){
         			    	d[model.statusColumn] == "ACTIVE" ?
 	        					d[model.statusColumn] = "INACTIVE" :
 	        					d[model.statusColumn] = "ACTIVE";
-        			    	this.data(d);
+        			    	this.data(d).draw(false);
         			    	return;
         			    }
         			} );
-        			table.draw();
         		}
         	});
         });
