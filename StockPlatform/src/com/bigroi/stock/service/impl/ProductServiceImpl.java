@@ -104,13 +104,24 @@ public class ProductServiceImpl implements ProductService {
 			bids.addAll(lotDao.getActiveByProductId(productId));
 			bids.addAll(tenderDao.getActiveByProductId(productId));
 			
-			if (bids.size() == 0){
-				return new ArrayList<>();
-			}
-			
 			Collections.sort(bids, (a, b) -> (int) (a.getPrice() - b.getPrice()));
-			
 			int size = bids.size();
+			
+			DecimalFormat df = new DecimalFormat("# ###.##");
+			
+			if (size <= 5){
+				List<TradeOffer> list = new ArrayList<>();
+				for (Bid bid : bids){
+					TradeOffer offer = new TradeOffer(df.format(bid.getPrice()));
+					if (bid instanceof Lot){
+						offer.setLotVolume(bid.getMaxVolume());
+					} else {
+						offer.setTenderVolume(bid.getMaxVolume());
+					}
+					list.add(offer);
+				}
+				return list;
+			}
 			
 			double minPrice = bids.subList((int)Math.round(size * 0.07), size - 1).get(0).getPrice();
 			double maxPrice = bids.subList((int)Math.round(size - size * 0.07 - 1), size - 1).get(0).getPrice();
@@ -119,7 +130,7 @@ public class ProductServiceImpl implements ProductService {
 			
 			List<TradeOffer> tradeOffers = new ArrayList<>();
 			
-			DecimalFormat df = new DecimalFormat("# ###.##");
+			
 			tradeOffers.add(new TradeOffer(
 					"< " + df.format(minPrice)
 					));
