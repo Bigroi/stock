@@ -14,6 +14,7 @@ function makeTable(url, tableElement){
 		tableData.rowCallback = rowCallback;
 		tableData.language = getLanguage();
 		tableData.initComplete = initHeader;
+		tableData.aaSorting = [];
 		table = $(tableElement).DataTable(tableData);
 
 		if ($(".add-button").length > 0){

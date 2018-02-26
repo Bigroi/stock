@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.Product;
-import com.bigroi.stock.bean.Tender;
+import com.bigroi.stock.bean.TradeOffer;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
@@ -69,29 +68,12 @@ public class ProductResourseController extends BaseResourseController {
 		return new ResultBean(1, null).toString();
 	}
 	
-	@RequestMapping("/lots.spr")
+	@RequestMapping("/TradeOffers.spr")
 	@ResponseBody
 	public String getLots(@RequestParam int productId) throws ServiceException, TableException{
-		List<Lot> lots = ServiceFactory.getLotService().getByProduct(productId);
-		TableResponse<Lot> table = new TableResponse<>(Lot.class, lots)
-			.removeColumn("status")
-			.removeColumn("creationDate")
-			.removeColumn("expDate")
-			.removeColumn("edit")
-			.removeColumn("productName");
+		List<TradeOffer> tradeOffers = ServiceFactory.getProductService().getTradeOffers(productId);
+		TableResponse<TradeOffer> table = new TableResponse<>(TradeOffer.class, tradeOffers);
 		return new ResultBean(1, table, null).toString();
 	}
 	
-	@RequestMapping("/tenders.spr")
-	@ResponseBody
-	public String getTenders(@RequestParam int productId) throws TableException, ServiceException{
-		List<Tender> tenders = ServiceFactory.getTenderService().getByProduct(productId);
-		TableResponse<Tender> table = new TableResponse<>(Tender.class, tenders)
-			.removeColumn("status")
-			.removeColumn("creationDate")
-			.removeColumn("expDate")
-			.removeColumn("edit")
-			.removeColumn("productName");
-		return new ResultBean(1, table, null).toString();
-	}
 }

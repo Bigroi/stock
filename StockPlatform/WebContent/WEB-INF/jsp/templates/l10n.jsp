@@ -53,6 +53,9 @@ label.table.paginate_next
 label.table.paginate_previous
 label.table.aria_sortAscending
 label.table.aria_sortDescending
+label.product.price
+label.product.lot_volume
+label.product.tender_volume
 </div>
 <script>
 $("#labels").localization();
