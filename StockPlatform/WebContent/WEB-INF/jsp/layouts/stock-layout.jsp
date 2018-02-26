@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>${page_title}</title>
+		<title>Your Trader! ${page_title}</title>
 		<meta charset = "utf-8">
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
         <link rel="stylesheet" href="/css/pageStyle.css">
@@ -28,7 +28,7 @@
 		<tiles:insertAttribute name="l10n" />
         <div class = "aside">
             <div class = "logo">
-                <p><b>GR</b></p>
+                <p><b>YT</b></p>
             </div>
             <div class="burger"></div>
             <nav class = "main-menu">
