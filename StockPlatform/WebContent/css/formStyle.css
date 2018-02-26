@@ -63,7 +63,7 @@
 		background: #fff; 
 		border:1px solid #555; 
 		box-shadow: 0 0 3px #aaa; 
-		padding-right:70px;
+		padding-right: 35px;
 	}
 /* === HTML5 validation styles === */	
 .form input:required, .form textarea:required, .form select:required {
@@ -115,4 +115,28 @@
 }
 .form button#save-start-trading {
 	margin-top: 0;
+}
+form.form.form-tradeOffers {
+	margin: 0;
+	width: 100%;
+}
+form.form.form-tradeOffers input {
+    border: none;
+    box-shadow: none;
+    padding-right: 0;
+    background: #f3f3f3;
+    width: 100%;
+    font-weight: bold;
+    color: black;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+form.form.form-tradeOffers ul li {
+	padding: 3px 0;
+}
+form.form.form-tradeOffers ul li:last-child input {
+	background: none;
+    font-size: 16px;
+    color: #9a9a9a;
+    font-weight: normal;
 }

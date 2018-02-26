@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-	<form class="form" action="#" method="post" name="form">
+	<form class="form form-tradeOffers" action="#" method="post" name="form">
 	    <ul>
 	        <li>
-	            <label for="name">${label.product.name}</label>
+	           <!--<label for="name">${label.product.name}</label>-->
 	            <input type="text" disabled value="${product.name}"/>
 	        </li>
 	        <li>
-	            <label for="description">${label.product.description}</label>
-	            <textarea cols="40" rows="6" disabled>${product.description}</textarea>
+	           <!--<label for="description">${label.product.description}</label>-->
+	            <input type="text" disabled value="${product.description}"/>
 	        </li>
 	    </ul>
 	</form>

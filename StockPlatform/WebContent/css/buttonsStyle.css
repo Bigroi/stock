@@ -1,29 +1,22 @@
 button.submit {
-	background-color: #68b12f;
-	background: -webkit-gradient(linear, left top, left bottom, from(#68b12f), to(#50911e));
-	background: -webkit-linear-gradient(top, #68b12f, #50911e);
-	background: linear-gradient(top, #68b12f, #50911e);
-	border: 1px solid #509111;
-	border-bottom: 1px solid #5b992b;
+	background-color: #50C878;
+	border: 1px solid #50C878;
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-ms-border-radius: 3px;
 	-o-border-radius: 3px;
-	box-shadow: inset 0 1px 0 0 #9fd574;
-	-webkit-box-shadow: 0 1px 0 0 #9fd574 inset ;
-	-moz-box-shadow: 0 1px 0 0 #9fd574 inset;
-	-ms-box-shadow: 0 1px 0 0 #9fd574 inset;
-	-o-box-shadow: 0 1px 0 0 #9fd574 inset;
 	color: white;
 	font-weight: bold;
 	padding: 6px 20px;
 	text-align: center;
-	text-shadow: 0 -1px 0 #396715;
+	    -webkit-transition: 0.8s;
+    transition: 0.8s;
 }
 button.submit:hover {
-	opacity:.85;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	background-color: #3e9e5e;
+	box-shadow: 0 0 5px 3px rgba(154, 154, 154, 0.3);
+    border: 2px solid #3e9e5e;
 	cursor: pointer; 
 }
 button.submit:active {
@@ -39,5 +32,9 @@ button[disabled] {
 	border: 1px solid red;
 	box-shadow: none;
 	}
-
+#new-invite-button {
+	width: 252px;
+    margin-left: 11px;
+    height: 35px;
+}	
 	
