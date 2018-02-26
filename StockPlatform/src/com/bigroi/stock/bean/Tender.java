@@ -42,7 +42,7 @@ public class Tender implements Bid{
 	@Column(value = "label.tender.exp_date", allowSorting = true)
 	private Date expDate = new Date();
 	
-	@Column(value = "label.tender.creation_date", allowSorting = true)
+	@Column(value = "label.tender.creation_date", allowSorting = false)
 	@JsonAdapter(DateTimeAdapter.class)
 	private Date creationDate = new Date();
 	

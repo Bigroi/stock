@@ -41,7 +41,7 @@ public class Lot implements Bid{
 	@Column(value = "label.lot.exp_date", allowSorting = true)
 	private Date expDate = new Date();
 	
-	@Column(value = "label.lot.creation_date", allowSorting = true)
+	@Column(value = "label.lot.creation_date", allowSorting = false)
 	@JsonAdapter(DateTimeAdapter.class)
 	private Date creationDate = new Date();
 	
