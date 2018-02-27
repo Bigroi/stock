@@ -53,7 +53,7 @@ function processRequestResult(formContainer, answer, messageDiv){
 		return 0;
 	}
 	messageDiv.text(answer.message);
-//	messageDiv[0].scrollIntoView(true);
+	messageDiv[0].scrollIntoView(true);
 	return answer.result;
 }
 
@@ -168,23 +168,22 @@ function setLotDialogPlugin(element, table, model, id){
 
 function setInviteDialogPlugin(element){
 	
+	var buttons = [{
+		text: window.l10n["label.button.invite"],
+		id:"invite",
+		submit:function(formContainer, params, $dialogbox){
+			$.post("/account/json/AddUser.spr", params, function(answer){
+				processRequestResult(formContainer, answer, $('.dialogbox-message'));
+			});
+		}
+	}];
+	
 	element.dialogbox({
 		container:$("#invite-form-container"),
-		formUrl:"/account/AddUser.spr",
+		formUrl:"/account/AddUser.spr", 
+		formData:"/account/json/AddUser.spr",
 		height:"15%",
-		buttons:[
-		{
-			text: window.l10n["label.button.invite"],
-			id:"invite",
-			url:"/account/json/AddUser.spr",
-			close:true 
-		},
-		{
-			text: window.l10n["label.button.cancel"],
-			id:"cancel",
-			close:true
-		}], 
-						
+		buttons:buttons,
 	});
 }
 
