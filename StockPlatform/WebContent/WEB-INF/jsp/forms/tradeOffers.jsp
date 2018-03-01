@@ -13,8 +13,10 @@
 	        </li>
 	    </ul>
 	</form>
-
-	<table id = "main-table"></table>
+	<div class="table-tradeOffers">
+		<table id = "main-table" ></table>
+	</div>
+	<div class="chart"></div>
 	<script>
 		makeTable("/product/json/TradeOffers.spr?productId=${product.id}", $("#main-table"));
 	</script>
@@ -22,7 +24,7 @@
 	<form class="form" action="/product/List.spr" method="post">
 		<ul>
 			<li>
-				<button class="submit" type="submit">${label.button.back}</button>
+				<button class="submit fs-submit" type="submit">${label.button.back}</button>
 			</li>
 		</ul>
 	</form>

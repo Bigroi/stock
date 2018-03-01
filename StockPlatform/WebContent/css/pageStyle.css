@@ -81,6 +81,8 @@ body{
     border-radius: 3px;
     margin: 2px 0;
     background-color: rgb(0, 160, 187);
+       -webkit-transition: 0.1s;
+   transition: 0.1s;
 }
 .aside nav a:hover {
     background-color: #67d2e6;
@@ -128,20 +130,19 @@ body{
     padding: 6px 5px;
     margin: 10px;
     box-shadow: none;
-    -webkit-transition: 0.8s;
-    transition: 0.8s;
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
 }
 .login a:hover {
-    box-shadow: 0 0 5px 3px rgba(154, 154, 154, 0.3);
-    color: #3e9e5e;
-    border: 2px solid #3e9e5e;
+    color: #61ea8f;
+    border: 2px solid #61ea8f;
 }
 .login a:nth-child(2) {
     background: #50C878;
     color: white;
 }
 .login a:nth-child(2):hover {
-    background: #3e9e5e;
+    background: #61ea8f;
 }
 .section .table-header {
     margin: 10px 0px;
@@ -174,7 +175,7 @@ h1 {
     background-image: url(/img/plus.png);
     background-repeat: no-repeat;
     background-size: 25px;
-    background-position: 5px center;
+    background-position: 12px center;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -184,9 +185,14 @@ h1 {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+       -webkit-transition: 0.1s;
+   transition: 0.1s;
+}
+.section .add-button:hover {
+   background-color: #67d2e6;
 }
 .section .add-button p {
-    padding-left: 10px;
+    padding-left: 13px;
     margin: 0;
 }
 .aside-footer p:nth-child(2) a{
@@ -351,4 +357,7 @@ form.form {
 	    font-size: 22px;
 	    padding: 0 5px;
 	}
+}
+.content  {
+	padding-bottom: 50px;
 }

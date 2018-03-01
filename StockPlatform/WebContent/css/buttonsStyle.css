@@ -10,31 +10,41 @@ button.submit {
 	font-weight: bold;
 	padding: 6px 20px;
 	text-align: center;
-	    -webkit-transition: 0.8s;
-    transition: 0.8s;
+	    -webkit-transition: 0.1s;
+    transition: 0.1s;
 }
 button.submit:hover {
-	background-color: #3e9e5e;
-	box-shadow: 0 0 5px 3px rgba(154, 154, 154, 0.3);
-    border: 2px solid #3e9e5e;
+	background-color: #61ea8f;
+	border: 1px solid #61ea8f;
 	cursor: pointer; 
 }
-button.submit:active {
+/*button.submit:active {
 	border: 1px solid #20911e;
 	box-shadow: 0 0 10px 5px #356b0b inset; 
 	-webkit-box-shadow:0 0 10px 5px #356b0b inset ;
 	-moz-box-shadow: 0 0 10px 5px #356b0b inset;
 	-ms-box-shadow: 0 0 10px 5px #356b0b inset;
 	-o-box-shadow: 0 0 10px 5px #356b0b inset;
-}
+}*/
 button[disabled] {
 	background: red;
 	border: 1px solid red;
 	box-shadow: none;
-	}
+		 -webkit-transition: 0.1s;
+    transition: 0.1s;
+}
+button[disabled]:hover {
+    background: #ff3838;
+    border: 1px solid #ff3838;
+}
 #new-invite-button {
 	width: 252px;
     margin-left: 11px;
     height: 35px;
 }	
-	
+.fs-submit {
+	font-size: 20px;
+	width: 150px;
+    height: 45px;
+    font-weight: normal !important;
+}	
