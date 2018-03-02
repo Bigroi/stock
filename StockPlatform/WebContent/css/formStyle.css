@@ -106,12 +106,14 @@
 }
 .form button.but-sub,
 .form button#save,
-.form button#save-start-trading {
+.form button#save-start-trading,
+div#form-container form.form ul li button.submit {
 	margin-left: 0;
     width: 250px;
     margin-bottom: 15px;
     height: 35px;
     margin-top: 10px;
+
 }
 .form button#save-start-trading {
 	margin-top: 0;
