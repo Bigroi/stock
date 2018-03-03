@@ -8,8 +8,10 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.Bid;
+import com.bigroi.stock.bean.ChartTrace;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.Product;
+import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.bean.TradeOffer;
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.dao.DaoException;
@@ -170,6 +172,30 @@ public class ProductServiceImpl implements ProductService {
 			
 			return tradeOffers;
 		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	public List<ChartTrace> getChartTraces(long productId) throws ServiceException {
+		try{
+			List<ChartTrace> chartTraces = new ArrayList<>();
+			
+			ChartTrace sell = new ChartTrace();
+			for (Lot lot : lotDao.getActiveByProductId(productId)){
+				sell.addDot(lot.getMaxVolume(), lot.getPrice());
+			}
+			sell.setColor("rgb(103, 210, 230)");
+			chartTraces.add(sell);
+			
+			ChartTrace buy = new ChartTrace();
+			for (Tender tender : tenderDao.getActiveByProductId(productId)){
+				buy.addDot(tender.getMaxVolume(), tender.getPrice());
+			}
+			buy.setColor("rgb(242, 153, 74)");
+			chartTraces.add(buy);
+			return chartTraces;
+		}catch (DaoException e) {
 			throw new ServiceException(e);
 		}
 	}

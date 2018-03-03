@@ -56,6 +56,9 @@ label.table.aria_sortDescending
 label.product.price
 label.product.lot_volume
 label.product.tender_volume
+label.tradeOffers.graph_title
+label.tradeOffers.price
+label.tradeOffers.volume
 </div>
 <script>
 $("#labels").localization();

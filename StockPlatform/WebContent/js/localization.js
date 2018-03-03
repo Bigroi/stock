@@ -16,3 +16,12 @@ $.fn.localization = function(){
     	async: false
     })
 }
+
+function translate(word){
+	var translation = window.l10n[word];
+	if (translation || translation == ''){
+		return translation;
+	} else {
+		return "not found " + word;
+	}
+}

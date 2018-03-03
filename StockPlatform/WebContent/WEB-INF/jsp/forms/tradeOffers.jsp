@@ -16,9 +16,10 @@
 	<div class="table-tradeOffers">
 		<table id = "main-table" ></table>
 	</div>
-	<div class="chart"></div>
+	<div id="chart" class="chart"></div>
 	<script>
 		makeTable("/product/json/TradeOffers.spr?productId=${product.id}", $("#main-table"));
+		buildChart("chart", "/product/json/TradeOfferChart.spr", {"productId":${product.id}});
 	</script>
 				
 	<form class="form" action="/product/List.spr" method="post">

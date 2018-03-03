@@ -126,27 +126,27 @@ function makeTable(url, tableElement){
 
 	function getLanguage(){
 		return {
-		    decimal:		window.l10n["label.table.decimal"],
-		    emptyTable:		window.l10n["label.table.emptyTable"],
-		    info:			window.l10n["label.table.info"],
-		    infoEmpty:		window.l10n["label.table.infoEmpty"],
-		    infoFiltered:	window.l10n["label.table.infoFiltered"],
-		    infoPostFix:	window.l10n["label.table.infoPostFix"],
-		    thousands:		window.l10n["label.table.thousands"],
-		    lengthMenu:		window.l10n["label.table.lengthMenu"],
-		    loadingRecords:	window.l10n["label.table.loadingRecords"],
-		    processing:		window.l10n["label.table.processing"],
-		    search:			window.l10n["label.table.search"],
-		    zeroRecords:	window.l10n["label.table.zeroRecords"],
+		    decimal:		translate("label.table.decimal"),
+		    emptyTable:		translate("label.table.emptyTable"),
+		    info:			translate("label.table.info"),
+		    infoEmpty:		translate("label.table.infoEmpty"),
+		    infoFiltered:	translate("label.table.infoFiltered"),
+		    infoPostFix:	translate("label.table.infoPostFix"),
+		    thousands:		translate("label.table.thousands"),
+		    lengthMenu:		translate("label.table.lengthMenu"),
+		    loadingRecords:	translate("label.table.loadingRecords"),
+		    processing:		translate("label.table.processing"),
+		    search:			translate("label.table.search"),
+		    zeroRecords:	translate("label.table.zeroRecords"),
 		    paginate: {
-		        first:		window.l10n["label.table.paginate_first"],
-		        last:		window.l10n["label.table.paginate_last"],
-		        next:		window.l10n["label.table.paginate_next"],
-		        previous:	window.l10n["label.table.paginate_previous"]
+		        first:		translate("label.table.paginate_first"),
+		        last:		translate("label.table.paginate_last"),
+		        next:		translate("label.table.paginate_next"),
+		        previous:	translate("label.table.paginate_previous")
 		    },
 		    aria: {
-		        sortAscending:	window.l10n["label.table.aria_sortAscending"],
-		        sortDescending:	window.l10n["label.table.aria_sortAscending"]
+		        sortAscending:	translate("label.table.aria_sortAscending"),
+		        sortDescending:	translate("label.table.aria_sortAscending")
 		    }
 		}
 	}
@@ -156,7 +156,7 @@ function makeTable(url, tableElement){
 		thisObject.api().columns().every(function() {
 			var column = this;
 			var $header = $(column.header());
-			$header[0].textContent = window.l10n[$header[0].textContent];
+			$header[0].textContent = translate($header[0].textContent);
 		});
 	}
 	
