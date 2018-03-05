@@ -112,7 +112,7 @@ body{
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
-	border-bottom: 1px solid silver;
+	border-bottom: 2px solid #dcdcdc;
 	min-height: 62px;
 	width: 100%;
 }

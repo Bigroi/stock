@@ -2,23 +2,27 @@ div#main-table_wrapper {
     overflow: auto;
 }
 table#main-table tr:nth-child(even) {
-    background-color: whitesmoke;
+    background-color: white;
 } 
 table#main-table td {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #dcdcdc;
+}
+table.dataTable.no-footer{
+    border-bottom: none;
 }
 
 table.dataTable thead th.table-head-up{
     text-align: left;
-    background-color: whitesmoke;
-    border-top: 1px solid black; 
-    border-bottom: 0px solid black;
+    background-color: white;
+    border-top: 1px solid #dcdcdc; 
+    border-bottom: none;
     padding-bottom: 0px;
 }
 
 table.dataTable thead th.table-head-down{
     text-align: left;
-    background-color: whitesmoke;
+    background-color: white;
+    border-bottom: 1px solid #dcdcdc;
     padding-top: 0px;
 }
 
@@ -109,12 +113,12 @@ table.dataTable thead th.table-head-down{
     background-color: white;
 } */
 
-table#main-table tr:nth-child(even) td>div.no-edit{
+/*table#main-table tr:nth-child(even) td>div.no-edit{
     background-color: whitesmoke;
 } 	
 table#main-table tr:nth-child(even) td>div.no-remove{
     background-color: whitesmoke;
-}
+}*/
 
  table#main-table{
   	width: 100% !important;
@@ -157,7 +161,7 @@ table.dataTable thead th {
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-	background: whitesmoke;
+	background: white;
 }
 @media (max-width:1244px){
 	table#main-table th {
