@@ -174,14 +174,17 @@ function setInviteDialogPlugin(element){
 		submit:function(formContainer, params, $dialogbox){
 			$.post("/account/json/AddUser.spr", params, function(answer){
 				processRequestResult(formContainer, answer, $('.dialogbox-message'));
+				if (answer.result > 0){
+					$dialogbox.remove();
+				}
 			});
-		}
+		}, 
+		close:true
 	}];
 	
 	element.dialogbox({
 		container:$("#invite-form-container"),
 		formUrl:"/account/AddUser.spr", 
-		formData:"/account/json/AddUser.spr",
 		height:"15%",
 		buttons:buttons,
 	});

@@ -2,14 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<form class="form" action="Join.spr" method="get" name="form">
-	<ul id="form-list">
+<c:if test="${message != null}">
+	<p>${message}</p>
+</c:if>
 
-		<li>
-			<p>${label.account.login}:${userName}</p>
-			<p>${label.account.password}:${userPassw}</p>
-		</li>
-
-	</ul>
-</form>
-
+<c:if test="${message  == null }">
+	<p>${label.invite.errorMessage}</p>
+</c:if>

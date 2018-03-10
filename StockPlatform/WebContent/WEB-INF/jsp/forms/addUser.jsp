@@ -6,7 +6,7 @@
 	<ul id="form-list">
 	
 	    <li>
-	   <%--   <label for="password">${label.account.password}</label> --%>
+	         <label for="email">${label.invite.sendInvite}:</label> 
 		    <input type="email" name="inviteEmail" placeholder="example@mail.com" required />
 	    </li>
 	

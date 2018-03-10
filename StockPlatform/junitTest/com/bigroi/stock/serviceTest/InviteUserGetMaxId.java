@@ -16,7 +16,7 @@ public static InviteUser inviteUser;
 	@BeforeClass
 	public static void init(){
 		inviteUser = new InviteUser();
-		inviteUser.setGeneratedKey("code=884Ye2IHZgYJUSZbSuFQvJjaR2AIOVbUYokza+%@1op6zAdo)q");
+		inviteUser.setGeneratedKey("oOjfQf9FEyEvRJnc7kqc0HRQaoiazQabGT2MqKfxUGhqk2mJTu");
 		
 	}
 	

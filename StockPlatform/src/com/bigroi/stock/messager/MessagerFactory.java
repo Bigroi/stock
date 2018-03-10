@@ -74,4 +74,8 @@ public class MessagerFactory {
 	public static Message<InviteUser> getInviteExparationMessage(){
 		return (Message<InviteUser>) CONTEXT.getBean("inviteExparationMessage");
 	}
+	
+	public static Message<StockUser> getNewPasswExparationMessage(){
+		return (Message<StockUser>) CONTEXT.getBean("newPasswExparationMessage");
+	}
 }

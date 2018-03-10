@@ -1,11 +1,14 @@
 package com.bigroi.stock.bean;
 
+import java.util.Date;
+
 public class InviteUser {
 	
 	private long id;
 	private String inviteEmail;
 	private String generatedKey;
 	private long companyId;
+	private Date creationDate =  new Date();
 	
 	public long getId() {
 		return id;
@@ -33,10 +36,17 @@ public class InviteUser {
 		this.companyId = companyId;
 	}
 	
+	public Date getCreationDate() {
+		return creationDate;
+	}
+	
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+	
 	@Override
 	public String toString() {
 		return "InviteUser [id=" + id + ", inviteEmail=" + inviteEmail + ", generatedKey=" + generatedKey
-				+ ", companyId=" + companyId + "]"+"\n";
-	}
-	
+				+ ", companyId=" + companyId + ", creationDate=" + creationDate + "]"+"\n";
+	}	
 }

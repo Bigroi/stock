@@ -5,12 +5,11 @@ import com.bigroi.stock.bean.InviteUser;
 import com.bigroi.stock.messager.MessagerFactory;
 
 
-public class InviteMessage extends BaseMessage<InviteUser>{
+public class InviteExparationMessage extends BaseMessage<InviteUser>{
 
-	protected InviteMessage(String fileName) throws MessageException {
+	protected InviteExparationMessage(String fileName) throws MessageException {
 		super(fileName);
 	}
-
 	@Override
 	protected String getEmail() throws MessageException {
 			return getDataObject().getInviteEmail();

@@ -33,7 +33,8 @@ public class BaseRenderingController {
 			"tender.properties",
 			"tradeOffers.properties",
 			"button.properties",
-			"table.properties"
+			"table.properties",
+			"invite.properties"
 			};
 	
 	public static Map<String, Object> defaultLabels = new HashMap<>();

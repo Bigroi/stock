@@ -17,7 +17,7 @@ public class InviteUserAddService {
 	@BeforeClass
 	public static void init(){
 		inviteUser = new InviteUser();
-		inviteUser.setId(113);
+		for(int i = 0; i < 10; i++) inviteUser.setId(i);
 		inviteUser.setInviteEmail("test3@mail.com");
 		
 		company = new Company();
@@ -27,8 +27,10 @@ public class InviteUserAddService {
 	
 	@Test
 	public void add() throws ServiceException{
+		for(int i = 0; i < 10; i++){
 		ServiceFactory.getUserService().addInviteUser(inviteUser,company.getId());
 		Assert.assertNotNull(inviteUser);
+		}
 	}
 	
 

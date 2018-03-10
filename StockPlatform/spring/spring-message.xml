@@ -91,4 +91,8 @@
 		<constructor-arg name="fileName" value="invite.txt"/>
 	</bean>
 	
+	<bean id="newPasswExparationMessage" class="com.bigroi.stock.messager.message.NewPasswExparationMessage">
+		<constructor-arg name="fileName" value="newPassw.txt"/>
+	</bean>
+	
 </beans>

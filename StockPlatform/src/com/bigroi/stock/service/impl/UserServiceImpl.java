@@ -155,24 +155,13 @@ public class UserServiceImpl implements UserService {
 			message.sendImediatly();
 		} catch (DaoException | MessageException e) {
 				throw new ServiceException(e);
-			}
+		}
 	}
 
 	@Override
 	public InviteUser getInviteUserCode(String code) throws ServiceException {
 		try {
-			InviteUser user = new InviteUser();
-			List<InviteUser> inviteUser = inviteUserDao.getAllInviteUser();
-			for (InviteUser list : inviteUser) {
-				if (code.equals(list.getGeneratedKey())) {
-					user.setId(Long.valueOf(list.getId()));
-					user.setInviteEmail(list.getInviteEmail());
-					user.setGeneratedKey(list.getGeneratedKey());
-					user.setCompanyId(Long.valueOf(list.getCompanyId()));
-					return user;
-				}
-			}
-			return null;
+			return inviteUserDao.getInviteUserByCode(code);
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
@@ -180,8 +169,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void addUserByInvite(StockUser user, Role[] roles) throws ServiceException {
+	@Transactional
+	public void addUserByInvite(InviteUser inviteUser, Role[] roles) throws ServiceException {
 		try {
+			StockUser user = new StockUser();
+			user.setUsername(inviteUser.getInviteEmail());
+			user.setPassword(Generator.generatePass(8));
+			user.setCompanyId(inviteUser.getCompanyId());
 			userDao.add(user);
 			List<UserRole> listRole = new ArrayList<>();
 			for (Role role : roles) {
@@ -191,9 +185,23 @@ public class UserServiceImpl implements UserService {
 				listRole.add(userRole);
 			}
 			userRoleDao.add(listRole);
-		} catch (DaoException e) {
+			inviteUserDao.deleteInviteUserByCode(inviteUser.getGeneratedKey());
+			Message<StockUser> message = MessagerFactory.getNewPasswExparationMessage();
+			message.setDataObject(user);
+			message.sendImediatly();
+		} catch (DaoException | MessageException e) {
 			throw new ServiceException(e);
 		}
-		
+	}
+
+	@Override
+	public void getInviteUsersByDate() throws ServiceException {
+		try {
+			 inviteUserDao.getAllInviteUserByDate();
+			 inviteUserDao.deleteInviteUsersByDate();
+		} catch (DaoException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException(e);
+		}
 	}
 }

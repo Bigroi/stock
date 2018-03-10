@@ -28,7 +28,8 @@ public interface UserService extends UserDetailsService{
 
 	InviteUser  getInviteUserCode(String code) throws ServiceException;
 	
-	void addUserByInvite(StockUser user, Role[] roles) throws ServiceException;
+	void addUserByInvite(InviteUser inviteUser, Role[] roles) throws ServiceException;
 	
+	void getInviteUsersByDate() throws ServiceException;
 	
 }
