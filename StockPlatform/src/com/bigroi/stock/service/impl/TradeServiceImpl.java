@@ -61,7 +61,7 @@ public class TradeServiceImpl implements TradeService{
 		try{
 			List<Product> list = productDao.getAllActiveProducts();
 			for (Product product : list){
-				productTrade(product.getId());
+				productTrade(product.getId(), product.getName());
 			}
 			lotDao.update(lotsToUpdate);
 			tenderDao.update(tendersToUpdate);
@@ -71,7 +71,7 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 	
-	private void productTrade(long productId) throws ServiceException{
+	private void productTrade(long productId, String productName) throws ServiceException{
 		try{
 			List<TradeLot> tradeLots = new ArrayList<>();
 			List<TradeTender> tradeTenders = new ArrayList<>();
@@ -83,7 +83,7 @@ public class TradeServiceImpl implements TradeService{
 				
 				TradeBid majorBid = getMinVolumeBid(majorBids);
 				
-				createDealsForBid(majorBid);
+				createDealsForBid(majorBid, productName);
 				
 				removeAllZeroBids(tradeTenders, tradeLots);
 			}
@@ -93,10 +93,11 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 
-	private void createDealsForBid(TradeBid bid) throws ServiceException{
+	private void createDealsForBid(TradeBid bid, String productName) throws ServiceException{
 		while(bid.getMaxVolume() > 0 && bid.getPosiblePartners().size() > 0){
 			TradeBid partner = bid.getBestPartner();
 			Deal deal = createDeal(bid, partner);
+			deal.setProductName(productName);
 			sendConfimationMails(deal);
 			deals.add(deal);
 			
