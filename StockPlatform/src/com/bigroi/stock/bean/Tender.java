@@ -51,7 +51,7 @@ public class Tender implements Bid{
 	private int packaging;
 	
 	@Edit(edit="setTenderDialogPlugin", remove="/tender/json/Delete.spr")
-	@Column("")
+	@Column("edit")
 	private String edit = "YY";
 	
 	public boolean isExpired() {
