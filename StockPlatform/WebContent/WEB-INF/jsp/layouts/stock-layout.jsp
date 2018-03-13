@@ -84,9 +84,9 @@
 				<div class="dialogbox-Content-session">
 					<div class="dialogbox-inner-session">
 						<div class="dialogbox-elementContent-session">
-							<h2>Ваша сеесия закончилась</h2>
-							<p>Пожалуйста, авторизируйтесь заново</p>
-							<a href="#" class="session-out">Ок</a>
+							<h2>${label.pageNames.session}</h2>
+							<p>${label.login.loginAgain}</p>
+							<a href="#" class="session-out">${label.button.ok}</a>
 						</div>
 					</div>
 				</div>
