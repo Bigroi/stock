@@ -9,6 +9,7 @@ label.lot.status
 label.lot.min_price
 label.lot.max_volume
 label.lot.exp_date
+label.lot.edit
 label.lot.creation_date
 label.tender.product
 label.tender.status
@@ -16,6 +17,7 @@ label.tender.max_price
 label.tender.max_volume
 label.tender.exp_date
 label.tender.creation_date
+label.tender.edit
 label.product.name
 label.product.description
 label.product.archive
@@ -56,6 +58,7 @@ label.table.aria_sortDescending
 label.product.price
 label.product.lot_volume
 label.product.tender_volume
+label.product.edit
 label.tradeOffers.graph_title
 label.tradeOffers.price
 label.tradeOffers.volume
