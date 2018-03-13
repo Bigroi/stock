@@ -1,5 +1,6 @@
 
-.dialogbox{
+.dialogbox,
+.dialogbox-session{
 	
     position: fixed;
     z-index: 1; 
@@ -13,7 +14,8 @@
     background-color: rgba(0,0,0,0.8); 
 
 }
-.dialogbox .dialogbox-child{
+.dialogbox .dialogbox-child,
+.dialogbox-session .dialogbox-child-session{
     width: 400px;
     margin: 0 auto ;
     background: white;
@@ -25,7 +27,8 @@
 
 }
 
- .dialogbox .dialogbox-Content{
+ .dialogbox .dialogbox-Content,
+ .dialogbox-session .dialogbox-Content-session{
     background-color: white;
     margin: auto;
     border: 1px  solid transparent;
@@ -34,7 +37,11 @@
     padding: 0 6px 15px 6px; 
     margin-bottom: 150px;
 }
- .dialogbox .dialogbox-Head{
+.dialogbox-session .dialogbox-Content-session{
+	margin-bottom: 0;
+}
+ .dialogbox .dialogbox-Head,
+ .dialogbox-session .dialogbox-Head-session{
     border-radius: 5px;
 	height: 30px;
     width: calc(100% - 25px);
@@ -45,7 +52,8 @@
     
 
 }
-.dialogbox .dialogbox-spanClose{
+.dialogbox .dialogbox-spanClose,
+.dialogbox-session .dialogbox-spanClose{
     color:  #601532;
     font-size: 30px;
     font-weight: bold;
@@ -53,11 +61,30 @@
     position: absolute;
     line-height: 32px;
 }
-.dialogbox .dialogbox-spanClose:hover{
+.dialogbox .dialogbox-spanClose:hover,
+.dialogbox-session .dialogbox-spanClose:hover{
 	color: red;   
 }
 
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; } 
     to {top:0; opacity:1; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"}
+}
+.dialogbox-session {
+	display:none;
+	
+}
+.dialogbox-session .dialogbox-child-session {
+	min-height: 300px;
+}
+.dialogbox-elementContent-session h2,
+.dialogbox-elementContent-session p {
+	width: 270px;
+    margin: 0 auto;
+    text-align: center;
+}
+.dialogbox-elementContent-session p {
+	width: 270px;
+    margin: 40px auto;
+    text-align: center;
 }

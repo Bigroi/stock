@@ -116,7 +116,8 @@ body{
 	min-height: 62px;
 	width: 100%;
 }
-.login a {
+.login a,
+.dialogbox-elementContent-session a {
     display: block;
     width: 136px;
     height: 29px;
@@ -137,10 +138,15 @@ body{
     color: #61ea8f;
     border: 2px solid #61ea8f;
 }
-.login a:nth-child(2) {
+.login a:nth-child(2),
+.dialogbox-elementContent-session a {
     background: #50C878;
     color: white;
 }
+.dialogbox-elementContent-session a {
+	  margin: 0 auto;
+}
+  
 .login a:nth-child(2):hover {
     background: #61ea8f;
 }

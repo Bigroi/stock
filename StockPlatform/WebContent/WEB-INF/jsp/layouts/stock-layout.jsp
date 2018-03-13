@@ -59,7 +59,7 @@
         	<sec:authorize access="hasAnyRole('ADMIN', 'USER')">
 				<div class="login">
 					<a href="/account/Form.spr">${label.navigation.account}</a>
-					<a href="/account/json/Logout.spr">${label.navigation.logout}</a>
+					<a href="/account/json/Logout.spr" id="session-start">${label.navigation.logout}</a>
 				</div>
 			</sec:authorize>
 			<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
@@ -76,7 +76,22 @@
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>
-        
+        <div class="dialogbox-session">
+			<div class="dialogbox-child-session">
+				<div class="dialogbox-Head-session">
+					<span class="dialogbox-spanClose">×</span>
+				</div>
+				<div class="dialogbox-Content-session">
+					<div class="dialogbox-inner-session">
+						<div class="dialogbox-elementContent-session">
+							<h2>Ваша сеесия закончилась</h2>
+							<p>Пожалуйста, авторизируйтесь заново</p>
+							<a href="#" class="session-out">Ок</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
     </body>
 </html>

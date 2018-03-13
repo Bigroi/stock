@@ -142,3 +142,10 @@ form.form.form-tradeOffers ul li:last-child input {
     color: #9a9a9a;
     font-weight: normal;
 }
+#form-list button{
+	width: 250px;
+	height: 32px;
+}
+#form-list li:last-child button:last-child {
+    margin: 20px 0 10px 0;
+}
