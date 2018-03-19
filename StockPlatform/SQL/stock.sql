@@ -53,8 +53,7 @@ CREATE TABLE IF NOT EXISTS `company` (
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
 INSERT INTO `company` (`id`, `name`, `phone`, `reg_number`, `country`, `city`, `address`, `status`, `longitude`, `latitude`) VALUES
 	(1, 'aaa', '+375291655733', 'df', 'Bel', 'Minsk', 'Kupriyanova 5', 'VERIFIED', 27.64, 53.94),
-	(16, 'nasia', '+375298202264', '123', 'belarus', 'minsk', 'Независимости 125', 'VERIFIED', 27.64, 53.94),
-	(17, 'wer', '+375291114455', '0976', 'bel', 'minsk', 'mins', 'VERIFIED', 27.64, 53.60);
+	(16, 'nasia', '+375298202264', '123', 'belarus', 'minsk', 'Независимости 125', 'VERIFIED', 27.64, 53.94);
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 
 -- Dumping structure for table stock.deal
@@ -87,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `deal` (
 -- Dumping data for table stock.deal: ~1 rows (approximately)
 /*!40000 ALTER TABLE `deal` DISABLE KEYS */;
 INSERT INTO `deal` (`id`, `lot_Id`, `tender_Id`, `time`, `customer_approved`, `seller_id`, `seller_approved`, `customer_id`, `price`, `volume`, `product_id`) VALUES
-	(4, 9, 18, '2017-12-18 14:45:08', NULL, 1, 'Y', 16, 34.00, 344, 13);
+	(4, 13, 18, '2018-03-17 22:26:33', NULL, 1, 'Y', 16, 34.00, 344, 13);
 /*!40000 ALTER TABLE `deal` ENABLE KEYS */;
 
 -- Dumping structure for table stock.email
@@ -115,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `invite_user` (
   PRIMARY KEY (`id`),
   KEY `FK_invite_user_company` (`company_id`),
   CONSTRAINT `FK_invite_user_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table stock.invite_user: ~0 rows (approximately)
 /*!40000 ALTER TABLE `invite_user` DISABLE KEYS */;
@@ -136,17 +135,20 @@ CREATE TABLE IF NOT EXISTS `lot` (
   `creation_date` date DEFAULT NULL,
   `delivery` tinyint(4) NOT NULL,
   `packaging` tinyint(4) NOT NULL,
+  `foto` varchar(1000) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `saler` (`seller_Id`),
   KEY `product` (`product_Id`),
   CONSTRAINT `FK_lot_company` FOREIGN KEY (`seller_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_lot_product` FOREIGN KEY (`product_Id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.lot: ~3 rows (approximately)
+-- Dumping data for table stock.lot: ~2 rows (approximately)
 /*!40000 ALTER TABLE `lot` DISABLE KEYS */;
-INSERT INTO `lot` (`id`, `description`, `product_Id`, `min_price`, `seller_Id`, `status`, `exp_date`, `max_volume`, `min_Volume`, `creation_date`, `delivery`, `packaging`) VALUES
-	(9, 'test Lot', 1, 100.00, 1, 'ACTIVE', '2018-12-17', 123124499, 123, '2017-12-30', 0, 0);
+INSERT INTO `lot` (`id`, `description`, `product_Id`, `min_price`, `seller_Id`, `status`, `exp_date`, `max_volume`, `min_Volume`, `creation_date`, `delivery`, `packaging`, `foto`) VALUES
+	(13, '', 1, 2.00, 1, 'INACTIVE', '2018-03-14', 2222, 22, '2018-03-14', 0, 0, 'http://localhost:8080/lot/MyLots.spr'),
+	(19, '', 1, 2.00, 1, 'INACTIVE', '2018-03-17', 222, 22, '2018-03-17', 0, 0, 'http://localhost:8080/lot/MyLots.spr'),
+	(20, '2', 111, 2.00, 1, 'INACTIVE', '2018-03-17', 222, 22, '2018-03-17', 0, 0, 'http://localhost:8080/lot/MyLots.spr');
 /*!40000 ALTER TABLE `lot` ENABLE KEYS */;
 
 -- Dumping structure for table stock.product
@@ -193,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `tender` (
   KEY `FK_application_company` (`customer_Id`),
   CONSTRAINT `FK_tender_company` FOREIGN KEY (`customer_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_tender_product` FOREIGN KEY (`product_Id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table stock.tender: ~2 rows (approximately)
 /*!40000 ALTER TABLE `tender` DISABLE KEYS */;
@@ -211,9 +213,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   KEY `FK_user_company` (`company_Id`),
   CONSTRAINT `FK_user_company` FOREIGN KEY (`company_Id`) REFERENCES `company` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.user: ~3 rows (approximately)
+-- Dumping data for table stock.user: ~2 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `password`, `company_Id`) VALUES
 	(1, 'Admin@stock.by', '1', 1),
@@ -229,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   CONSTRAINT `FK_user_role_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.user_role: ~3 rows (approximately)
+-- Dumping data for table stock.user_role: ~2 rows (approximately)
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
 INSERT INTO `user_role` (`user_id`, `role`) VALUES
 	(1, 'ROLE_ADMIN'),
