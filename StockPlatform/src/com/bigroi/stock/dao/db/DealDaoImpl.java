@@ -63,7 +63,7 @@ public class DealDaoImpl implements DealDao {
 					+ " SELLER.REG_NUMBER SELLER_REG_NUMBER, P.NAME PRODUCT_NAME, "
 					+ " CONCAT(CONCAT(CONCAT(CONCAT(SELLER.COUNTRY, ' '), SELLER.CITY), ' '), SELLER.ADDRESS) SELLER_ADDRESS, "
 					+ " SELLER.LONGITUDE SELLER_LONGITUDE, SELLER.LATITUDE SELLER_LATITUDE, "
-					+ " T.DESCRIPTION CUSTOMER_DESCRIPTION, L.DESCRIPTION SELLER_DESCRIPTION "
+					+ " T.DESCRIPTION CUSTOMER_DESCRIPTION, L.DESCRIPTION SELLER_DESCRIPTION, L.FOTO "
 					+ " FROM DEAL D "
 					+ " JOIN PRODUCT P "
 					+ " ON D.PRODUCT_ID = P.ID "
@@ -105,7 +105,7 @@ public class DealDaoImpl implements DealDao {
 			+ " SELLER.REG_NUMBER SELLER_REG_NUMBER, P.NAME PRODUCT_NAME, "
 			+ " CONCAT(CONCAT(CONCAT(CONCAT(SELLER.COUNTRY, ' '), SELLER.CITY), ' '), SELLER.ADDRESS) SELLER_ADDRESS, "
 			+ " SELLER.LONGITUDE SELLER_LONGITUDE, SELLER.LATITUDE SELLER_LATITUDE, "
-			+ " T.DESCRIPTION CUSTOMER_DESCRIPTION, L.DESCRIPTION SELLER_DESCRIPTION "
+			+ " T.DESCRIPTION CUSTOMER_DESCRIPTION, L.DESCRIPTION SELLER_DESCRIPTION, L.FOTO "
 			+ " FROM DEAL D "
 			+ " JOIN PRODUCT P "
 			+ " ON D.PRODUCT_ID = P.ID "
@@ -286,6 +286,7 @@ public class DealDaoImpl implements DealDao {
 			deal.setProductId(rs.getLong("PRODUCT_ID"));
 			deal.setCustomerApproved(rs.getString("CUSTOMER_APPROVED"));
 			deal.setSellerApproved(rs.getString("SELLER_APPROVED"));
+			deal.setFoto(rs.getString("FOTO"));
 
 			long customerId = rs.getLong("CUSTOMER_ID");
 			String you;
@@ -320,7 +321,5 @@ public class DealDaoImpl implements DealDao {
 			}
 			return deal;
 		}
-		
 	}
-
 }

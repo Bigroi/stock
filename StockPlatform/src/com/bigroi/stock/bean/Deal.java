@@ -22,6 +22,8 @@ public class Deal {
 	@Column(value = "label.deal.productName", filterMethod = FilterMethod.SELECT)
 	private String productName;
 	
+	private String foto;
+	
 	@Column(value = "label.deal.time", allowSorting = true)
 	private Date time;
 	
@@ -52,6 +54,7 @@ public class Deal {
 	
 	public Deal(Lot lot, Tender tender, int volume) {
 		this.lotId = lot.getId();
+		this.foto =lot.getFoto();
 		this.tenderId = tender.getId();
 		this.sellerId = lot.getSellerId();
 		this.customerId = tender.getCustomerId();
@@ -257,5 +260,24 @@ public class Deal {
 
 	public String getEdit() {
 		return edit;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	@Override
+	public String toString() {
+		return "Deal [id=" + id + ", lotId=" + lotId + ", tenderId=" + tenderId + ", sellerId=" + sellerId
+				+ ", customerId=" + customerId + ", price=" + price + ", volume=" + volume + ", productName="
+				+ productName + ", foto=" + foto + ", time=" + time + ", customerApproved=" + customerApproved
+				+ ", sellerApproved=" + sellerApproved + ", productId=" + productId + ", partnerAddress="
+				+ partnerAddress + ", partnerComment=" + partnerComment + ", partnerPhone=" + partnerPhone
+				+ ", partnerRegNumber=" + partnerRegNumber + ", partnerName=" + partnerName + ", latitude=" + latitude
+				+ ", longitude=" + longitude + ", status=" + status + ", edit=" + edit + "]";
 	}
 }

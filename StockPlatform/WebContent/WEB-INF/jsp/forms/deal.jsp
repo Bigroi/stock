@@ -16,6 +16,10 @@
 		            <input type="text" name="productName" disabled/>
 		        </li>
 		        <li>
+		            <label for="foto">${label.deal.foto}</label>
+		            <input type="text" name="foto" disabled/>
+		        </li>
+		        <li>
 		            <label for="price">${label.deal.price}</label>
 		            <input type="text" name="price" disabled/>
 		        </li>

@@ -53,6 +53,8 @@ public class Lot implements Bid{
 	@Edit(edit="setLotDialogPlugin", remove="/lot/json/Delete.spr")
 	private String edit = "YY";
 	
+	private String foto;
+	
 	public boolean isExpired() {
 		if (DateUtil.beforToday(expDate)) {
 			return true;
@@ -175,12 +177,20 @@ public class Lot implements Bid{
 		this.edit = edit;
 	}
 
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 	@Override
 	public String toString() {
 		return "Lot [id=" + id + ", productName=" + productName + ", description=" + description + ", status=" + status
 				+ ", productId=" + productId + ", minPrice=" + minPrice + ", sellerId=" + sellerId + ", minVolume="
 				+ minVolume + ", maxVolume=" + maxVolume + ", expDate=" + expDate + ", creationDate=" + creationDate
-				+ ", delivery=" + delivery + ", packaging=" + packaging + "]";
+				+ ", delivery=" + delivery + ", packaging=" + packaging + ", edit=" + edit + ", foto=" + foto + "]";
 	}
 
 	@Override

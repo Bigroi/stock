@@ -24,26 +24,26 @@ import com.bigroi.stock.dao.LotDao;
 public class LotDaoImpl implements LotDao {
 	
 	private static final String ADD_LOT = "INSERT INTO LOT "
-			+ "(DESCRIPTION, PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY, PACKAGING) "
-			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			+ "(DESCRIPTION, PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY, PACKAGING, FOTO) "
+			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
 	private static final String UPDATE_LOT_BY_ID = "UPDATE LOT SET "
 			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MIN_PRICE = ?, STATUS = ?, " 
-			+ " EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, DELIVERY = ?, PACKAGING = ? "
+			+ " EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, DELIVERY = ?, PACKAGING = ?, FOTO = ? "
 			+ " WHERE ID = ?";
 	
 	private static final String UPDATE_LOT_BY_ID_AND_SELLER = "UPDATE LOT SET "
 			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MIN_PRICE = ?, STATUS = ?, " 
-			+ " EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, DELIVERY = ?, PACKAGING = ? "
+			+ " EXP_DATE = ?, MAX_VOLUME = ?, MIN_VOLUME = ?, DELIVERY = ?, PACKAGING = ?, FOTO = ? "
 			+ " WHERE ID = ? AND SELLER_ID = ?";
 	
 	private static final String GET_LOT_BY_ID = "SELECT ID, DESCRIPTION, PRODUCT_ID, "
-			+ " MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY, PACKAGING FROM LOT "
+			+ " MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, CREATION_DATE, DELIVERY, PACKAGING, FOTO = ? FROM LOT "
 			+ " WHERE ID = ? ";
 	
 	private static final String GET_LOTS_BY_SELLER_ID = "SELECT L.ID, L.DESCRIPTION, "
 			+ " PRODUCT_ID, MIN_PRICE, SELLER_ID, STATUS, EXP_DATE, MAX_VOLUME, MIN_VOLUME, "
-			+ " P.NAME AS PRODUCT_NAME, CREATION_DATE, DELIVERY, PACKAGING "
+			+ " P.NAME AS PRODUCT_NAME, CREATION_DATE, DELIVERY, PACKAGING, FOTO "
 			+ " FROM LOT L "
 			+ " JOIN PRODUCT P "
 			+ " ON L.PRODUCT_ID = P.ID "
@@ -109,6 +109,7 @@ public class LotDaoImpl implements LotDao {
 				ps.setDate(9, new Date(lot.getCreationDate().getTime()));
 				ps.setInt(10, lot.getDelivery());
 				ps.setInt(11, lot.getPackaging());
+				ps.setString(12, lot.getFoto());
 				return ps;
 			}
 		}, keyHolder);
@@ -129,6 +130,7 @@ public class LotDaoImpl implements LotDao {
 				lot.getMinVolume(),
 				lot.getDelivery(),
 				lot.getPackaging(),
+				lot.getFoto(),
 				lot.getId(),
 				companyId) == 1;
 	}
@@ -200,7 +202,8 @@ public class LotDaoImpl implements LotDao {
 				ps.setInt(7, lot.getMinVolume());
 				ps.setInt(8, lot.getDelivery());
 				ps.setInt(9, lot.getPackaging());
-				ps.setLong(10, lot.getId());
+				ps.setString(10, lot.getFoto());
+				ps.setLong(11, lot.getId());
 			}
 		});
 		

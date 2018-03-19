@@ -59,5 +59,9 @@
 				<option value="1">NO</option>
 		   </select>
 		</li>
+		<li>
+            <label for="foto">${label.lot.foto}</label>
+            <input type="url" name="foto" pattern="https?://.+" title="Include http://" >
+        </li>
 	</ul>
 </form>
