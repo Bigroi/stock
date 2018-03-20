@@ -109,7 +109,7 @@ public class UserServiceImpl implements UserService {
 			userDao.update(user);
 			Message<StockUser> message = MessagerFactory.getResetUserPasswordMessage();
 			message.setDataObject(user);
-			message.send();
+			message.sendImediatly();
 		} catch (DaoException | MessageException e) {
 			throw new ServiceException(e);
 		}
