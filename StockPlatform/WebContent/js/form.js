@@ -44,7 +44,7 @@ function sendFormData(formContainer, submitFunction, $dialogbox, login) {
 
 function processRequestResult(formContainer, answer, messageDiv){
 	if (answer.result > 0){
-		messageDiv.css("background-color", "green");
+		messageDiv.addClass("error-message");
 		setFormInputs(formContainer, answer.data);
 	} else if (answer.result < 0){
 		messageDiv.css("background-color", "red");
@@ -52,7 +52,7 @@ function processRequestResult(formContainer, answer, messageDiv){
 		document.location = answer.data;
 		return 0;
 	}
-	messageDiv.text(answer.message);
+	messageDiv.text(translate(answer.message));
 	messageDiv[0].scrollIntoView(true);
 	return answer.result;
 }

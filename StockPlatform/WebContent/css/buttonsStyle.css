@@ -39,7 +39,7 @@ button[disabled]:hover {
 }
 #new-invite-button {
 	width: 252px;
-    margin-left: 11px;
+    margin-left: 3px;
     height: 35px;
 }	
 .fs-submit {

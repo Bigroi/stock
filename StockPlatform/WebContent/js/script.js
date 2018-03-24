@@ -19,7 +19,6 @@ $(document).ready(function(){
 		    		count++;
 			        console.log(count);
 					if(count == 1800){
-						console.log("333");
 						$(".dialogbox-session").show();
 						isRunning = false;
 					}
@@ -30,12 +29,11 @@ $(document).ready(function(){
 		$(document).on("keydown click mousemove", document, function() {
 		    clearInterval(counter);
 		    count = 0;
-		    console.log(count);
 		    interval();
 		});
 		$(".dialogbox-session .dialogbox-spanClose, .session-out, .dialogbox-session").click(function(){
 			$(".dialogbox-session").hide();
-			window.location.replace("http://localhost:8080/account/json/Logout.spr");
+			window.location.replace("/account/json/Logout.spr");
 		});
 	}
 });

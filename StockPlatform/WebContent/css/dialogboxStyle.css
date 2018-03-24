@@ -88,3 +88,12 @@
     margin: 40px auto;
     text-align: center;
 }
+.error-message {
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 10px;
+}
+.dialogbox-elementContent .form li{
+	padding: 12px;
+} 
