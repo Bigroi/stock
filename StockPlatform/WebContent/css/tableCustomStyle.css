@@ -249,13 +249,14 @@ table.dataTable thead th {
 	background-image: url(/img/previous.png);
 	margin-right: 20px !important;
 	width: 50px;
-	
 }
 .paginate_button.current {
 	width:30px;
 	 box-shadow: none!important;
 	 background-color: #50C878 !important;
 	 color: white !important;
+}
+.paginate_button {
 	 position: relative;
      bottom: 14px;
 }
