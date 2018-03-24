@@ -44,10 +44,10 @@ function sendFormData(formContainer, submitFunction, $dialogbox, login) {
 
 function processRequestResult(formContainer, answer, messageDiv){
 	if (answer.result > 0){
-		messageDiv.addClass("error-message");
+		messageDiv.css("background-color", "green");
 		setFormInputs(formContainer, answer.data);
 	} else if (answer.result < 0){
-		messageDiv.css("background-color", "red");
+		messageDiv.addClass("error-message");
 	} else {
 		document.location = answer.data;
 		return 0;
