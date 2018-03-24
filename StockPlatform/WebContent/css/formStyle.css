@@ -167,4 +167,7 @@ form.form.form-tradeOffers ul li:last-child input {
 	#form-container > div:nth-child(3){
 	    width: 88% !important;
 	}
+	.error-message {
+		text-align: center;
+	}
 }
