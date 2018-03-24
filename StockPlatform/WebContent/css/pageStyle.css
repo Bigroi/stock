@@ -317,7 +317,7 @@ form.form {
 	#table-style-mob > div,
 	#form-container > div,
 	#deal-style-mob > div{
-		wigth: 100% !important;
+		width: 100% !important;
 		display: table-row !important;
 	}
 	#map-mob-reg,

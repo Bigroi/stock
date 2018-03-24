@@ -149,3 +149,22 @@ form.form.form-tradeOffers ul li:last-child input {
 #form-list li:last-child button:last-child {
     margin: 20px 0 10px 0;
 }
+#table-style-mob > div:first-child,
+#form-container > div:first-child{
+	width: 270px !important;
+    display: block !important;
+}
+#table-style-mob > div:nth-child(3),
+#form-container > div:nth-child(3){
+    width: 100% !important;
+}
+@media (max-width: 900px) {
+	#table-style-mob > div:first-child,
+	#form-container > div:first-child{
+		width: 100% !important;
+	}
+	#table-style-mob > div:nth-child(3),
+	#form-container > div:nth-child(3){
+	    width: 88% !important;
+	}
+}
