@@ -9,6 +9,9 @@
              <h2>${label.product.productForm }</h2>
         </li>
         <li>
+	        <div class="dialogbox-message"></div>
+	    </li>
+        <li>
             <label for="name">${label.product.name}</label>
             <input type="text" name="name" required/>
             

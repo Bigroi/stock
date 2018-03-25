@@ -10,7 +10,6 @@
 		    <ul>
 		        <li>
 		        </li>
-		        
 		        <li>
 		            <label for="productName">${label.deal.productName}</label>
 		            <input type="text" name="productName" disabled/>

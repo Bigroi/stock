@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <div class="form-message"></div>
 	<form class="form" action="#" method="post" name="form">
 	    <ul id="form-list">
 	        <li>
 	             <h2>${label.login.loginForm }</h2>
+	        </li>
+	        <li>
+	        	<div class="dialogbox-message"></div>
 	        </li>
 	        <li>
 	            <input type="email" name="username" placeholder="John Doe" required />

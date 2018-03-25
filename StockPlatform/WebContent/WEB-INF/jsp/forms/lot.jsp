@@ -11,6 +11,9 @@
             <h2>${label.lot.lotForm}</h2>
        	</li>
        	<li>
+	       <div class="dialogbox-message"></div>
+	    </li>
+       	<li>
 			<label for="productId">${label.lot.product}</label>
 			<select name="productId">
 				<option value="-1" selected>${label.lot.list}</option>

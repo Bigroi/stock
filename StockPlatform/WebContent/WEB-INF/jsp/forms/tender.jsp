@@ -11,6 +11,9 @@
             <h2>${label.tender.tenderForm}</h2>
        	</li>
        	<li>
+	        <div class="dialogbox-message"></div>
+	    </li>
+       	<li>
 			<label for="productId">${label.tender.product}</label>
 			<select name="productId" <c:if test="${!newTender}">disabled</c:if>>
 				<option value="-1" selected>${label.tender.list}</option>

@@ -71,7 +71,8 @@ function makeTable(url, tableElement){
         }
 		if(data[model.editColumn][2] == "Y"){ 
 			$details.removeClass("no-details");
-			$details.addClass("details");
+			var detailsLabel = translate("label.table.details");
+			$details.addClass("details").text(detailsLabel);
             var detailsForm = window[model.detailsUrl];
             if (detailsForm){
             	detailsForm($edit, table, model, id);

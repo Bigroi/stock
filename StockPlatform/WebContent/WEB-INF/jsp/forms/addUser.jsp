@@ -4,7 +4,9 @@
 
 <form class="form" action="#" method="post" name="form">
 	<ul id="form-list">
-	
+	    <li>
+	        <div class="dialogbox-message"></div>
+	    </li>
 	    <li>
 	         <label for="email">${label.invite.sendInvite}:</label> 
 		    <input type="email" name="inviteEmail" placeholder="example@mail.com" required />

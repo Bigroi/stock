@@ -82,12 +82,10 @@ table.dataTable thead th.table-head-down{
     display: inline-block;
     width: 50%;
     height: 30px;
-    background-image: url(/img/details.png);
-    background-size: auto 75%;
-    background-repeat: no-repeat;
-    background-position: center;
     cursor: pointer;
-    
+}
+.details:hover{
+	text-decoration: underline;
 }
 .remove{
     display: inline-block;
@@ -256,7 +254,7 @@ table.dataTable thead th {
 	 background-color: #50C878 !important;
 	 color: white !important;
 }
-.paginate_button {
+.dataTables_paginate.paging_simple_numbers span .paginate_button {
 	 position: relative;
      bottom: 14px;
 }

@@ -9,7 +9,6 @@ $(document).ready(function(){
 			});
     }
 	if($("a").is("#session-start")){
-		console.log("session-start");
 		var count = 0;
 		var counter = false;
 		var isRunning = true;
@@ -17,7 +16,6 @@ $(document).ready(function(){
 		    counter = setInterval(function(){
 		    	if (isRunning) {
 		    		count++;
-			        console.log(count);
 					if(count == 1800){
 						$(".dialogbox-session").show();
 						isRunning = false;
