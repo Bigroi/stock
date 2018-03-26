@@ -1,4 +1,5 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div style="display: table; width:100%" id="deal-style-mob">
 	<div style="display: table-cell; width: 40%" id="form-container">
@@ -55,34 +56,36 @@
 		            <input type="text" name="status" disabled/>
 		        </li>
 		        <li>
-		        	<button class="submit" type="submit" id="approve-button"
-		        		onclick="
-		        				return sendFormData($('#form-container > form'), 
-			        				function(formContainer, param){
-		        						$.post('/deal/json/Approve.spr', param, function(answer){
-		        							processRequestResult($('#form-container > form'), answer, $('.form-message'));
-		        							if (answer.result > 0){
-		        								$('#approve-button').remove();
-		        								$('#reject-button').remove();
-		        							}
-		        						});
-		        					}); ">
-		        		${label.deal.approve }
-		        	</button>
-		        	<button class="submit" type="submit" id="reject-button"
-		        		onclick="
-		        			return sendFormData($('#form-container > form'), 
-			        				function(formContainer, param){
-		        						$.post('/deal/json/Reject.spr', param, function(answer){
-		        							processRequestResult($('#form-container > form'), answer, $('.form-message'));
-		        							if (answer.result > 0){
-		        								$('#approve-button').remove();
-		        								$('#reject-button').remove();
-		        							}
-		        						});
-		        					});">
-		        		${label.deal.reject }
-		        	</button>
+		        	<c:if test="${deal.status eq 'ON_APPROVE' }">
+			        	<button class="submit" type="submit" id="approve-button"
+			        		onclick="
+			        				return sendFormData($('#form-container > form'), 
+				        				function(formContainer, param){
+			        						$.post('/deal/json/Approve.spr', param, function(answer){
+			        							processRequestResult($('#form-container > form'), answer, $('.form-message'));
+			        							if (answer.result > 0){
+			        								$('#approve-button').remove();
+			        								$('#reject-button').remove();
+			        							}
+			        						});
+			        					}); ">
+			        		${label.deal.approve }
+			        	</button>
+			        	<button class="submit" type="submit" id="reject-button"
+			        		onclick="
+			        			return sendFormData($('#form-container > form'), 
+				        				function(formContainer, param){
+			        						$.post('/deal/json/Reject.spr', param, function(answer){
+			        							processRequestResult($('#form-container > form'), answer, $('.form-message'));
+			        							if (answer.result > 0){
+			        								$('#approve-button').remove();
+			        								$('#reject-button').remove();
+			        							}
+			        						});
+			        					});">
+			        		${label.deal.reject }
+			        	</button>
+			        </c:if>
 		        	<button class="submit" 
 		        		onclick ="document.location = '/deal/MyDeals.spr'; return false">
 		        		${label.button.back }
