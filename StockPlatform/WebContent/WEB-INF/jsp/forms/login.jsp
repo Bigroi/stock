@@ -9,11 +9,11 @@
 	        	<div class="dialogbox-message"></div>
 	        </li>
 	        <li>
-	            <input type="email" name="username" placeholder="John Doe" required />
+	            <input type="email" name="username" placeholder="John Doe" required maxlength="50"/>
 	            <span class="form_hint">Proper format "name@something.com"</span>
 	        </li>
 	        <li>
-	            <input type="password" name="password" placeholder="***********" required />
+	            <input type="password" name="password" placeholder="***********" required maxlength="50"/>
 	        </li>
 	    </ul>
 	</form>

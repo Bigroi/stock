@@ -25,7 +25,7 @@
 		
     	<li>
             <label for="description">${label.tender.description}</label>
-            <textarea name="description" cols="40" rows="6"></textarea>
+            <textarea name="description" cols="40" rows="6" maxlength="1000"></textarea>
         </li>
         <li>
             <label for="maxPrice">${label.tender.max_price}</label>

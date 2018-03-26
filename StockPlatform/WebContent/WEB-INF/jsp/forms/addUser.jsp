@@ -9,7 +9,7 @@
 	    </li>
 	    <li>
 	         <label for="email">${label.invite.sendInvite}:</label> 
-		    <input type="email" name="inviteEmail" placeholder="example@mail.com" required />
+		    <input type="email" name="inviteEmail" placeholder="example@mail.com" required maxlength="50"/>
 	    </li>
 	
 	</ul>

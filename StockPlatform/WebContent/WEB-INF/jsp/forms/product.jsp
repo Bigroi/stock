@@ -13,12 +13,12 @@
 	    </li>
         <li>
             <label for="name">${label.product.name}</label>
-            <input type="text" name="name" required/>
+            <input type="text" name="name" required maxlength="50"/>
             
         </li>
         <li>
             <label for=description>${label.product.description}</label>
-            <textarea name="description" cols="40" rows="6" required></textarea>
+            <textarea name="description" cols="40" rows="6" required maxlength="500"></textarea>
         </li>
          <li>
             <input type="hidden" name="archive" required/>

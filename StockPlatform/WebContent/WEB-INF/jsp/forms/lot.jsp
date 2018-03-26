@@ -25,7 +25,7 @@
 		
     	<li>
             <label for="description">${label.lot.description}</label>
-            <textarea name="description" cols="40" rows="6"></textarea>
+            <textarea name="description" cols="40" rows="6" maxlength="1000"></textarea>
         </li>
         <li>
             <label for="minPrice">${label.lot.min_price}</label>
@@ -64,7 +64,7 @@
 		</li>
 		<li>
             <label for="foto">${label.lot.foto}</label>
-            <input type="url" name="foto" pattern="https?://.+" title="Include http://" >
+            <input type="url" name="foto" pattern="https?://.+" title="Include http://" maxlength="500">
         </li>
 	</ul>
 </form>

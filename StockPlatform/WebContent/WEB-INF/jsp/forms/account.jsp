@@ -12,11 +12,11 @@
 		        </li>
 		        <li>
 		            <label for="password">${label.account.password}</label>
-		            <input type="password" name="password" placeholder="************"/>
+		            <input type="password" name="password" placeholder="************" maxlength="50"/>
 		        </li>
 		         <li>
 		            <label for="name">${label.account.name}</label>
-		            <input type="text" name="name" disabled="disabled"/>
+		            <input type="text" name="name" disabled="disabled" maxlength="100"/>
 		        </li>
 		        <li>
 		            <label for="phone">${label.account.phone}</label>
@@ -25,19 +25,19 @@
 		        </li>
 		        <li>
 		            <label for="regNumber">${label.account.reg_number}</label>
-		            <input type="text" name="regNumber" disabled="disabled"/>
+		            <input type="text" name="regNumber" disabled="disabled" maxlength="100"/>
 		        </li>
 		        <li>
 		            <label for="country">${label.account.country}</label>
-		            <input type="text" name="country" placeholder="Belarus" required/>
+		            <input type="text" name="country" placeholder="Belarus" required maxlength="50"/>
 		        </li>
 		        <li>
 		            <label for="city">${label.account.city}</label>
-		            <input type="text" name="city" placeholder="Minsk" required />
+		            <input type="text" name="city" placeholder="Minsk" required maxlength="100"/>
 		        </li>
 		        <li>
 		            <label for="address">${label.account.address}</label>
-		            <input type="text" name="address" placeholder="Programmistov 11" required/>
+		            <input type="text" name="address" placeholder="Programmistov 11" required maxlength="200"/>
 		        </li>
 		       
 		        <li>

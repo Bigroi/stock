@@ -10,20 +10,20 @@
 		    	<li></li>
 		        <li>
 		            <label for="username">${label.registration.login}</label>
-		            <input type="email" name="username" placeholder="john_doe@example.com" required/>
+		            <input type="email" name="username" placeholder="john_doe@example.com" required maxlength="50"/>
 		            <span class="form_hint">Proper format "john_doe@example.com"</span>
 		        </li>
 		        <li>
 		            <label for="password">${label.registration.password}</label>
-		            <input type="password" name="password" required/>
+		            <input type="password" name="password" required maxlength="50"/>
 		        </li>
 		        <li>
 		            <label for="password">${label.registration.repeat_password}</label>
-		            <input type="password" name="passwordRepeat" required/>
+		            <input type="password" name="passwordRepeat" required maxlength="50"/>
 		        </li>
 		        <li>
 		            <label for="name">${label.registration.company_name}</label>
-		            <input type="text" name="name" placeholder="Stock lmt" required/>
+		            <input type="text" name="name" placeholder="Stock lmt" required maxlength="100"/>
 		        </li>
 		        <li>
 		            <label for="phone">${label.registration.phone}</label>
@@ -32,20 +32,20 @@
 		        </li>
 		        <li>
 		            <label for="regNumber">${label.registration.reg_number}</label>
-		            <input type="text" name="regNumber" placeholder="1234567890" required/>
+		            <input type="text" name="regNumber" placeholder="1234567890" required maxlength="100"/>
 		            <span class="form_hint">Proper format "1234567890"</span>
 		        </li>
 		        <li>
 		            <label for="country">${label.registration.country}</label>
-		            <input type="text" name="country" placeholder="Belarus" required/>
+		            <input type="text" name="country" placeholder="Belarus" required maxlength="50"/>
 		        </li>
 		        <li>
 		            <label for="city">${label.registration.city}</label>
-		            <input type="text" name="city" placeholder="Minsk" required/>
+		            <input type="text" name="city" placeholder="Minsk" required maxlength="100"/>
 		        </li>
 		         <li>
 		            <label for="address">${label.registration.address}</label>
-		            <input type="text" name="address" placeholder="Minsk" required/>
+		            <input type="text" name="address" placeholder="Minsk" required maxlength="200"/>
 		        </li>
 		        <li>
 		        	<button class="submit" type="submit" id="save-button"
