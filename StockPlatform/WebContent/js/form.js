@@ -109,7 +109,8 @@ function setLoginDialogPlugin(element){
 					processRequestResult(formContainer, answer, $('.dialogbox-message'));
 				});
 			},
-			login:true
+			login:true,
+			closeOnClick:false
 		},
 		{
 			text: translate("label.button.reset"),
@@ -119,7 +120,8 @@ function setLoginDialogPlugin(element){
 					answer = JSON.parse(answer);
 					processRequestResult(formContainer, answer, $('.dialogbox-message'));
 				});
-			}
+			},
+			closeOnClick:false
 		}], 
 						
 	});
@@ -138,7 +140,8 @@ function setLotDialogPlugin(element, table, model, id){
 					$dialogbox.remove();
 				}
 			});
-		}
+		},
+		closeOnClick:true
 	},
 	{
 		text: translate("label.button.save_start_trading"),
@@ -153,7 +156,7 @@ function setLotDialogPlugin(element, table, model, id){
 				}
 			});
 		},
-		close:true
+		closeOnClick:true
 	}];
 	
 	element.dialogbox({
@@ -179,7 +182,7 @@ function setInviteDialogPlugin(element){
 				}
 			});
 		}, 
-		close:true
+		closeOnClick:true
 	}];
 	
 	element.dialogbox({
@@ -204,7 +207,7 @@ function setTenderDialogPlugin(element, table, model, id){
 				}
 			});
 		},
-		close:true
+		closeOnClick:true
 	},
 	{
 		text: translate("label.button.save_start_trading"),
@@ -219,7 +222,7 @@ function setTenderDialogPlugin(element, table, model, id){
 				}
 			});
 		},
-		close:true
+		closeOnClick:true
 	}];
 	
 	element.dialogbox({
@@ -246,7 +249,7 @@ function setProductDialogPlugin(element, table, model, id){
 				}
 			});
 		},
-		close:true
+		closeOnClick:true
 	},
 	{
 		text: translate("label.button.delete"),
@@ -261,7 +264,7 @@ function setProductDialogPlugin(element, table, model, id){
 				}
 			});
 		},
-		close:true
+		closeOnClick:true
 	}];
 	
 	element.dialogbox({

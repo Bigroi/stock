@@ -52,11 +52,15 @@ $.fn.dialogbox = function(params) {
 				$button.attr("type", "submit");
 				
 				$button.click(function(event){
-					return sendFormData(
+					var result = sendFormData(
 							$(event.target).parent().parent().parent(),  
 							buttonDef.submit,
 							$dialogbox,
 							buttonDef.login);
+					if (!result && buttonDef.closeOnClick){
+						$dialogbox.remove();
+					}
+					return result;
 				});
 				
 				$listelement.append($button);
