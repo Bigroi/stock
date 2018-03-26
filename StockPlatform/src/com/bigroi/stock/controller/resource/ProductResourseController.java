@@ -36,6 +36,7 @@ public class ProductResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_ADMIN"})
 	public String listForAdmin() throws ServiceException, TableException {
 		List<Product> allProducts = ServiceFactory.getProductService().getAllProducts();
+		allProducts.stream().forEach(p -> p.setEdit("YNN"));
 		TableResponse<Product> table = new TableResponse<>(Product.class, allProducts);
 		return new ResultBean(1, table, null).toString();
 	}
