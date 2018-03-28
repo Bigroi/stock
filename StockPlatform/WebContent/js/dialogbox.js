@@ -57,9 +57,6 @@ $.fn.dialogbox = function(params) {
 							buttonDef.submit,
 							$dialogbox,
 							buttonDef.login);
-					if (!result && buttonDef.closeOnClick){
-						$dialogbox.remove();
-					}
 					return result;
 				});
 				

@@ -32,11 +32,11 @@ function makeTable(url, tableElement){
 		}
 		
 		if(model.editColumn){
-			addEditRemoveIcons(data, $row);
+			addEditRemoveIcons(data, $row, this);
 		}
 	}
 	
-	function addEditRemoveIcons(data, $row){
+	function addEditRemoveIcons(data, $row, $table){
 		var id = data[model.idColumn];
 		var $editRemove = getCell(model.editColumn, $row);
         $editRemove.textContent = "";
@@ -50,7 +50,7 @@ function makeTable(url, tableElement){
             $edit.addClass("edit");
             var editForm = window[model.editForm];
             if (editForm){
-				editForm($edit, table, model, id);
+				editForm($edit, $table, model, id);
             } else {
             	$edit.click(function(){document.location = model.editForm + "?id=" + id});
             }
@@ -64,7 +64,6 @@ function makeTable(url, tableElement){
             			 {id:id}, 
             			 function(answer){
             				 table.row($(event.target).parents('tr')).remove().draw();
-            				 console.log(answer)
             			 }
             	);
             });
@@ -75,7 +74,7 @@ function makeTable(url, tableElement){
 			$details.addClass("details").text(detailsLabel);
             var detailsForm = window[model.detailsUrl];
             if (detailsForm){
-            	detailsForm($edit, table, model, id);
+            	detailsForm($edit, $table, model, id);
             } else {
             	$details.click(function(){document.location = model.detailsUrl + "?id=" + id});
             }

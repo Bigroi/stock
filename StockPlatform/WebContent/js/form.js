@@ -24,7 +24,7 @@ function getFormData(formContainer){
 	return data;
 }
 
-function sendFormData(formContainer, submitFunction, $dialogbox, login) {
+function sendFormData(formContainer, submitFunction, $dialogbox, login, closeOnClick) {
 	if (formContainer[0].checkValidity()){
 		var data = getFormData(formContainer);
 		
@@ -34,7 +34,7 @@ function sendFormData(formContainer, submitFunction, $dialogbox, login) {
 		} else {
 			param = {json:data};
 		}
-		submitFunction(formContainer, param, $dialogbox);
+		submitFunction(formContainer, param, $dialogbox, closeOnClick);
 		
 		return false;
 	} else {
@@ -53,7 +53,9 @@ function processRequestResult(formContainer, answer, messageDiv){
 		return 0;
 	}
 	messageDiv.text(translate(answer.message));
-	messageDiv[0].scrollIntoView(true);
+	if (messageDiv.length > 0){
+		messageDiv[0].scrollIntoView(true);
+	}
 	return answer.result;
 }
 
@@ -80,11 +82,11 @@ function setFormInputs(formContainer, object){
 	}
 }
 
-function updateTable(table, model, idColumnValue, object){
+function updateTable($table, model, idColumnValue, object){
 	if (idColumnValue == "" || idColumnValue == -1){
-		table.row.add(object).draw(false);
+		$table.DataTable().row.add(object).draw(false);
 	} else {
-		table.rows().every( function () {
+		$table.DataTable().rows().every( function () {
 		    var d = this.data();
 		    if (d[model.idColumn] == idColumnValue){
 		    	this.data(object).draw(false);
@@ -109,8 +111,7 @@ function setLoginDialogPlugin(element){
 					processRequestResult(formContainer, answer, $('.dialogbox-message'));
 				});
 			},
-			login:true,
-			closeOnClick:false
+			login:true
 		},
 		{
 			text: translate("label.button.reset"),
@@ -120,8 +121,7 @@ function setLoginDialogPlugin(element){
 					answer = JSON.parse(answer);
 					processRequestResult(formContainer, answer, $('.dialogbox-message'));
 				});
-			},
-			closeOnClick:false
+			}
 		}], 
 						
 	});
@@ -140,8 +140,7 @@ function setLotDialogPlugin(element, table, model, id){
 					$dialogbox.remove();
 				}
 			});
-		},
-		closeOnClick:true
+		}
 	},
 	{
 		text: translate("label.button.save_start_trading"),
@@ -155,8 +154,7 @@ function setLotDialogPlugin(element, table, model, id){
 					$dialogbox.remove();
 				}
 			});
-		},
-		closeOnClick:true
+		}
 	}];
 	
 	element.dialogbox({
@@ -181,8 +179,7 @@ function setInviteDialogPlugin(element){
 					$dialogbox.remove();
 				}
 			});
-		}, 
-		closeOnClick:true
+		}
 	}];
 	
 	element.dialogbox({
@@ -206,8 +203,7 @@ function setTenderDialogPlugin(element, table, model, id){
 					$dialogbox.remove();
 				}
 			});
-		},
-		closeOnClick:true
+		}
 	},
 	{
 		text: translate("label.button.save_start_trading"),
@@ -221,8 +217,7 @@ function setTenderDialogPlugin(element, table, model, id){
 					$dialogbox.remove();
 				}
 			});
-		},
-		closeOnClick:true
+		}
 	}];
 	
 	element.dialogbox({
@@ -248,8 +243,7 @@ function setProductDialogPlugin(element, table, model, id){
 					$dialogbox.remove();
 				}
 			});
-		},
-		closeOnClick:true
+		}
 	},
 	{
 		text: translate("label.button.delete"),
@@ -263,8 +257,7 @@ function setProductDialogPlugin(element, table, model, id){
 					$dialogbox.remove();
 				}
 			});
-		},
-		closeOnClick:true
+		}
 	}];
 	
 	element.dialogbox({
