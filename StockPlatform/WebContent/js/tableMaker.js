@@ -182,7 +182,7 @@ function makeTable(url, tableElement){
 	    } );
 		
 		function addTextFilter($th, column, title){
-			$th.html( '<input type="text" placeholder="Search '+title+'" />' );
+			$th.html( '<input type="text" />' );
 	        $( 'input', this ).on( 'keyup change', function () {
 	            if ( column.search() !== this.value ) {
 	            	column.search( this.value ).draw();
@@ -192,7 +192,7 @@ function makeTable(url, tableElement){
 		}
 		
 		function addSelectFilter($th, column, title){
-			$th.html( '<select><option value="">Select ' + title + '</option></select>');
+			$th.html( '<select><option value="">------</option></select>');
 	        var $select = $( 'select', $th );
 	        
 	        $select.on( 'change', function () {
