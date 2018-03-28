@@ -57,7 +57,7 @@
 		padding-right:30px; 
 		-webkit-transition: padding .25s;
 		transition: padding .25s;
-		width: 210px;
+		width: 214px;
 	}
 	.form input:focus, .form textarea:focus, form select:focus {
 		background: #fff; 

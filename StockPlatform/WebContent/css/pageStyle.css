@@ -221,6 +221,16 @@ form.form {
 	width: 270px;
     margin: 0 auto;
 }
+form.form.form-tradeOffers-button {
+	width: 100%;
+}
+form.form.form-tradeOffers-button ul li:first-child {
+	text-align: left;
+	padding-left: 0;
+}
+form.form.form-tradeOffers-button button {
+	margin-left: 0;
+}
 .burger {
 	display: none;
 }

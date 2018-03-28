@@ -22,7 +22,7 @@
 		buildChart("chart", "/product/json/TradeOfferChart.spr", {"productId":${product.id}});
 	</script>
 				
-	<form class="form" action="/product/List.spr" method="post">
+	<form class="form form-tradeOffers-button " action="/product/List.spr" method="post">
 		<ul>
 			<li>
 				<button class="submit fs-submit" type="submit">${label.button.back}</button>

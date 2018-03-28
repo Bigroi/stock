@@ -100,6 +100,11 @@ function makeTable(url, tableElement){
 		if (data[model.statusColumn] == "ACTIVE"){
 			$switcher.removeClass("swtitch-row-off");
 			$switcher.addClass("swtitch-row-on");
+			$($row).removeClass("inactive-row");
+		} else {
+			$($row).each(function(indx){
+				$(this).addClass("inactive-row");
+			});
 		}
         $statusTd.textContent = "";
         $switcher.click(function (event){

@@ -34,4 +34,9 @@ $(document).ready(function(){
 			window.location.replace("/account/json/Logout.spr");
 		});
 	}
+	if($("td").is(".dataTables_empty")) {
+		console.log('без пагинаци');
+	}
+	
+	
 });
