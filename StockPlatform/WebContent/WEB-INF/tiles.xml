@@ -121,5 +121,9 @@
 	
 	 <definition name="checkPassw" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/checkPassw.jsp" />
+	</definition>
+	 
+	<definition name="message" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/message.jsp" />
 	</definition> 
 </tiles-definitions>

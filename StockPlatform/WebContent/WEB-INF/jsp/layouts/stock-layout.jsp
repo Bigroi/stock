@@ -36,6 +36,7 @@
 		<script src="/js/chartBuilder.js"></script>
 	</head>
 	<body>
+		<div id="message-dialog-container"></div>
 		<div id="login-form-container"></div>
 		<tiles:insertAttribute name="l10n" />
         <div class = "aside">
@@ -76,22 +77,5 @@
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>
-        <div class="dialogbox-session">
-			<div class="dialogbox-child-session">
-				<div class="dialogbox-Head-session">
-					<span class="dialogbox-spanClose">×</span>
-				</div>
-				<div class="dialogbox-Content-session">
-					<div class="dialogbox-inner-session">
-						<div class="dialogbox-elementContent-session">
-							<h2>${label.pageNames.session}</h2>
-							<p>${label.login.loginAgain}</p>
-							<a href="#" class="session-out">${label.button.ok}</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
     </body>
 </html>

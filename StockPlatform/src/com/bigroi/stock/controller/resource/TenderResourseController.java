@@ -123,16 +123,16 @@ public class TenderResourseController extends BaseResourseController {
 		List<String> errors = new ArrayList<String>();
 		
 		if (tender.getProductId() < 0) {
-			errors.add("tender.product.error");
+			errors.add("label.tender.product_error");
 		}
-		if (tender.getMaxPrice() < 0.1) {
-			errors.add("tender.maxPrice.error");
+		if (tender.getMaxPrice() < 0.01) {
+			errors.add("label.tender.maxPrice_error");
 		}
 		if (tender.getMinVolume() < 1) {
-			errors.add("tender.minVolume.error");
+			errors.add("label.tender.minVolume_error");
 		}
 		if (tender.getMaxVolume() < tender.getMinVolume()) {
-			errors.add("tender.maxVolume.error");
+			errors.add("label.tender.maxVolume_error");
 		}
 		
 		Calendar calendar = Calendar.getInstance();
@@ -141,7 +141,7 @@ public class TenderResourseController extends BaseResourseController {
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
 		if( tender.getExpDate().getTime() < calendar.getTimeInMillis()){
-			errors.add("lot.expDate.error");
+			errors.add("label.tender.expDate_error");
 		}
 		return errors;
 	}

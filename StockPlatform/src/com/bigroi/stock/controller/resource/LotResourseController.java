@@ -20,7 +20,6 @@ import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
-import com.bigroi.stock.util.ValidationURL;
 
 @Controller
 @RequestMapping("/lot/json")
@@ -120,20 +119,16 @@ public class LotResourseController extends BaseResourseController {
 		List<String> errors = new ArrayList<String>();
 
 		if (newLot.getMinPrice() < 0.1) {
-			errors.add("lot.minPrice.error");
+			errors.add("label.lot.minPrice_error");
 		}
 		if (newLot.getProductId() < 0) {
-			errors.add("lot.product.error");
+			errors.add("label.lot.product_error");
 		}
 		if (newLot.getMinVolume() < 1) {
-			errors.add("lot.minVolume.error");
+			errors.add("label.lot.minVolume_error");
 		}
 		if (newLot.getMaxVolume() <= newLot.getMinVolume()) {
-			errors.add("lot.maxVolume.error");
-		}
-
-		if (newLot.getFoto() != null && !newLot.getFoto().equals("") && !ValidationURL.isValidURL(newLot.getFoto())) {
-			errors.add("lot.foto.error");
+			errors.add("label.lot.maxVolume_error");
 		}
 
 		Calendar calendar = Calendar.getInstance();
@@ -142,7 +137,7 @@ public class LotResourseController extends BaseResourseController {
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
 		if (newLot.getExpDate().getTime() < calendar.getTimeInMillis()) {
-			errors.add("lot.expDate.error");
+			errors.add("label.lot.expDate_error");
 		}
 		return errors;
 	}

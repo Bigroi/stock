@@ -33,6 +33,6 @@ public class CompanyResourceController extends BaseResourseController {
 	@Secured(value = {"ROLE_ADMIN"})
 	public String changeStatus(@RequestParam("id") long id) throws ServiceException {
 		ServiceFactory.getCompanyService().changeStatusCompany(id);
-		return new ResultBean(1, "company.status.change.success").toString();
+		return new ResultBean(1, "label.company.status_changed").toString();
 	}
 }

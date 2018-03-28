@@ -123,6 +123,8 @@ function makeTable(url, tableElement){
         			    	return;
         			    }
         			} );
+        		} else {
+        			showMessageDialog(answer.message, "error");
         		}
         	});
         });

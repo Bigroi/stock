@@ -17,7 +17,12 @@ $(document).ready(function(){
 		    	if (isRunning) {
 		    		count++;
 					if(count == 1800){
-						$(".dialogbox-session").show();
+						showMessageDialog(
+								"label.login.loginAgain", 
+								"warning",
+								function(){
+									window.location = "/account/json/Logout.spr";
+								});
 						isRunning = false;
 					}
 		        }
@@ -29,13 +34,10 @@ $(document).ready(function(){
 		    count = 0;
 		    interval();
 		});
-		$(".dialogbox-session .dialogbox-spanClose, .session-out, .dialogbox-session").click(function(){
-			$(".dialogbox-session").hide();
-			window.location.replace("/account/json/Logout.spr");
-		});
 	}
 	if($("td").is(".dataTables_empty")) {
 		console.log('без пагинаци');
+		//Марго! русский текст!
 	}
 	
 	
