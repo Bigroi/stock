@@ -121,7 +121,8 @@ function setLoginDialogPlugin(element){
 					answer = JSON.parse(answer);
 					processRequestResult(formContainer, answer, $('.dialogbox-message'));
 				});
-			}
+			},
+			type:"link"
 		}], 
 						
 	});

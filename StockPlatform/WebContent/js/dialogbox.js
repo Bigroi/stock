@@ -45,11 +45,17 @@ $.fn.dialogbox = function(params) {
 			loadData();
 			
 			function addButton($listelement, buttonDef){
-				var $button = $("<button>");
+				var $button;
+				if (buttonDef.type == "link"){
+					$button = $("<a href='#'>");
+				} else {
+					$button	= $("<button>");
+					$button.attr("type", "submit");
+				}
 				$button.addClass("submit button");
 				$button.text(buttonDef.text);	    	
 				$button.attr("id", buttonDef.id);
-				$button.attr("type", "submit");
+				
 				
 				$button.click(function(event){
 					var result = sendFormData(
