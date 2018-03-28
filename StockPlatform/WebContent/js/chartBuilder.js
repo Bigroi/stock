@@ -1,7 +1,11 @@
 function buildChart(containerName, dataUrl, params) {
 	$.post(dataUrl, params, function(answer){
 		if (answer.result > 0){
-			Plotly.newPlot(containerName, answer.data, getLayout(), {displayModeBar: false});
+			if (answer.data.length == 0){
+				$("#" + containerName).hide();
+			} else {
+				Plotly.newPlot(containerName, answer.data, getLayout(), {displayModeBar: false});
+			}
 		} else {
 			alert(answer.message);
 		}

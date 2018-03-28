@@ -185,6 +185,7 @@ public class ProductServiceImpl implements ProductService {
 			for (Lot lot : lotDao.getActiveByProductId(productId)){
 				sell.addDot(lot.getMaxVolume(), lot.getPrice());
 			}
+			
 			sell.setColor("rgb(103, 210, 230)");
 			chartTraces.add(sell);
 			
@@ -194,7 +195,11 @@ public class ProductServiceImpl implements ProductService {
 			}
 			buy.setColor("rgb(242, 153, 74)");
 			chartTraces.add(buy);
-			return chartTraces;
+			if (sell.isEmpty() && buy.isEmpty()){
+				return new ArrayList<>();
+			} else {
+				return chartTraces;
+			}
 		}catch (DaoException e) {
 			throw new ServiceException(e);
 		}

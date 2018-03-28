@@ -22,6 +22,10 @@ public class ChartTrace {
 		this.y.add(y);
 	}
 	
+	public boolean isEmpty(){
+		return x.size() == 0;
+	}
+	
 	public Map<String, Object> getMarker() {
 		return marker;
 	}
