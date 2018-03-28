@@ -19,7 +19,7 @@ function makeTable(url, tableElement){
 
 		if ($(".add-button").length > 0){
 			var editForm = window[model.editForm];
-			editForm($(".add-button"), table, model);
+			editForm($(".add-button"), $(tableElement), model);
 		}
 		
 	});
