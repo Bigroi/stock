@@ -24,7 +24,6 @@
 		<put-attribute name="nav-testBG" value="" cascade="true"/>
 		
 		<put-attribute name="footer" value="/WEB-INF/jsp/templates/defaultFooter.jsp" />
-		<put-attribute name="l10n" value="/WEB-INF/jsp/templates/l10n.jsp" />
 		<put-attribute name="page-title" value="/WEB-INF/jsp/templates/pageTitle.jsp" />
 	</definition>
 	

@@ -38,7 +38,9 @@
 	<body>
 		<div id="message-dialog-container"></div>
 		<div id="login-form-container"></div>
-		<tiles:insertAttribute name="l10n" />
+		<script>
+			localization();
+		</script>
         <div class = "aside">
             <div class = "logo">
                 <p><b>YT</b></p>
