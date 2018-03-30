@@ -1,5 +1,6 @@
 package com.bigroi.stock.messager;
 
+import java.util.Map;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -77,5 +78,9 @@ public class MessagerFactory {
 	
 	public static Message<StockUser> getNewPasswExparationMessage(){
 		return (Message<StockUser>) CONTEXT.getBean("newPasswExparationMessage");
+	}
+	
+	public static Message<Map<String,String>> getLinkResetPasswordMessage(){
+		return (Message<Map<String,String>>) CONTEXT.getBean("linkResetPasswordMessage");
 	}
 }

@@ -18,4 +18,8 @@ public interface UserDao {
 	StockUser getByUsernameWithRoles(String username) throws DaoException;
 
 	StockUser getById(long id) throws DaoException;
+	
+	boolean updatePassword(StockUser user) throws DaoException;
+
+	boolean updateForKeyId(StockUser user)throws DaoException;
 }

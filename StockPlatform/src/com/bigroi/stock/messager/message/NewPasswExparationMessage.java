@@ -5,7 +5,6 @@ import com.bigroi.stock.bean.StockUser;
 public class NewPasswExparationMessage extends BaseMessage<StockUser> {
 
 	
-
 	protected NewPasswExparationMessage(String fileName) throws MessageException {
 		super(fileName);
 	}
@@ -21,5 +20,4 @@ public class NewPasswExparationMessage extends BaseMessage<StockUser> {
 				.replaceAll("@password", user.getPassword())
 		        .replaceAll("@username", user.getUsername());
 	}
-
 }

@@ -32,4 +32,10 @@ public interface UserService extends UserDetailsService{
 	
 	void getInviteUsersByDate() throws ServiceException;
 	
+	void sendLinkResetPassword(String username) throws ServiceException;
+	
+	boolean checkCodeAndEmail(String email, String code) throws ServiceException;
+	
+	void changePassword(String username) throws ServiceException;
+	
 }

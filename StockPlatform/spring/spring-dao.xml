@@ -66,5 +66,9 @@
 	<bean id="inviteUserDao" class="com.bigroi.stock.dao.db.InviteUserDaoImpl">
 	    <property name="datasource" ref="datasource" />
     </bean>
+    
+    <bean id="keysDao" class="com.bigroi.stock.dao.db.GenerateKeyDaoImpl">
+	    <property name="datasource" ref="datasource" />
+    </bean>
 
 </beans>

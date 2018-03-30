@@ -52,6 +52,10 @@ public class UserDaoImpl implements UserDao {
 			+ "FROM USER "
 			+ "WHERE ID = ?";
 	
+	private static final String UPDATE_PASSWORD_BY_USERNAME = "UPDATE USER SET PASSWORD = ? WHERE USERNAME = ? ";
+	
+	private static final String UPDATE_KEYS_BY_USERNAME = "UPDATE USER SET keys_id = ? WHERE USERNAME = ? ";
+	
 	private DataSource datasource;
 
 	public void setDatasource(DataSource datasource) {
@@ -150,5 +154,17 @@ public class UserDaoImpl implements UserDao {
 		}catch (Exception e) {
 			throw new DaoException(e);
 		}
+	}
+
+	@Override
+	public boolean updatePassword(StockUser user) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		return template.update(UPDATE_PASSWORD_BY_USERNAME, user.getPassword(),user.getUsername()) == 1;
+	}
+
+	@Override
+	public boolean updateForKeyId(StockUser user) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		return template.update(UPDATE_KEYS_BY_USERNAME, user.getKeysId(), user.getUsername()) == 1;
 	}
 }

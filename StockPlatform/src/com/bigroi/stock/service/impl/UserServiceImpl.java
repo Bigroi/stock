@@ -1,7 +1,9 @@
 package com.bigroi.stock.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.Company;
+import com.bigroi.stock.bean.GeneratedKey;
 import com.bigroi.stock.bean.InviteUser;
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.UserRole;
@@ -17,6 +20,7 @@ import com.bigroi.stock.bean.common.Role;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.InviteUserDao;
+import com.bigroi.stock.dao.GenerateKeyDao;
 import com.bigroi.stock.dao.UserDao;
 import com.bigroi.stock.dao.UserRoleDao;
 import com.bigroi.stock.messager.MessagerFactory;
@@ -32,6 +36,7 @@ public class UserServiceImpl implements UserService {
 	private CompanyDao companyDao;
 	private UserRoleDao userRoleDao;
 	private InviteUserDao inviteUserDao;
+	public GenerateKeyDao keysDao;
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 		     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
@@ -49,6 +54,10 @@ public class UserServiceImpl implements UserService {
 	
 	public void setInviteUserDao(InviteUserDao inviteUserDao) {
 		this.inviteUserDao = inviteUserDao;
+	}
+	
+	public void setKeysDao(GenerateKeyDao keysDao) {
+		this.keysDao = keysDao;
 	}
 
 	@Override
@@ -200,6 +209,54 @@ public class UserServiceImpl implements UserService {
 			 inviteUserDao.getAllInviteUserByDate();
 			 inviteUserDao.deleteInviteUsersByDate();
 		} catch (DaoException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	@Transactional
+	public void sendLinkResetPassword(String username) throws ServiceException {
+		try {
+			StockUser user = userDao.getByUsername(username);
+			user.setUsername(user.getUsername());
+			GeneratedKey key = keysDao.generateKey();
+			user.setKeysId(key.getId());
+			userDao.updateForKeyId(user);
+			Message<Map<String, String>> message = MessagerFactory.getLinkResetPasswordMessage();
+			Map<String,String> map = new HashMap<>();
+			map.put("email", user.getUsername());
+			map.put("code", key.getGeneratedKey());
+			message.setDataObject(map);
+			message.sendImediatly();
+		} catch (DaoException | MessageException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	public boolean checkCodeAndEmail(String email, String code) throws ServiceException {
+		try {
+			return keysDao.ñheckResetKey(email, code);
+		} catch (DaoException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+		}
+		return false;
+	}
+
+	@Override
+	@Transactional
+	public void changePassword(String username) throws ServiceException {
+		try {
+			StockUser user = new StockUser();
+			user.setUsername(username);
+			user.setPassword(Generator.generatePass(8));
+			userDao.updatePassword(user);
+			Message<StockUser> message = MessagerFactory.getResetUserPasswordMessage();
+			message.setDataObject(user);
+			message.sendImediatly();
+		} catch (DaoException | MessageException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}

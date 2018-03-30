@@ -19,6 +19,8 @@ public class StockUser implements UserDetails {
 	
 	private long companyId;
 	
+	private long keysId;
+	
 	public long getId() {
 		return id;
 	}
@@ -47,10 +49,18 @@ public class StockUser implements UserDetails {
 		grantedAuthorities.add(grant);
 	}
 
+	public long getKeysId() {
+		return keysId;
+	}
+
+	public void setKeysId(long keysId) {
+		this.keysId = keysId;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", grantedAuthorities="
-				+ grantedAuthorities + ", companyId=" + companyId + "]";
+		return "StockUser [id=" + id + ", username=" + username + ", password=" + password + ", grantedAuthorities="
+				+ grantedAuthorities + ", companyId=" + companyId + ", keysId=" + keysId + "]";
 	}
 
 	@Override

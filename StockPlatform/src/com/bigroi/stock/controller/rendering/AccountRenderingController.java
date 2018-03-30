@@ -2,7 +2,6 @@ package com.bigroi.stock.controller.rendering;
 
 import java.net.MalformedURLException;
 
-
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,34 +17,50 @@ import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 @RequestMapping("/account")
-public class AccountRenderingController extends BaseRenderingController{
-	
+public class AccountRenderingController extends BaseRenderingController {
+
 	@RequestMapping("/Form.spr")
-	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView form() throws ServiceException{
-		return createModelAndView("account");		
+	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
+	public ModelAndView form() throws ServiceException {
+		return createModelAndView("account");
 	}
 
 	@RequestMapping("/Registration.spr")
 	public ModelAndView goToRegistrationPage() {
 		return createModelAndView("registration");
 	}
-	
+
 	@RequestMapping("/AddUser.spr")
-	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public ModelAndView goToInviteUserPage() {
 		return createModelAndView("addUser");
 	}
-	
+
 	@RequestMapping(value = "/Join.spr", method = RequestMethod.GET)
-	public ModelAndView addInviteUser(@RequestParam("code") String code) throws ServiceException, MalformedURLException, MessageException { 
+	public ModelAndView addInviteUser(@RequestParam("code") String code)
+			throws ServiceException, MalformedURLException, MessageException {
 		ModelAndView modelAndView = createModelAndView("checkPassw");
 		InviteUser inviteUser = ServiceFactory.getUserService().getInviteUserCode(code);
-		if(inviteUser!= null){
-		ServiceFactory.getUserService().addUserByInvite(inviteUser, new Role[] { Role.ROLE_USER });
-		String message = this.getLabelValue("label.invite.successMessage")
-				.replaceAll("@user", inviteUser.getInviteEmail());
-		modelAndView.addObject("message", message);
+		if (inviteUser != null) {
+			ServiceFactory.getUserService().addUserByInvite(inviteUser, new Role[] { Role.ROLE_USER });
+			String message = this.getLabelValue("label.invite.successMessage").replaceAll("@user",
+					inviteUser.getInviteEmail());
+			modelAndView.addObject("message", message);
+		}
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/ResetPassword.spr", method = RequestMethod.GET)
+	public ModelAndView reserPassword(@RequestParam("code") String code, @RequestParam("email") String email)
+			throws ServiceException {
+		ModelAndView modelAndView = createModelAndView("resetPassw");
+		if (ServiceFactory.getUserService().checkCodeAndEmail(email, code)) {
+			ServiceFactory.getUserService().changePassword(email);
+			String message = this.getLabelValue("label.resetPassw.success");
+			modelAndView.addObject("message", message);
+		} else {
+			String message = this.getLabelValue("label.resetPassw.error");
+			modelAndView.addObject("message", message);
 		}
 		return modelAndView;
 	}

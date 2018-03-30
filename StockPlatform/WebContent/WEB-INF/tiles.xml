@@ -125,4 +125,8 @@
 	<definition name="message" extends="base-form-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/message.jsp" />
 	</definition> 
+	
+	<definition name="resetPassw" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/resetPassw.jsp" />
+	</definition> 
 </tiles-definitions>

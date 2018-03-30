@@ -95,4 +95,8 @@
 		<constructor-arg name="fileName" value="newPassw.txt"/>
 	</bean>
 	
+	  <bean id="linkResetPasswordMessage" class="com.bigroi.stock.messager.message.LinkResetPasswordMessage">
+		<constructor-arg name="fileName" value="linkResetPassw.txt"/>
+	</bean>  
+	
 </beans>
