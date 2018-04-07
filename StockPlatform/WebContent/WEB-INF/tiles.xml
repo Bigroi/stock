@@ -129,4 +129,8 @@
 	<definition name="resetPassw" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/resetPassw.jsp" />
 	</definition> 
+	
+	<definition name="feedback" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/feedback.jsp" />
+	</definition> 
 </tiles-definitions>

@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.bigroi.stock.bean.Deal;
+import com.bigroi.stock.bean.FeedBack;
 import com.bigroi.stock.bean.InviteUser;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.StockUser;
@@ -82,5 +83,9 @@ public class MessagerFactory {
 	
 	public static Message<Map<String,String>> getLinkResetPasswordMessage(){
 		return (Message<Map<String,String>>) CONTEXT.getBean("linkResetPasswordMessage");
+	}
+	
+	public static Message<FeedBack> getFeedBackMessage(){
+		return (Message<FeedBack>) CONTEXT.getBean("FeedBackMessage");
 	}
 }

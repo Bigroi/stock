@@ -54,6 +54,8 @@
             	<sec:authorize access="hasAnyRole('ADMIN')">
 			    	<tiles:insertAttribute name="adminHeader" />
 				</sec:authorize>
+				<a href="#" id="contactus">${label.account.contact_us}</a>
+				<script type="text/javascript">setContactUsDialogPlugin($('#contactus'))</script>
             </nav>
             <tiles:insertAttribute name="footer" />
         </div>

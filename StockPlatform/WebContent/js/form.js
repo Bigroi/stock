@@ -191,6 +191,27 @@ function setInviteDialogPlugin(element){
 	});
 }
 
+function setContactUsDialogPlugin(element){
+	
+	var buttons = [{
+		text: translate("label.button.send"),
+		id:"invite",
+		submit:function(formContainer, params, $dialogbox){
+			$.post("/feedback/json/Save.spr", params, function(answer){
+				processRequestResult(formContainer, answer, $('.dialogbox-message'));
+			});
+		}
+	}];
+	
+	element.dialogbox({
+		container:$("#message-dialog-container"),
+		formUrl:"/feedback/Form.spr", 
+		formData:"/feedback/json/Form.spr", 
+		height:"15%",
+		buttons:buttons,
+	});
+}
+
 function setTenderDialogPlugin(element, table, model, id){
 	var buttons = [{
 		text: translate("label.button.save"),

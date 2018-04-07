@@ -29,6 +29,7 @@ abstract class BaseMessage<T> implements Message<T>{
 	
 	protected BaseMessage(String fileName) throws MessageException {
 		try{
+			if (fileName != null && !fileName.equals(""))
 			try (BufferedReader reader = new BufferedReader(
 					new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName),
 							StandardCharsets.UTF_8))) {

@@ -39,6 +39,7 @@ function localization(){
 	'label.button.save_start_trading',
 	'label.button.end_trading',
 	'label.button.invite',
+	'label.button.send',
 	'label.button.ok',
 	'label.table.decimal',
 	'label.table.emptyTable',
