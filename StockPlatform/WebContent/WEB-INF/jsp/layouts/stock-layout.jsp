@@ -19,6 +19,7 @@
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
         <link rel="stylesheet" href="/css/pageStyle.css">
         <link rel="stylesheet" href="/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="/css/jquery.responsive.dataTables.min.css">
 		<link rel="stylesheet" href="/css/tableCustomStyle.css">
 		<link rel="stylesheet" href="/css/formStyle.css">
 		<link rel="stylesheet" href="/css/dialogboxStyle.css">
@@ -26,6 +27,7 @@
         
         <script src="/js/jQuery.js"></script>
         <script src="/js/jquery.dataTables.min.js"></script>
+        <script src="/js/jquery.responsive.dataTables.min.js"></script>
         <script src= "/js/localization.js"></script>
 		<script src= "/js/tableMaker.js"></script>
 		<script src="/js/map.js"></script>

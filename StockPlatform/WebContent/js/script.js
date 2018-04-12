@@ -35,10 +35,4 @@ $(document).ready(function(){
 		    interval();
 		});
 	}
-	if($("td").is(".dataTables_empty")) {
-		console.log('без пагинаци');
-		//Марго! русский текст!
-	}
-	
-	
 });

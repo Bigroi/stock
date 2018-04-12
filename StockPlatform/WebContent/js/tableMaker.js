@@ -12,6 +12,7 @@ function makeTable(url, tableElement){
 		
 		tableData = answer.data.table;
 		tableData.rowCallback = rowCallback;
+		tableData.drawCallback = removePagination;
 		tableData.language = getLanguage();
 		tableData.initComplete = initHeader;
 		tableData.aaSorting = [];
@@ -212,7 +213,13 @@ function makeTable(url, tableElement){
             } );
 		}
 	}
-	
+	function removePagination(){
+		if($("td").is(".dataTables_empty")) {
+			$("#main-table_paginate").css("display","none");
+		} else {
+			$("#main-table_paginate").css("display","block");
+		}
+	}
 	function initHeader(){
 		localizeHeader(this);
 		addFilters(this);
