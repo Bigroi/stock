@@ -6,7 +6,7 @@ $.fn.dialogbox = function(params) {
 	},params);
 
 	return this.on("click", function() {	
-		showDialog(params);
+		return showDialog(params);
 	});
 }
 
