@@ -266,3 +266,12 @@ table.dataTable thead th {
 .inactive-row {
 	color: #a7a7a7;
 }
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before, 
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:before {
+	top: 14px;
+	line-height: 15px;
+}
+/*table#main-table tr.child > th, 
+table#main-table tbody tr.child > td {
+	text-align: left;
+}*/
