@@ -30,7 +30,7 @@ public interface UserService extends UserDetailsService{
 	
 	void addUserByInvite(InviteUser inviteUser, Role[] roles) throws ServiceException;
 	
-	void getInviteUsersByDate() throws ServiceException;
+	void deleteGenerateKeys() throws ServiceException;
 	
 	void sendLinkResetPassword(String username) throws ServiceException;
 	

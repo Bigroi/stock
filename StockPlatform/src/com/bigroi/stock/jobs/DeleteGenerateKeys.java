@@ -5,12 +5,12 @@ import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
-public class DeleteInviteUser implements Runnable {
+public class DeleteGenerateKeys implements Runnable {
 
 	@Override
 	public void run() {
 		try{
-			ServiceFactory.getUserService().getInviteUsersByDate();
+			ServiceFactory.getUserService().deleteGenerateKeys();
 		}catch (ServiceException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 		}

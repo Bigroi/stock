@@ -156,11 +156,15 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public void addInviteUser(InviteUser inviteUser, long id) throws ServiceException {
 		try {
-			inviteUser.setGeneratedKey(Generator.generateLinkKey(50));
+			GeneratedKey key = keysDao.generateKey();
 			inviteUser.setCompanyId(id);
+			inviteUser.setKeysId(key.getId());
 			inviteUserDao.add(inviteUser);
-			Message<InviteUser> message = MessagerFactory.getInviteExparationMessage();
-			message.setDataObject(inviteUser);
+			Message<Map<String, String>> message = MessagerFactory.getInviteExparationMessage();
+			Map<String,String> map = new HashMap<>();
+			map.put("email", inviteUser.getInviteEmail());
+			map.put("code", key.getGeneratedKey());
+			message.setDataObject(map);
 			message.sendImediatly();
 		} catch (DaoException | MessageException e) {
 				throw new ServiceException(e);
@@ -194,7 +198,8 @@ public class UserServiceImpl implements UserService {
 				listRole.add(userRole);
 			}
 			userRoleDao.add(listRole);
-			inviteUserDao.deleteInviteUserByCode(inviteUser.getGeneratedKey());
+			GeneratedKey key = keysDao.getGeneratedKeyById(inviteUser.getKeysId());
+			inviteUserDao.deleteInviteUserByCode(key.getGeneratedKey());
 			Message<StockUser> message = MessagerFactory.getNewPasswExparationMessage();
 			message.setDataObject(user);
 			message.sendImediatly();
@@ -204,16 +209,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void getInviteUsersByDate() throws ServiceException {
+	public void deleteGenerateKeys() throws ServiceException {
 		try {
-			 inviteUserDao.getAllInviteUserByDate();
-			 inviteUserDao.deleteInviteUsersByDate();
+			keysDao.getGenerateKeysByDate();
+			keysDao.deleteGenerateKeysByDate();
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
-
+	
 	@Override
 	@Transactional
 	public void sendLinkResetPassword(String username) throws ServiceException {

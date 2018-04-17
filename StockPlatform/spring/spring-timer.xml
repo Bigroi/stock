@@ -19,10 +19,10 @@
 		<task:scheduled ref="trading" method="run" cron="0 0 9,21 * * *"/>
 	</task:scheduled-tasks>
 	
-	<bean id="deleteInviteUser" class="com.bigroi.stock.jobs.DeleteInviteUser"></bean>
+	<bean id="deleteGeneratedKeys" class="com.bigroi.stock.jobs.DeleteGenerateKeys"></bean>
 
 	<task:scheduled-tasks>
-		<task:scheduled ref="deleteInviteUser" method="run" cron="0 0 0 */2 * * "/>
+		<task:scheduled ref="deleteGeneratedKeys" method="run" cron="0 0 0 */2 * * "/>
 	</task:scheduled-tasks>
 
 </beans>

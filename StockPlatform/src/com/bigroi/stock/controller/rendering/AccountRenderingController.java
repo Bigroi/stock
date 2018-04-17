@@ -51,7 +51,7 @@ public class AccountRenderingController extends BaseRenderingController {
 	}
 
 	@RequestMapping(value = "/ResetPassword.spr", method = RequestMethod.GET)
-	public ModelAndView reserPassword(@RequestParam("code") String code, @RequestParam("email") String email)
+	public ModelAndView resetPassword(@RequestParam("code") String code, @RequestParam("email") String email)
 			throws ServiceException {
 		ModelAndView modelAndView = createModelAndView("resetPassw");
 		if (ServiceFactory.getUserService().checkCodeAndEmail(email, code)) {

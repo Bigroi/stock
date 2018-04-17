@@ -1,12 +1,12 @@
 package com.bigroi.stock.messager;
 
 import java.util.Map;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.bigroi.stock.bean.Deal;
 import com.bigroi.stock.bean.FeedBack;
-import com.bigroi.stock.bean.InviteUser;
 import com.bigroi.stock.bean.Lot;
 import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.Tender;
@@ -73,8 +73,8 @@ public class MessagerFactory {
 		return (Message<Tender>) CONTEXT.getBean("tenderExparationMessage");
 	}
 	
-	public static Message<InviteUser> getInviteExparationMessage(){
-		return (Message<InviteUser>) CONTEXT.getBean("inviteExparationMessage");
+	public static Message<Map<String, String>> getInviteExparationMessage(){
+		return (Message<Map<String, String>>) CONTEXT.getBean("inviteExparationMessage");
 	}
 	
 	public static Message<StockUser> getNewPasswExparationMessage(){

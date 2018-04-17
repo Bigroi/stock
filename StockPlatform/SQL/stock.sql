@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `blacklist` (
   CONSTRAINT `FK_blacklist_lot` FOREIGN KEY (`lot_Id`) REFERENCES `lot` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.blacklist: ~0 rows (approximately)
+-- Dumping data for table stock.blacklist: ~2 rows (approximately)
 /*!40000 ALTER TABLE `blacklist` DISABLE KEYS */;
 INSERT INTO `blacklist` (`id`, `tender_Id`, `lot_Id`) VALUES
 	(1, 18, 13),
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `email` (
   `email_subject` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `email_text` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table stock.email: ~0 rows (approximately)
 /*!40000 ALTER TABLE `email` DISABLE KEYS */;
@@ -116,9 +116,9 @@ CREATE TABLE IF NOT EXISTS `generated_key` (
   `generated_key` varchar(50) DEFAULT NULL,
   `expiration_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=242 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table stock.generated_key: ~2 rows (approximately)
+-- Dumping data for table stock.generated_key: ~3 rows (approximately)
 /*!40000 ALTER TABLE `generated_key` DISABLE KEYS */;
 /*!40000 ALTER TABLE `generated_key` ENABLE KEYS */;
 
@@ -127,15 +127,16 @@ DROP TABLE IF EXISTS `invite_user`;
 CREATE TABLE IF NOT EXISTS `invite_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `invite_email` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `generated_key` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `company_id` bigint(20) NOT NULL,
-  `creation_date` date DEFAULT NULL,
+  `keys_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_invite_user_company` (`company_id`),
-  CONSTRAINT `FK_invite_user_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `FK_invite_user_generated_key` (`keys_id`),
+  CONSTRAINT `FK_invite_user_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`),
+  CONSTRAINT `FK_invite_user_generated_key` FOREIGN KEY (`keys_id`) REFERENCES `generated_key` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.invite_user: ~1 rows (approximately)
+-- Dumping data for table stock.invite_user: ~5 rows (approximately)
 /*!40000 ALTER TABLE `invite_user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `invite_user` ENABLE KEYS */;
 
@@ -160,14 +161,13 @@ CREATE TABLE IF NOT EXISTS `lot` (
   KEY `product` (`product_Id`),
   CONSTRAINT `FK_lot_company` FOREIGN KEY (`seller_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_lot_product` FOREIGN KEY (`product_Id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.lot: ~3 rows (approximately)
+-- Dumping data for table stock.lot: ~2 rows (approximately)
 /*!40000 ALTER TABLE `lot` DISABLE KEYS */;
 INSERT INTO `lot` (`id`, `description`, `product_Id`, `min_price`, `seller_Id`, `status`, `exp_date`, `max_volume`, `min_Volume`, `creation_date`, `delivery`, `packaging`, `foto`) VALUES
 	(13, '', 1, 2.00, 1, 'INACTIVE', '2018-03-14', 2222, 22, '2018-03-14', 0, 0, 'http://localhost:8080/lot/MyLots.spr'),
-	(19, '', 1, 2.00, 1, 'INACTIVE', '2018-03-17', 222, 22, '2018-03-17', 0, 0, 'http://localhost:8080/lot/MyLots.spr'),
-	(20, '2', 111, 2.00, 1, 'INACTIVE', '2018-03-17', 222, 22, '2018-03-17', 0, 0, 'http://localhost:8080/lot/MyLots.spr');
+	(19, '', 1, 2.00, 1, 'INACTIVE', '2018-03-17', 222, 22, '2018-03-17', 0, 0, 'http://localhost:8080/lot/MyLots.spr');
 /*!40000 ALTER TABLE `lot` ENABLE KEYS */;
 
 -- Dumping structure for table stock.product
@@ -214,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `tender` (
   KEY `FK_application_company` (`customer_Id`),
   CONSTRAINT `FK_tender_company` FOREIGN KEY (`customer_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_tender_product` FOREIGN KEY (`product_Id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table stock.tender: ~1 rows (approximately)
 /*!40000 ALTER TABLE `tender` DISABLE KEYS */;
@@ -233,11 +233,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   KEY `FK_user_company` (`company_Id`),
   KEY `FK_user_keys` (`keys_id`),
-  CONSTRAINT `FK_user_keys` FOREIGN KEY (`keys_id`) REFERENCES `generated_key` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_user_company` FOREIGN KEY (`company_Id`) REFERENCES `company` (`id`)
+  CONSTRAINT `FK_user_company` FOREIGN KEY (`company_Id`) REFERENCES `company` (`id`),
+  CONSTRAINT `FK_user_keys` FOREIGN KEY (`keys_id`) REFERENCES `generated_key` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.user: ~6 rows (approximately)
+-- Dumping data for table stock.user: ~4 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `password`, `company_Id`, `keys_id`) VALUES
 	(1, 'Admin@stock.by', '1', 1, NULL),
@@ -253,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   CONSTRAINT `FK_user_role_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.user_role: ~6 rows (approximately)
+-- Dumping data for table stock.user_role: ~5 rows (approximately)
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
 INSERT INTO `user_role` (`user_id`, `role`) VALUES
 	(1, 'ROLE_ADMIN'),

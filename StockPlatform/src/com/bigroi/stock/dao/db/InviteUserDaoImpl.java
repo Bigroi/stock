@@ -1,10 +1,8 @@
 package com.bigroi.stock.dao.db;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -22,17 +20,14 @@ import com.bigroi.stock.dao.InviteUserDao;
 public class InviteUserDaoImpl implements InviteUserDao {
 	
 	private static final String ADD_INVITE_USER = " INSERT INTO INVITE_USER  "
-			+ " (INVITE_EMAIL, GENERATED_KEY, COMPANY_ID, CREATION_DATE) VALUES (?, ?, ?, ?) ";
+			+ " (INVITE_EMAIL, COMPANY_ID, KEYS_ID) VALUES (?, ?, ?) ";
 	
-	private static final String GET_INVITE_USER_BY_CODE = " SELECT ID, INVITE_EMAIL, GENERATED_KEY,"
-			+ " COMPANY_ID FROM INVITE_USER WHERE GENERATED_KEY = ? ";
-	
-	public static final  String DELETE_INVITE_USER_BY_CODE = " DELETE FROM INVITE_USER  WHERE GENERATED_KEY = ? ";
-	
-	public static final String GET_ALL_INVITE_USER_BY_DATE = " SELECT GENERATED_KEY, CREATION_DATE FROM INVITE_USER "
-			+ " WHERE ? > CREATION_DATE ";
-	
-	public static final String DELETE_INVITE_USER_BY_DATE = " DELETE FROM  INVITE_USER WHERE CREATION_DATE < ? ";
+	private static final String GET_INVITE_USER_BY_CODE = " SELECT INVITE_EMAIL, COMPANY_ID, KEYS_ID "
+			+ " FROM INVITE_USER AS INVITE JOIN GENERATED_KEY AS K "
+			+ " ON INVITE.KEYS_ID = K.ID WHERE K.GENERATED_KEY = ? "; 
+
+	public static final  String DELETE_INVITE_USER_BY_CODE = " DELETE INVITE, K FROM INVITE_USER AS INVITE"
+			+ " JOIN GENERATED_KEY AS K ON INVITE.KEYS_ID = K.ID WHERE GENERATED_KEY = ? ";
 	
 	private DataSource datasource;
 
@@ -49,9 +44,8 @@ public class InviteUserDaoImpl implements InviteUserDao {
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(ADD_INVITE_USER, PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, inviteUser.getInviteEmail());
-				ps.setString(2, inviteUser.getGeneratedKey());
-				ps.setLong(3, inviteUser.getCompanyId());
-				ps.setDate(4, new Date(inviteUser.getCreationDate().getTime()));
+				ps.setLong(2, inviteUser.getCompanyId());
+				ps.setLong(3, inviteUser.getKeysId());
 				return ps;
 			}
 		}, keyHolder);
@@ -75,22 +69,5 @@ public class InviteUserDaoImpl implements InviteUserDao {
 	public boolean deleteInviteUserByCode(String code) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(DELETE_INVITE_USER_BY_CODE, code) == 1;
-	}
-
-	@Override
-	public List<InviteUser> getAllInviteUserByDate() throws DaoException {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		Calendar calendar = Calendar.getInstance();
-		calendar.roll(Calendar.DAY_OF_YEAR, -2);
-		 return template.query(GET_ALL_INVITE_USER_BY_DATE, 
-				 new BeanPropertyRowMapper<InviteUser>(InviteUser.class), calendar.getTime());
-	}
-
-	@Override
-	public boolean deleteInviteUsersByDate() throws DaoException {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		Calendar calendar = Calendar.getInstance();
-		calendar.roll(Calendar.DAY_OF_YEAR, -2);
-		return template.update(DELETE_INVITE_USER_BY_DATE, calendar) == 1;
 	}
 }
