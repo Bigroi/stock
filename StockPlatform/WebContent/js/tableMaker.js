@@ -11,6 +11,7 @@ function makeTable(url, tableElement){
 		model = answer.data.model;
 		
 		tableData = answer.data.table;
+		localizeHeader(tableData);
 		tableData.rowCallback = rowCallback;
 		tableData.drawCallback = removePagination;
 		tableData.language = getLanguage();
@@ -160,12 +161,12 @@ function makeTable(url, tableElement){
 	}
 	
 	
-	function localizeHeader(thisObject){
-		thisObject.api().columns().every(function() {
-			var column = this;
-			var $header = $(column.header());
-			$header[0].textContent = translate($header[0].textContent);
-		});
+	function localizeHeader(tableData){
+		for (var i=0; i < tableData.columns.length ; i++  ) {
+			var title = tableData.columns[i].title;
+			title =  translate(title);
+			tableData.columns[i].title = title;
+		}
 	}
 	
 	function addFilters(tableObject){
@@ -221,7 +222,6 @@ function makeTable(url, tableElement){
 		}
 	}
 	function initHeader(){
-		localizeHeader(this);
 		addFilters(this);
 	}
 }
