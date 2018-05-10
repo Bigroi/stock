@@ -15,8 +15,7 @@ table.dataTable thead th.table-head-up{
     text-align: left;
     background-color: white;
     border-top: 1px solid #dcdcdc; 
-    border-bottom: none;
-    padding-bottom: 0px;
+    border-bottom: 1px solid #dcdcdc;
 }
 
 table.dataTable thead th.table-head-down{
