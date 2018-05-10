@@ -116,9 +116,9 @@ CREATE TABLE IF NOT EXISTS `generated_key` (
   `generated_key` varchar(50) DEFAULT NULL,
   `expiration_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table stock.generated_key: ~3 rows (approximately)
+-- Dumping data for table stock.generated_key: ~0 rows (approximately)
 /*!40000 ALTER TABLE `generated_key` DISABLE KEYS */;
 /*!40000 ALTER TABLE `generated_key` ENABLE KEYS */;
 
@@ -134,9 +134,9 @@ CREATE TABLE IF NOT EXISTS `invite_user` (
   KEY `FK_invite_user_generated_key` (`keys_id`),
   CONSTRAINT `FK_invite_user_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_invite_user_generated_key` FOREIGN KEY (`keys_id`) REFERENCES `generated_key` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.invite_user: ~5 rows (approximately)
+-- Dumping data for table stock.invite_user: ~0 rows (approximately)
 /*!40000 ALTER TABLE `invite_user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `invite_user` ENABLE KEYS */;
 
@@ -161,13 +161,13 @@ CREATE TABLE IF NOT EXISTS `lot` (
   KEY `product` (`product_Id`),
   CONSTRAINT `FK_lot_company` FOREIGN KEY (`seller_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_lot_product` FOREIGN KEY (`product_Id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table stock.lot: ~2 rows (approximately)
 /*!40000 ALTER TABLE `lot` DISABLE KEYS */;
 INSERT INTO `lot` (`id`, `description`, `product_Id`, `min_price`, `seller_Id`, `status`, `exp_date`, `max_volume`, `min_Volume`, `creation_date`, `delivery`, `packaging`, `foto`) VALUES
-	(13, '', 1, 2.00, 1, 'INACTIVE', '2018-03-14', 2222, 22, '2018-03-14', 0, 0, 'http://localhost:8080/lot/MyLots.spr'),
-	(19, '', 1, 2.00, 1, 'INACTIVE', '2018-03-17', 222, 22, '2018-03-17', 0, 0, 'http://localhost:8080/lot/MyLots.spr');
+	(13, 'vvbn', 1, 2.00, 1, 'ACTIVE', '2018-05-14', 2222, 22, '2018-01-14', 0, 0, 'http://localhost:8080/lot/MyLots.spr'),
+	(14, '', 1, 11.00, 1, 'INACTIVE', '2015-05-10', 11111, 1111, '2018-05-10', 0, 0, '');
 /*!40000 ALTER TABLE `lot` ENABLE KEYS */;
 
 -- Dumping structure for table stock.product
@@ -230,18 +230,20 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(50) CHARACTER SET utf8 NOT NULL,
   `company_Id` bigint(20) NOT NULL,
   `keys_id` bigint(20) DEFAULT NULL,
+  `login_count` int(20) DEFAULT NULL,
+  `last_login` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_user_company` (`company_Id`),
   KEY `FK_user_keys` (`keys_id`),
   CONSTRAINT `FK_user_company` FOREIGN KEY (`company_Id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_user_keys` FOREIGN KEY (`keys_id`) REFERENCES `generated_key` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.user: ~4 rows (approximately)
+-- Dumping data for table stock.user: ~2 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id`, `username`, `password`, `company_Id`, `keys_id`) VALUES
-	(1, 'Admin@stock.by', '1', 1, NULL),
-	(14, 'ana@gmail.com', '1', 16, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `company_Id`, `keys_id`, `login_count`, `last_login`) VALUES
+	(1, 'Admin@stock.by', '1', 1, NULL, 12, '2018-05-10 22:22:33'),
+	(14, 'ana@gmail.com', '1', 16, NULL, 0, '0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 -- Dumping structure for table stock.user_role
@@ -253,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   CONSTRAINT `FK_user_role_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.user_role: ~5 rows (approximately)
+-- Dumping data for table stock.user_role: ~3 rows (approximately)
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
 INSERT INTO `user_role` (`user_id`, `role`) VALUES
 	(1, 'ROLE_ADMIN'),

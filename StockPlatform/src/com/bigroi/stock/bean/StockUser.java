@@ -2,6 +2,7 @@ package com.bigroi.stock.bean;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -12,14 +13,13 @@ public class StockUser implements UserDetails {
 	private static final long serialVersionUID = 3098775983055977418L;
 
 	private long id;
-	
 	private String username;
 	private String password;
 	private List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-	
 	private long companyId;
-	
 	private long keysId;
+	private int loginCount;
+	private Date lastLogin;
 	
 	public long getId() {
 		return id;
@@ -56,11 +56,27 @@ public class StockUser implements UserDetails {
 	public void setKeysId(long keysId) {
 		this.keysId = keysId;
 	}
+	public int getLoginCount() {
+		return loginCount;
+	}
+
+	public void setLoginCount(int loginCount) {
+		this.loginCount = loginCount;
+	}
+
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
 
 	@Override
 	public String toString() {
 		return "StockUser [id=" + id + ", username=" + username + ", password=" + password + ", grantedAuthorities="
-				+ grantedAuthorities + ", companyId=" + companyId + ", keysId=" + keysId + "]";
+				+ grantedAuthorities + ", companyId=" + companyId + ", keysId=" + keysId + ", loginCount=" + loginCount
+				+ ", lastLogin=" + lastLogin + "]";
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -22,25 +23,25 @@ import com.bigroi.stock.dao.UserDao;
 
 public class UserDaoImpl implements UserDao {
 
-	private static final String GET_USER_BY_USERNAME = "SELECT ID, USERNAME, PASSWORD, COMPANY_ID "
-			+ "FROM USER "
-			+ "WHERE USERNAME = ? ";
+	private static final String GET_USER_BY_USERNAME = " SELECT ID, USERNAME, PASSWORD, COMPANY_ID "
+			+ " FROM USER "
+			+ " WHERE USERNAME = ? ";
 
-	private static final String GET_ALL_USERS = "SELECT ID, USERNAME, PASSWORD, COMPANY_ID "
-			+ "FROM USER ";
+	private static final String GET_ALL_USERS = " SELECT ID, USERNAME, PASSWORD, COMPANY_ID "
+			+ " FROM USER ";
 
-	private static final String GET_USER_BY_USERNAME_AND_PASSWORD = "SELECT ID, USERNAME, PASSWORD, COMPANY_ID "
-			+ "FROM USER "
-			+ "WHERE USERNAME = ? AND PASSWORD = ? ";
+	private static final String GET_USER_BY_USERNAME_AND_PASSWORD = " SELECT ID, USERNAME, PASSWORD, COMPANY_ID "
+			+ " FROM USER WHERE USERNAME = ? AND PASSWORD = ? ";
 
 	private static final String ADD_USERS_BY_ID = "INSERT INTO USER (ID, USERNAME, PASSWORD, COMPANY_ID) "
 			+ " VALUES (?, ?, ?, ?) ";
 
 	private static final String UPDATE_USERS_BY_ID = "UPDATE USER "
-			+ "SET  USERNAME = ?, PASSWORD = ?, COMPANY_ID = ? "
-			+ "WHERE ID = ? ";
+			+ " SET  USERNAME = ?, PASSWORD = ?, COMPANY_ID = ? "
+			+ " WHERE ID = ? ";
 
-	private static final String LOAD_USER_BY_JOIN_TABLES = "SELECT USER.ID, USER.COMPANY_ID, USER.USERNAME, USER.PASSWORD, USER_ROLE.ROLE "
+	private static final String LOAD_USER_BY_JOIN_TABLES = "SELECT USER.ID, USER.COMPANY_ID, USER.USERNAME, USER.PASSWORD, "
+			+ " USER_ROLE.ROLE "
 			+ " FROM  USER "
 			+ " INNER JOIN COMPANY "
 			+ " ON USER.COMPANY_ID = COMPANY.ID AND COMPANY.`STATUS` = '" + CompanyStatus.VERIFIED.name() +"' "
@@ -49,12 +50,15 @@ public class UserDaoImpl implements UserDao {
 			+ " WHERE USER.USERNAME = ? ";
 
 	private static final String GET_USER_BY_ID = "SELECT ID, USERNAME, PASSWORD, COMPANY_ID "
-			+ "FROM USER "
-			+ "WHERE ID = ?";
+			+ " FROM USER "
+			+ " WHERE ID = ? ";
 	
 	private static final String UPDATE_PASSWORD_BY_USERNAME = "UPDATE USER SET PASSWORD = ? WHERE USERNAME = ? ";
 	
 	private static final String UPDATE_KEYS_BY_USERNAME = "UPDATE USER SET keys_id = ? WHERE USERNAME = ? ";
+	
+	private static final String UPDATE_COUNT_LOGINS_AND_TIME = " UPDATE USER SET LOGIN_COUNT = LOGIN_COUNT + 1, "
+			+ " LAST_LOGIN = CURRENT_TIMESTAMP() WHERE ID = ? ";
 	
 	private DataSource datasource;
 
@@ -137,6 +141,7 @@ public class UserDaoImpl implements UserDao {
 		if(list.size() == 0){
 			return null;
 		}else{
+			updateCountAndLastTimeForLogin(user);
 			return list.get(0);
 		}
 	}
@@ -166,5 +171,10 @@ public class UserDaoImpl implements UserDao {
 	public boolean updateForKeyId(StockUser user) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_KEYS_BY_USERNAME, user.getKeysId(), user.getUsername()) == 1;
+	}
+
+	private boolean updateCountAndLastTimeForLogin(StockUser user) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		return template.update(UPDATE_COUNT_LOGINS_AND_TIME, user.getId()) == 0;
 	}
 }

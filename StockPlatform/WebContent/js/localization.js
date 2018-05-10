@@ -13,6 +13,7 @@ function localization(){
 	'label.lot.exp_date',
 	'label.lot.edit',
 	'label.lot.creation_date',
+	'label.user.not_found',
 	'label.tender.product',
 	'label.tender.status',
 	'label.tender.max_price',

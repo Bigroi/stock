@@ -140,9 +140,10 @@ public class UserServiceImpl implements UserService {
 			if(validate(username) == true){
 				return userDao.getByUsernameWithRoles(username);
 			}
-			return null;
+			 throw new UsernameNotFoundException("label.user.not_found");  
 		} catch (UsernameNotFoundException | DaoException e) {
-			throw new UsernameNotFoundException("", e);
+			MessagerFactory.getMailManager().sendToAdmin(e);
+			 throw new UsernameNotFoundException("",e);
 		}
 	}
 	
