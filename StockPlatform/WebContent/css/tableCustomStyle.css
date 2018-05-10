@@ -1,5 +1,5 @@
 div#main-table_wrapper {
-    overflow: auto;
+    /*overflow: auto;*/
 }
 table#main-table tr:nth-child(even) {
     background-color: white;
@@ -117,15 +117,15 @@ table#main-table tr:nth-child(even) td>div.no-remove{
     background-color: whitesmoke;
 }*/
 
- table#main-table{
+ /*table#main-table{
   	width: 100% !important;
-  }  
+  } */ 
 table tbody tr td {
  word-break: break-word;
 }
-  table#main-table{
+  /*table#main-table{
   	width: 100% !important;
-  } 
+  } */
   div.container {
         width: 80%;
   }
@@ -266,12 +266,15 @@ table.dataTable thead th {
 .inactive-row {
 	color: #a7a7a7;
 }
-table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before, 
+/*table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before, 
 table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:before {
 	top: 14px;
 	line-height: 15px;
-}
+}*/
 /*table#main-table tr.child > th, 
 table#main-table tbody tr.child > td {
 	text-align: left;
 }*/
+table.dataTable thead tr:nth-child(2){
+    display: none;
+}

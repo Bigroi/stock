@@ -8,6 +8,8 @@ function makeTable(url, tableElement){
 	var table;
 	
 	$.getJSON(url, function(answer){
+		tableElement.addClass('display responsive nowrap');
+		tableElement.css('width','100%');
 		model = answer.data.model;
 		
 		tableData = answer.data.table;
