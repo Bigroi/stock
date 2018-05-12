@@ -71,10 +71,6 @@ function localization(){
 	'label.product.lot_volume',
 	'label.product.tender_volume',
 	'label.product.edit',
-	
-	'label.users.login', //??????????????????????
-	'label.users.company_id',
-	
 	'label.account.name',
 	'label.account.phone',
 	'label.account.reg_number',
