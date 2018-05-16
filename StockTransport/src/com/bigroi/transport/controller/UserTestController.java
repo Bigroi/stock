@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.transport.bean.User;
-import com.bigroi.transport.dao.DaoException;
-import com.bigroi.transport.dao.DaoFactory;
+import com.bigroi.transport.service.ServiceException;
+import com.bigroi.transport.service.ServiceFactory;
 
 @Controller
 public class UserTestController {
@@ -19,8 +19,8 @@ public class UserTestController {
 	}
 	
 	@RequestMapping("/list.spr")
-	ModelAndView getAllUsers() throws DaoException{
-		List<User> list = DaoFactory.getAllUsers().getAll();
+	ModelAndView getAllUsers() throws ServiceException{
+		List<User> list = ServiceFactory.getUserService().getAll();
 		return new ModelAndView("main","listOfUsers", list);
 		
 	}
