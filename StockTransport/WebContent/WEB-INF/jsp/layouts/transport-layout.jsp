@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Titles</title>
+<title>Your Trader!</title>
 </head>
 <body>
 
