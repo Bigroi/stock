@@ -24,8 +24,8 @@
 		<property name="userDao" ref="userDao" />
 		<property name="companyDao" ref="companyDao" />
 		<property name="userRoleDao" ref="userRoleDao" />
-		<property name="inviteUserDao" ref="inviteUserDao"/>
 		<property name="keysDao" ref="keysDao"/>
+		<property name="addressDao" ref="addressDao"/>
 	</bean>
 
 	<bean id="companyService" class="com.bigroi.stock.service.impl.CompanyServiceImpl">
@@ -65,6 +65,7 @@
 		<property name="dealDao" ref="dealDao"/>
 		<property name="lotDao" ref="lotDao" />
 		<property name="tenderDao" ref="tenderDao" />
+		<property name="companyDao" ref="companyDao" />
 	</bean>
 	
 	<bean id="tradeService" scope="prototype"
@@ -73,6 +74,10 @@
 		<property name="lotDao" ref="lotDao" />
 		<property name="tenderDao" ref="tenderDao" />
 		<property name="productDao" ref="productDao" />
+	</bean>
+
+	<bean id="addressService" class="com.bigroi.stock.service.impl.AddressServiceImpl">
+		<property name="addressDao" ref="addressDao"/>
 	</bean>
 
 </beans>

@@ -1,6 +1,6 @@
 package com.bigroi.stock.messager.message;
 
-import com.bigroi.stock.bean.StockUser;
+import com.bigroi.stock.bean.db.StockUser;
 
 public class ResetUserPasswordMessage extends BaseMessage<StockUser> {
 

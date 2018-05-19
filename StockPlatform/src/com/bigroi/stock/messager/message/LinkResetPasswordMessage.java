@@ -1,5 +1,7 @@
 package com.bigroi.stock.messager.message;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Map;
 
 import com.bigroi.stock.messager.MessagerFactory;
@@ -17,9 +19,16 @@ public class LinkResetPasswordMessage extends BaseMessage<Map<String, String>> {
 
 	@Override
 	protected String getText() throws MessageException {
-		Map<String, String> map = getDataObject();
-		String url = MessagerFactory.getMailManager().getServerAdress();
-		url += "account/ResetPassword.spr?code=" + map.get("code") + "&email=" + map.get("email");
-		return super.getText().replaceAll("@link", url);
+		try {
+			Map<String, String> map = getDataObject();
+			String url = MessagerFactory.getMailManager().getServerAdress();
+			url += "account/ResetPassword.spr?code=" 
+					+ URLEncoder.encode(map.get("code"), "UTF-8") + "&email=" 
+					+ URLEncoder.encode(map.get("email"), "UTF-8");
+			return super.getText().replaceAll("@link", url);
+		} catch (UnsupportedEncodingException e) {
+			throw new MessageException(e);
+		}
+		
 	}
 }

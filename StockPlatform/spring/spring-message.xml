@@ -87,14 +87,6 @@
 		<constructor-arg name="fileName" value="tenderExparied.txt"/>
 	</bean>
 	
-	<bean id="inviteExparationMessage" class="com.bigroi.stock.messager.message.InviteExparationMessage">
-		<constructor-arg name="fileName" value="invite.txt"/>
-	</bean>
-	
-	<bean id="newPasswExparationMessage" class="com.bigroi.stock.messager.message.NewPasswExparationMessage">
-		<constructor-arg name="fileName" value="newPassw.txt"/>
-	</bean>
-	
 	<bean id="linkResetPasswordMessage" class="com.bigroi.stock.messager.message.LinkResetPasswordMessage">
 		<constructor-arg name="fileName" value="linkResetPassw.txt"/>
 	</bean>

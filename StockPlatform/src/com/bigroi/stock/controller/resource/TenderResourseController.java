@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bigroi.stock.bean.StockUser;
-import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.db.StockUser;
+import com.bigroi.stock.bean.db.Tender;
+import com.bigroi.stock.bean.ui.TenderForUI;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
@@ -32,6 +34,10 @@ public class TenderResourseController extends BaseResourseController {
 	public String form( @RequestParam(value = "id", defaultValue = "-1") long id) 
 			throws ServiceException {
 		Tender tender = ServiceFactory.getTenderService().getTender(id, getUserCompanyId());
+		if (tender.getId() == -1){
+			StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			tender.setAddressId(user.getCompany().getAddress().getId());
+		}
 		return new ResultBean(1, tender, null).toString();
 	}
 
@@ -57,7 +63,6 @@ public class TenderResourseController extends BaseResourseController {
 			throws ServiceException, ParseException {
 		Tender tender = GsonUtil.getGson().fromJson(json, Tender.class);
 		tender.setStatus(BidStatus.ACTIVE);
-		
 		return save(tender);
 	}
 	
@@ -68,7 +73,7 @@ public class TenderResourseController extends BaseResourseController {
 			return new ResultBean(-1, str).toString();
 		}
 		ServiceFactory.getTenderService().merge(tender, getUserCompanyId());
-		return new ResultBean(1, tender, "label.tender.save_success").toString();
+		return new ResultBean(1, new TenderForUI(tender), "label.tender.save_success").toString();
 	}
 
 	@RequestMapping("/MyList.spr")
@@ -76,7 +81,8 @@ public class TenderResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String myList() throws ServiceException, TableException {
 		List<Tender> tenders = ServiceFactory.getTenderService().getMyList(getUserCompanyId());
-		TableResponse<Tender> table = new TableResponse<>(Tender.class, tenders);
+		List<TenderForUI> tendersForUI = tenders.stream().map(TenderForUI::new).collect(Collectors.toList());
+		TableResponse<TenderForUI> table = new TableResponse<>(TenderForUI.class, tendersForUI);
 		return new ResultBean(1, table, null).toString();
 	}
 
@@ -140,7 +146,7 @@ public class TenderResourseController extends BaseResourseController {
 		calendar.set(Calendar.SECOND, 0);
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
-		if( tender.getExpDate().getTime() < calendar.getTimeInMillis()){
+		if( tender.getExparationDate().getTime() < calendar.getTimeInMillis()){
 			errors.add("label.tender.expDate_error");
 		}
 		return errors;

@@ -1,4 +1,4 @@
-package com.bigroi.stock.bean;
+package com.bigroi.stock.bean.db;
 
 import java.util.Date;
 
@@ -7,8 +7,8 @@ import com.bigroi.stock.util.Generator;
 public class GeneratedKey {
 	
 	private  long id;
-	private String generatedKey = Generator.generateLinkKey(50);
-	private Date expirationDate = new Date();
+	private String generatedKey;
+	private Date expirationDate;
 	
 	public long getId() {
 		return id;
@@ -29,6 +29,10 @@ public class GeneratedKey {
 		this.expirationDate = expirationDate;
 	}
 	
+	public void generateKey(){
+		generatedKey = Generator.generateLinkKey(50);
+		expirationDate = new Date();
+	}
 	@Override
 	public String toString() {
 		return "GeneratedKeys [id=" + id + ", generatedKey=" + generatedKey + ", expirationDate=" + expirationDate

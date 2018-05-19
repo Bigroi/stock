@@ -1,4 +1,4 @@
-package com.bigroi.stock.bean;
+package com.bigroi.stock.bean.db;
 
 import com.bigroi.stock.bean.common.Role;
 

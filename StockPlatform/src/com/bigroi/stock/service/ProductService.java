@@ -2,9 +2,9 @@ package com.bigroi.stock.service;
 
 import java.util.List;
 
-import com.bigroi.stock.bean.ChartTrace;
-import com.bigroi.stock.bean.Product;
-import com.bigroi.stock.bean.TradeOffer;
+import com.bigroi.stock.bean.db.Product;
+import com.bigroi.stock.bean.ui.ChartTrace;
+import com.bigroi.stock.bean.ui.TradeOffer;
 
 public interface ProductService {
 

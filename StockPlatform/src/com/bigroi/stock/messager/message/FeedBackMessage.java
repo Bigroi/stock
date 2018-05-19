@@ -1,6 +1,6 @@
 package com.bigroi.stock.messager.message;
 
-import com.bigroi.stock.bean.FeedBack;
+import com.bigroi.stock.bean.ui.FeedBack;
 
 public class FeedBackMessage extends BaseMessage<FeedBack>{
 

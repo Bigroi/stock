@@ -4,22 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bigroi.stock.bean.Company;
-import com.bigroi.stock.bean.GeneratedKey;
-import com.bigroi.stock.bean.InviteUser;
-import com.bigroi.stock.bean.StockUser;
-import com.bigroi.stock.bean.UserRole;
+import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.bean.common.Role;
+import com.bigroi.stock.bean.db.GeneratedKey;
+import com.bigroi.stock.bean.db.StockUser;
+import com.bigroi.stock.bean.db.UserRole;
+import com.bigroi.stock.dao.AddressDao;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
-import com.bigroi.stock.dao.InviteUserDao;
 import com.bigroi.stock.dao.GenerateKeyDao;
 import com.bigroi.stock.dao.UserDao;
 import com.bigroi.stock.dao.UserRoleDao;
@@ -35,10 +33,12 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 	private CompanyDao companyDao;
 	private UserRoleDao userRoleDao;
-	private InviteUserDao inviteUserDao;
-	public GenerateKeyDao keysDao;
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-		     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private GenerateKeyDao keysDao;
+	private AddressDao addressDao;
+	
+	public void setAddressDao(AddressDao addressDao) {
+		this.addressDao = addressDao;
+	}
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
@@ -52,25 +52,25 @@ public class UserServiceImpl implements UserService {
 		this.userRoleDao = userRoleDao;
 	}
 	
-	public void setInviteUserDao(InviteUserDao inviteUserDao) {
-		this.inviteUserDao = inviteUserDao;
-	}
-	
 	public void setKeysDao(GenerateKeyDao keysDao) {
 		this.keysDao = keysDao;
 	}
 
 	@Override
 	@Transactional
-	public void addUser(Company company, StockUser user, Role[] roles) throws ServiceException {
+	public void addUser(StockUser user) throws ServiceException {
 		try {
-			companyDao.add(company);
-			user.setCompanyId(company.getId());
+			user.getCompany().setStatus(CompanyStatus.NOT_VERIFIED);
+			
+			companyDao.add(user.getCompany());
+			user.setCompanyId(user.getCompany().getId());
+			user.getCompany().getAddress().setCompanyId(user.getCompanyId());;
+			addressDao.addAddress(user.getCompany().getAddress());
 			userDao.add(user);
 			List<UserRole> listRole = new ArrayList<>();
-			for (Role role : roles) {
+			for (GrantedAuthority grantedAuthority : user.getAuthorities()) {
 				UserRole userRole = new UserRole();
-				userRole.setRole(role);
+				userRole.setRole(Role.valueOf(grantedAuthority.getAuthority()));
 				userRole.setUserId(user.getId());
 				listRole.add(userRole);
 			}
@@ -82,54 +82,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void updateCompanyAndUser(StockUser user, Company company) throws ServiceException {
+	public void update(StockUser user) throws ServiceException {
 		try {
 			userDao.update(user);
-			companyDao.update(company);
+			companyDao.update(user.getCompany());
+			addressDao.updateAddress(user.getCompany().getAddress());
 		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-	}
-
-	@Override
-	public StockUser getByUsername(String username) throws ServiceException {
-		try {
-			return userDao.getByUsername(username);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-	}
-
-	@Override
-	public Company getById(long id) throws ServiceException {
-		try {
-			return companyDao.getById(id);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-	}
-
-	@Override
-	@Transactional
-	public void resetPassword(String username) throws ServiceException {
-		try {
-			StockUser user = userDao.getByUsername(username);
-			user.setPassword(Generator.generatePass(8));
-			userDao.update(user);
-			Message<StockUser> message = MessagerFactory.getResetUserPasswordMessage();
-			message.setDataObject(user);
-			message.sendImediatly();
-		} catch (DaoException | MessageException e) {
-			throw new ServiceException(e);
-		}
-	}
-
-	@Override
-	public List<StockUser> getAllUsers() throws ServiceException {
-		try {
-			return userDao.getAllUser();
-		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -137,82 +95,20 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		try {
-			if(validate(username) == true){
-				return userDao.getByUsernameWithRoles(username);
+			StockUser user = userDao.getByUsernameWithRoles(username);
+			if (user == null){
+				throw new UsernameNotFoundException("label.user.not_found");
+			} else {
+				return user;
 			}
-			 throw new UsernameNotFoundException("label.user.not_found");  
-		} catch (UsernameNotFoundException | DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
-			 throw new UsernameNotFoundException("",e);
+		} catch (DaoException e) {
+			throw new UsernameNotFoundException("", e);
 		}
 	}
 	
-	public static boolean validate(String email) {
-		Pattern p = Pattern.compile(EMAIL_PATTERN);
-		Matcher matcher = p.matcher(email);
-		return matcher.matches();
-	}
-
-	@Override
-	@Transactional
-	public void addInviteUser(InviteUser inviteUser, long id) throws ServiceException {
-		try {
-			GeneratedKey key = keysDao.generateKey();
-			inviteUser.setCompanyId(id);
-			inviteUser.setKeysId(key.getId());
-			inviteUserDao.add(inviteUser);
-			Message<Map<String, String>> message = MessagerFactory.getInviteExparationMessage();
-			Map<String,String> map = new HashMap<>();
-			map.put("email", inviteUser.getInviteEmail());
-			map.put("code", key.getGeneratedKey());
-			message.setDataObject(map);
-			message.sendImediatly();
-		} catch (DaoException | MessageException e) {
-				throw new ServiceException(e);
-		}
-	}
-
-	@Override
-	public InviteUser getInviteUserCode(String code) throws ServiceException {
-		try {
-			return inviteUserDao.getInviteUserByCode(code);
-		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
-			throw new ServiceException(e);
-		}
-	}
-
-	@Override
-	@Transactional
-	public void addUserByInvite(InviteUser inviteUser, Role[] roles) throws ServiceException {
-		try {
-			StockUser user = new StockUser();
-			user.setUsername(inviteUser.getInviteEmail());
-			user.setPassword(Generator.generatePass(8));
-			user.setCompanyId(inviteUser.getCompanyId());
-			userDao.add(user);
-			List<UserRole> listRole = new ArrayList<>();
-			for (Role role : roles) {
-				UserRole userRole = new UserRole();
-				userRole.setRole(role);
-				userRole.setUserId(user.getId());
-				listRole.add(userRole);
-			}
-			userRoleDao.add(listRole);
-			GeneratedKey key = keysDao.getGeneratedKeyById(inviteUser.getKeysId());
-			inviteUserDao.deleteInviteUserByCode(key.getGeneratedKey());
-			Message<StockUser> message = MessagerFactory.getNewPasswExparationMessage();
-			message.setDataObject(user);
-			message.sendImediatly();
-		} catch (DaoException | MessageException e) {
-			throw new ServiceException(e);
-		}
-	}
-
 	@Override
 	public void deleteGenerateKeys() throws ServiceException {
 		try {
-			keysDao.getGenerateKeysByDate();
 			keysDao.deleteGenerateKeysByDate();
 		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
@@ -224,11 +120,10 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public void sendLinkResetPassword(String username) throws ServiceException {
 		try {
-			StockUser user = userDao.getByUsername(username);
-			user.setUsername(user.getUsername());
+			StockUser user = userDao.getByUsernameWithRoles(username);
 			GeneratedKey key = keysDao.generateKey();
-			user.setKeysId(key.getId());
-			userDao.updateForKeyId(user);
+			user.setKeyId(key.getId());
+			userDao.updateKeyById(user);
 			Message<Map<String, String>> message = MessagerFactory.getLinkResetPasswordMessage();
 			Map<String,String> map = new HashMap<>();
 			map.put("email", user.getUsername());
@@ -255,14 +150,23 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public void changePassword(String username) throws ServiceException {
 		try {
-			StockUser user = new StockUser();
-			user.setUsername(username);
+			StockUser user = userDao.getByUsernameWithRoles(username);
 			user.setPassword(Generator.generatePass(8));
 			userDao.updatePassword(user);
 			Message<StockUser> message = MessagerFactory.getResetUserPasswordMessage();
 			message.setDataObject(user);
 			message.sendImediatly();
 		} catch (DaoException | MessageException e) {
+			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	public Object getByUsername(String username) throws ServiceException {
+		try {
+			return userDao.getByUsernameWithRoles(username);
+		} catch (DaoException e) {
 			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}

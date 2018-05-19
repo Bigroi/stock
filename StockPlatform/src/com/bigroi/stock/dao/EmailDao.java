@@ -2,7 +2,7 @@ package com.bigroi.stock.dao;
 
 import java.util.List;
 
-import com.bigroi.stock.bean.Email;
+import com.bigroi.stock.bean.db.Email;
 
 public interface EmailDao {
 

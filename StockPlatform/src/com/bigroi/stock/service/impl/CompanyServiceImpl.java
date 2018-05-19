@@ -1,11 +1,12 @@
+
 package com.bigroi.stock.service.impl;
 
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bigroi.stock.bean.Company;
 import com.bigroi.stock.bean.common.CompanyStatus;
+import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
@@ -44,8 +45,8 @@ public class CompanyServiceImpl implements CompanyService {
 				break;
 			case VERIFIED:
 				companyDao.setStatus(company.getId(), CompanyStatus.REVOKED);
-				lotDao.setStatusBySellerId(companyId, BidStatus.INACTIVE);
-				tenderDao.setStatusByCustomerId(companyId, BidStatus.INACTIVE);
+				lotDao.setStatusByCompanyId(companyId, BidStatus.INACTIVE);
+				tenderDao.setStatusByCompanyId(companyId, BidStatus.INACTIVE);
 				break;
 			case REVOKED:
 				companyDao.setStatus(company.getId(), CompanyStatus.VERIFIED);
@@ -74,4 +75,5 @@ public class CompanyServiceImpl implements CompanyService {
 			throw new ServiceException(e);
 		}
 	}
+
 }	

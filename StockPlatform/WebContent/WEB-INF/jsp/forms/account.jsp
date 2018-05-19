@@ -5,8 +5,10 @@
 	<div style="display: table-cell; width: 40%" id="form-container">
 		<div class="form-message"></div>
 		<form class="form" action="#" method="post" name="form">
-			<input type="hidden" name="latitude">
-			<input type="hidden" name="longitude">
+			<input type="hidden" name="company.address.latitude" class="latitude">
+			<input type="hidden" name="company.address.longitude" class="longitude">
+			<input type="hidden" name="company.address.id">
+			<input type="hidden" name="company.id">
 		    <ul>
 		        <li>
 		        </li>
@@ -16,28 +18,28 @@
 		        </li>
 		         <li>
 		            <label for="name">${label.account.name}</label>
-		            <input type="text" name="name" disabled="disabled" maxlength="100"/>
+		            <input type="text" name="company.name" disabled="disabled" maxlength="100"/>
 		        </li>
 		        <li>
 		            <label for="phone">${label.account.phone}</label>
-		            <input type="text" name="phone" placeholder="+375290000000" pattern="^\+375[\d\- ]{5,13}$" required/>
+		            <input type="text" name="company.phone" placeholder="+375290000000" pattern="^\+375[\d\- ]{5,13}$" required/>
 		            <span class="form_hint">Proper format "+375290000000"</span>
 		        </li>
 		        <li>
 		            <label for="regNumber">${label.account.reg_number}</label>
-		            <input type="text" name="regNumber" disabled="disabled" maxlength="100"/>
+		            <input type="text" name="company.regNumber" disabled="disabled" maxlength="100"/>
 		        </li>
 		        <li>
 		            <label for="country">${label.account.country}</label>
-		            <input type="text" name="country" placeholder="Belarus" required maxlength="50"/>
+		            <input type="text" name="company.address.country" class="country" placeholder="Belarus" required maxlength="50"/>
 		        </li>
 		        <li>
 		            <label for="city">${label.account.city}</label>
-		            <input type="text" name="city" placeholder="Minsk" required maxlength="100"/>
+		            <input type="text" name="company.address.city" class="city" placeholder="Minsk" required maxlength="100"/>
 		        </li>
 		        <li>
 		            <label for="address">${label.account.address}</label>
-		            <input type="text" name="address" placeholder="Programmistov 11" required maxlength="200"/>
+		            <input type="text" name="company.address.address" class="address" placeholder="Programmistov 11" required maxlength="200"/>
 		        </li>
 		       
 		        <li>
@@ -54,13 +56,6 @@
 		        </li>
 		    </ul>
 		</form>
-		
-			<form class="form" action="#" method="post" name="form">
-				
-				 <button class="submit" id="new-invite-button">${label.button.invite}</button>
-				<script type="text/javascript">setInviteDialogPlugin($("#new-invite-button"))</script> 
-
-		    </form>
 		
 	</div>
 	<div style="display: table-cell; width: 5%"></div>

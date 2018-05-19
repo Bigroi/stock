@@ -15,25 +15,28 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.bigroi.stock.bean.GeneratedKey;
-import com.bigroi.stock.bean.tmp.UserKeysTmp;
+import com.bigroi.stock.bean.db.GeneratedKey;
+import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.GenerateKeyDao;
 
 public class GenerateKeyDaoImpl implements GenerateKeyDao {
 
-	private static final String GET_GENERATED_KEY = "SELECT USERNAME, GENERATED_KEY FROM USER  "
-			+ " JOIN GENERATED_KEY AS K ON USER.KEYS_ID = K.ID " + " WHERE USER.USERNAME = ? AND K.GENERATED_KEY = ? ";
+	private static final String GET_GENERATED_KEY = 
+			"SELECT U.USERNAME "
+			+ " FROM USER U "
+			+ " JOIN GENERATED_KEY K "
+			+ " ON U.KEY_ID = K.ID "
+			+ " WHERE U.USERNAME = ? AND K.GENERATED_KEY = ? ";
 
-	private static final String ADD_GENERATED_KEY = "INSERT INTO GENERATED_KEY ( GENERATED_KEY, EXPIRATION_DATE) "
+	private static final String ADD_GENERATED_KEY = 
+			"INSERT INTO GENERATED_KEY ( GENERATED_KEY, EXPIRATION_TIME) "
 			+ " VALUES (?, ?) ";
 
-	private static final String GET_ALL_BY_ID = " SELECT ID, GENERATED_KEY, EXPIRATION_DATE FROM GENERATED_KEY WHERE ID =? ";
-
-	public static final String GET_ALL_BY_DATE = " SELECT GENERATED_KEY, EXPIRATION_DATE FROM INVITE_USER "
-			+ " WHERE ? > expiration_date ";
-
-	public static final String DELETE_ALL_BY_DATE = " DELETE FROM  INVITE_USER WHERE EXPIRATION_DATE < ? ";
+	public static final String DELETE_ALL_BY_DATE = 
+			" DELETE "
+			+ " FROM GENERATED_KEY "
+			+ " WHERE EXPIRATION_TIME < ? ";
 
 	private DataSource datasource;
 
@@ -44,8 +47,8 @@ public class GenerateKeyDaoImpl implements GenerateKeyDao {
 	@Override
 	public boolean ñheckResetKey(String email, String code) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<UserKeysTmp> list = template.query(GET_GENERATED_KEY,
-				new BeanPropertyRowMapper<UserKeysTmp>(UserKeysTmp.class), email, code);
+		List<StockUser> list = template.query(GET_GENERATED_KEY,
+				new BeanPropertyRowMapper<StockUser>(StockUser.class), email, code);
 		return list.size() != 0;
 	}
 
@@ -53,6 +56,7 @@ public class GenerateKeyDaoImpl implements GenerateKeyDao {
 	public GeneratedKey generateKey() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		GeneratedKey key = new GeneratedKey();
+		key.generateKey();
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
 
@@ -70,32 +74,11 @@ public class GenerateKeyDaoImpl implements GenerateKeyDao {
 	}
 
 	@Override
-	public GeneratedKey getGeneratedKeyById(long id) throws DaoException {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<GeneratedKey> list = template.query(GET_ALL_BY_ID,
-				new BeanPropertyRowMapper<GeneratedKey>(GeneratedKey.class), id);
-		if (list.size() == 0) {
-			return null;
-		} else {
-			return list.get(0);
-		}
-	}
-
-	@Override
-	public List<GeneratedKey> getGenerateKeysByDate() throws DaoException {
+	public void deleteGenerateKeysByDate() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		Calendar calendar = Calendar.getInstance();
-		calendar.roll(Calendar.DAY_OF_YEAR, -2);
-		return template.query(GET_ALL_BY_DATE, new BeanPropertyRowMapper<GeneratedKey>(GeneratedKey.class),
-				calendar.getTime());
-	}
-
-	@Override
-	public boolean deleteGenerateKeysByDate() throws DaoException {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		Calendar calendar = Calendar.getInstance();
-		calendar.roll(Calendar.DAY_OF_YEAR, -2);
-		return template.update(DELETE_ALL_BY_DATE, calendar) == 1;
+		calendar.roll(Calendar.DAY_OF_YEAR, -1);
+		template.update(DELETE_ALL_BY_DATE, calendar);
 	}
 
 }

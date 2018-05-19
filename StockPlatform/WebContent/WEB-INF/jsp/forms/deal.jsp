@@ -5,8 +5,10 @@
 	<div style="display: table-cell; width: 40%" id="form-container">
 		<div class="form-message"></div>
 		<form class="form" action="#" method="post" name="form">
-			<input type="hidden" name="latitude">
-			<input type="hidden" name="longitude">
+			<input type="hidden" name="sellerAddrress.latitude" class="seller_latitude">
+			<input type="hidden" name="sellerAddrress.longitude" class="seller_longitude">
+			<input type="hidden" name="buyerAddrress.latitude" class="buyer_lalitude">
+			<input type="hidden" name="buyerAddrress.longitude" class="buyer_longitude">
 			<input type="hidden" name="id">
 		    <ul>
 		        <li>
@@ -17,7 +19,7 @@
 		        </li>
 		        <li>
 		            <label for="foto">${label.deal.foto}</label>
-		            <input type="text" name="foto" disabled/>
+		            <input type="text" name="sellerFoto" disabled/>
 		        </li>
 		        <li>
 		            <label for="price">${label.deal.price}</label>
@@ -33,59 +35,55 @@
 		        </li>
 		        <li>
 		            <label for="partnerName">${label.deal.partnerName}</label>
-		            <input type="text" name="partnerName" disabled/>
+		            <input type="text" name="partnerAddress.company.name" disabled/>
 		        </li>
 		        <li>
 		            <label for="partnerAddress">${label.deal.partnerAddress}</label>
-		            <textarea name="partnerAddress" disabled></textarea>
+		            <textarea name="partnerAddress.address" disabled></textarea>
 		        </li>
 		        <li>
 		            <label for="partnerComment">${label.deal.partnerComment}</label>
-		            <input type="text" name="partnerComment" disabled/>
+		            <input type="text" name="partnerDescription" disabled/>
 		        </li>
 		        <li>
 		            <label for="partnerPhone">${label.deal.partnerPhone}</label>
-		            <input type="text" name="partnerPhone" disabled/>
+		            <input type="text" name="partnerAddress.company.phone" disabled/>
 		        </li>
 		        <li>
 		            <label for="partnerRegNumber">${label.deal.partnerRegNumber}</label>
-		            <input type="text" name="partnerRegNumber" disabled/>
+		            <input type="text" name="partnerAddress.company.regNumber" disabled/>
 		        </li>
 		        <li>
 		            <label for="status">${label.deal.status}</label>
 		            <input type="text" name="status" disabled/>
 		        </li>
 		        <li>
-		        	<c:if test="${deal.status eq 'ON_APPROVE' }">
-			        	<button class="submit" type="submit" id="approve-button"
-			        		onclick="
-			        				return sendFormData($('#form-container > form'), 
-				        				function(formContainer, param){
-			        						$.post('/deal/json/Approve.spr', param, function(answer){
-			        							processRequestResult($('#form-container > form'), answer, $('.form-message'));
-			        							if (answer.result > 0){
-			        								$('#approve-button').remove();
-			        								$('#reject-button').remove();
-			        							}
-			        						});
-			        					}); ">
-			        		${label.deal.approve }
-			        	</button>
-			        	<button class="submit" type="submit" id="reject-button"
-			        		onclick="
-			        			return sendFormData($('#form-container > form'), 
-				        				function(formContainer, param){
-			        						$.post('/deal/json/Reject.spr', param, function(answer){
-			        							processRequestResult($('#form-container > form'), answer, $('.form-message'));
-			        							if (answer.result > 0){
-			        								$('#approve-button').remove();
-			        								$('#reject-button').remove();
-			        							}
-			        						});
-			        					});">
-			        		${label.deal.reject }
-			        	</button>
-			        </c:if>
+		        	<button class="submit" type="submit" id="approve-button"
+		        		onclick="
+		        				return sendDealFormData(
+		        						$('#form-container > form'), 
+			        					'/deal/json/Approve.spr'
+			        					); ">
+		        		${label.deal.approve }
+		        	</button>
+		        	
+		        	<button class="submit" type="submit" id="approve-button"
+		        		onclick="
+		        				return sendDealFormData(
+		        						$('#form-container > form'), 
+			        					'/deal/json/Transport.spr'
+			        					); ">
+		        		${label.deal.transport }
+		        	</button>
+		        	
+		        	<button class="submit" type="submit" id="reject-button"
+		        		onclick="
+		        			return sendDealFormData(
+		        					$('#form-container > form'), 
+		        						'/deal/json/Reject.spr'
+		        					);">
+		        		${label.deal.reject }
+		        	</button>
 		        	<button class="submit" 
 		        		onclick ="document.location = '/deal/MyDeals.spr'; return false">
 		        		${label.button.back }
@@ -104,7 +102,5 @@
 	</div>
 </div>
 <script type="text/javascript">
-	initDealForm($('.form'), 
-			'/deal/json/Form.spr', 
-			${id});
+	initDealForm($('.form'), '/deal/json/Form.spr', ${id});
 </script>

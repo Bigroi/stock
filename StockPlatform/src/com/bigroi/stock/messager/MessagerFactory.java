@@ -5,11 +5,11 @@ import java.util.Map;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.bigroi.stock.bean.Deal;
-import com.bigroi.stock.bean.FeedBack;
-import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.StockUser;
-import com.bigroi.stock.bean.Tender;
+import com.bigroi.stock.bean.db.Deal;
+import com.bigroi.stock.bean.db.Lot;
+import com.bigroi.stock.bean.db.StockUser;
+import com.bigroi.stock.bean.db.Tender;
+import com.bigroi.stock.bean.ui.FeedBack;
 import com.bigroi.stock.messager.message.Message;
 
 @SuppressWarnings("unchecked")
@@ -71,14 +71,6 @@ public class MessagerFactory {
 
 	public static Message<Tender> getTenderExparationMessage() {
 		return (Message<Tender>) CONTEXT.getBean("tenderExparationMessage");
-	}
-	
-	public static Message<Map<String, String>> getInviteExparationMessage(){
-		return (Message<Map<String, String>>) CONTEXT.getBean("inviteExparationMessage");
-	}
-	
-	public static Message<StockUser> getNewPasswExparationMessage(){
-		return (Message<StockUser>) CONTEXT.getBean("newPasswExparationMessage");
 	}
 	
 	public static Message<Map<String,String>> getLinkResetPasswordMessage(){

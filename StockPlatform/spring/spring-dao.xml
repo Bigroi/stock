@@ -38,6 +38,10 @@
 	<bean id="companyDao" class="com.bigroi.stock.dao.db.CompanyDaoImpl">
 		<property name="datasource" ref="datasource" />
 	</bean>
+	
+	<bean id="addressDao" class="com.bigroi.stock.dao.db.AddressDaoImpl">
+		<property name="datasource" ref="datasource" />
+	</bean>
 
 	<bean id="lotDao" class="com.bigroi.stock.dao.db.LotDaoImpl">
 		<property name="datasource" ref="datasource" />
@@ -62,10 +66,6 @@
 	<bean id="userRoleDao" class="com.bigroi.stock.dao.db.UserRoleDaoImpl">
 		<property name="datasource" ref="datasource" />
 	</bean>
-	
-	<bean id="inviteUserDao" class="com.bigroi.stock.dao.db.InviteUserDaoImpl">
-	    <property name="datasource" ref="datasource" />
-    </bean>
     
     <bean id="keysDao" class="com.bigroi.stock.dao.db.GenerateKeyDaoImpl">
 	    <property name="datasource" ref="datasource" />

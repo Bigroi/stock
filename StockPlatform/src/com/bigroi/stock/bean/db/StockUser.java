@@ -1,8 +1,7 @@
-package com.bigroi.stock.bean;
+package com.bigroi.stock.bean.db;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -15,14 +14,22 @@ public class StockUser implements UserDetails {
 	private long id;
 	private String username;
 	private String password;
+	private String passwordRepeat;
 	private List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 	private long companyId;
-	private long keysId;
-	private int loginCount;
-	private Date lastLogin;
+	private Company company;
+	private long keyId;
 	
 	public long getId() {
 		return id;
+	}
+	
+	public String getPasswordRepeat() {
+		return passwordRepeat;
+	}
+	
+	public void setPasswordRepeat(String passwordRepeat) {
+		this.passwordRepeat = passwordRepeat;
 	}
 	
 	public void setId(long id) {
@@ -49,34 +56,18 @@ public class StockUser implements UserDetails {
 		grantedAuthorities.add(grant);
 	}
 
-	public long getKeysId() {
-		return keysId;
+	public long getKeyId() {
+		return keyId;
 	}
 
-	public void setKeysId(long keysId) {
-		this.keysId = keysId;
-	}
-	public int getLoginCount() {
-		return loginCount;
-	}
-
-	public void setLoginCount(int loginCount) {
-		this.loginCount = loginCount;
-	}
-
-	public Date getLastLogin() {
-		return lastLogin;
-	}
-
-	public void setLastLogin(Date lastLogin) {
-		this.lastLogin = lastLogin;
+	public void setKeyId(long keyId) {
+		this.keyId = keyId;
 	}
 
 	@Override
 	public String toString() {
 		return "StockUser [id=" + id + ", username=" + username + ", password=" + password + ", grantedAuthorities="
-				+ grantedAuthorities + ", companyId=" + companyId + ", keysId=" + keysId + ", loginCount=" + loginCount
-				+ ", lastLogin=" + lastLogin + "]";
+				+ grantedAuthorities + ", companyId=" + companyId + ", keysId=" + keyId + "]";
 	}
 
 	@Override
@@ -114,4 +105,11 @@ public class StockUser implements UserDetails {
 		this.username = username;
 	}
 
+	public Company getCompany() {
+		return company;
+	}
+	
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 }

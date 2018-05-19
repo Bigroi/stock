@@ -15,7 +15,7 @@
 	    </li>
        	<li>
 			<label for="productId">${label.lot.product}</label>
-			<select name="productId">
+			<select name="productId" <c:if test="${!newLot}">disabled</c:if>>
 				<option value="-1" selected>${label.lot.list}</option>
 				<c:forEach var="product" items="${listOfProducts}">
 					<option value="${product.id}">${product.name}</option>
@@ -44,23 +44,17 @@
         </li>
          <li>
             <label for="expDate">${label.lot.exp_date}</label>
-            <input type="text" name="expDate" placeholder="01.01.2018" required  
+            <input type="text" name="exparationDate" placeholder="01.01.2018" required  
             	pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])\.(0[1-9]|1[012])\.[0-9]{4}"/>
             <span class="form_hint">Proper format "01.01.2018"</span>
         </li>
-		<li>
-		   <label for="delivery">${label.lot.delivery}</label> 
-		   <select name="delivery">
-				<option value="0">SELF</option>
-				<option value="1">NO</option>
-		   </select>
-		</li>
-		<li>
-		   <label for="packaging">${label.lot.packaging}</label> 
-		   <select name="packaging">
-				<option value="0">YES</option>
-				<option value="1">NO</option>
-		   </select>
+        <li>
+			<label for="addressId">${label.lot.address}</label>
+			<select name="addressId">
+				<c:forEach var="address" items="${listOfAddresses}">
+					<option value="${address.id}">${address}</option>
+				</c:forEach>
+			</select>
 		</li>
 		<li>
             <label for="foto">${label.lot.foto}</label>

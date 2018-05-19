@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.bigroi.stock.bean.Lot;
+import com.bigroi.stock.bean.db.Lot;
 
 public class TradeLot extends Lot implements TradeBid{
 
@@ -37,7 +37,7 @@ public class TradeLot extends Lot implements TradeBid{
 			public int compare(TradeTender o1, TradeTender o2) {
 				int result = (int)((o2.getMaxPrice() - o1.getMaxPrice()) * 100);
 				if (result == 0){
-					return (int)(o2.getExpDate().getTime() - o1.getExpDate().getTime());
+					return (int)(o2.getCreationDate().getTime() - o1.getCreationDate().getTime());
 				} else {
 					return result;
 				}

@@ -1,4 +1,4 @@
-package com.bigroi.stock.bean;
+package com.bigroi.stock.bean.ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;

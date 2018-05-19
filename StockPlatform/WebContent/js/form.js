@@ -7,21 +7,27 @@ function getFormData(formContainer){
 		for(var j = 0; j < formElements.length; j++){
 			var name = formElements[j].getAttribute("name");
 			var value = formElements[j].value;
-			if (formElements[j].type == "checkbox"){
-				if (formElements[j].checked){
-					if (data[name]){
-						data[name].push(value);
-					} else {
-						data[name] = [value];
-					}
-				}
-			} else {
-				data[name]=value;
-			}
+			addToResult(data, name, value);
 		}
 	}
 	data = JSON.stringify(data,"",1);
 	return data;
+	
+	function addToResult(toObject, name, value){
+		var dotIndex = name.indexOf(".");
+		if (dotIndex < 0){
+			toObject[name] = value;
+		} else {
+			var subObjectName = name.substr(0, dotIndex);
+			var subObject = toObject[subObjectName];
+			name = name.substr(dotIndex + 1);
+			if (!subObject){
+				subObject = {};
+				toObject[subObjectName] = subObject;
+			}
+			addToResult(subObject, name, value);
+		}
+	}
 }
 
 function sendFormData(formContainer, submitFunction, $dialogbox, login, closeOnClick) {
@@ -75,9 +81,27 @@ function setFormInputs(formContainer, object){
 		var formElements = formContainer.find(formElementName);
 		for(var j = 0; j < formElements.length; j++){
 			var name = formElements[j].getAttribute("name");
-			if (object[name]){
-				formElements[j].value = object[name];
+			var value = getValue(object, name);
+			formElements[j].value = value;
+		}
+	}
+	
+	function getValue(object, name){
+		var dotIndex = name.indexOf(".");
+		if (dotIndex < 0){
+			if  (object[name]){
+				return object[name];
+			} else {
+				return "";
 			}
+		} else {
+			var subObjectName = name.substr(0, dotIndex);
+			var subObject = object[subObjectName];
+			if (!subObject){
+				return "";
+			}
+			name = name.substr(dotIndex + 1);
+			return getValue(subObject, name);
 		}
 	}
 }
@@ -297,28 +321,25 @@ function setProductDialogPlugin(element, table, model, id){
 	});
 }
 
-function sendDealFormData(formContainer, url, id){
-	sendFormData(formContainer, 
-			url, 
-			function(answer){
-				processRequestResult(answer, $('.form-message'));
-				setFormData($('#form-container'), '/deal/json/Form.spr', {id:id}, function(answer){
+
+function sendDealFormData(formContainer, url){
+	return sendFormData(formContainer, function (formContainer, params){
+				$.post(url, params, function(answer){
+					processRequestResult(formContainer, answer, $('.form-message'));
 					if (answer.result > 0){
-						$("#approve").remove();
-						$('#reject').remove();
-					} else {
-						alert(answer.message);
+						$('#approve-button').hide();
+						$('#reject-button').hide();
 					}
-				})
+				});
 			}); 
 }
 
 function initDealForm(formContainer, url, id){
 	setFormData(formContainer, url, {id:id}, function(deal){
 		if (deal.status != 'ON_APPROVE'){
-			$("#approve").remove();
-			$('#reject').remove();
+			$("#approve").hide();
+			$('#reject').hide();
 		}
-		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initMap");
+		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initDealMap");
 	})
 }

@@ -13,24 +13,33 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.bigroi.stock.bean.Product;
+import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.ProductDao;
 
 public class ProductDaoImpl implements ProductDao {
 	
-	private static final String GET_ALL_PRODUCTS = "SELECT ID, NAME, DESCRIPTION, ARCHIVE FROM PRODUCT ";
+	private static final String GET_ALL_PRODUCTS = 
+			"SELECT ID, NAME, DESCRIPTION, REMOVED, DELIVARY_PRICE "
+			+ " FROM PRODUCT ";
 
-	private static final String GET_ALL_ACTIVE_PRODUCTS = "SELECT ID, NAME, DESCRIPTION, ARCHIVE FROM PRODUCT WHERE ARCHIVE = 'N'";
+	private static final String GET_ALL_ACTIVE_PRODUCTS = 
+			"SELECT ID, NAME, DESCRIPTION, REMOVED, DELIVARY_PRICE FROM PRODUCT "
+			+ " WHERE REMOVED = 'N'";
 	
-	private static final String ADD_PRODUCT = "INSERT INTO PRODUCT (NAME, DESCRIPTION, ARCHIVE) " 
-	        + "VALUES (?, ?, ?)";
+	private static final String ADD_PRODUCT = 
+			"INSERT INTO PRODUCT (NAME, DESCRIPTION, REMOVED, DELIVARY_PRICE) " 
+	        + "VALUES (?, ?, ?, ?)";
 
-	private static final String UPDATE_PRODUCTS_BY_ID = "UPDATE PRODUCT SET NAME = ?, "
-			+ " DESCRIPTION = ?, ARCHIVE =?  WHERE ID = ?";
+	private static final String UPDATE_PRODUCTS_BY_ID = 
+			"UPDATE PRODUCT "
+			+ " SET NAME = ?, DESCRIPTION = ?, DELIVARY_PRICE = ?, REMOVED = ? "
+			+ " WHERE ID = ?";
 
-	private static final String GET_PRODUCT_BY_ID = "SELECT ID, NAME, DESCRIPTION, ARCHIVE "
-			+ " FROM PRODUCT WHERE ID = ? ";
+	private static final String GET_PRODUCT_BY_ID = 
+			"SELECT ID, NAME, DESCRIPTION, REMOVED, DELIVARY_PRICE "
+			+ " FROM PRODUCT "
+			+ " WHERE ID = ? ";
 	
 	private DataSource datasource;
 
@@ -66,7 +75,8 @@ public class ProductDaoImpl implements ProductDao {
 				PreparedStatement ps = con.prepareStatement(ADD_PRODUCT, PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, product.getName());
 				ps.setString(2, product.getDescription());
-				ps.setString(3, product.getArchive());
+				ps.setString(3, product.getRemoved());
+				ps.setDouble(4, product.getDelivaryPrice());
 				return ps;
 			}
 		}, keyHolder);
@@ -77,8 +87,12 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public boolean update(Product product) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return	template.update(UPDATE_PRODUCTS_BY_ID, product.getName(), 
-								product.getDescription(), product.getArchive(), product.getId()) == 1;
+		return	template.update(UPDATE_PRODUCTS_BY_ID, 
+				product.getName(), 
+				product.getDescription(), 
+				product.getDelivaryPrice(),
+				product.getRemoved(),
+				product.getId()) == 1;
 	}
 
 	@Override

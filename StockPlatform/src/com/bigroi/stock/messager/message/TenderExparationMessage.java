@@ -1,6 +1,6 @@
 package com.bigroi.stock.messager.message;
 
-import com.bigroi.stock.bean.Tender;
+import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -13,8 +13,8 @@ public class TenderExparationMessage extends BaseMessage<Tender> {
 	@Override
 	protected String getEmail() throws MessageException {
 		try {
-			long companyId = getDataObject().getCustomerId();
-			return ServiceFactory.getCompanyService().getCompanyById(companyId).getAllEmails();
+			long companyId = getDataObject().getCompanyId();
+			return ServiceFactory.getCompanyService().getCompanyById(companyId).getEmail();
 		} catch (ServiceException e) {
 			throw new MessageException(e);
 		}

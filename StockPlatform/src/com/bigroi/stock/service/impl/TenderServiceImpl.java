@@ -2,9 +2,9 @@ package com.bigroi.stock.service.impl;
 
 import java.util.List;
 
-import com.bigroi.stock.bean.Product;
-import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.db.Product;
+import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.ProductDao;
 import com.bigroi.stock.dao.TenderDao;
@@ -30,7 +30,7 @@ public class TenderServiceImpl implements TenderService{
 			Tender tender;
 			if (id == -1) {
 				tender = new Tender();
-				tender.setCustomerId(companyId);
+				tender.setCompanyId(companyId);
 				tender.setStatus(BidStatus.INACTIVE);
 				tender.setId(-1);
 			} else {
@@ -45,7 +45,7 @@ public class TenderServiceImpl implements TenderService{
 	@Override
 	public List<Tender> getMyList(long companyId) throws ServiceException {
 		try{
-			return tenderDao.getByCustomerId(companyId);
+			return tenderDao.getByCompanyId(companyId);
 		}catch(DaoException e){
 			throw new ServiceException(e);
 		}
@@ -64,13 +64,13 @@ public class TenderServiceImpl implements TenderService{
 	public void merge(Tender tender, long companyId) throws ServiceException {
 		try {
 			if (tender.getId() == -1){
-				tender.setCustomerId(companyId);
+				tender.setCompanyId(companyId);
 				tenderDao.add(tender);
 			} else {
 				tenderDao.update(tender, companyId);
 			}
 			Product product = productDao.getById(tender.getProductId());
-			tender.setProductName(product.getName());
+			tender.setProduct(product);
 			
 		} catch (DaoException e) {
 			throw new ServiceException(e);

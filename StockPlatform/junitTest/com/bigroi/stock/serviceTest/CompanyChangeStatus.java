@@ -3,7 +3,7 @@ package com.bigroi.stock.serviceTest;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.bigroi.stock.bean.Company;
+import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 

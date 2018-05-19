@@ -1,6 +1,6 @@
 package com.bigroi.stock.messager.message;
 
-import com.bigroi.stock.bean.Deal;
+import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.messager.MessagerFactory;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
@@ -14,7 +14,9 @@ public class DealConfirmationMessageForSeller extends BaseMessage<Deal> {
 	@Override
 	protected String getEmail() throws MessageException {
 		try{
-			return ServiceFactory.getCompanyService().getCompanyById(getDataObject().getSellerId()).getAllEmails();
+			return ServiceFactory.getCompanyService().getCompanyById(
+					getDataObject().getSellerAddress().getCompanyId()
+					).getEmail();
 		}catch (ServiceException e) {
 			throw new MessageException(e);
 		}
@@ -24,7 +26,7 @@ public class DealConfirmationMessageForSeller extends BaseMessage<Deal> {
 	protected String getText() throws MessageException {
 		Deal deal = getDataObject();
 		return super.getText()
-				.replaceAll("@product", deal.getProductName())
+				.replaceAll("@product", deal.getProduct().getName())
 				.replaceAll("@price", deal.getPrice() + "")
 				.replaceAll("@server", MessagerFactory.getMailManager().getServerAdress());
 	}

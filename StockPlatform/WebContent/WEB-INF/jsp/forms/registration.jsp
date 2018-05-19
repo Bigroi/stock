@@ -4,8 +4,8 @@
 	<div style="width: 40%;display: table-cell;" id="form-container">
 		<div class="form-message"></div>
 		<form class="form" action="#" method="post" name="form">
-			<input type="hidden" name="latitude">
-			<input type="hidden" name="longitude">
+			<input type="hidden" name="company.address.latitude" class="latitude">
+			<input type="hidden" name="company.address.longitude" class="longitude">
 		    <ul>
 		    	<li></li>
 		        <li>
@@ -23,29 +23,29 @@
 		        </li>
 		        <li>
 		            <label for="name">${label.registration.company_name}</label>
-		            <input type="text" name="name" placeholder="Stock lmt" required maxlength="100"/>
+		            <input type="text" name="company.name" placeholder="Stock lmt" required maxlength="100"/>
 		        </li>
 		        <li>
 		            <label for="phone">${label.registration.phone}</label>
-		            <input type="text" name="phone" placeholder="+375290000000" pattern="^\+375[\d\- ]{5,13}$" required/>
+		            <input type="text" name="company.phone" placeholder="+375290000000" pattern="^\+375[\d\- ]{5,13}$" required/>
 		            <span class="form_hint">Proper format "+375290000000"</span>
 		        </li>
 		        <li>
 		            <label for="regNumber">${label.registration.reg_number}</label>
-		            <input type="text" name="regNumber" placeholder="1234567890" required maxlength="100"/>
+		            <input type="text" name="company.regNumber" placeholder="1234567890" required maxlength="100"/>
 		            <span class="form_hint">Proper format "1234567890"</span>
 		        </li>
 		        <li>
 		            <label for="country">${label.registration.country}</label>
-		            <input type="text" name="country" placeholder="Belarus" required maxlength="50"/>
+		            <input type="text" name="company.address.country" class="country" placeholder="Belarus" required maxlength="50"/>
 		        </li>
 		        <li>
 		            <label for="city">${label.registration.city}</label>
-		            <input type="text" name="city" placeholder="Minsk" required maxlength="100"/>
+		            <input type="text" name="company.address.city" class="city" placeholder="Minsk" required maxlength="100"/>
 		        </li>
 		         <li>
 		            <label for="address">${label.registration.address}</label>
-		            <input type="text" name="address" placeholder="Minsk" required maxlength="200"/>
+		            <input type="text" name="company.address.address" class="address" placeholder="Minsk" required maxlength="200"/>
 		        </li>
 		        <li>
 		        	<button class="submit" type="submit" id="save-button"

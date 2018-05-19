@@ -2,7 +2,7 @@ package com.bigroi.stock.service.impl;
 
 import java.util.List;
 
-import com.bigroi.stock.bean.Email;
+import com.bigroi.stock.bean.db.Email;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.EmailDao;
 import com.bigroi.stock.messager.MailManagerException;
@@ -25,7 +25,7 @@ public class MessageServiceImpl implements MessageService{
 			do {
 				emails = emailDao.getAll();
 				for (Email email : emails) {
-					MessagerFactory.getMailManager().send(email.getToEmail(), email.getEmailSubject(), email.getEmailText());
+					MessagerFactory.getMailManager().send(email.getRecipient(), email.getSubject(), email.getBody());
 					emailDao.deleteById(email.getId());
 				}
 			} while (!emails.isEmpty());

@@ -17,6 +17,11 @@
             
         </li>
         <li>
+            <label for="name">${label.product.delivary_price}</label>
+            <input type="text" name="delivaryPrice" required maxlength="50"/>
+            
+        </li>
+        <li>
             <label for=description>${label.product.description}</label>
             <textarea name="description" cols="40" rows="6" required maxlength="500"></textarea>
         </li>

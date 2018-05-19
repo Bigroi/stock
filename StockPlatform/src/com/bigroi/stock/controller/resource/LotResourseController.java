@@ -3,6 +3,7 @@ package com.bigroi.stock.controller.resource;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.StockUser;
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.db.Lot;
+import com.bigroi.stock.bean.db.StockUser;
+import com.bigroi.stock.bean.ui.LotForUI;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
@@ -30,6 +32,10 @@ public class LotResourseController extends BaseResourseController {
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String form(@RequestParam(value = "id", defaultValue = "-1") long id) throws ServiceException {
 		Lot lot = ServiceFactory.getLotService().getLot(id, getUserCompanyId());
+		if (lot.getId() == -1){
+			StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			lot.setAddressId(user.getCompany().getAddress().getId());
+		}
 		return new ResultBean(1, lot, null).toString();
 	}
 
@@ -37,8 +43,9 @@ public class LotResourseController extends BaseResourseController {
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String myList() throws ServiceException, TableException {
-		List<Lot> lots = ServiceFactory.getLotService().getBySellerId(getUserCompanyId());
-		TableResponse<Lot> table = new TableResponse<>(Lot.class, lots);
+		List<Lot> lots = ServiceFactory.getLotService().getByCompanyId(getUserCompanyId());
+		List<LotForUI> lotrForUI = lots.stream().map(LotForUI::new).collect(Collectors.toList());
+		TableResponse<LotForUI> table = new TableResponse<>(LotForUI.class, lotrForUI);
 		return new ResultBean(1, table, null).toString();
 	}
 
@@ -73,7 +80,7 @@ public class LotResourseController extends BaseResourseController {
 		}
 
 		ServiceFactory.getLotService().merge(lot, getUserCompanyId());
-		return new ResultBean(1, lot, "label.lot.save_success").toString();
+		return new ResultBean(1, new LotForUI(lot), "label.lot.save_success").toString();
 	}
 
 	@RequestMapping(value = "/StartTrading.spr")
@@ -136,7 +143,7 @@ public class LotResourseController extends BaseResourseController {
 		calendar.set(Calendar.SECOND, 0);
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
-		if (newLot.getExpDate().getTime() < calendar.getTimeInMillis()) {
+		if (newLot.getExparationDate().getTime() < calendar.getTimeInMillis()) {
 			errors.add("label.lot.expDate_error");
 		}
 		return errors;

@@ -7,13 +7,13 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bigroi.stock.bean.Bid;
-import com.bigroi.stock.bean.ChartTrace;
-import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.Product;
-import com.bigroi.stock.bean.Tender;
-import com.bigroi.stock.bean.TradeOffer;
+import com.bigroi.stock.bean.common.Bid;
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.db.Lot;
+import com.bigroi.stock.bean.db.Product;
+import com.bigroi.stock.bean.db.Tender;
+import com.bigroi.stock.bean.ui.ChartTrace;
+import com.bigroi.stock.bean.ui.TradeOffer;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.ProductDao;
@@ -91,7 +91,7 @@ public class ProductServiceImpl implements ProductService {
 	public void delete(long id) throws ServiceException {
 		try {
 			Product product = productDao.getById(id);
-			product.setArchive("Y");
+			product.setRemoved("Y");
 			productDao.update(product);
 			lotDao.setStatusByProductId(id, BidStatus.INACTIVE);
 			tenderDao.setStatusByProductId(id, BidStatus.INACTIVE);

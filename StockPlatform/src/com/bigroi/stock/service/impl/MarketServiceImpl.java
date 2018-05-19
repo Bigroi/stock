@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bigroi.stock.bean.Deal;
-import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.Tender;
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.db.Deal;
+import com.bigroi.stock.bean.db.Lot;
+import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
@@ -53,7 +53,7 @@ public class MarketServiceImpl implements MarketService {
 			}
 			lotDao.update(lots);
 			
-			List<Tender> tenders = tenderDao.getAllActive();
+			List<Tender> tenders = tenderDao.getActive();
 			for (Tender tender : tenders) {
 				if (tender.isExpired()){
 					tender.setStatus(BidStatus.INACTIVE);
@@ -77,7 +77,7 @@ public class MarketServiceImpl implements MarketService {
 				if (deal.getLotId() == null){
 					continue;
 				}
-				if (deal.getSellerApprovedBool() != null){
+				if (deal.getSellerApproved() != null){
 					Message<Deal> message = MessagerFactory.getDealExparationMessageForSellerByOpponent();
 					message.setDataObject(deal);
 					message.send();
@@ -85,7 +85,7 @@ public class MarketServiceImpl implements MarketService {
 					message = MessagerFactory.getDealExparationMessageForCustomer();
 					message.setDataObject(deal);
 					message.send();
-				} else if (deal.getCustomerApprovedBool() != null){
+				} else if (deal.getBuyerApproved() != null){
 					Message<Deal> message = MessagerFactory.getDealExparationMessageForSeller();
 					message.setDataObject(deal);
 					message.send();
@@ -111,13 +111,16 @@ public class MarketServiceImpl implements MarketService {
 	}
 	
 	private void returnVolumeToBids(Deal deal) throws DaoException {
-		Lot lot = lotDao.getById(deal.getLotId(), deal.getSellerId());
-		lot.setMaxVolume(lot.getMaxVolume() + deal.getVolume());
-		lotDao.update(lot, lot.getSellerId());
+		long buyerId = deal.getBuyerAddress().getCompanyId();
+		long sellerId = deal.getSellerAddress().getCompanyId();
 		
-		Tender tender = tenderDao.getById(deal.getTenderId(), deal.getCustomerId());
+		Lot lot = lotDao.getById(deal.getLotId(), sellerId);
+		lot.setMaxVolume(lot.getMaxVolume() + deal.getVolume());
+		lotDao.update(lot, lot.getCompanyId());
+		
+		Tender tender = tenderDao.getById(deal.getTenderId(), buyerId);
 		tender.setMaxVolume(tender.getMaxVolume() + deal.getVolume());
-		tenderDao.update(tender, tender.getCustomerId());
+		tenderDao.update(tender, tender.getCompanyId());
 	}
 
 	@Override

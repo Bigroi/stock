@@ -11,13 +11,13 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.bigroi.stock.bean.Blacklist;
+import com.bigroi.stock.bean.db.Blacklist;
 import com.bigroi.stock.dao.BlacklistDao;
 import com.bigroi.stock.dao.DaoException;
 
 public class BlacklistDaoImpl implements BlacklistDao {
 	
-	private static final String ADD_BLACKLIST = "INSERT INTO BLACKLIST "
+	private static final String ADD_BLACKLIST = "INSERT INTO BLACK_LIST "
 			+ " (TENDER_ID, LOT_ID) VALUES (?, ?)";
 
 	private DataSource datasource;

@@ -2,9 +2,9 @@ package com.bigroi.stock.service.impl;
 
 import java.util.List;
 
-import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.Product;
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.db.Lot;
+import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.ProductDao;
@@ -30,7 +30,7 @@ public class LotServiceImpl implements LotService {
 			Lot lot;
 			if (id == -1) {
 				lot = new Lot();
-				lot.setSellerId(companyId);
+				lot.setCompanyId(companyId);
 				lot.setStatus(BidStatus.INACTIVE);
 				lot.setId(-1);
 			} else {
@@ -46,13 +46,13 @@ public class LotServiceImpl implements LotService {
 	public void merge(Lot lot, long companyId) throws ServiceException {
 		try {
 			if (lot.getId() == -1){
-				lot.setSellerId(companyId);
+				lot.setCompanyId(companyId);
 				lotDao.add(lot);
 			} else {
 				lotDao.update(lot, companyId);
 			}
 			Product product = productDao.getById(lot.getProductId());
-			lot.setProductName(product.getName());
+			lot.setProduct(product);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -60,9 +60,9 @@ public class LotServiceImpl implements LotService {
 	}
 
 	@Override
-	public List<Lot> getBySellerId(long salerId) throws ServiceException {
+	public List<Lot> getByCompanyId(long companyId) throws ServiceException {
 		try {
-			return lotDao.getBySellerId(salerId);
+			return lotDao.getByCompanyId(companyId);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -82,15 +82,6 @@ public class LotServiceImpl implements LotService {
 	public void delete(long id, long companyId) throws ServiceException {
 		try {
 			lotDao.delete(id, companyId);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-	}
-
-	@Override
-	public List<Lot> getByProduct(int productId) throws ServiceException {
-		try{
-			return lotDao.getActiveByProductId(productId);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}

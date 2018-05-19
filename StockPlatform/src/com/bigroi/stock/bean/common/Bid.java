@@ -1,4 +1,4 @@
-package com.bigroi.stock.bean;
+package com.bigroi.stock.bean.common;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

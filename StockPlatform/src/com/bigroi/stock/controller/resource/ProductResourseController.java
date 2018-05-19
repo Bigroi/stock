@@ -1,6 +1,7 @@
 package com.bigroi.stock.controller.resource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -8,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bigroi.stock.bean.ChartTrace;
-import com.bigroi.stock.bean.Product;
-import com.bigroi.stock.bean.TradeOffer;
+import com.bigroi.stock.bean.db.Product;
+import com.bigroi.stock.bean.ui.ChartTrace;
+import com.bigroi.stock.bean.ui.ProductForUI;
+import com.bigroi.stock.bean.ui.TradeOffer;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
@@ -26,8 +28,13 @@ public class ProductResourseController extends BaseResourseController {
 	@ResponseBody
 	public String list() throws TableException, ServiceException {
 		List<Product> products = ServiceFactory.getProductService().getAllActiveProducts();
-		TableResponse<Product> table = new TableResponse<>(Product.class, products).removeColumn("archive");
-		products.stream().forEach(p -> p.setEdit("NNY"));
+		List<ProductForUI> productsForUI = products.stream().
+				map(ProductForUI::new).collect(Collectors.toList());
+		productsForUI.stream().forEach(p -> p.setEdit("NNY"));
+		TableResponse<ProductForUI> table = new TableResponse<>(ProductForUI.class, productsForUI)
+				.removeColumn("removed")
+				.removeColumn("delivaryPrice");
+		
 		return new ResultBean(1, table, null).toString();
 	}
 
@@ -35,9 +42,11 @@ public class ProductResourseController extends BaseResourseController {
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
 	public String listForAdmin() throws ServiceException, TableException {
-		List<Product> allProducts = ServiceFactory.getProductService().getAllProducts();
-		allProducts.stream().forEach(p -> p.setEdit("YNN"));
-		TableResponse<Product> table = new TableResponse<>(Product.class, allProducts);
+		List<Product> products = ServiceFactory.getProductService().getAllProducts();
+		List<ProductForUI> productsForUI = products.stream().
+				map(ProductForUI::new).collect(Collectors.toList());
+		productsForUI.stream().forEach(p -> p.setEdit("YNN"));
+		TableResponse<ProductForUI> table = new TableResponse<>(ProductForUI.class, productsForUI);
 		return new ResultBean(1, table, null).toString();
 	}
 	
@@ -54,11 +63,9 @@ public class ProductResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_ADMIN"})
 	public String save(@RequestParam("json") String json) throws ServiceException {
 		Product product = GsonUtil.getGson().fromJson(json, Product.class);
-		if (product.getId() < 0){
-			product.setArchive("N");
-		}
+		product.setRemoved("N");
 		ServiceFactory.getProductService().merge(product);
-		return new ResultBean(1, product, "label.product.save_success").toString();
+		return new ResultBean(1, new ProductForUI(product), "label.product.save_success").toString();
 	}
 	
 	@RequestMapping("/admin/Delete.spr")
@@ -67,7 +74,8 @@ public class ProductResourseController extends BaseResourseController {
 	public String delete(@RequestParam("json") String json) throws ServiceException {
 		Product product = GsonUtil.getGson().fromJson(json, Product.class);
 		ServiceFactory.getProductService().delete(product.getId());
-		return new ResultBean(1, null).toString();
+		product.setRemoved("Y");
+		return new ResultBean(1, new ProductForUI(product), "label.product.delete_success").toString();
 	}
 	
 	@RequestMapping("/TradeOffers.spr")

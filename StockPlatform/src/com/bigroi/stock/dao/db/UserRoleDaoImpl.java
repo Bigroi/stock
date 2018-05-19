@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 
-import com.bigroi.stock.bean.UserRole;
+import com.bigroi.stock.bean.db.UserRole;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserRoleDao;
 

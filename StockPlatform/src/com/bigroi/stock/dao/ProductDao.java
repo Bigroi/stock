@@ -2,7 +2,7 @@ package com.bigroi.stock.dao;
 
 import java.util.List;
 
-import com.bigroi.stock.bean.Product;
+import com.bigroi.stock.bean.db.Product;
 
 public interface ProductDao {
 	

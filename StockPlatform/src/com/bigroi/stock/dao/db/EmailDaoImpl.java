@@ -14,17 +14,17 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.bigroi.stock.bean.Email;
+import com.bigroi.stock.bean.db.Email;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.EmailDao;
 
 public class EmailDaoImpl implements EmailDao {
 
-	private static final String GET_ALL_EMAILS = "SELECT ID, TO_EMAIL, " 
-	        + " EMAIL_SUBJECT, EMAIL_TEXT FROM EMAIL ";
+	private static final String GET_ALL_EMAILS = 
+			" SELECT ID, RECIPIENT, SUBJECT, BODY FROM EMAIL ";
 
 	private static final String ADD_EMAILS = "INSERT INTO EMAIL " 
-	        + " (TO_EMAIL, EMAIL_SUBJECT, EMAIL_TEXT) "
+	        + " (RECIPIENT, SUBJECT, BODY) "
 			+ " VALUES (?, ?, ?) ";
 
 	private static final String DELETE_EMAILS_BY_ID = " DELETE FROM EMAIL "
@@ -55,9 +55,9 @@ public class EmailDaoImpl implements EmailDao {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(ADD_EMAILS, Statement.RETURN_GENERATED_KEYS);
-				ps.setString(1, email.getToEmail());
-				ps.setString(2, email.getEmailSubject());
-				ps.setString(3, email.getEmailText());
+				ps.setString(1, email.getRecipient());
+				ps.setString(2, email.getSubject());
+				ps.setString(3, email.getBody());
 				return ps;
 			}
 		}, keyHolder);

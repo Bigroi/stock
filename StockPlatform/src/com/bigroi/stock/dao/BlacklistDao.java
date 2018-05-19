@@ -1,6 +1,6 @@
 package com.bigroi.stock.dao;
 
-import com.bigroi.stock.bean.Blacklist;
+import com.bigroi.stock.bean.db.Blacklist;
 
 public interface BlacklistDao {
 	

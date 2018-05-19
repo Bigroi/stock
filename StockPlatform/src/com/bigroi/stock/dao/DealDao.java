@@ -2,7 +2,7 @@ package com.bigroi.stock.dao;
 
 import java.util.List;
 
-import com.bigroi.stock.bean.Deal;
+import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.jobs.trade.TradeLot;
 import com.bigroi.stock.jobs.trade.TradeTender;
 
@@ -20,6 +20,8 @@ public interface DealDao {
 
 	List<Deal> getByCompanyId(long companyId) throws DaoException;
 
-	void update(Deal deal) throws DaoException;
+	public void setBuyerStatus(Deal deal) throws DaoException;
+
+	public void setSellerStatus(Deal deal) throws DaoException;
 
 }

@@ -1,7 +1,7 @@
 function initMap() {
 	$(document).ready(function(){
-		var lat = parseFloat($("input[name='latitude']")[0].value);
-		var lng = parseFloat($("input[name='longitude']")[0].value);
+		var lat = parseFloat($(".latitude")[0].value);
+		var lng = parseFloat($(".longitude")[0].value);
 		if (window.navigator.userAgent.indexOf("MSIE ") >=0 ||
 				window.navigator.userAgent.indexOf("Trident/") >= 0){
 			var height = $("#map").parent().parent().parent().height();
@@ -29,15 +29,15 @@ function initMap() {
 		}
 		
 		
-		$("input[name='country']").focusout( function() {
+		$(".country").focusout( function() {
 			geocodeAddress(geocoder);
 		});
 		
-		$("input[name='city']").focusout( function() {
+		$(".city").focusout( function() {
 			geocodeAddress(geocoder);
 		});
 		
-		$("input[name='address']").focusout( function() {
+		$(".address").focusout( function() {
 			geocodeAddress(geocoder);
 		});
 	  
@@ -62,9 +62,9 @@ function initMap() {
 				  var city = address.substr(index + 1);
 				  address = address.substr(0, index);
 				  
-				  $("input[name='country']")[0].value = country;
-				  $("input[name='city']")[0].value = city;
-				  $("input[name='address']")[0].value = address;
+				  $(".country")[0].value = country;
+				  $(".city")[0].value = city;
+				  $(".address")[0].value = address;
 				  $("button[type='submit']").prop("disabled", false);
 			  });
 		}
@@ -94,15 +94,53 @@ function initMap() {
 				map: map,
 				position: location
 			});
-			$("input[name='latitude']")[0].value = location.lat();
-			$("input[name='longitude']")[0].value = location.lng();
+			$(".latitude")[0].value = location.lat();
+			$(".longitude")[0].value = location.lng();
 		}
 		
 		function getAddress(){
-			return $("input[name='country']")[0].value + 
-				' ' + $("input[name='city']")[0].value +
-				' ' + $("input[name='address']")[0].value;
+			return $(".country")[0].value + 
+				' ' + $(".city")[0].value +
+				' ' + $(".address")[0].value;
 		}
+	});
+}
+
+function initDealMap() {
+	$(document).ready(function(){
+		var sellerLat = parseFloat($(".seller_latitude")[0].value);
+		var sellerLng = parseFloat($(".seller_longitude")[0].value);
+		var buyerLat = parseFloat($(".buyer_latitude")[0].value);
+		var buyerLng = parseFloat($(".buyer_longitude")[0].value);
+		
+		
+		if (window.navigator.userAgent.indexOf("MSIE ") >=0 ||
+				window.navigator.userAgent.indexOf("Trident/") >= 0){
+			var height = $("#map").parent().parent().parent().height();
+			$("#map").css("height", height);
+		}
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 8,
+			center: {
+				lat: (sellerLat + buyerLat) / 2, 
+				lng: (sellerLng + buyerLng) / 2
+			}
+		});
+		var geocoder = new google.maps.Geocoder();
+		var sellerMarker = new google.maps.Marker({
+			map: map,
+			position: {
+				lat: sellerLat, 
+				lng: sellerLng
+			}
+		});
+		var buyerMarker = new google.maps.Marker({
+			map: map,
+			position: {
+				lat: buyerLat, 
+				lng: buyerLng
+			}
+		});
 	});
 }
 	

@@ -1,6 +1,6 @@
 package com.bigroi.stock.service;
 
-import com.bigroi.stock.bean.Email;
+import com.bigroi.stock.bean.db.Email;
 
 public interface MessageService {
 

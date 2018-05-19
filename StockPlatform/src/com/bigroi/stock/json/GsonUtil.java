@@ -1,6 +1,6 @@
 package com.bigroi.stock.json;
 
-import com.bigroi.stock.bean.Bid;
+import com.bigroi.stock.bean.common.Bid;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

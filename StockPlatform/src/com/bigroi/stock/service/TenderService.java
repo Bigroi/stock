@@ -2,7 +2,7 @@ package com.bigroi.stock.service;
 
 import java.util.List;
 
-import com.bigroi.stock.bean.Tender;
+import com.bigroi.stock.bean.db.Tender;
 
 public interface TenderService {
 	

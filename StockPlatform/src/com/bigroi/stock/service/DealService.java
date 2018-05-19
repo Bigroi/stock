@@ -2,7 +2,7 @@ package com.bigroi.stock.service;
 
 import java.util.List;
 
-import com.bigroi.stock.bean.Deal;
+import com.bigroi.stock.bean.db.Deal;
 
 public interface DealService {
 
@@ -13,5 +13,7 @@ public interface DealService {
 	boolean reject(long id, long companyId) throws ServiceException;
 
 	boolean approve(long id, long companyId) throws ServiceException;
+
+	boolean transport(long id, long companyId) throws ServiceException;
 
 }

@@ -5,6 +5,7 @@ public enum DealStatus {
 	ON_APPROVE,
 	ON_PARTNER_APPROVE,
 	APPROVED,
-	REJECTED
+	REJECTED, 
+	TRANSPORT
 
 }

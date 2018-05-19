@@ -2,7 +2,7 @@ package com.bigroi.stock.jobs.trade;
 
 import java.util.List;
 
-import com.bigroi.stock.bean.Bid;
+import com.bigroi.stock.bean.common.Bid;
 
 public interface TradeBid extends Bid{
 

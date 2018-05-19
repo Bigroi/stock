@@ -1,8 +1,6 @@
 package com.bigroi.stock.dao;
 
-import java.util.List;
-
-import com.bigroi.stock.bean.GeneratedKey;
+import com.bigroi.stock.bean.db.GeneratedKey;
 
 public interface GenerateKeyDao {
 
@@ -10,9 +8,5 @@ public interface GenerateKeyDao {
 
 	GeneratedKey generateKey() throws DaoException;
 
-	GeneratedKey getGeneratedKeyById(long id) throws DaoException;
-
-	List<GeneratedKey> getGenerateKeysByDate() throws DaoException;
-
-	boolean deleteGenerateKeysByDate() throws DaoException;
+	void deleteGenerateKeysByDate() throws DaoException;
 }

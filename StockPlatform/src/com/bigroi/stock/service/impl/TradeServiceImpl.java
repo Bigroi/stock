@@ -9,11 +9,11 @@ import java.util.Set;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bigroi.stock.bean.Bid;
-import com.bigroi.stock.bean.Deal;
-import com.bigroi.stock.bean.Lot;
-import com.bigroi.stock.bean.Product;
-import com.bigroi.stock.bean.Tender;
+import com.bigroi.stock.bean.common.Bid;
+import com.bigroi.stock.bean.db.Deal;
+import com.bigroi.stock.bean.db.Lot;
+import com.bigroi.stock.bean.db.Product;
+import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
@@ -61,7 +61,7 @@ public class TradeServiceImpl implements TradeService{
 		try{
 			List<Product> list = productDao.getAllActiveProducts();
 			for (Product product : list){
-				productTrade(product.getId(), product.getName());
+				productTrade(product.getId(), product);
 			}
 			lotDao.update(lotsToUpdate);
 			tenderDao.update(tendersToUpdate);
@@ -71,7 +71,7 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 	
-	private void productTrade(long productId, String productName) throws ServiceException{
+	private void productTrade(long productId, Product product) throws ServiceException{
 		try{
 			List<TradeLot> tradeLots = new ArrayList<>();
 			List<TradeTender> tradeTenders = new ArrayList<>();
@@ -83,7 +83,7 @@ public class TradeServiceImpl implements TradeService{
 				
 				TradeBid majorBid = getMinVolumeBid(majorBids);
 				
-				createDealsForBid(majorBid, productName);
+				createDealsForBid(majorBid, product);
 				
 				removeAllZeroBids(tradeTenders, tradeLots);
 			}
@@ -93,11 +93,11 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 
-	private void createDealsForBid(TradeBid bid, String productName) throws ServiceException{
+	private void createDealsForBid(TradeBid bid, Product product) throws ServiceException{
 		while(bid.getMaxVolume() > 0 && bid.getPosiblePartners().size() > 0){
 			TradeBid partner = bid.getBestPartner();
 			Deal deal = createDeal(bid, partner);
-			deal.setProductName(productName);
+			deal.setProduct(product);
 			sendConfimationMails(deal);
 			deals.add(deal);
 			

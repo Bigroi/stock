@@ -10,14 +10,14 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.bigroi.stock.bean.Deal;
 import com.bigroi.stock.bean.common.BidStatus;
-import com.bigroi.stock.bean.common.DealStatus;
+import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.Deal;
+import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.jobs.trade.TradeLot;
@@ -26,112 +26,92 @@ import com.bigroi.stock.jobs.trade.TradeTender;
 public class DealDaoImpl implements DealDao {
 	
 	private static final String ADD = 
-			  " INSERT INTO DEAL(LOT_ID, TENDER_ID, SELLER_ID, CUSTOMER_ID, "
-			+ " PRICE, VOLUME, TIME, CUSTOMER_APPROVED, SELLER_APPROVED, PRODUCT_ID) "
-			+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			  " INSERT INTO DEAL(LOT_ID, TENDER_ID, TIME, BUYER_APPROVED, SELLER_APPROVED, "
+			+ " PRICE, VOLUME, PRODUCT_ID, SELLER_FOTO, "
+			+ " SELLER_ADDRESS_ID, BUYER_ADDRESS_ID, SELLER_DESCRIPTION, BUYER_DESCRIPTION) "
+			+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 	
 	private static final String GET_POSIBLE_BIDS = 
-			  " SELECT L.ID LOT_ID, L.DESCRIPTION LOT_DESCRIPTION, L.PRODUCT_ID PRODUCT_ID, L.MIN_PRICE LOT_PRICE, "
-			+ " L.SELLER_ID SELLER_ID, L.`STATUS` LOT_STATUS, L.EXP_DATE LOT_EXP_DATE, L.MAX_VOLUME LOT_VOLUME, L.MIN_VOLUME LOT_MIN_VOLUME, "
-			+ " T.ID TENDER_ID, T.DESCRIPTION TENDER_DESCRIPTION, T.MAX_PRICE TENDER_PRICE, T.CUSTOMER_ID CUSTOMER_ID, "
-			+ " T.`STATUS` TENDER_STATUS, T.EXP_DATE TENDER_EXP_DATE, T.MAX_VOLUME TENDER_VOLUME, T.MIN_VOLUME TENDER_MIN_VOLUME "
-			+ " FROM LOT L "
-			+ " JOIN TENDER T "
-			+ " ON L.PRODUCT_ID = T.PRODUCT_ID "
-			+ " AND L.`STATUS` = '" + BidStatus.ACTIVE +"' "
-			+ " AND T.`STATUS` = '" + BidStatus.ACTIVE +"' "
-			+ " AND L.MAX_VOLUME >= L.MIN_VOLUME "
-			+ " AND T.MAX_VOLUME >= T.MIN_VOLUME "
-			+ " AND T.MAX_PRICE >= L.MIN_PRICE "
-			+ " AND T.MIN_VOLUME <= L.MAX_VOLUME "
-			+ " AND L.MIN_VOLUME <= T.MAX_VOLUME "
-			+ " AND L.SELLER_ID <> T.CUSTOMER_ID "
-			+ " AND L.DELIVERY + T.DELIVERY <= 1 "
-			+ " AND L.PACKAGING - T.PACKAGING <= 0"  
-			+ " LEFT JOIN BLACKLIST BL "
-			+ " ON BL.TENDER_ID = T.ID AND BL.LOT_ID = L.ID "
-			+ " WHERE BL.ID IS NULL AND T.PRODUCT_ID = ?";
+			  "SELECT "
+			  + " L.ID LOT_ID, L.DESCRIPTION LOT_DESCRIPTION, L.MIN_PRICE LOT_PRICE, "
+			  + " L.`STATUS` LOT_STATUS, L.EXPARATION_DATE LOT_EXP_DATE, L.MAX_VOLUME LOT_VOLUME, L.MIN_VOLUME LOT_MIN_VOLUME, "
+			  + " LA.LONGITUDE LOT_LONGITUDE, LA.LATITUDE LOT_LATITUDE, LA.COMPANY_ID LOT_COMPANY_ID, LA.ID LOT_ADDRESS_ID, "
+			  
+			  + " T.ID TENDER_ID, T.DESCRIPTION TENDER_DESCRIPTION, T.MAX_PRICE TENDER_PRICE, "
+			  + " T.`STATUS` TENDER_STATUS, T.EXPARATION_DATE TENDER_EXP_DATE, T.MAX_VOLUME TENDER_VOLUME, T.MIN_VOLUME TENDER_MIN_VOLUME,  "
+			  + " TA.LONGITUDE TENDER_LONGITUDE, TA.LATITUDE TENDER_LATITUDE, TA.COMPANY_ID TENDER_COMPANY_ID, TA.ID TENDER_ADDRESS_ID, "
+			  
+			  + " L.PRODUCT_ID PRODUCT_ID "
+			  + " FROM LOT L "
+			  + " JOIN ADDRESS LA "
+			  + " ON L.ADDRESS_ID = LA.ID "
+			  + " AND L.`STATUS` = 'ACTIVE' "
+			  + " JOIN TENDER T "
+			  + " ON L.PRODUCT_ID = T.PRODUCT_ID "
+			  + " AND T.`STATUS` = 'ACTIVE' "
+			  + " AND L.MAX_VOLUME >= L.MIN_VOLUME "
+			  + " AND T.MAX_VOLUME >= T.MIN_VOLUME "
+			  + " AND T.MAX_PRICE >= L.MIN_PRICE "
+			  + " AND T.MIN_VOLUME <= L.MAX_VOLUME "
+			  + " AND L.MIN_VOLUME <= T.MAX_VOLUME "
+			  + " JOIN ADDRESS TA "
+			  + " ON T.ADDRESS_ID = TA.ID "
+			  + " AND TA.COMPANY_ID <>LA.COMPANY_ID "
+			  + " LEFT JOIN BLACK_LIST BL "
+			  + " ON BL.TENDER_ID = T.ID AND BL.LOT_ID = L.ID "
+			  + " WHERE BL.ID IS NULL AND T.PRODUCT_ID = ?";
 
 	private static final String GET_BY_ID = 
-					  " SELECT D.ID, D.`TIME`, D.CUSTOMER_APPROVED, D.SELLER_APPROVED, "
-					+ " D.PRICE, D.VOLUME, D.LOT_ID, D.TENDER_ID, D.PRODUCT_ID, "
-					+ " CUSTOMER.ID CUSTOMER_ID, CUSTOMER.NAME CUSTOMER_NAME, "
-					+ " CUSTOMER.PHONE CUSTOMER_PHONE, CUSTOMER.REG_NUMBER CUSTOMER_REG_NUMBER, "
-					+ " CONCAT(CONCAT(CONCAT(CONCAT(CUSTOMER.COUNTRY, ' '), CUSTOMER.CITY), ' '),CUSTOMER.ADDRESS) CUSTOMER_ADDRESS, "
-					+ " CUSTOMER.LONGITUDE CUSTOMER_LONGITUDE, CUSTOMER.LATITUDE CUSTOMER_LATITUDE, "
-					+ " SELLER.ID SELLER_ID, SELLER.NAME SELLER_NAME, SELLER.PHONE SELLER_PHONE, "
-					+ " SELLER.REG_NUMBER SELLER_REG_NUMBER, P.NAME PRODUCT_NAME, "
-					+ " CONCAT(CONCAT(CONCAT(CONCAT(SELLER.COUNTRY, ' '), SELLER.CITY), ' '), SELLER.ADDRESS) SELLER_ADDRESS, "
-					+ " SELLER.LONGITUDE SELLER_LONGITUDE, SELLER.LATITUDE SELLER_LATITUDE, "
-					+ " T.DESCRIPTION CUSTOMER_DESCRIPTION, L.DESCRIPTION SELLER_DESCRIPTION, L.FOTO "
-					+ " FROM DEAL D "
-					+ " JOIN PRODUCT P "
-					+ " ON D.PRODUCT_ID = P.ID "
-					+ " JOIN COMPANY CUSTOMER "
-					+ " ON D.CUSTOMER_ID = CUSTOMER.ID "
-					+ " JOIN COMPANY SELLER "
-					+ " ON D.SELLER_ID = SELLER.ID "
-					+ " LEFT JOIN LOT L "
-					+ " ON D.LOT_ID = L.ID "
-					+ " LEFT JOIN TENDER T "
-					+ " ON D.TENDER_ID = T.ID "
-					+ " WHERE D.ID = ?";
+			" SELECT " + DealRowMapper.ALL_COLUMNS
+			+ " FROM DEAL D "
+			+ " JOIN PRODUCT P "
+			+ " ON D.PRODUCT_ID = P.ID "
+			+ " JOIN ADDRESS SA "
+			+ " ON SA.ID = D.SELLER_ADDRESS_ID "
+			+ " JOIN ADDRESS BA "
+			+ " ON BA.ID = D.BUYER_ADDRESS_ID "
+			+ " WHERE D.ID = ?";
 
 	private static final String GET_ON_APPROVE = 
-					  " SELECT D.ID, D.LOT_ID, D.TENDER_ID, D.SELLER_ID, D.CUSTOMER_ID, "
-					+ " D.PRICE, D.VOLUME, D.TIME, D.CUSTOMER_APPROVED, D.SELLER_APPROVED, D.PRODUCT_ID, P.NAME PRODUCT_NAME "
-					+ " FROM DEAL D "
-					+ " JOIN PRODUCT P "
-					+ " ON D.PRODUCT_ID = P.ID"
-					+ " WHERE (CUSTOMER_APPROVED IS NULL AND SELLER_APPROVED IS NULL) "
-					+ " OR (CUSTOMER_APPROVED = 'Y' AND SELLER_APPROVED IS NULL) "
-					+ " OR (CUSTOMER_APPROVED IS NULL AND SELLER_APPROVED = 'Y') ";
+					  " SELECT " + DealRowMapper.ALL_COLUMNS
+					  + " FROM DEAL D "
+					  + " JOIN PRODUCT P "
+					  + " ON D.PRODUCT_ID = P.ID "
+					  + " JOIN ADDRESS SA "
+					  + " ON SA.ID = D.SELLER_ADDRESS_ID "
+					  + " JOIN ADDRESS BA "
+					  + " ON BA.ID = D.BUYER_ADDRESS_ID "
+					  + " WHERE (BUYER_APPROVED IS NULL AND SELLER_APPROVED <> 'N') "
+					+ " OR (SELLER_APPROVED IS NULL AND BUYER_APPROVED <> 'N') "
+					+ " OR (SELLER_APPROVED IS NULL AND BUYER_APPROVED IS NULL)";
 
 	private static final String DELETE_ON_APPROVE = 
 					  " DELETE "
 					+ " FROM DEAL "
-					+ " WHERE (CUSTOMER_APPROVED IS NULL AND SELLER_APPROVED IS NULL) "
-					+ " OR (CUSTOMER_APPROVED = 'Y' AND SELLER_APPROVED IS NULL) "
-					+ " OR (CUSTOMER_APPROVED IS NULL AND SELLER_APPROVED = 'Y') ";
+					+ " WHERE (BUYER_APPROVED IS NULL AND SELLER_APPROVED <> 'N') "
+					+ " OR (SELLER_APPROVED IS NULL AND BUYER_APPROVED <> 'N')"
+					+ " OR (SELLER_APPROVED IS NULL AND BUYER_APPROVED IS NULL)";
 
 	private static final String GET_BY_COMPANY_ID = 
-			  " SELECT D.ID, D.`TIME`, D.CUSTOMER_APPROVED, D.SELLER_APPROVED, "
-			+ " D.PRICE, D.VOLUME, D.LOT_ID, D.TENDER_ID, D.PRODUCT_ID, "
-			+ " CUSTOMER.ID CUSTOMER_ID, CUSTOMER.NAME CUSTOMER_NAME, "
-			+ " CUSTOMER.PHONE CUSTOMER_PHONE, CUSTOMER.REG_NUMBER CUSTOMER_REG_NUMBER, "
-			+ " CONCAT(CONCAT(CONCAT(CONCAT(CUSTOMER.COUNTRY, ' '), CUSTOMER.CITY), ' '),CUSTOMER.ADDRESS) CUSTOMER_ADDRESS, "
-			+ " CUSTOMER.LONGITUDE CUSTOMER_LONGITUDE, CUSTOMER.LATITUDE CUSTOMER_LATITUDE, "
-			+ " SELLER.ID SELLER_ID, SELLER.NAME SELLER_NAME, SELLER.PHONE SELLER_PHONE, "
-			+ " SELLER.REG_NUMBER SELLER_REG_NUMBER, P.NAME PRODUCT_NAME, "
-			+ " CONCAT(CONCAT(CONCAT(CONCAT(SELLER.COUNTRY, ' '), SELLER.CITY), ' '), SELLER.ADDRESS) SELLER_ADDRESS, "
-			+ " SELLER.LONGITUDE SELLER_LONGITUDE, SELLER.LATITUDE SELLER_LATITUDE, "
-			+ " T.DESCRIPTION CUSTOMER_DESCRIPTION, L.DESCRIPTION SELLER_DESCRIPTION, L.FOTO "
-			+ " FROM DEAL D "
-			+ " JOIN PRODUCT P "
-			+ " ON D.PRODUCT_ID = P.ID "
-			+ " JOIN COMPANY CUSTOMER "
-			+ " ON D.CUSTOMER_ID = CUSTOMER.ID "
-			+ " JOIN COMPANY SELLER "
-			+ " ON D.SELLER_ID = SELLER.ID "
-			+ " LEFT JOIN LOT L "
-			+ " ON D.LOT_ID = L.ID "
-			+ " LEFT JOIN TENDER T "
-			+ " ON D.TENDER_ID = T.ID "
-			+ " WHERE CUSTOMER.ID = ? OR SELLER.ID = ? ";
+			" SELECT " + DealRowMapper.ALL_COLUMNS
+					+ " FROM DEAL D "
+					+ " JOIN PRODUCT P "
+					+ " ON D.PRODUCT_ID = P.ID "
+					+ " JOIN ADDRESS SA "
+					+ " ON SA.ID = D.SELLER_ADDRESS_ID "
+					+ " JOIN ADDRESS BA "
+					+ " ON BA.ID = D.BUYER_ADDRESS_ID "
+					+ " WHERE BA.COMPANY_ID = ? OR SA.COMPANY_ID = ?";
 
-	private static final String UPDATE_BY_ID = 
+	private static final String SET_SELLER_STATUS = 
 			  " UPDATE DEAL "
-			+ " SET lot_Id = ?, "
-			+ " tender_Id = ?, "
-			+ " time = ?, "
-			+ " customer_approved = ?, "
-			+ " seller_id = ?, "
-			+ " seller_approved = ?, "
-			+ " customer_id = ?, "
-			+ " price = ?, "
-			+ " volume = ?, "
-			+ " product_id = ? "
-			+ " WHERE id = ? ";
+			+ " SET SELLER_APPROVED = ? "
+			+ " WHERE ID = ? ";
+	
+	private static final String SET_BUYER_STATUS = 
+			  " UPDATE DEAL "
+			+ " SET BUYER_APPROVED = ? "
+			+ " WHERE ID = ? ";
 
 	private DataSource datasource;
 
@@ -152,35 +132,52 @@ public class DealDaoImpl implements DealDao {
 
 			@Override
 			public Void mapRow(ResultSet rs, int rowNumber) throws SQLException {
+				
 				long lotId = rs.getLong("LOT_ID");
 				TradeLot lot = lots.get(lotId);
 				if (lot == null){
 					lot = new TradeLot();
 					lot.setId(lotId);
 					lot.setDescription(rs.getString("LOT_DESCRIPTION"));
-					lot.setExpDate(rs.getDate("LOT_EXP_DATE"));
+					lot.setExparationDate(rs.getDate("LOT_EXP_DATE"));
 					lot.setMinPrice(rs.getDouble("LOT_PRICE"));
 					lot.setProductId(rs.getLong("PRODUCT_ID"));
-					lot.setSellerId(rs.getLong("SELLER_ID"));
 					lot.setStatus(BidStatus.valueOf(rs.getString("LOT_STATUS")));
 					lot.setMaxVolume(rs.getInt("LOT_VOLUME"));
 					lot.setMinVolume(rs.getInt("LOT_MIN_VOLUME"));
+					lot.setAddressId(rs.getLong("LOT_ADDRESS_ID"));
+					
+					Address address = new Address();
+					address.setLatitude(rs.getDouble("LOT_LATITUDE"));
+					address.setLongitude(rs.getDouble("LOT_LONGITUDE"));
+					address.setCompanyId(rs.getLong("LOT_COMPANY_ID"));
+					address.setId(rs.getLong("LOT_ADDRESS_ID"));
+					lot.setAddress(address);
+					
 					lots.put(lotId, lot);
 				}
-				
+
 				long tenderId = rs.getLong("TENDER_ID");
 				TradeTender tender = tenders.get(tenderId);
 				if (tender == null){
 					tender = new TradeTender();
 					tender.setId(tenderId);
 					tender.setDescription(rs.getString("TENDER_DESCRIPTION"));
-					tender.setExpDate(rs.getDate("TENDER_EXP_DATE"));
+					tender.setExparationDate(rs.getDate("TENDER_EXP_DATE"));
 					tender.setMaxPrice(rs.getDouble("TENDER_PRICE"));
 					tender.setProductId(rs.getLong("PRODUCT_ID"));
-					tender.setCustomerId(rs.getLong("CUSTOMER_ID"));
 					tender.setStatus(BidStatus.valueOf(rs.getString("TENDER_STATUS")));
 					tender.setMaxVolume(rs.getInt("TENDER_VOLUME"));
 					tender.setMinVolume(rs.getInt("TENDER_MIN_VOLUME"));
+					tender.setAddressId(rs.getLong("TENDER_ADDRESS_ID"));
+					
+					Address address = new Address();
+					address.setLatitude(rs.getDouble("TENDER_LATITUDE"));
+					address.setLongitude(rs.getDouble("TENDER_LONGITUDE"));
+					address.setCompanyId(rs.getLong("TENDER_COMPANY_ID"));
+					address.setId(rs.getLong("TENDER_ADDRESS_ID"));
+					tender.setAddress(address);
+					
 					tenders.put(tenderId, tender);
 				}
 				tender.addPosiblePartner(lot);
@@ -197,7 +194,7 @@ public class DealDaoImpl implements DealDao {
 	@Override
 	public Deal getById(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Deal> list = template.query(GET_BY_ID, new DealRowMapper(companyId), id);
+		List<Deal> list = template.query(GET_BY_ID, new DealRowMapper(), id);
 		if (list.size() == 0){
 			return null;
 		} else {
@@ -208,7 +205,7 @@ public class DealDaoImpl implements DealDao {
 	@Override
 	public List<Deal> getOnApprove() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(GET_ON_APPROVE, new BeanPropertyRowMapper<Deal>(Deal.class));
+		return template.query(GET_ON_APPROVE, new DealRowMapper());
 	}
 
 	@Override
@@ -222,19 +219,22 @@ public class DealDaoImpl implements DealDao {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.batchUpdate(ADD, deals, deals.size(), 
 				new ParameterizedPreparedStatementSetter<Deal>() {
-
 					@Override
 					public void setValues(PreparedStatement ps, Deal deal) throws SQLException {
 						ps.setLong(1, deal.getLotId());
 						ps.setLong(2, deal.getTenderId());
-						ps.setLong(3, deal.getSellerId());
-						ps.setLong(4, deal.getCustomerId());
-						ps.setDouble(5, deal.getPrice());
-						ps.setInt(6, deal.getVolume());
-						ps.setTimestamp(7, new Timestamp(deal.getTime().getTime()));
-						ps.setString(8, deal.getCustomerApproved());
-						ps.setString(9, deal.getSellerApproved());
-						ps.setLong(10, deal.getProductId());
+						ps.setTimestamp(3, new Timestamp(deal.getTime().getTime()));
+						ps.setString(4, deal.getBuyerApproved());
+						ps.setString(5, deal.getSellerApproved());
+						ps.setDouble(6, deal.getPrice());
+						ps.setInt(7, deal.getVolume());
+						ps.setLong(8, deal.getProductId());
+						ps.setString(9, deal.getSellerFoto());
+						ps.setLong(10, deal.getSellerAddressId());
+						ps.setLong(11, deal.getBuyerAddressId());
+						ps.setString(12, deal.getSellerDescription());
+						ps.setString(13, deal.getBuyerDescription());
+						
 					}
 		});
 	}
@@ -242,84 +242,79 @@ public class DealDaoImpl implements DealDao {
 	@Override
 	public List<Deal> getByCompanyId(long companyId) throws DaoException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-		return jdbcTemplate.query(GET_BY_COMPANY_ID, new DealRowMapper(companyId), companyId, companyId);
+		return jdbcTemplate.query(GET_BY_COMPANY_ID, new DealRowMapper(), companyId, companyId);
 	}
 	
 	@Override
-	public void update(Deal deal) throws DaoException {
+	public void setBuyerStatus(Deal deal) throws DaoException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-		jdbcTemplate.update(UPDATE_BY_ID, 
-				deal.getLotId(),
-				deal.getTenderId(),
-				deal.getTime(),
-				deal.getCustomerApproved(),
-				deal.getSellerId(),
-				deal.getSellerApproved(),
-				deal.getCustomerId(),
-				deal.getPrice(),
-				deal.getVolume(),
-				deal.getProductId(),
-				deal.getId());
-		
+		jdbcTemplate.update(SET_BUYER_STATUS, deal.getBuyerApproved(), deal.getId());
+	}
+	
+	@Override
+	public void setSellerStatus(Deal deal) throws DaoException {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+		jdbcTemplate.update(SET_SELLER_STATUS, deal.getSellerApproved(), deal.getId());
 	}
 
-	private class DealRowMapper implements RowMapper<Deal>{
+	private static final class DealRowMapper implements RowMapper<Deal>{
 
-		private long companyId;
+		private static final String ALL_COLUMNS = 
+				" D.ID, D.LOT_ID, D.TENDER_ID, D.TIME, D.BUYER_APPROVED, D.SELLER_APPROVED, "
+				+ " D.PRICE, D.VOLUME, D.PRODUCT_ID, D.SELLER_FOTO, "
+				+ " D.SELLER_ADDRESS_ID, D.BUYER_ADDRESS_ID, D.SELLER_DESCRIPTION, D.BUYER_DESCRIPTION, P.NAME PRODUCT_NAME, "
+				+ " SA.COMPANY_ID SELLER_COMPANY_ID, SA.LATITUDE SELLER_LATITUDE, SA.LONGITUDE SELLER_LONGITUDE, "
+				+ " SA.CITY SELLER_CITY, SA.COUNTRY SELLER_COUNTRY, SA.ADDRESS SELLER_ADDRESS, "
+				+ " BA.COMPANY_ID BUYER_COMPANY_ID, BA.LATITUDE BUYER_LATITUDE, BA.LONGITUDE BUYER_LONGITUDE, "
+				+ " BA.CITY BUYER_CITY, BA.COUNTRY BUYER_COUNTRY, BA.ADDRESS BUYER_ADDRESS ";
 		
-		public DealRowMapper(long companyId) {
-			this.companyId = companyId;
-		}
 		
 		@Override
-		public Deal mapRow(ResultSet rs, int lineNumber) throws SQLException {
+		public Deal mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Deal deal = new Deal();
-			deal.setVolume(rs.getInt("VOLUME"));
-			deal.setPrice(rs.getDouble("PRICE"));
+			
 			deal.setId(rs.getLong("ID"));
-			deal.setTime(rs.getTimestamp("TIME"));
-			deal.setProductName(rs.getString("PRODUCT_NAME"));
-			deal.setCustomerId(rs.getLong("CUSTOMER_ID"));
-			deal.setSellerId(rs.getLong("SELLER_ID"));
-			deal.setTenderId(rs.getLong("TENDER_ID"));
 			deal.setLotId(rs.getLong("LOT_ID"));
-			deal.setProductId(rs.getLong("PRODUCT_ID"));
-			deal.setCustomerApproved(rs.getString("CUSTOMER_APPROVED"));
+			deal.setTenderId(rs.getLong("TENDER_ID"));
+			deal.setTime(rs.getTimestamp("TIME"));
+			deal.setBuyerApproved(rs.getString("BUYER_APPROVED"));
 			deal.setSellerApproved(rs.getString("SELLER_APPROVED"));
-			deal.setFoto(rs.getString("FOTO"));
-
-			long customerId = rs.getLong("CUSTOMER_ID");
-			String you;
-			String partner;
-			if (customerId == companyId){
-				you = "CUSTOMER";
-				partner = "SELLER";
-			} else {
-				partner = "CUSTOMER";
-				you = "SELLER";
-			}
+			deal.setPrice(rs.getDouble("PRICE"));
+			deal.setVolume(rs.getInt("VOLUME"));
+			deal.setProductId(rs.getLong("PRODUCT_ID"));
+			deal.setSellerFoto(rs.getString("SELLER_FOTO"));
+			deal.setSellerAddressId(rs.getLong("SELLER_ADDRESS_ID"));
+			deal.setBuyerAddressId(rs.getLong("BUYER_ADDRESS_ID"));
+			deal.setSellerDescription(rs.getString("SELLER_DESCRIPTION"));
+			deal.setBuyerDescription(rs.getString("BUYER_DESCRIPTION"));
 			
-			deal.setPartnerAddress(rs.getString(partner + "_ADDRESS"));
-			deal.setPartnerComment(rs.getString(partner + "_DESCRIPTION"));
-			deal.setPartnerName(rs.getString(partner + "_NAME"));
-			deal.setPartnerPhone(rs.getString(partner + "_PHONE"));
-			deal.setPartnerRegNumber(rs.getString(partner + "_REG_NUMBER"));
-			deal.setLatitude(rs.getDouble(partner + "_LATITUDE"));
-			deal.setLongitude(rs.getDouble(partner + "_LONGITUDE"));
+			Product product = new Product();
+			product.setId(rs.getLong("PRODUCT_ID"));
+			product.setName(rs.getString("PRODUCT_NAME"));
+			deal.setProduct(product);
 			
-			String approvedByYou = rs.getString(you + "_APPROVED");
-			String approvedByPartner = rs.getString(partner + "_APPROVED");
-			if ((approvedByPartner != null && approvedByPartner.equals("N")) || 
-					(approvedByYou != null && approvedByYou.equals("N"))){
-				deal.setStatus(DealStatus.REJECTED);
-			} else if (approvedByYou == null){
-				deal.setStatus(DealStatus.ON_APPROVE);
-			} else if (approvedByPartner == null){
-				deal.setStatus(DealStatus.ON_PARTNER_APPROVE);
-			} else {
-				deal.setStatus(DealStatus.APPROVED);
-			}
+			Address address = new Address();
+			address.setCompanyId(rs.getLong("SELLER_COMPANY_ID"));
+			address.setLatitude(rs.getDouble("SELLER_LATITUDE"));
+			address.setLongitude(rs.getDouble("SELLER_LONGITUDE"));
+			address.setCity(rs.getString("SELLER_CITY"));
+			address.setCountry(rs.getString("SELLER_COUNTRY"));
+			address.setAddress(rs.getString("SELLER_ADDRESS"));
+			address.setId(rs.getLong("SELLER_ADDRESS_ID"));
+			deal.setSellerAddress(address);
+			
+			address = new Address();
+			address.setCompanyId(rs.getLong("BUYER_COMPANY_ID"));
+			address.setLatitude(rs.getDouble("BUYER_LATITUDE"));
+			address.setLongitude(rs.getDouble("BUYER_LONGITUDE"));
+			address.setCity(rs.getString("BUYER_CITY"));
+			address.setCountry(rs.getString("BUYER_COUNTRY"));
+			address.setAddress(rs.getString("BUYER_ADDRESS"));
+			address.setId(rs.getLong("BUYER_ADDRESS_ID"));
+			deal.setBuyerAddress(address);
+			
 			return deal;
 		}
+		
 	}
 }
