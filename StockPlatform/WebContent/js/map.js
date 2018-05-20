@@ -108,10 +108,10 @@ function initMap() {
 
 function initDealMap() {
 	$(document).ready(function(){
-		var sellerLat = parseFloat($(".seller_latitude")[0].value);
-		var sellerLng = parseFloat($(".seller_longitude")[0].value);
-		var buyerLat = parseFloat($(".buyer_latitude")[0].value);
-		var buyerLng = parseFloat($(".buyer_longitude")[0].value);
+		var sellerLat = parseFloat($("#seller_latitude")[0].value);
+		var sellerLng = parseFloat($("#seller_longitude")[0].value);
+		var buyerLat = parseFloat($("#buyer_lalitude")[0].value);
+		var buyerLng = parseFloat($("#buyer_longitude")[0].value);
 		
 		
 		if (window.navigator.userAgent.indexOf("MSIE ") >=0 ||
@@ -141,6 +141,26 @@ function initDealMap() {
 				lng: buyerLng
 			}
 		});
+		var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        directionsDisplay.setMap(map);
+        
+        calculateAndDisplayRoute(directionsService, directionsDisplay, 
+        		new google.maps.LatLng(sellerLat, sellerLng), new google.maps.LatLng(buyerLat, buyerLng))
 	});
+	
+	function calculateAndDisplayRoute(directionsService, directionsDisplay, startPoint, endPoint) {
+        directionsService.route({
+          origin: startPoint,
+          destination: endPoint,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
 }
 	

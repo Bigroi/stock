@@ -44,7 +44,7 @@ public class Deal {
 		this.sellerAddress = lot.getAddress();
 		this.sellerAddressId = lot.getAddressId();
 		this.sellerApproved = null;
-		this.buyerDescription = lot.getDescription();
+		this.sellerDescription = lot.getDescription();
 		this.sellerFoto = lot.getFoto();
 		this.tenderId = tender.getId();
 		this.time = new Date();

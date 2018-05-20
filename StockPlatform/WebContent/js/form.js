@@ -327,8 +327,9 @@ function sendDealFormData(formContainer, url){
 				$.post(url, params, function(answer){
 					processRequestResult(formContainer, answer, $('.form-message'));
 					if (answer.result > 0){
-						$('#approve-button').hide();
-						$('#reject-button').hide();
+						$('#approve-button').attr("style", "display:none");
+						$('#reject-button').attr("style", "display:none");
+						$('#transport-button').attr("style", "display:none");
 					}
 				});
 			}); 
@@ -337,8 +338,12 @@ function sendDealFormData(formContainer, url){
 function initDealForm(formContainer, url, id){
 	setFormData(formContainer, url, {id:id}, function(deal){
 		if (deal.status != 'ON_APPROVE'){
-			$("#approve").hide();
-			$('#reject').hide();
+			$("#approve-button").attr("style", "display:none");
+			$('#reject-button').attr("style", "display:none");
+			$('#transport-button').attr("style", "display:none");
+		}
+		if (!$("#seller-foto")[0].value){
+			$("#seller-foto").attr("style", "display:none");
 		}
 		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initDealMap");
 	})

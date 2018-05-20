@@ -5,10 +5,10 @@
 	<div style="display: table-cell; width: 40%" id="form-container">
 		<div class="form-message"></div>
 		<form class="form" action="#" method="post" name="form">
-			<input type="hidden" name="sellerAddrress.latitude" class="seller_latitude">
-			<input type="hidden" name="sellerAddrress.longitude" class="seller_longitude">
-			<input type="hidden" name="buyerAddrress.latitude" class="buyer_lalitude">
-			<input type="hidden" name="buyerAddrress.longitude" class="buyer_longitude">
+			<input type="hidden" name="sellerAddrress.latitude" id="seller_latitude">
+			<input type="hidden" name="sellerAddrress.longitude" id="seller_longitude">
+			<input type="hidden" name="buyerAddrress.latitude" id="buyer_lalitude">
+			<input type="hidden" name="buyerAddrress.longitude" id="buyer_longitude">
 			<input type="hidden" name="id">
 		    <ul>
 		        <li>
@@ -17,7 +17,7 @@
 		            <label for="productName">${label.deal.productName}</label>
 		            <input type="text" name="productName" disabled/>
 		        </li>
-		        <li>
+		        <li id="seller-foto">
 		            <label for="foto">${label.deal.foto}</label>
 		            <input type="text" name="sellerFoto" disabled/>
 		        </li>
@@ -67,7 +67,7 @@
 		        		${label.deal.approve }
 		        	</button>
 		        	
-		        	<button class="submit" type="submit" id="approve-button"
+		        	<button class="submit" type="submit" id="transport-button"
 		        		onclick="
 		        				return sendDealFormData(
 		        						$('#form-container > form'), 

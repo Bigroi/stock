@@ -1,44 +1,38 @@
 package com.bigroi.stock.controller.resource;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.controller.rendering.BaseRenderingController;
 import com.bigroi.stock.json.ResultBean;
-import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/l10n/json")
 public class LocalizationResosurseController extends BaseRenderingController{
 
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/Labels.spr")
 	@ResponseBody
-	public String Labels(@RequestParam String json) {
-		Map<String, Object> result = new HashMap<>();
+	public String Labels() {
+		Map<String, String> result = new HashMap<>();
 		Map<String, Object> labels = createModelAndView("").getModel();
-		for (Object key : new Gson().fromJson(json, List.class)) {
-			String[] keyPath = key.toString().split("\\.");
-			Object map = labels;
-			for (String keyPathElement : keyPath){
-				map = ((Map<String, Object>)map).get(keyPathElement);
-				if(map == null){
-					break;
-				}
-			}
-			if(map != null){
-				result.put(key.toString(), map);
-			}else{
-				result.put(key.toString(), key.toString());
-			}
-		}
+		
+		addValues(labels, null, result);
 		return new ResultBean(1, result, "").toString();
 	}
 
+	@SuppressWarnings("unchecked")
+	private void addValues(Object value, String key, Map<String, String> result){
+		if (value instanceof Map){
+			for (String subKey : ((Map<String, ?>) value).keySet()){
+				String newKey = (key == null? "" : key +".") + subKey;
+				addValues(((Map<?,?>) value).get(subKey), newKey, result);
+			}
+		} else {
+			result.put(key, value.toString());
+		}
+	}
 }
