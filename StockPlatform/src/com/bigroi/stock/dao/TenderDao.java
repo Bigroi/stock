@@ -29,5 +29,7 @@ public interface TenderDao {
 	List<Tender> getActive() throws DaoException;
 
 	List<Tender> getActiveByProductId(long productId) throws DaoException;
+	
+	void closeTeners() throws DaoException;
 
 }

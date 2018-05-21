@@ -65,14 +65,16 @@ public class LotDaoImpl implements LotDao {
 			+ " FROM LOT L "
 			+ " JOIN PRODUCT P "
 			+ " ON L.PRODUCT_ID = P.ID "
-			+ " WHERE L.PRODUCT_ID = ? AND L.`STATUS` = '" + BidStatus.ACTIVE.name() + "'";
+			+ " WHERE L.PRODUCT_ID = ? "
+			+ " AND L.`STATUS` = '" + BidStatus.ACTIVE.name() + "'";
 	
 	private static final String GET_LOTS_BY_COMPANY = 
 			"SELECT " + LotRowMapper.ALL_COLUMNS
 			+ " FROM LOT L "
 			+ " JOIN PRODUCT P "
 			+ " ON L.PRODUCT_ID = P.ID "
-			+ " WHERE L.COMPANY_ID = ?";
+			+ " WHERE L.COMPANY_ID = ?"
+			+ " AND MIN_VOLUME > MAX_VOLUME";
 	
 	private static final String SET_STATUS_BY_COMPANY =
 			  "UPDATE LOT SET "
@@ -93,6 +95,11 @@ public class LotDaoImpl implements LotDao {
 			"DELETE "
 			+ " FROM LOT "
 			+ " WHERE ID = ? AND COMPANY_ID = ?";
+	
+	private static final String CLOSE_LOTS = 
+			"DELETE "
+			+ " FROM LOT "
+			+ " WHERE MIN_VOLUME > MAX_VOLUME";
 	
 	private DataSource datasource;
 
@@ -204,6 +211,12 @@ public class LotDaoImpl implements LotDao {
 	public void delete(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(DELETE_BY_ID_AND_COMPANY, id, companyId);
+	}
+	
+	@Override
+	public void closeLots() throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		template.update(CLOSE_LOTS);
 	}
 
 	@Override

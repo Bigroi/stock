@@ -29,4 +29,6 @@ public interface LotDao {
 	List<Lot> getActive() throws DaoException;
 
 	List<Lot> getActiveByProductId(long productId) throws DaoException;
+	
+	void closeLots() throws DaoException;
 }

@@ -49,7 +49,8 @@ public class TenderDaoImpl implements TenderDao{
 			+ " FROM TENDER T "
 			+ " JOIN PRODUCT P "
 			+ " ON T.PRODUCT_ID = P.ID"
-			+ " WHERE T.COMPANY_ID = ? ";
+			+ " WHERE T.COMPANY_ID = ? "
+			+ " AND MIN_VOLUME > MAX_VOLUME";
 	
 	private static final String GET_TENDER_BY_ID = 
 			" SELECT " + TenderRowMapper.ALL_COLUMNS
@@ -72,7 +73,8 @@ public class TenderDaoImpl implements TenderDao{
 			+ " FROM TENDER T "
 			+ " JOIN PRODUCT P "
 			+ " ON T.PRODUCT_ID = P.ID"
-			+ " WHERE T.PRODUCT_ID = ? AND T.`STATUS` = '" + BidStatus.ACTIVE + "'";
+			+ " WHERE T.PRODUCT_ID = ? "
+			+ " AND T.`STATUS` = '" + BidStatus.ACTIVE + "'";
 	
 	private static final String UPDATE_STATUS_BY_COMPANY_ID =
 			  " UPDATE TENDER "
@@ -93,6 +95,11 @@ public class TenderDaoImpl implements TenderDao{
 			  " DELETE "
 			+ " FROM TENDER "
 			+ " WHERE ID = ? AND COMPANY_ID = ? ";
+	
+	private static final String CLOSE_TENDERS = 
+			"DELETE "
+			+ " FROM TENDER "
+			+ " WHERE MIN_VOLUME > MAX_VOLUME";
 			
 			
 	private DataSource datasource;
@@ -201,6 +208,12 @@ public class TenderDaoImpl implements TenderDao{
 	public void delete(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(DELETE_BY_ID_AND_COMPANY, id, companyId);
+	}
+	
+	@Override
+	public void closeTeners() throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		template.update(CLOSE_TENDERS);
 	}
 
 	@Override

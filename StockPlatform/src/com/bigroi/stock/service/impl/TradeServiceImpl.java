@@ -101,11 +101,11 @@ public class TradeServiceImpl implements TradeService{
 			sendConfimationMails(deal);
 			deals.add(deal);
 			
-			if (partner.getMaxVolume() == 0 || partner.getMaxVolume() < partner.getMinVolume()){
+			if ( partner.getMaxVolume() < partner.getMinVolume()){
 				partner.removeFromPosiblePartners();
 			}
 			
-			if (bid.getMaxVolume() == 0 || bid.getMaxVolume() < bid.getMinVolume()){
+			if ( bid.getMaxVolume() < bid.getMinVolume()){
 				bid.removeFromPosiblePartners();
 			}
 		}

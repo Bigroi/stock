@@ -105,6 +105,8 @@ public class MarketServiceImpl implements MarketService {
 				returnVolumeToBids(deal);
 			}
 			dealDao.deleteOnApprove();
+			lotDao.closeLots();
+			tenderDao.closeTeners();
 		} catch (DaoException | MessageException e) {
 			throw new ServiceException(e);
 		}
