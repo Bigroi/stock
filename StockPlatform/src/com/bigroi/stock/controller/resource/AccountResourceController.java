@@ -69,6 +69,7 @@ public class AccountResourceController extends BaseResourseController {
 		if (!user.getPassword().equals(user.getPasswordRepeat())) {
 			return new ResultBean(-1, "registration.password.error").toString();
 		}
+		user.setUsername(user.getUsername().toLowerCase());
 		
 		ServiceFactory.getUserService().addUser(user);
 		return new ResultBean(1, user, "registration.success").toString();

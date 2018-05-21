@@ -3,18 +3,25 @@ package com.bigroi.stock.bean.common;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.Product;
+
 public interface Bid {
 
-	public static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
+	static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
 	
-	public int getMaxVolume();
+	int getMaxVolume();
 
-	public void setMaxVolume(int volume);
+	void setMaxVolume(int volume);
 	
-	public int getMinVolume();
+	int getMinVolume();
 	
 	Date getCreationDate();
 	
-	public double getPrice();
+	double getPrice();
+	
+	Address getAddress();
+	
+	Product getProduct();
 
 }

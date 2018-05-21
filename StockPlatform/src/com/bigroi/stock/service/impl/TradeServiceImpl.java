@@ -61,7 +61,7 @@ public class TradeServiceImpl implements TradeService{
 		try{
 			List<Product> list = productDao.getAllActiveProducts();
 			for (Product product : list){
-				productTrade(product.getId(), product);
+				productTrade(product);
 			}
 			lotDao.update(lotsToUpdate);
 			tenderDao.update(tendersToUpdate);
@@ -71,11 +71,14 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 	
-	private void productTrade(long productId, Product product) throws ServiceException{
+	private void productTrade(Product product) throws ServiceException{
 		try{
 			List<TradeLot> tradeLots = new ArrayList<>();
 			List<TradeTender> tradeTenders = new ArrayList<>();
-			dealDao.getPosibleDeals(tradeLots, tradeTenders, productId);
+			dealDao.getPosibleDeals(tradeLots, tradeTenders, product.getId());
+			
+			tradeLots.forEach(l -> l.setProduct(product));
+			tradeTenders.forEach(t -> t.setProduct(product));
 			
 			while(tradeTenders.size() > 0 && tradeLots.size() > 0){
 				
@@ -146,8 +149,8 @@ public class TradeServiceImpl implements TradeService{
 	
 	private int getVolume(TradeBid bid, TradeBid partner) {
 		int volume = Math.min(bid.getMaxVolume(), partner.getMaxVolume());
-		bid.setMaxVolume(bid.getMaxVolume() - volume);
-		partner.setMaxVolume(partner.getMaxVolume() - volume);
+		bid.setMaxVolumeExt(bid.getMaxVolume() - volume);
+		partner.setMaxVolumeExt(partner.getMaxVolume() - volume);
 		return volume;
 	}
 
@@ -188,20 +191,5 @@ public class TradeServiceImpl implements TradeService{
 				tradeLots.remove(lot);
 			}
 		}
-	}
-	
-	public double distance(double lat1, double lat2, double lon1, double lon2) {
-
-	    final int R = 6371; // Radius of the earth
-
-	    double latDistance = Math.toRadians(lat2 - lat1);
-	    double lonDistance = Math.toRadians(lon2 - lon1);
-	    double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-	            + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
-	            * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-	    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-	    double distance = R * c * 1000; // convert to meters
-
-	    return distance;
 	}
 }
