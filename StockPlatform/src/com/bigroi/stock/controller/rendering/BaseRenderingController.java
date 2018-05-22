@@ -36,7 +36,8 @@ public class BaseRenderingController {
 			"table.properties",
 			"invite.properties",
 			"message.properties",
-			"resetPassw.properties"
+			"resetPassw.properties",
+			"address.properties"
 			};
 	
 	public static Map<String, Object> defaultLabels = new HashMap<>();

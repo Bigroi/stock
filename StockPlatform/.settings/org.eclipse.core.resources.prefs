@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//SQL/stock.sql=UTF-8
 encoding//labels_by/account.properties=UTF-8
+encoding//labels_by/address.properties=UTF-8
 encoding//labels_by/button.properties=UTF-8
 encoding//labels_by/companies.properties=UTF-8
 encoding//labels_by/deal.properties=UTF-8
@@ -24,6 +25,7 @@ encoding//labels_by/tender.properties=UTF-8
 encoding//labels_by/tradeOffers.properties=UTF-8
 encoding//labels_by/user.properties=UTF-8
 encoding//labels_en/account.properties=UTF-8
+encoding//labels_en/address.properties=UTF-8
 encoding//labels_en/build.properties=UTF-8
 encoding//labels_en/button.properties=UTF-8
 encoding//labels_en/companies.properties=UTF-8
