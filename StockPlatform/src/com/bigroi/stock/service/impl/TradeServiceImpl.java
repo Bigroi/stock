@@ -130,6 +130,7 @@ public class TradeServiceImpl implements TradeService{
 
 	private Deal createDeal(TradeBid bid, TradeBid partner) {
 		int volume = getVolume(bid, partner);
+		double maxTransportPrice = TradeBid.getDistancePrice(bid, partner);
 		
 		Lot lot;
 		Tender tender;
@@ -140,7 +141,7 @@ public class TradeServiceImpl implements TradeService{
 			lot = (Lot) partner;
 			tender = (Tender) bid;
 		}
-		Deal deal = new Deal(lot, tender, volume);
+		Deal deal = new Deal(lot, tender, volume, maxTransportPrice);
 		
 		lotsToUpdate.add(lot);
 		tendersToUpdate.add(tender);

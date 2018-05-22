@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `black_list` (
   KEY `FK_blacklist_lot` (`lot_Id`),
   CONSTRAINT `FK_black_list_lot` FOREIGN KEY (`lot_Id`) REFERENCES `lot` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_black_list_tender` FOREIGN KEY (`tender_Id`) REFERENCES `tender` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table stock.black_list: ~0 rows (approximately)
 DELETE FROM `black_list`;
@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `company` (
   `reg_number` varchar(100) CHARACTER SET utf8 NOT NULL,
   `status` varchar(50) CHARACTER SET utf8 NOT NULL,
   `address_id` bigint(20) NOT NULL,
+  `type` varchar(50) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_company_address` (`address_id`),
   CONSTRAINT `FK_company_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`)
@@ -75,9 +76,9 @@ CREATE TABLE IF NOT EXISTS `company` (
 -- Dumping data for table stock.company: ~2 rows (approximately)
 DELETE FROM `company`;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` (`id`, `name`, `phone`, `reg_number`, `status`, `address_id`) VALUES
-	(21, 'Admin', '+375298202267', '123', 'VERIFIED', 1),
-	(23, 'дорд', '+375298202264', '654654', 'VERIFIED', 3);
+INSERT INTO `company` (`id`, `name`, `phone`, `reg_number`, `status`, `address_id`, `type`) VALUES
+	(21, 'Admin', '+375298202267', '123', 'VERIFIED', 1, '\'TRADER\''),
+	(23, 'дорд', '+375298202264', '654654', 'VERIFIED', 3, '\'TRADER\'');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 
 -- Dumping structure for table stock.deal
@@ -90,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `deal` (
   `buyer_approved` char(1) CHARACTER SET utf8 DEFAULT NULL,
   `seller_approved` char(1) CHARACTER SET utf8 DEFAULT NULL,
   `price` decimal(10,2) NOT NULL,
+  `max_transport_price` decimal(10,2) NOT NULL,
   `volume` int(11) NOT NULL,
   `product_id` bigint(20) NOT NULL,
   `seller_foto` varchar(500) COLLATE utf8_bin DEFAULT NULL,
@@ -108,14 +110,17 @@ CREATE TABLE IF NOT EXISTS `deal` (
   CONSTRAINT `FK_deal_lot` FOREIGN KEY (`lot_id`) REFERENCES `lot` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_deal_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   CONSTRAINT `FK_deal_tender` FOREIGN KEY (`tender_id`) REFERENCES `tender` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.deal: ~0 rows (approximately)
+-- Dumping data for table stock.deal: ~5 rows (approximately)
 DELETE FROM `deal`;
 /*!40000 ALTER TABLE `deal` DISABLE KEYS */;
-INSERT INTO `deal` (`id`, `lot_id`, `tender_id`, `time`, `buyer_approved`, `seller_approved`, `price`, `volume`, `product_id`, `seller_foto`, `seller_address_id`, `buyer_address_id`, `seller_description`, `buyer_description`) VALUES
-	(14, 22, 20, '2018-05-19 15:06:10', 'N', NULL, 10.50, 167, 135, NULL, 3, 1, NULL, 'test'),
-	(15, 22, 20, '2018-05-19 15:07:04', 'Y', 'Y', 10.50, 334, 135, NULL, 3, 1, NULL, 'test');
+INSERT INTO `deal` (`id`, `lot_id`, `tender_id`, `time`, `buyer_approved`, `seller_approved`, `price`, `max_transport_price`, `volume`, `product_id`, `seller_foto`, `seller_address_id`, `buyer_address_id`, `seller_description`, `buyer_description`) VALUES
+	(14, 22, 20, '2018-05-19 15:06:10', 'N', NULL, 10.50, 0.00, 167, 135, NULL, 3, 1, NULL, 'test'),
+	(15, 22, 20, '2018-05-19 15:07:04', 'Y', 'Y', 10.50, 0.00, 334, 135, NULL, 3, 1, NULL, 'test'),
+	(18, 22, 20, '2018-05-20 09:46:01', 'N', NULL, 10.50, 0.00, 100, 135, NULL, 3, 1, 'test', 'ljhkjhk'),
+	(32, 22, 21, '2018-05-22 00:29:35', NULL, NULL, 5.50, 0.00, 100, 135, NULL, 3, 1, 'test', 'ljhkjhk'),
+	(33, 23, 21, '2018-05-22 00:29:37', NULL, NULL, 5.38, 0.00, 100, 135, NULL, 3, 1, 'test', 'ljhkjhk');
 /*!40000 ALTER TABLE `deal` ENABLE KEYS */;
 
 -- Dumping structure for table stock.email
@@ -126,15 +131,11 @@ CREATE TABLE IF NOT EXISTS `email` (
   `subject` varchar(200) CHARACTER SET utf8 NOT NULL,
   `body` varchar(5000) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.email: ~2 rows (approximately)
+-- Dumping data for table stock.email: ~0 rows (approximately)
 DELETE FROM `email`;
 /*!40000 ALTER TABLE `email` DISABLE KEYS */;
-INSERT INTO `email` (`id`, `recipient`, `subject`, `body`) VALUES
-	(88, 'admin@stock.by', 'Здравствуйте,', 'Пожалуйста, перейдите по ссылке для успешной смены пароля http://localhost:8080/account/ResetPassword.spr?code=ALJOL2OYI39TBv9bHlcfoqzius5ij7ojeRARuZqpLMSRnrLmtd&email=admin@stock.by.\r\n\r\n\r\nВаш Трейдер!'),
-	(89, 'admin@stock.by', 'Ваш пароль сброшен.', 'Здравствуйте,\r\n\r\nПароль пользователя admin@stock.by был изменён.\r\n\r\nНовый пароль: tEr8UUly'),
-	(90, 'admin@stock.by', 'Ваш пароль сброшен.', 'Здравствуйте,\r\n\r\nПароль пользователя admin@stock.by был изменён.\r\n\r\nНовый пароль: bDyTiMd8');
 /*!40000 ALTER TABLE `email` ENABLE KEYS */;
 
 -- Dumping structure for table stock.generated_key
@@ -146,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `generated_key` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table stock.generated_key: ~0 rows (approximately)
+-- Dumping data for table stock.generated_key: ~3 rows (approximately)
 DELETE FROM `generated_key`;
 /*!40000 ALTER TABLE `generated_key` DISABLE KEYS */;
 INSERT INTO `generated_key` (`id`, `generated_key`, `expiration_time`) VALUES
@@ -176,13 +177,14 @@ CREATE TABLE IF NOT EXISTS `lot` (
   CONSTRAINT `FK_lot_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`),
   CONSTRAINT `FK_lot_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_lot_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.lot: ~1 rows (approximately)
+-- Dumping data for table stock.lot: ~2 rows (approximately)
 DELETE FROM `lot`;
 /*!40000 ALTER TABLE `lot` DISABLE KEYS */;
 INSERT INTO `lot` (`id`, `description`, `product_id`, `min_price`, `min_volume`, `max_volume`, `company_id`, `status`, `creation_date`, `exparation_date`, `foto`, `address_id`) VALUES
-	(22, 'test', 135, 1.00, 1, 100, 23, 'ACTIVE', '2018-05-19', '2019-05-19', NULL, 3);
+	(22, 'test', 135, 1.00, 1, 0, 23, 'ACTIVE', '2018-05-19', '2019-05-19', NULL, 3),
+	(23, 'test', 135, 0.75, 1, 0, 23, 'ACTIVE', '2018-05-19', '2019-05-19', NULL, 3);
 /*!40000 ALTER TABLE `lot` ENABLE KEYS */;
 
 -- Dumping structure for table stock.product
@@ -224,14 +226,34 @@ CREATE TABLE IF NOT EXISTS `tender` (
   CONSTRAINT `FK_tender_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`),
   CONSTRAINT `FK_tender_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_tender_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.tender: ~1 rows (approximately)
+-- Dumping data for table stock.tender: ~2 rows (approximately)
 DELETE FROM `tender`;
 /*!40000 ALTER TABLE `tender` DISABLE KEYS */;
 INSERT INTO `tender` (`id`, `description`, `product_id`, `max_price`, `min_volume`, `max_volume`, `company_id`, `status`, `creation_date`, `exparation_date`, `address_id`) VALUES
-	(20, 'ljhkjhk', 135, 20.00, 1, 4555, 21, 'ACTIVE', '2016-04-17', '2019-05-17', 1);
+	(20, 'ljhkjhk', 135, 20.00, 1, 7000, 21, 'ACTIVE', '2016-04-17', '2019-05-17', 1),
+	(21, 'ljhkjhk', 135, 10.00, 1, 6800, 21, 'ACTIVE', '2016-04-17', '2019-05-17', 1);
 /*!40000 ALTER TABLE `tender` ENABLE KEYS */;
+
+-- Dumping structure for table stock.transport_proposition
+DROP TABLE IF EXISTS `transport_proposition`;
+CREATE TABLE IF NOT EXISTS `transport_proposition` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `deal_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `price` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_transport_proposition_deal` (`deal_id`),
+  KEY `FK_transport_proposition_company` (`company_id`),
+  CONSTRAINT `FK_transport_proposition_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`),
+  CONSTRAINT `FK_transport_proposition_deal` FOREIGN KEY (`deal_id`) REFERENCES `deal` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table stock.transport_proposition: ~0 rows (approximately)
+DELETE FROM `transport_proposition`;
+/*!40000 ALTER TABLE `transport_proposition` DISABLE KEYS */;
+/*!40000 ALTER TABLE `transport_proposition` ENABLE KEYS */;
 
 -- Dumping structure for table stock.user
 DROP TABLE IF EXISTS `user`;
@@ -254,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `password`, `company_id`, `key_id`, `login_count`, `last_login`) VALUES
-	(19, 'admin@stock.by', '1', 21, NULL, 55, '2018-05-19 15:47:26'),
+	(19, 'admin@stock.by', '1', 21, NULL, 62, '2018-05-22 00:17:59'),
 	(20, 'css@tenant.ch', '12345677', 23, NULL, 1, '2018-05-17 20:34:36');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 

@@ -27,9 +27,9 @@ public class DealDaoImpl implements DealDao {
 	
 	private static final String ADD = 
 			  " INSERT INTO DEAL(LOT_ID, TENDER_ID, TIME, BUYER_APPROVED, SELLER_APPROVED, "
-			+ " PRICE, VOLUME, PRODUCT_ID, SELLER_FOTO, "
+			+ " PRICE, VOLUME, PRODUCT_ID, SELLER_FOTO, MAX_TRANSPORT_PRICE "
 			+ " SELLER_ADDRESS_ID, BUYER_ADDRESS_ID, SELLER_DESCRIPTION, BUYER_DESCRIPTION) "
-			+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 	
 	private static final String GET_POSIBLE_BIDS = 
 			  "SELECT "
@@ -230,10 +230,11 @@ public class DealDaoImpl implements DealDao {
 						ps.setInt(7, deal.getVolume());
 						ps.setLong(8, deal.getProductId());
 						ps.setString(9, deal.getSellerFoto());
-						ps.setLong(10, deal.getSellerAddressId());
-						ps.setLong(11, deal.getBuyerAddressId());
-						ps.setString(12, deal.getSellerDescription());
-						ps.setString(13, deal.getBuyerDescription());
+						ps.setDouble(10, deal.getMaxTransportPrice());
+						ps.setLong(11, deal.getSellerAddressId());
+						ps.setLong(12, deal.getBuyerAddressId());
+						ps.setString(13, deal.getSellerDescription());
+						ps.setString(14, deal.getBuyerDescription());
 						
 					}
 		});
@@ -262,7 +263,8 @@ public class DealDaoImpl implements DealDao {
 		private static final String ALL_COLUMNS = 
 				" D.ID, D.LOT_ID, D.TENDER_ID, D.TIME, D.BUYER_APPROVED, D.SELLER_APPROVED, "
 				+ " D.PRICE, D.VOLUME, D.PRODUCT_ID, D.SELLER_FOTO, "
-				+ " D.SELLER_ADDRESS_ID, D.BUYER_ADDRESS_ID, D.SELLER_DESCRIPTION, D.BUYER_DESCRIPTION, P.NAME PRODUCT_NAME, "
+				+ " D.SELLER_ADDRESS_ID, D.BUYER_ADDRESS_ID, D.SELLER_DESCRIPTION, D.BUYER_DESCRIPTION, "
+				+ " P.NAME PRODUCT_NAME, D.MAX_TRANSPORT_PRICE "
 				+ " SA.COMPANY_ID SELLER_COMPANY_ID, SA.LATITUDE SELLER_LATITUDE, SA.LONGITUDE SELLER_LONGITUDE, "
 				+ " SA.CITY SELLER_CITY, SA.COUNTRY SELLER_COUNTRY, SA.ADDRESS SELLER_ADDRESS, "
 				+ " BA.COMPANY_ID BUYER_COMPANY_ID, BA.LATITUDE BUYER_LATITUDE, BA.LONGITUDE BUYER_LONGITUDE, "

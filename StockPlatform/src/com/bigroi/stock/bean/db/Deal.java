@@ -17,6 +17,7 @@ public class Deal {
 	private double price;
 	private int volume;
 	private String sellerFoto;
+	private double maxTransportPrice;
 	
 	private String buyerApproved;
 	private String sellerApproved;
@@ -33,7 +34,7 @@ public class Deal {
 	private Address buyerAddress;
 	private Address sellerAddress;
 	
-	public Deal(Lot lot, Tender tender, int volume) {
+	public Deal(Lot lot, Tender tender, int volume, double maxTransportPrice) {
 		this.lotId = lot.getId();
 		this.buyerAddress = tender.getAddress();
 		this.buyerAddressId = tender.getAddressId();
@@ -49,10 +50,18 @@ public class Deal {
 		this.tenderId = tender.getId();
 		this.time = new Date();
 		this.volume = volume;
-		
+		this.maxTransportPrice = maxTransportPrice;
 	}
 	
 	public Deal() {
+	}
+	
+	public double getMaxTransportPrice() {
+		return maxTransportPrice;
+	}
+	
+	public void setMaxTransportPrice(double maxTransportPrice) {
+		this.maxTransportPrice = maxTransportPrice;
 	}
 	
 	public Product getProduct() {

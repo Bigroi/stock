@@ -20,7 +20,18 @@ public class Company implements Serializable{
 	
 	private String email;
 	
+	private String type;
+	
 	private CompanyStatus status;
+	
+	
+	public String getType() {
+		return type;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
 	
 	public long getId() {
 		return id;

@@ -26,7 +26,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	private static final String GET_COMPANY_BY_ID = 
 			  " SELECT C.ID, C.NAME, C.PHONE, C.REG_NUMBER,"
 			+ " C.STATUS, A.CITY, A.COUNTRY, A.ADDRESS, A.ID ADDRESS_ID, "
-			+ " A.LONGITUDE, A.LATITUDE, A.COMPANY_ID, U.USERNAME "
+			+ " A.LONGITUDE, A.LATITUDE, A.COMPANY_ID, U.USERNAME, C.TYPE "
 			+ " FROM COMPANY C "
 			+ " JOIN ADDRESS A "
 			+ " ON C.ADDRESS_ID = A.ID "
@@ -36,7 +36,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	
 	private static final String ADD_COMPANY = 
 			 "INSERT INTO COMPANY "
-			+ " (NAME, PHONE, REG_NUMBER, STATUS ) " 
+			+ " (NAME, PHONE, REG_NUMBER, STATUS, TYPE) " 
 			+ " VALUES(?, ?, ?, ?)";
 
 	private static final String UPDATE_COMPANY_BY_ID = 
@@ -46,7 +46,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	
 	private static final String GET_ALL_COMPANIES = 
 			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS "
-			+ " FROM COMPANY";
+			+ " FROM COMPANY ";
 	
 	private static final String SET_STATUS_BY_ID = 
 			"UPDATE COMPANY SET "
@@ -90,6 +90,7 @@ public class CompanyDaoImpl implements CompanyDao {
 				ps.setString(2, company.getPhone());
 				ps.setString(3, company.getRegNumber());
 				ps.setString(4, company.getStatus().name().toUpperCase());
+				ps.setString(5, "TRADER");
 				return ps;
 			}
 		}, keyHolder);
@@ -130,6 +131,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			company.setRegNumber(rs.getString("REG_NUMBER"));
 			company.setStatus(CompanyStatus.valueOf(rs.getString("STATUS")));
 			company.setEmail(rs.getString("USERNAME"));
+			company.setEmail(rs.getString("TYPE"));
 
 			Address address = new Address();
 			address.setAddress(rs.getString("ADDRESS"));
