@@ -262,9 +262,9 @@ public class DealDaoImpl implements DealDao {
 
 		private static final String ALL_COLUMNS = 
 				" D.ID, D.LOT_ID, D.TENDER_ID, D.TIME, D.BUYER_APPROVED, D.SELLER_APPROVED, "
-				+ " D.PRICE, D.VOLUME, D.PRODUCT_ID, D.SELLER_FOTO, "
+				+ " D.PRICE, D.MAX_TRANSPORT_PRICE, D.VOLUME, D.PRODUCT_ID, D.SELLER_FOTO, "
 				+ " D.SELLER_ADDRESS_ID, D.BUYER_ADDRESS_ID, D.SELLER_DESCRIPTION, D.BUYER_DESCRIPTION, "
-				+ " P.NAME PRODUCT_NAME, D.MAX_TRANSPORT_PRICE "
+				+ " P.NAME PRODUCT_NAME,  "
 				+ " SA.COMPANY_ID SELLER_COMPANY_ID, SA.LATITUDE SELLER_LATITUDE, SA.LONGITUDE SELLER_LONGITUDE, "
 				+ " SA.CITY SELLER_CITY, SA.COUNTRY SELLER_COUNTRY, SA.ADDRESS SELLER_ADDRESS, "
 				+ " BA.COMPANY_ID BUYER_COMPANY_ID, BA.LATITUDE BUYER_LATITUDE, BA.LONGITUDE BUYER_LONGITUDE, "
@@ -282,6 +282,7 @@ public class DealDaoImpl implements DealDao {
 			deal.setBuyerApproved(rs.getString("BUYER_APPROVED"));
 			deal.setSellerApproved(rs.getString("SELLER_APPROVED"));
 			deal.setPrice(rs.getDouble("PRICE"));
+			deal.setMaxTransportPrice(rs.getDouble("MAX_TRANSPORT_PRICE"));
 			deal.setVolume(rs.getInt("VOLUME"));
 			deal.setProductId(rs.getLong("PRODUCT_ID"));
 			deal.setSellerFoto(rs.getString("SELLER_FOTO"));

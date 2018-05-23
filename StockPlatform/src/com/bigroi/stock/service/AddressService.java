@@ -8,4 +8,6 @@ public interface AddressService {
 
 	List<Address> getCompanyAddresses(long companyId) throws ServiceException;
 
+	Address getAddressById(long id) throws ServiceException;
+
 }

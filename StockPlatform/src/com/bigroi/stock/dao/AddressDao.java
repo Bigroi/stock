@@ -13,4 +13,6 @@ public interface AddressDao {
 	public void addAddress(Address address) throws DaoException;
 		
 	public boolean deleteAddress(long id, long companyId) throws DaoException;
+
+	public Address getAddressById(long id) throws DaoException;
 }

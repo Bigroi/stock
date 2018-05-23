@@ -1,8 +1,5 @@
 package com.bigroi.stock.controller.resource;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,13 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.common.Role;
-import com.bigroi.stock.bean.db.Address;
 import com.bigroi.stock.bean.db.StockUser;
-import com.bigroi.stock.bean.ui.AddressForUI;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
-import com.bigroi.stock.json.TableException;
-import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
@@ -88,16 +81,5 @@ public class AccountResourceController extends BaseResourseController {
 		StockUser user = GsonUtil.getGson().fromJson(json, StockUser.class);
 		ServiceFactory.getUserService().sendLinkResetPassword(user.getUsername());
 		return new ResultBean(1, user, "user.password.reset.success").toString();
-	}
-	
-	@RequestMapping(value = "/AddressesList.spr")
-	@ResponseBody
-	public String getAddresses() throws ServiceException, TableException{
-		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		List<Address> listAddresses = ServiceFactory.getAddressService().getCompanyAddresses(user.getCompanyId());
-		List<AddressForUI> addressesForUI = listAddresses.stream().map(AddressForUI::new).collect(Collectors.toList());
-		TableResponse<AddressForUI> table = new TableResponse<>(AddressForUI.class, addressesForUI);
-		return new ResultBean(1, table, null).toString();
-		
 	}
 }

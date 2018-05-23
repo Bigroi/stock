@@ -2,6 +2,7 @@ package com.bigroi.stock.bean.ui;
 
 import com.bigroi.stock.bean.db.Address;
 import com.bigroi.stock.json.Column;
+import com.bigroi.stock.json.Edit;
 import com.bigroi.stock.json.Id;
 
 public class AddressForUI {
@@ -17,6 +18,10 @@ public class AddressForUI {
 
 	@Column(value = "label.address.address")
 	private String address;
+	
+	@Column("")
+	@Edit(details="/account/EditAddress.spr", remove="", edit="")
+	private String edit = "NNY";
 	
 	//private double latitude;
 	//private double longitude;

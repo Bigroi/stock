@@ -45,10 +45,4 @@ public class AccountRenderingController extends BaseRenderingController {
 		}
 		return modelAndView;
 	}
-	
-	@RequestMapping("/ToAddress.spr")
-	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public ModelAndView toAddress(){
-		return new ModelAndView("address");
-	}
 }

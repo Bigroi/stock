@@ -23,4 +23,13 @@ public class AddressServiceImpl implements AddressService{
 			throw new ServiceException(e);
 		}
 	}
+
+	@Override
+	public Address getAddressById(long id) throws ServiceException {
+		try{
+			return addressDao.getAddressById(id);
+		}catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
 }

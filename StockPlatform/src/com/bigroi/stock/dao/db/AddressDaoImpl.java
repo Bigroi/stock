@@ -32,6 +32,9 @@ public class AddressDaoImpl implements AddressDao{
 			"INSERT INTO ADDRESS (CITY, COUNTRY, ADDRESS, LATITUDE, LONGITUDE, COMPANY_ID)"
 			+ " VALUES (?, ?, ?, ?, ? , ?) ";
 	
+	private static final String GET_ADDRESSES_BY_ID = "SELECT ID, CITY, COUNTRY, "
+			+ " ADDRESS, LATITUDE, LONGITUDE FROM ADDRESS WHERE ID = ?";
+	
 	private DataSource datasource;
 
 	public DataSource getDatasource() {
@@ -77,5 +80,17 @@ public class AddressDaoImpl implements AddressDao{
 	public boolean deleteAddress(long id, long companyId) throws DaoException{
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(DELETE_ADDRESS_BY_ID_AND_COMPANY_ID, companyId, id) == 1;
+	}
+
+	@Override
+	public Address getAddressById(long id) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<Address> listAddresses = template.query(GET_ADDRESSES_BY_ID, 
+				new BeanPropertyRowMapper<Address>(Address.class),id);
+		if(listAddresses.size() == 0){
+			return null;
+		}else{
+			return listAddresses.get(0);
+		}
 	}
 }

@@ -52,7 +52,7 @@
 			<label for="addressId">${label.lot.address}</label>
 			<select name="addressId">
 				<c:forEach var="address" items="${listOfAddresses}">
-					<option value="${address.id}">${address}</option>
+					<option value="${address.id}">${address.country}, ${address.city}, ${address.address}</option>
 				</c:forEach>
 			</select>
 		</li>
