@@ -41,10 +41,25 @@ public class AddressResourceController extends BaseResourseController {
 					throws ServiceException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Address address = ServiceFactory.getAddressService().getAddressById(id);
-		if (user == null){
-			return new ResultBean(-1, "label.address.not_authorized").toString();//add to label value
+		if (user.getCompanyId() != user.getCompanyId()){
+			return new ResultBean(-1, "label.address.not_authorized").toString();
 		} else {
 			return new ResultBean(1, new AddressForUI(address), "").toString();
 		}
 	}
+	
+	@RequestMapping(value = "/Save.spr")
+	@ResponseBody
+	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
+	public String save(@RequestParam("json") String jsonAddress){
+		return null;
+	}
+
+	@RequestMapping(value = "/Delete.spr")
+	@ResponseBody
+	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
+	public String delete(@RequestParam("id") long id) throws ServiceException {
+		return null;
+	}
+	
 }

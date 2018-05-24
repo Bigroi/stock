@@ -1,36 +1,54 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <h2 style="color: red; size: 15px">the page under construction</h2>
 
 <div style="display: table; width: 100%" id="deal-style-mob">
 	<div style="display: table-cell; width: 40%" id="form-container">
 		<div class="form-message"></div>
-		
+
 		<form class="form" action="#" method="post" name="form">
-		
+
 			<input type="hidden" name="company.address.latitude" class="latitude">
-			<input type="hidden" name="company.address.longitude"class="longitude"> 
-			<input type="hidden" name="id">
+			<input type="hidden" name="company.address.longitude"
+				class="longitude"> <input type="hidden" name="id">
 
 			<ul>
-			    <li>
-		        </li>
-				<li><label for="country">${label.address.country}</label> 
-				<input type="text" name="country" <%-- value="${listOfAddress.country }"--%> /></li>
-			</ul>
+				<li>
+				</li>
+				<li>
+				     <label for="country">${label.address.country}</label> 
+				     <input type="text" name="country"/>
+				 </li>
+				<li>
+				    <label for="city">${label.address.city}</label>
+				    <input type="text" name="city"/>
+				</li>
+				<li>
+				    <label for="address">${label.address.address}</label> 
+				    <input type="text" name="address"/></li>
+				<li>
+					<button class="submit" type="submit" id="approve-button"
+						onclick="
+		        				return sendAddressFormData(
+		        						$('#form-container > form'), 
+			        					'/account/json/Save.spr'
+			        					); ">
+						${label.button.modify }</button>
 
-			<ul>
-				<li><label for="city">${label.address.city}</label> 
-				<input type="text" name="city" <%-- value="${listOfAddress.city}"--%> /></li>
+					<button class="submit" type="submit" id="transport-button"
+						onclick="
+		        				return sendAddressFormData(
+		        						$('#form-container > form'), 
+			        					'/account/json/Delete.spr'
+			        					); ">
+						${label.button.delete }</button>
+					<button class="submit"
+						onclick="document.location = '/account/ToAddress.spr'; return false">
+						${label.button.back }</button>
+				</li>
 			</ul>
-
-			<ul>
-				<li><label for="address">${label.address.address}</label> 
-				<input type="text" name="address" <%-- value="${listOfAddress.address }" --%> /></li>
-			</ul>
-			
 		</form>
 	</div>
 	<div style="display: table-cell; width: 5%"></div>
@@ -42,3 +60,7 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	initAddressForm($('.form'), '/account/json/EditAddress.spr', ${id});
+</script>

@@ -348,3 +348,9 @@ function initDealForm(formContainer, url, id){
 		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initDealMap");
 	})
 }
+
+function initAddressForm(formContainer, url, id){
+	setFormData(formContainer, url, {id:id}, function(){
+		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initMap");
+	})
+}
