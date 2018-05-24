@@ -23,16 +23,16 @@ public class AddressForUI {
 	@Edit(details="/account/EditAddress.spr", remove="", edit="")
 	private String edit = "NNY";
 	
-	//private double latitude;
-	//private double longitude;
+	private double latitude;
+	private double longitude;
 
 	public AddressForUI(Address address) {
 		this.id = address.getId();
 		this.city = address.getCity();
 		this.country = address.getCountry();
 		this.address = address.getAddress();
-		//this.latitude = address.getLatitude();
-		//this.longitude = address.getLongitude();
+		this.latitude = address.getLatitude();
+		this.longitude = address.getLongitude();
 	}
 
 }

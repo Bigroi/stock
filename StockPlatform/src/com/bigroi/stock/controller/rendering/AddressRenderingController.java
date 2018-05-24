@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigroi.stock.bean.db.Address;
 import com.bigroi.stock.service.ServiceException;
+import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 @RequestMapping("/account")
@@ -15,12 +17,21 @@ public class AddressRenderingController extends BaseRenderingController {
 	@RequestMapping("/ToAddress.spr")
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public ModelAndView toAddress(){ 
-		return  createModelAndView("myAddress"); 
+		return  createModelAndView("myAddresses"); 
 	}
+	
+	/*@RequestMapping("/EditAddress.spr")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	public ModelAndView editAddress(@RequestParam(value="id", defaultValue="-1") long id) throws  ServiceException {
+		ModelAndView modelAndView = createModelAndView("addressForm");
+		Address addressList = ServiceFactory.getAddressService().getAddressById(id);
+		modelAndView.addObject("listOfAddress", addressList);
+		return modelAndView;
+	}*/
 	
 	@RequestMapping("/EditAddress.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView address(@RequestParam("id") long id) throws  ServiceException {
+	public ModelAndView deal(@RequestParam("id") long id) throws  ServiceException {
 		ModelAndView modelAndView = createModelAndView("addressForm");
 		modelAndView.addObject("id", id);
 		return modelAndView;

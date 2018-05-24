@@ -3,9 +3,12 @@ package com.bigroi.stock.controller.resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.db.Address;
@@ -18,7 +21,7 @@ import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
-@RequestMapping("/account/json")
+@RequestMapping(value = "/account/json", produces = "text/plain;charset=UTF-8")
 public class AddressResourceController extends BaseResourseController {
 	
 	@RequestMapping(value = "/AddressesList.spr")
@@ -31,14 +34,17 @@ public class AddressResourceController extends BaseResourseController {
 		return new ResultBean(1, table, null).toString();
 	}
 	
-	/*@RequestMapping("/EditAddress.spr")
+	@RequestMapping(value = "/EditAddress.spr", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String form(@RequestParam(value = "id", defaultValue = "-1") long id) throws ServiceException{
+	public String form(@RequestParam("id") long id, Authentication loggedInUser) 
+					throws ServiceException {
+		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Address address = ServiceFactory.getAddressService().getAddressById(id);
-		
-		return new ResultBean(1, address, null).toString();
-		
-	}*/
-
+		if (user == null){
+			return new ResultBean(-1, "label.address.not_authorized").toString();//add to label value
+		} else {
+			return new ResultBean(1, new AddressForUI(address), "").toString();
+		}
+	}
 }

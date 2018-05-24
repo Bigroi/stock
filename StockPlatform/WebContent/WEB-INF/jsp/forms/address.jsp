@@ -15,18 +15,20 @@
 			<input type="hidden" name="id">
 
 			<ul>
+			    <li>
+		        </li>
 				<li><label for="country">${label.address.country}</label> 
-				<input type="text" name="country" /></li>
+				<input type="text" name="country" <%-- value="${listOfAddress.country }"--%> /></li>
 			</ul>
 
 			<ul>
 				<li><label for="city">${label.address.city}</label> 
-				<input type="text" name="city" /></li>
+				<input type="text" name="city" <%-- value="${listOfAddress.city}"--%> /></li>
 			</ul>
 
 			<ul>
 				<li><label for="address">${label.address.address}</label> 
-				<input type="text" name="address" /></li>
+				<input type="text" name="address" <%-- value="${listOfAddress.address }" --%> /></li>
 			</ul>
 			
 		</form>

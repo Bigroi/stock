@@ -126,8 +126,8 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/feedback.jsp" />
 	</definition> 
 	
-	<definition name="myAddress" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/myAddress.jsp" />
+	<definition name="myAddresses" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/myAddresses.jsp" />
 		<put-attribute name="page-title" value="/WEB-INF/jsp/templates/pageTitleWithAddButton.jsp" />
 	</definition> 
 	
