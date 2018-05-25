@@ -29,19 +29,19 @@
 				    <label for="address">${label.address.address}</label> 
 				    <input type="text" name="address"/></li>
 				<li>
-					<button class="submit" type="submit" id="approve-button"
+					<button class="submit" type="submit" id="save-button-address"
 						onclick="
 		        				return sendAddressFormData(
 		        						$('#form-container > form'), 
-			        					'/account/json/Save.spr'
+			        					'/account/json/SaveAddress.spr'
 			        					); ">
 						${label.button.modify }</button>
 
-					<button class="submit" type="submit" id="transport-button"
+					<button class="submit" type="submit" id="delete-button-address"
 						onclick="
 		        				return sendAddressFormData(
 		        						$('#form-container > form'), 
-			        					'/account/json/Delete.spr'
+			        					'/account/json/DeleteAddress.spr'
 			        					); ">
 						${label.button.delete }</button>
 					<button class="submit"

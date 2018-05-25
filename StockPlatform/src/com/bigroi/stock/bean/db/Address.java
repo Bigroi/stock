@@ -81,7 +81,7 @@ public class Address implements Serializable{
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", city=" + city + ", country=" + country + ", address=" + address + ", latitude="
-				+ latitude + ", longitude=" + longitude + ", companyId=" + companyId + ", company=" + company + "]";
+				+ latitude + ", longitude=" + longitude + ", companyId=" + companyId + "]";
 	}
 
 	public Company getCompany() {

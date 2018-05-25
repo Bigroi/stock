@@ -32,4 +32,29 @@ public class AddressServiceImpl implements AddressService{
 			throw new ServiceException(e);
 		}
 	}
+
+	@Override
+	public boolean delete(long id, long companyId) throws ServiceException {
+		try{
+			return addressDao.deleteAddress(id, companyId);
+		}catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		
+	}
+
+	@Override
+	public void merge(Address address, long companyId) throws ServiceException {
+		try{
+			if(address.getId() == -1){
+				address.setCompanyId(companyId);
+				addressDao.addAddress(address);
+			}else{
+				addressDao.updateAddress(address);
+			}
+		}catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		
+	}
 }

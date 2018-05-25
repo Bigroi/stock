@@ -32,8 +32,8 @@ public class AddressDaoImpl implements AddressDao{
 			"INSERT INTO ADDRESS (CITY, COUNTRY, ADDRESS, LATITUDE, LONGITUDE, COMPANY_ID)"
 			+ " VALUES (?, ?, ?, ?, ? , ?) ";
 	
-	private static final String GET_ADDRESSES_BY_ID = "SELECT ID, CITY, COUNTRY, "
-			+ " ADDRESS, LATITUDE, LONGITUDE FROM ADDRESS WHERE ID = ?";
+	private static final String GET_ADDRESS_BY_ID = "SELECT ID, CITY, COUNTRY, "
+			+ " ADDRESS, LATITUDE, LONGITUDE, COMPANY_ID FROM ADDRESS WHERE ID = ?";
 	
 	private DataSource datasource;
 
@@ -85,7 +85,7 @@ public class AddressDaoImpl implements AddressDao{
 	@Override
 	public Address getAddressById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Address> listAddresses = template.query(GET_ADDRESSES_BY_ID, 
+		List<Address> listAddresses = template.query(GET_ADDRESS_BY_ID, 
 				new BeanPropertyRowMapper<Address>(Address.class),id);
 		if(listAddresses.size() == 0){
 			return null;

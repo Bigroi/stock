@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bigroi.stock.bean.db.Address;
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.bean.ui.AddressForUI;
+import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
@@ -48,18 +49,23 @@ public class AddressResourceController extends BaseResourseController {
 		}
 	}
 	
-	/*@RequestMapping(value = "/Save.spr")
+	@RequestMapping(value = "/SaveAddress.spr")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public String save(@RequestParam("json") String jsonAddress){
-		return null;
+	public String save(@RequestParam("json") String jsonAddress) throws ServiceException{
+		StockUser user =  (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Address address = GsonUtil.getGson().fromJson(jsonAddress, Address.class);
+		ServiceFactory.getAddressService().merge(address,user.getCompanyId());
+		return new ResultBean(1, new AddressForUI(address), "label.address.save_success").toString();
 	}
 
-	@RequestMapping(value = "/Delete.spr")
+	@RequestMapping(value = "/DeleteAddress.spr")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String delete(@RequestParam("id") long id) throws ServiceException {
-		return null;
-	}*/
+		StockUser user =  (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		ServiceFactory.getAddressService().delete(id, user.getCompanyId());
+		return new ResultBean(1, "success").toString();
+	}
 	
 }

@@ -349,6 +349,17 @@ function initDealForm(formContainer, url, id){
 	})
 }
 
+function sendAddressFormData(formContainer, url){
+	return sendFormData(formContainer, function (formContainer, params){
+				$.post(url, params, function(answer){
+					processRequestResult(formContainer, answer, $('.form-message'));
+					if (answer.result > 0){
+						$('#delete-button-address');
+					}
+				});
+			}); 
+}
+
 function initAddressForm(formContainer, url, id){
 	setFormData(formContainer, url, {id:id}, function(){
 		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initMap");

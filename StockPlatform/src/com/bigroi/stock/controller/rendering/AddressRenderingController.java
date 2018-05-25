@@ -20,7 +20,7 @@ public class AddressRenderingController extends BaseRenderingController {
 	
 	@RequestMapping("/EditAddress.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView deal(@RequestParam("id") long id) throws  ServiceException {
+	public ModelAndView deal(@RequestParam(value="id", defaultValue="-1") long id) throws  ServiceException {
 		ModelAndView modelAndView = createModelAndView("addressForm");
 		modelAndView.addObject("id", id);
 		return modelAndView;
