@@ -48,7 +48,7 @@ public class AddressResourceController extends BaseResourseController {
 		}
 	}
 	
-	@RequestMapping(value = "/Save.spr")
+	/*@RequestMapping(value = "/Save.spr")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String save(@RequestParam("json") String jsonAddress){
@@ -60,6 +60,6 @@ public class AddressResourceController extends BaseResourseController {
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String delete(@RequestParam("id") long id) throws ServiceException {
 		return null;
-	}
+	}*/
 	
 }
