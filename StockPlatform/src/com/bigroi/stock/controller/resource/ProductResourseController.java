@@ -27,9 +27,7 @@ public class ProductResourseController extends BaseResourseController {
 	@RequestMapping(value = "/List.spr")
 	@ResponseBody
 	public String list() throws TableException, ServiceException {
-		List<Product> products = ServiceFactory.getProductService().getAllActiveProducts();
-		List<ProductForUI> productsForUI = products.stream().
-				map(ProductForUI::new).collect(Collectors.toList());
+		List<ProductForUI> productsForUI = ServiceFactory.getProductService().getAllActiveProductsForUI();
 		productsForUI.stream().forEach(p -> p.setEdit("NNY"));
 		TableResponse<ProductForUI> table = new TableResponse<>(ProductForUI.class, productsForUI)
 				.removeColumn("removed")

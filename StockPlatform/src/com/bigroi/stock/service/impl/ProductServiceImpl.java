@@ -13,6 +13,7 @@ import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.bean.ui.ChartTrace;
+import com.bigroi.stock.bean.ui.ProductForUI;
 import com.bigroi.stock.bean.ui.TradeOffer;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
@@ -43,6 +44,15 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> getAllProducts() throws ServiceException {
 		try {
 			return productDao.getAllProducts();
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
+	
+	@Override
+	public List<ProductForUI> getAllActiveProductsForUI() throws ServiceException {
+		try {
+			return productDao.getAllActiveProductsForUI();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}

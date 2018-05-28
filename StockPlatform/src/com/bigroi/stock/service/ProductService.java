@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.ui.ChartTrace;
+import com.bigroi.stock.bean.ui.ProductForUI;
 import com.bigroi.stock.bean.ui.TradeOffer;
 
 public interface ProductService {
@@ -11,6 +12,8 @@ public interface ProductService {
 	List<Product> getAllProducts() throws ServiceException;
 
 	List<Product> getAllActiveProducts() throws ServiceException;
+	
+	List<ProductForUI> getAllActiveProductsForUI() throws ServiceException;
 	
 	void delete(long id) throws ServiceException;
 	
