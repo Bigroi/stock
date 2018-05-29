@@ -170,9 +170,20 @@ h3 {
 	padding-top: 10px;
 }
 .front-desc-but {
-	font-size: 24px;
 	line-height: 1.25;
 	padding-top: 50px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.front-desc-but div {
+	font-size: 24px;
+}
+.reg-as {
+	display: inline;
 }
 .req-far,
 .req-buy {
@@ -536,5 +547,104 @@ footer .container {
 	}
 	.contacts {
 		width: 60%;
+	}
+}
+@media (max-width: 768px) {
+	.container {
+		width: 290px;
+	}
+	.sign-in, 
+	.advantages {
+		display: none;
+	}
+	.front-desc {
+		width: 100%;
+	}
+	.reg-as {
+		display: block;
+		margin-bottom: 10px;
+	}
+	.front .container {
+	    height: 270px;
+	}
+	.front-desc-but div {
+		font-size: 18px;
+	}
+	.front-desc-but {
+		-webkit-box-align: start;
+		    -ms-flex-align: start;
+		            -ms-grid-row-align: flex-start;
+		        align-items: flex-start;
+    	-webkit-box-orient: vertical;
+    	-webkit-box-direction: normal;
+    	    -ms-flex-direction: column;
+    	        flex-direction: column;
+    	padding-top: 40px;
+	}
+	.req-far {
+		width: 118px;
+		margin: 0 15px 0 0; 
+	}
+	.req-buy {
+		width: 128px;
+		margin: 0 0 0 15px; 
+	}
+	.reg-but {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
+	}
+	.product {
+		height: 500px;
+		background-position: center top 60px;
+	}
+	.sell-product, .buy-product {
+		width: 115px;
+	}
+	.product button {
+		width: 109px;
+	}
+	.about-product {
+		top: unset;
+    	bottom: 30px;
+    	right: unset;
+	}
+	.about-product p {
+		width: 80%;
+	}
+	.desc-count {
+		line-height: normal;
+	}
+	.for-farm-cont, .for-buyers-cont {
+    	width: 290px;
+    }
+    .start-trade, .start-buy {
+    	width: 100%
+    }
+    footer {
+    	height: 180px;
+    }
+    footer .container {
+    	-webkit-box-orient: vertical;
+    	-webkit-box-direction: normal;
+    	    -ms-flex-direction: column;
+    	        flex-direction: column;
+    	-ms-flex-pack: distribute;
+    	    justify-content: space-around;
+    	-webkit-box-align: start;
+    	    -ms-flex-align: start;
+    	            -ms-grid-row-align: flex-start;
+    	        align-items: flex-start;
+    }
+    .contacts {
+    	height: 90px;
+	    width: 100%;
+	    -webkit-box-orient: vertical;
+	    -webkit-box-direction: normal;
+	        -ms-flex-direction: column;
+	            flex-direction: column;
 	}
 }
