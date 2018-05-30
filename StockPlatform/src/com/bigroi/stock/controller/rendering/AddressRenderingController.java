@@ -12,7 +12,7 @@ import com.bigroi.stock.service.ServiceException;
 @RequestMapping("/account")
 public class AddressRenderingController extends BaseRenderingController {
 	
-	@RequestMapping("/ToAddress.spr")
+	@RequestMapping("/MyAddresses.spr")
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public ModelAndView toAddress(){ 
 		return  createModelAndView("myAddresses"); 

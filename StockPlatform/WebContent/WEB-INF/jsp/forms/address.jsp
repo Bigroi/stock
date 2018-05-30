@@ -2,17 +2,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<h2 style="color: red; size: 15px">the page under construction</h2>
-
 <div style="display: table; width: 100%" id="deal-style-mob">
 	<div style="display: table-cell; width: 40%" id="form-container">
 		<div class="form-message"></div>
 
 		<form class="form" action="#" method="post" name="form">
 
-			<input type="hidden" name="company.address.latitude" class="latitude">
-			<input type="hidden" name="company.address.longitude"
-				class="longitude"> <input type="hidden" name="id">
+			<input type="hidden" name="latitude" class="latitude">
+			<input type="hidden" name="longitude" class="longitude"> 
+			<input type="hidden" name="id">
+			<input type="hidden" name="companyId">
 
 			<ul>
 				<li>
@@ -37,15 +36,8 @@
 			        					); ">
 						${label.button.modify }</button>
 
-					<button class="submit" type="submit" id="delete-button-address"
-						onclick="
-		        				return sendAddressFormData(
-		        						$('#form-container > form'), 
-			        					'/account/json/DeleteAddress.spr'
-			        					); ">
-						${label.button.delete }</button>
 					<button class="submit"
-						onclick="document.location = '/account/ToAddress.spr'; return false">
+						onclick="document.location = '/account/MyAddresses.spr'; return false">
 						${label.button.back }</button>
 				</li>
 			</ul>

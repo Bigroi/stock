@@ -55,17 +55,7 @@ public class AddressResourceController extends BaseResourseController {
 	public String save(@RequestParam("json") String jsonAddress) throws ServiceException{
 		StockUser user =  (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Address address = GsonUtil.getGson().fromJson(jsonAddress, Address.class);
-		ServiceFactory.getAddressService().merge(address,user.getCompanyId());
+		ServiceFactory.getAddressService().merge(address, user.getCompanyId());
 		return new ResultBean(1, new AddressForUI(address), "label.address.save_success").toString();
 	}
-
-	@RequestMapping(value = "/DeleteAddress.spr")
-	@ResponseBody
-	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public String delete(@RequestParam("id") long id) throws ServiceException {
-		StockUser user =  (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		ServiceFactory.getAddressService().delete(id, user.getCompanyId());
-		return new ResultBean(1, "success").toString();
-	}
-	
 }

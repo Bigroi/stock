@@ -354,7 +354,7 @@ function sendAddressFormData(formContainer, url){
 				$.post(url, params, function(answer){
 					processRequestResult(formContainer, answer, $('.form-message'));
 					if (answer.result > 0){
-						$('#delete-button-address');
+						$('#save-button-address');
 					}
 				});
 			}); 

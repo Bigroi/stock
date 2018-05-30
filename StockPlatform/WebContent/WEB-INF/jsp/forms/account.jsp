@@ -47,7 +47,7 @@
 				</li>
 				<li>
 					<button class="submit but-sub" type="button"
-						onclick="document.location = 'ToAddress.spr'">${label.button.addAddress }</button>
+						onclick="document.location = 'MyAddresses.spr'">${label.button.addAddress }</button>
 				</li>
 			</ul>
 		</form>
