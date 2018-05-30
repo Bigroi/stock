@@ -31,9 +31,15 @@ public class ProductForUI {
 	
 	private int buyVolume;
 	
+	private String picture;
+	
 	@Edit(details = "/product/TradeOffers.spr", edit="setProductDialogPlugin", remove="/product/json/admin/Delete.spr")
 	@Column("label.product.edit")
 	private String edit = "YNN";
+	
+	public ProductForUI(){
+		
+	}
 	
 	public ProductForUI(Product product) {
 		this.delivaryPrice = product.getDelivaryPrice();
@@ -121,6 +127,14 @@ public class ProductForUI {
 
 	public String getEdit() {
 		return edit;
+	}
+	
+	public String getPicture() {
+		return picture;
+	}
+	
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 	
 }

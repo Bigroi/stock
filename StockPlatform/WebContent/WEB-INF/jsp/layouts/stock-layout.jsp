@@ -49,7 +49,6 @@
             </div>
             <div class="burger"></div>
             <nav class = "main-menu">
-            	<tiles:insertAttribute name="anonimusHeader" />
 	            <sec:authorize access="hasAnyRole('ADMIN', 'USER')">
 			    	<tiles:insertAttribute name="userHeader" />
 				</sec:authorize>

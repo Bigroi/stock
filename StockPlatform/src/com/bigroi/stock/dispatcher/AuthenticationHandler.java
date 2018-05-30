@@ -31,7 +31,7 @@ public class AuthenticationHandler
 			HttpServletResponse response, 
 			Authentication authentication)
 					throws IOException, ServletException {
-		response.getWriter().append(new ResultBean(0, "/Index.spr", null).toString());
+		response.getWriter().append(new ResultBean(0, "/Main.spr", null).toString());
 	}
 
 

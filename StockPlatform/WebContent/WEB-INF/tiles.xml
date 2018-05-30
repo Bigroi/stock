@@ -14,9 +14,6 @@
 		<put-attribute name="nav-lots" value="" cascade="true"/>
 		<put-attribute name="nav-welcome" value="" cascade="true"/>
 		
-		<put-attribute name="anonimusHeader" value="/WEB-INF/jsp/templates/anonimusHeader.jsp" />
-		<put-attribute name="nav-regestration" value="" cascade="true"/>
-		
 		<put-attribute name="adminHeader" value="/WEB-INF/jsp/templates/adminHeader.jsp"/>
 		<put-attribute name="nav-users" value="" cascade="true"/>
 		<put-attribute name="nav-productsExt" value="" cascade="true"/>
@@ -32,9 +29,12 @@
 	</definition>
 
 	<!-- Home Page -->
-	<definition name="mian" extends="base-definition">
+	<definition name="main" extends="base-definition">
 		<put-attribute name="nav-welcome" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/mian.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/main.jsp" />
+	</definition>
+	
+	<definition name="index" template="/WEB-INF/jsp/pages/index.jsp">
 	</definition>
 
 	<definition name="login" extends="base-form-definition">
@@ -42,7 +42,6 @@
 	</definition>
 
 	<definition name="registration" extends="base-definition">
-		<put-attribute name="nav-regestration" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/registration.jsp" />
 	</definition>
 

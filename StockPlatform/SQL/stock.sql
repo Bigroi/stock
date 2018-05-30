@@ -18,7 +18,6 @@ CREATE DATABASE IF NOT EXISTS `stock` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `stock`;
 
 -- Dumping structure for table stock.address
-DROP TABLE IF EXISTS `address`;
 CREATE TABLE IF NOT EXISTS `address` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `city` varchar(50) NOT NULL,
@@ -41,7 +40,6 @@ INSERT INTO `address` (`id`, `city`, `country`, `address`, `latitude`, `longitud
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 
 -- Dumping structure for table stock.black_list
-DROP TABLE IF EXISTS `black_list`;
 CREATE TABLE IF NOT EXISTS `black_list` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `tender_Id` bigint(20) DEFAULT NULL,
@@ -51,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `black_list` (
   KEY `FK_blacklist_lot` (`lot_Id`),
   CONSTRAINT `FK_black_list_lot` FOREIGN KEY (`lot_Id`) REFERENCES `lot` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_black_list_tender` FOREIGN KEY (`tender_Id`) REFERENCES `tender` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table stock.black_list: ~0 rows (approximately)
 DELETE FROM `black_list`;
@@ -59,7 +57,6 @@ DELETE FROM `black_list`;
 /*!40000 ALTER TABLE `black_list` ENABLE KEYS */;
 
 -- Dumping structure for table stock.company
-DROP TABLE IF EXISTS `company`;
 CREATE TABLE IF NOT EXISTS `company` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL,
@@ -82,7 +79,6 @@ INSERT INTO `company` (`id`, `name`, `phone`, `reg_number`, `status`, `address_i
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 
 -- Dumping structure for table stock.deal
-DROP TABLE IF EXISTS `deal`;
 CREATE TABLE IF NOT EXISTS `deal` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `lot_id` bigint(20) DEFAULT NULL,
@@ -124,14 +120,13 @@ INSERT INTO `deal` (`id`, `lot_id`, `tender_id`, `time`, `buyer_approved`, `sell
 /*!40000 ALTER TABLE `deal` ENABLE KEYS */;
 
 -- Dumping structure for table stock.email
-DROP TABLE IF EXISTS `email`;
 CREATE TABLE IF NOT EXISTS `email` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `recipient` varchar(100) CHARACTER SET utf8 NOT NULL,
   `subject` varchar(200) CHARACTER SET utf8 NOT NULL,
   `body` varchar(5000) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table stock.email: ~0 rows (approximately)
 DELETE FROM `email`;
@@ -139,7 +134,6 @@ DELETE FROM `email`;
 /*!40000 ALTER TABLE `email` ENABLE KEYS */;
 
 -- Dumping structure for table stock.generated_key
-DROP TABLE IF EXISTS `generated_key`;
 CREATE TABLE IF NOT EXISTS `generated_key` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `generated_key` varchar(50) NOT NULL,
@@ -147,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `generated_key` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table stock.generated_key: ~3 rows (approximately)
+-- Dumping data for table stock.generated_key: ~2 rows (approximately)
 DELETE FROM `generated_key`;
 /*!40000 ALTER TABLE `generated_key` DISABLE KEYS */;
 INSERT INTO `generated_key` (`id`, `generated_key`, `expiration_time`) VALUES
@@ -156,7 +150,6 @@ INSERT INTO `generated_key` (`id`, `generated_key`, `expiration_time`) VALUES
 /*!40000 ALTER TABLE `generated_key` ENABLE KEYS */;
 
 -- Dumping structure for table stock.lot
-DROP TABLE IF EXISTS `lot`;
 CREATE TABLE IF NOT EXISTS `lot` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
@@ -177,36 +170,37 @@ CREATE TABLE IF NOT EXISTS `lot` (
   CONSTRAINT `FK_lot_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`),
   CONSTRAINT `FK_lot_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_lot_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.lot: ~2 rows (approximately)
+-- Dumping data for table stock.lot: ~3 rows (approximately)
 DELETE FROM `lot`;
 /*!40000 ALTER TABLE `lot` DISABLE KEYS */;
 INSERT INTO `lot` (`id`, `description`, `product_id`, `min_price`, `min_volume`, `max_volume`, `company_id`, `status`, `creation_date`, `exparation_date`, `foto`, `address_id`) VALUES
 	(22, 'test', 135, 1.00, 1, 0, 23, 'ACTIVE', '2018-05-19', '2019-05-19', NULL, 3),
-	(23, 'test', 135, 0.75, 1, 0, 23, 'ACTIVE', '2018-05-19', '2019-05-19', NULL, 3);
+	(23, 'test', 135, 0.75, 1, 0, 23, 'ACTIVE', '2018-05-19', '2019-05-19', NULL, 3),
+	(24, 'test', 136, 0.75, 1, 0, 23, 'ACTIVE', '2018-05-19', '2019-05-19', NULL, 3);
 /*!40000 ALTER TABLE `lot` ENABLE KEYS */;
 
 -- Dumping structure for table stock.product
-DROP TABLE IF EXISTS `product`;
 CREATE TABLE IF NOT EXISTS `product` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL,
   `description` varchar(2000) CHARACTER SET utf8 DEFAULT NULL,
   `delivary_price` decimal(10,2) NOT NULL,
   `removed` char(1) CHARACTER SET utf8 NOT NULL,
+  `picture` varchar(50) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table stock.product: ~1 rows (approximately)
+-- Dumping data for table stock.product: ~2 rows (approximately)
 DELETE FROM `product`;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` (`id`, `name`, `description`, `delivary_price`, `removed`) VALUES
-	(135, 'Яблоки', 'Хорошие яблоки', 2.00, 'N');
+INSERT INTO `product` (`id`, `name`, `description`, `delivary_price`, `removed`, `picture`) VALUES
+	(135, 'Яблоки', 'Хорошие яблоки', 2.00, 'N', '/img/apple.png'),
+	(136, 'Картофель', 'Хороший картофель', 2.00, 'N', '/img/potato.png');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 
 -- Dumping structure for table stock.tender
-DROP TABLE IF EXISTS `tender`;
 CREATE TABLE IF NOT EXISTS `tender` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
@@ -237,7 +231,6 @@ INSERT INTO `tender` (`id`, `description`, `product_id`, `max_price`, `min_volum
 /*!40000 ALTER TABLE `tender` ENABLE KEYS */;
 
 -- Dumping structure for table stock.transport_proposition
-DROP TABLE IF EXISTS `transport_proposition`;
 CREATE TABLE IF NOT EXISTS `transport_proposition` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `deal_id` bigint(20) NOT NULL,
@@ -256,7 +249,6 @@ DELETE FROM `transport_proposition`;
 /*!40000 ALTER TABLE `transport_proposition` ENABLE KEYS */;
 
 -- Dumping structure for table stock.user
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) CHARACTER SET utf8 NOT NULL,
@@ -276,12 +268,11 @@ CREATE TABLE IF NOT EXISTS `user` (
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `password`, `company_id`, `key_id`, `login_count`, `last_login`) VALUES
-	(19, 'admin@stock.by', '1', 21, NULL, 62, '2018-05-22 00:17:59'),
+	(19, 'admin@stock.by', '1', 21, NULL, 63, '2018-05-28 21:33:39'),
 	(20, 'css@tenant.ch', '12345677', 23, NULL, 1, '2018-05-17 20:34:36');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 -- Dumping structure for table stock.user_role
-DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE IF NOT EXISTS `user_role` (
   `user_id` bigint(20) NOT NULL,
   `role` varchar(50) CHARACTER SET utf8 NOT NULL,
