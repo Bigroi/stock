@@ -11,7 +11,6 @@
 			<input type="hidden" name="latitude" class="latitude">
 			<input type="hidden" name="longitude" class="longitude"> 
 			<input type="hidden" name="id">
-			<input type="hidden" name="companyId">
 
 			<ul>
 				<li>

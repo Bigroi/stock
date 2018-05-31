@@ -40,11 +40,11 @@ public class AddressServiceImpl implements AddressService{
 				address.setCompanyId(companyId);
 				addressDao.addAddress(address);
 			}else{
+				address.setCompanyId(companyId);
 				addressDao.updateAddress(address);
 			}
 		}catch (DaoException e) {
 			throw new ServiceException(e);
 		}
-		
 	}
 }

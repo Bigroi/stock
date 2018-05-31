@@ -25,7 +25,6 @@ public class AddressForUI {
 	
 	private double latitude;
 	private double longitude;
-	private long companyId;
 
 	public AddressForUI(Address address) {
 		this.id = address.getId();
@@ -34,7 +33,6 @@ public class AddressForUI {
 		this.address = address.getAddress();
 		this.latitude = address.getLatitude();
 		this.longitude = address.getLongitude();
-		this.companyId = address.getCompanyId();
 	}
 
 	public double getLatitude() {
@@ -52,13 +50,4 @@ public class AddressForUI {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-
-	public long getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(long companyId) {
-		this.companyId = companyId;
-	}
-	
 }
