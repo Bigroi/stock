@@ -35,10 +35,10 @@
 					<div class="container">
 						<img class="logo" src="img/logo.png" alt="YourTrader" title="YourTrader">
 						<nav>
-							<a href="#" class="active">About YourTrader</a>
-							<a href="#">Benefits</a>
-							<a href="#">Products</a>
-							<a href="#">For whom</a>
+							<a href="#ex1" class="active">About YourTrader</a>
+							<a href="#ex2">Benefits</a>
+							<a href="#ex3">Products</a>
+							<a href="#ex4">For whom</a>
 						</nav>
 						<div class="buttons-login">
 							<a class="button register blue-button" href="/account/Registration.spr">
@@ -52,7 +52,7 @@
 					</div>
 				</header>
 				<main>
-					<div class="front">
+					<div class="front" id="ex1">
 						<div class="container">
 							<h1>Description</h1>
 							<p class="front-desc">Some another description for food shops, restaurants and so on!</p>
@@ -66,7 +66,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="advantages">
+					<div class="advantages" id="ex2">
 						<div class="container">
 							<div class="advantage">
 								<div class="adv-icon">
@@ -98,7 +98,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="products">
+					<div class="products" id="ex3">
 						<div class="container">
 							<h3>Products</h3>
 							<div class="product-cont">
@@ -147,7 +147,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="for-whom">
+					<div class="for-whom" id="ex4">
 						<div class="for-farmers">
 							<div class="for-farm-cont">
 								<h3>For farmers</h3>
@@ -189,7 +189,7 @@
 			 			<p class="mail"><a href="">stock@info.com</a></p>
 			 		</div>
 			 		<div class="copyright">
-			 			Â© 2018, YourTrader
+			 			 © 2018, YourTrader
 			 		</div>
 			 	</div>
 			</footer>

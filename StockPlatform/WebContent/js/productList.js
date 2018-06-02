@@ -32,7 +32,7 @@ $(document).ready(function(){
 		buyProduct.append($("<p class='desc-count'>Average price per ton</p>"));
 		buyProduct.append($("<p class='count'>" + product.buyPrice + "</p>"));
 		buyProduct.append($("<p class='desc-count'>Requests volume</p>"));
-		var buyButton = $("<button class='green-button'>Buy " + product.name + "</button>");
+		var buyButton = $("<button class='blue-button'>Buy " + product.name + "</button>");
 		buyProduct.append(buyButton);
 		aboutProduct.append(buyProduct);
 		

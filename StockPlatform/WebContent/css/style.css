@@ -56,6 +56,8 @@ header {
 	height: 80px;
 	background-color: var(--white);
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+	position: fixed;
+	z-index: 1;
 }
 .container {
 	width: 1170px;
@@ -135,8 +137,12 @@ nav a:last-child {
 }
 nav a.active {
  	color: var(--green-teal);
- 	border-bottom: 2px solid var(--green-teal);
- 	height: calc(100% - 2px)
+    border-bottom: 2px solid var(--green-teal);
+    height: calc(100% - 4px);
+    padding-top: 2px;
+}
+main {
+	margin-top: 80px;
 }
 h1 {
 	font-size: 42px;
@@ -185,6 +191,14 @@ h3 {
 .reg-as {
 	display: inline;
 }
+.reg-but {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
 .req-far,
 .req-buy {
 	width: 140px;
@@ -193,7 +207,7 @@ h3 {
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 	text-transform: uppercase;
 	color: var(--white);
-	margin: 0 5px;
+	margin: 0 15px;
 	font-size: 18px;
     letter-spacing: 1px;
 } 
@@ -279,12 +293,6 @@ h3 {
 	background-position: left -15px bottom 30px;
 	position: relative;
 }
-.prod-apple {
-	background-image: url(../img/apple.png);
-}
-.prod-potato {
-	background-image: url(../img/potato.png);
-}
 .product h4 {
   font-size: 30px;
   padding-bottom: 20px;
@@ -292,7 +300,7 @@ h3 {
 .product h5 {
 	padding: 5px 0;
 	border-bottom: 1px solid #d8d8d8; 
-	margin-bottom: 10px; 
+	margin-bottom: 15px; 
 	font-weight: normal;
 }
 .about-product {
@@ -301,7 +309,7 @@ h3 {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	top: 15px;
+	bottom: 35px;
 }
 .sell-product,
 .buy-product {
@@ -309,7 +317,7 @@ h3 {
 	height: 100%;
 }
 .count {
-  font-size: 30px;
+  font-size: 24px;
 }
 .sell-product .count {
     color: var(--green-teal);
@@ -376,7 +384,7 @@ h3 {
 	line-height: 1.56;
 	width: 277px;
 	margin-bottom: 28px;
-	background-image: url(../img/check.png.);
+	background-image: url(../img/check.png);
 	background-repeat: no-repeat;
 	padding-left: 43px;
 	background-position: center left;
@@ -514,7 +522,7 @@ footer .container {
 	.product {
 		width: calc(100% - 60px);
 		margin-bottom: 30px;
-		background-position: left 30px bottom 30px;
+		background-position: left 40px bottom 30px;
 	}
 	.sell-product, .buy-product {
 	    width: 175px;
@@ -534,10 +542,11 @@ footer .container {
 	}
 	.for-farm-cont, 
 	.for-buyers-cont {
-		width: 718px;
+		width: 658px;
 		margin: 0 auto;
 		float: none;
 		height: 560px;
+		padding-left: 60px;
 	}
 	.for-whom h3 {
 		padding-top: 70px;
@@ -549,13 +558,26 @@ footer .container {
 		width: 60%;
 	}
 }
-@media (max-width: 768px) {
+@media (max-width: 758px) {
 	.container {
 		width: 290px;
 	}
-	.sign-in, 
+	.register, 
 	.advantages {
 		display: none;
+	}
+	.sign-in {
+		width: 40px;
+	  	height: 40px;
+	  	border-radius: 5px;
+	  	background-color: var(--green-teal);
+	  	color: rgba(0, 0, 0, 0);
+	  	border: 0;
+	  	opacity: 1;
+	  	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	  	background-image: url(../img/user.png);
+	  	background-repeat: no-repeat;
+	  	background-position: center;
 	}
 	.front-desc {
 		width: 100%;
@@ -589,37 +611,33 @@ footer .container {
 		width: 128px;
 		margin: 0 0 0 15px; 
 	}
-	.reg-but {
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-align: center;
-		    -ms-flex-align: center;
-		        align-items: center;
-	}
 	.product {
 		height: 500px;
 		background-position: center top 60px;
+		padding: 14px 20px 22px 20px;
+		width: calc(100% - 40px);
 	}
 	.sell-product, .buy-product {
-		width: 115px;
+		width: 125px;
 	}
 	.product button {
-		width: 109px;
+		width: 110px;
 	}
 	.about-product {
 		top: unset;
-    	bottom: 30px;
+    	bottom: 20px;
     	right: unset;
 	}
 	.about-product p {
-		width: 80%;
+		width: 90px;
 	}
 	.desc-count {
 		line-height: normal;
+		padding-bottom: 15px;
 	}
 	.for-farm-cont, .for-buyers-cont {
     	width: 290px;
+    	padding-left: 0;
     }
     .start-trade, .start-buy {
     	width: 100%
