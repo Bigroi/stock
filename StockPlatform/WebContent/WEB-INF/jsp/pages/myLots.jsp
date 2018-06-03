@@ -2,8 +2,5 @@
 	pageEncoding="UTF-8"%>
 <div id="lot-form-container"></div>
 <div id = "table-container">
-    <table id = "main-table"></table>
+    <table id = "main-table" data-url="/lot/json/MyList.spr"></table>
 </div>
-<script>
-	makeTable("/lot/json/MyList.spr", $("#main-table"));
-</script>
