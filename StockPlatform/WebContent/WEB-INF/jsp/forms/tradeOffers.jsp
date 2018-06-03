@@ -12,11 +12,8 @@
 	    </ul>
 	</form>
 	<div class="table-tradeOffers">
-		<table id = "main-table" ></table>
+		<table id = "main-table" data-url="/product/json/TradeOffers.spr?productId=${product.id}"></table>
 	</div>
-	<script>
-		makeTable("/product/json/TradeOffers.spr?productId=${product.id}", $("#main-table"));
-	</script>
 				
 	<form class="form form-tradeOffers-button " action="/product/List.spr" method="post">
 		<ul>
