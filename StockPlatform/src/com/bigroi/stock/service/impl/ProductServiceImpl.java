@@ -136,7 +136,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 			
 			double minPrice = bids.subList((int)Math.round(size * 0.07), size - 1).get(0).getPrice();
-			double maxPrice = bids.subList((int)Math.round(size - size * 0.07 - 1), size - 1).get(0).getPrice();
+			double maxPrice = bids.subList((int)(size - size * 0.07 - 1), size - 1).get(0).getPrice();
 			double avgMinPrice = minPrice + (maxPrice - minPrice) / 3;
 			double avgMaxPrice = minPrice + (maxPrice - minPrice) * 2 / 3;
 			
