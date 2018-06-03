@@ -1,6 +1,6 @@
 @font-face{
 	font-family: 'Museo';
-	src: url('../fonts/Museo.otf');
+	src: url('/fonts/Museo.otf');
 }
 * {
 	margin: 0;

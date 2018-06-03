@@ -77,28 +77,28 @@
 						<div class="container">
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/organic.png" alt="YourTrader" title="YourTrader"/></a>
+									<img src="img/organic.png" alt="YourTrader" title="YourTrader"/>
 								</div>
 								<p class="adv-title">${label.index.speed_title}</p>
 								<p class="adv-desc">${label.index.speed_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/trusted.png" alt="YourTrader" title="YourTrader"/></a>
+									<img src="img/trusted.png" alt="YourTrader" title="YourTrader"/>
 								</div>
 								<p class="adv-title">${label.index.trust_title}</p>
 								<p class="adv-desc">${label.index.trust_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/deal.png" alt="YourTrader" title="YourTrader"/></a>
+									<img src="img/deal.png" alt="YourTrader" title="YourTrader"/>
 								</div>
 								<p class="adv-title">${label.index.deal_title}</p>
 								<p class="adv-desc">${label.index.deal_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/platform.png" alt="YourTrader" title="YourTrader"/></a>
+									<img src="img/platform.png" alt="YourTrader" title="YourTrader"/>
 								</div>
 								<p class="adv-title">${label.index.сonvenient_title}</p>
 								<p class="adv-desc">${label.index.сonvenient_description}</p>
@@ -108,7 +108,7 @@
 					<div class="products" id="ex3">
 						<div class="container">
 							<h3>${label.index.products}</h3>
-							<div class="product-cont"></div>
+							<div class="product-cont unauthorised"></div>
 						</div>
 					</div>
 					<div class="for-whom" id="ex4">
@@ -120,7 +120,9 @@
 									<li>${label.index.for_farmers_li2}</li>
 									<li>${label.index.for_farmers_li3}</li>
 								</ul>
-								<button class="start-trade green-button">${label.button.start_trade_now }</button>
+								<button class="start-trade green-button" onclick="document.location = '/account/Registration.spr'">
+									${label.button.start_trade_now }
+								</button>
 							</div>
 						</div>
 						<div class="for-buyers">
@@ -131,7 +133,9 @@
 									<li>${label.index.for_buyers_li2}</li>
 									<li>${label.index.for_buyers_li3}</li>
 								</ul>
-								<button class="start-buy blue-button">${label.button.start_buy_now}</button>
+								<button class="start-buy blue-button" onclick="document.location = '/account/Registration.spr'">
+									${label.button.start_buy_now}
+								</button>
 							</div>
 						</div>
 					</div>
@@ -140,7 +144,9 @@
 							<div>
 								<h3>${label.index.responsive_title}</h3>
 								<p>${label.index.responsive_description}</p>
-								<button class="register green-button">${label.button.registrate}</button>
+								<button class="register green-button" onclick="document.location = '/account/Registration.spr'">
+									${label.button.registrate}
+								</button>
 							</div>
 						</div>
 					</div>

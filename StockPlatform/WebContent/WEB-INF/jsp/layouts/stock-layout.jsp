@@ -17,6 +17,7 @@
 		<title>Your Trader! ${page_title}</title>
 		<meta charset = "utf-8">
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
+		<link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="/css/pageStyle.css">
         <link rel="stylesheet" href="/css/jquery.dataTables.min.css">
 		<link rel="stylesheet" href="/css/tableCustomStyle.css">
@@ -35,13 +36,11 @@
 		<script src="/js/script.js"></script>
 		<script src="/js/plotly-latest.min.js"></script>
 		<script src="/js/jquery.responsive.dataTables.min.js"></script>
+		<script src="/js/productList.js"></script>
 	</head>
 	<body>
 		<div id="message-dialog-container"></div>
 		<div id="login-form-container"></div>
-		<script>
-			localization();
-		</script>
         <div class = "aside">
             <div class = "logo">
                 <p><b>YT</b></p>
