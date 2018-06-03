@@ -2,7 +2,17 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Index</title>
+	
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114993452-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'UA-114993452-1');
+		</script>
+	
+		<title>Your Trader! ${page_title}</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
 		<link href="/css/style.css" rel="stylesheet">
@@ -23,6 +33,7 @@
 		<script src="/js/plotly-latest.min.js"></script>
 		<script src="/js/chartBuilder.js"></script>
 		<script src="/js/productList.js"></script>
+
 	</head>
 	<body>
 		<script>
@@ -35,10 +46,10 @@
 					<div class="container">
 						<img class="logo" src="img/logo.png" alt="YourTrader" title="YourTrader">
 						<nav>
-							<a href="#ex1" class="active">About YourTrader</a>
-							<a href="#ex2">Benefits</a>
-							<a href="#ex3">Products</a>
-							<a href="#ex4">For whom</a>
+							<a href="#ex1" class="active">${label.index.about_your_trader}</a>
+							<a href="#ex2">${label.index.benefits}</a>
+							<a href="#ex3">${label.index.products}</a>
+							<a href="#ex4">${label.index.for_whom}</a>
 						</nav>
 						<div class="buttons-login">
 							<a class="button register blue-button" href="/account/Registration.spr">
@@ -54,14 +65,14 @@
 				<main>
 					<div class="front" id="ex1">
 						<div class="container">
-							<h1>Description</h1>
-							<p class="front-desc">Some another description for food shops, restaurants and so on!</p>
+							<h1>${label.index.description_title}</h1>
+							<p class="front-desc">${label.index.description}</p>
 							<div class="front-desc-but">
-								<div class="reg-as">Register as </div>
+								<div class="reg-as">${label.index.regestrate_as_farmer} </div>
 								<div class="reg-but">
-									<button class="req-far green-button">Farmer</button>
-									<div> or </div>
-									<button class="req-buy blue-button">Buyer</button>
+									<button class="req-far green-button">${label.index.farmer}</button>
+									<div>${label.index.regestrate_as_buyer}</div>
+									<button class="req-buy blue-button">${label.index.buyer}</button>
 								</div>
 							</div>
 						</div>
@@ -72,111 +83,68 @@
 								<div class="adv-icon">
 									<img src="img/organic.png" alt="YourTrader" title="YourTrader"/></a>
 								</div>
-								<p class="adv-title">Only organic products</p>
-								<p class="adv-desc">We allow you to find the best products at the best prices</p>
+								<p class="adv-title">${label.index.speed_title}</p>
+								<p class="adv-desc">${label.index.speed_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
 									<img src="img/trusted.png" alt="YourTrader" title="YourTrader"/></a>
 								</div>
-								<p class="adv-title">Trusted sellers and farmers</p>
-								<p class="adv-desc">All our partners improve their positions in the market</p>
+								<p class="adv-title">${label.index.trust_title}</p>
+								<p class="adv-desc">${label.index.trust_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
 									<img src="img/deal.png" alt="YourTrader" title="YourTrader"/></a>
 								</div>
-								<p class="adv-title">Best deals</p>
-								<p class="adv-desc">Every day our platform handles thousands of transactions</p>
+								<p class="adv-title">${label.index.deal_title}</p>
+								<p class="adv-desc">${label.index.deal_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
 									<img src="img/platform.png" alt="YourTrader" title="YourTrader"/></a>
 								</div>
-								<p class="adv-title">Convenient platform</p>
-								<p class="adv-desc">User-friendly interface and fast processing of orders</p>
+								<p class="adv-title">${label.index.сonvenient_title}</p>
+								<p class="adv-desc">${label.index.сonvenient_description}</p>
 							</div>
 						</div>
 					</div>
 					<div class="products" id="ex3">
 						<div class="container">
-							<h3>Products</h3>
-							<div class="product-cont">
-								<!-- <div class="product prod-apple">
-									<h4>Apple</h4>
-									<div class="about-product">
-										<div class="sell-product">
-											<h5>Sell</h5>
-											<p class="count">â¬152</p>
-											<p class="desc-count">Average price per ton</p>
-											<p class="count">33 151</p>
-											<p class="desc-count">Requests volume</p>
-											<button class="green-button">Sell apple</button>
-										</div>
-										<div class="buy-product">
-											<h5>Buy</h5>
-											<p class="count">â¬146</p>
-											<p class="desc-count">Average price per ton</p>
-											<p class="count">33 151</p>
-											<p class="desc-count">Requests volume</p>
-											<button class="blue-button">Buy apple</button>
-										</div>
-									</div>
-								</div>
-								<div class="product prod-potato">
-									<h4>Potato</h4>
-									<div class="about-product">
-										<div class="sell-product">
-											<h5>Sell</h5>
-											<p class="count">â¬152</p>
-											<p class="desc-count">Average price per ton</p>
-											<p class="count">33 151</p>
-											<p class="desc-count">Requests volume</p>
-											<button class="green-button">Sell apple</button>
-										</div>
-										<div class="buy-product">
-											<h5>Buy</h5>
-											<p class="count">â¬146</p>
-											<p class="desc-count">Average price per ton</p>
-											<p class="count">33 151</p>
-											<p class="desc-count">Requests volume</p>
-											<button class="blue-button">Buy apple</button>
-										</div>
-									</div>
-								</div> -->
-							</div>
+							<h3>${label.index.products}</h3>
+							<div class="product-cont"></div>
 						</div>
 					</div>
 					<div class="for-whom" id="ex4">
 						<div class="for-farmers">
 							<div class="for-farm-cont">
-								<h3>For farmers</h3>
+								<h3>${label.index.for_farmers}</h3>
 								<ul>
-									<li>We allow you to find the best products at the best prices</li>
-									<li>All our partners improve their positions in the market</li>
-									<li>Every day our platform handles thousands of transactions</li>
+									<li>${label.index.for_farmers_li1}</li>
+									<li>${label.index.for_farmers_li2}</li>
+									<li>${label.index.for_farmers_li3}</li>
 								</ul>
-								<button class="start-trade green-button">Start trade now</button>
+								<button class="start-trade green-button">${label.button.start_trade_now }</button>
 							</div>
 						</div>
 						<div class="for-buyers">
 							<div class="for-buyers-cont">
-								<h3>For buyers</h3>
+								<h3>${label.index.for_buyers}</h3>
 								<ul>
-									<li>We allow you to find the best products at the best prices</li>
-									<li>All our partners improve their positions in the market</li>
-									<li>Every day our platform handles thousands of transactions</li>
+									<li>${label.index.for_buyers_li1}</li>
+									<li>${label.index.for_buyers_li2}</li>
+									<li>${label.index.for_buyers_li3}</li>
 								</ul>
-								<button class="start-buy blue-button">Start buy now</button>
+								<button class="start-buy blue-button">${label.button.start_buy_now}</button>
 							</div>
 						</div>
 					</div>
 					<div class="preview-platform">
 						<div class="container">
 							<div>
-								<h3>Responsive platform</h3>
-								<p>The online shop covers all the needs of a contemporary ecommerce shop: responsiveness, user account section, a wishlist function, product detail view, tags for new- local- organic or sale products, a blog, a store website, live search and many more features.</p>
-								<button class="register green-button">Register</button>
+								<h3>${label.index.responsive_title}</h3>
+								<p>${label.index.responsive_description}</p>
+								<button class="register green-button">${label.button.registrate}</button>
 							</div>
 						</div>
 					</div>
@@ -185,15 +153,15 @@
 		    <footer>
 			 	<div class="container">
 			 		<div class="contacts">
-			 			<p class="phone">+375 (29) <span>202-87-66</span></p>
-			 			<p class="mail"><a href="">stock@info.com</a></p>
+			 			<p class="phone">${label.index.phone_prefix}<span>${label.index.phone}</span></p>
+			 			<p class="mail"><a href="">${label.index.email}</a></p>
 			 		</div>
 			 		<div class="copyright">
-			 			 © 2018, YourTrader
+			 			 ${label.index.copyright}
 			 		</div>
 			 	</div>
 			</footer>
 		</div>
-		<script src="js/script.js"></script>
+		
 	</body>
 </html>

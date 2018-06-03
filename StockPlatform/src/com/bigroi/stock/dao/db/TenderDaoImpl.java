@@ -50,7 +50,7 @@ public class TenderDaoImpl implements TenderDao{
 			+ " JOIN PRODUCT P "
 			+ " ON T.PRODUCT_ID = P.ID"
 			+ " WHERE T.COMPANY_ID = ? "
-			+ " AND MIN_VOLUME > MAX_VOLUME";
+			+ " AND MIN_VOLUME <= MAX_VOLUME";
 	
 	private static final String GET_TENDER_BY_ID = 
 			" SELECT " + TenderRowMapper.ALL_COLUMNS

@@ -74,7 +74,7 @@ public class LotDaoImpl implements LotDao {
 			+ " JOIN PRODUCT P "
 			+ " ON L.PRODUCT_ID = P.ID "
 			+ " WHERE L.COMPANY_ID = ?"
-			+ " AND MIN_VOLUME > MAX_VOLUME";
+			+ " AND MIN_VOLUME <= MAX_VOLUME";
 	
 	private static final String SET_STATUS_BY_COMPANY =
 			  "UPDATE LOT SET "
