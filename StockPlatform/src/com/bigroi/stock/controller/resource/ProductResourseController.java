@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.db.Product;
-import com.bigroi.stock.bean.ui.ChartTrace;
 import com.bigroi.stock.bean.ui.ProductForUI;
 import com.bigroi.stock.bean.ui.TradeOffer;
 import com.bigroi.stock.json.GsonUtil;
@@ -77,13 +76,6 @@ public class ProductResourseController extends BaseResourseController {
 		List<TradeOffer> tradeOffers = ServiceFactory.getProductService().getTradeOffers(productId);
 		TableResponse<TradeOffer> table = new TableResponse<>(TradeOffer.class, tradeOffers);
 		return new ResultBean(1, table, null).toString();
-	}
-	
-	@RequestMapping("/TradeOfferChart.spr")
-	@ResponseBody
-	public String getTradeOfferChart(@RequestParam long productId) throws ServiceException, TableException{
-		List<ChartTrace> chartTraces = ServiceFactory.getProductService().getChartTraces(productId);
-		return new ResultBean(1, chartTraces, null).toString();
 	}
 	
 }
