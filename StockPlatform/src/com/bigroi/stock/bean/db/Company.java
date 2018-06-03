@@ -24,6 +24,15 @@ public class Company implements Serializable{
 	
 	private CompanyStatus status;
 	
+	private long addressId;
+	
+	public long getAddressId() {
+		return addressId;
+	}
+	
+	public void setAddressId(long addressId) {
+		this.addressId = addressId;
+	}
 	
 	public String getType() {
 		return type;

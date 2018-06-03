@@ -67,6 +67,9 @@ public class UserServiceImpl implements UserService {
 			user.getCompany().getAddress().setCompanyId(user.getCompanyId());;
 			addressDao.addAddress(user.getCompany().getAddress());
 			userDao.add(user);
+			user.getCompany().setAddressId(user.getCompany().getAddress().getId());
+			companyDao.update(user.getCompany());
+			
 			List<UserRole> listRole = new ArrayList<>();
 			for (GrantedAuthority grantedAuthority : user.getAuthorities()) {
 				UserRole userRole = new UserRole();
@@ -85,6 +88,7 @@ public class UserServiceImpl implements UserService {
 	public void update(StockUser user) throws ServiceException {
 		try {
 			userDao.update(user);
+			user.getCompany().setAddressId(user.getCompany().getAddress().getId());
 			companyDao.update(user.getCompany());
 			addressDao.updateAddress(user.getCompany().getAddress());
 		} catch (DaoException e) {

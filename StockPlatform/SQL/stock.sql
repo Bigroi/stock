@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `company` (
   `phone` varchar(50) CHARACTER SET utf8 NOT NULL,
   `reg_number` varchar(100) CHARACTER SET utf8 NOT NULL,
   `status` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `address_id` bigint(20) NOT NULL,
+  `address_id` BIGINT(20) NULL DEFAULT NULL,
   `type` varchar(50) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_company_address` (`address_id`),

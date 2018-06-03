@@ -1,11 +1,17 @@
 package com.bigroi.stock.dao.db;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import com.bigroi.stock.bean.db.Address;
 import com.bigroi.stock.dao.AddressDao;
@@ -67,15 +73,25 @@ public class AddressDaoImpl implements AddressDao{
 	@Override
 	public void addAddress(Address address) throws DaoException{
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(ADD_ADDRESS, 
-				address.getCity(),
-				address.getCountry(),
-				address.getAddress(),
-				address.getLatitude(),
-				address.getLongitude(),
-				address.getCompanyId());
+		
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		template.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement ps = con.prepareStatement(ADD_ADDRESS, PreparedStatement.RETURN_GENERATED_KEYS);
+				ps.setString(1, address.getCity());
+				ps.setString(2, address.getCountry());
+				ps.setString(3, address.getAddress());
+				ps.setDouble(4, address.getLatitude());
+				ps.setDouble(5, address.getLongitude());
+				ps.setLong(6, address.getCompanyId());
+				return ps;
+			}
+		}, keyHolder);
+		long id = keyHolder.getKey().longValue();
+		address.setId(id);
 	}
-	
+		
 	@Override
 	public boolean deleteAddress(long id, long companyId) throws DaoException{
 		JdbcTemplate template = new JdbcTemplate(datasource);

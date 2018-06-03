@@ -37,10 +37,10 @@ public class CompanyDaoImpl implements CompanyDao {
 	private static final String ADD_COMPANY = 
 			 "INSERT INTO COMPANY "
 			+ " (NAME, PHONE, REG_NUMBER, STATUS, TYPE) " 
-			+ " VALUES(?, ?, ?, ?)";
+			+ " VALUES(?, ?, ?, ?, ?)";
 
 	private static final String UPDATE_COMPANY_BY_ID = 
-			" UPDATE COMPANY SET NAME = ?, "
+			" UPDATE COMPANY SET NAME = ?, ADDRESS_ID = ?, "
 			+ " PHONE = ?, REG_NUMBER = ?, STATUS = ? "
 			+ " WHERE ID = ? ";
 	
@@ -103,7 +103,8 @@ public class CompanyDaoImpl implements CompanyDao {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_COMPANY_BY_ID, 
 				company.getName(), 
-				company.getPhone(), 
+				company.getAddressId(),
+				company.getPhone(),
 				company.getRegNumber(), 
 				company.getStatus().name().toUpperCase(), 
 				company.getId()) == 1;
