@@ -74,7 +74,7 @@ function makeTable(url, tableElement){
         }
 		if(data[model.editColumn][2] == "Y"){ 
 			$details.removeClass("no-details");
-			var detailsLabel = translate("label.table.details");
+			var detailsLabel = l10n.translate("label.table.details");
 			$details.addClass("details").text(detailsLabel);
             var detailsForm = window[model.detailsUrl];
             if (detailsForm){
@@ -137,27 +137,27 @@ function makeTable(url, tableElement){
 
 	function getLanguage(){
 		return {
-		    decimal:		translate("label.table.decimal"),
-		    emptyTable:		translate("label.table.emptyTable"),
-		    info:			translate("label.table.info"),
-		    infoEmpty:		translate("label.table.infoEmpty"),
-		    infoFiltered:	translate("label.table.infoFiltered"),
-		    infoPostFix:	translate("label.table.infoPostFix"),
-		    thousands:		translate("label.table.thousands"),
-		    lengthMenu:		translate("label.table.lengthMenu"),
-		    loadingRecords:	translate("label.table.loadingRecords"),
-		    processing:		translate("label.table.processing"),
-		    search:			translate("label.table.search"),
-		    zeroRecords:	translate("label.table.zeroRecords"),
+		    decimal:		l10n.translate("label.table.decimal"),
+		    emptyTable:		l10n.translate("label.table.emptyTable"),
+		    info:			l10n.translate("label.table.info"),
+		    infoEmpty:		l10n.translate("label.table.infoEmpty"),
+		    infoFiltered:	l10n.translate("label.table.infoFiltered"),
+		    infoPostFix:	l10n.translate("label.table.infoPostFix"),
+		    thousands:		l10n.translate("label.table.thousands"),
+		    lengthMenu:		l10n.translate("label.table.lengthMenu"),
+		    loadingRecords:	l10n.translate("label.table.loadingRecords"),
+		    processing:		l10n.translate("label.table.processing"),
+		    search:			l10n.translate("label.table.search"),
+		    zeroRecords:	l10n.translate("label.table.zeroRecords"),
 		    paginate: {
-		        first:		translate("label.table.paginate_first"),
-		        last:		translate("label.table.paginate_last"),
-		        next:		translate("label.table.paginate_next"),
-		        previous:	translate("label.table.paginate_previous")
+		        first:		l10n.translate("label.table.paginate_first"),
+		        last:		l10n.translate("label.table.paginate_last"),
+		        next:		l10n.translate("label.table.paginate_next"),
+		        previous:	l10n.translate("label.table.paginate_previous")
 		    },
 		    aria: {
-		        sortAscending:	translate("label.table.aria_sortAscending"),
-		        sortDescending:	translate("label.table.aria_sortAscending")
+		        sortAscending:	l10n.translate("label.table.aria_sortAscending"),
+		        sortDescending:	l10n.translate("label.table.aria_sortAscending")
 		    }
 		}
 	}
@@ -166,7 +166,7 @@ function makeTable(url, tableElement){
 	function localizeHeader(tableData){
 		for (var i=0; i < tableData.columns.length ; i++  ) {
 			var title = tableData.columns[i].title;
-			title =  translate(title);
+			title =  l10n.translate(title);
 			tableData.columns[i].title = title;
 		}
 	}

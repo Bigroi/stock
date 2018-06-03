@@ -58,7 +58,7 @@ function processRequestResult(formContainer, answer, messageDiv){
 		document.location = answer.data;
 		return 0;
 	}
-	messageDiv.text(translate(answer.message));
+	messageDiv.text(l10n.translate(answer.message));
 	if (messageDiv.length > 0){
 		messageDiv[0].scrollIntoView(true);
 	}
@@ -127,7 +127,7 @@ function setLoginDialogPlugin(element){
 		formUrl:"/Login.spr", 
 		buttons:[
 		{
-			text: translate("label.button.login"),
+			text: l10n.translate("label.button.login"),
 			id:"login",
 			submit:function(formContainer, params){
 				$.post("/account/json/Login.spr", params, function(answer){
@@ -138,7 +138,7 @@ function setLoginDialogPlugin(element){
 			login:true
 		},
 		{
-			text: translate("label.button.reset"),
+			text: l10n.translate("label.button.reset"),
 			id:"reset",
 			submit:function(formContainer, params){
 				$.post("/account/json/ResetPassword.spr", params, function(answer){
@@ -154,7 +154,7 @@ function setLoginDialogPlugin(element){
 
 function setLotDialogPlugin(element, table, model, id){
 	var buttons = [{
-		text: translate("label.button.save"),
+		text: l10n.translate("label.button.save"),
 		id:"save",
 		submit:function(formContainer, params, $dialogbox){
 			var idColumnValue = JSON.parse(params.json)[model.idColumn];
@@ -168,7 +168,7 @@ function setLotDialogPlugin(element, table, model, id){
 		}
 	},
 	{
-		text: translate("label.button.save_start_trading"),
+		text: l10n.translate("label.button.save_start_trading"),
 		id:"save-start-trading",
 		submit:function(formContainer, params, $dialogbox){
 			var idColumnValue = JSON.parse(params.json)[model.idColumn];
@@ -195,7 +195,7 @@ function setLotDialogPlugin(element, table, model, id){
 function setInviteDialogPlugin(element){
 	
 	var buttons = [{
-		text: translate("label.button.invite"),
+		text: l10n.translate("label.button.invite"),
 		id:"invite",
 		submit:function(formContainer, params, $dialogbox){
 			$.post("/account/json/AddUser.spr", params, function(answer){
@@ -218,7 +218,7 @@ function setInviteDialogPlugin(element){
 function setContactUsDialogPlugin(element){
 	
 	var buttons = [{
-		text: translate("label.button.send"),
+		text: l10n.translate("label.button.send"),
 		id:"invite",
 		submit:function(formContainer, params, $dialogbox){
 			$.post("/feedback/json/Save.spr", params, function(answer){
@@ -238,7 +238,7 @@ function setContactUsDialogPlugin(element){
 
 function setTenderDialogPlugin(element, table, model, id){
 	var buttons = [{
-		text: translate("label.button.save"),
+		text: l10n.translate("label.button.save"),
 		id:"save",
 		submit:function(formContainer, params, $dialogbox){
 			var idColumnValue = JSON.parse(params.json)[model.idColumn];
@@ -252,7 +252,7 @@ function setTenderDialogPlugin(element, table, model, id){
 		}
 	},
 	{
-		text: translate("label.button.save_start_trading"),
+		text: l10n.translate("label.button.save_start_trading"),
 		id:"save-start-trading",
 		submit:function(formContainer, params, $dialogbox){
 			var idColumnValue = JSON.parse(params.json)[model.idColumn];
@@ -278,7 +278,7 @@ function setTenderDialogPlugin(element, table, model, id){
 
 function setProductDialogPlugin(element, table, model, id){
 	var buttons = [{
-		text: translate("label.button.save"),
+		text: l10n.translate("label.button.save"),
 		id:"save",
 		submit:function(formContainer, params, $dialogbox){
 			var idColumnValue = JSON.parse(params.json)[model.idColumn];
@@ -292,7 +292,7 @@ function setProductDialogPlugin(element, table, model, id){
 		}
 	},
 	{
-		text: translate("label.button.delete"),
+		text: l10n.translate("label.button.delete"),
 		id:"delete",
 		submit:function(formContainer, params, $dialogbox){
 			var idColumnValue = JSON.parse(params.json)[model.idColumn];

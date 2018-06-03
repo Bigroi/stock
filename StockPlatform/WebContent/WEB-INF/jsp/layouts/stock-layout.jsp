@@ -34,7 +34,6 @@
 		<script src="/js/form.js"></script>
 		<script src="/js/script.js"></script>
 		<script src="/js/plotly-latest.min.js"></script>
-		<script src="/js/chartBuilder.js"></script>
 		<script src="/js/jquery.responsive.dataTables.min.js"></script>
 	</head>
 	<body>

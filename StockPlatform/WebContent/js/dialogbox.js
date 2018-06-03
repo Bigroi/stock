@@ -20,7 +20,7 @@ function showMessageDialog(message, type, action){
 		"hasCloseOverlay":true,
 		buttons:[
 			{
-				text: translate("label.button.ok"),
+				text: l10n.translate("label.button.ok"),
 				id:"ok",
 				submit:function(formContainer, params, $dialogbox){
 					$dialogbox.remove();

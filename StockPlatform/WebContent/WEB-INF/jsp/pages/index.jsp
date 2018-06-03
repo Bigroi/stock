@@ -31,14 +31,10 @@
 		<script src="/js/form.js"></script>
 		<script src="/js/script.js"></script>
 		<script src="/js/plotly-latest.min.js"></script>
-		<script src="/js/chartBuilder.js"></script>
 		<script src="/js/productList.js"></script>
 
 	</head>
 	<body>
-		<script>
-			localization();
-		</script>
 		<div id="login-form-container"></div>
 		<div class="wrapper">
 		    <div class="content">

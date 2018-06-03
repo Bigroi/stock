@@ -1,25 +1,31 @@
 'use strict';
-window.l10n = { };
-function localization(){	
-    $.ajax("/l10n/json/Labels.spr",{
-    	type: "GET",
-    	success: function(answer){
-    				try{
-    					window.l10n = answer.data;
-    				}catch(e){
-    					console.log(e);
-    				}
-    			},
-    	dataType: "json",
-    	async: false
-    })
-}
-
-function translate(word){
-	var translation = window.l10n[word];
-	if (translation || translation == ''){
-		return translation;
-	} else {
-		return "not found " + word;
+var l10n = { 
+	translate: function(word){
+		var translation = this._l10n[word];
+		if (translation || translation == ''){
+			return translation;
+		} else {
+			return "not found " + word;
+		}
+	},
+	_l10n:{},
+	localization: function(){
+		var l10n = this._l10n;
+	    $.ajax("/l10n/json/Labels.spr",{
+	    	type: "GET",
+	    	success: function(answer){
+	    				try{
+	    					for (var key in answer.data){
+	    						l10n[key] = answer.data[key];
+	    					}
+	    				}catch(e){
+	    					console.log(e);
+	    				}
+	    			},
+	    	dataType: "json",
+	    	async: false
+	    })
 	}
-}
+};
+
+l10n.localization();
