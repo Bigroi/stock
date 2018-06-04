@@ -20,8 +20,8 @@ public class AddressForUI {
 	private String address;
 	
 	@Column("")
-	@Edit(details="/account/EditAddress.spr", remove="", edit="")
-	private String edit = "NNY";
+	@Edit(details="", remove="", edit="/account/EditAddress.spr")
+	private String edit = "YNN";
 	
 	private double latitude;
 	private double longitude;

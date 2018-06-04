@@ -28,7 +28,11 @@ $(document).ready(function(){
 	
 			if ($(".add-button").length > 0){
 				var editForm = window[model.editForm];
-				editForm($(".add-button"), $(tableElement), model);
+	            if (editForm){
+					editForm($(".add-button"), $(tableElement), model);
+	            } else {
+	            	$(".add-button").click(function(){document.location = model.editForm;});
+	            }
 			}
 			
 		});
