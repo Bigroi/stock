@@ -485,6 +485,8 @@ footer .container {
 .mail, .phone {
 	padding-left: 35px;
 	background-repeat: no-repeat;
+	background-size: 22px;
+    background-position: bottom left;
 }
 .mail {
 	background-image: url(../img/mail.png);
