@@ -41,8 +41,8 @@ $(document).ready(function(){
 		buyProduct.append($("<p class='count'>" + product.buyPrice + "</p>"));
 		buyProduct.append($("<p class='desc-count'>" + l10n.translate("label.index.average_price") + "</p>"));
 		if (!authorised){
-			var buyButton = $("<button class='green-button'>" + l10n.translate("label.product.details") +" " + product.name + "</button>");
-			div.append(buyButton);
+			var buyButton = $("<button class='blue-button'>" + l10n.translate("label.product.details") +" " + product.name + "</button>");
+			buyProduct.append(buyButton);
 			buyProduct.on("click", function(){
 				document.location = "/product/TrdeOffers.spr";
 			});

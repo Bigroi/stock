@@ -199,6 +199,9 @@ h3 {
 	    -ms-flex-align: center;
 	        align-items: center;
 }
+.reg-but  > div {
+	text-transform: lowercase;
+}
 .req-far,
 .req-buy {
 	width: 140px;
@@ -208,11 +211,17 @@ h3 {
 	text-transform: uppercase;
 	color: var(--white);
 	margin: 0 15px;
-	font-size: 18px;
+	font-size: 13px;
     letter-spacing: 1px;
 } 
 .advantages {
 	height: 410px;
+	    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+            align-items: center;
 }
 .advantages .container {
 	height: inherit;
@@ -221,14 +230,16 @@ h3 {
 	display: flex;
 	-webkit-box-pack: justify;
 	    -ms-flex-pack: justify;
-	        justify-content: space-between;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
+	        justify-content: space-between;     
+	-webkit-box-align: start;
+    	-ms-flex-align: start;
+    		-ms-grid-row-align: flex-start;
+            	align-items: flex-start;
+    height: auto;
 }
 .advantage {
 	width: 270px;
-	height: 262px;
+	min-height: 262px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -336,6 +347,7 @@ h3 {
 	border-radius: 5px;
   	color: var(--white);
   	margin-top: 10px;
+  	font-size: 12px
 }
 .for-whom  {
 	height: 560px;
@@ -398,7 +410,7 @@ h3 {
 	height: 60px;
 	border-radius: 6px;
 	text-transform: uppercase;
-	font-size: 18px;
+	font-size: 16px;
  	letter-spacing: 1px;
  	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
  	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -434,7 +446,7 @@ h3 {
   	border-radius: 6px;
   	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
   	margin-top: 30px;
-  	font-size: 18px;
+  	font-size: 13px;
   	text-transform: uppercase;
   	letter-spacing: 1px;
   	padding-top: 0;
@@ -505,10 +517,14 @@ footer .container {
 	.advantages .container {
 		-ms-flex-wrap: wrap;
 		    flex-wrap: wrap;
-		padding-top: 30px;
-		padding-bottom: 30px;
+	padding-top: 50px;
+    padding-bottom: 50px;
 		-ms-flex-pack: distribute;
 		    justify-content: space-around;
+	}
+	.advantages .container > div:first-child,
+	.advantages .container > div:nth-child(2) {
+		margin-bottom: 50px;
 	}
 	.products {
 		height: auto;
@@ -606,10 +622,12 @@ footer .container {
 	.req-far {
 		width: 118px;
 		margin: 0 15px 0 0; 
+		font-size: 11px;
 	}
 	.req-buy {
 		width: 128px;
 		margin: 0 0 0 15px; 
+		font-size: 11px;
 	}
 	.product {
 		height: 500px;
@@ -622,6 +640,8 @@ footer .container {
 	}
 	.product button {
 		width: 110px;
+		padding-right: 5px;
+    	padding-left: 5px;
 	}
 	.about-product {
 		top: unset;
