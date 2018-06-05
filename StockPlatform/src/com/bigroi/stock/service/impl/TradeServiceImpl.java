@@ -112,11 +112,9 @@ public class TradeServiceImpl implements TradeService{
 	
 	private void sendConfimationMails(Deal deal) throws ServiceException {
 		try{
-			dealConfirmationMessageForCustomer.setDataObject(deal);
-			dealConfirmationMessageForCustomer.send();
+			dealConfirmationMessageForCustomer.send(deal);
 			
-			dealConfirmationMessageForSeller.setDataObject(deal);
-			dealConfirmationMessageForSeller.send();
+			dealConfirmationMessageForSeller.send(deal);
 		} catch (MessageException e) {
 			throw new ServiceException(e);
 		}

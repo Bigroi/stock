@@ -16,17 +16,17 @@ public class DealExparationMessageForCustomer extends BaseMessage<Deal>{
 	}
 
 	@Override
-	protected String getText() throws MessageException {
-		return super.getText()
-				.replaceAll("@product", getDataObject().getProduct().getName())
+	protected String getText(Deal deal) throws MessageException {
+		return super.getText(deal)
+				.replaceAll("@product", deal.getProduct().getName())
 				.replaceAll("@server", mailManager.getServerAdress());
 	}
 	
 	@Override
-	protected String getEmail() throws MessageException {
+	protected String getEmail(Deal deal) throws MessageException {
 		try{
 			return companyService.getCompanyById(
-					getDataObject().getBuyerAddress().getCompanyId()
+					deal.getBuyerAddress().getCompanyId()
 					).getEmail();
 		}catch (ServiceException e) {
 			throw new MessageException(e);

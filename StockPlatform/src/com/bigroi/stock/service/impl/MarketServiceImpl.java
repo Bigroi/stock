@@ -64,8 +64,7 @@ public class MarketServiceImpl implements MarketService {
 			for (Lot lot : lots) {
 				if (lot.isExpired()){
 					lot.setStatus(BidStatus.INACTIVE);
-					lotExparationMessage.setDataObject(lot);
-					lotExparationMessage.send();
+					lotExparationMessage.send(lot);
 				}
 			}
 			lotDao.update(lots);
@@ -74,8 +73,7 @@ public class MarketServiceImpl implements MarketService {
 			for (Tender tender : tenders) {
 				if (tender.isExpired()){
 					tender.setStatus(BidStatus.INACTIVE);
-					tenderExparationMessage.setDataObject(tender);
-					tenderExparationMessage.send();
+					tenderExparationMessage.send(tender);
 				}
 			}
 			tenderDao.update(tenders);
@@ -94,23 +92,17 @@ public class MarketServiceImpl implements MarketService {
 					continue;
 				}
 				if (deal.getSellerApproved() != null){
-					dealExparationMessageForSellerByOpponent.setDataObject(deal);
-					dealExparationMessageForSellerByOpponent.send();
+					dealExparationMessageForSellerByOpponent.send(deal);
 					
-					dealExparationMessageForCustomer.setDataObject(deal);
-					dealExparationMessageForCustomer.send();
+					dealExparationMessageForCustomer.send(deal);
 				} else if (deal.getBuyerApproved() != null){
-					dealExparationMessageForSeller.setDataObject(deal);
-					dealExparationMessageForSeller.send();
+					dealExparationMessageForSeller.send(deal);
 					
-					dealExparationMessageForCustomerByOpponent.setDataObject(deal);
-					dealExparationMessageForCustomerByOpponent.send();
+					dealExparationMessageForCustomerByOpponent.send(deal);
 				} else {
-					dealExparationMessageForSeller.setDataObject(deal);
-					dealExparationMessageForSeller.send();
+					dealExparationMessageForSeller.send(deal);
 					
-					dealExparationMessageForCustomer.setDataObject(deal);
-					dealExparationMessageForCustomer.send();
+					dealExparationMessageForCustomer.send(deal);
 				}
 				returnVolumeToBids(deal);
 			}
@@ -141,11 +133,9 @@ public class MarketServiceImpl implements MarketService {
 		try {
 			List<Deal> deals = dealDao.getOnApprove();
 			for (Deal deal : deals) {
-				dealConfirmationMessageForCustomer.setDataObject(deal);
-				dealConfirmationMessageForCustomer.send();
+				dealConfirmationMessageForCustomer.send(deal);
 				
-				dealConfirmationMessageForSeller.setDataObject(deal);
-				dealConfirmationMessageForSeller.send();
+				dealConfirmationMessageForSeller.send(deal);
 			}
 		} catch (DaoException | MessageException e) {
 			throw new ServiceException(e);

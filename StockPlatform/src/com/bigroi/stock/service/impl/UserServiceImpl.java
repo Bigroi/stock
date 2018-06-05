@@ -123,8 +123,7 @@ public class UserServiceImpl implements UserService {
 			Map<String,String> map = new HashMap<>();
 			map.put("email", user.getUsername());
 			map.put("code", key.getGeneratedKey());
-			linkResetPasswordMessage.setDataObject(map);
-			linkResetPasswordMessage.sendImediatly();
+			linkResetPasswordMessage.sendImediatly(map);
 		} catch (DaoException | MessageException e) {
 			throw new ServiceException(e);
 		}
@@ -146,8 +145,7 @@ public class UserServiceImpl implements UserService {
 			StockUser user = userDao.getByUsernameWithRoles(username);
 			user.setPassword(Generator.generatePass(8));
 			userDao.updatePassword(user);
-			resetUserPasswordMessage.setDataObject(user);
-			resetUserPasswordMessage.sendImediatly();
+			resetUserPasswordMessage.sendImediatly(user);
 		} catch (DaoException | MessageException e) {
 			throw new ServiceException(e);
 		}

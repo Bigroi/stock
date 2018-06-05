@@ -16,9 +16,9 @@ public class TenderExparationMessage extends BaseMessage<Tender> {
 	}
 
 	@Override
-	protected String getEmail() throws MessageException {
+	protected String getEmail(Tender tender) throws MessageException {
 		try {
-			long companyId = getDataObject().getCompanyId();
+			long companyId = tender.getCompanyId();
 			return companyService.getCompanyById(companyId).getEmail();
 		} catch (ServiceException e) {
 			throw new MessageException(e);
@@ -26,11 +26,11 @@ public class TenderExparationMessage extends BaseMessage<Tender> {
 	}
 	
 	@Override
-	protected String getText() throws MessageException {
-		return super.getText()
-				.replaceAll("@price", getDataObject().getMaxPrice() + "")
-				.replaceAll("@description", getDataObject().getDescription())
-				.replaceAll("@volume", getDataObject().getMaxVolume() + "");
+	protected String getText(Tender tender) throws MessageException {
+		return super.getText(tender)
+				.replaceAll("@price", tender.getMaxPrice() + "")
+				.replaceAll("@description", tender.getDescription())
+				.replaceAll("@volume", tender.getMaxVolume() + "");
 	}
 
 }

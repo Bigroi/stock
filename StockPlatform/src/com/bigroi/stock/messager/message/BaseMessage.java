@@ -25,16 +25,6 @@ abstract class BaseMessage<T> implements Message<T>{
 	
 	private String text;	
 	
-	private T dataObject;
-	
-	public T getDataObject() {
-		return dataObject;
-	}
-	
-	public void setDataObject(T dataObject) {
-		this.dataObject = dataObject;
-	}
-	
 	protected BaseMessage(String fileName) throws MessageException {
 		try{
 			if (fileName != null && !fileName.equals(""))
@@ -60,17 +50,17 @@ abstract class BaseMessage<T> implements Message<T>{
 		}
 	}
 	
-	public void sendImediatly() throws MessageException{
+	public void sendImediatly(T object) throws MessageException{
 		try {
-			mailManager.send(getEmail(), getSubject(), getText());
+			mailManager.send(getEmail(object), getSubject(), getText(object));
 		} catch (MailManagerException e) {
 			throw new MessageException(e);
 		}
 	}
 	
-	protected abstract String getEmail() throws MessageException;
+	protected abstract String getEmail(T object) throws MessageException;
 	
-	protected String getText() throws MessageException{
+	protected String getText(T object) throws MessageException{
 		return text;
 	}
 	
@@ -78,9 +68,9 @@ abstract class BaseMessage<T> implements Message<T>{
 		return subject;
 	}
 	
-	public void send() throws MessageException{
+	public void send(T object) throws MessageException{
 		try {
-			messageService.add(new Email(getEmail(), getSubject(), getText()));
+			messageService.add(new Email(getEmail(object), getSubject(), getText(object)));
 		} catch (ServiceException e) {
 			throw new MessageException(e);
 		}

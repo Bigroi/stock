@@ -11,17 +11,18 @@ public class FeedBackMessage extends BaseMessage<FeedBack>{
 		this.managerEmaill = managerEmaill;
 	}
 	@Override
-	protected String getEmail() throws MessageException {
+	protected String getEmail(FeedBack feedBack) throws MessageException {
 		return managerEmaill;
 	}
 	
-	protected String getText() throws MessageException {
-		return getDataObject().getMessage() + 
-				"/n email: " + getDataObject().getEmail();
+	@Override
+	protected String getText(FeedBack feedBack) throws MessageException {
+		return feedBack.getMessage() + 
+				"/n email: " + feedBack.getEmail();
 	}
 	
 	@Override
 	protected String getSubject() throws MessageException {
-		return "Message from " + getDataObject().getEmail();
+		return "Message from custommer";
 	}
 }

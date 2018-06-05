@@ -97,8 +97,7 @@ public class DealServiceImpl implements DealService{
 			}
 			addBlackList(deal.getLotId(), deal.getTenderId());
 			setVolumeBack(deal);
-			message.setDataObject(deal);
-			message.send();
+			message.send(deal);
 			return true;
 		}catch(DaoException | MessageException e){
 			throw new ServiceException(e);
@@ -134,11 +133,9 @@ public class DealServiceImpl implements DealService{
 				return false;
 			}
 			if (Deal.calulateStatus(deal, companyId) == DealStatus.APPROVED){
-				successDealMessageForCustomer.setDataObject(deal);
-				successDealMessageForCustomer.send();
+				successDealMessageForCustomer.send(deal);
 				
-				successDealMessageForSeller.setDataObject(deal);
-				successDealMessageForSeller.send();
+				successDealMessageForSeller.send(deal);
 			}
 			
 			return true;

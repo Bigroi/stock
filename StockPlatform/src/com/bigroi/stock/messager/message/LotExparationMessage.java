@@ -16,9 +16,9 @@ public class LotExparationMessage extends BaseMessage<Lot> {
 	}
 
 	@Override
-	protected String getEmail() throws MessageException {
+	protected String getEmail(Lot lot) throws MessageException {
 		try {
-			long companyId = getDataObject().getCompanyId();
+			long companyId = lot.getCompanyId();
 			return companyService.getCompanyById(companyId).getEmail();
 		} catch (ServiceException e) {
 			throw new MessageException(e);
@@ -26,11 +26,11 @@ public class LotExparationMessage extends BaseMessage<Lot> {
 	}
 	
 	@Override
-	protected String getText() throws MessageException {
-		return super.getText()
-				.replaceAll("@price", getDataObject().getMinPrice() + "")
-				.replaceAll("@description", getDataObject().getDescription())
-				.replaceAll("@volume", getDataObject().getMaxVolume() + "");
+	protected String getText(Lot lot) throws MessageException {
+		return super.getText(lot)
+				.replaceAll("@price", lot.getMinPrice() + "")
+				.replaceAll("@description", lot.getDescription())
+				.replaceAll("@volume", lot.getMaxVolume() + "");
 	}
 
 }

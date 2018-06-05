@@ -38,8 +38,7 @@ public class FeedBackResourceController extends BaseResourseController {
 	@ResponseBody
 	public String getForm(String json) throws MessageException{
 		FeedBack message = GsonUtil.getGson().fromJson(json, FeedBack.class);
-		feedBackMessage.setDataObject(message);
-		feedBackMessage.send();
+		feedBackMessage.send(message);
 		return new ResultBean(1, message, "lable.account.fb_success").toString();
 	}
 	

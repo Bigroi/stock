@@ -9,15 +9,14 @@ public class ResetUserPasswordMessage extends BaseMessage<StockUser> {
 	}
 
 	@Override
-	protected String getEmail() throws MessageException {
-		return getDataObject().getUsername();
+	protected String getEmail(StockUser stockUser) throws MessageException {
+		return stockUser.getUsername();
 		
 	}
 
 	@Override
-	protected String getText() throws MessageException {
-		StockUser user = getDataObject();
-		return super.getText()
+	protected String getText(StockUser user) throws MessageException {
+		return super.getText(user)
 				.replaceAll("@username", user.getUsername())
 				.replaceAll("@password", user.getPassword());
 	}
