@@ -2,6 +2,9 @@ package com.bigroi.stock.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.Tender;
@@ -11,19 +14,14 @@ import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.TenderService;
 
+@Repository
 public class TenderServiceImpl implements TenderService{
 	
+	@Autowired
 	private TenderDao tenderDao;
+	@Autowired
 	private ProductDao productDao;
 	
-	public void setProductDao(ProductDao productDao) {
-		this.productDao = productDao;
-	}
-	
-	public void setTenderDao(TenderDao tenderDao) {
-		this.tenderDao = tenderDao;
-	}
-
 	@Override
 	public Tender getTender(long id, long companyId) throws ServiceException {
 		try{

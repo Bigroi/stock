@@ -6,29 +6,25 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.db.Blacklist;
 import com.bigroi.stock.dao.BlacklistDao;
 import com.bigroi.stock.dao.DaoException;
 
+@Repository
 public class BlacklistDaoImpl implements BlacklistDao {
 	
 	private static final String ADD_BLACKLIST = "INSERT INTO BLACK_LIST "
 			+ " (TENDER_ID, LOT_ID) VALUES (?, ?)";
 
+	@Autowired
 	private DataSource datasource;
-
-	public DataSource getDatasource() {
-		return datasource;
-	}
-
-	public void setDatasource(DataSource datasource) {
-		this.datasource = datasource;
-	}
 
 	@Override
 	public void add(Blacklist blacklist) throws DaoException {

@@ -2,6 +2,7 @@ package com.bigroi.stock.controller.rendering;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -12,12 +13,19 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bigroi.stock.bean.db.Address;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.StockUser;
+import com.bigroi.stock.service.AddressService;
+import com.bigroi.stock.service.ProductService;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 @RequestMapping("/tender")
 public class TenderRenderingController extends BaseRenderingController{
+	
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private AddressService addressService;
 	
 	@RequestMapping("/Form.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
@@ -26,8 +34,8 @@ public class TenderRenderingController extends BaseRenderingController{
 			Authentication loggedInUser
 			) throws ServiceException {
 		ModelAndView modelAndView = createModelAndView("tenderForm");
-		List<Product> products = ServiceFactory.getProductService().getAllActiveProducts();
-		List<Address> addressList = ServiceFactory.getAddressService().getCompanyAddresses(((StockUser)loggedInUser.getPrincipal()).getCompanyId());
+		List<Product> products = productService.getAllActiveProducts();
+		List<Address> addressList = addressService.getCompanyAddresses(((StockUser)loggedInUser.getPrincipal()).getCompanyId());
 		
 		modelAndView.addObject("newTender", id < 0);
 		modelAndView.addObject("listOfProducts", products);

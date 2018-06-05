@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.common.Bid;
@@ -20,23 +22,15 @@ import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.service.ProductService;
 import com.bigroi.stock.service.ServiceException;
 
+@Repository
 public class ProductServiceImpl implements ProductService {
 
+	@Autowired
 	private ProductDao productDao;
+	@Autowired
 	private LotDao lotDao;
+	@Autowired
 	private TenderDao tenderDao;
-	
-	public void setProductDao(ProductDao productDao) {
-		this.productDao = productDao;
-	}
-
-	public void setLotDao(LotDao lotDao) {
-		this.lotDao = lotDao;
-	}
-
-	public void setTenderDao(TenderDao tenderDao) {
-		this.tenderDao = tenderDao;
-	}
 	
 	@Override
 	public List<Product> getAllProducts() throws ServiceException {

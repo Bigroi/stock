@@ -1,16 +1,28 @@
 package com.bigroi.stock.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.controller.rendering.BaseRenderingController;
+import com.bigroi.stock.service.MarketService;
+import com.bigroi.stock.service.MessageService;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.ServiceFactory;
+import com.bigroi.stock.service.TradeService;
 
 @Controller
 @RequestMapping("/test/background")
 public class TestBackgroundController extends BaseRenderingController {
+	
+	@Autowired
+	private MarketService marketService;
+	
+	@Autowired
+	private TradeService tradeService;
+	
+	@Autowired
+	private MessageService messageService;
 	
 	@RequestMapping(value = "/Index.spr")
 	public ModelAndView showPage(){
@@ -21,7 +33,7 @@ public class TestBackgroundController extends BaseRenderingController {
 	public ModelAndView startClearPredeal() throws ServiceException {
 		ModelAndView modelAndView = createModelAndView("testBG");
 		
-		ServiceFactory.getMarketService().clearPreDeal();
+		marketService.clearPreDeal();
 		String message = "ClearPreDeal is finished";
 		modelAndView.addObject("message", message);
 		
@@ -32,7 +44,7 @@ public class TestBackgroundController extends BaseRenderingController {
 	public ModelAndView startTrade() throws ServiceException {
 		ModelAndView modelAndView = createModelAndView("testBG");
 		
-		ServiceFactory.getTradeService().trade();
+		tradeService.trade();
 		String message = "Trade is finished";
 		modelAndView.addObject("message", message);
 		
@@ -43,7 +55,7 @@ public class TestBackgroundController extends BaseRenderingController {
 	public ModelAndView startSendMail() throws ServiceException {
 		ModelAndView modelAndView = createModelAndView("testBG");
 		
-		ServiceFactory.getMessageService().sendAllEmails();
+		messageService.sendAllEmails();
 		String message = "SendEmails is finished";
 		modelAndView.addObject("message", message);
 		
@@ -54,7 +66,7 @@ public class TestBackgroundController extends BaseRenderingController {
 	public ModelAndView checkStatus() throws ServiceException {
 		ModelAndView modelAndView = createModelAndView("testBG");
 		
-		ServiceFactory.getMarketService().checkExparations();
+		marketService.checkExparations();
 		String message = "CheckStatus is finished";
 		modelAndView.addObject("message", message);
 		

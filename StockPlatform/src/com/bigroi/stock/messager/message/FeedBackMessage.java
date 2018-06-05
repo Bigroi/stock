@@ -6,7 +6,7 @@ public class FeedBackMessage extends BaseMessage<FeedBack>{
 
 	private String managerEmaill;
 	
-	protected FeedBackMessage(String managerEmaill) throws MessageException {
+	public FeedBackMessage(String managerEmaill) throws MessageException {
 		super(null);
 		this.managerEmaill = managerEmaill;
 	}

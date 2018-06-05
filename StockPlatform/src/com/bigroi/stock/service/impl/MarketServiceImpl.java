@@ -2,6 +2,9 @@ package com.bigroi.stock.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.common.BidStatus;
@@ -12,31 +15,46 @@ import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.messager.MessagerFactory;
-import com.bigroi.stock.messager.message.Message;
+import com.bigroi.stock.messager.message.DealConfirmationMessageForCustomer;
+import com.bigroi.stock.messager.message.DealConfirmationMessageForSeller;
+import com.bigroi.stock.messager.message.DealExparationMessageForCustomer;
+import com.bigroi.stock.messager.message.DealExparationMessageForSeller;
+import com.bigroi.stock.messager.message.LotExparationMessage;
 import com.bigroi.stock.messager.message.MessageException;
+import com.bigroi.stock.messager.message.TenderExparationMessage;
 import com.bigroi.stock.service.MarketService;
 import com.bigroi.stock.service.ServiceException;
 
+@Repository
 public class MarketServiceImpl implements MarketService {
 
+	@Autowired
 	private LotDao lotDao;
-	
+	@Autowired
 	private TenderDao tenderDao;
-
+	@Autowired
 	private DealDao dealDao;
 	
-	public void setDealDao(DealDao dealDao) {
-		this.dealDao = dealDao;
-	}
-	
-	public void setLotDao(LotDao lotDao) {
-		this.lotDao = lotDao;
-	}
-	
-	public void setTenderDao(TenderDao tenderDao) {
-		this.tenderDao = tenderDao;
-	}
+	@Autowired
+	private LotExparationMessage lotExparationMessage;
+	@Autowired
+	private TenderExparationMessage tenderExparationMessage;
+	@Autowired
+	private DealConfirmationMessageForCustomer dealConfirmationMessageForCustomer;
+	@Autowired
+	private DealConfirmationMessageForSeller dealConfirmationMessageForSeller;
+	@Autowired
+	@Qualifier("dealExparationMessageForSellerByOpponent")
+	private DealExparationMessageForSeller dealExparationMessageForSellerByOpponent;
+	@Autowired
+	@Qualifier("dealExparationMessageForCustomer")
+	private DealExparationMessageForCustomer dealExparationMessageForCustomer;
+	@Autowired
+	@Qualifier("dealExparationMessageForSeller")
+	private DealExparationMessageForSeller dealExparationMessageForSeller;
+	@Autowired
+	@Qualifier("dealExparationMessageForCustomerByOpponent")
+	private DealExparationMessageForCustomer dealExparationMessageForCustomerByOpponent;
 	
 	@Override
 	@Transactional
@@ -46,9 +64,8 @@ public class MarketServiceImpl implements MarketService {
 			for (Lot lot : lots) {
 				if (lot.isExpired()){
 					lot.setStatus(BidStatus.INACTIVE);
-					Message<Lot> message = MessagerFactory.getLotExparationMessage();
-					message.setDataObject(lot);
-					message.send();
+					lotExparationMessage.setDataObject(lot);
+					lotExparationMessage.send();
 				}
 			}
 			lotDao.update(lots);
@@ -57,9 +74,8 @@ public class MarketServiceImpl implements MarketService {
 			for (Tender tender : tenders) {
 				if (tender.isExpired()){
 					tender.setStatus(BidStatus.INACTIVE);
-					Message<Tender> message = MessagerFactory.getTenderExparationMessage();
-					message.setDataObject(tender);
-					message.send();
+					tenderExparationMessage.setDataObject(tender);
+					tenderExparationMessage.send();
 				}
 			}
 			tenderDao.update(tenders);
@@ -78,29 +94,23 @@ public class MarketServiceImpl implements MarketService {
 					continue;
 				}
 				if (deal.getSellerApproved() != null){
-					Message<Deal> message = MessagerFactory.getDealExparationMessageForSellerByOpponent();
-					message.setDataObject(deal);
-					message.send();
+					dealExparationMessageForSellerByOpponent.setDataObject(deal);
+					dealExparationMessageForSellerByOpponent.send();
 					
-					message = MessagerFactory.getDealExparationMessageForCustomer();
-					message.setDataObject(deal);
-					message.send();
+					dealExparationMessageForCustomer.setDataObject(deal);
+					dealExparationMessageForCustomer.send();
 				} else if (deal.getBuyerApproved() != null){
-					Message<Deal> message = MessagerFactory.getDealExparationMessageForSeller();
-					message.setDataObject(deal);
-					message.send();
+					dealExparationMessageForSeller.setDataObject(deal);
+					dealExparationMessageForSeller.send();
 					
-					message = MessagerFactory.getDealExparationMessageForCustomerByOpponent();
-					message.setDataObject(deal);
-					message.send();
+					dealExparationMessageForCustomerByOpponent.setDataObject(deal);
+					dealExparationMessageForCustomerByOpponent.send();
 				} else {
-					Message<Deal> message = MessagerFactory.getDealExparationMessageForSeller();
-					message.setDataObject(deal);
-					message.send();
+					dealExparationMessageForSeller.setDataObject(deal);
+					dealExparationMessageForSeller.send();
 					
-					message = MessagerFactory.getDealExparationMessageForCustomer();
-					message.setDataObject(deal);
-					message.send();
+					dealExparationMessageForCustomer.setDataObject(deal);
+					dealExparationMessageForCustomer.send();
 				}
 				returnVolumeToBids(deal);
 			}
@@ -131,13 +141,11 @@ public class MarketServiceImpl implements MarketService {
 		try {
 			List<Deal> deals = dealDao.getOnApprove();
 			for (Deal deal : deals) {
-				Message<Deal> message = MessagerFactory.getDealConfirmationMessageForCustomer();
-				message.setDataObject(deal);
-				message.send();
+				dealConfirmationMessageForCustomer.setDataObject(deal);
+				dealConfirmationMessageForCustomer.send();
 				
-				message = MessagerFactory.getDealConfirmationMessageForSeller();
-				message.setDataObject(deal);
-				message.send();
+				dealConfirmationMessageForSeller.setDataObject(deal);
+				dealConfirmationMessageForSeller.send();
 			}
 		} catch (DaoException | MessageException e) {
 			throw new ServiceException(e);

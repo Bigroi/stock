@@ -1,12 +1,16 @@
 package com.bigroi.stock.messager.message;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.bigroi.stock.bean.db.Deal;
-import com.bigroi.stock.messager.MessagerFactory;
+import com.bigroi.stock.service.CompanyService;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.ServiceFactory;
 
 public class DealConfirmationMessageForSeller extends BaseMessage<Deal> {
 
+	@Autowired
+	private CompanyService companyService;
+	
 	public DealConfirmationMessageForSeller(String fileName) throws MessageException {
 		super(fileName);
 	}
@@ -14,7 +18,7 @@ public class DealConfirmationMessageForSeller extends BaseMessage<Deal> {
 	@Override
 	protected String getEmail() throws MessageException {
 		try{
-			return ServiceFactory.getCompanyService().getCompanyById(
+			return companyService.getCompanyById(
 					getDataObject().getSellerAddress().getCompanyId()
 					).getEmail();
 		}catch (ServiceException e) {
@@ -28,6 +32,6 @@ public class DealConfirmationMessageForSeller extends BaseMessage<Deal> {
 		return super.getText()
 				.replaceAll("@product", deal.getProduct().getName())
 				.replaceAll("@price", deal.getPrice() + "")
-				.replaceAll("@server", MessagerFactory.getMailManager().getServerAdress());
+				.replaceAll("@server", mailManager.getServerAdress());
 	}
 }

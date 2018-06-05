@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.common.CompanyStatus;
@@ -21,41 +23,32 @@ import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.GenerateKeyDao;
 import com.bigroi.stock.dao.UserDao;
 import com.bigroi.stock.dao.UserRoleDao;
-import com.bigroi.stock.messager.MessagerFactory;
-import com.bigroi.stock.messager.message.Message;
+import com.bigroi.stock.messager.message.LinkResetPasswordMessage;
 import com.bigroi.stock.messager.message.MessageException;
+import com.bigroi.stock.messager.message.ResetUserPasswordMessage;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.UserService;
 import com.bigroi.stock.util.Generator;
 
+@Repository
 public class UserServiceImpl implements UserService {
 
+	@Autowired
 	private UserDao userDao;
+	@Autowired
 	private CompanyDao companyDao;
+	@Autowired
 	private UserRoleDao userRoleDao;
+	@Autowired
 	private GenerateKeyDao keysDao;
+	@Autowired
 	private AddressDao addressDao;
 	
-	public void setAddressDao(AddressDao addressDao) {
-		this.addressDao = addressDao;
-	}
-
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
-	}
-
-	public void setCompanyDao(CompanyDao companyDao) {
-		this.companyDao = companyDao;
-	}
+	@Autowired
+	private ResetUserPasswordMessage resetUserPasswordMessage;
+	@Autowired
+	private LinkResetPasswordMessage linkResetPasswordMessage;
 	
-	public void setUserRoleDao(UserRoleDao userRoleDao) {
-		this.userRoleDao = userRoleDao;
-	}
-	
-	public void setKeysDao(GenerateKeyDao keysDao) {
-		this.keysDao = keysDao;
-	}
-
 	@Override
 	@Transactional
 	public void addUser(StockUser user) throws ServiceException {
@@ -115,7 +108,6 @@ public class UserServiceImpl implements UserService {
 		try {
 			keysDao.deleteGenerateKeysByDate();
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -128,14 +120,12 @@ public class UserServiceImpl implements UserService {
 			GeneratedKey key = keysDao.generateKey();
 			user.setKeyId(key.getId());
 			userDao.updateKeyById(user);
-			Message<Map<String, String>> message = MessagerFactory.getLinkResetPasswordMessage();
 			Map<String,String> map = new HashMap<>();
 			map.put("email", user.getUsername());
 			map.put("code", key.getGeneratedKey());
-			message.setDataObject(map);
-			message.sendImediatly();
+			linkResetPasswordMessage.setDataObject(map);
+			linkResetPasswordMessage.sendImediatly();
 		} catch (DaoException | MessageException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -145,9 +135,8 @@ public class UserServiceImpl implements UserService {
 		try {
 			return keysDao.ñheckResetKey(email, code);
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
+			throw new ServiceException(e);
 		}
-		return false;
 	}
 
 	@Override
@@ -157,11 +146,9 @@ public class UserServiceImpl implements UserService {
 			StockUser user = userDao.getByUsernameWithRoles(username);
 			user.setPassword(Generator.generatePass(8));
 			userDao.updatePassword(user);
-			Message<StockUser> message = MessagerFactory.getResetUserPasswordMessage();
-			message.setDataObject(user);
-			message.sendImediatly();
+			resetUserPasswordMessage.setDataObject(user);
+			resetUserPasswordMessage.sendImediatly();
 		} catch (DaoException | MessageException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -171,7 +158,6 @@ public class UserServiceImpl implements UserService {
 		try {
 			return userDao.getByUsernameWithRoles(username);
 		} catch (DaoException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
 			throw new ServiceException(e);
 		}
 	}

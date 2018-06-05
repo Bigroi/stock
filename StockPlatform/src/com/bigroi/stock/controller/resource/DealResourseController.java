@@ -3,6 +3,7 @@ package com.bigroi.stock.controller.resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -18,20 +19,23 @@ import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
+import com.bigroi.stock.service.DealService;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 @RequestMapping(value = "/deal/json", produces = "text/plain;charset=UTF-8")
 public class DealResourseController extends BaseResourseController {
 
+	@Autowired
+	private DealService dealService;
+	
 	@RequestMapping(value = "/Form.spr", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String form(@RequestParam("id") long id, Authentication loggedInUser) 
 					throws ServiceException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
-		Deal deal = ServiceFactory.getDealService().getById(id, user.getCompanyId());
+		Deal deal = dealService.getById(id, user.getCompanyId());
 		if (user.getCompanyId() != deal.getBuyerAddress().getCompanyId() && 
 				user.getCompanyId() != deal.getSellerAddress().getCompanyId()){
 			return new ResultBean(-1, "label.deal.not_authorized").toString();
@@ -46,7 +50,7 @@ public class DealResourseController extends BaseResourseController {
 	public String myDealList(Authentication loggedInUser) 
 			throws ServiceException, TableException {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
-		List<Deal> deals = ServiceFactory.getDealService().getByUserId(userBean.getCompanyId());
+		List<Deal> deals = dealService.getByUserId(userBean.getCompanyId());
 		List<DealForUI> dealsForUI = deals.stream()
 				.map(d -> new DealForUI(d, userBean.getCompanyId())).collect(Collectors.toList());
 		TableResponse<DealForUI> table = new TableResponse<>(DealForUI.class, dealsForUI);
@@ -61,7 +65,7 @@ public class DealResourseController extends BaseResourseController {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
 		DealForUI deal = GsonUtil.getGson().fromJson(json, DealForUI.class);
 		deal.setStatus(DealStatus.ON_PARTNER_APPROVE);
-		if (ServiceFactory.getDealService().approve(deal.getId(), userBean.getCompanyId())){
+		if (dealService.approve(deal.getId(), userBean.getCompanyId())){
 			return new ResultBean(1, deal, "label.deal.approved").toString();
 		} else {
 			return new ResultBean(-1, "label.deal.not_authorized").toString();
@@ -77,7 +81,7 @@ public class DealResourseController extends BaseResourseController {
 		DealForUI deal = GsonUtil.getGson().fromJson(json, DealForUI.class);
 		
 		deal.setStatus(DealStatus.REJECTED);
-		if (ServiceFactory.getDealService().reject(deal.getId(), userBean.getCompanyId())){
+		if (dealService.reject(deal.getId(), userBean.getCompanyId())){
 			return new ResultBean(1, deal, "label.deal.rejected").toString();
 		} else {
 			return new ResultBean(-1, "label.deal.not_authorized").toString();
@@ -93,7 +97,7 @@ public class DealResourseController extends BaseResourseController {
 		DealForUI deal = GsonUtil.getGson().fromJson(json, DealForUI.class);
 		
 		deal.setStatus(DealStatus.ON_PARTNER_APPROVE);
-		if (ServiceFactory.getDealService().transport(deal.getId(), userBean.getCompanyId())){
+		if (dealService.transport(deal.getId(), userBean.getCompanyId())){
 			return new ResultBean(1, deal, "label.deal.rejected").toString();
 		} else {
 			return new ResultBean(-1, "label.deal.not_authorized").toString();

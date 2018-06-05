@@ -2,6 +2,9 @@ package com.bigroi.stock.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
@@ -11,18 +14,13 @@ import com.bigroi.stock.dao.ProductDao;
 import com.bigroi.stock.service.LotService;
 import com.bigroi.stock.service.ServiceException;
 
+@Repository
 public class LotServiceImpl implements LotService {
 
+	@Autowired
 	private LotDao lotDao;
+	@Autowired
 	private ProductDao productDao;
-
-	public void setLotDao(LotDao lotDao) {
-		this.lotDao = lotDao;
-	}
-	
-	public void setProductDao(ProductDao productDao) {
-		this.productDao = productDao;
-	}
 
 	@Override
 	public Lot getLot(long id, long companyId) throws ServiceException {

@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,18 +21,21 @@ import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
+import com.bigroi.stock.service.LotService;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 @RequestMapping("/lot/json")
 public class LotResourseController extends BaseResourseController {
 
+	@Autowired
+	private LotService lotService;
+	
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String form(@RequestParam(value = "id", defaultValue = "-1") long id) throws ServiceException {
-		Lot lot = ServiceFactory.getLotService().getLot(id, getUserCompanyId());
+		Lot lot = lotService.getLot(id, getUserCompanyId());
 		if (lot.getId() == -1){
 			StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			lot.setAddressId(user.getCompany().getAddress().getId());
@@ -43,7 +47,7 @@ public class LotResourseController extends BaseResourseController {
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String myList() throws ServiceException, TableException {
-		List<Lot> lots = ServiceFactory.getLotService().getByCompanyId(getUserCompanyId());
+		List<Lot> lots = lotService.getByCompanyId(getUserCompanyId());
 		List<LotForUI> lotrForUI = lots.stream().map(LotForUI::new).collect(Collectors.toList());
 		TableResponse<LotForUI> table = new TableResponse<>(LotForUI.class, lotrForUI);
 		return new ResultBean(1, table, null).toString();
@@ -57,7 +61,7 @@ public class LotResourseController extends BaseResourseController {
 		if (lot.getId() < 0) {
 			lot.setStatus(BidStatus.INACTIVE);
 		} else {
-			Lot oldLot = (Lot) ServiceFactory.getLotService().getLot(lot.getId(), getUserCompanyId());
+			Lot oldLot = (Lot) lotService.getLot(lot.getId(), getUserCompanyId());
 			lot.setStatus(oldLot.getStatus());
 		}
 		return save(lot);
@@ -79,7 +83,7 @@ public class LotResourseController extends BaseResourseController {
 			return new ResultBean(-1, str).toString();
 		}
 
-		ServiceFactory.getLotService().merge(lot, getUserCompanyId());
+		lotService.merge(lot, getUserCompanyId());
 		return new ResultBean(1, new LotForUI(lot), "label.lot.save_success").toString();
 	}
 
@@ -92,7 +96,7 @@ public class LotResourseController extends BaseResourseController {
 			String str = errors.toString().substring(1, errors.toString().length() - 2);
 			return new ResultBean(-1, str).toString();
 		}
-		ServiceFactory.getLotService().activate(id, getUserCompanyId());
+		lotService.activate(id, getUserCompanyId());
 		return new ResultBean(1, "success").toString();
 	}
 
@@ -100,7 +104,7 @@ public class LotResourseController extends BaseResourseController {
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String stopTrading(@RequestParam("id") long id) throws ServiceException {
-		ServiceFactory.getLotService().deactivate(id, getUserCompanyId());
+		lotService.deactivate(id, getUserCompanyId());
 		return new ResultBean(1, "success").toString();
 	}
 
@@ -108,7 +112,7 @@ public class LotResourseController extends BaseResourseController {
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String delete(@RequestParam("id") long id) throws ServiceException {
-		ServiceFactory.getLotService().delete(id, getUserCompanyId());
+		lotService.delete(id, getUserCompanyId());
 		return new ResultBean(1, "success").toString();
 	}
 
@@ -118,7 +122,7 @@ public class LotResourseController extends BaseResourseController {
 	}
 
 	private List<String> activationCheck(long id) throws ServiceException {
-		Lot lot = ServiceFactory.getLotService().getLot(id, getUserCompanyId());
+		Lot lot = lotService.getLot(id, getUserCompanyId());
 		return activationCheck(lot);
 	}
 

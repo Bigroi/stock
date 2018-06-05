@@ -9,17 +9,20 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.db.GeneratedKey;
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.GenerateKeyDao;
 
+@Repository
 public class GenerateKeyDaoImpl implements GenerateKeyDao {
 
 	private static final String GET_GENERATED_KEY = 
@@ -38,11 +41,8 @@ public class GenerateKeyDaoImpl implements GenerateKeyDao {
 			+ " FROM GENERATED_KEY "
 			+ " WHERE EXPIRATION_TIME < ? ";
 
+	@Autowired
 	private DataSource datasource;
-
-	public void setDatasource(DataSource datasource) {
-		this.datasource = datasource;
-	}
 
 	@Override
 	public boolean ñheckResetKey(String email, String code) throws DaoException {

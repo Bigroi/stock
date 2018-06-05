@@ -8,12 +8,14 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.bean.db.Address;
@@ -22,6 +24,7 @@ import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserDao;
 
+@Repository
 public class UserDaoImpl implements UserDao {
 
 	private static final String ADD_USER = 
@@ -60,11 +63,8 @@ public class UserDaoImpl implements UserDao {
 	private static final String UPDATE_COUNT_LOGINS_AND_TIME = " UPDATE USER SET LOGIN_COUNT = LOGIN_COUNT + 1, "
 			+ " LAST_LOGIN = CURRENT_TIMESTAMP() WHERE ID = ? ";
 	
+	@Autowired
 	private DataSource datasource;
-
-	public void setDatasource(DataSource datasource) {
-		this.datasource = datasource;
-	}
 
 	@Override
 	public void add(StockUser user) throws DaoException {

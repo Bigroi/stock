@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.common.Bid;
@@ -22,38 +24,32 @@ import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.jobs.trade.TradeBid;
 import com.bigroi.stock.jobs.trade.TradeLot;
 import com.bigroi.stock.jobs.trade.TradeTender;
-import com.bigroi.stock.messager.MessagerFactory;
-import com.bigroi.stock.messager.message.Message;
+import com.bigroi.stock.messager.message.DealConfirmationMessageForCustomer;
+import com.bigroi.stock.messager.message.DealConfirmationMessageForSeller;
 import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.TradeService;
 
+@Repository
 public class TradeServiceImpl implements TradeService{
 
+	@Autowired
 	private ProductDao productDao;
+	@Autowired
 	private DealDao dealDao;
+	@Autowired
 	private LotDao lotDao;
+	@Autowired
 	private TenderDao tenderDao;
+	
+	@Autowired
+	private DealConfirmationMessageForCustomer dealConfirmationMessageForCustomer;
+	@Autowired
+	private DealConfirmationMessageForSeller dealConfirmationMessageForSeller;
 	
 	private Set<Tender> tendersToUpdate = new HashSet<>();
 	private Set<Lot> lotsToUpdate = new HashSet<>();
 	private List<Deal> deals = new ArrayList<>();
-	
-	public void setLotDao(LotDao lotDao) {
-		this.lotDao = lotDao;
-	}
-	
-	public void setTenderDao(TenderDao tenderDao) {
-		this.tenderDao = tenderDao;
-	}
-
-	public void setDealDao(DealDao dealDao) {
-		this.dealDao = dealDao;
-	}
-	
-	public void setProductDao(ProductDao productDao) {
-		this.productDao = productDao;
-	}
 	
 	@Override
 	@Transactional
@@ -116,13 +112,11 @@ public class TradeServiceImpl implements TradeService{
 	
 	private void sendConfimationMails(Deal deal) throws ServiceException {
 		try{
-			Message<Deal> message = MessagerFactory.getDealConfirmationMessageForCustomer();
-			message.setDataObject(deal);
-			message.send();
+			dealConfirmationMessageForCustomer.setDataObject(deal);
+			dealConfirmationMessageForCustomer.send();
 			
-			message = MessagerFactory.getDealConfirmationMessageForSeller();
-			message.setDataObject(deal);
-			message.send();
+			dealConfirmationMessageForSeller.setDataObject(deal);
+			dealConfirmationMessageForSeller.send();
 		} catch (MessageException e) {
 			throw new ServiceException(e);
 		}

@@ -1,21 +1,31 @@
 package com.bigroi.stock.jobs;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
-import com.bigroi.stock.messager.MessagerFactory;
+import com.bigroi.stock.messager.MailManager;
+import com.bigroi.stock.service.MessageService;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.ServiceFactory;
 
-public class SendEmail implements Runnable {
+@Component
+public class SendEmail {
 
 	private static final Logger logger = Logger.getLogger(Trading.class);
 	
-	@Override
+	@Autowired
+	private MessageService messageService;
+	
+	@Autowired
+	private MailManager mailManager;
+	
+	@Scheduled(cron="0 */30 * * * *")
 	public void run() {
 		try {
-			ServiceFactory.getMessageService().sendAllEmails();
+			messageService.sendAllEmails();
 		} catch (ServiceException e) {
-			MessagerFactory.getMailManager().sendToAdmin(e);
+			mailManager.sendToAdmin(e);
 			logger.warn("unseccessfull mailing", e);
 		}
 

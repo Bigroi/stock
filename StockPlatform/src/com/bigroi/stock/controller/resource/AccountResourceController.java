@@ -1,5 +1,6 @@
 package com.bigroi.stock.controller.resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,12 +15,15 @@ import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.ServiceFactory;
+import com.bigroi.stock.service.UserService;
 
 @Controller
 @RequestMapping("/account/json")
 public class AccountResourceController extends BaseResourseController {
 
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
@@ -48,7 +52,7 @@ public class AccountResourceController extends BaseResourseController {
 		loggedIn.getCompany().getAddress().setCountry(newUser.getCompany().getAddress().getCountry());
 		loggedIn.getCompany().getAddress().setLatitude(newUser.getCompany().getAddress().getLatitude());
 		loggedIn.getCompany().getAddress().setLongitude(newUser.getCompany().getAddress().getLongitude());
-		ServiceFactory.getUserService().update(loggedIn);
+		userService.update(loggedIn);
 		
 		loggedIn.setPassword("");
 		return new ResultBean(1, loggedIn, "account.edit.success").toString();
@@ -62,7 +66,7 @@ public class AccountResourceController extends BaseResourseController {
 		StockUser user = GsonUtil.getGson().fromJson(json, StockUser.class);
 		user.addAuthority(new SimpleGrantedAuthority(Role.ROLE_USER.name()));
 		
-		if (ServiceFactory.getUserService().getByUsername(user.getUsername()) != null) {
+		if (userService.getByUsername(user.getUsername()) != null) {
 			return new ResultBean(-1, "registration.login.error").toString();
 		}
 		
@@ -71,7 +75,7 @@ public class AccountResourceController extends BaseResourseController {
 		}
 		user.setUsername(user.getUsername().toLowerCase());
 		
-		ServiceFactory.getUserService().addUser(user);
+		userService.addUser(user);
 		return new ResultBean(1, user, "registration.success").toString();
 	}
 	
@@ -79,7 +83,7 @@ public class AccountResourceController extends BaseResourseController {
 	@ResponseBody
 	public String ResetPassword(@RequestParam("json") String json) throws ServiceException {
 		StockUser user = GsonUtil.getGson().fromJson(json, StockUser.class);
-		ServiceFactory.getUserService().sendLinkResetPassword(user.getUsername());
+		userService.sendLinkResetPassword(user.getUsername());
 		return new ResultBean(1, user, "user.password.reset.success").toString();
 	}
 }

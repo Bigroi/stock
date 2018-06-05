@@ -2,6 +2,8 @@ package com.bigroi.stock.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.common.DealStatus;
@@ -16,50 +18,47 @@ import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.messager.MessagerFactory;
+import com.bigroi.stock.messager.message.CustomerCanceledMessage;
 import com.bigroi.stock.messager.message.Message;
 import com.bigroi.stock.messager.message.MessageException;
+import com.bigroi.stock.messager.message.SellerCanceledMessage;
+import com.bigroi.stock.messager.message.SuccessDealMessageForCustomer;
+import com.bigroi.stock.messager.message.SuccessDealMessageForSeller;
 import com.bigroi.stock.service.DealService;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.ServiceFactory;
 
+@Repository
 public class DealServiceImpl implements DealService{
 	
+	@Autowired
 	private BlacklistDao blacklistDao;
+	@Autowired
 	private DealDao dealDao;
+	@Autowired
 	private LotDao lotDao;
+	@Autowired
 	private TenderDao tenderDao;
+	@Autowired
 	private CompanyDao companyDao;
 	
-	public void setCompanyDao(CompanyDao companyDao) {
-		this.companyDao = companyDao;
-	}
+	@Autowired
+	private SellerCanceledMessage sellerCanceledMessage;
+	@Autowired
+	private CustomerCanceledMessage customerCanceledMessage;
+	@Autowired
+	private SuccessDealMessageForCustomer successDealMessageForCustomer;
+	@Autowired
+	private SuccessDealMessageForSeller successDealMessageForSeller;
 	
-	public void setBlacklistDao(BlacklistDao blacklistDao) {
-		this.blacklistDao = blacklistDao;
-	}
-	
-	public void setDealDao(DealDao dealDao) {
-		this.dealDao = dealDao;
-	}
-	
-	public void setLotDao(LotDao lotDao) {
-		this.lotDao = lotDao;
-	}
-	
-	public void setTenderDao(TenderDao tenderDao) {
-		this.tenderDao = tenderDao;
-	}
-
 	@Override
 	public Deal getById(long id, long companyId) throws ServiceException {
 		try {
 			Deal deal = dealDao.getById(id, companyId);
 			if (deal != null){
-				Company seller = ServiceFactory.getCompanyService().getCompanyById(deal.getSellerAddress().getCompanyId());
+				Company seller = companyDao.getById(deal.getSellerAddress().getCompanyId());
 				deal.getSellerAddress().setCompany(seller);
 				
-				Company buyer = ServiceFactory.getCompanyService().getCompanyById(deal.getBuyerAddress().getCompanyId());
+				Company buyer = companyDao.getById(deal.getBuyerAddress().getCompanyId());
 				deal.getBuyerAddress().setCompany(buyer);
 			}
 			return deal;
@@ -88,11 +87,11 @@ public class DealServiceImpl implements DealService{
 			if (buyerId == companyId){
 				deal.setBuyerApproved("N");
 				dealDao.setBuyerStatus(deal);
-				message = MessagerFactory.getCustomerCanceledMessage();
+				message = customerCanceledMessage;
 			} else if (sellerId == companyId){
 				deal.setSellerApproved("N");
 				dealDao.setSellerStatus(deal);
-				message = MessagerFactory.getSellerCanceledMessage();
+				message = sellerCanceledMessage;
 			} else {
 				return false;
 			}
@@ -135,13 +134,11 @@ public class DealServiceImpl implements DealService{
 				return false;
 			}
 			if (Deal.calulateStatus(deal, companyId) == DealStatus.APPROVED){
-				Message<Deal> message = MessagerFactory.getSuccessDealMessageForCustomer();
-				message.setDataObject(deal);
-				message.send();
+				successDealMessageForCustomer.setDataObject(deal);
+				successDealMessageForCustomer.send();
 				
-				message = MessagerFactory.getSuccessDealMessageForSeller();
-				message.setDataObject(deal);
-				message.send();
+				successDealMessageForSeller.setDataObject(deal);
+				successDealMessageForSeller.send();
 			}
 			
 			return true;

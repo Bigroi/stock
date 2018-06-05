@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -22,18 +23,21 @@ import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.ServiceFactory;
+import com.bigroi.stock.service.TenderService;
 
 @Controller
 @RequestMapping("/tender/json")
 public class TenderResourseController extends BaseResourseController {
+	
+	@Autowired
+	private TenderService tenderService;
 	
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String form( @RequestParam(value = "id", defaultValue = "-1") long id) 
 			throws ServiceException {
-		Tender tender = ServiceFactory.getTenderService().getTender(id, getUserCompanyId());
+		Tender tender = tenderService.getTender(id, getUserCompanyId());
 		if (tender.getId() == -1){
 			StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			tender.setAddressId(user.getCompany().getAddress().getId());
@@ -50,7 +54,7 @@ public class TenderResourseController extends BaseResourseController {
 		if (tender.getId() < 0) {
 			tender.setStatus(BidStatus.INACTIVE);
 		} else {
-			Tender oldTender = ServiceFactory.getTenderService().getTender(tender.getId(), getUserCompanyId());
+			Tender oldTender = tenderService.getTender(tender.getId(), getUserCompanyId());
 			tender.setStatus(oldTender.getStatus());
 		}
 		return save(tender);
@@ -72,7 +76,7 @@ public class TenderResourseController extends BaseResourseController {
 			String str = errors.toString().substring(1, errors.toString().length() - 2);
 			return new ResultBean(-1, str).toString();
 		}
-		ServiceFactory.getTenderService().merge(tender, getUserCompanyId());
+		tenderService.merge(tender, getUserCompanyId());
 		return new ResultBean(1, new TenderForUI(tender), "label.tender.save_success").toString();
 	}
 
@@ -80,7 +84,7 @@ public class TenderResourseController extends BaseResourseController {
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String myList() throws ServiceException, TableException {
-		List<Tender> tenders = ServiceFactory.getTenderService().getMyList(getUserCompanyId());
+		List<Tender> tenders = tenderService.getMyList(getUserCompanyId());
 		List<TenderForUI> tendersForUI = tenders.stream().map(TenderForUI::new).collect(Collectors.toList());
 		TableResponse<TenderForUI> table = new TableResponse<>(TenderForUI.class, tendersForUI);
 		return new ResultBean(1, table, null).toString();
@@ -95,7 +99,7 @@ public class TenderResourseController extends BaseResourseController {
 			String str = errors.toString().substring(1, errors.toString().length() - 2);
 			return new ResultBean(-1, str).toString();
 		}
-		ServiceFactory.getTenderService().activate(id, getUserCompanyId());
+		tenderService.activate(id, getUserCompanyId());
 		return new ResultBean(1, null).toString();
 	}
 	
@@ -103,7 +107,7 @@ public class TenderResourseController extends BaseResourseController {
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String stopTrading(@RequestParam("id") long id) throws ServiceException {
-		ServiceFactory.getTenderService().deactivate(id, getUserCompanyId());
+		tenderService.deactivate(id, getUserCompanyId());
 		return new ResultBean(1, null).toString();
 	}
 
@@ -111,7 +115,7 @@ public class TenderResourseController extends BaseResourseController {
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String delete(@RequestParam("id") long id) throws ServiceException {
-		ServiceFactory.getTenderService().delete(id, getUserCompanyId());
+		tenderService.delete(id, getUserCompanyId());
 		return new ResultBean(1, null).toString();
 	}
 
@@ -121,7 +125,7 @@ public class TenderResourseController extends BaseResourseController {
 	}
 	
 	private List<String> activationCheck(long id) throws ServiceException{
-		Tender tender = ServiceFactory.getTenderService().getTender(id, getUserCompanyId());
+		Tender tender = tenderService.getTender(id, getUserCompanyId());
 		return activationCheck(tender);
 	}
 	

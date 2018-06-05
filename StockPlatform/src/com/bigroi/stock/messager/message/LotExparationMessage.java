@@ -1,12 +1,17 @@
 package com.bigroi.stock.messager.message;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.bigroi.stock.bean.db.Lot;
+import com.bigroi.stock.service.CompanyService;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.ServiceFactory;
 
 public class LotExparationMessage extends BaseMessage<Lot> {
 
-	protected LotExparationMessage(String fileName) throws MessageException {
+	@Autowired
+	private CompanyService companyService;
+	
+	public LotExparationMessage(String fileName) throws MessageException {
 		super(fileName);
 	}
 
@@ -14,7 +19,7 @@ public class LotExparationMessage extends BaseMessage<Lot> {
 	protected String getEmail() throws MessageException {
 		try {
 			long companyId = getDataObject().getCompanyId();
-			return ServiceFactory.getCompanyService().getCompanyById(companyId).getEmail();
+			return companyService.getCompanyById(companyId).getEmail();
 		} catch (ServiceException e) {
 			throw new MessageException(e);
 		}

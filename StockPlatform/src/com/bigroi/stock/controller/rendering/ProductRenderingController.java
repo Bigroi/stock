@@ -1,17 +1,21 @@
 package com.bigroi.stock.controller.rendering;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigroi.stock.service.ProductService;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 @RequestMapping("/product")
 public class ProductRenderingController extends BaseRenderingController{
 
+	@Autowired
+	private ProductService productService;
+	
 	@RequestMapping("/List.spr")
 	public ModelAndView activeProductList() throws ServiceException {
 		return createModelAndView("products");
@@ -20,7 +24,7 @@ public class ProductRenderingController extends BaseRenderingController{
 	@RequestMapping("/TradeOffers.spr")
 	public ModelAndView tradeOffers(@RequestParam("id") long id) throws ServiceException {
 		ModelAndView modelAndView = createModelAndView("tradeOffers");
-		modelAndView.addObject("product", ServiceFactory.getProductService().getProductById(id));
+		modelAndView.addObject("product", productService.getProductById(id));
 		return modelAndView;
 	}
 

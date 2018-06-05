@@ -6,22 +6,24 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
+import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.db.UserRole;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserRoleDao;
 
+@Repository
 public class UserRoleDaoImpl implements UserRoleDao {
 	
-	private static final String ADD_USER_ROLE_BY_USER_ID = " INSERT INTO USER_ROLE (USER_ID, ROLE) VALUES(?,?) ";
+	private static final String ADD_USER_ROLE_BY_USER_ID = 
+			" INSERT INTO USER_ROLE (USER_ID, ROLE) "
+			+ " VALUES(?, ?) ";
 	
+	@Autowired
 	private DataSource datasource;
-
-	public void setDatasource(DataSource datasource) {
-		this.datasource = datasource;
-	}
 
 	@Override
 	public void add(List<UserRole> userRoles) throws DaoException {

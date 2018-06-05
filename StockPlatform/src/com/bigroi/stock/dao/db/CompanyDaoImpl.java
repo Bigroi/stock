@@ -8,12 +8,14 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.bean.db.Address;
@@ -21,6 +23,7 @@ import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
 
+@Repository
 public class CompanyDaoImpl implements CompanyDao {
 	
 	private static final String GET_COMPANY_BY_ID = 
@@ -53,15 +56,8 @@ public class CompanyDaoImpl implements CompanyDao {
 			+ "STATUS = ? "
 			+ "WHERE ID = ?";
 	
+	@Autowired
 	private DataSource datasource;
-
-	public DataSource getDatasource() {
-		return datasource;
-	}
-
-	public void setDatasource(DataSource datasource) {
-		this.datasource = datasource;
-	}
 
 	@Override
 	public Company getById(long id) throws DaoException {

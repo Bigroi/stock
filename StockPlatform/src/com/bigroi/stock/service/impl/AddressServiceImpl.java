@@ -2,19 +2,20 @@ package com.bigroi.stock.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.bigroi.stock.bean.db.Address;
 import com.bigroi.stock.dao.AddressDao;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.service.AddressService;
 import com.bigroi.stock.service.ServiceException;
 
+@Repository
 public class AddressServiceImpl implements AddressService{
 
+	@Autowired
 	private AddressDao addressDao;
-	
-	public void setAddressDao(AddressDao addressDao) {
-		this.addressDao = addressDao;
-	}
 	
 	public List<Address> getCompanyAddresses(long companyId) throws ServiceException{
 		try{

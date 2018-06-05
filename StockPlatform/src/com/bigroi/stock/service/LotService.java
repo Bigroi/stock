@@ -2,8 +2,11 @@ package com.bigroi.stock.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.bigroi.stock.bean.db.Lot;
 
+@Service
 public interface LotService {
 	
 	Lot getLot (long id, long companyId) throws ServiceException;

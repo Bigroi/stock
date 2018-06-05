@@ -9,7 +9,6 @@
 	<classpathentry kind="src" path="resource"/>
 	<classpathentry kind="src" path="templates_by"/>
 	<classpathentry kind="src" path="spring"/>
-	<classpathentry kind="src" path="junitTest"/>
 	<classpathentry kind="src" path="labels_by"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>

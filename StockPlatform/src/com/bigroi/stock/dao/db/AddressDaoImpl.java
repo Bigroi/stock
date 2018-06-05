@@ -7,16 +7,19 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.db.Address;
 import com.bigroi.stock.dao.AddressDao;
 import com.bigroi.stock.dao.DaoException;
 
+@Repository
 public class AddressDaoImpl implements AddressDao{
 
 	private static final String GET_ADDRESSES_BY_COMPANY_ID = 
@@ -41,16 +44,9 @@ public class AddressDaoImpl implements AddressDao{
 	private static final String GET_ADDRESS_BY_ID = "SELECT ID, CITY, COUNTRY, "
 			+ " ADDRESS, LATITUDE, LONGITUDE, COMPANY_ID FROM ADDRESS WHERE ID = ?";
 	
+	@Autowired
 	private DataSource datasource;
 
-	public DataSource getDatasource() {
-		return datasource;
-	}
-
-	public void setDatasource(DataSource datasource) {
-		this.datasource = datasource;
-	}
-	
 	@Override
 	public List<Address> getAddressesForCompany(long companyId) throws DaoException{
 		JdbcTemplate template = new JdbcTemplate(datasource);

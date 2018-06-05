@@ -10,9 +10,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.bigroi.stock.json.ResultBean;
 
+@Repository
+@Service
 public class AuthenticationHandler 
 	implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
 

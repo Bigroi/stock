@@ -7,17 +7,20 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.ui.ProductForUI;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.ProductDao;
 
+@Repository
 public class ProductDaoImpl implements ProductDao {
 	
 	private static final String GET_ALL_PRODUCTS = 
@@ -62,15 +65,8 @@ public class ProductDaoImpl implements ProductDao {
 			+ " FROM PRODUCT "
 			+ " WHERE ID = ? ";
 	
+	@Autowired
 	private DataSource datasource;
-
-	public DataSource getDatasource() {
-		return datasource;
-	}
-
-	public void setDatasource(DataSource datasource) {
-		this.datasource = datasource;
-	}
 
 	@Override
 	public List<Product> getAllProducts() throws DaoException {

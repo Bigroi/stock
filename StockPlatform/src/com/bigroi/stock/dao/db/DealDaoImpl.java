@@ -10,9 +10,11 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.db.Address;
@@ -23,6 +25,7 @@ import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.jobs.trade.TradeLot;
 import com.bigroi.stock.jobs.trade.TradeTender;
 
+@Repository
 public class DealDaoImpl implements DealDao {
 	
 	private static final String ADD = 
@@ -113,15 +116,8 @@ public class DealDaoImpl implements DealDao {
 			+ " SET BUYER_APPROVED = ? "
 			+ " WHERE ID = ? ";
 
+	@Autowired
 	private DataSource datasource;
-
-	public DataSource getDatasource() {
-		return datasource;
-	}
-
-	public void setDatasource(DataSource datasource) {
-		this.datasource = datasource;
-	}
 	
 	@Override
 	public void getPosibleDeals(List<TradeLot> tradeLots, List<TradeTender> tradeTenders, long productId) throws DaoException {

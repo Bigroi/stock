@@ -5,13 +5,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.bigroi.stock.bean.db.Email;
+import com.bigroi.stock.messager.MailManager;
 import com.bigroi.stock.messager.MailManagerException;
-import com.bigroi.stock.messager.MessagerFactory;
+import com.bigroi.stock.service.MessageService;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.ServiceFactory;
 
 abstract class BaseMessage<T> implements Message<T>{
+	
+	@Autowired
+	private MessageService messageService;
+	
+	@Autowired
+	protected MailManager mailManager;
 	
 	private String subject;
 	
@@ -54,7 +62,7 @@ abstract class BaseMessage<T> implements Message<T>{
 	
 	public void sendImediatly() throws MessageException{
 		try {
-			MessagerFactory.getMailManager().send(getEmail(), getSubject(), getText());
+			mailManager.send(getEmail(), getSubject(), getText());
 		} catch (MailManagerException e) {
 			throw new MessageException(e);
 		}
@@ -72,7 +80,7 @@ abstract class BaseMessage<T> implements Message<T>{
 	
 	public void send() throws MessageException{
 		try {
-			ServiceFactory.getMessageService().add(new Email(getEmail(), getSubject(), getText()));
+			messageService.add(new Email(getEmail(), getSubject(), getText()));
 		} catch (ServiceException e) {
 			throw new MessageException(e);
 		}

@@ -2,6 +2,7 @@ package com.bigroi.stock.controller.rendering;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -12,12 +13,19 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bigroi.stock.bean.db.Address;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.StockUser;
+import com.bigroi.stock.service.AddressService;
+import com.bigroi.stock.service.ProductService;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.ServiceFactory;
 
 @Controller
 @RequestMapping("/lot")
 public class LotRenderingController extends BaseRenderingController{
+	
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private AddressService addressService;
 	
 	@RequestMapping("/Form.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
@@ -25,8 +33,8 @@ public class LotRenderingController extends BaseRenderingController{
 			@RequestParam(value="id", defaultValue="-1") long id,
 			Authentication loggedInUser) throws ServiceException {
 		ModelAndView modelAndView = createModelAndView("lotForm");
-		List<Product> productList = ServiceFactory.getProductService().getAllActiveProducts();
-		List<Address> addressList = ServiceFactory.getAddressService().getCompanyAddresses(((StockUser)loggedInUser.getPrincipal()).getCompanyId());
+		List<Product> productList = productService.getAllActiveProducts();
+		List<Address> addressList = addressService.getCompanyAddresses(((StockUser)loggedInUser.getPrincipal()).getCompanyId());
 		
 		modelAndView.addObject("listOfProducts", productList);
 		modelAndView.addObject("listOfAddresses", addressList);
