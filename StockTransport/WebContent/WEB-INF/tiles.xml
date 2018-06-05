@@ -6,19 +6,47 @@
 	<!-- Tiles Definition -->
 	<definition name="base-definition" template="/WEB-INF/jsp/layouts/transport-layout.jsp">
 		<put-attribute name="body" value="" />
-		<put-attribute name="header" value="/WEB-INF/jsp/templates/header.jsp"/>
-		<put-attribute name="footer" value="/WEB-INF/jsp/templates/defaultFooter.jsp" />
-		<put-attribute name="page-title" value="/WEB-INF/jsp/templates/pageTitle.jsp" />
+		<put-attribute name="navigation" value="/WEB-INF/jsp/templates/navigation.jsp"/>
+		
+		<put-attribute name="dealList" value="" cascade="true"/>
+		<put-attribute name="propositions" value="" cascade="true"/>
+		<put-attribute name="history" value="" cascade="true"/>
 	</definition>
 	
 	<definition name="base-form-definition" template="/WEB-INF/jsp/layouts/popupLayout.jsp">
 		<put-attribute name="body" value="" />
 	</definition>
 
-	<!-- Home Page -->
-	<definition name="main" extends="base-definition">
-		<put-attribute name="nav-welcome" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/main.jsp" />
+	<!-- Pages -->
+	<definition name="index" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/index.jsp" />
+	</definition>
+	
+	<definition name="account" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/account.jsp" />
+	</definition>
+	
+	<definition name="registation" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/registation.jsp" />
+	</definition>
+	
+	<definition name="propositions" extends="base-definition">
+		<put-attribute name="propositions" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/propositions.jsp" />
+	</definition>
+	
+	<definition name="deal-list" extends="base-definition">
+		<put-attribute name="dealList" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/deal-list.jsp" />
+	</definition>
+	
+	<definition name="history" extends="base-definition">
+		<put-attribute name="history" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/history.jsp" />
+	</definition>
+	
+	<definition name="login" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/login.jsp" />
 	</definition>
 
 </tiles-definitions>
