@@ -39,7 +39,7 @@ public class AddressResourceController extends BaseResourseController {
 		return new ResultBean(1, table, null).toString();
 	}
 	
-	@RequestMapping(value = "/EditAddress.spr", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/FormAddress.spr", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String form(@RequestParam("id") long id, Authentication loggedInUser) 

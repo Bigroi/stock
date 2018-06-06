@@ -33,7 +33,7 @@
 		        						$('#form-container > form'), 
 			        					'/account/json/SaveAddress.spr'
 			        					); ">
-						${label.button.modify }</button>
+						${label.button.save}</button>
 
 					<button class="submit"
 						onclick="document.location = '/account/MyAddresses.spr'; return false">
@@ -53,5 +53,5 @@
 </div>
 
 <script type="text/javascript">
-	initAddressForm($('.form'), '/account/json/EditAddress.spr', ${id});
+	initAddressForm($('.form'), '/account/json/FormAddress.spr', ${id});
 </script>

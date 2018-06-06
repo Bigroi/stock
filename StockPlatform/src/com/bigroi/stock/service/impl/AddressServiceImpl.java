@@ -27,9 +27,16 @@ public class AddressServiceImpl implements AddressService{
 
 	@Override
 	public Address getAddressById(long id) throws ServiceException {
-		try{
-			return addressDao.getAddressById(id);
-		}catch (DaoException e) {
+		try {
+			Address address;
+			if (id == -1) {
+				address = new Address();
+				address.setId(id);
+			} else {
+				address = addressDao.getAddressById(id);
+			}
+			return address;
+		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
 	}
