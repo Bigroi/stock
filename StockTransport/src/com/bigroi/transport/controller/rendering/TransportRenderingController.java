@@ -1,5 +1,6 @@
 package com.bigroi.transport.controller.rendering;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,5 +41,11 @@ public class TransportRenderingController extends BaseRenderingController {
 	@RequestMapping("login.spr")
 	private ModelAndView login() throws Exception {
 		return createModelAndView("login");
+	}
+	
+	@RequestMapping("/main.spr")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	public ModelAndView main() {
+		return createModelAndView("main");
 	}
 }

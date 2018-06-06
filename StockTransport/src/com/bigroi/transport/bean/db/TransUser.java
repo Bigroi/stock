@@ -1,9 +1,17 @@
-package com.bigroi.transport.bean;
+package com.bigroi.transport.bean.db;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
-public class User {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+public class TransUser  implements UserDetails{
+
+	private static final long serialVersionUID = 1L;
+	
 	private long id;
 	private String username;
 	private String password;
@@ -11,6 +19,8 @@ public class User {
 	private long keysId;
 	private int loginCount;
 	private Date lastLogin;
+	private List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+	private Company company;
 	
 	
 	public long getId() {
@@ -55,9 +65,41 @@ public class User {
 	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
 	}
+	
+	public Company getCompany() {
+		return company;
+	}
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", companyId=" + companyId
 				+ ", keysId=" + keysId + ", loginCount=" + loginCount + ", lastLogin=" + lastLogin + "]";
+	}
+	
+	public void addAuthority(GrantedAuthority grant){
+		grantedAuthorities.add(grant);
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return grantedAuthorities;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 }

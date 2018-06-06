@@ -2,10 +2,12 @@ package com.bigroi.transport.service;
 
 import java.util.List;
 
-import com.bigroi.transport.bean.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService {
+import com.bigroi.transport.bean.db.TransUser;
+
+public interface UserService extends UserDetailsService {
 	
-	List<User> getAll () throws ServiceException;
+	List<TransUser> getAll () throws ServiceException;
 
 }

@@ -48,5 +48,9 @@
 	<definition name="login" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/login.jsp" />
 	</definition>
+	
+	<definition name="main" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/main.jsp" />
+	</definition>
 
 </tiles-definitions>
