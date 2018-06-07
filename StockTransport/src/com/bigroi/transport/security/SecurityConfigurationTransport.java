@@ -11,8 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import com.bigroi.transport.dispatcher.AuthenticationHandlerTransport;
 import com.bigroi.transport.service.UserService;
 
-//@EnableWebSecurity
-//@Configuration
+@EnableWebSecurity
+@Configuration
 public class SecurityConfigurationTransport extends WebSecurityConfigurerAdapter {
 	
 	@Autowired

@@ -2,8 +2,10 @@ package com.bigroi.transport.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.transport.bean.db.TransUser;
@@ -12,9 +14,10 @@ import com.bigroi.transport.dao.UserDao;
 import com.bigroi.transport.service.ServiceException;
 import com.bigroi.transport.service.UserService;
 
-
+@Repository
 public class UserServiceImpl implements UserService{
 	
+	@Autowired
 	private UserDao userDao;
 	
 	public void setUserDao(UserDao userDao) {
