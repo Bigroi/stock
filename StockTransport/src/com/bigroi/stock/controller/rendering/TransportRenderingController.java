@@ -1,4 +1,4 @@
-package com.bigroi.transport.controller.rendering;
+package com.bigroi.stock.controller.rendering;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;

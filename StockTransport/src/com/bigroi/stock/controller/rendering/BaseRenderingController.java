@@ -1,4 +1,4 @@
-package com.bigroi.transport.controller.rendering;
+package com.bigroi.stock.controller.rendering;
 
 import java.io.BufferedReader;
 import java.io.IOException;

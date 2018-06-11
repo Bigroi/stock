@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>StockTransport</groupId>
-  <artifactId>StockTransport</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <groupId>Stock</groupId>
+  <artifactId>Transport</artifactId>
+  <version>0.1</version>
   <packaging>war</packaging>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -44,50 +44,14 @@
 			<version>4.3.9.RELEASE</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>4.2.3.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>4.2.3.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-taglibs</artifactId>
-			<version>4.2.3.RELEASE</version>
-		</dependency>
-		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.14</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.8.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
@@ -105,5 +69,20 @@
 			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>Stock</groupId>
+			<artifactId>Security</artifactId>
+			<version>0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>Stock</groupId>
+			<artifactId>Service</artifactId>
+			<version>0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>Stock</groupId>
+			<artifactId>Util</artifactId>
+			<version>0.1</version>
+		</dependency>
+  </dependencies>
 </project>

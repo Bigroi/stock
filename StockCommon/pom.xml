@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>StockCommon</groupId>
+	<groupId>Stock</groupId>
 	<artifactId>Common</artifactId>
-	<version>0.01</version>
+	<version>0.1</version>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
@@ -19,30 +19,14 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.8.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>4.2.3.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>4.2.3.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-taglibs</artifactId>
-			<version>4.2.3.RELEASE</version>
-		</dependency>
-
-		<dependency>
-			<groupId>StockUtil</groupId>
+			<groupId>Stock</groupId>
 			<artifactId>Util</artifactId>
-			<version>0.01</version>
+			<version>0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>4.2.3.RELEASE</version>
 		</dependency>
 	</dependencies>
 </project>

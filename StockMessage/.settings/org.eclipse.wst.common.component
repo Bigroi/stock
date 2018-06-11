@@ -2,5 +2,6 @@
     <wb-module deploy-name="StockMessage">
         <wb-resource deploy-path="/" source-path="/src"/>
         <wb-resource deploy-path="/" source-path="/resource"/>
+        <wb-resource deploy-path="/" source-path="/templates_by"/>
     </wb-module>
 </project-modules>

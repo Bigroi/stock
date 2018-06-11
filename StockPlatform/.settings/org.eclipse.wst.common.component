@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="Platform-0.01">
+    <wb-module deploy-name="Platform-0.1">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/spring"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/resource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/labels_by"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/templates_by"/>
-        <dependent-module archiveName="Util-0.01.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockUtil/StockUtil">
+        <dependent-module archiveName="Service-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockService/StockService">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="Service-0.01.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockService/StockService">
+        <dependent-module archiveName="Dao-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockDao/StockDao">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="Dao-0.01.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockDao/StockDao">
+        <dependent-module archiveName="Message-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockMessage/StockMessage">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="Message-0.01.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockMessage/StockMessage">
+        <dependent-module archiveName="Common-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockCommon/StockCommon">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="Common-0.01.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockCommon/StockCommon">
+        <dependent-module archiveName="Util-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockUtil/StockUtil">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="Security-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockSecurity/StockSecurity">
+        <dependent-module archiveName="Security-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockSecurity/StockSecurity">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Jobs-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockJobs/StockJobs">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/StockPlatform/build/classes"/>
