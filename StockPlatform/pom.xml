@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>StockPlatform</groupId>
-	<artifactId>StockPlatform</artifactId>
-	<version>0.0.1</version>
+	<artifactId>Platform</artifactId>
+	<version>0.01</version>
 	<name>StockPlatform</name>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -62,6 +62,7 @@
 		</plugins>
 	</build>
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.integration</groupId>
 			<artifactId>spring-integration-core</artifactId>
@@ -138,6 +139,25 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>StockUtil</groupId>
+			<artifactId>Util</artifactId>
+			<version>0.01</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>StockService</groupId>
+			<artifactId>Service</artifactId>
+			<version>0.01</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>StockSecurity</groupId>
+			<artifactId>Security</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<packaging>war</packaging>
