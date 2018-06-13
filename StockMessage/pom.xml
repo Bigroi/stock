@@ -11,7 +11,7 @@
 	</parent>
 
 	<build>
-		<sourceDirectory>src,templates_${LOCALE},resource</sourceDirectory>
+		<sourceDirectory>src templates_${LOCALE} resource</sourceDirectory>
 	</build>
 	<dependencies>
 		<dependency>
