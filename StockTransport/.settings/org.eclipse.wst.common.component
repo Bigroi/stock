@@ -6,7 +6,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/junitTest"/>
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/label_by"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/labels_by"/>
         <dependent-module archiveName="Security-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockSecurity/StockSecurity">
             <dependency-type>uses</dependency-type>
         </dependent-module>
