@@ -11,7 +11,15 @@
 	</parent>
 
 	<build>
-		<sourceDirectory>src templates_${LOCALE} resource</sourceDirectory>
+		<sourceDirectory>src</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>resource</directory>
+			</resource>
+			<resource>
+				<directory>templates_${LOCALE}</directory>
+			</resource>
+		</resources>
 	</build>
 	<dependencies>
 		<dependency>
