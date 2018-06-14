@@ -163,7 +163,7 @@ function setReginDialogPlugin(element){
 		formUrl:"/account/Registration.spr", 
 		buttons:[
 		{
-			text: l10n.translate("label.button.continue"),
+			text: l10n.translate("label.button.continueButton"),
 			id:"continue",
 			submit:function(formContainer, params){
 				$.post("/account/json/Login.spr", params, function(answer){

@@ -1,5 +1,13 @@
 $(document).ready(function(){
-	if ($('body').width() <= 900) {
+	$(document).on("click", '#continue', function() {
+		$(".registration-first-part").hide();
+		$(".registration-second-part").show();
+	});
+	$(document).on("click", '#go-back', function() {
+		$(".registration-first-part").show();
+		$(".registration-second-part").hide();
+	});
+		if ($('body').width() <= 900) {
 		$(".burger").click(function(){
 			  $(".aside nav.main-menu, .bgdark").fadeToggle();
 			  $("body").toggleClass("s-hidden");

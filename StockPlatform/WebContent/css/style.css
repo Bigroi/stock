@@ -99,12 +99,21 @@ button,
 .green-button {
 	background-color: var(--green-teal);
 }
-.registration {
+.register {
   width: 120px;
-  height: 34px;
+  height: 26px;
   border-radius: 5px;
   color: var(--white);
   margin-right: 5px;
+  padding-top: 8px;
+}
+.registration {
+	width: 120px;
+    height: 33px;
+    border-radius: 5px;
+    color: var(--white);
+    margin-right: 5px;
+    padding-top: 0px;
 }
 .sign-in {
   width: 120px;
@@ -439,7 +448,7 @@ h3 {
 	letter-spacing: normal;
 	width: 470px;
 }
-.preview-platform .registration {
+.preview-platform .register{
 	width: 180px;
   	height: 60px;
   	border-radius: 6px;
@@ -831,9 +840,14 @@ footer .container {
 .second-step {
 	width: 370px;
 }
+#continue {
+    position: relative;
+    z-index: 1;
+}
 .dialogbox-child p.second-step {
-	padding-top: 80px;
-	text-align: center;
+    position: relative;
+    text-align: center;
+    top: 20px;
 }
 #forAdress{
 	width: 344px;
@@ -866,4 +880,7 @@ footer .container {
 }
 #finish-registration {
 	width: 250px;
+}
+.registration-second-part {
+	display: none;
 }
