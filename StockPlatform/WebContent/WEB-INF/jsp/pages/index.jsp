@@ -48,10 +48,10 @@
 							<a href="#ex4">${label.index.for_whom}</a>
 						</nav>
 						<div class="buttons-login">
-							<button class="registration blue-button" onclick="setReginDialogPlugin($('.registration'))">
+							<button class="registration blue-button registration-button">
 								${label.navigation.regestration}
 							</button>
-							<button class="sign-in"  onclick="setLoginDialogPlugin($('.sign-in'))">
+							<button class="sign-in login-button">
 								${label.navigation.login}
 	                		</button>
 						</div>
@@ -65,9 +65,9 @@
 							<div class="front-desc-but">
 								<div class="reg-as">${label.index.regestrate_as_farmer} </div>
 								<div class="reg-but">
-									<button class="req-far green-button">${label.index.farmer}</button>
+									<button class="req-far green-button registration-button">${label.index.farmer}</button>
 									<div>${label.index.regestrate_as_buyer}</div>
-									<button class="req-buy blue-button">${label.index.buyer}</button>
+									<button class="req-buy blue-button registration-button">${label.index.buyer}</button>
 								</div>
 							</div>
 						</div>
@@ -76,28 +76,28 @@
 						<div class="container">
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/organic.png" alt="YourTrader" title="YourTrader"/></a>
+									<img src="img/organic.png" alt="YourTrader" title="YourTrader"/>
 								</div>
 								<p class="adv-title">${label.index.speed_title}</p>
 								<p class="adv-desc">${label.index.speed_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/trusted.png" alt="YourTrader" title="YourTrader"/></a>
+									<img src="img/trusted.png" alt="YourTrader" title="YourTrader"/>
 								</div>
 								<p class="adv-title">${label.index.trust_title}</p>
 								<p class="adv-desc">${label.index.trust_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/deal.png" alt="YourTrader" title="YourTrader"/></a>
+									<img src="img/deal.png" alt="YourTrader" title="YourTrader"/>
 								</div>
 								<p class="adv-title">${label.index.deal_title}</p>
 								<p class="adv-desc">${label.index.deal_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/platform.png" alt="YourTrader" title="YourTrader"/></a>
+									<img src="img/platform.png" alt="YourTrader" title="YourTrader"/>
 								</div>
 								<p class="adv-title">${label.index.сonvenient_title}</p>
 								<p class="adv-desc">${label.index.сonvenient_description}</p>
@@ -119,7 +119,7 @@
 									<li>${label.index.for_farmers_li2}</li>
 									<li>${label.index.for_farmers_li3}</li>
 								</ul>
-								<button class="start-trade green-button" onclick="document.location = '/account/Registration.spr'">
+								<button class="start-trade green-button registration-button">
 									${label.button.start_trade_now }
 								</button>
 							</div>
@@ -132,7 +132,7 @@
 									<li>${label.index.for_buyers_li2}</li>
 									<li>${label.index.for_buyers_li3}</li>
 								</ul>
-								<button class="start-buy blue-button" onclick="document.location = '/account/Registration.spr'">
+								<button class="start-buy blue-button registration-button">
 									${label.button.start_buy_now}
 								</button>
 							</div>
@@ -143,7 +143,7 @@
 							<div>
 								<h3>${label.index.responsive_title}</h3>
 								<p>${label.index.responsive_description}</p>
-								<button class="register green-button" onclick="document.location = '/account/Registration.spr'">
+								<button class="register green-button registration-button">
 									${label.button.registrate}
 								</button>
 							</div>

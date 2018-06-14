@@ -121,6 +121,11 @@ function updateTable($table, model, idColumnValue, object){
 }
 
 //form functions
+$(document).ready(function(){
+	setReginDialogPlugin($(".registration-button"));
+	setLoginDialogPlugin($(".login-button"));
+});
+
 function setLoginDialogPlugin(element){
 	element.dialogbox({
 		container:$("#login-form-container"),
