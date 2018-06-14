@@ -30,12 +30,6 @@ public class AccountRenderingController extends BaseRenderingController {
 		return createModelAndView("registration");
 	}
 
-	@RequestMapping("/AddUser.spr")
-	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public ModelAndView goToInviteUserPage() {
-		return createModelAndView("addUser");
-	}
-
 	@RequestMapping(value = "/ResetPassword.spr", method = RequestMethod.GET)
 	public ModelAndView resetPassword(@RequestParam("code") String code, @RequestParam("email") String email)
 			throws ServiceException {
