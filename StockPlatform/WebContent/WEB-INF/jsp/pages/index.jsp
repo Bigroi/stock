@@ -18,9 +18,9 @@
 		<link href="/css/style.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 		
-		<link rel="stylesheet" href="/css/formStyle.css">
+		<!-- <link rel="stylesheet" href="/css/formStyle.css">
 		<link rel="stylesheet" href="/css/dialogboxStyle.css">
-		<link rel="stylesheet" href="/css/buttonsStyle.css">
+		<link rel="stylesheet" href="/css/buttonsStyle.css"> -->
 		
 		<script src="/js/jQuery.js"></script>
 		<script src="/js/jquery.dataTables.min.js"></script>
@@ -32,10 +32,10 @@
 		<script src="/js/script.js"></script>
 		<script src="/js/plotly-latest.min.js"></script>
 		<script src="/js/productList.js"></script>
-
 	</head>
 	<body>
 		<div id="login-form-container"></div>
+		<div id="registration-form-container"></div>
 		<div class="wrapper">
 		    <div class="content">
 		   		<header>
@@ -48,12 +48,11 @@
 							<a href="#ex4">${label.index.for_whom}</a>
 						</nav>
 						<div class="buttons-login">
-							<a class="button register blue-button" href="/account/Registration.spr">
+							<button class="registration blue-button" onclick="setReginDialogPlugin($('.registration'))">
 								${label.navigation.regestration}
-							</a>
-							<button class="sign-in">
+							</button>
+							<button class="sign-in"  onclick="setLoginDialogPlugin($('.sign-in'))">
 								${label.navigation.login}
-	                			<script type="text/javascript">setLoginDialogPlugin($(".sign-in"))</script>
 	                		</button>
 						</div>
 					</div>
@@ -77,28 +76,28 @@
 						<div class="container">
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/organic.png" alt="YourTrader" title="YourTrader"/>
+									<img src="img/organic.png" alt="YourTrader" title="YourTrader"/></a>
 								</div>
 								<p class="adv-title">${label.index.speed_title}</p>
 								<p class="adv-desc">${label.index.speed_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/trusted.png" alt="YourTrader" title="YourTrader"/>
+									<img src="img/trusted.png" alt="YourTrader" title="YourTrader"/></a>
 								</div>
 								<p class="adv-title">${label.index.trust_title}</p>
 								<p class="adv-desc">${label.index.trust_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/deal.png" alt="YourTrader" title="YourTrader"/>
+									<img src="img/deal.png" alt="YourTrader" title="YourTrader"/></a>
 								</div>
 								<p class="adv-title">${label.index.deal_title}</p>
 								<p class="adv-desc">${label.index.deal_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/platform.png" alt="YourTrader" title="YourTrader"/>
+									<img src="img/platform.png" alt="YourTrader" title="YourTrader"/></a>
 								</div>
 								<p class="adv-title">${label.index.сonvenient_title}</p>
 								<p class="adv-desc">${label.index.сonvenient_description}</p>
@@ -164,6 +163,5 @@
 			 	</div>
 			</footer>
 		</div>
-		
 	</body>
 </html>

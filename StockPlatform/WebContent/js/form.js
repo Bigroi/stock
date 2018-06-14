@@ -136,7 +136,7 @@ function setLoginDialogPlugin(element){
 				});
 			},
 			login:true
-		},
+		}/*,
 		{
 			text: l10n.translate("label.button.reset"),
 			id:"reset",
@@ -147,8 +147,27 @@ function setLoginDialogPlugin(element){
 				});
 			},
 			type:"link"
-		}], 
+		}*/], 
 						
+	});
+}
+
+function setReginDialogPlugin(element){
+	element.dialogbox({
+		container:$("#registration-form-container"),
+		formUrl:"/account/Registration.spr", 
+		buttons:[
+		{
+			text: l10n.translate("label.button.continue"),
+			id:"continue",
+			submit:function(formContainer, params){
+				$.post("/account/json/Login.spr", params, function(answer){
+					answer = JSON.parse(answer);
+					processRequestResult(formContainer, answer, $('.dialogbox-message'));
+				});
+			},
+			login:true
+		}], 			
 	});
 }
 
@@ -360,6 +379,14 @@ function sendAddressFormData(formContainer, url){
 			}); 
 }
 
+function sendResetFormData(formContainer, url){
+	return sendFormData(formContainer, function (formContainer, params){
+				$.post(url, params, function(answer){
+					answer = JSON.parse(answer);
+					processRequestResult(formContainer, answer, $('.dialogbox-message'));
+				});
+			}); 
+}
 function initAddressForm(formContainer, url, id){
 	setFormData(formContainer, url, {id:id}, function(){
 		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initMap");

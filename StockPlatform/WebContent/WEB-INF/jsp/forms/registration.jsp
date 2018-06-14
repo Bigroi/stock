@@ -1,6 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div style="display: table; width:100%" id="form-container">
+	<form class="form" action="#" method="post" name="form" id="login-form">
+		<h3>${label.registration.registration}</h3>
+		<p>${label.registration.haveAcc}<a href=""><span>${label.registration.logHere}</span></a></p>
+		<div>
+			<div class="dialogbox-message"></div>
+		</div>
+		<div class="flex-input">
+			<div>
+				<label for="forLogin">${label.registration.login}</label>
+				<input type="email" name="username" id="forLogin" placeholder="john_doe@example.com" required maxlength="50">
+				<!--<span class="form_hint">Proper format "john_doe@example.com"</span>  -->
+			</div>
+			<div>
+				<label for="forPhone">${label.registration.phone}</label>
+				<input type="text" name="company.phone" placeholder="+375290000000" pattern="^\+375[\d\- ]{5,13}$" required/>
+		        <!--<span class="form_hint">Proper format "+375290000000"</span> -->
+			</div>
+			<div>
+				<label for="forPassword">${label.registration.password}</label>
+				<input type="password" name="password" id="forPassword" placeholder="***********" required maxlength="50">
+			</div>
+			<div>
+				<label for="forPasswordAgain">${label.registration.repeat_password}</label>
+				<input type="password" name="passwordRepeat" id="forPasswordAgain" placeholder="***********" required maxlength="50">
+			</div>
+		</div>
+	    <ul id="form-list">
+	    </ul>
+	    <p class="second-step">${label.registration.secondStepReg}</p>
+	</form>
+<!--<div style="display: table; width:100%" id="form-container">
 	<div style="width: 40%;display: table-cell;" id="form-container">
 		<div class="form-message"></div>
 		<form class="form" action="#" method="post" name="form">
@@ -69,6 +99,6 @@
 			<div id="map" style="width: 100%; height: 100%"></div>
 		</div>
 	</div>
-</div>
+</div>  -->
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initMap"></script>

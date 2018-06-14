@@ -41,7 +41,7 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/login.jsp" />
 	</definition>
 
-	<definition name="registration" extends="base-definition">
+	<definition name="registration" extends="base-form-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/registration.jsp" />
 	</definition>
 

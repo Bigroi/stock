@@ -57,16 +57,16 @@ function showDialog(params){
 			$formList.append($listelement);
 		}
 		if(params.hasCloseButton){	
-			var $spanClose = $("<span class='dialogbox-spanClose'>&times</span>");
+			var $spanClose = $("<span class='dialogbox-spanClose'></span>");
 			$spanClose.css("color",params.spanCloseColor);
 			$dialogboxHead.append($spanClose);
 		}
 
-		$dialogbox.on("click",function (e) {        			 			 											
+		$dialogbox.on("click",function (e) {  
 			if(params.hasCloseOverlay && e.target.className == "dialogbox"){		  
 				$dialogbox.remove();
 			}
-			if(e.target.className=="dialogbox-spanClose"){	
+			if(e.target.className=="dialogbox-Head"){	
 				$dialogbox.remove();
 			}   			
 		})      

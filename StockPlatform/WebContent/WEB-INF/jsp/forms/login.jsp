@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	<form class="form" action="#" method="post" name="form">
+	<form class="form" action="#" method="post" name="form" id="login-form">
+		<h3>${label.login.loginForm}</h3>
+		<p>${label.login.dontHaveAcc}<a href=""><span>${label.login.registerHere}</span></a></p>
+		<div>
+			<div class="dialogbox-message"></div>
+		</div>
+		<div>
+			<label for="forLogin">${label.login.login}</label>
+			<input type="email" name="username" id="forLogin" placeholder="John Doe" required maxlength="50">
+			<!--<span class="form_hint">Proper format "name@something.com"</span>  -->
+		</div>
+		<div>
+			<label for="forPassword">${label.login.password}</label>
+			<input type="password" name="password" id="forPassword" placeholder="***********" required maxlength="50">
+			<a id="reset" href="" onclick="return sendResetFormData($('#login-form'), '/account/json/ResetPassword.spr')"><span>${label.login.forgot}</span></a>
+		</div>
 	    <ul id="form-list">
-	        <li>
-	             <h2>${label.login.loginForm }</h2>
-	        </li>
-	        <li>
-	        	<div class="dialogbox-message"></div>
-	        </li>
-	        <li>
-	            <input type="email" name="username" placeholder="John Doe" required maxlength="50"/>
-	            <span class="form_hint">Proper format "name@something.com"</span>
-	        </li>
-	        <li>
-	            <input type="password" name="password" placeholder="***********" required maxlength="50"/>
-	        </li>
 	    </ul>
 	</form>
