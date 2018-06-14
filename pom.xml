@@ -47,6 +47,7 @@
 		<module>StockStatic</module>
 		<module>StockTransport</module>
 		<module>StockUtil</module>
-    <module>Controller</module>
-  </modules>
+    
+		<module>StockController</module>
+	</modules>
 </project>
