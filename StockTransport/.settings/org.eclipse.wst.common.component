@@ -16,13 +16,16 @@
         <dependent-module archiveName="Dao-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockDao/StockDao">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="Common-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockCommon/StockCommon">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="Message-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockMessage/StockMessage">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="Util-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockUtil/StockUtil">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Controller-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockController/StockController">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Common-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockCommon/StockCommon">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/StockTransport/build/classes"/>

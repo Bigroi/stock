@@ -15,6 +15,7 @@ import com.bigroi.stock.bean.common.DealStatus;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.bean.ui.DealForUI;
+import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;

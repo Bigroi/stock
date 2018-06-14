@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bigroi.stock.controller.rendering.BaseRenderingController;
+import com.bigroi.stock.controller.BaseRenderingController;
 import com.bigroi.stock.json.ResultBean;
 
 @Controller

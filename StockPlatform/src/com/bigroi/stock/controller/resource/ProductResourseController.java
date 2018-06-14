@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.ui.ProductForUI;
 import com.bigroi.stock.bean.ui.TradeOffer;
+import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;

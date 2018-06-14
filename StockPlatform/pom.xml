@@ -120,6 +120,11 @@
 			<artifactId>Jobs</artifactId>
 			<version>${stock.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>Stock</groupId>
+			<artifactId>Controller</artifactId>
+			<version>${stock.version}</version>
+		</dependency>
 	</dependencies>
 	
 </project>

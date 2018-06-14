@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigroi.stock.controller.BaseRenderingController;
+
 @Controller
 public class CommonRenderingController extends BaseRenderingController{
 

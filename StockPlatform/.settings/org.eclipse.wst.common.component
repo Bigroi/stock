@@ -27,7 +27,10 @@
         <dependent-module archiveName="Jobs-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockJobs/StockJobs">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="Controller-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockController/StockController">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/StockPlatform/build/classes"/>
-        <property name="context-root" value="Platform"/>
+        <property name="context-root" value="/"/>
     </wb-module>
 </project-modules>

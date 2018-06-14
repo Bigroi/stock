@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigroi.stock.controller.BaseRenderingController;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.UserService;
 

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>Controller</artifactId>
+
+	<parent>
+		<groupId>Stock</groupId>
+		<artifactId>Stock</artifactId>
+		<version>0.1</version>
+	</parent>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>Stock</groupId>
+			<artifactId>Util</artifactId>
+			<version>${stock.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>Stock</groupId>
+			<artifactId>Security</artifactId>
+			<version>${stock.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>Stock</groupId>
+			<artifactId>Common</artifactId>
+			<version>${stock.version}</version>
+		</dependency>
+	</dependencies>
+</project>

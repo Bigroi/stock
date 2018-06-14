@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.ui.CompanyForUI;
+import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;

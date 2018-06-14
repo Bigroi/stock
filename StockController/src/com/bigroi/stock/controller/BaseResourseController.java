@@ -1,10 +1,9 @@
-package com.bigroi.stock.controller.resource;
+package com.bigroi.stock.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bigroi.stock.controller.rendering.BaseRenderingController;
 import com.bigroi.stock.json.ResultBean;
 
 public abstract class BaseResourseController extends BaseRenderingController{

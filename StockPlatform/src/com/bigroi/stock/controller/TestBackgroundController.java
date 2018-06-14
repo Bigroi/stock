@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bigroi.stock.controller.rendering.BaseRenderingController;
 import com.bigroi.stock.service.MarketService;
 import com.bigroi.stock.service.MessageService;
 import com.bigroi.stock.service.ServiceException;
