@@ -173,4 +173,12 @@ public class DealServiceImpl implements DealService{
 		}
 	}
 
+	@Override
+	public List<Deal> getListBySellerAndBuyerApproved() throws ServiceException {
+		try {
+			return dealDao.getListBySellerAndBuyerApproved();
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
 }

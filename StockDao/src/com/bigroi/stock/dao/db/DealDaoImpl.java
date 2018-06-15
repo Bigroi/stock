@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
@@ -115,6 +116,13 @@ public class DealDaoImpl implements DealDao {
 			  " UPDATE DEAL "
 			+ " SET BUYER_APPROVED = ? "
 			+ " WHERE ID = ? ";
+	
+	private static final String GET_LIST_BY_SELLER_BUYER_APPROVE = " SELECT ID, LOT_ID, "
+			+ " TENDER_ID, TIME, BUYER_APPROVED, SELLER_APPROVED, PRICE, MAX_TRANSPORT_PRICE, "
+			+ " VOLUME, PRODUCT_ID, SELLER_FOTO, SELLER_ADDRESS_ID, BUYER_ADDRESS_ID, "
+			+ " SELLER_DESCRIPTION, BUYER_DESCRIPTION FROM DEAL "
+			+ " WHERE BUYER_APPROVED = 'Y' AND SELLER_APPROVED = 'Y' ";// change Y ---> T
+
 
 	@Autowired
 	private DataSource datasource;
@@ -252,6 +260,14 @@ public class DealDaoImpl implements DealDao {
 	public void setSellerStatus(Deal deal) throws DaoException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
 		jdbcTemplate.update(SET_SELLER_STATUS, deal.getSellerApproved(), deal.getId());
+	}
+	
+	@Override
+	public List<Deal> getListBySellerAndBuyerApproved() throws DaoException {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+		List<Deal> listDeals = jdbcTemplate.query(GET_LIST_BY_SELLER_BUYER_APPROVE, 
+				new BeanPropertyRowMapper<Deal>(Deal.class));
+			return listDeals;
 	}
 
 	private static final class DealRowMapper implements RowMapper<Deal>{

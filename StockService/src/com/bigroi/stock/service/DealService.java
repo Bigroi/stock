@@ -18,5 +18,7 @@ public interface DealService {
 	boolean approve(long id, long companyId) throws ServiceException;
 
 	boolean transport(long id, long companyId) throws ServiceException;
+	
+	public List<Deal> getListBySellerAndBuyerApproved() throws ServiceException;
 
 }

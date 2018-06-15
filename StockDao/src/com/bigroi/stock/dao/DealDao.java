@@ -23,5 +23,7 @@ public interface DealDao {
 	public void setBuyerStatus(Deal deal) throws DaoException;
 
 	public void setSellerStatus(Deal deal) throws DaoException;
+	
+	public List<Deal> getListBySellerAndBuyerApproved() throws DaoException;
 
 }

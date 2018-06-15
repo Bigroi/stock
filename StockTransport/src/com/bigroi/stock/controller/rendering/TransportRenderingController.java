@@ -1,14 +1,19 @@
 package com.bigroi.stock.controller.rendering;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.controller.BaseRenderingController;
+import com.bigroi.stock.service.DealService;
 
 @Controller
 public class TransportRenderingController extends BaseRenderingController {
+	
+	@Autowired
+	private DealService dealService;
 
 	@RequestMapping("index.spr")
 	private ModelAndView index() throws Exception {
@@ -32,7 +37,10 @@ public class TransportRenderingController extends BaseRenderingController {
 	
 	@RequestMapping("deal-list.spr")
 	private ModelAndView dealList() throws Exception {
-		return createModelAndView("deal-list");
+		ModelAndView modelAndView = createModelAndView("deal-list");
+		modelAndView.addObject("ListOfDealsBySellerAndBuyerApproved", "hh");
+				//dealService.getListBySellerAndBuyerApproved());
+		return modelAndView;
 	}
 	
 	@RequestMapping("history.spr")
