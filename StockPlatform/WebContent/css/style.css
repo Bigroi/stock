@@ -702,9 +702,11 @@ footer .container {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.7);  
-	position: absolute;
+	position: fixed;
+	overflow-x: hidden;
+    overflow-y: auto;
 	z-index: 2;
-	display: -webkit-box;
+	/*display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-pack: center;
@@ -712,7 +714,7 @@ footer .container {
 	        justify-content: center;
 	-webkit-box-align: center;
 	    -ms-flex-align: center;
-	        align-items: center;
+	        align-items: center;*/
 }
 .popUp,
 .dialogbox-child {
@@ -723,6 +725,7 @@ footer .container {
 	box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
 	overflow: hidden;
 	z-index: 3;
+	margin: 40px auto;
 }
 .popUp  > div,
 .dialogbox-child > div {
@@ -883,4 +886,96 @@ footer .container {
 }
 .registration-second-part {
 	display: none;
+}
+@media (max-width: 1280px){
+	.dialogbox-child {
+		position: relative;
+		width: 768px;
+		height: auto;
+	    min-height: 460px;
+	    padding: 50px 0; 
+	    display: -webkit-box; 
+	    display: -ms-flexbox; 
+	    display: flex;
+	    -webkit-box-align: center;
+	        -ms-flex-align: center;
+	            align-items: center;
+	}
+	.dialogbox-child h3{
+		font-size: 30px;
+	}
+	.dialogbox-child > div.left-part {
+		display: none;
+	}
+	.dialogbox-child > div.right-part {
+		width: 100%;
+		position: static;
+	}
+	.login .popUp-container, .popUp-container {
+		width: 474px;
+	}
+	.dialogbox-child input,
+	.dialogbox-child .flex-input input,
+	#forAdress{
+		width: 446px;
+		height: 33px;
+	}
+	.dialogbox-child button,
+	#continue {
+		width: 474px;
+		height: 60px;
+	}
+	.dialogbox-child p.second-step {
+		width: 474px;
+	}
+	.dialogbox-child p{
+		padding-bottom: 23px;
+	}
+	#reset {
+		right: 15px;
+    	bottom: 37px;
+	}
+	#finish-registration {
+	    width: 288px;
+	}
+	#go-back {
+		width: 161px;
+		height: 60px;
+	}
+}
+@media (max-width: 758px) {
+	.dialogbox-child {
+		width: 320px;
+	}
+	.login .popUp-container, .popUp-container {
+		width: 290px;
+	}
+	.dialogbox-child input,
+	.dialogbox-child .flex-input input,
+	#forAdress{
+		width: 262px;
+		height: 20px;
+	}
+	#reset {
+		right: 15px;
+    	bottom: 33px;
+	}
+	.dialogbox-child button,
+	#continue,
+	.second-step,
+	#go-back,
+	#finish-registration{
+		width: 290px;
+		height: 40px;
+	}
+	.dialogbox-child p a span {
+		padding-left: 0;
+	}
+	.dialogbox-child p a {
+		display: block;
+	}
+	.dialogbox-child p.second-step {
+	    width: 290px;
+	    margin-bottom: 20px;
+	}
 }
