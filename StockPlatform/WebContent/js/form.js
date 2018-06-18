@@ -136,7 +136,6 @@ function setLoginDialogPlugin(element){
 			id:"login",
 			submit:function(formContainer, params){
 				$.post("/account/json/Login.spr", params, function(answer){
-					answer = JSON.parse(answer);
 					processRequestResult(formContainer, answer, $('.dialogbox-message'));
 				});
 			},
@@ -155,7 +154,6 @@ function setReginDialogPlugin(element){
 			id:"finishReg",
 			submit:function(formContainer, params){
 				$.post("/account/json/Registration.spr", params, function(answer){
-					answer = JSON.parse(answer);
 					processRequestResult(formContainer, answer, $('.dialogbox-message'));
 				});
 			}

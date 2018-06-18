@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<form class="form" action="#" method="post" name="form" id="registration-form">
+		<input type="hidden" name="company.address.latitude" class="latitude">
+		<input type="hidden" name="company.address.longitude" class="longitude">
 		<h3>${label.registration.registration}</h3>
 		<p>${label.registration.haveAcc}<a href=""><span>${label.registration.logHere}</span></a></p>
 		<div>
@@ -61,30 +63,4 @@
 		</div>
 		
 	</form>
-<!--<div style="display: table; width:100%" id="form-container">
-	<div style="width: 40%;display: table-cell;" id="form-container">
-		<div class="form-message"></div>
-		<form class="form" action="#" method="post" name="form">
-			<input type="hidden" name="company.address.latitude" class="latitude">
-			<input type="hidden" name="company.address.longitude" class="longitude">
-		    <ul>
-		        <li>
-		        	<button class="submit" type="submit" id="save-button"
-		        			onclick="
-		        				return sendFormData($('#form-container > form'), 
-				        				function(formContainer, param){
-			        						$.post('/account/json/Registration.spr', param, function(answer){
-			        							processRequestResult($('#form-container > form'), answer, $('.form-message'));
-			        							if (answer.result > 0){
-			        								$('#save-button').remove();
-			        							}
-			        						});
-			        					});">${label.button.save}</button>
-		        </li>
-		    </ul>
-		</form>	
-	</div>
-	
-</div>  -->
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initRegistrationMap"></script>
