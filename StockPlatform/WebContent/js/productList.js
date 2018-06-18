@@ -39,9 +39,9 @@ $(document).ready(function(){
 		buyProduct.append($("<p class='count'>" + product.buyPrice + "</p>"));
 		buyProduct.append($("<p class='desc-count'>" + l10n.translate("label.index.average_price") + "</p>"));
 		if (!authorised){
-			var buyButton = $("<button class='blue-button'>" + l10n.translate("label.product.details") +" " + product.name + "</button>");
+			var buyButton = $("<button class='blue-button'>" + l10n.translate("label.index.buy") +" " + product.name + "</button>");
 			buyProduct.append(buyButton);
-			setReginDialogPlugin(sellProduct);
+			setReginDialogPlugin(buyButton);
 		}
 		aboutProduct.append(buyProduct);
 		div.append(aboutProduct);
