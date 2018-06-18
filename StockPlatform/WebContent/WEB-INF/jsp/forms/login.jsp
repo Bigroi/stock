@@ -16,6 +16,8 @@
 			<input type="password" name="password" id="forPassword" placeholder="***********" required maxlength="50">
 			<a id="reset" href="" onclick="return sendResetFormData($('#login-form'), '/account/json/ResetPassword.spr')"><span>${label.login.forgot}</span></a>
 		</div>
-	    <ul id="form-list">
-	    </ul>
+		<div>
+		    <div id="form-list">
+		    </div>
+	    </div>
 	</form>

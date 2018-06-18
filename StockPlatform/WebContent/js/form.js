@@ -136,6 +136,7 @@ function setLoginDialogPlugin(element){
 			id:"login",
 			submit:function(formContainer, params){
 				$.post("/account/json/Login.spr", params, function(answer){
+					answer = JSON.parse(answer);
 					processRequestResult(formContainer, answer, $('.dialogbox-message'));
 				});
 			},
