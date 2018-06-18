@@ -1,11 +1,18 @@
 $(document).ready(function(){
 	$(document).on("click", '#continue', function() {
-		$(".registration-first-part").hide();
-		$(".registration-second-part").show();
+		if($('#registration-form')[0].checkValidity()){
+			$(".registration-first-part").hide();
+			$(".registration-second-part").show();
+			$(".registration-second-part input").attr("required", "required");
+			return false;
+		} else {
+			return true;
+		}
 	});
 	$(document).on("click", '#go-back', function() {
 		$(".registration-first-part").show();
 		$(".registration-second-part").hide();
+		$(".registration-second-part input").removeAttr("required");
 	});
 		if ($('body').width() <= 900) {
 		$(".burger").click(function(){
