@@ -152,7 +152,7 @@ function setReginDialogPlugin(element){
 		buttons:[
 		{
 			text: l10n.translate("label.button.finishRegistration"),
-			id:"finishReg",
+			id:"finish-registration",
 			submit:function(formContainer, params){
 				$.post("/account/json/Registration.spr", params, function(answer){
 					processRequestResult(formContainer, answer, $('.dialogbox-message'));
