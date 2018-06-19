@@ -38,8 +38,8 @@ public class TransportRenderingController extends BaseRenderingController {
 	@RequestMapping("deal-list.spr")
 	private ModelAndView dealList() throws Exception {
 		ModelAndView modelAndView = createModelAndView("deal-list");
-		modelAndView.addObject("ListOfDealsBySellerAndBuyerApproved", "hh");
-				//dealService.getListBySellerAndBuyerApproved());
+		modelAndView.addObject("ListOfDealsBySellerAndBuyerApproved", 
+				dealService.getListBySellerAndBuyerApproved());
 		return modelAndView;
 	}
 	

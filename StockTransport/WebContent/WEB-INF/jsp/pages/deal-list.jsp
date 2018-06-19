@@ -4,7 +4,7 @@
 deal list test page
 
 <p>list of deals: ${ListOfDealsBySellerAndBuyerApproved}</p>
-<table>
+<table border="3">
 	<thead>
 		<tr>
 			<td>product_id</td>
