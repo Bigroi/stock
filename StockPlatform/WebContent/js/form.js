@@ -141,19 +141,7 @@ function setLoginDialogPlugin(element){
 				});
 			},
 			login:true
-		}/*,
-		{
-			text: l10n.translate("label.button.reset"),
-			id:"reset",
-			submit:function(formContainer, params){
-				$.post("/account/json/ResetPassword.spr", params, function(answer){
-					answer = JSON.parse(answer);
-					processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				});
-			},
-			type:"link"
-		}*/], 
-						
+		}], 				
 	});
 }
 
@@ -163,15 +151,13 @@ function setReginDialogPlugin(element){
 		formUrl:"/account/Registration.spr", 
 		buttons:[
 		{
-			text: l10n.translate("label.button.continueButton"),
-			id:"continue",
+			text: l10n.translate("label.button.finishRegistration"),
+			id:"finishReg",
 			submit:function(formContainer, params){
-				$.post("/account/json/Login.spr", params, function(answer){
-					answer = JSON.parse(answer);
+				$.post("/account/json/Registration.spr", params, function(answer){
 					processRequestResult(formContainer, answer, $('.dialogbox-message'));
 				});
-			},
-			login:true
+			}
 		}], 			
 	});
 }

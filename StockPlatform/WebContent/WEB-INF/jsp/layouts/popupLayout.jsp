@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <div class="dialogbox">
 	<div class="dialogbox-child">
-		<div class="left-part"></div>
+		<div class="left-part google-map-container"></div>
 		<div class="right-part">
 			<div class="popUp-container">
 				<div class="dialogbox-Head"></div>

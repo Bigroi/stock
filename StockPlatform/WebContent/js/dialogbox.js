@@ -49,12 +49,9 @@ function showDialog(params){
 		}
 		
 		if (params.buttons){
-			var $listelement = $("<li>");
-			$listelement.css("text-align", "center");
 			for(var i = 0; i < params.buttons.length; i++){
-				addButton($listelement, params.buttons[i]);
+				addButton($formList, params.buttons[i]);
 			}	
-			$formList.append($listelement);
 		}
 		if(params.hasCloseButton){	
 			var $spanClose = $("<span class='dialogbox-spanClose'></span>");
