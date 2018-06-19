@@ -55,6 +55,13 @@
 					<label for="forAdress">${label.registration.address}</label>
 		            <input type="text" name="company.address.address" class="address" id="forAdress" placeholder="Minsk" maxlength="200"/>
 				</div>
+				<div class="forMap"></div>
+				<div class="for-checkbox">
+					<div class="checkbox-title">
+						<input type="checkbox" class="" id="agree" name="" value="" checked />
+					   <label for="agree">${label.button.AcceptTerms}</label> 
+					</div>
+				</div>
 			</div>
 			<button type="button" id="go-back">${label.button.back}</button>
 			<div id="form-list">

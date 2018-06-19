@@ -697,7 +697,6 @@ footer .container {
 	}
 }
 /*popUp*/
-.popUp-bg, 
 .dialogbox  {
 	width: 100%;
 	height: 100%;
@@ -716,7 +715,6 @@ footer .container {
 	    -ms-flex-align: center;
 	        align-items: center;*/
 }
-.popUp,
 .dialogbox-child {
 	width: 1170px;
 	height: 560px;
@@ -727,7 +725,6 @@ footer .container {
 	z-index: 3;
 	margin: 40px auto;
 }
-.popUp  > div,
 .dialogbox-child > div {
 	width: 50%;
 	height: 100%;
@@ -756,19 +753,16 @@ footer .container {
 .popUp-container {
 	width: 410px;
 }
-.popUp p,
 .dialogbox-child p {
 	font-size: 14px;
 	color: var(--cool-grey);
 	padding-bottom: 40px;
 	padding-top: 5px;
 }
-.popUp  a,
 .dialogbox-child  a {
 	color: var(--cool-grey);
 	text-decoration: underline;
 }
-.popUp  p a span,
 .dialogbox-child  p a span {
 	padding-left: 20px;
 	font-weight: 600;
@@ -778,15 +772,13 @@ footer .container {
 	color: var(--black);
 	font-size: 14px;
 }
-.popUp label,
 .dialogbox-child label {
 	display: block;
 	margin-bottom: 5px;
 	font-size: 14px;
 }
-.popUp input,
 .dialogbox-child input {
-	width: 244px;
+	width: 343px;
     height: 22px;
     border-radius: 4px;
     border: solid 1px #ced1d6;
@@ -794,10 +786,9 @@ footer .container {
     margin-right: 20px;
     padding: 9px 13px;
 }
-.popUp button,
 .dialogbox-child button {
-	width: 270px;
-	height: 40px;
+	width: 371px;
+	height: 42px;
 	border-radius: 5px;
 	background-color: var(--azure);
 	color: var(--white);
@@ -822,7 +813,7 @@ footer .container {
 }
 #reset {
 	position: absolute;
-    right: 150px;
+    right: 50px;
     bottom: 32px;
 }
 .flex-input {
@@ -880,14 +871,74 @@ footer .container {
 	background-color: var(--silver);
 	color: #333333;
 	margin-right: 20px;
+	float: left;
 }
 #finish-registration {
 	width: 250px;
+	float: left;
 }
 .registration-second-part {
 	display: none;
 }
+#registration-form-container .popUp-container {
+	 height: 473px;
+}
+.forMap {
+	width: 474px;
+  	height: 148px;
+  	display: none;
+  	background-color: peachpuff;
+    border-radius: 5px;
+}
+.for-checkbox {
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+}
+.checkbox-title > input[type="checkbox"]{
+ 	display: none;
+}
+.checkbox-title label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 45px;
+    margin-right: 15px;
+	margin-bottom:0;
+}
+.checkbox-title label:before {
+	background-color: #fafafa;
+	border:1px solid #d7d7d7;
+	border-radius:2px;
+	width: 30px;
+    height: 30px;
+    content: "";
+    display: inline-block;
+    margin-right: 10px;
+    position: absolute;
+    left:0;
+    bottom: -7px;
+    border-radius: 3px;
+	background: url(../img/checkw.png) no-repeat 7px 8px;
+    background-size: 17px;
+}
+.checkbox-title > input[type="checkbox"]:checked + label:before{
+	border:0px solid #d7d7d7;
+	background-color: var(--green-teal);
+	width: 30px;
+    height: 30px;
+	content: "";
+}
 @media (max-width: 1280px){
+	.for-checkbox {
+    margin-top: 25px;
+    }
+	.forMap {
+	  	display: block;
+	}
+	#registration-form-container .popUp-container {
+	 height: auto;
+	}
 	.dialogbox-child {
 		position: relative;
 		width: 768px;
@@ -944,6 +995,9 @@ footer .container {
 	}
 }
 @media (max-width: 758px) {
+    .checkbox-title label:before {
+    	bottom: 0;
+    }
 	.dialogbox-child {
 		width: 320px;
 	}
@@ -978,4 +1032,8 @@ footer .container {
 	    width: 290px;
 	    margin-bottom: 20px;
 	}
+	.forMap {
+		width: 290px;
+  		height: 140px;
+  	}
 }
