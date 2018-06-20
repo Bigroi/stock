@@ -3,6 +3,7 @@ package com.bigroi.stock.bean.ui;
 import java.util.Date;
 
 import com.bigroi.stock.bean.common.DealStatus;
+import com.bigroi.stock.bean.common.PartnerChoice;
 import com.bigroi.stock.bean.db.Address;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.json.Column;
@@ -22,7 +23,7 @@ public class DealForUI {
 	private Date time;
 	
 	@Column(value = "label.deal.status", filterMethod = FilterMethod.SELECT)
-	private DealStatus status;
+	private String status;
 	
 	private final Address sellerAddrress;
 	private final Address buyerAddrress;
@@ -40,7 +41,7 @@ public class DealForUI {
 		this.id = deal.getId();
 		productName = deal.getProduct().getName();
 		this.time = deal.getTime();
-		this.status = Deal.calulateStatus(deal, companyId);
+		this.status = getDealStatus(deal, companyId);
 		this.sellerAddrress = deal.getSellerAddress();
 		this.buyerAddrress = deal.getBuyerAddress();
 		if (deal.getSellerAddress().getCompanyId() == companyId){
@@ -53,6 +54,17 @@ public class DealForUI {
 		this.sellerFoto = deal.getSellerFoto();
 		this.price = deal.getPrice();
 		this.volume = deal.getVolume();
+	}
+	
+	private String getDealStatus(Deal deal, long companyId){
+		PartnerChoice companyChoice = deal.getBuyerAddress().getCompanyId() == companyId ? 
+				deal.getBuyerChoice() : deal.getSellerChoice();
+		DealStatus status = DealStatus.calculateStatus(deal.getBuyerChoice(), deal.getSellerChoice());
+		if (status == DealStatus.ON_APPROVE && companyChoice != PartnerChoice.ON_APPROVE){
+			return DealStatus.ON_PARTNER_APPROVE.toString();
+		} else {
+			return status.toString();
+		}
 	}
 	
 	public Address getBuyerAddrress() {
@@ -83,11 +95,15 @@ public class DealForUI {
 		return partnerDescription;
 	}
 	
-	public void setStatus(DealStatus status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	
 	public long getId() {
 		return id;
+	}
+	
+	public String getStatus() {
+		return status;
 	}
 }

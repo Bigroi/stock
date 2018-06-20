@@ -41,8 +41,13 @@ public class DealResourseController extends BaseResourseController {
 				user.getCompanyId() != deal.getSellerAddress().getCompanyId()){
 			return new ResultBean(-1, "label.deal.not_authorized").toString();
 		} else {
-			return new ResultBean(1, new DealForUI(deal, user.getCompanyId()), "").toString();
+			return new ResultBean(1, translateDeal(new DealForUI(deal, user.getCompanyId())), "").toString();
 		}
+	}
+	
+	private DealForUI translateDeal(DealForUI deal){
+		deal.setStatus(this.getLabelValue(deal.getStatus()));
+		return deal;
 	}
 	
 	@RequestMapping(value = "/MyDeals.spr", produces = "text/plain;charset=UTF-8")
@@ -53,7 +58,9 @@ public class DealResourseController extends BaseResourseController {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
 		List<Deal> deals = dealService.getByUserId(userBean.getCompanyId());
 		List<DealForUI> dealsForUI = deals.stream()
-				.map(d -> new DealForUI(d, userBean.getCompanyId())).collect(Collectors.toList());
+				.map(d -> new DealForUI(d, userBean.getCompanyId()))
+				.map(this::translateDeal)
+				.collect(Collectors.toList());
 		TableResponse<DealForUI> table = new TableResponse<>(DealForUI.class, dealsForUI);
 		return new ResultBean(1, table, "").toString();
 	}
@@ -65,7 +72,8 @@ public class DealResourseController extends BaseResourseController {
 			throws ServiceException, TableException {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
 		DealForUI deal = GsonUtil.getGson().fromJson(json, DealForUI.class);
-		deal.setStatus(DealStatus.ON_PARTNER_APPROVE);
+		
+		deal.setStatus(DealStatus.ON_PARTNER_APPROVE.toString());
 		if (dealService.approve(deal.getId(), userBean.getCompanyId())){
 			return new ResultBean(1, deal, "label.deal.approved").toString();
 		} else {
@@ -81,7 +89,7 @@ public class DealResourseController extends BaseResourseController {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
 		DealForUI deal = GsonUtil.getGson().fromJson(json, DealForUI.class);
 		
-		deal.setStatus(DealStatus.REJECTED);
+		deal.setStatus(DealStatus.REJECTED.toString());
 		if (dealService.reject(deal.getId(), userBean.getCompanyId())){
 			return new ResultBean(1, deal, "label.deal.rejected").toString();
 		} else {
@@ -97,7 +105,7 @@ public class DealResourseController extends BaseResourseController {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
 		DealForUI deal = GsonUtil.getGson().fromJson(json, DealForUI.class);
 		
-		deal.setStatus(DealStatus.ON_PARTNER_APPROVE);
+		deal.setStatus(DealStatus.TRANSPORT.toString());
 		if (dealService.transport(deal.getId(), userBean.getCompanyId())){
 			return new ResultBean(1, deal, "label.deal.rejected").toString();
 		} else {

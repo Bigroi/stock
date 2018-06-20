@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.common.DealStatus;
+import com.bigroi.stock.bean.common.PartnerChoice;
 import com.bigroi.stock.bean.db.Blacklist;
 import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.db.Deal;
@@ -85,11 +86,11 @@ public class DealServiceImpl implements DealService{
 			long buyerId = companyDao.getById(deal.getBuyerAddress().getCompanyId()).getId();
 			long sellerId = companyDao.getById(deal.getSellerAddress().getCompanyId()).getId();
 			if (buyerId == companyId){
-				deal.setBuyerApproved("N");
+				deal.setBuyerChoice(PartnerChoice.REJECTED);
 				dealDao.setBuyerStatus(deal);
 				message = customerCanceledMessage;
 			} else if (sellerId == companyId){
-				deal.setSellerApproved("N");
+				deal.setSellerChoice(PartnerChoice.REJECTED);
 				dealDao.setSellerStatus(deal);
 				message = sellerCanceledMessage;
 			} else {
@@ -124,17 +125,16 @@ public class DealServiceImpl implements DealService{
 			long buyerId = companyDao.getById(deal.getBuyerAddress().getCompanyId()).getId();
 			long sellerId = companyDao.getById(deal.getSellerAddress().getCompanyId()).getId();
 			if (buyerId == companyId){
-				deal.setBuyerApproved("Y");
+				deal.setBuyerChoice(PartnerChoice.APPROVED);
 				dealDao.setBuyerStatus(deal);
 			} else if (sellerId == companyId){
-				deal.setSellerApproved("Y");
+				deal.setSellerChoice(PartnerChoice.APPROVED);
 				dealDao.setSellerStatus(deal);
 			} else {
 				return false;
 			}
-			if (Deal.calulateStatus(deal, companyId) == DealStatus.APPROVED){
+			if (DealStatus.calculateStatus(deal.getBuyerChoice(), deal.getSellerChoice()) == DealStatus.APPROVED){
 				successDealMessageForCustomer.send(deal);
-				
 				successDealMessageForSeller.send(deal);
 			}
 			
@@ -159,10 +159,10 @@ public class DealServiceImpl implements DealService{
 			long sellerId = companyDao.getById(deal.getSellerAddress().getCompanyId()).getId();
 			
 			if (buyerId == companyId){
-				deal.setBuyerApproved("T");
+				deal.setBuyerChoice(PartnerChoice.TRANSPORT);
 				dealDao.setBuyerStatus(deal);
 			} else if (sellerId == companyId){
-				deal.setSellerApproved("T");
+				deal.setSellerChoice(PartnerChoice.TRANSPORT);
 				dealDao.setSellerStatus(deal);
 			} else {
 				return false;

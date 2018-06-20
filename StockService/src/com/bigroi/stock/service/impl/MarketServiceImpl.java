@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.common.PartnerChoice;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Tender;
@@ -91,11 +92,11 @@ public class MarketServiceImpl implements MarketService {
 				if (deal.getLotId() == null){
 					continue;
 				}
-				if (deal.getSellerApproved() != null){
+				if (deal.getSellerChoice() != PartnerChoice.ON_APPROVE){
 					dealExparationMessageForSellerByOpponent.send(deal);
 					
 					dealExparationMessageForCustomer.send(deal);
-				} else if (deal.getBuyerApproved() != null){
+				} else if (deal.getBuyerChoice() != PartnerChoice.ON_APPROVE){
 					dealExparationMessageForSeller.send(deal);
 					
 					dealExparationMessageForCustomerByOpponent.send(deal);

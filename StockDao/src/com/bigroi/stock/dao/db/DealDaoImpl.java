@@ -11,13 +11,13 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.common.PartnerChoice;
 import com.bigroi.stock.bean.db.Address;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Product;
@@ -76,6 +76,14 @@ public class DealDaoImpl implements DealDao {
 			+ " ON BA.ID = D.BUYER_ADDRESS_ID "
 			+ " WHERE D.ID = ?";
 
+	private static final String ON_APPROVE_CRITERIA =
+			  "(BUYER_CHOICE = " + PartnerChoice.ON_APPROVE.getCode()
+			  		+ " AND SELLER_CHOICE <> " + PartnerChoice.ON_APPROVE.getCode() + ") "
+		  + " OR (SELLER_CHOICE = " + PartnerChoice.ON_APPROVE.getCode()
+			  		+ " AND BUYER_CHOICE <> " + PartnerChoice.ON_APPROVE.getCode() + ") "
+		  + " OR (SELLER_CHOICE = " + PartnerChoice.ON_APPROVE.getCode()
+			  		+ " AND BUYER_CHOICE = " + PartnerChoice.ON_APPROVE.getCode() + ")";
+	
 	private static final String GET_ON_APPROVE = 
 					  " SELECT " + DealRowMapper.ALL_COLUMNS
 					  + " FROM DEAL D "
@@ -85,16 +93,13 @@ public class DealDaoImpl implements DealDao {
 					  + " ON SA.ID = D.SELLER_ADDRESS_ID "
 					  + " JOIN ADDRESS BA "
 					  + " ON BA.ID = D.BUYER_ADDRESS_ID "
-					  + " WHERE (BUYER_APPROVED IS NULL AND SELLER_APPROVED <> 'N') "
-					+ " OR (SELLER_APPROVED IS NULL AND BUYER_APPROVED <> 'N') "
-					+ " OR (SELLER_APPROVED IS NULL AND BUYER_APPROVED IS NULL)";
+					  + " WHERE " + ON_APPROVE_CRITERIA;
+	
 
 	private static final String DELETE_ON_APPROVE = 
 					  " DELETE "
 					+ " FROM DEAL "
-					+ " WHERE (BUYER_APPROVED IS NULL AND SELLER_APPROVED <> 'N') "
-					+ " OR (SELLER_APPROVED IS NULL AND BUYER_APPROVED <> 'N')"
-					+ " OR (SELLER_APPROVED IS NULL AND BUYER_APPROVED IS NULL)";
+					+ " WHERE " + ON_APPROVE_CRITERIA;
 
 	private static final String GET_BY_COMPANY_ID = 
 			" SELECT " + DealRowMapper.ALL_COLUMNS
@@ -109,19 +114,18 @@ public class DealDaoImpl implements DealDao {
 
 	private static final String SET_SELLER_STATUS = 
 			  " UPDATE DEAL "
-			+ " SET SELLER_APPROVED = ? "
+			+ " SET SELLER_CHOICE = ? "
 			+ " WHERE ID = ? ";
 	
 	private static final String SET_BUYER_STATUS = 
 			  " UPDATE DEAL "
-			+ " SET BUYER_APPROVED = ? "
+			+ " SET BUYER_CHOICE = ? "
 			+ " WHERE ID = ? ";
 	
-	private static final String GET_LIST_BY_SELLER_BUYER_APPROVE = " SELECT ID, LOT_ID, "
-			+ " TENDER_ID, TIME, BUYER_APPROVED, SELLER_APPROVED, PRICE, MAX_TRANSPORT_PRICE, "
-			+ " VOLUME, PRODUCT_ID, SELLER_FOTO, SELLER_ADDRESS_ID, BUYER_ADDRESS_ID, "
-			+ " SELLER_DESCRIPTION, BUYER_DESCRIPTION FROM DEAL "
-			+ " WHERE BUYER_APPROVED = 'Y' AND SELLER_APPROVED = 'Y' ";// change Y ---> T
+	private static final String GET_LIST_BY_SELLER_BUYER_APPROVE = 
+			" SELECT " + DealRowMapper.ALL_COLUMNS 
+			+ " FROM DEAL "
+			+ " WHERE ((BUYER_CHOICE OR SELLER_CHOICE) AND 15) = 8 ";
 
 
 	@Autowired
@@ -228,8 +232,8 @@ public class DealDaoImpl implements DealDao {
 						ps.setLong(1, deal.getLotId());
 						ps.setLong(2, deal.getTenderId());
 						ps.setTimestamp(3, new Timestamp(deal.getTime().getTime()));
-						ps.setString(4, deal.getBuyerApproved());
-						ps.setString(5, deal.getSellerApproved());
+						ps.setInt(4, deal.getBuyerChoice().getCode());
+						ps.setInt(5, deal.getSellerChoice().getCode());
 						ps.setDouble(6, deal.getPrice());
 						ps.setInt(7, deal.getVolume());
 						ps.setLong(8, deal.getProductId());
@@ -253,27 +257,27 @@ public class DealDaoImpl implements DealDao {
 	@Override
 	public void setBuyerStatus(Deal deal) throws DaoException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-		jdbcTemplate.update(SET_BUYER_STATUS, deal.getBuyerApproved(), deal.getId());
+		jdbcTemplate.update(SET_BUYER_STATUS, deal.getBuyerChoice().getCode(), deal.getId());
 	}
 	
 	@Override
 	public void setSellerStatus(Deal deal) throws DaoException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-		jdbcTemplate.update(SET_SELLER_STATUS, deal.getSellerApproved(), deal.getId());
+		jdbcTemplate.update(SET_SELLER_STATUS, deal.getSellerChoice().getCode(), deal.getId());
 	}
 	
 	@Override
 	public List<Deal> getListBySellerAndBuyerApproved() throws DaoException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
 		List<Deal> listDeals = jdbcTemplate.query(GET_LIST_BY_SELLER_BUYER_APPROVE, 
-				new BeanPropertyRowMapper<Deal>(Deal.class));
+				new DealRowMapper());
 			return listDeals;
 	}
 
 	private static final class DealRowMapper implements RowMapper<Deal>{
 
 		private static final String ALL_COLUMNS = 
-				" D.ID, D.LOT_ID, D.TENDER_ID, D.TIME, D.BUYER_APPROVED, D.SELLER_APPROVED, "
+				" D.ID, D.LOT_ID, D.TENDER_ID, D.TIME, D.BUYER_CHOICE, D.SELLER_CHOICE, "
 				+ " D.PRICE, D.MAX_TRANSPORT_PRICE, D.VOLUME, D.PRODUCT_ID, D.SELLER_FOTO, "
 				+ " D.SELLER_ADDRESS_ID, D.BUYER_ADDRESS_ID, D.SELLER_DESCRIPTION, D.BUYER_DESCRIPTION, "
 				+ " P.NAME PRODUCT_NAME,  "
@@ -291,8 +295,8 @@ public class DealDaoImpl implements DealDao {
 			deal.setLotId(rs.getLong("LOT_ID"));
 			deal.setTenderId(rs.getLong("TENDER_ID"));
 			deal.setTime(rs.getTimestamp("TIME"));
-			deal.setBuyerApproved(rs.getString("BUYER_APPROVED"));
-			deal.setSellerApproved(rs.getString("SELLER_APPROVED"));
+			deal.setBuyerChoice(PartnerChoice.valueOf(rs.getInt("BUYER_CHOICE")));
+			deal.setSellerChoice(PartnerChoice.valueOf(rs.getInt("SELLER_CHOICE")));
 			deal.setPrice(rs.getDouble("PRICE"));
 			deal.setMaxTransportPrice(rs.getDouble("MAX_TRANSPORT_PRICE"));
 			deal.setVolume(rs.getInt("VOLUME"));

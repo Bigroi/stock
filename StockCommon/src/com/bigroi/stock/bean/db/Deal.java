@@ -2,7 +2,7 @@ package com.bigroi.stock.bean.db;
 
 import java.util.Date;
 
-import com.bigroi.stock.bean.common.DealStatus;
+import com.bigroi.stock.bean.common.PartnerChoice;
 
 public class Deal {
 	
@@ -19,8 +19,8 @@ public class Deal {
 	private String sellerFoto;
 	private double maxTransportPrice;
 	
-	private String buyerApproved;
-	private String sellerApproved;
+	private PartnerChoice buyerChoice;
+	private PartnerChoice sellerChoice;
 	
 	private long buyerAddressId;
 	private long sellerAddressId;
@@ -38,13 +38,13 @@ public class Deal {
 		this.lotId = lot.getId();
 		this.buyerAddress = tender.getAddress();
 		this.buyerAddressId = tender.getAddressId();
-		this.buyerApproved = null;
+		this.buyerChoice = PartnerChoice.ON_APPROVE;
 		this.buyerDescription = tender.getDescription();
 		this.price = (lot.getMinPrice() + tender.getMaxPrice()) / 2;
 		this.productId = lot.getProductId();
 		this.sellerAddress = lot.getAddress();
 		this.sellerAddressId = lot.getAddressId();
-		this.sellerApproved = null;
+		this.sellerChoice = PartnerChoice.ON_APPROVE;
 		this.sellerDescription = lot.getDescription();
 		this.sellerFoto = lot.getFoto();
 		this.tenderId = tender.getId();
@@ -152,20 +152,20 @@ public class Deal {
 		this.sellerFoto = sellerFoto;
 	}
 
-	public String getBuyerApproved() {
-		return buyerApproved;
+	public PartnerChoice getBuyerChoice() {
+		return buyerChoice;
 	}
-
-	public void setBuyerApproved(String buyerApproved) {
-		this.buyerApproved = buyerApproved;
+	
+	public void setBuyerChoice(PartnerChoice buyerChoice) {
+		this.buyerChoice = buyerChoice;
 	}
-
-	public String getSellerApproved() {
-		return sellerApproved;
+	
+	public PartnerChoice getSellerChoice() {
+		return sellerChoice;
 	}
-
-	public void setSellerApproved(String sellerApproved) {
-		this.sellerApproved = sellerApproved;
+	
+	public void setSellerChoice(PartnerChoice sellerChoice) {
+		this.sellerChoice = sellerChoice;
 	}
 
 	public long getBuyerAddressId() {
@@ -199,42 +199,5 @@ public class Deal {
 	public void setSellerDescription(String sellerDescription) {
 		this.sellerDescription = sellerDescription;
 	}
-
-	public static DealStatus calulateStatus(Deal deal, long companyId){
-		String buyerApproved = deal.getBuyerApproved();
-		String sellerApproved = deal.getSellerApproved();
-		if ("N".equals(buyerApproved) || "N".equals(sellerApproved)){
-			return DealStatus.REJECTED;
-		} else if (deal.getBuyerAddress().getCompanyId() == companyId){
-			if (buyerApproved == null){
-				return DealStatus.ON_APPROVE;
-			} else if (sellerApproved == null){
-				return DealStatus.ON_PARTNER_APPROVE;
-			} else if ("T".equals(buyerApproved) || "T".equals(sellerApproved)){
-				return DealStatus.APPROVED;
-			} else {
-				return DealStatus.TRANSPORT;
-			}
-		} else {
-			if (sellerApproved == null){
-				return DealStatus.ON_APPROVE;
-			} else if (buyerApproved == null){
-				return DealStatus.ON_PARTNER_APPROVE;
-			} else if ("T".equals(buyerApproved) || "T".equals(sellerApproved)){
-				return DealStatus.APPROVED;
-			} else {
-				return DealStatus.TRANSPORT;
-			}
-		}
-	}
-
-	@Override
-	public String toString() {
-		return "Deal [id=" + id + ", productId=" + productId + ", time=" + time + ", lotId=" + lotId + ", tenderId="
-				+ tenderId + ", price=" + price + ", volume=" + volume + ", sellerFoto=" + sellerFoto
-				+ ", maxTransportPrice=" + maxTransportPrice + ", buyerApproved=" + buyerApproved + ", sellerApproved="
-				+ sellerApproved + ", buyerAddressId=" + buyerAddressId + ", sellerAddressId=" + sellerAddressId
-				+ ", buyerDescription=" + buyerDescription + ", sellerDescription=" + sellerDescription + ", product="
-				+ product + ", buyerAddress=" + buyerAddress + ", sellerAddress=" + sellerAddress + "]";
-	}
+	
 }
