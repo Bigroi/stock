@@ -8,12 +8,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.controller.BaseRenderingController;
 import com.bigroi.stock.service.DealService;
+import com.bigroi.stock.service.PropositionService;
 
 @Controller
 public class TransportRenderingController extends BaseRenderingController {
 	
 	@Autowired
 	private DealService dealService;
+	@Autowired
+	private PropositionService propService;
 
 	@RequestMapping("index.spr")
 	public ModelAndView index() throws Exception {
@@ -32,7 +35,10 @@ public class TransportRenderingController extends BaseRenderingController {
 	
 	@RequestMapping("propositions")
 	public ModelAndView propositions() throws Exception {
-		return createModelAndView("propositions");
+		ModelAndView modelAndView = createModelAndView("propositions");
+		modelAndView.addObject("listOfPropositions",
+				propService.getListProposition());
+		return modelAndView;
 	}
 	
 	@RequestMapping("deal-list.spr")

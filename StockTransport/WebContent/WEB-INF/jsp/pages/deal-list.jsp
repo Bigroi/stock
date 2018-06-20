@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<h2>deal list:</h2>
+
 <table border="3">
 	<thead>
 		<tr>
