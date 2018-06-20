@@ -227,5 +227,14 @@ public class Deal {
 			}
 		}
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Deal [id=" + id + ", productId=" + productId + ", time=" + time + ", lotId=" + lotId + ", tenderId="
+				+ tenderId + ", price=" + price + ", volume=" + volume + ", sellerFoto=" + sellerFoto
+				+ ", maxTransportPrice=" + maxTransportPrice + ", buyerApproved=" + buyerApproved + ", sellerApproved="
+				+ sellerApproved + ", buyerAddressId=" + buyerAddressId + ", sellerAddressId=" + sellerAddressId
+				+ ", buyerDescription=" + buyerDescription + ", sellerDescription=" + sellerDescription + ", product="
+				+ product + ", buyerAddress=" + buyerAddress + ", sellerAddress=" + sellerAddress + "]";
+	}
 }
