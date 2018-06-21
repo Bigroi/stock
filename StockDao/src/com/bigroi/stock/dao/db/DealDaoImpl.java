@@ -124,8 +124,14 @@ public class DealDaoImpl implements DealDao {
 	
 	private static final String GET_LIST_BY_SELLER_BUYER_APPROVE = 
 			" SELECT " + DealRowMapper.ALL_COLUMNS 
-			+ " FROM DEAL "
-			+ " WHERE ((BUYER_CHOICE OR SELLER_CHOICE) AND 15) = 8 ";
+			  + " FROM DEAL D "
+			  + " JOIN PRODUCT P "
+			  + " ON D.PRODUCT_ID = P.ID "
+			  + " JOIN ADDRESS SA "
+			  + " ON SA.ID = D.SELLER_ADDRESS_ID "
+			  + " JOIN ADDRESS BA "
+			  + " ON BA.ID = D.BUYER_ADDRESS_ID "
+			  + " WHERE ((BUYER_CHOICE OR SELLER_CHOICE) AND 15) = 8 ";
 
 
 	@Autowired
