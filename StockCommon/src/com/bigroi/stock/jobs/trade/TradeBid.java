@@ -1,6 +1,5 @@
 package com.bigroi.stock.jobs.trade;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -19,27 +18,21 @@ public interface TradeBid extends Bid{
 		}
 		getPosiblePartners().clear();
 	}
-
-	default void setMaxVolumeExt(int volume) {
-		setMaxVolume(volume);
-		for (TradeBid partner : new ArrayList<>(getPosiblePartners())){
-			if (partner.getMinVolume() > volume){
-				getPosiblePartners().remove(partner);
-			}
-		}
-	}
 	
 	default TradeBid getBestPartner() {
 		final TradeBid thisObject = this;
 		return Collections.max(getPosiblePartners(), new Comparator<TradeBid>() {
 			@Override
 			public int compare(TradeBid o1, TradeBid o2) {
-				double o2Price = o2.getPrice() * Math.max(o2.getMaxVolume(), thisObject.getMaxVolume()) + getDistancePrice(o2, thisObject);
-				double o1Price = o1.getPrice() * Math.max(o1.getMaxVolume(), thisObject.getMaxVolume()) + getDistancePrice(o1, thisObject);
+				int o2Volume = Math.min(o2.getMaxVolume(), thisObject.getMaxVolume());
+				double o2Price = (o2.getPrice() * o2Volume + getDistancePrice(o2, thisObject)) / o2Volume;
 				
-				int result = (int)((o2Price - o1Price) * 100);
+				int o1Volume = Math.min(o1.getMaxVolume(), thisObject.getMaxVolume());
+				double o1Price = (o1.getPrice() * o1Volume + getDistancePrice(o1, thisObject)) / o1Volume;
+				
+				int result = (int)((o1Price - o2Price) * 10000);
 				if (result == 0){
-					return (int)(o2.getCreationDate().getTime() - o1.getCreationDate().getTime());
+					return (int)(o1.getCreationDate().getTime() - o2.getCreationDate().getTime());
 				} else {
 					return result;
 				}
@@ -63,7 +56,6 @@ public interface TradeBid extends Bid{
 	static double distance(TradeBid o1, TradeBid o2) {
 
 	    final int R = 6371; // Radius of the earth
-	    o2.getAddress();
 	    double latDistance = Math.toRadians(o2.getAddress().getLatitude() - o1.getAddress().getLatitude());
 	    double lonDistance = Math.toRadians(o2.getAddress().getLongitude() - o1.getAddress().getLongitude());
 	    double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)

@@ -2,10 +2,10 @@ package com.bigroi.stock.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -59,9 +59,9 @@ public class TradeServiceImpl implements TradeService{
 			for (Product product : list){
 				productTrade(product);
 			}
+			dealDao.add(deals);
 			lotDao.update(lotsToUpdate);
 			tenderDao.update(tendersToUpdate);
-			dealDao.add(deals);
 		}catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -80,7 +80,7 @@ public class TradeServiceImpl implements TradeService{
 				
 				List<? extends TradeBid> majorBids = getMinVolumeBids(tradeLots, tradeTenders);
 				
-				TradeBid majorBid = getMinVolumeBid(majorBids);
+				TradeBid majorBid = getBestBid(majorBids);
 				
 				createDealsForBid(majorBid, product);
 				
@@ -113,7 +113,6 @@ public class TradeServiceImpl implements TradeService{
 	private void sendConfimationMails(Deal deal) throws ServiceException {
 		try{
 			dealConfirmationMessageForCustomer.send(deal);
-			
 			dealConfirmationMessageForSeller.send(deal);
 		} catch (MessageException e) {
 			throw new ServiceException(e);
@@ -121,7 +120,10 @@ public class TradeServiceImpl implements TradeService{
 	}
 
 	private Deal createDeal(TradeBid bid, TradeBid partner) {
-		int volume = getVolume(bid, partner);
+		int volume = Math.min(bid.getMaxVolume(), partner.getMaxVolume());
+		bid.setMaxVolume(bid.getMaxVolume() - volume);
+		partner.setMaxVolume(partner.getMaxVolume() - volume);
+		
 		double maxTransportPrice = TradeBid.getDistancePrice(bid, partner);
 		
 		Lot lot;
@@ -140,21 +142,19 @@ public class TradeServiceImpl implements TradeService{
 		return deal;
 	}
 	
-	private int getVolume(TradeBid bid, TradeBid partner) {
-		int volume = Math.min(bid.getMaxVolume(), partner.getMaxVolume());
-		bid.setMaxVolumeExt(bid.getMaxVolume() - volume);
-		partner.setMaxVolumeExt(partner.getMaxVolume() - volume);
-		return volume;
-	}
-
-	private TradeBid getMinVolumeBid(List<? extends TradeBid> majorBids) {
-		return Collections.min(majorBids, new Comparator<TradeBid>() {
-
-			@Override
-			public int compare(TradeBid o1, TradeBid o2) {
-				return o1.getTotalPosibleVolume() - o2.getTotalPosibleVolume();
-			}
-		});
+	private TradeBid getBestBid(List<? extends TradeBid> bids) {
+		TradeBid bid = Collections
+				.min(bids, 
+					(o1, o2) -> o1.getPosiblePartners().size() - o2.getPosiblePartners().size()
+				);
+		bids = bids.stream()
+				.filter(b -> b.getPosiblePartners().size() == bid.getPosiblePartners().size())
+				.collect(Collectors.toList());
+		
+		return Collections
+				.min(bids, 
+						(o1, o2) -> o1.getMaxVolume() - o2.getMaxVolume()
+					);
 	}
 
 	private List<? extends TradeBid> getMinVolumeBids(List<TradeLot> tradeLots, List<TradeTender> tradeTenders) {
