@@ -78,12 +78,6 @@ public class Address implements Serializable{
 		this.longitude = longitude;
 	}
 
-	@Override
-	public String toString() {
-		return "Address [id=" + id + ", city=" + city + ", country=" + country + ", address=" + address + ", latitude="
-				+ latitude + ", longitude=" + longitude + ", companyId=" + companyId + "]";
-	}
-
 	public Company getCompany() {
 		return company;
 	}
@@ -91,4 +85,11 @@ public class Address implements Serializable{
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", city=" + city + ", country=" + country + ", address=" + address + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", companyId=" + companyId + ", company=" + company + "]";
+	}
+	
 }

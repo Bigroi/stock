@@ -199,5 +199,17 @@ public class Deal {
 	public void setSellerDescription(String sellerDescription) {
 		this.sellerDescription = sellerDescription;
 	}
+
+	@Override
+	public String toString() {
+		return "Deal [id=" + id + ", productId=" + productId + ", time=" + time + ", lotId=" + lotId + ", tenderId="
+				+ tenderId + ", price=" + price + ", volume=" + volume + ", sellerFoto=" + sellerFoto
+				+ ", maxTransportPrice=" + maxTransportPrice + ", buyerChoice=" + buyerChoice + ", sellerChoice="
+				+ sellerChoice + ", buyerAddressId=" + buyerAddressId + ", sellerAddressId=" + sellerAddressId
+				+ ", buyerDescription=" + buyerDescription + ", sellerDescription=" + sellerDescription + ", product="
+				+ product + ",  buyerAddress=" + buyerAddress + ", sellerAddress=" + sellerAddress
+				+ "]";
+	}
+
 	
 }

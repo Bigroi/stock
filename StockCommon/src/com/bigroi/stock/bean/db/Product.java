@@ -51,5 +51,11 @@ public class Product {
 	public void setRemoved(String removed) {
 		this.removed = removed;
 	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", removed=" + removed
+				+ ", delivaryPrice=" + delivaryPrice + "]";
+	}
 	
 }
