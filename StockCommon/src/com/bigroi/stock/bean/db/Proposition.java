@@ -1,11 +1,14 @@
 package com.bigroi.stock.bean.db;
 
+import com.bigroi.stock.bean.common.PropositionStatus;
+
 public class Proposition {
 
 	private long id;
 	private long dealId;
 	private long companyId;
 	private int price;
+	private PropositionStatus status;
 	
 	public long getId() {
 		return id;
@@ -31,10 +34,16 @@ public class Proposition {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	public PropositionStatus getStatus() {
+		return status;
+	}
+	public void setStatus(PropositionStatus status) {
+		this.status = status;
+	}
 	
 	@Override
 	public String toString() {
-		return "TransportProposition [id=" + id + ", dealId=" + dealId + ", companyId=" + companyId + ", price=" + price
-				+ "]";
+		return "Proposition [id=" + id + ", dealId=" + dealId + ", companyId=" + companyId + ", price=" + price
+				+ ", status=" + status + "]";
 	}
 }

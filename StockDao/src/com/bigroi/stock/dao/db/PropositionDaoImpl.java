@@ -16,7 +16,7 @@ import com.bigroi.stock.dao.PropositionDao;
 @Repository
 public class PropositionDaoImpl implements PropositionDao {
 	
-	private static final String GET_LIST_PROPOSITIONS = "SELECT ID, DEAL_ID, COMPANY_ID, PRICE FROM TRANSPORT_PROPOSITION";
+	private static final String GET_LIST_PROPOSITIONS = "SELECT ID, DEAL_ID, COMPANY_ID, PRICE, STATUS FROM TRANSPORT_PROPOSITION";
 	
 	@Autowired
 	private DataSource dataSource;

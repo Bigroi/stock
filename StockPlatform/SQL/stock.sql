@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `deal` (
 -- Dumping data for table stock.deal: ~5 rows (approximately)
 /*!40000 ALTER TABLE `deal` DISABLE KEYS */;
 INSERT INTO `deal` (`id`, `lot_id`, `tender_id`, `time`, `buyer_choice`, `seller_choice`, `price`, `max_transport_price`, `volume`, `product_id`, `seller_foto`, `seller_address_id`, `buyer_address_id`, `seller_description`, `buyer_description`) VALUES
-	(14, 22, 20, '2018-06-21 21:12:22', 1, 1, 10.50, 0.00, 167, 135, NULL, 3, 1, NULL, 'test'),
+	(14, 22, 20, '2018-06-22 16:51:06', 8, 8, 10.50, 0.00, 167, 135, NULL, 3, 1, NULL, 'test'),
 	(15, 22, 20, '2018-06-21 21:12:27', 1, 1, 10.50, 0.00, 334, 135, NULL, 3, 1, NULL, 'test'),
 	(18, 22, 20, '2018-06-21 21:12:30', 1, 1, 10.50, 0.00, 100, 135, NULL, 3, 1, 'test', 'ljhkjhk'),
 	(32, 22, 21, '2018-06-21 21:12:34', 1, 1, 5.50, 0.00, 100, 135, NULL, 3, 1, 'test', 'ljhkjhk'),
@@ -236,6 +236,7 @@ CREATE TABLE IF NOT EXISTS `transport_proposition` (
   `deal_id` bigint(20) NOT NULL,
   `company_id` bigint(20) NOT NULL,
   `price` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_transport_proposition_deal` (`deal_id`),
   KEY `FK_transport_proposition_company` (`company_id`),
@@ -245,8 +246,8 @@ CREATE TABLE IF NOT EXISTS `transport_proposition` (
 
 -- Dumping data for table stock.transport_proposition: ~1 rows (approximately)
 /*!40000 ALTER TABLE `transport_proposition` DISABLE KEYS */;
-INSERT INTO `transport_proposition` (`id`, `deal_id`, `company_id`, `price`) VALUES
-	(1, 15, 21, 2);
+INSERT INTO `transport_proposition` (`id`, `deal_id`, `company_id`, `price`, `status`) VALUES
+	(1, 15, 21, 2, 'APPROVE');
 /*!40000 ALTER TABLE `transport_proposition` ENABLE KEYS */;
 
 -- Dumping structure for table stock.user

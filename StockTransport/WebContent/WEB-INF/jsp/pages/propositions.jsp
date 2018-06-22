@@ -9,6 +9,7 @@
 			<td>dealId</td>
 			<td>companyId</td>
 			<td>price</td>
+			<td>status</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,6 +18,7 @@
 				<td>${prop.dealId}</td>
 				<td>${prop.companyId}</td>
 				<td>${prop.price}</td>
+				<td>${prop.status }</td>
 			</tr>
 		</c:forEach> 
 	</tbody>
