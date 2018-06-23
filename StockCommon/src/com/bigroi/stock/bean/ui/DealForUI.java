@@ -32,6 +32,7 @@ public class DealForUI {
 	private final double price;
 	private final int volume;
 	private final String partnerDescription;
+	private DealStatus statusCode;
 	
 	@Column("")
 	@Edit(details="/deal/Form.spr", remove="", edit="")
@@ -41,7 +42,8 @@ public class DealForUI {
 		this.id = deal.getId();
 		productName = deal.getProduct().getName();
 		this.time = deal.getTime();
-		this.status = getDealStatus(deal, companyId);
+		this.statusCode = getDealStatus(deal, companyId);
+		this.status = this.statusCode.toString();
 		this.sellerAddrress = deal.getSellerAddress();
 		this.buyerAddrress = deal.getBuyerAddress();
 		if (deal.getSellerAddress().getCompanyId() == companyId){
@@ -56,14 +58,14 @@ public class DealForUI {
 		this.volume = deal.getVolume();
 	}
 	
-	private String getDealStatus(Deal deal, long companyId){
+	private DealStatus getDealStatus(Deal deal, long companyId){
 		PartnerChoice companyChoice = deal.getBuyerAddress().getCompanyId() == companyId ? 
 				deal.getBuyerChoice() : deal.getSellerChoice();
 		DealStatus status = DealStatus.calculateStatus(deal.getBuyerChoice(), deal.getSellerChoice());
 		if (status == DealStatus.ON_APPROVE && companyChoice != PartnerChoice.ON_APPROVE){
-			return DealStatus.ON_PARTNER_APPROVE.toString();
+			return DealStatus.ON_PARTNER_APPROVE;
 		} else {
-			return status.toString();
+			return status;
 		}
 	}
 	

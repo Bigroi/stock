@@ -374,7 +374,7 @@ function sendDealFormData(formContainer, url){
 
 function initDealForm(formContainer, url, id){
 	setFormData(formContainer, url, {id:id}, function(deal){
-		if (deal.status != 'ON_APPROVE'){
+		if (deal.statusCode != 'ON_APPROVE'){
 			$("#approve-button").attr("style", "display:none");
 			$('#reject-button').attr("style", "display:none");
 			$('#transport-button').attr("style", "display:none");
