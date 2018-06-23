@@ -1,4 +1,4 @@
-package com.bigroi.stock.dispatcher;
+package com.bigroi.stock.security;
 
 import java.io.IOException;
 
@@ -35,7 +35,7 @@ public class AuthenticationHandler
 			HttpServletResponse response, 
 			Authentication authentication)
 					throws IOException, ServletException {
-		response.getWriter().append(new ResultBean(0, "/Main.spr", null).toString());
+		response.getWriter().append(new ResultBean(0, "/product/List.spr", null).toString());
 	}
 
 

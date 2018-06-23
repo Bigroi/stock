@@ -28,11 +28,7 @@
 		<put-attribute name="body" value="" />
 	</definition>
 
-	<!-- Home Page -->
-	<definition name="main" extends="base-definition">
-		<put-attribute name="nav-welcome" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/main.jsp" />
-	</definition>
+	<!-- Pages -->
 	
 	<definition name="index" template="/WEB-INF/jsp/pages/index.jsp">
 	</definition>
