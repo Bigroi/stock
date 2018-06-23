@@ -4,7 +4,7 @@
 		<input type="hidden" name="company.address.latitude" class="latitude">
 		<input type="hidden" name="company.address.longitude" class="longitude">
 		<h3>${label.registration.registration}</h3>
-		<p>${label.registration.haveAcc}<a href=""><span>${label.registration.logHere}</span></a></p>
+		<p>${label.registration.haveAcc}<span class="go_to_login"><span>${label.registration.logHere}</span></span></p>
 		<div>
 			<div class="dialogbox-message"></div>
 		</div>
@@ -58,8 +58,9 @@
 				<div class="forMap"></div>
 				<div class="for-checkbox">
 					<div class="checkbox-title">
-						<input type="checkbox" class="" id="agree" name="" value="" checked />
-					   <label for="agree">${label.button.AcceptTerms}</label> 
+						<input type="checkbox" class="" id="agree" name="" value="" checked="checked" />
+					    <label for="agree"></label>
+					    <span>${label.registration.accept}<a href=""><span>${label.registration.termsOfUse}</span></a></span>
 					</div>
 				</div>
 			</div>

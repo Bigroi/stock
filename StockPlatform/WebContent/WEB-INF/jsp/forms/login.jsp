@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 	<form class="form" action="#" method="post" name="form" id="login-form">
 		<h3>${label.login.loginForm}</h3>
-		<p>${label.login.dontHaveAcc}<a href=""><span>${label.login.registerHere}</span></a></p>
+		<p>${label.login.dontHaveAcc}<span class="go_to_registration"><span>${label.login.registerHere}</span></span></p>
 		<div>
 			<div class="dialogbox-message"></div>
 		</div>
