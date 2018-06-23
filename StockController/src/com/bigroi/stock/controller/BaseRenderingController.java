@@ -16,9 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class BaseRenderingController {
 
-//	private static final String[] PAGE_LABELS_FILES = {
-//			};
-	
 	public static Map<String, Object> defaultLabels = new HashMap<>();
 	public static Properties pageTitles;
 	
