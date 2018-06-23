@@ -33,7 +33,7 @@ public class ProductForUI {
 	
 	private String picture;
 	
-	@Edit(details = "/product/TradeOffers.spr", edit="setProductDialogPlugin", remove="/product/json/admin/Delete.spr")
+	@Edit(details = "/product/TradeOffers.spr", edit="getProductDialogParams", remove="/product/json/admin/Delete.spr")
 	@Column("label.product.edit")
 	private String edit = "YNN";
 	

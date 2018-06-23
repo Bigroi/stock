@@ -37,7 +37,7 @@ public class TenderForUI {
 	@JsonAdapter(DateTimeAdapter.class)
 	private Date creationDate = new Date();
 	
-	@Edit(edit="setTenderDialogPlugin", remove="/tender/json/Delete.spr")
+	@Edit(edit="getTenderDialogParams", remove="/tender/json/Delete.spr")
 	@Column("label.tender.edit")
 	private String edit = "YYN";
 	

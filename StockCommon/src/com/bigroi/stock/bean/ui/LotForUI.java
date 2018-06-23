@@ -38,7 +38,7 @@ public class LotForUI{
 	private Date creationDate;
 	
 	@Column("label.lot.edit")
-	@Edit(edit="setLotDialogPlugin", remove="/lot/json/Delete.spr")
+	@Edit(edit="getLotDialogParams", remove="/lot/json/Delete.spr")
 	private String edit = "YY";
 	
 	public LotForUI(Lot lot) {

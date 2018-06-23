@@ -1,37 +1,6 @@
 "use strict";
-$.fn.dialogbox = function(params) {
-	var params = $.extend({
-		"hasCloseButton"  : true,
-		"hasCloseOverlay" : true,
-	},params);
-
-	return this.on("click", function() {	
-		return showDialog(params);
-	});
-}
-
 function showMessageDialog(message, type, action){
-	var params = {
-		container:$("#message-dialog-container"),
-		formUrl:"/Message.spr", 
-		formParams:{message:message,type:type},
-		height:"40%",
-		"hasCloseButton":true,
-		"hasCloseOverlay":true,
-		buttons:[
-			{
-				text: l10n.translate("label.button.ok"),
-				id:"ok",
-				submit:function(formContainer, params, $dialogbox){
-					$dialogbox.remove();
-					if (action){
-						action();
-					}
-				}
-			}
-		]
-	};
-	showDialog(params);
+	showDialog(getMessageDialogParams(message, type, action));
 }
 
 function showDialog(params){

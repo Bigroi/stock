@@ -27,9 +27,11 @@ $(document).ready(function(){
 			table = $(tableElement).DataTable(tableData);
 	
 			if ($(".add-button").length > 0){
-				var editForm = window[model.editForm];
-	            if (editForm){
-					editForm($(".add-button"), $(tableElement), model);
+				var editFormParams = window[model.editForm];
+	            if (editFormParams){
+	            	$(".add-button").on("click", function(){
+	            		showDialog(editFormParams($(tableElement), model));
+	            	});
 	            } else {
 	            	$(".add-button").click(function(){document.location = model.editForm;});
 	            }
@@ -61,9 +63,11 @@ $(document).ready(function(){
 	        if(data[model.editColumn][0] == "Y"){ 
 	            $edit.removeClass("no-edit");
 	            $edit.addClass("edit");
-	            var editForm = window[model.editForm];
-	            if (editForm){
-					editForm($edit, $table, model, id);
+	            var editFormParams = window[model.editForm];
+	            if (editFormParams){
+	            	$edit.on("click", function(){
+	            		showDialog(editFormParams($table, model, id));
+	            	});
 	            } else {
 	            	$edit.click(function(){document.location = model.editForm + "?id=" + id});
 	            }

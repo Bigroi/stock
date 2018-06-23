@@ -28,7 +28,9 @@ $(document).ready(function(){
 		if (!authorised){
 			var sellButton = $("<button class='green-button'>" + l10n.translate("label.index.sell") + " " + product.name + "</button>");
 			sellProduct.append(sellButton);
-			setReginDialogPlugin(sellProduct);
+			sellButton.on("click", function(){
+				showDialog(getReginDialog());
+			});
 		}
 		aboutProduct.append(sellProduct);
 		
@@ -41,7 +43,9 @@ $(document).ready(function(){
 		if (!authorised){
 			var buyButton = $("<button class='blue-button'>" + l10n.translate("label.index.buy") +" " + product.name + "</button>");
 			buyProduct.append(buyButton);
-			setReginDialogPlugin(buyButton);
+			buyButton.on("click", function(){
+				showDialog(getReginDialog());
+			});
 		}
 		aboutProduct.append(buyProduct);
 		div.append(aboutProduct);

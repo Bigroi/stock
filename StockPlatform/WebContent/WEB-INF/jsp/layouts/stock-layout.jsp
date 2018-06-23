@@ -46,34 +46,20 @@
             </div>
             <div class="burger"></div>
             <nav class = "main-menu">
-	            <sec:authorize access="hasAnyRole('ADMIN', 'USER')">
-			    	<tiles:insertAttribute name="userHeader" />
-				</sec:authorize>
+			    <tiles:insertAttribute name="userHeader" />
             	<sec:authorize access="hasAnyRole('ADMIN')">
 			    	<tiles:insertAttribute name="adminHeader" />
 				</sec:authorize>
-				<a href="#" id="contactus">${label.account.contact_us}</a>
-				<script type="text/javascript">setContactUsDialogPlugin($('#contactus'))</script>
+				<a href="#" class="contactus">${label.account.contact_us}</a>
             </nav>
             <tiles:insertAttribute name="footer" />
         </div>
         <div class="bgdark"></div>
         <div class = "section">
-        	<sec:authorize access="hasAnyRole('ADMIN', 'USER')">
-				<div class="login">
-					<a href="/account/Form.spr">${label.navigation.account}</a>
-					<a href="/account/json/Logout.spr" id="session-start">${label.navigation.logout}</a>
-				</div>
-			</sec:authorize>
-			<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
-	            <div class = "login">
-					<a href="/account/Registration.spr">${label.navigation.regestration}</a>
-	                <a href="#" id="loginLink">
-	                	${label.navigation.login}
-	                	<script type="text/javascript">setLoginDialogPlugin($("#loginLink"))</script>
-	                </a>
-	            </div>
-            </sec:authorize>
+			<div class="login">
+				<a href="/account/Form.spr">${label.navigation.account}</a>
+				<a href="/account/json/Logout.spr" id="session-start">${label.navigation.logout}</a>
+			</div>
             <tiles:insertAttribute name="page-title" />
             <div class="content">
 				<tiles:insertAttribute name="body" />

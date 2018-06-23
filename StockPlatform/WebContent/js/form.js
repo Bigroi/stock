@@ -122,201 +122,198 @@ function updateTable($table, model, idColumnValue, object){
 
 //form functions
 $(document).ready(function(){
-	setReginDialogPlugin($(".registration-button"));
-	setLoginDialogPlugin($(".login-button"));
+	$(".registration-button").on("click", function(){
+		showDialog(getReginDialogParams());
+	});
+	$(".login-button").on("click", function(){
+		showDialog(getLoginDialogParams());
+	});
+	$('.contactus').on("click", function(){
+		showDialog(getContactUsDialogParams());
+	});
 });
 
-function setLoginDialogPlugin(element){
-	element.dialogbox({
+function getLoginDialogParams(){
+	return {
+		hasCloseButton  : true,
+		hasCloseOverlay : true,
 		container:$("#login-form-container"),
 		formUrl:"/Login.spr", 
 		buttons:[
 		{
 			text: l10n.translate("label.button.login"),
 			id:"login",
-			submit:function(formContainer, params){
-				$.post("/account/json/Login.spr", params, function(answer){
-					answer = JSON.parse(answer);
-					processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				});
-			},
+			submit:loginCallback,
 			login:true
 		}], 				
-	});
+	};
+	
+	function loginCallback(formContainer, params){
+		$.post("/account/json/Login.spr", params, function(answer){
+			answer = JSON.parse(answer);
+			processRequestResult(formContainer, answer, $('.dialogbox-message'));
+		});
+	}
 }
 
-function setReginDialogPlugin(element){
-	element.dialogbox({
+function getReginDialogParams(){
+	return {
+		hasCloseButton  : true,
+		hasCloseOverlay : true,
 		container:$("#registration-form-container"),
 		formUrl:"/account/Registration.spr", 
 		buttons:[
 		{
 			text: l10n.translate("label.button.finishRegistration"),
 			id:"finish-registration",
-			submit:function(formContainer, params){
-				$.post("/account/json/Registration.spr", params, function(answer){
-					processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				});
-			}
+			submit: reginCallback
 		}], 			
-	});
+	};
+	
+	function reginCallback(formContainer, params){
+		$.post("/account/json/Registration.spr", params, function(answer){
+			processRequestResult(formContainer, answer, $('.dialogbox-message'));
+		});
+	}
 }
 
-function setLotDialogPlugin(element, table, model, id){
-	var buttons = [{
-		text: l10n.translate("label.button.save"),
-		id:"save",
-		submit:function(formContainer, params, $dialogbox){
-			var idColumnValue = JSON.parse(params.json)[model.idColumn];
-			$.post("/lot/json/Save.spr", params, function(answer){
-				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				if (answer.result > 0){
-					updateTable(table, model, idColumnValue, answer.data);
-					$dialogbox.remove();
-				}
-			});
-		}
-	},
-	{
-		text: l10n.translate("label.button.save_start_trading"),
-		id:"save-start-trading",
-		submit:function(formContainer, params, $dialogbox){
-			var idColumnValue = JSON.parse(params.json)[model.idColumn];
-			$.post("/lot/json/SaveAndActivate.spr", params, function(answer){
-				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				if (answer.result > 0){
-					updateTable(table, model, id, answer.data);
-					$dialogbox.remove();
-				}
-			});
-		}
-	}];
-	
-	element.dialogbox({
+function getLotDialogParams(table, model, id){
+	return {
+		hasCloseButton  : true,
+		hasCloseOverlay : true,
 		container:$("#lot-form-container"),
 		formUrl:"/lot/Form.spr", 
 		formParams:{id:id},
 		formData:"/lot/json/Form.spr",
 		height:"80%",
-		buttons:buttons,
-	});
+		buttons: [{
+				text: l10n.translate("label.button.save"),
+				id:"save",
+				submit: lotSaveCallback
+			},
+			{
+				text: l10n.translate("label.button.save_start_trading"),
+				id:"save-start-trading",
+				submit: lotActivateCallback
+			}],
+	};
+	
+	function lotActivateCallback(formContainer, params, $dialogbox){
+		var idColumnValue = JSON.parse(params.json)[model.idColumn];
+		$.post("/lot/json/SaveAndActivate.spr", params, function(answer){
+			processRequestResult(formContainer, answer, $('.dialogbox-message'));
+			if (answer.result > 0){
+				updateTable(table, model, id, answer.data);
+				$dialogbox.remove();
+			}
+		});
+	}
+	
+	function lotSaveCallback(formContainer, params, $dialogbox){
+		var idColumnValue = JSON.parse(params.json)[model.idColumn];
+		$.post("/lot/json/Save.spr", params, function(answer){
+			processRequestResult(formContainer, answer, $('.dialogbox-message'));
+			if (answer.result > 0){
+				updateTable(table, model, idColumnValue, answer.data);
+				$dialogbox.remove();
+			}
+		});
+	}
 }
 
-function setInviteDialogPlugin(element){
-	
-	var buttons = [{
-		text: l10n.translate("label.button.invite"),
-		id:"invite",
-		submit:function(formContainer, params, $dialogbox){
-			$.post("/account/json/AddUser.spr", params, function(answer){
-				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				if (answer.result > 0){
-					$dialogbox.remove();
-				}
-			});
-		}
-	}];
-	
-	element.dialogbox({
-		container:$("#invite-form-container"),
-		formUrl:"/account/AddUser.spr", 
-		height:"15%",
-		buttons:buttons,
-	});
-}
-
-function setContactUsDialogPlugin(element){
-	
-	var buttons = [{
-		text: l10n.translate("label.button.send"),
-		id:"invite",
-		submit:function(formContainer, params, $dialogbox){
-			$.post("/feedback/json/Save.spr", params, function(answer){
-				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-			});
-		}
-	}];
-	
-	element.dialogbox({
+function getContactUsDialogParams(){
+	return {
+		hasCloseButton  : true,
+		hasCloseOverlay : true,
 		container:$("#message-dialog-container"),
 		formUrl:"/feedback/Form.spr", 
 		formData:"/feedback/json/Form.spr", 
 		height:"15%",
-		buttons:buttons,
-	});
+		buttons:[{
+			text: l10n.translate("label.button.send"),
+			id:"invite",
+			submit: contactUsCallback
+		}],
+	};
+	
+	function contactUsCallback(formContainer, params, $dialogbox){
+		$.post("/feedback/json/Save.spr", params, function(answer){
+			processRequestResult(formContainer, answer, $('.dialogbox-message'));
+		});
+	}
 }
 
-function setTenderDialogPlugin(element, table, model, id){
-	var buttons = [{
-		text: l10n.translate("label.button.save"),
-		id:"save",
-		submit:function(formContainer, params, $dialogbox){
-			var idColumnValue = JSON.parse(params.json)[model.idColumn];
-			$.post("/tender/json/Save.spr", params, function(answer){
-				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				if (answer.result > 0){
-					updateTable(table, model, idColumnValue, answer.data);
-					$dialogbox.remove();
-				}
-			});
-		}
-	},
-	{
-		text: l10n.translate("label.button.save_start_trading"),
-		id:"save-start-trading",
-		submit:function(formContainer, params, $dialogbox){
-			var idColumnValue = JSON.parse(params.json)[model.idColumn];
-			$.post("/tender/json/SaveAndActivate.spr", params, function(answer){
-				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				if (answer.result > 0){
-					updateTable(table, model, idColumnValue, answer.data);
-					$dialogbox.remove();
-				}
-			});
-		}
-	}];
+function getMessageDialogParams(message, type, action){
+	return {
+		container:$("#message-dialog-container"),
+		formUrl:"/Message.spr", 
+		formParams:{message:message,type:type},
+		height:"40%",
+		"hasCloseButton":true,
+		"hasCloseOverlay":true,
+		buttons:[{
+				text: l10n.translate("label.button.ok"),
+				id:"ok",
+				submit: callback
+			}]
+	};
 	
-	element.dialogbox({
+	function callback(formContainer, params, $dialogbox){
+		$dialogbox.remove();
+		if (action){
+			action();
+		}
+	}
+}
+
+function getTenderDialogParams(table, model, id){
+	return{
+		hasCloseButton  : true,
+		hasCloseOverlay : true,
 		container:$("#tender-form-container"),
 		formUrl:"/tender/Form.spr", 
 		formParams:{id:id},
 		formData:"/tender/json/Form.spr",
 		height:"80%",
-		buttons:buttons,
-	});
+		buttons:[{
+			text: l10n.translate("label.button.save"),
+			id:"save",
+			submit: tenderSaveCallback
+		},
+		{
+			text: l10n.translate("label.button.save_start_trading"),
+			id:"save-start-trading",
+			submit:tenderActivateCallback
+		}],
+	};
+	
+	function tenderSaveCallback(formContainer, params, $dialogbox){
+		var idColumnValue = JSON.parse(params.json)[model.idColumn];
+		$.post("/tender/json/Save.spr", params, function(answer){
+			processRequestResult(formContainer, answer, $('.dialogbox-message'));
+			if (answer.result > 0){
+				updateTable(table, model, idColumnValue, answer.data);
+				$dialogbox.remove();
+			}
+		});
+	}
+	
+	function tenderActivateCallback(formContainer, params, $dialogbox){
+		var idColumnValue = JSON.parse(params.json)[model.idColumn];
+		$.post("/tender/json/SaveAndActivate.spr", params, function(answer){
+			processRequestResult(formContainer, answer, $('.dialogbox-message'));
+			if (answer.result > 0){
+				updateTable(table, model, idColumnValue, answer.data);
+				$dialogbox.remove();
+			}
+		});
+	}
 }
 
-function setProductDialogPlugin(element, table, model, id){
-	var buttons = [{
-		text: l10n.translate("label.button.save"),
-		id:"save",
-		submit:function(formContainer, params, $dialogbox){
-			var idColumnValue = JSON.parse(params.json)[model.idColumn];
-			$.post("/product/json/admin/Save.spr", params, function(answer){
-				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				if (answer.result > 0){
-					updateTable(table, model, idColumnValue, answer.data);
-					$dialogbox.remove();
-				}
-			});
-		}
-	},
-	{
-		text: l10n.translate("label.button.delete"),
-		id:"delete",
-		submit:function(formContainer, params, $dialogbox){
-			var idColumnValue = JSON.parse(params.json)[model.idColumn];
-			$.post("/product/json/admin/Delete.spr", params, function(answer){
-				processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				if (answer.result > 0){
-					updateTable(table, model, idColumnValue, answer.data);
-					$dialogbox.remove();
-				}
-			});
-		}
-	}];
-	
-	element.dialogbox({
+function getProductDialogParams(table, model, id){
+	return {
+		hasCloseButton  : true,
+		hasCloseOverlay : true,
 		container:$("#product-form-container"),
 		formUrl:"/product/admin/Form.spr", 
 		formParams:{id:id},
@@ -327,8 +324,38 @@ function setProductDialogPlugin(element, table, model, id){
 				$("#delete").remove();
 			}
 		},
-		buttons:buttons,
-	});
+		buttons:[{
+			text: l10n.translate("label.button.save"),
+			id:"save",
+			submit: productSaveCallback
+		},
+		{
+			text: l10n.translate("label.button.delete"),
+			id:"delete",
+			submit: productDeleteCallback
+		}]
+	};
+	
+	function productSaveCallback(formContainer, params, $dialogbox){
+		var idColumnValue = JSON.parse(params.json)[model.idColumn];
+		$.post("/product/json/admin/Save.spr", params, function(answer){
+			processRequestResult(formContainer, answer, $('.dialogbox-message'));
+			if (answer.result > 0){
+				updateTable(table, model, idColumnValue, answer.data);
+				$dialogbox.remove();
+			}
+		});
+	}
+	function productDeleteCallback(formContainer, params, $dialogbox){
+		var idColumnValue = JSON.parse(params.json)[model.idColumn];
+		$.post("/product/json/admin/Delete.spr", params, function(answer){
+			processRequestResult(formContainer, answer, $('.dialogbox-message'));
+			if (answer.result > 0){
+				updateTable(table, model, idColumnValue, answer.data);
+				$dialogbox.remove();
+			}
+		});
+	}
 }
 
 
