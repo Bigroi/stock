@@ -128,7 +128,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			company.setRegNumber(rs.getString("REG_NUMBER"));
 			company.setStatus(CompanyStatus.valueOf(rs.getString("STATUS")));
 			company.setEmail(rs.getString("USERNAME"));
-			company.setEmail(rs.getString("TYPE"));
+			company.setType(rs.getString("TYPE"));
 
 			Address address = new Address();
 			address.setAddress(rs.getString("ADDRESS"));
