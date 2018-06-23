@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -33,6 +34,7 @@ public class SqlUpdater {
 	private static final String CHECK_BD= "USE `stock`; SELECT LAST_UPDATE FROM SQL_UPDATE";
 	private static final String GET_SIZE = "SELECT LAST_UPDATE FROM SQL_UPDATE";
 	
+	private static final Logger logger = Logger.getLogger(SqlUpdater.class);
 	
 	public static void main(String[] args) {
 		new SqlUpdater().updateDataBase();
@@ -42,28 +44,28 @@ public class SqlUpdater {
 		DataSource dataSource = CONTEXT.getBean(DataSource.class);
 		Connection connection = null;
 		try{
-			System.out.println("Sql updater: start");
+			logger.info("Sql updater: start");
 			String url = ((DriverManagerDataSource)dataSource).getUrl();
 			((DriverManagerDataSource)dataSource).setUrl(url.replaceAll("stock", "") + "&allowMultiQueries=true");
 			connection = dataSource.getConnection();
 			connection.setAutoCommit(false);
 			int lastUpdate = 0;
 			if (!doesDatabaseExists(connection)){
-				System.out.println("Sql updater: create new schema");
+				logger.info("Sql updater: create new schema");
 				executeMainScript(connection);
 			} else {
 				lastUpdate = getLastUpdate(connection);
 			}
-			System.out.println("Sql updater: get queries");
+			logger.info("Sql updater: get queries");
 			List<String> queries = getUpdateQueries();
 			
 			for (String query : queries.subList(lastUpdate, queries.size())){
 				executeQuery(connection, query);
 			}
-			System.out.println("Sql updater: update sql_update");
+			logger.info("Sql updater: update sql_update");
 			updateLastUpdate(connection, queries.size());
 			connection.commit();
-			System.out.println("Sql updater: finish");
+			logger.info("Sql updater: finish");
 		}catch (Exception e) {
 			if (connection != null){
 				try {
@@ -130,7 +132,7 @@ public class SqlUpdater {
 	}
 	
 	private void executeQuery(Connection connection, String query) throws SQLException {
-		System.out.println("Sql updater: execute udate query: " + query);
+		logger.info("Sql updater: execute udate query: " + query);
 		PreparedStatement statement = connection.prepareStatement(query);
 		statement.execute();
 	}
