@@ -29,7 +29,7 @@ $(document).ready(function(){
 			var sellButton = $("<button class='green-button'>" + l10n.translate("label.index.sell") + " " + product.name + "</button>");
 			sellProduct.append(sellButton);
 			sellButton.on("click", function(){
-				showDialog(getReginDialog());
+				showDialog(getReginDialogParams());
 			});
 		}
 		aboutProduct.append(sellProduct);
@@ -44,7 +44,7 @@ $(document).ready(function(){
 			var buyButton = $("<button class='blue-button'>" + l10n.translate("label.index.buy") +" " + product.name + "</button>");
 			buyProduct.append(buyButton);
 			buyButton.on("click", function(){
-				showDialog(getReginDialog());
+				showDialog(getReginDialogParams());
 			});
 		}
 		aboutProduct.append(buyProduct);
@@ -58,6 +58,4 @@ $(document).ready(function(){
 		}
 		container.append(div);
 	}
-	
 });
-
