@@ -54,7 +54,7 @@ function showDialog(params){
 			
 			$button.click(function(event){
 				var result = sendFormData(
-						$(event.target).parent().parent().parent(),  
+						$(event.target).parents('form:first'),  
 						buttonDef.submit,
 						$dialogbox,
 						buttonDef.login);
