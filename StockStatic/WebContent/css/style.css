@@ -817,6 +817,12 @@ footer .container {
 	position: absolute;
     right: 50px;
     bottom: 32px;
+    color: var(--cool-grey);
+    text-decoration: underline;   
+}
+#reset span {
+    color: var(--black);
+    font-size: 14px;
 }
 .flex-input {
 	display: -webkit-box;
