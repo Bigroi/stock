@@ -58,7 +58,7 @@
 				<div class="forMap"></div>
 				<div class="for-checkbox">
 					<div class="checkbox-title">
-						<input type="checkbox" class="" id="agree" name="" value="" checked="checked" />
+						<input type="checkbox" class="" id="agree" name="" value="" />
 					    <label for="agree"></label>
 					    <span>${label.registration.accept}<a href=""><span>${label.registration.termsOfUse}</span></a></span>
 					</div>
