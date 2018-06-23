@@ -70,7 +70,7 @@ table.dataTable thead th.table-head-down{
     display: inline-block;
     width: 50%;
     height: 30px;
-    background-image: url(/img/edit-pencil.png);
+    background-image: url(/Static/img/edit-pencil.png);
     background-size: auto 75%;
     background-repeat: no-repeat;
     background-position: center;
@@ -89,8 +89,8 @@ table.dataTable thead th.table-head-down{
     display: inline-block;
     width: 50%;
     height: 30px;
-    background-image: url(/img/remove-trash-can.png);
-    background-image: url(/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
     background-size: auto 75%;
     background-repeat: no-repeat;
     background-position: center;
@@ -240,12 +240,12 @@ table.dataTable thead th {
     box-shadow: 0 0 6px 3px rgba(221, 221, 221, 1)  !important;
 }
 .paginate_button.next {
-	background-image: url(/img/next.png);
+	background-image: url(/Static/img/next.png);
 	margin-left: 20px !important;
 	width: 50px;
 }
 .paginate_button.previous {
-	background-image: url(/img/previous.png);
+	background-image: url(/Static/img/previous.png);
 	margin-right: 20px !important;
 	width: 50px;
 }

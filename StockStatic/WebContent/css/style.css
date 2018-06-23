@@ -1,6 +1,6 @@
 @font-face{
 	font-family: 'Museo';
-	src: url('/fonts/Museo.otf');
+	src: url('/Static/fonts/Museo.otf');
 }
 * {
 	margin: 0;
@@ -161,7 +161,7 @@ h3 {
 	font-family: Museo;
 }
 .front  {
-	background-image: url(../img/bitmap.png);
+	background-image: url(/Static/img/bitmap.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	/*background-position-y: -70px;*/
@@ -374,7 +374,7 @@ h3 {
 	background-size: cover; 
 }
 .for-farmers {
-	background-image: url(../img/for-farmers.png);
+	background-image: url(/Static/img/for-farmers.png);
     box-shadow: 450px -1px 450px -11px #ffffffe6 inset;
 }
 .for-farm-cont,
@@ -390,7 +390,7 @@ h3 {
 	margin-left: 70px;	
 }
 .for-buyers {
-	background-image: url(../img/for-buyers.png);
+	background-image: url(/Static/img/for-buyers.png);
 	box-shadow: 450px -1px 450px -11px #282828cc  inset;
 }
 .for-buyers h3,
@@ -404,7 +404,7 @@ h3 {
 	line-height: 1.56;
 	width: 277px;
 	margin-bottom: 28px;
-	background-image: url(../img/check.png);
+	background-image: url(/Static/img/check.png);
 	background-repeat: no-repeat;
 	padding-left: 43px;
 	background-position: center left;
@@ -427,7 +427,7 @@ h3 {
 .preview-platform {
 	height: 490px;
 	background-color: #f7f7f7;
-	background-image: url(../img/bg-platform.png);
+	background-image: url(/Static/img/bg-platform.png);
 	background-repeat: no-repeat;
 	background-position: right 60px center;
 }
@@ -497,10 +497,10 @@ footer .container {
     background-position: bottom left;
 }
 .mail {
-	background-image: url(../img/mail.png);
+	background-image: url(/Static/img/mail.png);
 }
 .phone {
-	background-image: url(../img/phone.png);
+	background-image: url(/Static/img/phone.png);
 }
 .mail a {
 	text-decoration: underline;
@@ -601,7 +601,7 @@ footer .container {
 	  	border: 0;
 	  	opacity: 1;
 	  	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-	  	background-image: url(../img/user.png);
+	  	background-image: url(/Static/img/user.png);
 	  	background-repeat: no-repeat;
 	  	background-position: center;
 	}
@@ -732,7 +732,7 @@ footer .container {
 }
 .login .left-part,
 .left-part {
-	background-image: url(../img/for-buyers.png);
+	background-image: url(/Static/img/for-buyers.png);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position-x: -120px;
@@ -804,7 +804,7 @@ footer .container {
     justify-content: center;
     top: 25px;
     right: 22px;
-    background-image: url(../img/close.png);
+    background-image: url(/Static/img/close.png);
     background-size: 16px;
     background-repeat: no-repeat;
     background-position: center;
@@ -938,7 +938,7 @@ footer .container {
     left:0;
     bottom: 0;
     border-radius: 3px;
-	background: url(../img/checkw.png) no-repeat 8px 8px;
+	background: url(/Static/img/checkw.png) no-repeat 8px 8px;
     background-size: 17px;
     cursor: pointer;
 }

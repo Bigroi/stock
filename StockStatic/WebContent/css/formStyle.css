@@ -67,15 +67,15 @@
 	}
 /* === HTML5 validation styles === */	
 .form input:required, .form textarea:required, .form select:required {
-	background: #fff url(/img/red_asterisk.png) no-repeat 98% center;
+	background: #fff url(/Static/img/red_asterisk.png) no-repeat 98% center;
 }
 .form input:required:valid, .form textarea:required:valid, .form select:required:valid {
-	background: #fff url(/img/valid.png) no-repeat 98% center;
+	background: #fff url(/Static/img/valid.png) no-repeat 98% center;
 	box-shadow: 0 0 5px #5cd053;
 	border-color: #28921f;
 }
 .form input:focus:invalid, .form textarea:focus:invalid, .form select:focus:invalid {
-	background: #fff url(/img/invalid.png) no-repeat 98% center;
+	background: #fff url(/Static/img/invalid.png) no-repeat 98% center;
 	box-shadow: 0 0 5px #d45252;
 	border-color: #b03535
 }

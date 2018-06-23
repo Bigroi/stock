@@ -17,25 +17,25 @@
 		<title>Your Trader! ${page_title}</title>
 		<meta charset = "utf-8">
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
-        <link rel="stylesheet" href="/css/pageStyle.css">
-        <link rel="stylesheet" href="/css/jquery.dataTables.min.css">
-		<link rel="stylesheet" href="/css/tableCustomStyle.css">
-		<link rel="stylesheet" href="/css/formStyle.css">
-		<link rel="stylesheet" href="/css/dialogboxStyle.css">
-		<link rel="stylesheet" href="/css/buttonsStyle.css">
-		<link rel="stylesheet" href="/css/jquery.responsive.dataTables.min.css"> 
+        <link rel="stylesheet" href="/Static/css/pageStyle.css">
+        <link rel="stylesheet" href="/Static/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" href="/Static/css/tableCustomStyle.css">
+		<link rel="stylesheet" href="/Static/css/formStyle.css">
+		<link rel="stylesheet" href="/Static/css/dialogboxStyle.css">
+		<link rel="stylesheet" href="/Static/css/buttonsStyle.css">
+		<link rel="stylesheet" href="/Static/css/jquery.responsive.dataTables.min.css"> 
         
-        <script src="/js/jQuery.js"></script>
-        <script src="/js/jquery.dataTables.min.js"></script>
-        <script src= "/js/localization.js"></script>
-		<script src= "/js/tableMaker.js"></script>
-		<script src="/js/map.js"></script>
-		<script src="/js/dialogbox.js"></script>
-		<script src="/js/form.js"></script>
-		<script src="/js/script.js"></script>
-		<script src="/js/plotly-latest.min.js"></script>
-		<script src="/js/jquery.responsive.dataTables.min.js"></script>
-		<script src="/js/productList.js"></script>
+        <script src="/Static/js/jQuery.js"></script>
+        <script src="/Static/js/jquery.dataTables.min.js"></script>
+        <script src="/Static/js/localization.js"></script>
+		<script src="/Static/js/tableMaker.js"></script>
+		<script src="/Static/js/map.js"></script>
+		<script src="/Static/js/dialogbox.js"></script>
+		<script src="/Static/js/form.js"></script>
+		<script src="/Static/js/script.js"></script>
+		<script src="/Static/js/plotly-latest.min.js"></script>
+		<script src="/Static/js/jquery.responsive.dataTables.min.js"></script>
+		<script src="/Static/js/productList.js"></script>
 	</head>
 	<body>
 		<div id="message-dialog-container"></div>

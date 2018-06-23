@@ -2,4 +2,8 @@
 	<update author="Evgeni" date="21.06.2018">
 		ALTER TABLE `TRANSPORT_PROPOSITION` ADD COLUMN `status` VARCHAR(30) NOT NULL AFTER `price`;
 	</update>
+	<update author="Pavel" date="23.06.2018">
+		UPDATE `stock`.`product` SET `picture`='/Static/img/apple.png' WHERE  `id`=135;
+		UPDATE `stock`.`product` SET `picture`='/Static/img/potato.png' WHERE  `id`=136;
+	</update>
 </root>

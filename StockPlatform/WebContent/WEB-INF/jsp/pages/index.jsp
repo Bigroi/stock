@@ -15,23 +15,19 @@
 		<title>Your Trader! ${page_title}</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
-		<link href="/css/style.css" rel="stylesheet">
+		<link href="/Static/css/style.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 		
-		<!-- <link rel="stylesheet" href="/css/formStyle.css">
-		<link rel="stylesheet" href="/css/dialogboxStyle.css">
-		<link rel="stylesheet" href="/css/buttonsStyle.css"> -->
-		
-		<script src="/js/jQuery.js"></script>
-		<script src="/js/jquery.dataTables.min.js"></script>
-        <script src= "/js/localization.js"></script>
-		<script src= "/js/tableMaker.js"></script>
-		<script src="/js/map.js"></script>
-		<script src="/js/dialogbox.js"></script>
-		<script src="/js/form.js"></script>
-		<script src="/js/script.js"></script>
-		<script src="/js/plotly-latest.min.js"></script>
-		<script src="/js/productList.js"></script>
+		<script src="/Static/js/jQuery.js"></script>
+		<script src="/Static/js/jquery.dataTables.min.js"></script>
+        <script src="/Static/js/localization.js"></script>
+		<script src="/Static/js/tableMaker.js"></script>
+		<script src="/Static/js/map.js"></script>
+		<script src="/Static/js/dialogbox.js"></script>
+		<script src="/Static/js/form.js"></script>
+		<script src="/Static/js/script.js"></script>
+		<script src="/Static/js/plotly-latest.min.js"></script>
+		<script src="/Static/js/productList.js"></script>
 	</head>
 	<body>
 		<div id="login-form-container"></div>
@@ -40,7 +36,7 @@
 		    <div class="content">
 		   		<header>
 					<div class="container">
-						<img class="logo" src="img/logo.png" alt="YourTrader" title="YourTrader">
+						<img class="logo" src="/Static/img/logo.png" alt="YourTrader" title="YourTrader">
 						<nav>
 							<a href="#ex1" class="active">${label.index.about_your_trader}</a>
 							<a href="#ex2">${label.index.benefits}</a>
@@ -76,28 +72,28 @@
 						<div class="container">
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/organic.png" alt="YourTrader" title="YourTrader"/>
+									<img src="/Static/img/organic.png" alt="YourTrader" title="YourTrader"/>
 								</div>
 								<p class="adv-title">${label.index.speed_title}</p>
 								<p class="adv-desc">${label.index.speed_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/trusted.png" alt="YourTrader" title="YourTrader"/>
+									<img src="/Static/img/trusted.png" alt="YourTrader" title="YourTrader"/>
 								</div>
 								<p class="adv-title">${label.index.trust_title}</p>
 								<p class="adv-desc">${label.index.trust_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/deal.png" alt="YourTrader" title="YourTrader"/>
+									<img src="/Static/img/deal.png" alt="YourTrader" title="YourTrader"/>
 								</div>
 								<p class="adv-title">${label.index.deal_title}</p>
 								<p class="adv-desc">${label.index.deal_description}</p>
 							</div>
 							<div class="advantage">
 								<div class="adv-icon">
-									<img src="img/platform.png" alt="YourTrader" title="YourTrader"/>
+									<img src="/Static/img/platform.png" alt="YourTrader" title="YourTrader"/>
 								</div>
 								<p class="adv-title">${label.index.сonvenient_title}</p>
 								<p class="adv-desc">${label.index.сonvenient_description}</p>

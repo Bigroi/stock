@@ -178,7 +178,7 @@ h1 {
     min-width: 146px;
     float: right;
     cursor: pointer;
-    background-image: url(/img/plus.png);
+    background-image: url(/Static/img/plus.png);
     background-repeat: no-repeat;
     background-size: 25px;
     background-position: 12px center;
@@ -264,7 +264,7 @@ form.form.form-tradeOffers-button button {
     	margin:0;
     }
     .burger {
-		background-image: url(/img/burger.png);
+		background-image: url(/Static/img/burger.png);
 	    background-repeat: no-repeat;
 	    display: block;
 	    width: 100px;
