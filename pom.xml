@@ -49,5 +49,6 @@
 		<module>StockUtil</module>
     
 		<module>StockController</module>
+    	<module>StockSql</module>
 	</modules>
 </project>

@@ -1,0 +1,5 @@
+<root>
+	<update author="Evgeni" date="21.06.2018">
+		ALTER TABLE `transport_proposition` ADD COLUMN `status` VARCHAR(30) NOT NULL AFTER `price`;
+	</update>
+</root>

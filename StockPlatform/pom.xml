@@ -4,6 +4,7 @@
 	<packaging>war</packaging>
 	<artifactId>Platform</artifactId>
 
+
 	<parent>
 		<groupId>Stock</groupId>
 		<artifactId>Stock</artifactId>
@@ -20,10 +21,6 @@
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
 					<webResources>
-						<webResource>
-							<targetPath>WEB-INF/classes</targetPath>
-							<directory>testenv</directory>
-						</webResource>
 						<webResource>
 							<targetPath>WEB-INF/classes</targetPath>
 							<directory>labels_${LOCALE}</directory>
@@ -126,5 +123,5 @@
 			<version>${stock.version}</version>
 		</dependency>
 	</dependencies>
-	
+
 </project>

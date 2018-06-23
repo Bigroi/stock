@@ -14,7 +14,7 @@
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
 			<resource>
-				<directory>resource</directory>
+				<directory>resource-${ENV_NAME}</directory>
 			</resource>
 			<resource>
 				<directory>templates_${LOCALE}</directory>
