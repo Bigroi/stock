@@ -27,7 +27,7 @@
 				<configuration>
 					<url>http://localhost:8080/manager/text</url>
 					<server>test_server</server>
-					<path>/static</path>
+					<path>/Static</path>
 					<username>admin</username>
 					<password>Vbycr123</password>
 				</configuration>
