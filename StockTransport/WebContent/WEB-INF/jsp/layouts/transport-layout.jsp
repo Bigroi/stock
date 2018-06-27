@@ -15,6 +15,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+        <script src="/Transport/js/tableMaker.js"></script> 
+        <script src="/Transport/js/localization.js"></script> 
         <script>
             $(document).ready(function(){
                 $(".burger-container").click(function(){
