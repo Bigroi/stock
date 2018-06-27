@@ -7,6 +7,7 @@
 		<title>TransportPage</title>
 		<meta charset ="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="context-root" content="${pageContext.request.contextPath}">
         
         <link rel="stylesheet" href ="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
         
@@ -15,8 +16,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
-        <script src="/Transport/js/tableMaker.js"></script> 
-        <script src="/Transport/js/localization.js"></script> 
+        <script src="/Static/js/tableMaker.js"></script> 
+        <script src="/Static/js/localization.js"></script> 
         <script>
             $(document).ready(function(){
                 $(".burger-container").click(function(){
