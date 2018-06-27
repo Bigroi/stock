@@ -7,14 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.controller.BaseRenderingController;
-import com.bigroi.stock.service.DealService;
 import com.bigroi.stock.service.PropositionService;
 
 @Controller
 public class TransportRenderingController extends BaseRenderingController {
 	
-	@Autowired
-	private DealService dealService;
 	@Autowired
 	private PropositionService propService;
 
@@ -43,10 +40,7 @@ public class TransportRenderingController extends BaseRenderingController {
 	
 	@RequestMapping("deal-list.spr")
 	public ModelAndView dealList() throws Exception {
-		ModelAndView modelAndView = createModelAndView("deal-list");
-	///	modelAndView.addObject("ListOfDealsBySellerAndBuyerApproved", 
-		//		dealService.getListBySellerAndBuyerApproved());
-		return modelAndView;
+		return createModelAndView("deal-list");
 	}
 	
 	@RequestMapping("history.spr")
