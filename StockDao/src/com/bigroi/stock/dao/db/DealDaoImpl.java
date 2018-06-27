@@ -131,7 +131,7 @@ public class DealDaoImpl implements DealDao {
 			  + " ON SA.ID = D.SELLER_ADDRESS_ID "
 			  + " JOIN ADDRESS BA "
 			  + " ON BA.ID = D.BUYER_ADDRESS_ID "
-			  + "where ((BUYER_CHOICE | SELLER_CHOICE) & 15) = 8";
+			  + "WHERE ((BUYER_CHOICE | SELLER_CHOICE) & 15) = 8";
 
 
 	@Autowired

@@ -10,6 +10,11 @@ public class Proposition {
 	private int price;
 	private PropositionStatus status;
 	
+	//Related objects
+	private Deal deal;
+	private Product product;
+	private Address address;
+	
 	public long getId() {
 		return id;
 	}
@@ -41,9 +46,28 @@ public class Proposition {
 		this.status = status;
 	}
 	
+	public Deal getDeal() {
+		return deal;
+	}
+	public void setDeal(Deal deal) {
+		this.deal = deal;
+	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 	@Override
 	public String toString() {
 		return "Proposition [id=" + id + ", dealId=" + dealId + ", companyId=" + companyId + ", price=" + price
-				+ ", status=" + status + "]";
+				+ ", status=" + status + ", deal=" + deal + ", product=" + product + ", address=" + address + "]";
 	}
+	
 }
