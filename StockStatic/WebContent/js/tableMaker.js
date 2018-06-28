@@ -22,7 +22,6 @@ $(document).ready(function(){
 			tableData.rowCallback = rowCallback;
 			tableData.drawCallback = removePagination;
 			tableData.language = getLanguage();
-			tableData.initComplete = initHeader;
 			tableData.aaSorting = [];
 			table = $(tableElement).DataTable(tableData);
 	
@@ -150,23 +149,24 @@ $(document).ready(function(){
 	
 		function getLanguage(){
 			return {
-			    decimal:		l10n.translate("label.table.decimal"),
-			    emptyTable:		l10n.translate("label.table.emptyTable"),
-			    info:			l10n.translate("label.table.info"),
-			    infoEmpty:		l10n.translate("label.table.infoEmpty"),
-			    infoFiltered:	l10n.translate("label.table.infoFiltered"),
-			    infoPostFix:	l10n.translate("label.table.infoPostFix"),
-			    thousands:		l10n.translate("label.table.thousands"),
-			    lengthMenu:		l10n.translate("label.table.lengthMenu"),
-			    loadingRecords:	l10n.translate("label.table.loadingRecords"),
-			    processing:		l10n.translate("label.table.processing"),
-			    search:			l10n.translate("label.table.search"),
-			    zeroRecords:	l10n.translate("label.table.zeroRecords"),
+			    decimal:			l10n.translate("label.table.decimal"),
+			    emptyTable:			l10n.translate("label.table.emptyTable"),
+			    info:				l10n.translate("label.table.info"),
+			    infoEmpty:			l10n.translate("label.table.infoEmpty"),
+			    infoFiltered:		l10n.translate("label.table.infoFiltered"),
+			    infoPostFix:		l10n.translate("label.table.infoPostFix"),
+			    thousands:			l10n.translate("label.table.thousands"),
+			    lengthMenu:			l10n.translate("label.table.lengthMenu"),
+			    loadingRecords:		l10n.translate("label.table.loadingRecords"),
+			    processing:			l10n.translate("label.table.processing"),
+			    search:  			l10n.translate("label.table.search"),
+			    searchPlaceholder:  l10n.translate("label.table.searchPlaceholder"),
+			    zeroRecords:		l10n.translate("label.table.zeroRecords"),
 			    paginate: {
-			        first:		l10n.translate("label.table.paginate_first"),
-			        last:		l10n.translate("label.table.paginate_last"),
-			        next:		l10n.translate("label.table.paginate_next"),
-			        previous:	l10n.translate("label.table.paginate_previous")
+			        first:			l10n.translate("label.table.paginate_first"),
+			        last:			l10n.translate("label.table.paginate_last"),
+			        next:			l10n.translate("label.table.paginate_next"),
+			        previous:		l10n.translate("label.table.paginate_previous")
 			    },
 			    aria: {
 			        sortAscending:	l10n.translate("label.table.aria_sortAscending"),
@@ -184,60 +184,12 @@ $(document).ready(function(){
 			}
 		}
 		
-		function addFilters(tableObject){
-			tableElement.find('thead tr th').addClass('table-head-up');
-			tableElement.find('thead tr').clone(true).appendTo( tableElement.find('thead') );
-			tableElement.find('thead tr:eq(1) th').each( function (i) {
-				var column = tableObject.api().column(i);
-				var fieldName = column.dataSrc();
-				console.log(fieldName);
-				var $th =  $(this);
-		        var title = $th.text();
-		        $th.removeAttr('class');
-		        $th.addClass('table-head-down');
-				if (model.filterColumns[fieldName] == 'TEXT'){
-					addTextFilter($th, column, title);
-				} else if (model.filterColumns[fieldName] == 'SELECT'){
-					addSelectFilter($th, column, title);
-				} else {
-					$th.html('');
-				}
-		    } );
-			
-			function addTextFilter($th, column, title){
-				$th.html( '<input type="text" />' );
-		        $( 'input', this ).on( 'keyup change', function () {
-		            if ( column.search() !== this.value ) {
-		            	column.search( this.value ).draw();
-		            }
-		            return false;
-		        } ).on('click', function(){return false;});
-			}
-			
-			function addSelectFilter($th, column, title){
-				$th.html( '<select><option value="">------</option></select>');
-		        var $select = $( 'select', $th );
-		        
-		        $select.on( 'change', function () {
-		        	var val = $.fn.dataTable.util.escapeRegex($(this).val());
-		        	column.search( val ? '^'+val+'$' : '', true, false ).draw();
-		        	return false;
-		        }).on('click', function(){return false;});
-		        
-		        column.data().unique().sort().each( function ( d, j ) {
-		        	$select.append( '<option value="'+d+'">'+d+'</option>' )
-	            } );
-			}
-		}
 		function removePagination(){
 			if($("td").is(".dataTables_empty")) {
 				$("#main-table_paginate").css("display","none");
 			} else {
 				$("#main-table_paginate").css("display","block");
 			}
-		}
-		function initHeader(){
-			addFilters(this);
 		}
 	}
 });

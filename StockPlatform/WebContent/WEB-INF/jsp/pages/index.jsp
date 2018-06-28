@@ -37,7 +37,7 @@
 		   		<header>
 					<div class="container">
 						<img class="logo" src="/Static/img/logo.png" alt="YourTrader" title="YourTrader">
-						<nav>
+						<nav class="main-page-nav">
 							<a href="#ex1" class="active">${label.index.about_your_trader}</a>
 							<a href="#ex2">${label.index.benefits}</a>
 							<a href="#ex3">${label.index.products}</a>

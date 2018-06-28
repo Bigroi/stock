@@ -9,6 +9,9 @@ $(document).ready(function(){
 			return true;
 		}
 	});
+	$(document).on("click", '.login-button-page', function() {
+		$(".login-list").fadeToggle();
+	});
 	$(document).on("click", '#go-back', function() {
 		$(".registration-first-part").show();
 		$(".registration-second-part").hide();
