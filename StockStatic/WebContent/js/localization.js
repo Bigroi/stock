@@ -11,10 +11,7 @@ var l10n = {
 	_l10n:{},
 	localization: function(){
 		var l10n = this._l10n;
-		var contextRoot = $("meta[name=context-root]").attr("content");
-		contextRoot = contextRoot ? contextRoot : "";
-		console.log(contextRoot);
-	    $.ajax(contextRoot+"/l10n/json/Labels.spr",{
+	    $.ajax(getContextRoot() + "/l10n/json/Labels.spr",{
 	    	type: "GET",
 	    	success: function(answer){
 	    				try{

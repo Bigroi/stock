@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	if ($(".product-cont").length > 0){
-		$.getJSON("/product/json/List.spr", addProducts);
+		$.getJSON(getContextRoot() + "/product/json/List.spr", addProducts);
 	}
 	
 	function addProducts(answer){
@@ -53,7 +53,7 @@ $(document).ready(function(){
 			var details = $("<button class='blue-button'>" + l10n.translate("label.product.details") +" " + product.name + "</button>");
 			div.append(details);
 			details.on("click", function(){
-				document.location = "/product/TradeOffers.spr?id=" + product.id;
+				document.location = getContextRoot() + "/product/TradeOffers.spr?id=" + product.id;
 			});
 		}
 		container.append(div);

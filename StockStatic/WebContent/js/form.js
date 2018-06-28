@@ -138,7 +138,7 @@ function getLoginDialogParams(){
 		hasCloseButton  : true,
 		hasCloseOverlay : true,
 		container:$("#login-form-container"),
-		formUrl:"/Login.spr", 
+		formUrl:getContextRoot() + "/Login.spr", 
 		buttons:[
 		{
 			text: l10n.translate("label.button.login"),
@@ -149,7 +149,7 @@ function getLoginDialogParams(){
 	};
 	
 	function loginCallback(formContainer, params){
-		$.post("/account/json/Login.spr", params, function(answer){
+		$.post(getContextRoot() + "/account/json/Login.spr", params, function(answer){
 			answer = JSON.parse(answer);
 			processRequestResult(formContainer, answer, $('.dialogbox-message'));
 		});
@@ -161,7 +161,7 @@ function getReginDialogParams(){
 		hasCloseButton  : true,
 		hasCloseOverlay : true,
 		container:$("#registration-form-container"),
-		formUrl:"/account/Registration.spr", 
+		formUrl:getContextRoot() + "/account/Registration.spr", 
 		buttons:[
 		{
 			text: l10n.translate("label.button.finishRegistration"),
@@ -171,7 +171,7 @@ function getReginDialogParams(){
 	};
 	
 	function reginCallback(formContainer, params){
-		$.post("/account/json/Registration.spr", params, function(answer){
+		$.post(getContextRoot() + "/account/json/Registration.spr", params, function(answer){
 			processRequestResult(formContainer, answer, $('.dialogbox-message'));
 		});
 	}
@@ -182,9 +182,9 @@ function getLotDialogParams(table, model, id){
 		hasCloseButton  : true,
 		hasCloseOverlay : true,
 		container:$("#lot-form-container"),
-		formUrl:"/lot/Form.spr", 
+		formUrl:getContextRoot() + "/lot/Form.spr", 
 		formParams:{id:id},
-		formData:"/lot/json/Form.spr",
+		formData:getContextRoot() + "/lot/json/Form.spr",
 		height:"80%",
 		buttons: [{
 				text: l10n.translate("label.button.save"),
@@ -200,7 +200,7 @@ function getLotDialogParams(table, model, id){
 	
 	function lotActivateCallback(formContainer, params, $dialogbox){
 		var idColumnValue = JSON.parse(params.json)[model.idColumn];
-		$.post("/lot/json/SaveAndActivate.spr", params, function(answer){
+		$.post(getContextRoot() + "/lot/json/SaveAndActivate.spr", params, function(answer){
 			processRequestResult(formContainer, answer, $('.dialogbox-message'));
 			if (answer.result > 0){
 				updateTable(table, model, id, answer.data);
@@ -211,7 +211,7 @@ function getLotDialogParams(table, model, id){
 	
 	function lotSaveCallback(formContainer, params, $dialogbox){
 		var idColumnValue = JSON.parse(params.json)[model.idColumn];
-		$.post("/lot/json/Save.spr", params, function(answer){
+		$.post(getContextRoot() + "/lot/json/Save.spr", params, function(answer){
 			processRequestResult(formContainer, answer, $('.dialogbox-message'));
 			if (answer.result > 0){
 				updateTable(table, model, idColumnValue, answer.data);
@@ -226,8 +226,8 @@ function getContactUsDialogParams(){
 		hasCloseButton  : true,
 		hasCloseOverlay : true,
 		container:$("#message-dialog-container"),
-		formUrl:"/feedback/Form.spr", 
-		formData:"/feedback/json/Form.spr", 
+		formUrl:getContextRoot() + "/feedback/Form.spr", 
+		formData:getContextRoot() + "/feedback/json/Form.spr", 
 		height:"15%",
 		buttons:[{
 			text: l10n.translate("label.button.send"),
@@ -237,7 +237,7 @@ function getContactUsDialogParams(){
 	};
 	
 	function contactUsCallback(formContainer, params, $dialogbox){
-		$.post("/feedback/json/Save.spr", params, function(answer){
+		$.post(getContextRoot() + "/feedback/json/Save.spr", params, function(answer){
 			processRequestResult(formContainer, answer, $('.dialogbox-message'));
 		});
 	}
@@ -246,7 +246,7 @@ function getContactUsDialogParams(){
 function getMessageDialogParams(message, type, action){
 	return {
 		container:$("#message-dialog-container"),
-		formUrl:"/Message.spr", 
+		formUrl:getContextRoot() + "/Message.spr", 
 		formParams:{message:message,type:type},
 		height:"40%",
 		"hasCloseButton":true,
@@ -271,9 +271,9 @@ function getTenderDialogParams(table, model, id){
 		hasCloseButton  : true,
 		hasCloseOverlay : true,
 		container:$("#tender-form-container"),
-		formUrl:"/tender/Form.spr", 
+		formUrl:getContextRoot() + "/tender/Form.spr", 
 		formParams:{id:id},
-		formData:"/tender/json/Form.spr",
+		formData:getContextRoot() + "/tender/json/Form.spr",
 		height:"80%",
 		buttons:[{
 			text: l10n.translate("label.button.save"),
@@ -289,7 +289,7 @@ function getTenderDialogParams(table, model, id){
 	
 	function tenderSaveCallback(formContainer, params, $dialogbox){
 		var idColumnValue = JSON.parse(params.json)[model.idColumn];
-		$.post("/tender/json/Save.spr", params, function(answer){
+		$.post(getContextRoot() + "/tender/json/Save.spr", params, function(answer){
 			processRequestResult(formContainer, answer, $('.dialogbox-message'));
 			if (answer.result > 0){
 				updateTable(table, model, idColumnValue, answer.data);
@@ -300,7 +300,7 @@ function getTenderDialogParams(table, model, id){
 	
 	function tenderActivateCallback(formContainer, params, $dialogbox){
 		var idColumnValue = JSON.parse(params.json)[model.idColumn];
-		$.post("/tender/json/SaveAndActivate.spr", params, function(answer){
+		$.post(getContextRoot() + "/tender/json/SaveAndActivate.spr", params, function(answer){
 			processRequestResult(formContainer, answer, $('.dialogbox-message'));
 			if (answer.result > 0){
 				updateTable(table, model, idColumnValue, answer.data);
@@ -315,9 +315,9 @@ function getProductDialogParams(table, model, id){
 		hasCloseButton  : true,
 		hasCloseOverlay : true,
 		container:$("#product-form-container"),
-		formUrl:"/product/admin/Form.spr", 
+		formUrl:getContextRoot() + "/product/admin/Form.spr", 
 		formParams:{id:id},
-		formData:"/product/json/admin/Form.spr",
+		formData:getContextRoot() + "/product/json/admin/Form.spr",
 		height:"60%",
 		afterLoad:function(product){
 			if (product.id < 0){
@@ -338,7 +338,7 @@ function getProductDialogParams(table, model, id){
 	
 	function productSaveCallback(formContainer, params, $dialogbox){
 		var idColumnValue = JSON.parse(params.json)[model.idColumn];
-		$.post("/product/json/admin/Save.spr", params, function(answer){
+		$.post(getContextRoot() + "/product/json/admin/Save.spr", params, function(answer){
 			processRequestResult(formContainer, answer, $('.dialogbox-message'));
 			if (answer.result > 0){
 				updateTable(table, model, idColumnValue, answer.data);
@@ -348,7 +348,7 @@ function getProductDialogParams(table, model, id){
 	}
 	function productDeleteCallback(formContainer, params, $dialogbox){
 		var idColumnValue = JSON.parse(params.json)[model.idColumn];
-		$.post("/product/json/admin/Delete.spr", params, function(answer){
+		$.post(getContextRoot() + "/product/json/admin/Delete.spr", params, function(answer){
 			processRequestResult(formContainer, answer, $('.dialogbox-message'));
 			if (answer.result > 0){
 				updateTable(table, model, idColumnValue, answer.data);
@@ -418,4 +418,10 @@ function openLoginForm(){
 function openRegistrationForm(){
 	$(".dialogbox").remove();
 	showDialog(getReginDialogParams());
+}
+
+function getContextRoot(){
+	var contextRoot = $("meta[name=context-root]").attr("content");
+	return contextRoot ? contextRoot : "";
+	
 }

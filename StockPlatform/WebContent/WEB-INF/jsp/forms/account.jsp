@@ -61,7 +61,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-	setFormData($("#form-container > form"), "/account/json/Form.spr", {}, function(){
+	setFormData($("#form-container > form"), getContextRoot() + "/account/json/Form.spr", {}, function(){
 		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initMap");
 	})
 </script>

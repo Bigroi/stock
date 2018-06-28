@@ -39,7 +39,7 @@ $(document).ready(function(){
 								"label.login.loginAgain", 
 								"warning",
 								function(){
-									window.location = "/account/json/Logout.spr";
+									window.location = getContextRoot() + "/account/json/Logout.spr";
 								});
 						isRunning = false;
 					}
