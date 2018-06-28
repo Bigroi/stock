@@ -15,4 +15,7 @@ public interface CompanyService {
 	
 	Company getCompanyById(long id) throws ServiceException;
 
+	Company getByName(String name) throws ServiceException;
+
+	Company getByRegNumber(String regNumber) throws ServiceException;
 }

@@ -20,6 +20,6 @@ public interface UserService extends UserDetailsService{
 	
 	void changePassword(String username) throws ServiceException;
 
-	Object getByUsername(String username) throws ServiceException;
+	StockUser getByUsername(String username) throws ServiceException;
 	
 }

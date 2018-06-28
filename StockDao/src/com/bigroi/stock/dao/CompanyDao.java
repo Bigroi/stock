@@ -18,4 +18,8 @@ public interface CompanyDao {
 
 	void setStatus(long companyId, CompanyStatus status) throws DaoException;
 
+	Company getByRegNumber(String regNumber) throws DaoException;
+
+	Company getByName(String name) throws DaoException;
+
 }

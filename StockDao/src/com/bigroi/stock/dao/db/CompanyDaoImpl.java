@@ -51,6 +51,16 @@ public class CompanyDaoImpl implements CompanyDao {
 			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS "
 			+ " FROM COMPANY ";
 	
+	private static final String GET_COMPANY_BY_NAME = 
+			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS "
+			+ " FROM COMPANY "
+			+ " WHERE NAME = ?";
+	
+	private static final String GET_COMPANY_BY_REG_NUMBER = 
+			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS "
+			+ " FROM COMPANY "
+			+ " WHERE REG_NUMBER = ?";
+	
 	private static final String SET_STATUS_BY_ID = 
 			"UPDATE COMPANY SET "
 			+ "STATUS = ? "
@@ -116,6 +126,28 @@ public class CompanyDaoImpl implements CompanyDao {
 	public void setStatus(long id, CompanyStatus status) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(SET_STATUS_BY_ID, status.name(), id);
+	}
+	
+	@Override
+	public Company getByRegNumber(String regNumber) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<Company> list = template.query(GET_COMPANY_BY_REG_NUMBER, new BeanPropertyRowMapper<Company>(Company.class), regNumber);
+		if (list.size() == 0){
+			return null; 
+		} else {
+			return list.get(0);
+		}
+	}
+
+	@Override
+	public Company getByName(String name) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<Company> list = template.query(GET_COMPANY_BY_NAME, new BeanPropertyRowMapper<Company>(Company.class), name);
+		if (list.size() == 0){
+			return null; 
+		} else {
+			return list.get(0);
+		}
 	}
 
 	private static class CompanyRowMapper implements RowMapper<Company>{

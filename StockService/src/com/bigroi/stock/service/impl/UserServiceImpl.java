@@ -152,7 +152,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Object getByUsername(String username) throws ServiceException {
+	public StockUser getByUsername(String username) throws ServiceException {
 		try {
 			return userDao.getByUsernameWithRoles(username);
 		} catch (DaoException e) {

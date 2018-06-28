@@ -68,5 +68,23 @@ public class CompanyServiceImpl implements CompanyService {
 			throw new ServiceException(e);
 		}
 	}
+	
+	@Override
+	public Company getByName(String name) throws ServiceException{
+		try {
+			return companyDao.getByName(name);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	public Company getByRegNumber(String regNumber) throws ServiceException{
+		try {
+			return companyDao.getByRegNumber(regNumber);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
 
 }	

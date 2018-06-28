@@ -48,7 +48,9 @@ public class UserDaoImpl implements UserDao {
 			+ " ON A.ID = C.ADDRESS_ID "
 			+ " LEFT JOIN USER_ROLE UR "
 			+ " ON U.ID = UR.USER_ID "
-			+ " WHERE U.USERNAME = ? AND C.`STATUS` = '" + CompanyStatus.VERIFIED.name() +"'";
+			+ " WHERE U.USERNAME = ? AND "
+			+ " (C.`STATUS` = '" + CompanyStatus.VERIFIED.name() +"' OR "
+			+ " C.`STATUS` = '" + CompanyStatus.NOT_VERIFIED.name() +"') ";
 	
 	private static final String UPDATE_PASSWORD_BY_ID = 
 			"UPDATE USER "
