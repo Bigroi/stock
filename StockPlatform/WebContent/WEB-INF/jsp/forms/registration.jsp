@@ -55,7 +55,7 @@
 					<label for="forAdress">${label.registration.address}</label>
 		            <input type="text" name="company.address.address" class="address" id="forAdress" placeholder="Minsk" maxlength="200"/>
 				</div>
-				<div class="forMap"></div>
+				<div class="forMap google-map-container"></div>
 				<div class="for-checkbox">
 					<div class="checkbox-title">
 						<input type="checkbox" class="" id="agree" name="" value="" />
