@@ -1,9 +1,10 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<a href="/product/admin/List.spr" class='<tiles:getAsString name="nav-productsExt"/>'>
-	${label.navigation.productsExt}
-</a>
-<a href="/company/admin/List.spr" class='<tiles:getAsString name="nav-company"/>'>
-	${label.navigation.company}</a>
-<a href="/test/background/Index.spr" class='<tiles:getAsString name="nav-testBG"/>'>
-	${label.navigation.testBG}
-</a>
+<li class='<tiles:getAsString name="nav-productsExt"/>'>
+	<a href="/product/admin/List.spr">${label.navigation.productsExt}</a>
+</li>
+<li class='<tiles:getAsString name="nav-company"/>'>
+	<a href="/company/admin/List.spr">${label.navigation.company}</a>
+</li>
+<li class='<tiles:getAsString name="nav-testBG"/>'>
+	<a href="/test/background/Index.spr">${label.navigation.testBG}</a>
+</li>
