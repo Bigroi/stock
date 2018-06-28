@@ -6,4 +6,8 @@
 		UPDATE `stock`.`PRODUCT` SET `picture`='/Static/img/apple.png' WHERE  `id`=135;
 		UPDATE `stock`.`PRODUCT` SET `picture`='/Static/img/potato.png' WHERE  `id`=136;
 	</update>
+	<update author="Evgeni" date="28.06.2018">
+	   	ALTER TABLE `TRANSPORT_PROPOSITION` CHANGE COLUMN `price` `price` DECIMAL(10,2) NOT NULL AFTER `company_id`;
+	</update>
 </root>
+

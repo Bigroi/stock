@@ -7,7 +7,7 @@ public class Proposition {
 	private long id;
 	private long dealId;
 	private long companyId;
-	private int price;
+	private double price;
 	private PropositionStatus status;
 	
 	//Related objects
@@ -34,10 +34,10 @@ public class Proposition {
 	public void setCompanyId(long companyId) {
 		this.companyId = companyId;
 	}
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public PropositionStatus getStatus() {

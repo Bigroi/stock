@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.db.Proposition;
-import com.bigroi.stock.bean.ui.PropositionForUI;
+import com.bigroi.stock.bean.ui.TransportForUI;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
@@ -27,8 +27,8 @@ public class PropositionResourceController {
 	@ResponseBody
 	public String MyDeallist() throws ServiceException, TableException{
 		List<Proposition> prop =  propService.getListProposition();
-		List<PropositionForUI> propForUI =  prop.stream().map(PropositionForUI::new).collect(Collectors.toList());
-		TableResponse<PropositionForUI> table = new TableResponse<>(PropositionForUI.class, propForUI);
+		List<TransportForUI> propForUI =  prop.stream().map(TransportForUI::new).collect(Collectors.toList());
+		TableResponse<TransportForUI> table = new TableResponse<>(TransportForUI.class, propForUI);
 		return new ResultBean(1, table, null).toString();
 	}
 
