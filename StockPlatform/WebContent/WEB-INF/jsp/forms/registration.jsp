@@ -13,21 +13,24 @@
 			<div>
 				<label for="forLogin">${label.registration.login}</label>
 				<input type="email" name="username" id="forLogin" placeholder="john_doe@example.com" required maxlength="50">
-				<!-- <span class="form_hint">Proper format "john_doe@example.com"</span> -->
 			</div>
 			<div>
 				<label for="forPhone">${label.registration.phone}</label>
-				<input type="text" name="company.phone" placeholder="+375290000000" pattern="^\+375[\d\- ]{5,13}$" required/>
-		       <!--  <span class="form_hint">Proper format "+375290000000"</span> -->
+				<input type="text" name="company.phone" 
+					placeholder="${label.registration.phone_placeholder}" 
+					pattern="${label.registration.phone_pattern}" required/>
 			</div>
 			<div>
-	            <label for="ForCompanyName">${label.registration.company_name}</label>
-	            <input type="text" name="company.name" placeholder="Stock lmt" id="ForCompanyName" required maxlength="100"/>
+	            <label for="forCompanyName">${label.registration.company_name}</label>
+	            <input type="text" name="company.name" 
+	            	placeholder="Stock ltd" id="forCompanyName" required maxlength="100"/>
 		     </div>
 		     <div>
 	            <label for="forRegNumber">${label.registration.reg_number}</label>
-	            <input type="text" name="company.regNumber" placeholder="1234567890" id="forRegNumber" required maxlength="100"/>
-	            <!--<span class="form_hint">Proper format "1234567890"</span>-->
+	            <input type="text" name="company.regNumber" 
+	            	placeholder="${label.registration.reg_number_placeholder}" 
+	            	pattern="${label.registration.reg_number_pattern}"
+	            	id="forRegNumber" required/>
 		     </div>
 			<div>
 				<label for="forPassword">${label.registration.password}</label>
@@ -67,7 +70,6 @@
 			<button type="button" id="go-back">${label.button.back}</button>
 			<div id="form-list">
 	    	</div>
-			<%-- <button type="submit" class="submit" id="finish-registration">${label.button.finishRegistration}</button> --%>
 		</div>
 		
 	</form>
