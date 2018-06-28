@@ -400,7 +400,6 @@ function sendAddressFormData(formContainer, url){
 function sendResetFormData(formContainer, url){
 	return sendFormData(formContainer, function (formContainer, params){
 				$.post(url, params, function(answer){
-					answer = JSON.parse(answer);
 					processRequestResult(formContainer, answer, $('.dialogbox-message'));
 				});
 			}); 

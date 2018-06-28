@@ -101,6 +101,6 @@ public class AccountResourceController extends BaseResourseController {
 	public String ResetPassword(@RequestParam("json") String json) throws ServiceException {
 		StockUser user = GsonUtil.getGson().fromJson(json, StockUser.class);
 		userService.sendLinkResetPassword(user.getUsername());
-		return new ResultBean(1, user, "user.password.reset.success").toString();
+		return new ResultBean(1, user, "label.account.password_reset").toString();
 	}
 }

@@ -117,13 +117,15 @@ public class UserServiceImpl implements UserService {
 	public void sendLinkResetPassword(String username) throws ServiceException {
 		try {
 			StockUser user = userDao.getByUsernameWithRoles(username);
-			GeneratedKey key = keysDao.generateKey();
-			user.setKeyId(key.getId());
-			userDao.updateKeyById(user);
-			Map<String,String> map = new HashMap<>();
-			map.put("email", user.getUsername());
-			map.put("code", key.getGeneratedKey());
-			linkResetPasswordMessage.sendImediatly(map);
+			if (user != null){
+				GeneratedKey key = keysDao.generateKey();
+				user.setKeyId(key.getId());
+				userDao.updateKeyById(user);
+				Map<String,String> map = new HashMap<>();
+				map.put("email", user.getUsername());
+				map.put("code", key.getGeneratedKey());
+				linkResetPasswordMessage.sendImediatly(map);
+			}
 		} catch (DaoException | MessageException e) {
 			throw new ServiceException(e);
 		}

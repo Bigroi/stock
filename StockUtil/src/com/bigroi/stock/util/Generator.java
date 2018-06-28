@@ -7,7 +7,7 @@ public class Generator {
 	private static final String charsCaps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private static final String chars = "abcdefghijklmnopqrstuvwxyz";
 	private static final String nums = "0123456789";
-	private static final String symbols = "!@#$%^&*_=+-/ˆ.?<>)";
+	private static final String symbols = "";
 	
 	private static final String linkKeyChars = nums + chars + charsCaps;
 	private static final String passwordChars = charsCaps + chars + nums + symbols;
