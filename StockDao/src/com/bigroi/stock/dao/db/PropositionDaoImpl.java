@@ -24,13 +24,13 @@ public class PropositionDaoImpl implements PropositionDao {
 	private static final String GET_LIST_PROPOSITIONS_BY_STATUS = "SELECT T.ID, T.PRICE, "
 			+ " D.VOLUME, "
 			+ " P.NAME, "
-			+ " BA.CITY, BA.COUNTRY, BA.ADDRESS, BA.LATITUDE, BA.LONGITUDE, "
-			+ " SA.CITY, SA.COUNTRY, SA.ADDRESS, SA.LATITUDE, SA.LONGITUDE "
+			+ " BA.CITY BUYER_CITY, BA.COUNTRY BUYER_COUNTRY, BA.ADDRESS BUYER_ADDRESS, BA.LATITUDE BUYER_LATITUDE, BA.LONGITUDE BUYER_LONGITUDE, "
+			+ " SA.CITY SELLER_CITY, SA.COUNTRY SELLER_COUNTRY, SA.ADDRESS SELLER_ADDRESS, SA.LATITUDE SELLER_LATITUDE, SA.LONGITUDE SELLER_LONGITUDE "
 			+ " FROM TRANSPORT_PROPOSITION T  "
 			+ " JOIN DEAL D ON T.DEAL_ID = D.ID "
 			+ " JOIN PRODUCT P ON D.PRODUCT_ID = P.ID  "
-			+ " JOIN ADDRESS BA ON D.BUYER_ADDRESS_ID = BA.ID "
-			+ " JOIN ADDRESS SA ON D.SELLER_ADDRESS_ID = SA.ID "
+			+ " JOIN ADDRESS BA ON BA.ID = D.BUYER_ADDRESS_ID "
+			+ " JOIN ADDRESS SA ON SA.ID = D.SELLER_ADDRESS_ID "
 			+ " WHERE T.STATUS = 'APPROVE' ";
 	
 	@Autowired
@@ -57,21 +57,20 @@ public class PropositionDaoImpl implements PropositionDao {
 						prop.setProduct(product);
 						
 						Address buyerAddress = new Address();
-						buyerAddress.setCity(rs.getString("CITY"));
-						buyerAddress.setCountry(rs.getString("COUNTRY"));
-						buyerAddress.setAddress(rs.getString("ADDRESS"));
-						buyerAddress.setLatitude(rs.getDouble("LATITUDE"));
-						buyerAddress.setLongitude(rs.getDouble("LONGITUDE"));
-						prop.setAddress(buyerAddress);
+						buyerAddress.setCity(rs.getString("BUYER_CITY"));
+						buyerAddress.setCountry(rs.getString("BUYER_COUNTRY"));
+						buyerAddress.setAddress(rs.getString("BUYER_ADDRESS"));
+						buyerAddress.setLatitude(rs.getDouble("BUYER_LATITUDE"));
+						buyerAddress.setLongitude(rs.getDouble("BUYER_LONGITUDE"));
+						prop.setBuyerAddress(buyerAddress);
 						
 						Address sellerAddress = new Address();
-						sellerAddress.setCity(rs.getString("CITY"));
-						sellerAddress.setCountry(rs.getString("COUNTRY"));
-						sellerAddress.setAddress(rs.getString("ADDRESS"));
-						sellerAddress.setLatitude(rs.getDouble("LATITUDE"));
-						sellerAddress.setLongitude(rs.getDouble("LONGITUDE"));
-						prop.setAddress(sellerAddress);
-						
+						sellerAddress.setCity(rs.getString("SELLER_CITY"));
+						sellerAddress.setCountry(rs.getString("SELLER_COUNTRY"));
+						sellerAddress.setAddress(rs.getString("SELLER_ADDRESS"));
+						sellerAddress.setLatitude(rs.getDouble("SELLER_LATITUDE"));
+						sellerAddress.setLongitude(rs.getDouble("SELLER_LONGITUDE"));
+						prop.setSellerAaddress(sellerAddress);
 						return prop;
 					}
 		});

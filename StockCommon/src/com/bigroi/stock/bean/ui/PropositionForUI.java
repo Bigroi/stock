@@ -33,13 +33,14 @@ public class PropositionForUI {
 	public PropositionForUI(Proposition prop){
 		this.id = prop.getId();
 		this.price = prop.getPrice();
+		this.volume = prop.getDeal().getVolume();
 		this.name = prop.getProduct().getName();
-		this.buyerAddress = prop.getAddress().getCountry() +" "+ prop.getAddress().getCity() +" "+ prop.getAddress().getAddress();
-		this.buyerlatitude =  prop.getAddress().getLatitude();
-		this.buyerlongitude = prop.getAddress().getLongitude();
-		this.sellerAddress = prop.getAddress().getCountry() +" "+ prop.getAddress().getCity() +" "+ prop.getAddress().getAddress();
-		this.sellerlatitude = prop.getAddress().getLatitude();
-		this.sellerLongitude = prop.getAddress().getLongitude();
+		this.buyerAddress = prop.getBuyerAddress().getCountry() +" "+ prop.getBuyerAddress().getCity() +" "+ prop.getBuyerAddress().getAddress();
+		this.buyerlatitude =  prop.getBuyerAddress().getLatitude();
+		this.buyerlongitude = prop.getBuyerAddress().getLongitude();
+		this.sellerAddress = prop.getSellerAaddress().getCountry() +" "+ prop.getSellerAaddress().getCity() +" "+ prop.getSellerAaddress().getAddress();
+		this.sellerlatitude = prop.getSellerAaddress().getLatitude();
+		this.sellerLongitude = prop.getSellerAaddress().getLongitude();
 	}
 
 	public double getBuyerlatitude() {
@@ -73,4 +74,6 @@ public class PropositionForUI {
 	public void setSellerLongitude(double sellerLongitude) {
 		this.sellerLongitude = sellerLongitude;
 	}
+	
+	
 }

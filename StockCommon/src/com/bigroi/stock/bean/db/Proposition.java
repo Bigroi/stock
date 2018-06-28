@@ -13,7 +13,8 @@ public class Proposition {
 	//Related objects
 	private Deal deal;
 	private Product product;
-	private Address address;
+	private Address buyerAddress;
+	private Address sellerAaddress;
 	
 	public long getId() {
 		return id;
@@ -58,16 +59,22 @@ public class Proposition {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	public Address getAddress() {
-		return address;
+	public Address getBuyerAddress() {
+		return buyerAddress;
 	}
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setBuyerAddress(Address buyerAddress) {
+		this.buyerAddress = buyerAddress;
+	}
+	public Address getSellerAaddress() {
+		return sellerAaddress;
+	}
+	public void setSellerAaddress(Address sellerAaddress) {
+		this.sellerAaddress = sellerAaddress;
 	}
 	@Override
 	public String toString() {
 		return "Proposition [id=" + id + ", dealId=" + dealId + ", companyId=" + companyId + ", price=" + price
-				+ ", status=" + status + ", deal=" + deal + ", product=" + product + ", address=" + address + "]";
+				+ ", status=" + status + ", deal=" + deal + ", product=" + product + ", buyerAddress=" + buyerAddress
+				+ ", sellerAaddress=" + sellerAaddress + "]";
 	}
-	
 }
