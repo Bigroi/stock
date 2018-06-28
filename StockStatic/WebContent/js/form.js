@@ -410,3 +410,13 @@ function initAddressForm(formContainer, url, id){
 		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initMap");
 	})
 }
+
+function openLoginForm(){
+	$(".dialogbox").remove();
+	showDialog(getLoginDialogParams());
+}
+
+function openRegistrationForm(){
+	$(".dialogbox").remove();
+	showDialog(getReginDialogParams());
+}
