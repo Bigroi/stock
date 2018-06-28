@@ -16,23 +16,19 @@
 		
 		<title>Your Trader! ${page_title}</title>
 		<meta charset = "utf-8">
+		
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
-        <!-- <link rel="stylesheet" href="/Static/css/pageStyle.css"> -->
         <link rel="stylesheet" href="/Static/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="/Static/css/style.css">
-		<!-- <link rel="stylesheet" href="/Static/css/tableCustomStyle.css">
-		<link rel="stylesheet" href="/Static/css/formStyle.css">
-		<link rel="stylesheet" href="/Static/css/dialogboxStyle.css">
-		<link rel="stylesheet" href="/Static/css/buttonsStyle.css"> -->
 		<link rel="stylesheet" href="/Static/css/jquery.responsive.dataTables.min.css"> 
         
         <script src="/Static/js/jQuery.js"></script>
         <script src="/Static/js/jquery.dataTables.min.js"></script>
+        <script src="/Static/js/form.js"></script>
         <script src="/Static/js/localization.js"></script>
 		<script src="/Static/js/tableMaker.js"></script>
 		<script src="/Static/js/map.js"></script>
 		<script src="/Static/js/dialogbox.js"></script>
-		<script src="/Static/js/form.js"></script>
 		<script src="/Static/js/script.js"></script>
 		<script src="/Static/js/plotly-latest.min.js"></script>
 		<script src="/Static/js/jquery.responsive.dataTables.min.js"></script>

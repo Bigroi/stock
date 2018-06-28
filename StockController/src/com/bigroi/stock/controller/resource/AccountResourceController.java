@@ -1,5 +1,7 @@
 package com.bigroi.stock.controller.resource;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,6 +18,7 @@ import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
+import com.bigroi.stock.security.AuthenticationHandler;
 import com.bigroi.stock.service.CompanyService;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.UserService;
@@ -66,7 +69,7 @@ public class AccountResourceController extends BaseResourseController {
 	
 	@RequestMapping(value = "/Registration.spr")
 	@ResponseBody
-	public String registration(@RequestParam("json") String json) throws ServiceException {
+	public String registration(HttpServletRequest request, @RequestParam("json") String json) throws ServiceException {
 		
 		StockUser user = GsonUtil.getGson().fromJson(json, StockUser.class);
 		user.addAuthority(new SimpleGrantedAuthority(Role.ROLE_USER.name()));
@@ -87,13 +90,14 @@ public class AccountResourceController extends BaseResourseController {
 			return new ResultBean(-1, "label.registration.error_password").toString();
 		}
 		user.setUsername(user.getUsername().toLowerCase());
+		user.getCompany().setType(AuthenticationHandler.getApplicationType(request.getContextPath()));
 		
 		userService.addUser(user);
 		
 		Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		
-		return new ResultBean(0, "/product/List.spr", null).toString();
+		return new ResultBean(0, AuthenticationHandler.getMainPage(request.getContextPath()), null).toString();
 	}
 	
 	@RequestMapping(value = "/ResetPassword.spr")

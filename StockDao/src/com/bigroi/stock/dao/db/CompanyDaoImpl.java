@@ -96,7 +96,7 @@ public class CompanyDaoImpl implements CompanyDao {
 				ps.setString(2, company.getPhone());
 				ps.setString(3, company.getRegNumber());
 				ps.setString(4, company.getStatus().name().toUpperCase());
-				ps.setString(5, "TRADER");
+				ps.setString(5, company.getType());
 				return ps;
 			}
 		}, keyHolder);

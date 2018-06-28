@@ -9,7 +9,6 @@
 		<div>
 			<label for="forLogin">${label.login.login}</label>
 			<input type="email" name="username" id="forLogin" placeholder="John Doe" required maxlength="50">
-			<!--<span class="form_hint">Proper format "name@something.com"</span>  -->
 		</div>
 		<div>
 			<label for="forPassword">${label.login.password}</label>

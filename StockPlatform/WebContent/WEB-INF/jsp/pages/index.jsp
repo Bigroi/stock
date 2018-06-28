@@ -20,11 +20,11 @@
 		
 		<script src="/Static/js/jQuery.js"></script>
 		<script src="/Static/js/jquery.dataTables.min.js"></script>
+		<script src="/Static/js/form.js"></script>
         <script src="/Static/js/localization.js"></script>
 		<script src="/Static/js/tableMaker.js"></script>
 		<script src="/Static/js/map.js"></script>
 		<script src="/Static/js/dialogbox.js"></script>
-		<script src="/Static/js/form.js"></script>
 		<script src="/Static/js/script.js"></script>
 		<script src="/Static/js/plotly-latest.min.js"></script>
 		<script src="/Static/js/productList.js"></script>

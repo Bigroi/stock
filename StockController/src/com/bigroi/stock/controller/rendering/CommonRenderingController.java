@@ -13,23 +13,26 @@ import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.UserService;
 
 @Controller
-@RequestMapping("/account")
-public class AccountRenderingController extends BaseRenderingController {
+public class CommonRenderingController extends BaseRenderingController{
 
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/Form.spr")
-	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public ModelAndView form() throws ServiceException {
-		return createModelAndView("account");
+	@RequestMapping("/Login.spr")
+	public ModelAndView login() {
+		return createModelAndView("login");
+	}
+	
+	@RequestMapping("/Index.spr")
+	public ModelAndView index() {
+		return createModelAndView("index");
 	}
 
 	@RequestMapping("/Registration.spr")
 	public ModelAndView goToRegistrationPage() {
 		return createModelAndView("registration");
 	}
-
+	
 	@RequestMapping(value = "/ResetPassword.spr", method = RequestMethod.GET)
 	public ModelAndView resetPassword(@RequestParam("code") String code, @RequestParam("email") String email)
 			throws ServiceException {
@@ -43,5 +46,11 @@ public class AccountRenderingController extends BaseRenderingController {
 			modelAndView.addObject("message", message);
 		}
 		return modelAndView;
+	}
+	
+	@RequestMapping("/account/Form.spr")
+	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
+	public ModelAndView form() throws ServiceException {
+		return createModelAndView("account");
 	}
 }

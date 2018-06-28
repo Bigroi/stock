@@ -7,6 +7,8 @@
 	<definition name="base-definition" template="/WEB-INF/jsp/layouts/transport-layout.jsp">
 		<put-attribute name="body" value="" />
 		<put-attribute name="navigation" value="/WEB-INF/jsp/templates/navigation.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/jsp/templates/defaultFooter.jsp" />
+		<put-attribute name="page-title" value="/WEB-INF/jsp/templates/pageTitle.jsp" />
 		
 		<put-attribute name="dealList" value="" cascade="true"/>
 		<put-attribute name="propositions" value="" cascade="true"/>
@@ -18,8 +20,7 @@
 	</definition>
 
 	<!-- Pages -->
-	<definition name="index" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/index.jsp" />
+	<definition name="index" template="/WEB-INF/jsp/pages/index.jsp">
 	</definition>
 	
 	<definition name="account" extends="base-definition">
@@ -27,7 +28,11 @@
 	</definition>
 	
 	<definition name="registation" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/registation.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/registation.jsp" />
+	</definition>
+	
+	<definition name="login" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/login.jsp" />
 	</definition>
 	
 	<definition name="propositions" extends="base-definition">
@@ -51,6 +56,19 @@
 	
 	<definition name="main" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/main.jsp" />
+	</definition>
+	
+	<definition name="login" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/login.jsp" />
+	</definition>
+
+	<definition name="registration" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/registration.jsp" />
+	</definition>
+
+	<definition name="account" extends="base-definition">
+		<put-attribute name="nav-account" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/account.jsp" />
 	</definition>
 
 </tiles-definitions>

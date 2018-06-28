@@ -161,7 +161,7 @@ function getReginDialogParams(){
 		hasCloseButton  : true,
 		hasCloseOverlay : true,
 		container:$("#registration-form-container"),
-		formUrl:getContextRoot() + "/account/Registration.spr", 
+		formUrl:getContextRoot() + "/Registration.spr", 
 		buttons:[
 		{
 			text: l10n.translate("label.button.finishRegistration"),

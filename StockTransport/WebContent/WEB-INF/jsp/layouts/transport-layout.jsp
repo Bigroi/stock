@@ -2,70 +2,59 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang ="ru">
+<html>
 	<head>
-		<title>TransportPage</title>
-		<meta charset ="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="context-root" content="${pageContext.request.contextPath}">
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114993452-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'UA-114993452-1');
+		</script>
+		
+		<title>Your Trader! ${page_title}</title>
+		<meta charset = "utf-8">
+		<meta name="viewport" content="initial-scale=1.0, width=device-width">
+		<meta name="context-root" content="${pageContext.request.contextPath}">
         
-        <link rel="stylesheet" href ="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="/Static/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="/Static/css/style.css">
+		<link rel="stylesheet" href="/Static/css/jquery.responsive.dataTables.min.css"> 
         
-        <link rel="stylesheet" href ="/Transport/css/styles.css">
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
-        <script src="/Static/js/tableMaker.js"></script> 
-        <script src="/Static/js/localization.js"></script> 
-        <script>
-            $(document).ready(function(){
-                $(".burger-container").click(function(){
-                    $("nav").toggleClass("nav-mobile");/* show-hide ????? */
-                    $("#burger").toggleClass("burger").toggleClass("x-burger");
-                    $("#mask").toggleClass("mask");
-                });
-                $("#mask").click(function(){
-                    $("nav").removeClass("nav-mobile");
-                    $("#mask").removeClass("mask");
-                    $("#burger").removeClass("x-burger");
-                    $("#burger").addClass("burger");
-                });
-               /*  $("#main-table").DataTable({
-                    responsive: true
-                }); */
-            });
-        </script>
-    </head>
-	<body>
-        <aside>
-            <div class="logo">
-                <div>Info<br>Trans</div>
+        <script src="/Static/js/jQuery.js"></script>
+        <script src="/Static/js/jquery.dataTables.min.js"></script>
+        <script src="/Static/js/form.js"></script>
+        <script src="/Static/js/localization.js"></script>
+		<script src="/Static/js/tableMaker.js"></script>
+		<script src="/Static/js/map.js"></script>
+		<script src="/Static/js/dialogbox.js"></script>
+		<script src="/Static/js/script.js"></script>
+		<script src="/Static/js/plotly-latest.min.js"></script>
+		<script src="/Static/js/jquery.responsive.dataTables.min.js"></script>
+	</head>
+	<body class="body-pages">
+		<div id="message-dialog-container"></div>
+		<div id="login-form-container"></div>
+        <div class = "aside">
+            <div class="logo-pages">
+                <img src="/Static/img/logo-pages.png" alt="YourTrader" title="YourTrader">
             </div>
-            <nav>
-            	<tiles:insertAttribute name="navigation" />
+            <div class="burger"></div>
+            <nav class="main-menu">
+            	<ul>
+	            	<tiles:insertAttribute name="navigation" />
+            	</ul>
             </nav>
-            <div class="burger-container">
-                <div id="burger" class="burger"></div>
-            </div>
-        </aside>
-        <main>
-            <div class="login">
-				<a class="reg" href="registration.spr">Registration</a>
-                <a class="log" href ="login.spr">Login</a>
-            </div >
-	        <!-- <div id="table-container">
-	            <div class="table-header">
-	                <h1>Test!!!!</h1>
-	            </div>
-	            <table id="main-table" data-url="/deal/json/MyDeals.spr">
-	               
-	            </table>
-            </div> -->
+            <tiles:insertAttribute name="footer" />
+        </div>
+        <div class="bgdark"></div>
+        <div class = "section">
+            <tiles:insertAttribute name="page-title" />
             <div class="content">
 				<tiles:insertAttribute name="body" />
 			</div>
-            <div id="mask"></div>
-		</main>
+		</div>
     </body>
 </html>

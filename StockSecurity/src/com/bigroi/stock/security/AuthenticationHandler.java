@@ -17,9 +17,16 @@ import com.bigroi.stock.json.ResultBean;
 
 @Repository
 @Service
-public class AuthenticationHandler 
-	implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
+public class AuthenticationHandler implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
 
+	public static String getMainPage(String contexRoot){
+		switch (contexRoot){
+		case "": return "/product/List.spr";
+		case "/Transport": return "/Transport/deal-list.spr";
+		default : return contexRoot + "/Index.spr";
+		}
+	}
+	
 	@Override
 	public void onAuthenticationFailure(
 			HttpServletRequest request, 
@@ -35,7 +42,15 @@ public class AuthenticationHandler
 			HttpServletResponse response, 
 			Authentication authentication)
 					throws IOException, ServletException {
-		response.getWriter().append(new ResultBean(0, "/product/List.spr", null).toString());
+		response.getWriter().append(new ResultBean(0, getMainPage(request.getContextPath()), null).toString());
+	}
+
+	public static String getApplicationType(String contexRoot) {
+		switch (contexRoot){
+		case "": return "TRADER";
+		case "/Transport": return "TRANSPORT";
+		default : return "";
+		}
 	}
 
 

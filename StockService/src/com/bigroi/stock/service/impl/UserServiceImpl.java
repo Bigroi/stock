@@ -57,11 +57,13 @@ public class UserServiceImpl implements UserService {
 			
 			companyDao.add(user.getCompany());
 			user.setCompanyId(user.getCompany().getId());
-			user.getCompany().getAddress().setCompanyId(user.getCompanyId());;
-			addressDao.addAddress(user.getCompany().getAddress());
+			if (user.getCompany().getAddress() != null){
+				user.getCompany().getAddress().setCompanyId(user.getCompanyId());;
+				addressDao.addAddress(user.getCompany().getAddress());
+				user.getCompany().setAddressId(user.getCompany().getAddress().getId());
+				companyDao.update(user.getCompany());
+			}
 			userDao.add(user);
-			user.getCompany().setAddressId(user.getCompany().getAddress().getId());
-			companyDao.update(user.getCompany());
 			
 			List<UserRole> listRole = new ArrayList<>();
 			for (GrantedAuthority grantedAuthority : user.getAuthorities()) {
