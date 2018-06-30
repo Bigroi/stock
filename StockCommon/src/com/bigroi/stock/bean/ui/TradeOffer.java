@@ -4,13 +4,13 @@ import com.bigroi.stock.json.Column;
 
 public class TradeOffer {
 
-	@Column("label.product.price")
+	@Column(value = "label.product.price", responsivePriority=-3)
 	private String price;
 	
-	@Column("label.product.lot_volume")
+	@Column(value = "label.product.lot_volume", responsivePriority=-2)
 	private long lotVolume;
 	
-	@Column("label.product.tender_volume")
+	@Column(value = "label.product.tender_volume", responsivePriority=-1)
 	private long tenderVolume;
 
 	public TradeOffer(String price) {

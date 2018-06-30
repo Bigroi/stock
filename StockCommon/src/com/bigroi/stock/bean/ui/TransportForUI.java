@@ -10,24 +10,24 @@ public class TransportForUI {
 	@Id
 	private final long id;
 	
-	@Column(value = "label.transport.volume")
+	@Column(value = "label.transport.volume", responsivePriority=-4)
 	private final int volume;
 	
-	@Column(value = "label.transport.price")
+	@Column(value = "label.transport.price", responsivePriority=-3)
 	private final double price;
 	
-	@Column(value = "label.transport.name")
+	@Column(value = "label.transport.name", responsivePriority=-5)
 	private final String name;
 	
-	@Column(value = "label.transport.addressBuyer")
+	@Column(value = "label.transport.addressBuyer", responsivePriority=-2)
 	private final String buyerAddress;
+
+	@Column(value = "label.transport.addressSeller", responsivePriority=-1)
+	private final String sellerAddress;
 	
 	private final double  buyerLatitude;
 	private final double buyerLongitude;
-	
-	@Column(value = "label.transport.addressSeller")
-	private final String sellerAddress;
-	
+
 	private final double  sellerLatitude;
 	private final double sellerLongitude;
 	

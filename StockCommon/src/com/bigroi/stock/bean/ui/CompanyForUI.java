@@ -3,7 +3,6 @@ package com.bigroi.stock.bean.ui;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.json.Column;
-import com.bigroi.stock.json.FilterMethod;
 import com.bigroi.stock.json.Id;
 import com.bigroi.stock.json.Status;
 
@@ -12,16 +11,16 @@ public class CompanyForUI {
 	@Id
 	private long id;
 	
-	@Column(value = "label.comanies.name", filterMethod = FilterMethod.TEXT)
+	@Column(value = "label.companies.name", responsivePriority=-3)
 	private String name;
 	
-	@Column(value = "label.comanies.phone", filterMethod = FilterMethod.TEXT)
+	@Column(value = "label.companies.phone", responsivePriority=-1)
 	private String phone;
 	
-	@Column(value = "label.comanies.reg_number", filterMethod = FilterMethod.TEXT)
+	@Column(value = "label.companies.reg_number", responsivePriority=-2)
 	private String regNumber;
 	
-	@Column(value = "label.comanies.status", filterMethod = FilterMethod.SELECT)
+	@Column(value = "label.companies.status", responsivePriority=-4)
 	@Status(activate="/company/json/admin/ChangeStatus.spr", 
 			deactivate="/company/json/admin/ChangeStatus.spr")
 	private CompanyStatus status;

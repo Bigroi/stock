@@ -19,6 +19,7 @@ class Table<T> {
 					columnDef.setData(field.getName());
 					columnDef.setTitle(column.value());
 					columnDef.setOrderable(column.allowSorting());
+					columnDef.setResponsivePriority(column.responsivePriority());
 					columns.add(columnDef);
 				}
 			}

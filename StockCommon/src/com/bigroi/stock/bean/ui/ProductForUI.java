@@ -6,7 +6,6 @@ import java.math.RoundingMode;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Edit;
-import com.bigroi.stock.json.FilterMethod;
 import com.bigroi.stock.json.Id;
 
 public class ProductForUI {
@@ -14,17 +13,21 @@ public class ProductForUI {
 	@Id
 	private long id;
 	
-	@Column(value = "label.product.name", allowSorting = true, filterMethod = FilterMethod.SELECT)
+	@Column(value = "label.product.name", allowSorting = true, responsivePriority = -4)
 	private String name;
 	
-	@Column(value = "label.product.description", filterMethod = FilterMethod.TEXT)
+	@Column(value = "label.product.description", responsivePriority = -1)
 	private String description;
 	
-	@Column(value = "label.product.archive", filterMethod = FilterMethod.SELECT)
+	@Column(value = "label.product.archive", responsivePriority = -3)
 	private String removed;
 	
-	@Column(value = "label.product.price")
+	@Column(value = "label.product.price", responsivePriority = -2)
 	private double delivaryPrice;
+	
+	@Edit(details = "/product/TradeOffers.spr", edit="getProductDialogParams", remove="/product/json/admin/Delete.spr")
+	@Column(value = "label.product.edit", responsivePriority = -4)
+	private String edit = "YNN";
 	
 	private double sellPrice;
 	
@@ -35,10 +38,6 @@ public class ProductForUI {
 	private int buyVolume;
 	
 	private String picture;
-	
-	@Edit(details = "/product/TradeOffers.spr", edit="getProductDialogParams", remove="/product/json/admin/Delete.spr")
-	@Column("label.product.edit")
-	private String edit = "YNN";
 	
 	public ProductForUI(){
 		

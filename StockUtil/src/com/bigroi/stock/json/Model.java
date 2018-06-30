@@ -1,8 +1,6 @@
 package com.bigroi.stock.json;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
 
 class Model<T> {
 
@@ -22,8 +20,6 @@ class Model<T> {
 	
 	private String deactivateUrl;
 	
-	private Map<String, FilterMethod> filterColumns = new HashMap<>();
-	
 	public Model(Class<T> clazz) {
 		for (Field field : clazz.getDeclaredFields()){
 			if (field.getAnnotation(Id.class) != null){
@@ -42,11 +38,6 @@ class Model<T> {
 				editForm = edit.edit();
 				removeUrl = edit.remove();
 				detailsUrl = edit.details();
-			}
-			
-			Column column = field.getAnnotation(Column.class);
-			if (column != null){
-				this.filterColumns.put(field.getName(), column.filterMethod());
 			}
 		}
 	}
@@ -81,10 +72,6 @@ class Model<T> {
 
 	public String getDetailsUrl() {
 		return detailsUrl;
-	}
-	
-	public Map<String, FilterMethod> getFilterColumns() {
-		return filterColumns;
 	}
 
 	public void removeColumn(String fieldName) {

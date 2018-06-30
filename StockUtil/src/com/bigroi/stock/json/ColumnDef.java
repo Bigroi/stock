@@ -6,7 +6,9 @@ public class ColumnDef {
 	
 	private String data;
 	
-	private boolean orderable; 
+	private boolean orderable;
+	
+	private int responsivePriority;
 	
 	public boolean isOrderable() {
 		return orderable;
@@ -30,6 +32,14 @@ public class ColumnDef {
 
 	public void setOrderable(boolean orderable) {
 		this.orderable = orderable;
+	}
+	
+	public int getResponsivePriority() {
+		return responsivePriority;
+	}
+	
+	public void setResponsivePriority(int responsivePriority) {
+		this.responsivePriority = responsivePriority;
 	}
 	
 }

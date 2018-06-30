@@ -8,7 +8,6 @@ import com.bigroi.stock.bean.db.Address;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Edit;
-import com.bigroi.stock.json.FilterMethod;
 import com.bigroi.stock.json.Id;
 
 public class DealForUI {
@@ -16,14 +15,18 @@ public class DealForUI {
 	@Id
 	private long id;
 	
-	@Column(value = "label.deal.productName", filterMethod = FilterMethod.SELECT)
+	@Column(value = "label.deal.productName", responsivePriority=-3)
 	private String productName;
 	
-	@Column(value = "label.deal.time", allowSorting = true)
+	@Column(value = "label.deal.time", allowSorting = true, responsivePriority=-1)
 	private Date time;
 	
-	@Column(value = "label.deal.status", filterMethod = FilterMethod.SELECT)
+	@Column(value = "label.deal.status", responsivePriority=-2)
 	private String status;
+
+	@Column(value = "edit", responsivePriority=-4)
+	@Edit(details="/deal/Form.spr", remove="", edit="")
+	private String edit = "NNY";
 	
 	private final Address sellerAddrress;
 	private final Address buyerAddrress;
@@ -33,10 +36,6 @@ public class DealForUI {
 	private final int volume;
 	private final String partnerDescription;
 	private DealStatus statusCode;
-	
-	@Column("")
-	@Edit(details="/deal/Form.spr", remove="", edit="")
-	private String edit = "NNY";
 	
 	public DealForUI(Deal deal, long companyId){
 		this.id = deal.getId();

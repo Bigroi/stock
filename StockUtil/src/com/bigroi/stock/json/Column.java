@@ -12,7 +12,7 @@ public @interface Column {
 
 	public boolean allowSorting() default false;
 	
-	public FilterMethod filterMethod() default FilterMethod.NONE;
+	public int responsivePriority();
 	
 	public String value();
 	

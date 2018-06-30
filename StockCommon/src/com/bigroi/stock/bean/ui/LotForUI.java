@@ -7,7 +7,6 @@ import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.DateTimeAdapter;
 import com.bigroi.stock.json.Edit;
-import com.bigroi.stock.json.FilterMethod;
 import com.bigroi.stock.json.Id;
 import com.bigroi.stock.json.Status;
 import com.google.gson.annotations.JsonAdapter;
@@ -17,27 +16,27 @@ public class LotForUI{
 	@Id
 	private long id;
 	
-	@Column(value = "label.lot.product", filterMethod = FilterMethod.SELECT)
+	@Column(value = "label.lot.product", responsivePriority=-6)
 	private String productName;
 	
-	@Column(value = "label.lot.status", filterMethod = FilterMethod.SELECT)
+	@Column(value = "label.lot.status", responsivePriority=-5)
 	@Status(activate="/lot/json/StartTrading.spr", deactivate="/lot/json/StopTrading.spr")
 	private BidStatus status;
 	
-	@Column("label.lot.min_price")
+	@Column(value = "label.lot.min_price", responsivePriority=-1)
 	private double minPrice;
 	
-	@Column("label.lot.max_volume")
+	@Column(value = "label.lot.max_volume", responsivePriority=-2)
 	private int maxVolume;
 	
-	@Column(value = "label.lot.exp_date", allowSorting = true)
+	@Column(value = "label.lot.exp_date", allowSorting = true, responsivePriority=-4)
 	private Date exparationDate = new Date();
 	
-	@Column(value = "label.lot.creation_date", allowSorting = false)
+	@Column(value = "label.lot.creation_date", allowSorting = false, responsivePriority=-3)
 	@JsonAdapter(DateTimeAdapter.class)
 	private Date creationDate;
 	
-	@Column("label.lot.edit")
+	@Column(value = "label.lot.edit", responsivePriority=-7)
 	@Edit(edit="getLotDialogParams", remove="/lot/json/Delete.spr")
 	private String edit = "YYN";
 	
