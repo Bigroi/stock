@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <form class="form" action="#" method="post" name="form">
-    <ul id="form-list">
-        <li>
-             <h2>${title}</h2>
-        </li>
-        <li>
+	<div>
+		<h3>${title}</h3>
+    </div>
+	<div class="flex-input">
+		<dix>
         	${message}
-        </li>
-    </ul>
+        </dix>
+        <div id="form-list"></div>
+	</div>
 </form>

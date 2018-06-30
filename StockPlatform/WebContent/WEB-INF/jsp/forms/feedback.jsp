@@ -3,19 +3,19 @@
 	pageEncoding="UTF-8"%>
 
 <form class="form" action="#" method="post" name="form">
-	<ul id="form-list">
-	    <li>
-	        <div class="dialogbox-message"></div>
-	    </li>
-	    <li>
+	<div>
+		<div class="dialogbox-message"></div>
+	</div>
+	<div class="flex-input">
+		<div>
 	        <label for="email">${label.account.email}:</label> 
 		    <input type="email" name="email" placeholder="example@mail.com" required maxlength="50"/>
-	    </li>
-	    <li>
+	    </div>
+	    <div>
 	        <label for="message">${label.account.message}:</label> 
 		    <textarea name="message"></textarea>
-	    </li>
-	
-	</ul>
+	    </div>
+	    <div id="form-list"></div>
+	</div>
 </form>
 

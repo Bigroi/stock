@@ -69,7 +69,7 @@ public class LotDaoImpl implements LotDao {
 			+ " JOIN PRODUCT P "
 			+ " ON L.PRODUCT_ID = P.ID "
 			+ " WHERE L.PRODUCT_ID = ? "
-			+ " AND L.`STATUS` = '" + BidStatus.ACTIVE.name() + "'";
+			+ " AND L.`STATUS` = '" + BidStatus.ACTIVE.name() + "' AND L.MIN_VOLUME <= L.MAX_VOLUME ";
 	
 	private static final String GET_LOTS_BY_COMPANY = 
 			"SELECT " + LotRowMapper.ALL_COLUMNS

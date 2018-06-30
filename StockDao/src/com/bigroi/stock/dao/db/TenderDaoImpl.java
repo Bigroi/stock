@@ -77,7 +77,7 @@ public class TenderDaoImpl implements TenderDao{
 			+ " JOIN PRODUCT P "
 			+ " ON T.PRODUCT_ID = P.ID"
 			+ " WHERE T.PRODUCT_ID = ? "
-			+ " AND T.`STATUS` = '" + BidStatus.ACTIVE + "'";
+			+ " AND T.`STATUS` = '" + BidStatus.ACTIVE + "'  AND T.MIN_VOLUME <= T.MAX_VOLUME ";
 	
 	private static final String UPDATE_STATUS_BY_COMPANY_ID =
 			  " UPDATE TENDER "

@@ -102,7 +102,7 @@
 
 	<definition name="tradeOffers" extends="base-definition">
 		<put-attribute name="nav-products" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/forms/tradeOffers.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/tradeOffers.jsp" />
 	</definition>
 
 	<definition name="testBG" extends="base-definition">
@@ -115,7 +115,7 @@
 	</definition> 
 	
 	<definition name="resetPassw" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/jsp/forms/resetPassw.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/resetPassw.jsp" />
 	</definition> 
 	
 	<definition name="feedback" extends="base-form-definition">
