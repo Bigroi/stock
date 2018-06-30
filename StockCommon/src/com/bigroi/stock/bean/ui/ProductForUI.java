@@ -1,5 +1,8 @@
 package com.bigroi.stock.bean.ui;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Edit;
@@ -98,7 +101,7 @@ public class ProductForUI {
 	}
 
 	public void setSellPrice(double sellPrice) {
-		this.sellPrice = sellPrice;
+		this.sellPrice = new BigDecimal(sellPrice).setScale(2, RoundingMode.UP).doubleValue();
 	}
 
 	public double getBuyPrice() {
@@ -106,7 +109,7 @@ public class ProductForUI {
 	}
 
 	public void setBuyPrice(double buyPrice) {
-		this.buyPrice = buyPrice;
+		this.buyPrice = new BigDecimal(buyPrice).setScale(2, RoundingMode.UP).doubleValue();
 	}
 
 	public int getSellVolume() {
