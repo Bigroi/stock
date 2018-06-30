@@ -36,35 +36,38 @@ public class AccountResourceController extends BaseResourseController {
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String accountPage(Authentication loggedInUser) throws ServiceException {
+	public String accountPage(Authentication loggedInUser) throws ServiceException, CloneNotSupportedException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
+		user = user.clone();
 		user.setPassword("");
+		user.setPasswordRepeat("");
 		return new ResultBean(1, user, "").toString();
 	}
 	
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String editAccount(
-			@RequestParam("json") String json,
-			Authentication loggedInUser) throws ServiceException {
-
+	public String editAccount( @RequestParam("json") String json, Authentication loggedInUser) throws ServiceException {
 		StockUser newUser = GsonUtil.getGson().fromJson(json, StockUser.class);
-		
 		StockUser loggedIn = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+
 		if (newUser.getPassword() != null && !newUser.getPassword().equals("")){
+			if (!newUser.getPassword().equals(newUser.getPasswordRepeat())){
+				return new ResultBean(-1, "label.account.error_password").toString();
+			}
 			loggedIn.setPassword(newUser.getPassword());
 		}
+		
+		if (!newUser.getUsername().equals(loggedIn.getUsername()) 
+				&& userService.getByUsername(newUser.getUsername()) != null) {
+			return new ResultBean(-1, "label.account.error_login").toString();
+		}
+		
 		loggedIn.getCompany().setPhone(newUser.getCompany().getPhone());
-		loggedIn.getCompany().getAddress().setAddress(newUser.getCompany().getAddress().getAddress());
-		loggedIn.getCompany().getAddress().setCity(newUser.getCompany().getAddress().getCity());
-		loggedIn.getCompany().getAddress().setCountry(newUser.getCompany().getAddress().getCountry());
-		loggedIn.getCompany().getAddress().setLatitude(newUser.getCompany().getAddress().getLatitude());
-		loggedIn.getCompany().getAddress().setLongitude(newUser.getCompany().getAddress().getLongitude());
+		loggedIn.setUsername(newUser.getUsername());
 		userService.update(loggedIn);
 		
-		loggedIn.setPassword("");
-		return new ResultBean(1, loggedIn, "account.edit.success").toString();
+		return new ResultBean(1, loggedIn, "label.account.edit_success").toString();
 	}
 	
 	@RequestMapping(value = "/Registration.spr")
@@ -75,19 +78,19 @@ public class AccountResourceController extends BaseResourseController {
 		user.addAuthority(new SimpleGrantedAuthority(Role.ROLE_USER.name()));
 		
 		if (userService.getByUsername(user.getUsername()) != null) {
-			return new ResultBean(-1, "label.registration.error_login").toString();
+			return new ResultBean(-1, "label.account.error_login").toString();
 		}
 		
 		if (companyService.getByName(user.getCompany().getName()) != null) {
-			return new ResultBean(-1, "label.registration.error_name").toString();
+			return new ResultBean(-1, "label.account.error_name").toString();
 		}
 		
 		if (companyService.getByRegNumber(user.getCompany().getRegNumber()) != null) {
-			return new ResultBean(-1, "label.registration.error_reg_number").toString();
+			return new ResultBean(-1, "label.account.error_reg_number").toString();
 		}
 		
 		if (!user.getPassword().equals(user.getPasswordRepeat())) {
-			return new ResultBean(-1, "label.registration.error_password").toString();
+			return new ResultBean(-1, "label.account.error_password").toString();
 		}
 		user.setUsername(user.getUsername().toLowerCase());
 		user.getCompany().setType(AuthenticationHandler.getApplicationType(request.getContextPath()));

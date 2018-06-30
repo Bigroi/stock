@@ -14,4 +14,6 @@ public interface AddressService {
 	Address getAddressById(long id) throws ServiceException;
 
 	void merge(Address address, long companyId) throws ServiceException;
+
+	void delete(long id, long companyId) throws ServiceException;
 }

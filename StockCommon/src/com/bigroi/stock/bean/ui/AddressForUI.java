@@ -8,24 +8,32 @@ import com.bigroi.stock.json.Id;
 public class AddressForUI {
 
 	@Id
-	private long id;
+	private final long id;
 
 	@Column(value = "label.address.city")
-	private String city;
+	private final String city;
 
 	@Column(value = "label.address.country")
-	private String country;
+	private final String country;
 
 	@Column(value = "label.address.address")
-	private String address;
+	private final String address;
 	
-	@Column("")
-	@Edit(details="", remove="", edit="/account/FormAddress.spr")
-	private String edit = "YNN";
+	@Column(value = "label.address.default_address")
+	private String defaultAddress;
+	
+	@Column("label.address.edit")
+	@Edit(remove="/address/json/Delete.spr", edit="getAddressDialogParams")
+	private final String edit = "YYN";
 	
 	private double latitude;
 	private double longitude;
 
+	public AddressForUI(Address address, String defaultAddress) {
+		this(address);
+		this.defaultAddress = defaultAddress;
+	}
+	
 	public AddressForUI(Address address) {
 		this.id = address.getId();
 		this.city = address.getCity();

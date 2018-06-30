@@ -131,13 +131,16 @@ $(document).ready(function(){
 	$('.contactus').on("click", function(){
 		showDialog(getContactUsDialogParams());
 	});
+	$('.edit-account').on("click", function(){
+		showDialog(getAccountDialogParams());
+	});
 });
 
 function getLoginDialogParams(){
 	return {
 		hasCloseButton  : true,
 		hasCloseOverlay : true,
-		container:$("#login-form-container"),
+		container:$("#form-container"),
 		formUrl:getContextRoot() + "/Login.spr", 
 		buttons:[
 		{
@@ -156,11 +159,39 @@ function getLoginDialogParams(){
 	}
 }
 
+function getAddressDialogParams(table, model, id){
+	return {
+		hasCloseButton  : true,
+		hasCloseOverlay : true,
+		container:$("#form-container"),
+		formUrl:getContextRoot() + "/address/Form.spr", 
+		formParams:{id:id},
+		formData:getContextRoot() + "/address/json/Form.spr",
+		buttons:[
+		{
+			text: l10n.translate("label.button.save"),
+			id:"save",
+			submit:saveCallback
+		}], 				
+	};
+	
+	function saveCallback(formContainer, params, $dialogbox){
+		$.post(getContextRoot() + "/address/json/Save.spr", params, function(answer){
+			var idColumnValue = params.json[model.idColumn];
+			processRequestResult(formContainer, answer, $('.dialogbox-message'));
+			if (answer.result > 0){
+				updateTable(table, model, idColumnValue, answer.data);
+				$dialogbox.remove();
+			}
+		});
+	}
+}
+
 function getReginDialogParams(){
 	return {
 		hasCloseButton  : true,
 		hasCloseOverlay : true,
-		container:$("#registration-form-container"),
+		container:$("#form-container"),
 		formUrl:getContextRoot() + "/Registration.spr", 
 		buttons:[
 		{
@@ -181,7 +212,7 @@ function getLotDialogParams(table, model, id){
 	return {
 		hasCloseButton  : true,
 		hasCloseOverlay : true,
-		container:$("#lot-form-container"),
+		container:$("#form-container"),
 		formUrl:getContextRoot() + "/lot/Form.spr", 
 		formParams:{id:id},
 		formData:getContextRoot() + "/lot/json/Form.spr",
@@ -217,6 +248,29 @@ function getLotDialogParams(table, model, id){
 				updateTable(table, model, idColumnValue, answer.data);
 				$dialogbox.remove();
 			}
+		});
+	}
+}
+
+function getAccountDialogParams(model, id){
+	return {
+		hasCloseButton  : true,
+		hasCloseOverlay : true,
+		container:$("#form-container"),
+		formUrl:getContextRoot() + "/account/Form.spr", 
+		formParams:{id:id},
+		formData:getContextRoot() + "/account/json/Form.spr",
+		height:"80%",
+		buttons: [{
+				text: l10n.translate("label.button.save"),
+				id:"save",
+				submit: saveCallback
+			}],
+	};
+	
+	function saveCallback(formContainer, params, $dialogbox){
+		$.post(getContextRoot() + "/account/json/Save.spr", params, function(answer){
+			processRequestResult(formContainer, answer, $('.dialogbox-message'));
 		});
 	}
 }
@@ -270,7 +324,7 @@ function getTenderDialogParams(table, model, id){
 	return{
 		hasCloseButton  : true,
 		hasCloseOverlay : true,
-		container:$("#tender-form-container"),
+		container:$("#form-container"),
 		formUrl:getContextRoot() + "/tender/Form.spr", 
 		formParams:{id:id},
 		formData:getContextRoot() + "/tender/json/Form.spr",
@@ -314,7 +368,7 @@ function getProductDialogParams(table, model, id){
 	return {
 		hasCloseButton  : true,
 		hasCloseOverlay : true,
-		container:$("#product-form-container"),
+		container:$("#form-container"),
 		formUrl:getContextRoot() + "/product/admin/Form.spr", 
 		formParams:{id:id},
 		formData:getContextRoot() + "/product/json/admin/Form.spr",
@@ -386,28 +440,12 @@ function initDealForm(formContainer, url, id){
 	})
 }
 
-function sendAddressFormData(formContainer, url){
-	return sendFormData(formContainer, function (formContainer, params){
-				$.post(url, params, function(answer){
-					processRequestResult(formContainer, answer, $('.form-message'));
-					if (answer.result > 0){
-						$('#save-button-address');
-					}
-				});
-			}); 
-}
-
 function sendResetFormData(formContainer, url){
 	return sendFormData(formContainer, function (formContainer, params){
 				$.post(url, params, function(answer){
 					processRequestResult(formContainer, answer, $('.dialogbox-message'));
 				});
 			}); 
-}
-function initAddressForm(formContainer, url, id){
-	setFormData(formContainer, url, {id:id}, function(){
-		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initMap");
-	})
 }
 
 function openLoginForm(){

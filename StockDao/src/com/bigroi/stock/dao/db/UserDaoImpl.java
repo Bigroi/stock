@@ -121,6 +121,7 @@ public class UserDaoImpl implements UserDao {
 					
 					Company company = new Company();
 					company.setAddress(address);
+					company.setAddressId(address.getId());
 					company.setId(rs.getLong("COMPANY_ID"));
 					company.setName(rs.getString("NAME"));
 					company.setPhone(rs.getString("PHONE"));

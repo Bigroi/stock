@@ -55,4 +55,13 @@ public class AddressServiceImpl implements AddressService{
 			throw new ServiceException(e);
 		}
 	}
+
+	@Override
+	public void delete(long id, long companyId) throws ServiceException {
+		try{
+			addressDao.deleteAddress(id, companyId);
+		}catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
 }

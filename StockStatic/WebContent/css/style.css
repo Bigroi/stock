@@ -891,7 +891,7 @@ footer .container {
 .registration-second-part {
 	display: none;
 }
-#registration-form-container .popUp-container {
+#form-container .popUp-container {
 	 height: 473px;
 }
 .forMap {
@@ -977,7 +977,7 @@ footer .container {
 	.forMap {
 	  	display: block;
 	}
-	#registration-form-container .popUp-container {
+	#form-container .popUp-container {
 	 height: auto;
 	}
 	.dialogbox-child {

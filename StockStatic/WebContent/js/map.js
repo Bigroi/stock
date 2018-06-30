@@ -3,17 +3,30 @@ function initRegistrationMap(){
 		var $googleMapsContainer = $(".google-map-container");
 		$googleMapsContainer.css("background-image", "");
 		
+		var lat = parseFloat($(".latitude")[0].value);
+		var lng = parseFloat($(".longitude")[0].value);
+		
 		var maps = [];
-		for (var i in $googleMapsContainer){
+		var markers = [];
+		
+		for (var i = 0; i < $googleMapsContainer.length; i++){
 			var map = new google.maps.Map($googleMapsContainer[i], {
 				zoom: 8,
 				center: {
-					lat: 53.1568911, 
-					lng: 26.001813399999946
+					lat: isNaN(lat)?53.1568911:lat, 
+					lng: isNaN(lng)?26.001813399999946:lng
 				}
 			});
+			if (!isNaN(lat)){
+				var marker = new google.maps.Marker({
+					map: map,
+					position: { lat: lat, lng: lng}
+				});
+				markers.push(marker);
+			}
 			maps.push(map);
 		}
+		
 		var geocoder = new google.maps.Geocoder();
 		
 		
@@ -36,7 +49,7 @@ function initRegistrationMap(){
 			geocoder.geocode({'address': address}, function(results, status) {
 				if (status === 'OK') {
 					var location = results[0].geometry.location;
-					for (var i in maps){
+					for (var i = 0; i < maps.length; i++){
 						maps[i].setCenter(location);
 					}
 					addMarker(location);
@@ -63,7 +76,7 @@ function initRegistrationMap(){
 				marker.setMap(null);
 				marker = markers.pop();
 			}
-			for (var i in maps){
+			for (var i = 0; i < maps.length; i++){
 				marker = new google.maps.Marker({
 					map: maps[i],
 					position: location
@@ -83,95 +96,6 @@ function initRegistrationMap(){
 
 
 //old functions
-function initMap() {
-	$(document).ready(function(){
-		var lat = parseFloat($(".latitude")[0].value);
-		var lng = parseFloat($(".longitude")[0].value);
-		if (window.navigator.userAgent.indexOf("MSIE ") >=0 ||
-				window.navigator.userAgent.indexOf("Trident/") >= 0){
-			var height = $("#map").parent().parent().parent().height();
-			$("#map").css("height", height);
-		}
-		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 8,
-			center: {
-				lat: isNaN(lat)?53.1568911:lat, 
-				lng: isNaN(lng)?26.001813399999946:lng
-			}
-		});
-		var geocoder = new google.maps.Geocoder();
-		var markers = [];
-		if (!isNaN(lat)){
-			for (var i in maps){
-				var marker = new google.maps.Marker({
-					map: maps[i],
-					position: {
-						lat: lat, 
-						lng: lng
-					}
-				});
-				markers.push(marker);
-			}
-		} else {
-			$("button[type='submit']").prop("disabled", true);
-		}
-		
-		
-		$(".country").focusout( function() {
-			geocodeAddress(geocoder);
-		});
-		
-		$(".city").focusout( function() {
-			geocodeAddress(geocoder);
-		});
-		
-		$(".address").focusout( function() {
-			geocodeAddress(geocoder);
-		});
-	
-		function geocodeAddress(geocoder) {
-			var address = getAddress();
-			geocoder.geocode({'address': address}, function(results, status) {
-				if (status === 'OK') {
-					var location = results[0].geometry.location;
-					map.setCenter(location);
-					addMarker(location);
-					$("button[type='submit']").prop("disabled", false);
-				} else {
-					var marker = markers.pop();
-					while (marker){
-						markers[i].setMap(null);
-						marker = markers.pop();
-					}
-					$("button[type='submit']").prop("disabled", true);
-				}
-			});
-		}
-		
-		function addMarker(location){
-			var marker = markers.pop();
-			while (marker){
-				markers[i].setMap(null);
-				marker = markers.pop();
-			}
-			for (var i in maps){
-				var marker = new google.maps.Marker({
-					map: maps[i],
-					position: location
-				});
-				markers.push(marker);
-			}
-			$(".latitude")[0].value = location.lat();
-			$(".longitude")[0].value = location.lng();
-		}
-		
-		function getAddress(){
-			return $(".country")[0].value + 
-				' ' + $(".city")[0].value +
-				' ' + $(".address")[0].value;
-		}
-	});
-}
 
 function initDealMap() {
 	$(document).ready(function(){

@@ -85,7 +85,6 @@ public class UserServiceImpl implements UserService {
 			userDao.update(user);
 			user.getCompany().setAddressId(user.getCompany().getAddress().getId());
 			companyDao.update(user.getCompany());
-			addressDao.updateAddress(user.getCompany().getAddress());
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}

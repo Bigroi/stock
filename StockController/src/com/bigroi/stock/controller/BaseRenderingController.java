@@ -30,9 +30,10 @@ public class BaseRenderingController {
 		}
 		defaultLabels.put("label", map);
 	}
+	
 	private static Properties initLabels(String fileName){
 		try(BufferedReader reader = getBufferedReader(fileName)){
-			Properties properties = new Properties();
+			Properties properties = new LabelMap();
 			properties.load(reader);
 			return properties;
 		}catch (IOException e) {
@@ -60,6 +61,8 @@ public class BaseRenderingController {
 		return new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
 	}
 	
+	
+	
 	protected final ModelAndView createModelAndView(String pageName){
 		Object user = null;
 		if (SecurityContextHolder.getContext() != null &&
@@ -77,10 +80,21 @@ public class BaseRenderingController {
 			@SuppressWarnings("unchecked")
 			Map<String, Object> map = (Map<String, Object>)object;
 			object = map.get(key);
-			if (object == null){
-				break;
-			}
 		}
-		return object == null ? label : object.toString();
+		return object.toString();
 	}
+	
+	private static class LabelMap extends Properties{
+		
+		private static final long serialVersionUID = 6935680532239842933L;
+
+		@Override
+		public synchronized Object get(Object key) {
+			Object obj = super.get(key);
+			if (obj == null){
+				throw new RuntimeException("Can not find label " + key);
+			}
+			return obj;
+		}
+	};
 }

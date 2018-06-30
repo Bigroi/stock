@@ -55,9 +55,9 @@ $(document).ready(function(){
 			var $editRemove = getCell(model.editColumn, $row);
 	        $editRemove.textContent = "";
 	        
-	        var $edit = $("<div class='no-edit'>");
-	        var $remove = $("<div class='no-remove'>");
-	        var $details = $("<div class='no-details'>");
+	        var $edit = $("<div class='no-edit'>e</div>");
+	        var $remove = $("<div class='no-remove'>d</div>");
+	        var $details = $("<div class='no-details'>de</div>");
 	        
 	        if(data[model.editColumn][0] == "Y"){ 
 	            $edit.removeClass("no-edit");
@@ -79,7 +79,11 @@ $(document).ready(function(){
 	            			 model.removeUrl, 
 	            			 {id:id}, 
 	            			 function(answer){
-	            				 table.row($(event.target).parents('tr')).remove().draw();
+	            				 if (answer.result > 0){
+	            					 table.row($(event.target).parents('tr')).remove().draw();
+	            				 } else {
+	            					 showMessageDialog(answer.message, "error");
+	            				 }
 	            			 }
 	            	);
 	            });

@@ -36,7 +36,7 @@
 	</head>
 	<body class="body-pages">
 		<div id="message-dialog-container"></div>
-		<div id="login-form-container"></div>
+		<div id="form-container"></div>
         <div class = "aside">
             <div class="logo-pages">
                 <img src="/Static/img/logo-pages.png" alt="YourTrader" title="YourTrader">

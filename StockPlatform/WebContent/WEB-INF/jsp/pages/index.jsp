@@ -30,8 +30,7 @@
 		<script src="/Static/js/productList.js"></script>
 	</head>
 	<body>
-		<div id="login-form-container"></div>
-		<div id="registration-form-container"></div>
+		<div id="form-container"></div>
 		<div class="wrapper">
 		    <div class="content">
 		   		<header>

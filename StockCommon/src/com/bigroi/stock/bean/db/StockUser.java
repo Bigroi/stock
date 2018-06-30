@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class StockUser implements UserDetails {
+public class StockUser implements UserDetails, Cloneable {
 	
 	private static final long serialVersionUID = 3098775983055977418L;
 
@@ -111,5 +111,10 @@ public class StockUser implements UserDetails {
 	
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+	
+	@Override
+	public StockUser clone() throws CloneNotSupportedException {
+		return (StockUser)super.clone();
 	}
 }

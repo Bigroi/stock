@@ -12,16 +12,16 @@ public class CompanyForUI {
 	@Id
 	private long id;
 	
-	@Column(value = "label.account.name", filterMethod = FilterMethod.TEXT)
+	@Column(value = "label.comanies.name", filterMethod = FilterMethod.TEXT)
 	private String name;
 	
-	@Column(value = "label.account.phone", filterMethod = FilterMethod.TEXT)
+	@Column(value = "label.comanies.phone", filterMethod = FilterMethod.TEXT)
 	private String phone;
 	
-	@Column(value = "label.account.reg_number", filterMethod = FilterMethod.TEXT)
+	@Column(value = "label.comanies.reg_number", filterMethod = FilterMethod.TEXT)
 	private String regNumber;
 	
-	@Column(value = "label.account.status", filterMethod = FilterMethod.SELECT)
+	@Column(value = "label.comanies.status", filterMethod = FilterMethod.SELECT)
 	@Status(activate="/company/json/admin/ChangeStatus.spr", 
 			deactivate="/company/json/admin/ChangeStatus.spr")
 	private CompanyStatus status;

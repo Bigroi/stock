@@ -39,7 +39,7 @@ public class LotForUI{
 	
 	@Column("label.lot.edit")
 	@Edit(edit="getLotDialogParams", remove="/lot/json/Delete.spr")
-	private String edit = "YY";
+	private String edit = "YYN";
 	
 	public LotForUI(Lot lot) {
 		this.id = lot.getId();

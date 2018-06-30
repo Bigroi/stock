@@ -10,16 +10,16 @@ import com.bigroi.stock.controller.BaseRenderingController;
 import com.bigroi.stock.service.ServiceException;
 
 @Controller
-@RequestMapping("/account")
+@RequestMapping("/address")
 public class AddressRenderingController extends BaseRenderingController {
 	
-	@RequestMapping("/MyAddresses.spr")
+	@RequestMapping("/List.spr")
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public ModelAndView toAddress(){ 
 		return  createModelAndView("myAddresses"); 
 	}
 	
-	@RequestMapping("/FormAddress.spr")
+	@RequestMapping("/Form.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView deal(@RequestParam(value="id", defaultValue="-1") long id) throws  ServiceException {
 		ModelAndView modelAndView = createModelAndView("addressForm");

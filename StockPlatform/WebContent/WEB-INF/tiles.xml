@@ -22,6 +22,7 @@
 		
 		<put-attribute name="footer" value="/WEB-INF/jsp/templates/defaultFooter.jsp" />
 		<put-attribute name="page-title" value="/WEB-INF/jsp/templates/pageTitle.jsp" />
+		<put-attribute name="add-button" value="" cascade="true"/>
 	</definition>
 	
 	<definition name="base-form-definition" template="/WEB-INF/jsp/layouts/popupLayout.jsp">
@@ -41,7 +42,7 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/registration.jsp" />
 	</definition>
 
-	<definition name="account" extends="base-definition">
+	<definition name="account" extends="base-form-definition">
 		<put-attribute name="nav-account" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/account.jsp" />
 	</definition>
@@ -59,7 +60,7 @@
 	<definition name="myLots" extends="base-definition">
 		<put-attribute name="nav-lots" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/myLots.jsp" />
-		<put-attribute name="page-title" value="/WEB-INF/jsp/templates/pageTitleWithAddButton.jsp" />
+		<put-attribute name="add-button" value="/WEB-INF/jsp/templates/addButton.jsp" cascade="true"/>
 	</definition>
 	
 	<definition name="myDeals" extends="base-definition">
@@ -75,7 +76,7 @@
 	<definition name="myTenders" extends="base-definition">
 		<put-attribute name="nav-tenders" value="active" cascade="true" />
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/myTenders.jsp" />
-		<put-attribute name="page-title" value="/WEB-INF/jsp/templates/pageTitleWithAddButton.jsp" />
+		<put-attribute name="add-button" value="/WEB-INF/jsp/templates/addButton.jsp" cascade="true"/>
 	</definition>
 
 	<definition name="productForm" extends="base-form-definition">
@@ -91,7 +92,7 @@
 	<definition name="productsForAdmin" extends="base-definition">
 		<put-attribute name="nav-productsExt" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/productsForAdmin.jsp" />
-		<put-attribute name="page-title" value="/WEB-INF/jsp/templates/pageTitleWithAddButton.jsp" />
+		<put-attribute name="add-button" value="/WEB-INF/jsp/templates/addButton.jsp" cascade="true"/>
 	</definition>
 
 	<definition name="tenderForm" extends="base-form-definition">
@@ -110,7 +111,7 @@
 	</definition>
 	 
 	<definition name="message" extends="base-form-definition">
-		<put-attribute name="body" value="/WEB-INF/jsp/pages/message.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/message.jsp" />
 	</definition> 
 	
 	<definition name="resetPassw" extends="base-definition">
@@ -123,10 +124,10 @@
 	
 	<definition name="myAddresses" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/myAddresses.jsp" />
-		<put-attribute name="page-title" value="/WEB-INF/jsp/templates/pageTitleWithAddButton.jsp" />
+		<put-attribute name="add-button" value="/WEB-INF/jsp/templates/addButton.jsp" cascade="true"/>
 	</definition> 
 	
-	<definition name="addressForm" extends="base-definition">
+	<definition name="addressForm" extends="base-form-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/address.jsp" />
 	</definition>
 	
