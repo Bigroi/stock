@@ -128,7 +128,7 @@ $(document).ready(function(){
 	$(".login-button").on("click", function(){
 		showDialog(getLoginDialogParams());
 	});
-	$('.contactus').on("click", function(){
+	$('.send-message').on("click", function(){
 		showDialog(getContactUsDialogParams());
 	});
 	$('.edit-account').on("click", function(){
