@@ -16,7 +16,7 @@ public class TenderExparationMessage extends BaseMessage<Tender> {
 	}
 
 	@Override
-	protected String getEmail(Tender tender) throws MessageException {
+	protected String getRecipient(Tender tender) throws MessageException {
 		try {
 			long companyId = tender.getCompanyId();
 			return companyDao.getById(companyId).getEmail();

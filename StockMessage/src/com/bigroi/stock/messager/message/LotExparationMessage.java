@@ -16,7 +16,7 @@ public class LotExparationMessage extends BaseMessage<Lot> {
 	}
 
 	@Override
-	protected String getEmail(Lot lot) throws MessageException {
+	protected String getRecipient(Lot lot) throws MessageException {
 		try {
 			long companyId = lot.getCompanyId();
 			return companyDao.getById(companyId).getEmail();

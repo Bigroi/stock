@@ -32,5 +32,10 @@
 			<artifactId>mail</artifactId>
 			<version>${mail.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>Stock</groupId>
+			<artifactId>Documents</artifactId>
+			<version>${stock.version}</version>
+		</dependency>
 	</dependencies>
 </project>

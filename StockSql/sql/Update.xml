@@ -9,5 +9,8 @@
 	<update author="Evgeni" date="28.06.2018">
 	   	ALTER TABLE `TRANSPORT_PROPOSITION` CHANGE COLUMN `price` `price` DECIMAL(10,2) NOT NULL AFTER `company_id`;
 	</update>
+	<update author="Pavel" date="2.07.2018">
+		ALTER TABLE `EMAIL` ADD COLUMN `fileName` VARCHAR(50) NULL AFTER `body`, ADD COLUMN `file` BLOB NULL AFTER `file_name`;
+	</update>
 </root>
 

@@ -52,13 +52,31 @@ abstract class BaseMessage<T> implements Message<T>{
 	
 	public void sendImediatly(T object) throws MessageException{
 		try {
-			mailManager.send(getEmail(object), getSubject(), getText(object));
+			mailManager.send(getEmail(object));
 		} catch (MailManagerException e) {
 			throw new MessageException(e);
 		}
 	}
 	
-	protected abstract String getEmail(T object) throws MessageException;
+	private Email getEmail(T object) throws MessageException{
+		Email email = new Email();
+		email.setBody(getText(object));
+		email.setRecipient(getRecipient(object));
+		email.setSubject(getSubject());
+		email.setFile(getFile(object));
+		email.setFileName(getFileName());
+		return email;
+	}
+	
+	protected byte[] getFile(T object) throws MessageException {
+		return null;
+	}
+
+	protected String getFileName() {
+		return null;
+	}
+
+	protected abstract String getRecipient(T object) throws MessageException;
 	
 	protected String getText(T object) throws MessageException{
 		return text;
@@ -70,7 +88,7 @@ abstract class BaseMessage<T> implements Message<T>{
 	
 	public void send(T object) throws MessageException{
 		try {
-			emailDao.add(new Email(getEmail(object), getSubject(), getText(object)));
+			emailDao.add(getEmail(object));
 		} catch (DaoException e) {
 			throw new MessageException(e);
 		}

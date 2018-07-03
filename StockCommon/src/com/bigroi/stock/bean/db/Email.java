@@ -6,6 +6,8 @@ public class Email {
 	private String recipient;
 	private String subject;
 	private String body;
+	private byte[] file;
+	private String fileName;
 
 	public Email() {// init
 	}
@@ -14,6 +16,23 @@ public class Email {
 		this.recipient = recipient;
 		this.subject = subject;
 		this.body = body;
+	}
+	
+	
+	public byte[] getFile() {
+		return file;
+	}
+	
+	public void setFile(byte[] file) {
+		this.file = file;
+	}
+	
+	public String getFileName() {
+		return fileName;
+	}
+	
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	public long getId() {

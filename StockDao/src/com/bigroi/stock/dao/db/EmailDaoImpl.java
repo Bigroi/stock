@@ -24,11 +24,11 @@ import com.bigroi.stock.dao.EmailDao;
 public class EmailDaoImpl implements EmailDao {
 
 	private static final String GET_ALL_EMAILS = 
-			" SELECT ID, RECIPIENT, SUBJECT, BODY FROM EMAIL ";
+			" SELECT ID, RECIPIENT, SUBJECT, BODY, FILE, FILE_NAME FROM EMAIL ";
 
 	private static final String ADD_EMAILS = "INSERT INTO EMAIL " 
-	        + " (RECIPIENT, SUBJECT, BODY) "
-			+ " VALUES (?, ?, ?) ";
+	        + " (RECIPIENT, SUBJECT, BODY, FILE, FILE_NAME) "
+			+ " VALUES (?, ?, ?, ?, ?) ";
 
 	private static final String DELETE_EMAILS_BY_ID = " DELETE FROM EMAIL "
 			+ " WHERE ID =  ? ";
@@ -54,6 +54,8 @@ public class EmailDaoImpl implements EmailDao {
 				ps.setString(1, email.getRecipient());
 				ps.setString(2, email.getSubject());
 				ps.setString(3, email.getBody());
+				ps.setBytes(4, email.getFile());
+				ps.setString(5, email.getFileName());
 				return ps;
 			}
 		}, keyHolder);

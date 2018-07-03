@@ -29,7 +29,7 @@ public class MessageServiceImpl implements MessageService{
 			do {
 				emails = emailDao.getAll();
 				for (Email email : emails) {
-					mailManager.send(email.getRecipient(), email.getSubject(), email.getBody());
+					mailManager.send(email);
 					emailDao.deleteById(email.getId());
 				}
 			} while (!emails.isEmpty());

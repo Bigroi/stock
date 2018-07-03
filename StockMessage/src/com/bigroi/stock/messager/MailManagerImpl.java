@@ -3,14 +3,22 @@ package com.bigroi.stock.messager;
 import java.util.Arrays;
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
+
+import com.bigroi.stock.bean.db.Email;
 
 public class MailManagerImpl implements MailManager {
 
@@ -21,12 +29,12 @@ public class MailManagerImpl implements MailManager {
 	private String serverAdress;
 
 	@Override
-	public void send(String toEmail, String subject, String text) throws MailManagerException {
-		send(user, toEmail, subject, text);
+	public void send(Email email) throws MailManagerException {
+		send(user, email);
 	}
 
 	@Override
-	public void send(String fromEmail, String toEmail, String subject, String text) throws MailManagerException {
+	public void send(String fromEmail, Email email) throws MailManagerException {
 		try {
 			Session session = Session.getInstance(mailProperties, new Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
@@ -36,9 +44,22 @@ public class MailManagerImpl implements MailManager {
 			Message message = new MimeMessage(session);
 			InternetAddress emailFrom = new InternetAddress(fromEmail);
 			message.setFrom(emailFrom);
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-			message.setSubject(subject);
-			message.setText(text);
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getRecipient()));
+			message.setSubject(email.getSubject());
+			message.setText(email.getBody());
+			if (email.getFile() != null){
+				MimeBodyPart messageBodyPart = new MimeBodyPart();
+	
+		        Multipart multipart = new MimeMultipart();
+	
+		        messageBodyPart = new MimeBodyPart();
+		        DataSource source = new ByteArrayDataSource(email.getFile(), "");
+		        messageBodyPart.setDataHandler(new DataHandler(source));
+		        messageBodyPart.setFileName(email.getFileName());
+		        multipart.addBodyPart(messageBodyPart);
+	
+		        message.setContent(multipart);
+			}	
 			Transport.send(message);
 		} catch (MessagingException e) {
 			throw new MailManagerException(e);
@@ -46,12 +67,13 @@ public class MailManagerImpl implements MailManager {
 	}
 
 	@Override
-	public void sendToAdmin(Throwable  e) {
+	public void sendToAdmin(Throwable e) {
 		try{
-		String subject = e.getMessage();
-		StackTraceElement[] eText = e.getStackTrace();
-		String text = Arrays.toString(eText);
-		send(adminUser, subject, text);
+		Email email = new Email();
+		email.setBody(Arrays.toString(e.getStackTrace()));
+		email.setRecipient(adminUser);
+		email.setSubject(e.getMessage());
+		send(email);
 		}catch (MailManagerException excep) {
 			excep.printStackTrace();
 		}

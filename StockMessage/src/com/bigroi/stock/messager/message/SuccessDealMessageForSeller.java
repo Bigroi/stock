@@ -16,7 +16,7 @@ public class SuccessDealMessageForSeller extends BaseMessage<Deal>{
 	}
 
 	@Override
-	protected String getEmail(Deal deal) throws MessageException {
+	protected String getRecipient(Deal deal) throws MessageException {
 		try{
 			return companyDao.getById(deal.getSellerAddress().getCompanyId()).getEmail();
 		}catch (DaoException e) {

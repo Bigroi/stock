@@ -11,7 +11,7 @@ public class LinkResetPasswordMessage extends BaseMessage<Map<String, String>> {
 	}
 
 	@Override
-	protected String getEmail(Map<String, String> map) throws MessageException {
+	protected String getRecipient(Map<String, String> map) throws MessageException {
 		return map.get("email");
 	}
 

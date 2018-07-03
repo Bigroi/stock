@@ -11,7 +11,7 @@ public class FeedBackMessage extends BaseMessage<FeedBack>{
 		this.managerEmaill = managerEmaill;
 	}
 	@Override
-	protected String getEmail(FeedBack feedBack) throws MessageException {
+	protected String getRecipient(FeedBack feedBack) throws MessageException {
 		return managerEmaill;
 	}
 	

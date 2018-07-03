@@ -11,12 +11,29 @@ public class DealConfirmationMessageForSeller extends BaseMessage<Deal> {
 	@Autowired
 	private CompanyDao companyDao;
 	
+//	@Autowired
+//	private DealDocument dealDocument;
+	
 	public DealConfirmationMessageForSeller(String fileName) throws MessageException {
 		super(fileName);
 	}
+	
+//	@Override
+//	protected byte[] getFile(Deal deal) throws MessageException {
+//		try {
+//			return dealDocument.getDocument(deal);
+//		} catch (DocumentException e) {
+//			throw new MessageException(e);
+//		}
+//	}
+//	
+//	@Override
+//	protected String getFileName() {
+//		return "Deal.doc";
+//	}
 
 	@Override
-	protected String getEmail(Deal deal) throws MessageException {
+	protected String getRecipient(Deal deal) throws MessageException {
 		try{
 			return companyDao.getById(deal.getSellerAddress().getCompanyId()).getEmail();
 		}catch (DaoException e) {

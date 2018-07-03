@@ -9,7 +9,7 @@ public class ResetUserPasswordMessage extends BaseMessage<StockUser> {
 	}
 
 	@Override
-	protected String getEmail(StockUser stockUser) throws MessageException {
+	protected String getRecipient(StockUser stockUser) throws MessageException {
 		return stockUser.getUsername();
 		
 	}
