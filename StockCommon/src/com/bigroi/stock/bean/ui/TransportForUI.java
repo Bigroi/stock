@@ -35,8 +35,6 @@ public class TransportForUI {
 
 	private final double  sellerLatitude;
 	private final double sellerLongitude;
-	
-	private long dealId;
 
 	public TransportForUI(Deal deal){
 		this.id = deal.getId();
@@ -53,7 +51,6 @@ public class TransportForUI {
 	
 	public TransportForUI(Proposition prop){
 		this.id = prop.getId();
-		this.dealId = prop.getDealId();
 		this.price = prop.getPrice();
 		this.volume = prop.getDeal().getVolume();
 		this.name = prop.getProduct().getName();
@@ -79,13 +76,5 @@ public class TransportForUI {
 
 	public double getSellerLongitude() {
 		return sellerLongitude;
-	}
-	
-	public long getDealId() {
-		return dealId;
-	}
-
-	public void setDealId(long dealId) {
-		this.dealId = dealId;
 	}
 }

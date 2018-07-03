@@ -40,9 +40,9 @@ public class PropositionResourceController {
 	@RequestMapping(value = "/Delete.spr")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public String delete(@RequestParam("dealId") long dealId, Authentication loggedInUser) throws ServiceException {
+	public String delete(@RequestParam("dealId") long id, Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
-		propService.delete(dealId, user.getCompany().getId());
+		propService.delete(id, user.getCompany().getId());
 		return new ResultBean(1, "success").toString();
 	}
 

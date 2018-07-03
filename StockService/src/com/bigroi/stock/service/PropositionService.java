@@ -9,6 +9,6 @@ public interface PropositionService {
 	
 	List<Proposition> getListProposition() throws ServiceException;
 	
-	void delete(long dealId, long companyId) throws ServiceException;
+	void delete(long id, long companyId) throws ServiceException;
 	
 }

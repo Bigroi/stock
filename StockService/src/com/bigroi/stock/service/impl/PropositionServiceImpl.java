@@ -27,9 +27,9 @@ public class PropositionServiceImpl implements PropositionService {
 	}
 
 	@Override
-	public void delete(long dealId, long companyId) throws ServiceException {
+	public void delete(long id, long companyId) throws ServiceException {
 		try {
-			 propostionDao.deleteProposition(dealId, companyId);
+			 propostionDao.deleteProposition(id, companyId);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
