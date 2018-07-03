@@ -4,11 +4,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.db.Proposition;
+import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.bean.ui.TransportForUI;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
@@ -25,11 +29,21 @@ public class PropositionResourceController {
 	
 	@RequestMapping(value = "/MyPropositions.spr")
 	@ResponseBody
+	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String MyDeallist() throws ServiceException, TableException{
 		List<Proposition> prop =  propService.getListProposition();
 		List<TransportForUI> propForUI =  prop.stream().map(TransportForUI::new).collect(Collectors.toList());
 		TableResponse<TransportForUI> table = new TableResponse<>(TransportForUI.class, propForUI);
 		return new ResultBean(1, table, null).toString();
+	}
+	
+	@RequestMapping(value = "/Delete.spr")
+	@ResponseBody
+	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
+	public String delete(@RequestParam("dealId") long dealId, Authentication loggedInUser) throws ServiceException {
+		StockUser user = (StockUser)loggedInUser.getPrincipal();
+		propService.delete(dealId, user.getCompany().getId());
+		return new ResultBean(1, "success").toString();
 	}
 
 }

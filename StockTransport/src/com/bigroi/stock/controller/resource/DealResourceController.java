@@ -19,7 +19,7 @@ import com.bigroi.stock.service.ServiceException;
 
 @Controller
 @RequestMapping(value = "/deal/json", produces = "text/plain;charset=UTF-8")
-public class TransportResourceController extends BaseResourseController {
+public class DealResourceController extends BaseResourseController {
 	
 	@Autowired
 	private  DealService dealService;

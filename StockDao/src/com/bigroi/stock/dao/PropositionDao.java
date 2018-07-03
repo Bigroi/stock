@@ -7,5 +7,7 @@ import com.bigroi.stock.bean.db.Proposition;
 public interface PropositionDao {
 	
 	List<Proposition> getListPropositions() throws DaoException;
+	
+    boolean deleteProposition(long dealId, long companyId) throws DaoException;
 
 }

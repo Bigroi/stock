@@ -3,6 +3,7 @@ package com.bigroi.stock.bean.ui;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Proposition;
 import com.bigroi.stock.json.Column;
+import com.bigroi.stock.json.Edit;
 import com.bigroi.stock.json.Id;
 
 public class TransportForUI {
@@ -25,12 +26,18 @@ public class TransportForUI {
 	@Column(value = "label.transport.addressSeller", responsivePriority=-1)
 	private final String sellerAddress;
 	
+	@Column(value = "label.button.delete", responsivePriority=-5)
+	@Edit(remove="/address/json/Delete.spr", edit = "")
+	private final String edit = "YYN";
+	
 	private final double  buyerLatitude;
 	private final double buyerLongitude;
 
 	private final double  sellerLatitude;
 	private final double sellerLongitude;
 	
+	private long dealId;
+
 	public TransportForUI(Deal deal){
 		this.id = deal.getId();
 		this.volume = deal.getVolume();
@@ -46,6 +53,7 @@ public class TransportForUI {
 	
 	public TransportForUI(Proposition prop){
 		this.id = prop.getId();
+		this.dealId = prop.getDealId();
 		this.price = prop.getPrice();
 		this.volume = prop.getDeal().getVolume();
 		this.name = prop.getProduct().getName();
@@ -71,5 +79,13 @@ public class TransportForUI {
 
 	public double getSellerLongitude() {
 		return sellerLongitude;
+	}
+	
+	public long getDealId() {
+		return dealId;
+	}
+
+	public void setDealId(long dealId) {
+		this.dealId = dealId;
 	}
 }

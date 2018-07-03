@@ -31,6 +31,10 @@ public class PropositionDaoImpl implements PropositionDao {
 			+ " JOIN ADDRESS SA ON SA.ID = D.SELLER_ADDRESS_ID "
 			+ " WHERE T.STATUS = '"+ PropositionStatus.APPROVE +"' ";
 	
+	private static final String DELETE_PROPOSITION_BY_DEAL_ID_AND_COMPANY_ID = 
+			" DELETE FROM TRANSPORT_PROPOSITION WHERE "
+			+ " DEAL_ID = ? AND COMPANY_ID = ? ";
+	
 	@Autowired
 	private DataSource dataSource;
 
@@ -42,10 +46,16 @@ public class PropositionDaoImpl implements PropositionDao {
 		return list;
 	}
 	
+	@Override
+	public boolean deleteProposition(long dealId, long companyId) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(dataSource);
+		return template.update(DELETE_PROPOSITION_BY_DEAL_ID_AND_COMPANY_ID, dealId, companyId) == 1;
+	}
+	
 	private static final class PropostionRowMapper implements RowMapper<Proposition>{
 		
 		private static final String ALL_COLUMNS = 
-			"T.ID, T.PRICE, "
+			"T.ID, T.PRICE, T.deal_id, "
 			+ " D.VOLUME, "
 			+ " P.NAME, "
 			+ " BA.CITY BUYER_CITY, BA.COUNTRY BUYER_COUNTRY, BA.ADDRESS BUYER_ADDRESS, BA.LATITUDE BUYER_LATITUDE, BA.LONGITUDE BUYER_LONGITUDE, "
@@ -55,6 +65,7 @@ public class PropositionDaoImpl implements PropositionDao {
 		public Proposition mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Proposition prop = new Proposition();
 			prop.setId(rs.getLong("ID"));
+			prop.setDealId(rs.getLong("deal_id"));
 			prop.setPrice(rs.getInt("PRICE"));
 			
 			Deal deal = new Deal();

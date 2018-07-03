@@ -26,6 +26,7 @@ public class TransportRenderingController extends BaseRenderingController {
 	}
 	
 	@RequestMapping("propositions")
+	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public ModelAndView propositions() throws Exception {
 		return createModelAndView("propositions");
 	}
@@ -36,6 +37,7 @@ public class TransportRenderingController extends BaseRenderingController {
 	}
 	
 	@RequestMapping("history.spr")
+	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public ModelAndView history() throws Exception {
 		return createModelAndView("history");
 	}
@@ -43,11 +45,5 @@ public class TransportRenderingController extends BaseRenderingController {
 	@RequestMapping("login.spr")
 	public ModelAndView login() throws Exception {
 		return createModelAndView("login");
-	}
-	
-	@RequestMapping("/main.spr")
-	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView main() {
-		return createModelAndView("main");
 	}
 }
