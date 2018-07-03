@@ -55,7 +55,7 @@ public class PropositionDaoImpl implements PropositionDao {
 	private static final class PropostionRowMapper implements RowMapper<Proposition>{
 		
 		private static final String ALL_COLUMNS = 
-			"T.ID, T.PRICE, T.deal_id, "
+			"T.ID, T.PRICE, T.DEAL_ID, "
 			+ " D.VOLUME, "
 			+ " P.NAME, "
 			+ " BA.CITY BUYER_CITY, BA.COUNTRY BUYER_COUNTRY, BA.ADDRESS BUYER_ADDRESS, BA.LATITUDE BUYER_LATITUDE, BA.LONGITUDE BUYER_LONGITUDE, "
@@ -65,7 +65,7 @@ public class PropositionDaoImpl implements PropositionDao {
 		public Proposition mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Proposition prop = new Proposition();
 			prop.setId(rs.getLong("ID"));
-			prop.setDealId(rs.getLong("deal_id"));
+			prop.setDealId(rs.getLong("DEAL_ID"));
 			prop.setPrice(rs.getInt("PRICE"));
 			
 			Deal deal = new Deal();
