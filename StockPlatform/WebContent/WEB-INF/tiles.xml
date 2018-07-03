@@ -23,7 +23,7 @@
 		<put-attribute name="footer" value="/WEB-INF/jsp/templates/defaultFooter.jsp" />
 		<put-attribute name="page-title" value="/WEB-INF/jsp/templates/pageTitle.jsp" />
 		<put-attribute name="add-button" value="" cascade="true"/>
-		<put-attribute name="tbh-cls" value="" cascade="true"/>
+		<put-attribute name="thb-cls" value="" cascade="true"/>
 	</definition>
 	
 	<definition name="base-form-definition" template="/WEB-INF/jsp/layouts/popupLayout.jsp">
@@ -40,7 +40,7 @@
 	<definition name="companies" extends="base-definition">
 		<put-attribute name="nav-company" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/companies.jsp" />
-		<put-attribute name="tbh-cls" value="tbh" cascade="true"/>
+		<put-attribute name="thb-cls" value="thb" cascade="true"/>
 	</definition>
 
 	<definition name="myLots" extends="base-definition">
@@ -52,13 +52,13 @@
 	<definition name="myDeals" extends="base-definition">
 		<put-attribute name="nav-deals" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/myDeals.jsp" />
-		<put-attribute name="tbh-cls" value="tbh" cascade="true"/>
+		<put-attribute name="thb-cls" value="thb" cascade="true"/>
 	</definition>
 	
 	<definition name="deal" extends="base-definition">
 		<put-attribute name="nav-deals" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/deal.jsp" />
-		<put-attribute name="tbh-cls" value="tbh" cascade="true"/>
+		<put-attribute name="thb-cls" value="thb" cascade="true"/>
 	</definition>
 
 	<definition name="myTenders" extends="base-definition">
@@ -70,7 +70,7 @@
 	<definition name="products" extends="base-definition">
 		<put-attribute name="nav-products" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/products.jsp" />
-		<put-attribute name="tbh-cls" value="tbh" cascade="true"/>
+		<put-attribute name="thb-cls" value="thb" cascade="true"/>
 	</definition>
 
 	<definition name="productsForAdmin" extends="base-definition">
@@ -82,18 +82,18 @@
 	<definition name="tradeOffers" extends="base-definition">
 		<put-attribute name="nav-products" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/tradeOffers.jsp" />
-		<put-attribute name="tbh-cls" value="tbh" cascade="true"/>
+		<put-attribute name="thb-cls" value="thb" cascade="true"/>
 	</definition>
 
 	<definition name="testBG" extends="base-definition">
 		<put-attribute name="nav-testBG" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/test/testBG.jsp" />
-		<put-attribute name="tbh-cls" value="tbh"/>
+		<put-attribute name="thb-cls" value="thb"/>
 	</definition> 
 	
 	<definition name="resetPassw" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/resetPassw.jsp" />
-		<put-attribute name="tbh-cls" value="tbh" cascade="true"/>
+		<put-attribute name="thb-cls" value="thb" cascade="true"/>
 	</definition>  
 	
 	<definition name="myAddresses" extends="base-definition">

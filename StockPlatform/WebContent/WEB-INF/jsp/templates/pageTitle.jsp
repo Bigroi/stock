@@ -1,7 +1,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <div class="table-header">
 	<h1>${page_title}</h1>
-	<div class="table-header-button <tiles:getAsString name='tbh-cls'/>">
+	<div class="table-header-button <tiles:getAsString name='thb-cls'/>">
 		<tiles:insertAttribute name="add-button"/>
 		<div class="login-button-page">
 	    	<div>${user.company.name}</div>
