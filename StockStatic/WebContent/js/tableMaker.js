@@ -55,9 +55,9 @@ $(document).ready(function(){
 			var $editRemove = getCell(model.editColumn, $row);
 	        $editRemove.textContent = "";
 	        
-	        var $edit = $("<div class='no-edit'>e</div>");
-	        var $remove = $("<div class='no-remove'>d</div>");
-	        var $details = $("<div class='no-details'>de</div>");
+	        var $edit = $("<div class='no-edit'></div>");
+	        var $remove = $("<div class='no-remove'></div>");
+	        var $details = $("<div class='no-details'></div>");
 	        
 	        if(data[model.editColumn][0] == "Y"){ 
 	            $edit.removeClass("no-edit");
