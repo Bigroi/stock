@@ -27,7 +27,7 @@ public class TransportForUI {
 	private final String sellerAddress;
 	
 	@Column(value = "label.button.delete", responsivePriority=-5)
-	@Edit(remove="/address/json/Delete.spr", edit = "")
+	@Edit(remove="/proposition/json/Delete.spr", edit = "")
 	private final String edit = "YYN";
 	
 	private final double  buyerLatitude;
