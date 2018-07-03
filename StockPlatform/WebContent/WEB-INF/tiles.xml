@@ -23,38 +23,24 @@
 		<put-attribute name="footer" value="/WEB-INF/jsp/templates/defaultFooter.jsp" />
 		<put-attribute name="page-title" value="/WEB-INF/jsp/templates/pageTitle.jsp" />
 		<put-attribute name="add-button" value="" cascade="true"/>
+		<put-attribute name="tbh-cls" value="" cascade="true"/>
 	</definition>
 	
 	<definition name="base-form-definition" template="/WEB-INF/jsp/layouts/popupLayout.jsp">
 		<put-attribute name="body" value="" />
 	</definition>
 
-	<!-- Pages -->
+	<!-- Index -->
 	
 	<definition name="index" template="/WEB-INF/jsp/pages/index.jsp">
 	</definition>
 
-	<definition name="login" extends="base-form-definition">
-		<put-attribute name="body" value="/WEB-INF/jsp/forms/login.jsp" />
-	</definition>
-
-	<definition name="registration" extends="base-form-definition">
-		<put-attribute name="body" value="/WEB-INF/jsp/forms/registration.jsp" />
-	</definition>
-
-	<definition name="account" extends="base-form-definition">
-		<put-attribute name="nav-account" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/forms/account.jsp" />
-	</definition>
+	<!-- Pages -->
 
 	<definition name="companies" extends="base-definition">
 		<put-attribute name="nav-company" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/companies.jsp" />
-	</definition>
-
-	<definition name="lotForm" extends="base-form-definition">
-		<put-attribute name="nav-lots" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/forms/lot.jsp" />
+		<put-attribute name="tbh-cls" value="tbh" cascade="true"/>
 	</definition>
 
 	<definition name="myLots" extends="base-definition">
@@ -66,11 +52,13 @@
 	<definition name="myDeals" extends="base-definition">
 		<put-attribute name="nav-deals" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/myDeals.jsp" />
+		<put-attribute name="tbh-cls" value="tbh" cascade="true"/>
 	</definition>
 	
 	<definition name="deal" extends="base-definition">
 		<put-attribute name="nav-deals" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/deal.jsp" />
+		<put-attribute name="tbh-cls" value="tbh" cascade="true"/>
 	</definition>
 
 	<definition name="myTenders" extends="base-definition">
@@ -79,14 +67,10 @@
 		<put-attribute name="add-button" value="/WEB-INF/jsp/templates/addButton.jsp" cascade="true"/>
 	</definition>
 
-	<definition name="productForm" extends="base-form-definition">
-		<put-attribute name="nav-welcome" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/forms/product.jsp" />
-	</definition>
-
 	<definition name="products" extends="base-definition">
 		<put-attribute name="nav-products" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/products.jsp" />
+		<put-attribute name="tbh-cls" value="tbh" cascade="true"/>
 	</definition>
 
 	<definition name="productsForAdmin" extends="base-definition">
@@ -95,37 +79,64 @@
 		<put-attribute name="add-button" value="/WEB-INF/jsp/templates/addButton.jsp" cascade="true"/>
 	</definition>
 
-	<definition name="tenderForm" extends="base-form-definition">
-		<put-attribute name="nav-tenders" value="active" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/forms/tender.jsp" />
-	</definition>
-
 	<definition name="tradeOffers" extends="base-definition">
 		<put-attribute name="nav-products" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/tradeOffers.jsp" />
+		<put-attribute name="tbh-cls" value="tbh" cascade="true"/>
 	</definition>
 
 	<definition name="testBG" extends="base-definition">
 		<put-attribute name="nav-testBG" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/test/testBG.jsp" />
-	</definition>
-	 
-	<definition name="message" extends="base-form-definition">
-		<put-attribute name="body" value="/WEB-INF/jsp/forms/message.jsp" />
+		<put-attribute name="tbh-cls" value="tbh"/>
 	</definition> 
 	
 	<definition name="resetPassw" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/resetPassw.jsp" />
-	</definition> 
-	
-	<definition name="feedback" extends="base-form-definition">
-		<put-attribute name="body" value="/WEB-INF/jsp/forms/feedback.jsp" />
-	</definition> 
+		<put-attribute name="tbh-cls" value="tbh" cascade="true"/>
+	</definition>  
 	
 	<definition name="myAddresses" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/myAddresses.jsp" />
 		<put-attribute name="add-button" value="/WEB-INF/jsp/templates/addButton.jsp" cascade="true"/>
 	</definition> 
+	
+	<!-- forms -->
+	<definition name="login" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/login.jsp" />
+	</definition>
+
+	<definition name="registration" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/registration.jsp" />
+	</definition>
+	
+	<definition name="account" extends="base-form-definition">
+		<put-attribute name="nav-account" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/account.jsp" />
+	</definition>
+	
+	<definition name="lotForm" extends="base-form-definition">
+		<put-attribute name="nav-lots" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/lot.jsp" />
+	</definition>
+	
+	<definition name="productForm" extends="base-form-definition">
+		<put-attribute name="nav-welcome" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/product.jsp" />
+	</definition>
+	
+	<definition name="message" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/message.jsp" />
+	</definition> 
+	
+	<definition name="tenderForm" extends="base-form-definition">
+		<put-attribute name="nav-tenders" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/tender.jsp" />
+	</definition>
+	
+	<definition name="feedback" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/feedback.jsp" />
+	</definition>
 	
 	<definition name="addressForm" extends="base-form-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/address.jsp" />

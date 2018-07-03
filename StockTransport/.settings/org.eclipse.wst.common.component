@@ -18,9 +18,6 @@
         <dependent-module archiveName="Message-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockMessage/StockMessage">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="Documents-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockDocuments/StockDocuments">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="Util-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockUtil/StockUtil">
             <dependency-type>uses</dependency-type>
         </dependent-module>
