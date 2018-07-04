@@ -860,6 +860,12 @@ footer .container {
 #forAdress{
 	width: 344px;
 }
+.dialogbox input,
+.dialogbox select,
+.dialogbox select option,
+.dialogbox textarea { 
+  font-size: 14px;
+}
 .dialogbox ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   font-size: 14px;
   color: #9da4a9;
@@ -895,7 +901,7 @@ footer .container {
 	display: none;
 }
 #form-container .popUp-container {
-	 height: 473px;
+	 min-height: 473px;
 }
 .forMap {
 	width: 474px;
@@ -1630,4 +1636,17 @@ table.dataTable.no-footer,
 }
 .table-tradeOffers table.dataTable.display tbody td {
 	font-size: 18px;
+}
+.dialogbox-child select {
+	width: 370px;
+    height: 40px;
+    border-radius: 4px;
+    border: solid 1px #ced1d6;
+    padding: 9px 13px;
+}
+.dialogbox-child textarea {
+	width: 370px;
+    height: 100px;
+    border-radius: 4px;
+    border: solid 1px #ced1d6;
 }
