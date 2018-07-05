@@ -15,7 +15,7 @@
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
 			<resource>
-				<directory>docs-${ENV_NAME}</directory>
+				<directory>docs_${ENV_NAME}</directory>
 			</resource>
 		</resources>
 	</build>
