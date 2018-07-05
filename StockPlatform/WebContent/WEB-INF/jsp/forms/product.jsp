@@ -14,8 +14,12 @@
             <input type="text" name="name" required maxlength="50"/>
         </div>
         <div>
-            <label for="name">${label.product.delivary_price}</label>
+            <label for="delivaryPrice">${label.product.delivary_price}</label>
             <input type="text" name="delivaryPrice" required maxlength="50"/>
+        </div>
+        <div>
+            <label for="picture">${label.product.picture}</label>
+            <input type="text" name="picture" required maxlength="50"/>
         </div>
         <div>
             <label for=description>${label.product.description}</label>

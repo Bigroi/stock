@@ -52,16 +52,16 @@ public class ProductDaoImpl implements ProductDao {
 			+ " WHERE P.REMOVED = 'N'";
 	
 	private static final String ADD_PRODUCT = 
-			"INSERT INTO PRODUCT (NAME, DESCRIPTION, REMOVED, DELIVARY_PRICE) " 
-	        + "VALUES (?, ?, ?, ?)";
+			"INSERT INTO PRODUCT (NAME, DESCRIPTION, REMOVED, DELIVARY_PRICE, PICTURE) " 
+	        + "VALUES (?, ?, ?, ?, ?)";
 
 	private static final String UPDATE_PRODUCTS_BY_ID = 
 			"UPDATE PRODUCT "
-			+ " SET NAME = ?, DESCRIPTION = ?, DELIVARY_PRICE = ?, REMOVED = ? "
+			+ " SET NAME = ?, DESCRIPTION = ?, DELIVARY_PRICE = ?, REMOVED = ?, PICTURE = ?"
 			+ " WHERE ID = ?";
 
 	private static final String GET_PRODUCT_BY_ID = 
-			"SELECT ID, NAME, DESCRIPTION, REMOVED, DELIVARY_PRICE "
+			"SELECT ID, NAME, DESCRIPTION, REMOVED, DELIVARY_PRICE, PICTURE "
 			+ " FROM PRODUCT "
 			+ " WHERE ID = ? ";
 	
@@ -101,6 +101,7 @@ public class ProductDaoImpl implements ProductDao {
 				ps.setString(2, product.getDescription());
 				ps.setString(3, product.getRemoved());
 				ps.setDouble(4, product.getDelivaryPrice());
+				ps.setString(5, product.getPicture());
 				return ps;
 			}
 		}, keyHolder);
@@ -116,6 +117,7 @@ public class ProductDaoImpl implements ProductDao {
 				product.getDescription(), 
 				product.getDelivaryPrice(),
 				product.getRemoved(),
+				product.getPicture(),
 				product.getId()) == 1;
 	}
 
