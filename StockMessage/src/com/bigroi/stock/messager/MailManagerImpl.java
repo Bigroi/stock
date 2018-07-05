@@ -46,20 +46,24 @@ public class MailManagerImpl implements MailManager {
 			message.setFrom(emailFrom);
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getRecipient()));
 			message.setSubject(email.getSubject());
-			message.setText(email.getBody());
+			
 			if (email.getFile() != null){
-				MimeBodyPart messageBodyPart = new MimeBodyPart();
-	
 		        Multipart multipart = new MimeMultipart();
 	
-		        messageBodyPart = new MimeBodyPart();
-		        DataSource source = new ByteArrayDataSource(email.getFile(), "");
-		        messageBodyPart.setDataHandler(new DataHandler(source));
-		        messageBodyPart.setFileName(email.getFileName());
-		        multipart.addBodyPart(messageBodyPart);
-	
+		        MimeBodyPart documentPart = new MimeBodyPart();
+		        DataSource source = new ByteArrayDataSource(email.getFile(), "application/octet-stream");
+		        documentPart.setDataHandler(new DataHandler(source));
+		        documentPart.setFileName(email.getFileName());
+		        multipart.addBodyPart(documentPart);
+		        
+		        MimeBodyPart textPart = new MimeBodyPart();
+		        textPart.setText(email.getBody());
+		        multipart.addBodyPart(textPart);
+		        
 		        message.setContent(multipart);
-			}	
+			} else {
+				message.setText(email.getBody());
+			}
 			Transport.send(message);
 		} catch (MessagingException e) {
 			throw new MailManagerException(e);

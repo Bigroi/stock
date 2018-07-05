@@ -32,10 +32,10 @@
 			<artifactId>mail</artifactId>
 			<version>${mail.version}</version>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>Stock</groupId>
 			<artifactId>Documents</artifactId>
 			<version>${stock.version}</version>
-		</dependency> -->
+		</dependency>
 	</dependencies>
 </project>

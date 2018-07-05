@@ -11,9 +11,14 @@
 		<version>0.1</version>
 	</parent>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>docs-${ENV_NAME}</directory>
+			</resource>
+		</resources>
+	</build>
 
 	<dependencies>
 		<dependency>

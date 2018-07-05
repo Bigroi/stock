@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.common.PartnerChoice;
 import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.dao.DaoException;
@@ -72,8 +73,16 @@ public class DealDaoImpl implements DealDao {
 			+ " ON D.PRODUCT_ID = P.ID "
 			+ " JOIN ADDRESS SA "
 			+ " ON SA.ID = D.SELLER_ADDRESS_ID "
+			+ " JOIN COMPANY SC "
+			+ " ON SA.COMPANY_ID = SC.ID "
+			+ " JOIN USER SU "
+			+ " ON SU.COMPANY_ID = SC.ID "
 			+ " JOIN ADDRESS BA "
 			+ " ON BA.ID = D.BUYER_ADDRESS_ID "
+			+ " JOIN COMPANY BC "
+			+ " ON BA.COMPANY_ID = BC.ID "
+			+ " JOIN USER BU "
+			+ " ON BU.COMPANY_ID = BC.ID "
 			+ " WHERE D.ID = ?";
 
 	private static final String ON_APPROVE_CRITERIA =
@@ -86,14 +95,22 @@ public class DealDaoImpl implements DealDao {
 	
 	private static final String GET_ON_APPROVE = 
 					  " SELECT " + DealRowMapper.ALL_COLUMNS
-					  + " FROM DEAL D "
-					  + " JOIN PRODUCT P "
-					  + " ON D.PRODUCT_ID = P.ID "
-					  + " JOIN ADDRESS SA "
-					  + " ON SA.ID = D.SELLER_ADDRESS_ID "
-					  + " JOIN ADDRESS BA "
-					  + " ON BA.ID = D.BUYER_ADDRESS_ID "
-					  + " WHERE " + ON_APPROVE_CRITERIA;
+						+ " FROM DEAL D "
+						+ " JOIN PRODUCT P "
+						+ " ON D.PRODUCT_ID = P.ID "
+						+ " JOIN ADDRESS SA "
+						+ " ON SA.ID = D.SELLER_ADDRESS_ID "
+						+ " JOIN COMPANY SC "
+						+ " ON SA.COMPANY_ID = SC.ID "
+						+ " JOIN USER SU "
+						+ " ON SU.COMPANY_ID = SC.ID "
+						+ " JOIN ADDRESS BA "
+						+ " ON BA.ID = D.BUYER_ADDRESS_ID "
+						+ " JOIN COMPANY BC "
+						+ " ON BA.COMPANY_ID = BC.ID "
+						+ " JOIN USER BU "
+						+ " ON BU.COMPANY_ID = BC.ID "
+					    + " WHERE " + ON_APPROVE_CRITERIA;
 	
 
 	private static final String DELETE_ON_APPROVE = 
@@ -103,14 +120,22 @@ public class DealDaoImpl implements DealDao {
 
 	private static final String GET_BY_COMPANY_ID = 
 			" SELECT " + DealRowMapper.ALL_COLUMNS
-					+ " FROM DEAL D "
-					+ " JOIN PRODUCT P "
-					+ " ON D.PRODUCT_ID = P.ID "
-					+ " JOIN ADDRESS SA "
-					+ " ON SA.ID = D.SELLER_ADDRESS_ID "
-					+ " JOIN ADDRESS BA "
-					+ " ON BA.ID = D.BUYER_ADDRESS_ID "
-					+ " WHERE BA.COMPANY_ID = ? OR SA.COMPANY_ID = ?";
+			+ " FROM DEAL D "
+			+ " JOIN PRODUCT P "
+			+ " ON D.PRODUCT_ID = P.ID "
+			+ " JOIN ADDRESS SA "
+			+ " ON SA.ID = D.SELLER_ADDRESS_ID "
+			+ " JOIN COMPANY SC "
+			+ " ON SA.COMPANY_ID = SC.ID "
+			+ " JOIN USER SU "
+			+ " ON SU.COMPANY_ID = SC.ID "
+			+ " JOIN ADDRESS BA "
+			+ " ON BA.ID = D.BUYER_ADDRESS_ID "
+			+ " JOIN COMPANY BC "
+			+ " ON BA.COMPANY_ID = BC.ID "
+			+ " JOIN USER BU "
+			+ " ON BU.COMPANY_ID = BC.ID "
+			+ " WHERE BA.COMPANY_ID = ? OR SA.COMPANY_ID = ?";
 
 	private static final String SET_SELLER_STATUS = 
 			  " UPDATE DEAL "
@@ -124,13 +149,21 @@ public class DealDaoImpl implements DealDao {
 	
 	private static final String GET_LIST_BY_SELLER_BUYER_APPROVE = 
 			" SELECT " + DealRowMapper.ALL_COLUMNS 
-			  + " FROM DEAL D "
-			  + " JOIN PRODUCT P "
-			  + " ON D.PRODUCT_ID = P.ID "
-			  + " JOIN ADDRESS SA "
-			  + " ON SA.ID = D.SELLER_ADDRESS_ID "
-			  + " JOIN ADDRESS BA "
-			  + " ON BA.ID = D.BUYER_ADDRESS_ID "
+			+ " FROM DEAL D "
+			+ " JOIN PRODUCT P "
+			+ " ON D.PRODUCT_ID = P.ID "
+			+ " JOIN ADDRESS SA "
+			+ " ON SA.ID = D.SELLER_ADDRESS_ID "
+			+ " JOIN COMPANY SC "
+			+ " ON SA.COMPANY_ID = SC.ID "
+			+ " JOIN USER SU "
+			+ " ON SU.COMPANY_ID = SC.ID "
+			+ " JOIN ADDRESS BA "
+			+ " ON BA.ID = D.BUYER_ADDRESS_ID "
+			+ " JOIN COMPANY BC "
+			+ " ON BA.COMPANY_ID = BC.ID "
+			+ " JOIN USER BU "
+			+ " ON BU.COMPANY_ID = BC.ID "
 			  + "WHERE ((BUYER_CHOICE | SELLER_CHOICE) & 15) = 8";
 
 
@@ -289,9 +322,10 @@ public class DealDaoImpl implements DealDao {
 				+ " P.NAME PRODUCT_NAME,  "
 				+ " SA.COMPANY_ID SELLER_COMPANY_ID, SA.LATITUDE SELLER_LATITUDE, SA.LONGITUDE SELLER_LONGITUDE, "
 				+ " SA.CITY SELLER_CITY, SA.COUNTRY SELLER_COUNTRY, SA.ADDRESS SELLER_ADDRESS, "
+				+ " SU.USERNAME SELLER_EMAIL, SC.NAME SELLER_COMPANY_NAME, SC.PHONE SELLER_PHONE, SC.REG_NUMBER SELLER_REG_NUMBER, "
 				+ " BA.COMPANY_ID BUYER_COMPANY_ID, BA.LATITUDE BUYER_LATITUDE, BA.LONGITUDE BUYER_LONGITUDE, "
-				+ " BA.CITY BUYER_CITY, BA.COUNTRY BUYER_COUNTRY, BA.ADDRESS BUYER_ADDRESS ";
-		
+				+ " BA.CITY BUYER_CITY, BA.COUNTRY BUYER_COUNTRY, BA.ADDRESS BUYER_ADDRESS, "
+				+ " BU.USERNAME BUYER_EMAIL, BC.NAME BUYER_COMPANY_NAME, BC.PHONE BUYER_PHONE, BC.REG_NUMBER BUYER_REG_NUMBER ";
 		
 		@Override
 		public Deal mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -328,6 +362,13 @@ public class DealDaoImpl implements DealDao {
 			address.setId(rs.getLong("SELLER_ADDRESS_ID"));
 			deal.setSellerAddress(address);
 			
+			Company company = new Company();
+			company.setEmail(rs.getString("SELLER_EMAIL"));
+			company.setName(rs.getString("SELLER_COMPANY_NAME"));
+			company.setPhone(rs.getString("SELLER_PHONE"));
+			company.setRegNumber(rs.getString("SELLER_REG_NUMBER"));
+			address.setCompany(company);
+			
 			address = new Address();
 			address.setCompanyId(rs.getLong("BUYER_COMPANY_ID"));
 			address.setLatitude(rs.getDouble("BUYER_LATITUDE"));
@@ -337,6 +378,13 @@ public class DealDaoImpl implements DealDao {
 			address.setAddress(rs.getString("BUYER_ADDRESS"));
 			address.setId(rs.getLong("BUYER_ADDRESS_ID"));
 			deal.setBuyerAddress(address);
+			
+			company = new Company();
+			company.setEmail(rs.getString("BUYER_EMAIL"));
+			company.setName(rs.getString("BUYER_COMPANY_NAME"));
+			company.setPhone(rs.getString("BUYER_PHONE"));
+			company.setRegNumber(rs.getString("BUYER_REG_NUMBER"));
+			address.setCompany(company);
 			
 			return deal;
 		}
