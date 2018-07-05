@@ -1,14 +1,19 @@
 package com.bigroi.stock.controller.rendering;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.controller.BaseRenderingController;
+import com.bigroi.stock.security.AuthenticationHandler;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.UserService;
 
@@ -24,7 +29,13 @@ public class CommonRenderingController extends BaseRenderingController{
 	}
 	
 	@RequestMapping("/Index.spr")
-	public ModelAndView index() {
+	public ModelAndView index(HttpServletRequest request, Authentication loggedInUser) {
+		if (loggedInUser != null){ 
+			Object user = loggedInUser.getPrincipal();
+			if (user instanceof StockUser){
+				return new ModelAndView("redirect:" + AuthenticationHandler.getMainPage(request.getContextPath()));
+			}
+		}
 		return createModelAndView("index");
 	}
 
