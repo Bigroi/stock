@@ -11,11 +11,9 @@ function showDialog(params){
 		var $dialogboxElementContent = $(".dialogbox-elementContent");
 		var $formList = $("#form-list");
 		var $dialogboxHead = $(".dialogbox-Head");
-		if (params.width){
-			$dialogboxChild.css("width",params.width);
-		}
-		if (params.height){
-			$dialogboxChild.css("height",params.height);
+		
+		if (params.dialogClass){
+			$dialogbox.setClass(params.dialogClass);
 		}
 		
 		if (params.buttons){
@@ -65,10 +63,9 @@ function showDialog(params){
 		
 		function loadData(){
 			if (params.formData){
-				setFormData($dialogboxElementContent, 
-						params.formData, 
-						params.formParams,
-						params.afterLoad);
+				$.post(params.formData, params.formParams, function(answer){
+					setFormInputs($dialogboxElementContent, answer.data);
+				}, "json");
 			}
 		}
 		

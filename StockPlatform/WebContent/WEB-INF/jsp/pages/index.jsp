@@ -21,6 +21,7 @@
 		<script src="/Static/js/jQuery.js"></script>
 		<script src="/Static/js/jquery.dataTables.min.js"></script>
 		<script src="/Static/js/form.js"></script>
+		<script src="/Static/js/intiFormParams.js"></script>
         <script src="/Static/js/localization.js"></script>
 		<script src="/Static/js/tableMaker.js"></script>
 		<script src="/Static/js/map.js"></script>

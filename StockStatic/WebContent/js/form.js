@@ -11,39 +11,11 @@ $(document).ready(function(){
 	$('.edit-account').on("click", function(){
 		showDialog(getAccountDialogParams());
 	});
+	if ($('#deal-form').length > 0){
+		var dealForm = $('#deal-form');
+		initDealForm(dealForm, dealForm.attr("data-url"), dealForm.attr("data-id"));
+	};
 });
-
-function getFormData(formContainer){
-	var  data = {};
-	var formElementNames = ["input", "select", "textarea"];
-	for (var i =0; i < formElementNames.length; i++){
-		var formElementName = formElementNames[i];
-		var formElements = formContainer.find(formElementName);
-		for(var j = 0; j < formElements.length; j++){
-			var name = formElements[j].getAttribute("name");
-			var value = formElements[j].value;
-			addToResult(data, name, value);
-		}
-	}
-	data = JSON.stringify(data,"",1);
-	return data;
-	
-	function addToResult(toObject, name, value){
-		var dotIndex = name.indexOf(".");
-		if (dotIndex < 0){
-			toObject[name] = value;
-		} else {
-			var subObjectName = name.substr(0, dotIndex);
-			var subObject = toObject[subObjectName];
-			name = name.substr(dotIndex + 1);
-			if (!subObject){
-				subObject = {};
-				toObject[subObjectName] = subObject;
-			}
-			addToResult(subObject, name, value);
-		}
-	}
-}
 
 function sendFormData(formContainer, buttonDef, $dialogbox) {
 	if (formContainer[0].checkValidity()){
@@ -66,16 +38,39 @@ function sendFormData(formContainer, buttonDef, $dialogbox) {
 	} else {
 		return true;
 	}
-};
-
-function setFormData(formContainer, url, params, afterLoad){
-	$.post(url, params, function(answer){
-		setFormInputs(formContainer, answer.data);
-		if (afterLoad){
-			afterLoad(answer.data);
+	
+	function getFormData(formContainer){
+		var  data = {};
+		var formElementNames = ["input", "select", "textarea"];
+		for (var i =0; i < formElementNames.length; i++){
+			var formElementName = formElementNames[i];
+			var formElements = formContainer.find(formElementName);
+			for(var j = 0; j < formElements.length; j++){
+				var name = formElements[j].getAttribute("name");
+				var value = formElements[j].value;
+				addToResult(data, name, value);
+			}
 		}
-	}, "json");
-}
+		data = JSON.stringify(data,"",1);
+		return data;
+		
+		function addToResult(toObject, name, value){
+			var dotIndex = name.indexOf(".");
+			if (dotIndex < 0){
+				toObject[name] = value;
+			} else {
+				var subObjectName = name.substr(0, dotIndex);
+				var subObject = toObject[subObjectName];
+				name = name.substr(dotIndex + 1);
+				if (!subObject){
+					subObject = {};
+					toObject[subObjectName] = subObject;
+				}
+				addToResult(subObject, name, value);
+			}
+		}
+	}
+};
 
 function setFormInputs(formContainer, object){
 	var formElementNames = ["input", "select", "textarea"];
@@ -166,204 +161,47 @@ function buttonCallbackWithTableUpdate(buttonDef, params, formContainer, $dialog
 	});
 }
 
-//form functions
-function getLoginDialogParams(){
-	return {
-		formUrl:"/Login.spr", 
-		buttons:[
-		{
-			text: l10n.translate("label.button.login"),
-			id:"login",
-			submitUrl: "/account/json/Login.spr",
-			login:true
-		}], 				
-	};
-}
-
-function getAddressDialogParams(id, $table, model){
-	return {
-		formUrl:"/address/Form.spr", 
-		formParams:{id:id},
-		formData:"/address/json/Form.spr",
-		buttons:[
-		{
-			text: l10n.translate("label.button.save"),
-			id: "save",
-			submitUrl: "/address/json/Save.spr",
-			submitFunction: buttonCallbackWithTableUpdate,
-			table : $table, 
-			model : model
-		}]
-	};
-}
-
-function getReginDialogParams(){
-	return {
-		formUrl:"/Registration.spr", 
-		buttons:[
-		{
-			text: l10n.translate("label.button.finishRegistration"),
-			id: "finish-registration",
-			submitUrl : "/account/json/Registration.spr"
-		}]			
-	};
-}
-
-function getLotDialogParams(id, $table, model){
-	return {
-		formUrl: "/lot/Form.spr", 
-		formParams:{id:id},
-		formData: "/lot/json/Form.spr",
-		buttons: [{
-				text: l10n.translate("label.button.save"),
-				id:"save",
-				submitUrl: "/lot/json/Save.spr",
-				submitFunction: buttonCallbackWithTableUpdate,
-				table : $table, 
-				model : model 
-			},
-			{
-				text: l10n.translate("label.button.save_start_trading"),
-				id:"save-start-trading",
-				submitUrl: "/lot/json/SaveAndActivate.spr",
-				submitFunction: buttonCallbackWithTableUpdate,
-				table : $table, 
-				model : model
-			}]
-	};	
-}
-
-function getAccountDialogParams(id){
-	return {
-		formUrl: "/account/Form.spr", 
-		formParams:{id:id},
-		formData: "/account/json/Form.spr",
-		buttons: [{
-				text: l10n.translate("label.button.save"),
-				id:"save",
-				submitUrl: "/account/json/Save.spr"
-			}]
-	};	
-}
-
-function getContactUsDialogParams(){
-	return {
-		container:$("#message-dialog-container"),
-		formUrl: "/feedback/Form.spr", 
-		formData: "/feedback/json/Form.spr", 
-		buttons:[{
-			text: l10n.translate("label.button.send"),
-			id:"contact-us",
-			submitUrl: "/feedback/json/Save.spr"
-		}]
-	};
-}
-
-function getMessageDialogParams(message, type, action){
-	return {
-		container:$("#message-dialog-container"),
-		formUrl:"/Message.spr", 
-		formParams:{message:message,type:type},
-		buttons:[{
-				text: l10n.translate("label.button.ok"),
-				id:"ok",
-				submitFunction: callback
-			}]
-	};
-	
-	function callback(url, params, formContainer, $dialogbox){
-		$dialogbox.remove();
-		if (action){
-			action();
-		}
-	}
-}
-
-function getTenderDialogParams(id, $table, model){
-	return{
-		formUrl: "/tender/Form.spr", 
-		formParams:{id:id},
-		formData: "/tender/json/Form.spr",
-		buttons:[{
-			text: l10n.translate("label.button.save"),
-			id:"save",
-			submitUrl: "/tender/json/SaveAndActivate.spr",
-			submitFunction: buttonCallbackWithTableUpdate,
-			table : $table, 
-			model : model
-		},
-		{
-			text: l10n.translate("label.button.save_start_trading"),
-			id:"save-start-trading",
-			submitUrl: "/tender/json/SaveAndActivate.spr",
-			submitFunction: buttonCallbackWithTableUpdate,
-			table : $table, 
-			model : model
-		}],
-	};
-}
-
-function getProductDialogParams(id, $table, model){
-	return {
-		formUrl: "/product/admin/Form.spr", 
-		formParams:{id:id},
-		formData: "/product/json/admin/Form.spr",
-		buttons:[{
-			text: l10n.translate("label.button.save"),
-			id:"save",
-			submitUrl: "/product/json/admin/Save.spr",
-			submitFunction: productSaveCallback,
-			table : $table, 
-			model : model
-		},
-		{
-			text: l10n.translate("label.button.delete"),
-			id:"delete",
-			submitUrl: "/product/json/admin/Delete.spr",
-			submitFunction: buttonCallbackWithTableUpdate,
-			table : $table, 
-			model : model
-		}]
-	};
-}
-
-
-
-
-function sendDealFormData(formContainer, url){
-	return sendFormData(formContainer, function (formContainer, params){
-				$.post(url, params, function(answer){
-					processRequestResult(formContainer, answer, $('.form-message'));
-					if (answer.result > 0){
-						$('#approve-button').attr("style", "display:none");
-						$('#reject-button').attr("style", "display:none");
-						$('#transport-button').attr("style", "display:none");
-					}
-				});
-			}); 
-}
-
 function initDealForm(formContainer, url, id){
-	setFormData(formContainer, url, {id:id}, function(deal){
+	$.post(url, {id:id}, function(answer){
+		setFormInputs(formContainer, answer.data);
 		if (deal.statusCode != 'ON_APPROVE'){
-			$("#approve-button").attr("style", "display:none");
-			$('#reject-button').attr("style", "display:none");
-			$('#transport-button').attr("style", "display:none");
+			$(".deal-button").attr("style", "display:none");
 		}
-		if (!$("#seller-foto")[0].value){
-			$("#seller-foto").attr("style", "display:none");
+		if (!$(".seller-foto")[0].value){
+			$(".seller-foto").attr("style", "display:none");
 		}
 		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initDealMap");
-	})
+	}, "json");
 }
 
 function sendResetFormData(formContainer, url){
-	return sendFormData(formContainer, function (formContainer, params){
-				$.post(url, params, function(answer){
-					processRequestResult(formContainer, answer, $('.dialogbox-message'));
-				});
+	//formContainer, buttonDef, $dialogbox
+	return sendFormData(
+			$('#login-form'),
+			{
+				submitUrl: getContextRoot() + '/account/json/ResetPassword.spr',
+				submitFunction: simpleButtonCallback
 			}); 
 }
+
+function sendDealFormData(url){
+	return sendFormData(
+			$("deal-form"),
+			{
+				submitUrl: getContextRoot() + url,
+				submitFunction: callback
+			});
+	
+	function callback(buttonDef, params, formContainer){
+		$.post(buttonDef.submitUrl, params, function(answer){
+			processRequestResult(formContainer, answer, $('.form-message'));
+			if (answer.result > 0){
+				$('.deal-button').attr("style", "display:none");
+			}
+		});
+	} 
+}
+
 
 function openLoginForm(){
 	$(".dialogbox").remove();

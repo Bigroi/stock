@@ -4,7 +4,8 @@
 <div style="display: table; width:100%" id="deal-style-mob">
 	<div style="display: table-cell; width: 40%" id="form-container">
 		<div class="form-message"></div>
-		<form class="form" action="#" method="post" name="form">
+		<form class="form" action="#" method="post" 
+			name="form" id="deal-form" data-url="/deal/json/Form.spr" data-id="${id}">
 			<input type="hidden" name="sellerAddrress.latitude" id="seller_latitude">
 			<input type="hidden" name="sellerAddrress.longitude" id="seller_longitude">
 			<input type="hidden" name="buyerAddrress.latitude" id="buyer_lalitude">
@@ -17,7 +18,7 @@
 		            <label for="productName">${label.deal.productName}</label>
 		            <input type="text" name="productName" disabled/>
 		        </li>
-		        <li id="seller-foto">
+		        <li class="seller-foto">
 		            <label for="foto">${label.deal.foto}</label>
 		            <input type="text" name="sellerFoto" disabled/>
 		        </li>
@@ -58,30 +59,18 @@
 		            <input type="text" name="status" disabled/>
 		        </li>
 		        <li>
-		        	<button class="submit" type="submit" id="approve-button"
-		        		onclick="
-		        				return sendDealFormData(
-		        						$('#form-container > form'), 
-			        					'/deal/json/Approve.spr'
-			        					); ">
+		        	<button class="submit deal-button" type="submit" id="approve-button"
+		        		onclick="return sendDealFormData('/deal/json/Approve.spr'); ">
 		        		${label.deal.approve }
 		        	</button>
 		        	
-		        	<button class="submit" type="submit" id="transport-button"
-		        		onclick="
-		        				return sendDealFormData(
-		        						$('#form-container > form'), 
-			        					'/deal/json/Transport.spr'
-			        					); ">
+		        	<button class="submit deal-button" type="submit" id="transport-button"
+		        		onclick="return sendDealFormData('/deal/json/Transport.spr'); ">
 		        		${label.deal.transport }
 		        	</button>
 		        	
-		        	<button class="submit" type="submit" id="reject-button"
-		        		onclick="
-		        			return sendDealFormData(
-		        					$('#form-container > form'), 
-		        						'/deal/json/Reject.spr'
-		        					);">
+		        	<button class="submit deal-button" type="submit" id="reject-button"
+		        		onclick="return sendDealFormData('/deal/json/Reject.spr');">
 		        		${label.deal.reject }
 		        	</button>
 		        	<button class="submit" 
@@ -101,6 +90,3 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-	initDealForm($('.form'), '/deal/json/Form.spr', ${id});
-</script>
