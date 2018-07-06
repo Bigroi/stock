@@ -4,6 +4,7 @@ function showMessageDialog(message, type, action){
 }
 
 function showDialog(params){
+	addDefaults(params);
 	params.container.load(params.formUrl, params.formParams, function() {
 		var $dialogbox = $(".dialogbox");
 		var $dialogboxChild = $(".dialogbox-child");
@@ -53,12 +54,10 @@ function showDialog(params){
 			
 			
 			$button.click(function(event){
-				var result = sendFormData(
+				return sendFormData(
 						$(event.target).parents('form:first'),  
-						buttonDef.submit,
-						$dialogbox,
-						buttonDef.login);
-				return result;
+						buttonDef,
+						$dialogbox);
 			});
 			
 			$listelement.append($button);
@@ -75,5 +74,35 @@ function showDialog(params){
 		
 	});	 
 	return false;
+	
+	function addDefaults(params){
+		if (!params.container){
+			params.container = $("#form-container");
+		}
+		if (!params.hasCloseButton){
+			params.hasCloseButton = true;
+		}
+		if (!params.hasCloseOverlay){
+			params.hasCloseOverlay = true;
+		}
+		if (params.formUrl){
+			params.formUrl = getContextRoot() + params.formUrl;
+		}
+		if (params.formData){
+			params.formData = getContextRoot() + params.formData;
+		} 
+		var buttons = params.buttons;
+		if (buttons){
+			for (var i = 0; i < buttons.length; i++){
+				var button = buttons[i];
+				if (!button.submitFunction){
+					button.submitFunction = simpleButtonCallback;
+				}
+				if (button.submitUrl){
+					button.submitUrl = getContextRoot() + button.submitUrl;
+				}
+			}
+		}
+	}
 }		
  

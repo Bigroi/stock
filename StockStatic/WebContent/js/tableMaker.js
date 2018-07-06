@@ -29,7 +29,7 @@ $(document).ready(function(){
 				var editFormParams = window[model.editForm];
 	            if (editFormParams){
 	            	$(".add-button").on("click", function(){
-	            		showDialog(editFormParams($(tableElement), model));
+	            		showDialog(editFormParams(-1, $(tableElement), model));
 	            	});
 	            } else {
 	            	$(".add-button").click(function(){document.location = model.editForm;});
@@ -65,7 +65,7 @@ $(document).ready(function(){
 	            var editFormParams = window[model.editForm];
 	            if (editFormParams){
 	            	$edit.on("click", function(){
-	            		showDialog(editFormParams($table, model, id));
+	            		showDialog(editFormParams(id, $table, model));
 	            	});
 	            } else {
 	            	$edit.click(function(){document.location = model.editForm + "?id=" + id});
@@ -94,7 +94,7 @@ $(document).ready(function(){
 				$details.addClass("details").text(detailsLabel);
 	            var detailsForm = window[model.detailsUrl];
 	            if (detailsForm){
-	            	detailsForm($edit, $table, model, id);
+	            	detailsForm(id, $table, model);
 	            } else {
 	            	$details.click(function(){document.location = model.detailsUrl + "?id=" + id});
 	            }

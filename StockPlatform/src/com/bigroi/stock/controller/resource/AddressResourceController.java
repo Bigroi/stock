@@ -67,7 +67,11 @@ public class AddressResourceController extends BaseResourseController {
 		StockUser user =  (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Address address = GsonUtil.getGson().fromJson(jsonAddress, Address.class);
 		addressService.merge(address, user.getCompanyId());
-		return new ResultBean(1, new AddressForUI(address), "label.address.save_success").toString();
+		return new ResultBean(1, new AddressForUI(address,
+				address.getId() == user.getCompany().getAddressId() ? 
+				getLabelValue("label.address.default_address") :
+				getLabelValue("label.address.not_default_address")
+			), "label.address.save_success").toString();
 	}
 	
 	@RequestMapping(value = "/Delete.spr")
