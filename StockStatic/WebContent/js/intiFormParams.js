@@ -172,7 +172,7 @@ function getProductDialogParams(id, $table, model){
 			text: l10n.translate("label.button.save"),
 			id:"save",
 			submitUrl: "/product/json/admin/Save.spr",
-			submitFunction: productSaveCallback,
+			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model
 		},

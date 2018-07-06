@@ -94,7 +94,7 @@ public class LotResourseController extends BaseResourseController {
 	public String startTrading(@RequestParam("id") long id) throws ServiceException {
 		List<String> errors = activationCheck(id);
 		if (errors.size() > 0) {
-			String str = errors.toString().substring(1, errors.toString().length() - 2);
+			String str = errors.toString().substring(1, errors.toString().length() - 1);
 			return new ResultBean(-1, str).toString();
 		}
 		lotService.activate(id, getUserCompanyId());

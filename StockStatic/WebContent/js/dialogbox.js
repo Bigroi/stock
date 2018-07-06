@@ -13,7 +13,7 @@ function showDialog(params){
 		var $dialogboxHead = $(".dialogbox-Head");
 		
 		if (params.dialogClass){
-			$dialogbox.setClass(params.dialogClass);
+			$dialogbox.addClass(params.dialogClass);
 		}
 		
 		if (params.buttons){
