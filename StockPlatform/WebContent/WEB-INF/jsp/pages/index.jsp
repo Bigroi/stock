@@ -44,7 +44,7 @@
 							<a href="#ex4">${label.index.for_whom}</a>
 						</nav>
 						<div class="buttons-login">
-							<button class="registration blue-button registration-button">
+							<button class="registration background-blue registration-button">
 								${label.navigation.regestration}
 							</button>
 							<button class="sign-in login-button">
@@ -61,9 +61,9 @@
 							<div class="front-desc-but">
 								<div class="reg-as">${label.index.regestrate_as_farmer} </div>
 								<div class="reg-but">
-									<button class="req-far green-button registration-button">${label.index.farmer}</button>
+									<button class="req-far background-green registration-button">${label.index.farmer}</button>
 									<div>${label.index.regestrate_as_buyer}</div>
-									<button class="req-buy blue-button registration-button">${label.index.buyer}</button>
+									<button class="req-buy background-blue registration-button">${label.index.buyer}</button>
 								</div>
 							</div>
 						</div>
@@ -115,7 +115,7 @@
 									<li>${label.index.for_farmers_li2}</li>
 									<li>${label.index.for_farmers_li3}</li>
 								</ul>
-								<button class="start-trade green-button registration-button">
+								<button class="start-trade background-green registration-button">
 									${label.button.start_trade_now }
 								</button>
 							</div>
@@ -128,7 +128,7 @@
 									<li>${label.index.for_buyers_li2}</li>
 									<li>${label.index.for_buyers_li3}</li>
 								</ul>
-								<button class="start-buy blue-button registration-button">
+								<button class="start-buy background-blue registration-button">
 									${label.button.start_buy_now}
 								</button>
 							</div>
@@ -139,7 +139,7 @@
 							<div>
 								<h3>${label.index.responsive_title}</h3>
 								<p>${label.index.responsive_description}</p>
-								<button class="register green-button registration-button">
+								<button class="register background-green registration-button">
 									${label.button.registrate}
 								</button>
 							</div>

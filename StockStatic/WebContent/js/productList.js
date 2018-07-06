@@ -36,13 +36,13 @@ $(document).ready(function(){
 			buyProduct.append($("<p class='desc-count'>" + l10n.translate("label.index.average_price") + "</p>"));
 			aboutProduct.append(buyProduct);
 			
-			var sellButton = $("<button class='green-button'>" + l10n.translate("label.index.sell") + " " + product.name + "</button>");
+			var sellButton = $("<button class='background-green'>" + l10n.translate("label.index.sell") + " " + product.name + "</button>");
 			sellProduct.append(sellButton);
 			sellButton.on("click", function(){
 				showDialog(getReginDialogParams());
 			});
 			
-			var buyButton = $("<button class='blue-button'>" + l10n.translate("label.index.buy") +" " + product.name + "</button>");
+			var buyButton = $("<button class='background-blue'>" + l10n.translate("label.index.buy") +" " + product.name + "</button>");
 			buyProduct.append(buyButton);
 			buyButton.on("click", function(){
 				showDialog(getReginDialogParams());
@@ -71,7 +71,7 @@ $(document).ready(function(){
 			
 			aboutProduct.append(tableProduct);
 			
-			var details = $("<button class='blue-button'>" + l10n.translate("label.product.details") +" " + product.name + "</button>");
+			var details = $("<button class='background-blue'>" + l10n.translate("label.product.details") +" " + product.name + "</button>");
 			div.append(details);
 			details.on("click", function(){
 				document.location = getContextRoot() + "/product/TradeOffers.spr?id=" + product.id;

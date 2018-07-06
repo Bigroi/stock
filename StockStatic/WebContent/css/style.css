@@ -94,10 +94,16 @@ button,
 	display: block;
 	float: left;
 }
-.blue-button {
+.background-blue {
 	background-color: var(--azure);
 }
-.green-button {
+.blue-button {
+  height: 40px;
+  border-radius: 5px;
+  color: var(--white);
+  background-color: var(--azure);
+}
+.background-green {
 	background-color: var(--green-teal);
 }
 .register {
@@ -1172,14 +1178,14 @@ footer .container {
 .footer-phone a span{
 	color: black;
 	font-size: 18px;
+}
+.gray-button {
+	border-radius: 4px;
+	background-color: rgba(230, 232, 234, 0.5);
+	height: 40px;
 } 
 .send-message {
 	width: 130px;
-	height: 40px;
-	opacity: 0.5;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-	border-radius: 4px;
-	background-color: var(--silver);
 }
 .main-menu ul li a {
 	font-size: 24px;
@@ -1380,8 +1386,9 @@ footer .container {
 }
 table.dataTable tbody th, 
 table.dataTable tbody td {
-    padding: 8px 18px;
+    padding: 0 18px;
     font-size: 14px;
+    height: 50px;
 }
 table.dataTable tbody tr,
 table.dataTable.stripe tbody tr.odd, 
@@ -1465,12 +1472,12 @@ table.dataTable thead th {
      color: #96999d;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-	 padding: 5px 0 0 0;
+	 padding: 4px 0 0 0;
 }
-.dataTables_wrapper .dataTables_paginate > span {
+/*.dataTables_wrapper .dataTables_paginate > span {
 	position: relative;
     top: 3px;
-}
+}*/
 .dataTables_wrapper .dataTables_paginate > span .paginate_button {
 	 margin-left: 7px;
      margin-right: 7px;
@@ -1539,6 +1546,8 @@ table.dataTable thead th {
     height: 30px;
     background-image: url(/Static/img/remove-trash-can.png);
     background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
     background-size: auto 75%;
     background-repeat: no-repeat;
     background-position: center;
@@ -1548,26 +1557,32 @@ table.dataTable thead th {
 .remove:active {
 	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
 }
-.form-tradeOffers {
+.header-white-div {
 	height: 70px;
+	width: calc(100% - 170px);
+    margin:0 auto;
     padding-top: 5px;
 	background-image: url(/Static/img/apple.png);
 	background-size: 93px;
-    background-position: left top;
+    background-position: left top 25px;
     background-repeat: no-repeat;
     border-bottom: 1px solid #d8d8d8;
+    padding: 25px 0 0 0;
+    /*padding: 25px 40px 0 40px;*/
 }
 .form-tradeOffers ul{
 	padding-left: 115px;
 }
-.div-tradeOffers {
-	width: calc(100% - 80px);
+.white-div {
+	width: 100%;
 	min-height: 535px;
 	border-radius: 10px;
 	background-color: var(--white);
 	box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.03);
-	padding: 25px 40px 40px 40px;
+	/*padding: 25px 40px 40px 40px;*/
 	position: relative;
 }
 .form-tradeOffers-button button {
@@ -1578,16 +1593,19 @@ table.dataTable thead th {
 	color: white;
 	position: absolute;
 	bottom: 40px;
+	margin-left: 85px;
 } 
-.form-tradeOffers ul li input {
+.white-div input,
+.white-div textarea {
 	border: none;
     box-shadow: none;
-    background-color: var(--white);
+    background-color: transparent;
     padding-right: 0;
     width: 100%;
     font-weight: bold;
     color: black;
     text-transform: capitalize;
+    resize: none;
 }
 .form-tradeOffers ul li:first-child input {
 	font-size: 24px;
@@ -1603,6 +1621,10 @@ table.dataTable thead th {
 .table-tradeOffers #main-table_paginate{
 	display: none !important;
 }
+.table-tradeOffers {
+	width: calc(100% - 170px);
+    margin: 0 auto;
+}
 .table-tradeOffers table {
 	border-spacing: 0 10px;
 	width: 701px !important;
@@ -1614,11 +1636,11 @@ table.dataTable.no-footer,
 .table-tradeOffers table.dataTable thead th {
 	border: none;
 }
-.table-tradeOffers table.dataTable tbody th, 
-.table-tradeOffers table.dataTable tbody td,
-.table-tradeOffers table.dataTable thead th, 
-.table-tradeOffers table.dataTable thead td {
+.table-tradeOffers table.dataTable tbody th{
     padding: 13px 14px;
+} 
+.table-tradeOffers table.dataTable thead td {
+    padding: 0 14px;
 }
 .table-tradeOffers table th {
 	text-align: left;
@@ -1636,6 +1658,7 @@ table.dataTable.no-footer,
 }
 .table-tradeOffers table.dataTable.display tbody td {
 	font-size: 18px;
+	height: 40px;
 }
 .dialogbox-child select {
 	width: 370px;
@@ -1649,4 +1672,94 @@ table.dataTable.no-footer,
     height: 100px;
     border-radius: 4px;
     border: solid 1px #ced1d6;
+}
+.white-div-deal .header-white-div {
+	background-image: none;
+}
+.white-div-deal .header-white-div ul{
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+}
+.body-deal-form,
+.footer-deal-form {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	margin: 0 85px;
+}
+.details {
+    color: var(--azure);
+    font-size: 14px;
+    cursor: pointer;
+    background-image: url(/Static/img/details.png);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: inherit;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background-position: right 55px center;
+}
+.white-div-deal .header-white-div {
+	border-bottom: none;
+}
+.white-div-deal  {
+	
+}   
+.deal-status {
+	background-color: rgba(255, 205, 18, 0.15);
+    height: 40px;
+    padding: 0 85px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;	
+}
+.white-div-deal .deal-status input {
+	width: auto;
+	padding-top: 0;
+	margin-left: 10px;
+}
+#back-deals {
+	width: 160px;
+}
+#transport-button {
+	width: 182px;
+}
+#reject-button {
+	width: 130px;
+}
+#approve-button {
+	width: 135px;
+}
+.white-div-deal label{
+  font-size: 14px;
+  color: #96999d;
+}
+.white-div-deal input,
+.white-div-deal textarea{
+  font-size: 18px;
+  color: var(--black);
+  font-weight: normal;
+  padding-top: 5px;
+}
+.body-deal-form > div:first-child,
+.footer-deal-form > div:first-child{
+	width: 35%;
+}
+.body-deal-form > div:last-child,
+.footer-deal-form > div:last-child {
+	width: 65%;
+}
+.body-deal-form ul li {
+	margin-top: 20px;
 }
