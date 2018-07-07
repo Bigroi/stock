@@ -164,18 +164,14 @@ function buttonCallbackWithTableUpdate(buttonDef, params, formContainer, $dialog
 function initDealForm(formContainer, url, id){
 	$.post(url, {id:id}, function(answer){
 		setFormInputs(formContainer, answer.data);
-		if (deal.statusCode != 'ON_APPROVE'){
+		if (answer.data.statusCode != 'ON_APPROVE'){
 			$(".deal-button").attr("style", "display:none");
-		}
-		if (!$(".seller-foto")[0].value){
-			$(".seller-foto").attr("style", "display:none");
 		}
 		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initDealMap");
 	}, "json");
 }
 
 function sendResetFormData(formContainer, url){
-	//formContainer, buttonDef, $dialogbox
 	return sendFormData(
 			$('#login-form'),
 			{
