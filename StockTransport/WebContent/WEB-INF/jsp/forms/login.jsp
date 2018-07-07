@@ -13,7 +13,7 @@
 		<div>
 			<label for="forPassword">${label.login.password}</label>
 			<input type="password" name="password" id="forPassword" placeholder="***********" required maxlength="50">
-			<a id="reset" href="" onclick="return sendResetFormData($('#login-form'), getContextRoot() + '/account/json/ResetPassword.spr')"><span>${label.login.forgot}</span></a>
+			<a id="reset" href="" onclick="return sendResetFormData()"><span>${label.login.forgot}</span></a>
 		</div>
 		<div>
 		    <div id="form-list">

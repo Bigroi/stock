@@ -182,7 +182,7 @@ function sendResetFormData(formContainer, url){
 
 function sendDealFormData(url){
 	return sendFormData(
-			$("deal-form"),
+			$("#deal-form"),
 			{
 				submitUrl: getContextRoot() + url,
 				submitFunction: callback
@@ -208,6 +208,7 @@ function openRegistrationForm(){
 	$(".dialogbox").remove();
 	showDialog(getReginDialogParams());
 }
+
 
 function getContextRoot(){
 	var contextRoot = $("meta[name=context-root]").attr("content");
