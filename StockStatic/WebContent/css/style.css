@@ -1578,12 +1578,13 @@ table.dataTable thead th {
 }
 .white-div {
 	width: 100%;
-	min-height: 535px;
-	border-radius: 10px;
-	background-color: var(--white);
-	box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.03);
-	/*padding: 25px 40px 40px 40px;*/
-	position: relative;
+    min-height: 495px;
+    border-radius: 10px;
+    background-color: var(--white);
+    box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.03);
+    /* padding: 25px 40px 40px 40px; */
+    position: relative;
+    padding-bottom: 40px;
 }
 .form-tradeOffers-button button {
 	width: 180px;
@@ -1604,7 +1605,6 @@ table.dataTable thead th {
     width: 100%;
     font-weight: bold;
     color: black;
-    text-transform: capitalize;
     resize: none;
 }
 .form-tradeOffers ul li:first-child input {
@@ -1688,6 +1688,9 @@ table.dataTable.no-footer,
 	display: flex;
 	margin: 0 85px;
 }
+.body-deal-form {
+	margin-bottom: 40px;
+}
 .details {
     color: var(--azure);
     font-size: 14px;
@@ -1754,11 +1757,19 @@ table.dataTable.no-footer,
 }
 .body-deal-form > div:first-child,
 .footer-deal-form > div:first-child{
-	width: 35%;
+	width: calc(100% - 487px);
+	/*width: 330px;*/
 }
 .body-deal-form > div:last-child,
 .footer-deal-form > div:last-child {
-	width: 65%;
+     width: 487px;
+     /*width: 65%;*/
+}
+.footer-deal-form > div:last-child {
+	display: flex;
+    justify-content: space-between;
+    /*width: 100%;*/
+    
 }
 .body-deal-form ul li {
 	margin-top: 20px;
