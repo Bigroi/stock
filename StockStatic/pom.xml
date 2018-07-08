@@ -19,6 +19,9 @@
 				<version>3.0.0</version>
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
+					<outputFileNameMapping>
+						@{artifactId}@-${BUILD_NUMBER}.@{extension}@
+					</outputFileNameMapping>
 				</configuration>
 			</plugin>
 			<plugin>

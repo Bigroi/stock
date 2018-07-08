@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -17,20 +18,42 @@
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
 		<meta name="context-root" content="${pageContext.request.contextPath}">
 		
-		<link href="/Static/css/style.css" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-		
-		<script src="/Static/js/jQuery.js"></script>
-		<script src="/Static/js/jquery.dataTables.min.js"></script>
-		<script src="/Static/js/form.js"></script>
-		<script src="/Static/js/intiFormParams.js"></script>
-        <script src="/Static/js/localization.js"></script>
-		<script src="/Static/js/tableMaker.js"></script>
-		<script src="/Static/js/map.js"></script>
-		<script src="/Static/js/dialogbox.js"></script>
-		<script src="/Static/js/script.js"></script>
-		<script src="/Static/js/plotly-latest.min.js"></script>
-		<script src="/Static/js/productList.js"></script>
+		<c:choose>
+			<c:when test="${devProperties.development}">
+		        <link rel="stylesheet" href="/Static/css/jquery.dataTables.min.css">
+		        <link rel="stylesheet" href="/Static/css/jquery.responsive.dataTables.min.css"> 
+		        <link rel="stylesheet" href="/Static/css/style.css">
+		        
+		        <script src="/Static/js/jQuery.js"></script>
+		        <script src="/Static/js/jquery.dataTables.min.js"></script>
+		        <script src="/Static/js/jquery.responsive.dataTables.min.js"></script>
+		        <script src="/Static/js/form.js"></script>
+		        <script src="/Static/js/intiFormParams.js"></script>
+		        <script src="/Static/js/localization.js"></script>
+				<script src="/Static/js/tableMaker.js"></script>
+				<script src="/Static/js/map.js"></script>
+				<script src="/Static/js/dialogbox.js"></script>
+				<script src="/Static/js/script.js"></script>
+				<script src="/Static/js/productList.js"></script>
+			</c:when>
+			<c:otherwise>
+				<link rel="stylesheet" href="/Static/css/jquery.dataTables.min${label.build.number}.css">
+				<link rel="stylesheet" href="/Static/css/jquery.responsive.dataTables.min${label.build.number}.css"> 
+		        <link rel="stylesheet" href="/Static/css/style${label.build.number}.css">
+				
+		        <script src="/Static/js/jQuery${label.build.number}.js"></script>
+		        <script src="/Static/js/jquery.dataTables.min${label.build.number}.js"></script>
+		        <script src="/Static/js/jquery.responsive.dataTables.min${label.build.number}.js"></script>
+		        <script src="/Static/js/form${label.build.number}.js"></script>
+		        <script src="/Static/js/intiFormParams${label.build.number}.js"></script>
+		        <script src="/Static/js/localization${label.build.number}.js"></script>
+				<script src="/Static/js/tableMaker${label.build.number}.js"></script>
+				<script src="/Static/js/map${label.build.number}.js"></script>
+				<script src="/Static/js/dialogbox${label.build.number}.js"></script>
+				<script src="/Static/js/script${label.build.number}.js"></script>
+				<script src="/Static/js/productList${label.build.number}.js"></script>
+			</c:otherwise>
+		</c:choose>
 	</head>
 	<body>
 		<div id="form-container"></div>
