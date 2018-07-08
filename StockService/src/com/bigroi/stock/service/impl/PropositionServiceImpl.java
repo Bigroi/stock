@@ -35,4 +35,12 @@ public class PropositionServiceImpl implements PropositionService {
 		}
 	}
 
+	@Override
+	public List<Proposition> getListHystoryProposition(long companyId) throws ServiceException {
+		try {
+			return propostionDao.getListPropositionsByStatusAndUserId(companyId);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
 }

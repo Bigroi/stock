@@ -1,2 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-history test page
+<div id = "table-container">
+    <table id = "main-table" data-url="/Transport/proposition/json/MyHystory.spr"></table>
+</div>

@@ -45,5 +45,16 @@ public class PropositionResourceController {
 		propService.delete(id, user.getCompany().getId());
 		return new ResultBean(1, "success").toString();
 	}
+	
+	@RequestMapping(value = "/MyHystory.spr")
+	@ResponseBody
+	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
+	public String MyHystory(Authentication loggedInUser) throws ServiceException, TableException{
+		StockUser user = (StockUser)loggedInUser.getPrincipal();
+		List<Proposition> prop =  propService.getListHystoryProposition(user.getCompanyId());
+		List<TransportForUI> propForUI =  prop.stream().map(TransportForUI::new).collect(Collectors.toList());
+		TableResponse<TransportForUI> table = new TableResponse<>(TransportForUI.class, propForUI);
+		return new ResultBean(1, table, null).toString();
+	}
 
 }

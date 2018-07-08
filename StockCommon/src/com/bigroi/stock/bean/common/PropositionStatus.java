@@ -3,6 +3,7 @@ package com.bigroi.stock.bean.common;
 public enum  PropositionStatus {
 	
 	APPROVE,
-	WAITING
+	WAITING,
+	CLOSED 
 
 }

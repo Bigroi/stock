@@ -9,5 +9,7 @@ public interface PropositionDao {
 	List<Proposition> getListPropositions() throws DaoException;
 	
     boolean deleteProposition(long id, long companyId) throws DaoException;
+    
+    List<Proposition> getListPropositionsByStatusAndUserId(long userId) throws DaoException;
 
 }

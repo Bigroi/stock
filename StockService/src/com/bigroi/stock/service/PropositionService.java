@@ -10,5 +10,7 @@ public interface PropositionService {
 	List<Proposition> getListProposition() throws ServiceException;
 	
 	void delete(long id, long companyId) throws ServiceException;
+
+	List<Proposition> getListHystoryProposition(long companyId) throws ServiceException;
 	
 }

@@ -35,6 +35,15 @@ public class PropositionDaoImpl implements PropositionDao {
 			" DELETE FROM TRANSPORT_PROPOSITION WHERE "
 			+ " ID = ? AND COMPANY_ID = ? ";
 	
+	private static final String GET_CLOSED_PROPOSITIONS = 
+			" SELECT " + PropostionRowMapper.ALL_COLUMNS + " "
+			+ " FROM TRANSPORT_PROPOSITION T  "
+			+ " JOIN DEAL D ON T.DEAL_ID = D.ID "
+			+ " JOIN PRODUCT P ON D.PRODUCT_ID = P.ID  "
+			+ " JOIN ADDRESS BA ON BA.ID = D.BUYER_ADDRESS_ID "
+			+ " JOIN ADDRESS SA ON SA.ID = D.SELLER_ADDRESS_ID "
+			+ " WHERE T.STATUS = '"+ PropositionStatus.CLOSED +"' AND T.COMPANY_ID = ? ";
+	
 	@Autowired
 	private DataSource dataSource;
 
@@ -52,20 +61,31 @@ public class PropositionDaoImpl implements PropositionDao {
 		return template.update(DELETE_PROPOSITION_BY_DEAL_ID_AND_COMPANY_ID, id, companyId) == 1;
 	}
 	
+	@Override
+	public List<Proposition> getListPropositionsByStatusAndUserId(long userId) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(dataSource);
+		List<Proposition> list = template.query(GET_CLOSED_PROPOSITIONS, 
+				new PropostionRowMapper(), userId);
+		return list;
+	}
+	
 	private static final class PropostionRowMapper implements RowMapper<Proposition>{
 		
 		private static final String ALL_COLUMNS = 
-			"T.ID, T.PRICE, "
+			"T.ID, T.PRICE, T.COMPANY_ID, "
 			+ " D.VOLUME, "
 			+ " P.NAME, "
-			+ " BA.CITY BUYER_CITY, BA.COUNTRY BUYER_COUNTRY, BA.ADDRESS BUYER_ADDRESS, BA.LATITUDE BUYER_LATITUDE, BA.LONGITUDE BUYER_LONGITUDE, "
-			+ " SA.CITY SELLER_CITY, SA.COUNTRY SELLER_COUNTRY, SA.ADDRESS SELLER_ADDRESS, SA.LATITUDE SELLER_LATITUDE, SA.LONGITUDE SELLER_LONGITUDE ";
+			+ " BA.CITY BUYER_CITY, BA.COUNTRY BUYER_COUNTRY, BA.ADDRESS BUYER_ADDRESS, "
+			+ " BA.LATITUDE BUYER_LATITUDE, BA.LONGITUDE BUYER_LONGITUDE, "
+			+ " SA.CITY SELLER_CITY, SA.COUNTRY SELLER_COUNTRY, SA.ADDRESS SELLER_ADDRESS, "
+			+ " SA.LATITUDE SELLER_LATITUDE, SA.LONGITUDE SELLER_LONGITUDE ";
 
 		@Override
 		public Proposition mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Proposition prop = new Proposition();
 			prop.setId(rs.getLong("ID"));
 			prop.setPrice(rs.getInt("PRICE"));
+			prop.setCompanyId(rs.getLong("COMPANY_ID"));
 			
 			Deal deal = new Deal();
 			deal.setVolume(rs.getInt("VOLUME"));
@@ -90,7 +110,10 @@ public class PropositionDaoImpl implements PropositionDao {
 			sellerAddress.setLatitude(rs.getDouble("SELLER_LATITUDE"));
 			sellerAddress.setLongitude(rs.getDouble("SELLER_LONGITUDE"));
 			prop.setSellerAaddress(sellerAddress);
+			
 			return prop;
 		}
 	}
+
+	
 }

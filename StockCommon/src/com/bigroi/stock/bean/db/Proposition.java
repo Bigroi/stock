@@ -46,7 +46,6 @@ public class Proposition {
 	public void setStatus(PropositionStatus status) {
 		this.status = status;
 	}
-	
 	public Deal getDeal() {
 		return deal;
 	}
