@@ -20,7 +20,7 @@
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
 					<outputFileNameMapping>
-						@{artifactId}@-${BUILD_NUMBER}.@{extension}@
+						${artifact.artifactId}-${BUILD_NUMBER}.${artifact.extension}
 					</outputFileNameMapping>
 				</configuration>
 			</plugin>
