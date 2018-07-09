@@ -12,9 +12,14 @@ public class Proposition {
 	
 	//Related objects
 	private Deal deal;
+	private Company company;
 	private Product product;
 	private Address buyerAddress;
 	private Address sellerAaddress;
+	private String companyName;
+	private String companyPhone;
+	private int dealVolume;
+	private double dealPrice;
 	
 	public long getId() {
 		return id;
@@ -52,6 +57,9 @@ public class Proposition {
 	public void setDeal(Deal deal) {
 		this.deal = deal;
 	}
+	public Company getCompany() {
+		return company;
+	}
 	public Product getProduct() {
 		return product;
 	}
@@ -70,10 +78,32 @@ public class Proposition {
 	public void setSellerAaddress(Address sellerAaddress) {
 		this.sellerAaddress = sellerAaddress;
 	}
+	public void setDealPriceAndVolume(Deal deal) {
+		this.dealVolume = deal.getVolume();
+		this.dealPrice = deal.getPrice();
+	}
+	public void setCompanyNameAndPhone(Company company) {
+		this.companyName = company.getName();
+		this.companyPhone = company.getPhone();
+	}
+	public String getCompanyName() {
+		return companyName;
+	}
+	public String getCompanyPhone() {
+		return companyPhone;
+	}
+	public int getDealVolume() {
+		return dealVolume;
+	}
+	public double getDealPrice() {
+		return dealPrice;
+	}
 	@Override
 	public String toString() {
 		return "Proposition [id=" + id + ", dealId=" + dealId + ", companyId=" + companyId + ", price=" + price
-				+ ", status=" + status + ", deal=" + deal + ", product=" + product + ", buyerAddress=" + buyerAddress
-				+ ", sellerAaddress=" + sellerAaddress + "]";
+				+ ", status=" + status + ", deal=" + deal + ", company=" + company + ", product=" + product
+				+ ", buyerAddress=" + buyerAddress + ", sellerAaddress=" + sellerAaddress + ", companyName="
+				+ companyName + ", companyPhone=" + companyPhone + ", dealVolume=" + dealVolume + ", dealPrice="
+				+ dealPrice + "]";
 	}
 }

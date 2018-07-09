@@ -13,4 +13,6 @@ public interface PropositionService {
 
 	List<Proposition> getListHystoryProposition(long companyId) throws ServiceException;
 	
+	List<Proposition> getListPropositionsByTrans() throws ServiceException;
+	
 }

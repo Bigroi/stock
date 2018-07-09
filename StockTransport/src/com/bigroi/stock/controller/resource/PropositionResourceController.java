@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.db.Proposition;
 import com.bigroi.stock.bean.db.StockUser;
+import com.bigroi.stock.bean.ui.PropositionForUI;
 import com.bigroi.stock.bean.ui.TransportForUI;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
@@ -54,6 +55,16 @@ public class PropositionResourceController {
 		List<Proposition> prop =  propService.getListHystoryProposition(user.getCompanyId());
 		List<TransportForUI> propForUI =  prop.stream().map(TransportForUI::new).collect(Collectors.toList());
 		TableResponse<TransportForUI> table = new TableResponse<>(TransportForUI.class, propForUI);
+		return new ResultBean(1, table, null).toString();
+	}
+	
+	@RequestMapping(value = "/Propositions.spr")
+	@ResponseBody
+	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
+	public String Proposions() throws ServiceException, TableException{
+		List<Proposition> prop =  propService.getListPropositionsByTrans();
+		List<PropositionForUI> propForUI =  prop.stream().map(PropositionForUI::new).collect(Collectors.toList());
+		TableResponse<PropositionForUI> table = new TableResponse<>(PropositionForUI.class, propForUI);
 		return new ResultBean(1, table, null).toString();
 	}
 

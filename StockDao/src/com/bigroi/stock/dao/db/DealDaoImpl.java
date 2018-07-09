@@ -135,7 +135,7 @@ public class DealDaoImpl implements DealDao {
 			+ " ON BA.COMPANY_ID = BC.ID "
 			+ " JOIN USER BU "
 			+ " ON BU.COMPANY_ID = BC.ID "
-			+ " WHERE BA.COMPANY_ID = ? OR SA.COMPANY_ID = ?";
+			+ " WHERE SA.COMPANY_ID = ? OR BA.COMPANY_ID = ? ";
 
 	private static final String SET_SELLER_STATUS = 
 			  " UPDATE DEAL "

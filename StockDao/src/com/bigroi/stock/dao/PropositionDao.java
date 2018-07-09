@@ -11,5 +11,7 @@ public interface PropositionDao {
     boolean deleteProposition(long id, long companyId) throws DaoException;
     
     List<Proposition> getListPropositionsByStatusAndUserId(long userId) throws DaoException;
+    
+    List<Proposition> getListPropositionsTrans() throws DaoException;
 
 }

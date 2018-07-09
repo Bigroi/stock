@@ -11,8 +11,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.bigroi.stock.bean.common.CompanyType;
 import com.bigroi.stock.bean.common.PropositionStatus;
 import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.Proposition;
@@ -44,6 +46,13 @@ public class PropositionDaoImpl implements PropositionDao {
 			+ " JOIN ADDRESS SA ON SA.ID = D.SELLER_ADDRESS_ID "
 			+ " WHERE T.STATUS = '"+ PropositionStatus.CLOSED +"' AND T.COMPANY_ID = ? ";
 	
+	private static final String GET_PROPOSITIONS_FOR_DEAL_BY_ID = 
+			"SELECT C.NAME COMPANY_NAME, C.PHONE COMPANY_PHONE, D.PRICE DEAL_PRICE, D.VOLUME DEAL_VOLUME "
+			+ " FROM TRANSPORT_PROPOSITION T "
+			+ " JOIN COMPANY C ON T.COMPANY_ID = C.ID "
+			+ " JOIN DEAL D ON T.DEAL_ID = D.ID  "
+			+ " WHERE C.TYPE = '" + CompanyType.TRANS + "' "; 
+	
 	@Autowired
 	private DataSource dataSource;
 
@@ -66,6 +75,32 @@ public class PropositionDaoImpl implements PropositionDao {
 		JdbcTemplate template = new JdbcTemplate(dataSource);
 		List<Proposition> list = template.query(GET_CLOSED_PROPOSITIONS, 
 				new PropostionRowMapper(), userId);
+		return list;
+	}
+	
+	@Override
+	public List<Proposition> getListPropositionsTrans() throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(dataSource);
+		List<Proposition> list = template.query(GET_PROPOSITIONS_FOR_DEAL_BY_ID, new RowMapper<Proposition>() {
+
+			@Override
+			public Proposition mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Proposition prop = new Proposition();
+					
+				Company company = new Company();
+				company.setName(rs.getString("COMPANY_NAME"));
+				company.setPhone(rs.getString("COMPANY_PHONE"));
+				prop.setCompanyNameAndPhone(company);
+				
+				
+				Deal deal = new Deal();
+				deal.setPrice(rs.getDouble("DEAL_PRICE"));
+				deal.setVolume(rs.getInt("DEAL_VOLUME"));
+				prop.setDealPriceAndVolume(deal);
+				
+				return prop;
+			}
+		});
 		return list;
 	}
 	
@@ -113,7 +148,5 @@ public class PropositionDaoImpl implements PropositionDao {
 			
 			return prop;
 		}
-	}
-
-	
+	}	
 }

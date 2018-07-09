@@ -43,4 +43,13 @@ public class PropositionServiceImpl implements PropositionService {
 			throw new ServiceException(e);
 		}
 	}
+
+	@Override
+	public List<Proposition> getListPropositionsByTrans() throws ServiceException {
+		try {
+			return propostionDao.getListPropositionsTrans();
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
 }

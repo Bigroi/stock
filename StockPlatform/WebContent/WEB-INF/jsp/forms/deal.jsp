@@ -1,6 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <div id="table-container">
+		<table id="main-table" data-url="/Transport/proposition/json/Propositions.spr"></table>
+	</div><br>
+	
  	<div class="white-div white-div-deal">
     	<form class="form" id="deal-form" data-url="/deal/json/Form.spr" data-id="${id}" action="#" method="post" name="form">
 			<input type="hidden" name="sellerAddrress.latitude" id="seller_latitude">
@@ -103,4 +107,5 @@
 				</div>
 			</div>
 		</form>
-	</div>
+    </div>
+

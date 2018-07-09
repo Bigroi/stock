@@ -98,4 +98,11 @@ public class Company implements Serializable{
 		this.email = email;
 	}
 
+	@Override
+	public String toString() {
+		return "Company [id=" + id + ", name=" + name + ", phone=" + phone + ", regNumber=" + regNumber + ", address="
+				+ address + ", email=" + email + ", type=" + type + ", status=" + status + ", addressId=" + addressId
+				+ "]";
+	}
+
 }
