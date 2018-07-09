@@ -12,6 +12,12 @@ $(document).ready(function(){
 	$(document).on("click", '.login-button-page', function() {
 		$(".login-list").fadeToggle();
 	});
+	/*$(document).mouseup(function (e) {
+	    var container = $(".login-list");
+	    if (container.has(e.target).length === 0){
+	        container.fadeOut();
+	    }
+	});*/
 	$(document).on("click", '#go-back', function() {
 		$(".registration-first-part").show();
 		$(".registration-second-part").hide();

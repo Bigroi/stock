@@ -909,6 +909,9 @@ footer .container {
 #form-container .popUp-container {
 	 min-height: 473px;
 }
+#form-container .login-dialogbox .popUp-container {
+	min-height: auto;
+}
 .forMap {
 	width: 474px;
   	height: 148px;
@@ -1245,6 +1248,9 @@ footer .container {
     padding-top: 30px;
     padding-bottom: 20px;
 }
+/*.table-header h1 {
+	position: absolute;
+}*/
 #main-table_length {
 	display: none;
 }
@@ -1262,6 +1268,7 @@ footer .container {
     padding-top: 10px;
 }
 .thb {
+	 /*width: 100%;*/
 	-webkit-box-pack: end;
 	    -ms-flex-pack: end;
 	        justify-content: flex-end;
@@ -1298,8 +1305,11 @@ footer .container {
   font-size: 14px;
   color: #ced1d6;
 }
+.login-box {
+	position: relative;
+}
 .login-button-page {
-    width: 105px;
+    width: 115px;
     height: 28px;
     border-radius: 4px;
     background-color: var(--white);
@@ -1312,19 +1322,28 @@ footer .container {
     cursor: pointer;
 }
 .login-list {
-	width: 145px;
+	width: 155px;
     height: auto;
-    border-radius: 4px;
+    border-radius: 0 0 4px 4px;
     background-color: var(--white);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
     display: none;
-    
+    position: absolute;
+    z-index: 1;
+    top: 38px;
+}
+.login-list > div {
+	border-top: 1px solid var(--silver);
+	height: inherit;
+	width: 135px;
+	margin: 0 auto;
+	padding: 5px 0;
 }
 .login-list a{
 	display: block;
-	width: 100%;
 	font-size: 14px;
-	padding: 10px;
+	padding: 5px 0 5px;
+	color: var(--black);
 }
 .login-button-page div {
 	font-size: 14px;
@@ -1773,4 +1792,64 @@ table.dataTable.no-footer,
 }
 .body-deal-form ul li {
 	margin-top: 20px;
+}
+/**/
+.lot-dialogbox .left-part,
+.tender-dialogbox .left-part{
+	display: none;
+}
+.lot-dialogbox  .dialogbox-child > div,
+.lot-dialogbox .popUp-container,
+.tender-dialogbox .dialogbox-child > div,
+.tender-dialogbox .popUp-container {
+	width: 100%;
+}
+.lot-dialogbox #form-container .popUp-container,
+.tender-dialogbox #form-container .popUp-container {
+	min-height: 100%;
+}
+.lot-dialogbox .popUp-container,
+.tender-dialogbox .popUp-container{
+	padding: 50px 50px 50px 70px;
+}
+/**/
+.flex-two-input {
+	display: flex;
+}
+.flex-two-input > div:first-child{
+	border-right: 1px solid var(--silver);
+}
+.flex-two-input > div:last-child{
+	padding-left: 30px;
+}
+.flex-two-input > div:first-child input{
+	width: 192px;
+	margin-right: 40px;
+}
+.flex-two-input > div:first-child > div:last-child input{
+	margin-bottom: 0;
+}
+.flex-two-input > div:first-child select{
+	width: 220px;
+	margin-bottom: 20px;
+}
+.lot-dialogbox h3,
+.tender-dialogbox h3{
+	padding-bottom: 30px;
+}
+.flex-two-input > div:last-child select,
+.flex-two-input > div:last-child textarea{
+	width: 280px;
+	margin-bottom: 20px;
+}
+.dialogbox textarea {
+	resize: none;
+	padding: 9px 13px;
+}
+/*.flex-two-input > div:last-child textarea{
+	
+}*/
+.contact-us-dialogbox .dialogbox-child .flex-input input,
+.contact-us-dialogbox textarea{
+	width: 342px;
 }

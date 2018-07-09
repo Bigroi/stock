@@ -3,12 +3,16 @@
 	<h1>${page_title}</h1>
 	<div class="table-header-button <tiles:getAsString name='thb-cls'/>">
 		<tiles:insertAttribute name="add-button"/>
-		<div class="login-button-page">
-	    	<div>${user.company.name}</div>
-		</div>
-		<div class="login-list">
-			<a href="#" class="edit-account">${label.navigation.account}</a>
-			<a href="/account/json/Logout.spr" id="session-start">${label.navigation.logout}</a>
+		<div class="login-box">
+			<div class="login-button-page">
+		    	<div>${user.company.name}</div>
+			</div>
+			<div class="login-list">
+				<div>
+					<a href="#" class="edit-account">${label.navigation.account}</a>
+					<a href="/account/json/Logout.spr" id="session-start">${label.navigation.logout}</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
