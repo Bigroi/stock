@@ -59,17 +59,18 @@ CREATE TABLE IF NOT EXISTS `COMPANY` (
 
 ALTER TABLE `COMPANY` DISABLE KEYS;
 INSERT INTO `COMPANY` (`id`, `name`, `phone`, `reg_number`, `status`, `address_id`, `type`) VALUES
-	(21, 'Admin', '+4800000001', '0000000000', 'VERIFIED', 1, '\'TRADER\''),
-	(23, 'Apple Trader', '+4800000002', '1234567890', 'VERIFIED', 3, '\'TRADER\''),
-	(24, 'Apple Farmer', '+4800000003', '0987654321', 'VERIFIED', 4, '\'TRADER\''),
-	(25, 'Potato Farmer', '+4800000004', '0192837465', 'VERIFIED', 5, '\'TRADER\''),
-	(26, 'Potato Trader', '+4800000005', '1029384756', 'VERIFIED', 6, '\'TRADER\''),
-	(27, 'Common Trader', '+4800000006', '1209348756', 'VERIFIED', 7, '\'TRADER\''),
-	(28, 'Small Shop', '+4800000007', '0912873465', 'VERIFIED', 8, '\'TRADER\''),
-	(29, 'Middle Shop', '+4800000008', '0981236547', 'VERIFIED', 9, '\'TRADER\''),
-	(30, 'Big Shop', '+4800000009', '1230984567', 'VERIFIED', 10, '\'TRADER\''),
-	(31, 'Huge Shop', '+4800000010', '1209837465', 'VERIFIED', 11, '\'TRADER\''),
-	(32, 'Micro Shop', '+4800000011', '0912873456', 'VERIFIED', 12, '\'TRADER\'');
+	(21, 'Admin', '+4800000001', '0000000000', 'VERIFIED', 1, 'TRADER'),
+	(23, 'Apple Trader', '+4800000002', '1234567890', 'VERIFIED', 3, 'TRADER'),
+	(24, 'Apple Farmer', '+4800000003', '0987654321', 'VERIFIED', 4, 'TRADER'),
+	(25, 'Potato Farmer', '+4800000004', '0192837465', 'VERIFIED', 5, 'TRADER'),
+	(26, 'Potato Trader', '+4800000005', '1029384756', 'VERIFIED', 6, 'TRADER'),
+	(27, 'Common Trader', '+4800000006', '1209348756', 'VERIFIED', 7, 'TRADER'),
+	(28, 'Small Shop', '+4800000007', '0912873465', 'VERIFIED', 8, 'TRADER'),
+	(29, 'Middle Shop', '+4800000008', '0981236547', 'VERIFIED', 9, 'TRADER'),
+	(30, 'Big Shop', '+4800000009', '1230984567', 'VERIFIED', 10, 'TRADER'),
+	(31, 'Huge Shop', '+4800000010', '1209837465', 'VERIFIED', 11, 'TRADER'),
+	(32, 'transport', '+4800000099', '1209837465', 'VERIFIED', 11, 'TRANS'),
+	(33, 'Micro Shop', '+4800000011', '0912873456', 'VERIFIED', 12, 'TRADER');
 ALTER TABLE `COMPANY` ENABLE KEYS;
 
 CREATE TABLE IF NOT EXISTS `DEAL` (
