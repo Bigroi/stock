@@ -35,21 +35,21 @@
 				<script src="/Static/js/productList.js"></script>
 			</c:when>
 			<c:otherwise>
-				<link rel="stylesheet" href="/Static/css/jquery.dataTables.min${label.build.number}.css">
-				<link rel="stylesheet" href="/Static/css/jquery.responsive.dataTables.min${label.build.number}.css"> 
-		        <link rel="stylesheet" href="/Static/css/style${label.build.number}.css">
+				<link rel="stylesheet" href="/Static/css/jquery.dataTables.min.css?version=${label.build.number}">
+				<link rel="stylesheet" href="/Static/css/jquery.responsive.dataTables.min.css?version=${label.build.number}"> 
+		        <link rel="stylesheet" href="/Static/css/style.css?version=${label.build.number}">
 				
-		        <script src="/Static/js/jQuery${label.build.number}.js"></script>
-		        <script src="/Static/js/jquery.dataTables.min${label.build.number}.js"></script>
-		        <script src="/Static/js/jquery.responsive.dataTables.min${label.build.number}.js"></script>
-		        <script src="/Static/js/form${label.build.number}.js"></script>
-		        <script src="/Static/js/intiFormParams${label.build.number}.js"></script>
-		        <script src="/Static/js/localization${label.build.number}.js"></script>
-				<script src="/Static/js/tableMaker${label.build.number}.js"></script>
-				<script src="/Static/js/map${label.build.number}.js"></script>
-				<script src="/Static/js/dialogbox${label.build.number}.js"></script>
-				<script src="/Static/js/script${label.build.number}.js"></script>
-				<script src="/Static/js/productList${label.build.number}.js"></script>
+		        <script src="/Static/js/jQuery.js?version=${label.build.number}"></script>
+		        <script src="/Static/js/jquery.dataTables.min.js?version=${label.build.number}"></script>
+		        <script src="/Static/js/jquery.responsive.dataTables.min.js?version=${label.build.number}"></script>
+		        <script src="/Static/js/form.js?version=${label.build.number}"></script>
+		        <script src="/Static/js/intiFormParams.js?version=${label.build.number}"></script>
+		        <script src="/Static/js/localization.js?version=${label.build.number}"></script>
+				<script src="/Static/js/tableMaker.js?version=${label.build.number}"></script>
+				<script src="/Static/js/map.js?version=${label.build.number}"></script>
+				<script src="/Static/js/dialogbox.js?version=${label.build.number}"></script>
+				<script src="/Static/js/script.js?version=${label.build.number}"></script>
+				<script src="/Static/js/productList.js?version=${label.build.number}"></script>
 			</c:otherwise>
 		</c:choose>
 	</head>
