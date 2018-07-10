@@ -8,6 +8,7 @@
 		buttons:[{
 			text: l10n.translate("string"), // display name of the button
 			id:"string",                    // id of the buuton
+			buttonClass:"string"            // class for the button
 			submitUrl: "string",            // url to send form data
 			submitFunction: function(){}    // click callback function. default is **simpleButtonCallback()**
 			 								// for tables use **buttonCallbackWithTableUpdate()**
@@ -72,6 +73,7 @@ function getLotDialogParams(id, $table, model){
 		buttons: [{
 				text: l10n.translate("label.button.save"),
 				id:"save",
+				buttonClass:"lot-save",
 				submitUrl: "/lot/json/Save.spr",
 				submitFunction: buttonCallbackWithTableUpdate,
 				table : $table, 
@@ -80,6 +82,7 @@ function getLotDialogParams(id, $table, model){
 			{
 				text: l10n.translate("label.button.save_start_trading"),
 				id:"save-start-trading",
+				buttonClass:"lot-activate",
 				submitUrl: "/lot/json/SaveAndActivate.spr",
 				submitFunction: buttonCallbackWithTableUpdate,
 				table : $table, 
@@ -146,6 +149,7 @@ function getTenderDialogParams(id, $table, model){
 		buttons:[{
 			text: l10n.translate("label.button.save"),
 			id:"save",
+			buttonClass:"tender-save",
 			submitUrl: "/tender/json/SaveAndActivate.spr",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
@@ -154,6 +158,7 @@ function getTenderDialogParams(id, $table, model){
 		{
 			text: l10n.translate("label.button.save_start_trading"),
 			id:"save-start-trading",
+			buttonClass: "tender-activate",
 			submitUrl: "/tender/json/SaveAndActivate.spr",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 

@@ -49,7 +49,9 @@ function showDialog(params){
 			$button.addClass("submit button");
 			$button.text(buttonDef.text);	    	
 			$button.attr("id", buttonDef.id);
-			
+			if (buttonDef.buttonClass){
+				$button.addClass(buttonDef.buttonClass);
+			}
 			
 			$button.click(function(event){
 				return sendFormData(
