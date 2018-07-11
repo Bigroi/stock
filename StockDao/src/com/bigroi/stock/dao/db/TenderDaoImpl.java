@@ -30,7 +30,7 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String ADD_TENDER = 
 			  " INSERT INTO TENDER "
-			+ " (DESCRIPTION, PRODUCT_ID, MAX_PRICE, MIN_VOLUME, "
+			+ " (DESCRIPTION, PRODUCT_ID, PRICE, MIN_VOLUME, "
 			+ " MAX_VOLUME, COMPANY_ID, `STATUS`, CREATION_DATE, EXPARATION_DATE, "
 			+ " ADDRESS_ID) "
 			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
@@ -42,7 +42,7 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String UPDATE_TENDER_BY_ID_AND_COMPANY = 
 			  " UPDATE TENDER "
-			  + " SET DESCRIPTION = ?, PRODUCT_ID = ?, MAX_PRICE = ?, MIN_VOLUME = ?, "
+			  + " SET DESCRIPTION = ?, PRODUCT_ID = ?, PRICE = ?, MIN_VOLUME = ?, "
 			  + " MAX_VOLUME = ?, `STATUS` = ?, CREATION_DATE = ?, EXPARATION_DATE = ?, "
 			  + " ADDRESS_ID = ? "
 			  + " WHERE ID = ? AND COMPANY_ID = ? ";
@@ -70,7 +70,7 @@ public class TenderDaoImpl implements TenderDao{
 			+ " WHERE T.`STATUS` = '" + BidStatus.ACTIVE + "'";
 	
 	private static final String GET_ACTIVE_TENDERS_BY_PRODUCT_ID = 
-			" SELECT T.ID, T.DESCRIPTION, T.PRODUCT_ID, T.MAX_PRICE, T.MIN_VOLUME, "
+			" SELECT T.ID, T.DESCRIPTION, T.PRODUCT_ID, T.PRICE, T.MIN_VOLUME, "
 			+ " T.MAX_VOLUME, T.COMPANY_ID, T.`STATUS`, T.CREATION_DATE, T.EXPARATION_DATE, "
 			+ " T.ADDRESS_ID, P.NAME PRODUCT_NAME "
 			+ " FROM TENDER T "
@@ -226,7 +226,7 @@ public class TenderDaoImpl implements TenderDao{
 	private static class TenderRowMapper implements RowMapper<Tender>{
 
 		public static final String ALL_COLUMNS = 
-				" T.ID, T.DESCRIPTION, T.PRODUCT_ID, T.MAX_PRICE, T.MIN_VOLUME, "
+				" T.ID, T.DESCRIPTION, T.PRODUCT_ID, T.PRICE, T.MIN_VOLUME, "
 			+ " T.MAX_VOLUME, T.COMPANY_ID, T.`STATUS`, T.CREATION_DATE, T.EXPARATION_DATE, "
 			+ " T.ADDRESS_ID, P.NAME PRODUCT_NAME ";
 		
@@ -241,7 +241,7 @@ public class TenderDaoImpl implements TenderDao{
 			tender.setId(rs.getLong("ID"));
 			tender.setMaxVolume(rs.getInt("MAX_VOLUME"));
 			tender.setMinVolume(rs.getInt("MIN_VOLUME"));
-			tender.setPrice(rs.getDouble("MAX_PRICE"));
+			tender.setPrice(rs.getDouble("PRICE"));
 			tender.setProductId(rs.getLong("PRODUCT_ID"));
 			tender.setStatus(BidStatus.valueOf(rs.getString("STATUS")));
 			

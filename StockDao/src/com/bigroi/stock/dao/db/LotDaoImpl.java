@@ -30,7 +30,7 @@ public class LotDaoImpl implements LotDao {
 	
 	private static final String ADD_LOT = 
 			"INSERT INTO LOT "
-			+ "(DESCRIPTION, PRODUCT_ID, MIN_PRICE, MIN_VOLUME, "
+			+ "(DESCRIPTION, PRODUCT_ID, PRICE, MIN_VOLUME, "
 			+ " MAX_VOLUME, COMPANY_ID, `STATUS`, CREATION_DATE, EXPARATION_DATE, "
 			+ " ADDRESS_ID, FOTO) "
 			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
@@ -42,7 +42,7 @@ public class LotDaoImpl implements LotDao {
 	
 	private static final String UPDATE_LOT_BY_ID_AND_SELLER = 
 			"UPDATE LOT SET "
-			+ " DESCRIPTION = ?, PRODUCT_ID = ?, MIN_PRICE = ?, MIN_VOLUME = ?, "
+			+ " DESCRIPTION = ?, PRODUCT_ID = ?, PRICE = ?, MIN_VOLUME = ?, "
 			+ " MAX_VOLUME = ?, `STATUS` = ?, CREATION_DATE = ?, EXPARATION_DATE = ?, "
 			+ " ADDRESS_ID = ?, FOTO = ? "
 			+ " WHERE ID = ? AND COMPANY_ID = ?";
@@ -55,7 +55,7 @@ public class LotDaoImpl implements LotDao {
 			+ " WHERE L.ID = ?";
 	
 	private static final String GET_ACTIVE_LOTS = 
-			"SELECT L.ID, L.DESCRIPTION, L.PRODUCT_ID, L.MIN_PRICE, L.MIN_VOLUME, "
+			"SELECT L.ID, L.DESCRIPTION, L.PRODUCT_ID, L.PRICE, L.MIN_VOLUME, "
 			+ " L.MAX_VOLUME, L.COMPANY_ID, L.`STATUS`, L.CREATION_DATE, L.EXPARATION_DATE, "
 			+ " L.ADDRESS_ID, L.FOTO, P.NAME PRODUCT_NAME "
 			+ " FROM LOT L "
@@ -230,7 +230,7 @@ public class LotDaoImpl implements LotDao {
 	private static class LotRowMapper implements RowMapper<Lot>{
 
 		public static final String ALL_COLUMNS = 
-				" L.ID, L.DESCRIPTION, L.PRODUCT_ID, L.MIN_PRICE, L.MIN_VOLUME, "
+				" L.ID, L.DESCRIPTION, L.PRODUCT_ID, L.PRICE, L.MIN_VOLUME, "
 			+ " L.MAX_VOLUME, L.COMPANY_ID, L.`STATUS`, L.CREATION_DATE, L.EXPARATION_DATE, "
 			+ " L.ADDRESS_ID, L.FOTO, P.NAME PRODUCT_NAME ";
 		
@@ -246,7 +246,7 @@ public class LotDaoImpl implements LotDao {
 			lot.setId(rs.getLong("ID"));
 			lot.setMaxVolume(rs.getInt("MAX_VOLUME"));
 			lot.setMinVolume(rs.getInt("MIN_VOLUME"));
-			lot.setPrice(rs.getDouble("MIN_PRICE"));
+			lot.setPrice(rs.getDouble("PRICE"));
 			lot.setProductId(rs.getLong("PRODUCT_ID"));
 			lot.setStatus(BidStatus.valueOf(rs.getString("STATUS")));
 			
