@@ -80,7 +80,7 @@ public class TenderResourseController extends BaseResourseController {
 	private String save(Tender tender) throws ServiceException{
 		List<String> errors = activationCheck(tender);
 		if (!errors.isEmpty()) {
-			String str = errors.toString().substring(1, errors.toString().length() - 2);
+			String str = errors.toString().substring(1, errors.toString().length() - 1);
 			return new ResultBean(-1, str).toString();
 		}
 		tenderService.merge(tender, getUserCompanyId());
