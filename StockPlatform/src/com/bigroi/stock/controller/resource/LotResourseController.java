@@ -86,7 +86,7 @@ public class LotResourseController extends BaseResourseController {
 	private String save(Lot lot) throws ServiceException {
 		List<String> errors = activationCheck(lot);
 		if (!errors.isEmpty()) {
-			String str = errors.toString().substring(1, errors.toString().length() - 2);
+			String str = errors.toString().substring(1, errors.toString().length() - 1);
 			return new ResultBean(-1, str).toString();
 		}
 
