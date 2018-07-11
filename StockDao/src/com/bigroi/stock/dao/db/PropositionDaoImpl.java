@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.CompanyType;
 import com.bigroi.stock.bean.common.PropositionStatus;
-import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Product;
@@ -59,9 +59,7 @@ public class PropositionDaoImpl implements PropositionDao {
 	@Override
 	public List<Proposition> getListPropositions() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(dataSource);
-		List<Proposition> list = template.query(GET_APPROVE_PROPOSITIONS, 
-				new PropostionRowMapper());
-		return list;
+		return template.query(GET_APPROVE_PROPOSITIONS, new PropostionRowMapper());
 	}
 	
 	@Override
@@ -73,15 +71,13 @@ public class PropositionDaoImpl implements PropositionDao {
 	@Override
 	public List<Proposition> getListPropositionsByStatusAndUserId(long userId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(dataSource);
-		List<Proposition> list = template.query(GET_CLOSED_PROPOSITIONS, 
-				new PropostionRowMapper(), userId);
-		return list;
+		return template.query(GET_CLOSED_PROPOSITIONS, new PropostionRowMapper(), userId);
 	}
 	
 	@Override
 	public List<Proposition> getListPropositionsTrans() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(dataSource);
-		List<Proposition> list = template.query(GET_PROPOSITIONS_FOR_DEAL_BY_ID, new RowMapper<Proposition>() {
+		return template.query(GET_PROPOSITIONS_FOR_DEAL_BY_ID, new RowMapper<Proposition>() {
 
 			@Override
 			public Proposition mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -101,7 +97,6 @@ public class PropositionDaoImpl implements PropositionDao {
 				return prop;
 			}
 		});
-		return list;
 	}
 	
 	private static final class PropostionRowMapper implements RowMapper<Proposition>{
@@ -130,7 +125,7 @@ public class PropositionDaoImpl implements PropositionDao {
 			product.setName(rs.getString("NAME"));
 			prop.setProduct(product);
 			
-			Address buyerAddress = new Address();
+			CompanyAddress buyerAddress = new CompanyAddress();
 			buyerAddress.setCity(rs.getString("BUYER_CITY"));
 			buyerAddress.setCountry(rs.getString("BUYER_COUNTRY"));
 			buyerAddress.setAddress(rs.getString("BUYER_ADDRESS"));
@@ -138,7 +133,7 @@ public class PropositionDaoImpl implements PropositionDao {
 			buyerAddress.setLongitude(rs.getDouble("BUYER_LONGITUDE"));
 			prop.setBuyerAddress(buyerAddress);
 			
-			Address sellerAddress = new Address();
+			CompanyAddress sellerAddress = new CompanyAddress();
 			sellerAddress.setCity(rs.getString("SELLER_CITY"));
 			sellerAddress.setCountry(rs.getString("SELLER_COUNTRY"));
 			sellerAddress.setAddress(rs.getString("SELLER_ADDRESS"));

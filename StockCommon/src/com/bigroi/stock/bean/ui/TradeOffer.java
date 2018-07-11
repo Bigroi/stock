@@ -5,7 +5,7 @@ import com.bigroi.stock.json.Column;
 public class TradeOffer {
 
 	@Column(value = "label.product.price", responsivePriority=-3)
-	private String price;
+	private final String price;
 	
 	@Column(value = "label.product.lot_volume", responsivePriority=-2)
 	private long lotVolume;
@@ -21,10 +21,6 @@ public class TradeOffer {
 	
 	public String getPrice() {
 		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
 	}
 
 	public long getLotVolume() {

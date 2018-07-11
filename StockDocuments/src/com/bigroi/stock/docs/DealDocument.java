@@ -16,8 +16,6 @@ public class DealDocument extends Document<Deal>{
 
 	public static final String DEAL_DOC_FILE_ANME = "Deal.doc";
 	
-	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd.MM.yyyy");
-	
 	public DealDocument() throws DocumentException{
 		super(DEAL_DOC_FILE_ANME);
 	}
@@ -25,7 +23,7 @@ public class DealDocument extends Document<Deal>{
 	public byte[] getDocument(Deal deal) throws DocumentException{
 		try {
 			Map<String, Object> map = new HashMap<>();
-			map.put("{date}", FORMAT.format(new Date()));
+			map.put("{date}", new SimpleDateFormat("dd.MM.yyyy").format(new Date()));
 			map.put("{seller}", deal.getSellerAddress().getCompany().getName());
 			map.put("{seller_person}", deal.getSellerAddress().getCompany().getEmail());
 			map.put("{buyer}", deal.getBuyerAddress().getCompany().getName());

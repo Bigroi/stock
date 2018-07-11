@@ -28,7 +28,7 @@ public class TenderExparationMessage extends BaseMessage<Tender> {
 	@Override
 	protected String getText(Tender tender) throws MessageException {
 		return super.getText(tender)
-				.replaceAll("@price", tender.getMaxPrice() + "")
+				.replaceAll("@price", tender.getPrice() + "")
 				.replaceAll("@description", tender.getDescription())
 				.replaceAll("@volume", tender.getMaxVolume() + "");
 	}

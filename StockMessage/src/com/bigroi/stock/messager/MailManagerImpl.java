@@ -18,10 +18,14 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 
+import org.apache.log4j.Logger;
+
 import com.bigroi.stock.bean.db.Email;
 
 public class MailManagerImpl implements MailManager {
 
+	private static final Logger LOGGER = Logger.getLogger(MailManagerImpl.class);
+	
 	private Properties mailProperties;
 	private String adminUser;
 	private String user;
@@ -37,6 +41,7 @@ public class MailManagerImpl implements MailManager {
 	public void send(String fromEmail, Email email) throws MailManagerException {
 		try {
 			Session session = Session.getInstance(mailProperties, new Authenticator() {
+				@Override
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication(user, password);
 				}
@@ -73,13 +78,14 @@ public class MailManagerImpl implements MailManager {
 	@Override
 	public void sendToAdmin(Throwable e) {
 		try{
-		Email email = new Email();
-		email.setBody(Arrays.toString(e.getStackTrace()));
-		email.setRecipient(adminUser);
-		email.setSubject(e.getMessage());
-		send(email);
+			Email email = new Email();
+			email.setBody(Arrays.toString(e.getStackTrace()));
+			email.setRecipient(adminUser);
+			email.setSubject(e.getMessage());
+			send(email);
 		}catch (MailManagerException excep) {
-			excep.printStackTrace();
+			LOGGER.error("Con not send error: ", e);
+			LOGGER.error("Couse ", excep);
 		}
 	}
 

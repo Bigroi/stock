@@ -14,8 +14,8 @@ public class Proposition {
 	private Deal deal;
 	private Company company;
 	private Product product;
-	private Address buyerAddress;
-	private Address sellerAaddress;
+	private CompanyAddress buyerAddress;
+	private CompanyAddress sellerAaddress;
 	private String companyName;
 	private String companyPhone;
 	private int dealVolume;
@@ -66,16 +66,16 @@ public class Proposition {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	public Address getBuyerAddress() {
+	public CompanyAddress getBuyerAddress() {
 		return buyerAddress;
 	}
-	public void setBuyerAddress(Address buyerAddress) {
+	public void setBuyerAddress(CompanyAddress buyerAddress) {
 		this.buyerAddress = buyerAddress;
 	}
-	public Address getSellerAaddress() {
+	public CompanyAddress getSellerAaddress() {
 		return sellerAaddress;
 	}
-	public void setSellerAaddress(Address sellerAaddress) {
+	public void setSellerAaddress(CompanyAddress sellerAaddress) {
 		this.sellerAaddress = sellerAaddress;
 	}
 	public void setDealPriceAndVolume(Deal deal) {

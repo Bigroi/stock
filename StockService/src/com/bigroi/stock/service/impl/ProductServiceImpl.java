@@ -1,6 +1,5 @@
 package com.bigroi.stock.service.impl;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bigroi.stock.bean.common.Bid;
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.db.Bid;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.ui.ProductForUI;
@@ -108,23 +107,12 @@ public class ProductServiceImpl implements ProductService {
 			bids.addAll(lotDao.getActiveByProductId(productId));
 			bids.addAll(tenderDao.getActiveByProductId(productId));
 			
-			Collections.sort(bids, (a, b) -> (int) (a.getPrice() - b.getPrice()));
+			Collections.sort(bids, (a, b) -> ((int)(a.getPrice() - b.getPrice() * 100)));
 			int size = bids.size();
 			
-			DecimalFormat df = new DecimalFormat("# ###.##");
 			
 			if (size <= 5){
-				List<TradeOffer> list = new ArrayList<>();
-				for (Bid bid : bids){
-					TradeOffer offer = new TradeOffer(df.format(bid.getPrice()));
-					if (bid instanceof Lot){
-						offer.setLotVolume(bid.getMaxVolume());
-					} else {
-						offer.setTenderVolume(bid.getMaxVolume());
-					}
-					list.add(offer);
-				}
-				return list;
+				return getTrageOffersForSmallBids(bids);
 			}
 			
 			double minPrice = bids.subList((int)Math.round(size * 0.07), size - 1).get(0).getPrice();
@@ -136,19 +124,19 @@ public class ProductServiceImpl implements ProductService {
 			
 			
 			tradeOffers.add(new TradeOffer(
-					"< " + df.format(minPrice)
+					"< " + ProductForUI.DECIMAL_FORMAT.format(minPrice)
 					));
 			tradeOffers.add(new TradeOffer(
-					df.format(minPrice) + " .. " + df.format(avgMinPrice)
+					ProductForUI.DECIMAL_FORMAT.format(minPrice) + " .. " + ProductForUI.DECIMAL_FORMAT.format(avgMinPrice)
 					));
 			tradeOffers.add(new TradeOffer(
-					df.format(avgMinPrice) + " .. " + df.format(avgMaxPrice)
+					ProductForUI.DECIMAL_FORMAT.format(avgMinPrice) + " .. " + ProductForUI.DECIMAL_FORMAT.format(avgMaxPrice)
 					));
 			tradeOffers.add(new TradeOffer(
-					df.format(avgMaxPrice) + " .. " + df.format(maxPrice)
+					ProductForUI.DECIMAL_FORMAT.format(avgMaxPrice) + " .. " + ProductForUI.DECIMAL_FORMAT.format(maxPrice)
 					));
 			tradeOffers.add(new TradeOffer(
-					"> " + df.format(maxPrice)
+					"> " + ProductForUI.DECIMAL_FORMAT.format(maxPrice)
 					));
 			
 			for (Bid bid : bids){
@@ -176,6 +164,20 @@ public class ProductServiceImpl implements ProductService {
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
+	}
+	
+	private List<TradeOffer> getTrageOffersForSmallBids(List<Bid> bids){
+		List<TradeOffer> list = new ArrayList<>();
+		for (Bid bid : bids){
+			TradeOffer offer = new TradeOffer(ProductForUI.DECIMAL_FORMAT.format(bid.getPrice()));
+			if (bid instanceof Lot){
+				offer.setLotVolume(bid.getMaxVolume());
+			} else {
+				offer.setTenderVolume(bid.getMaxVolume());
+			}
+			list.add(offer);
+		}
+		return list;
 	}
 
 }

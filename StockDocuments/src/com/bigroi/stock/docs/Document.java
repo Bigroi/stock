@@ -3,6 +3,7 @@ package com.bigroi.stock.docs;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.usermodel.CharacterRun;
@@ -31,21 +32,24 @@ public abstract class Document<T> {
 			for (int i = 0; i < r1.numSections(); ++i) {
 				Section s = r1.getSection(i);
 				for (int x = 0; x < s.numParagraphs(); x++) {
-					Paragraph p = s.getParagraph(x);
-					for (int z = 0; z < p.numCharacterRuns(); z++) {
-						CharacterRun run = p.getCharacterRun(z);
-						String text = run.text();
-						for (String key : replaceText.keySet()) {
-							if (text.contains(key)) {
-								run.replaceText(key, String.valueOf(replaceText.get(key)));
-							}
-						}
-					}
+					replaceInParagraph(s.getParagraph(x), replaceText);
 				}
 			}
 			return doc;
 		} catch (IOException e) {
 			throw new DocumentException(e);
+		}
+	}
+	
+	private void replaceInParagraph(Paragraph p, Map<String, Object> replaceText){
+		for (int z = 0; z < p.numCharacterRuns(); z++) {
+			CharacterRun run = p.getCharacterRun(z);
+			String text = run.text();
+			for (Entry<String, Object> entry : replaceText.entrySet()) {
+				if (text.contains(entry.getKey())) {
+					run.replaceText(entry.getKey(), String.valueOf(entry.getValue()));
+				}
+			}
 		}
 	}
 

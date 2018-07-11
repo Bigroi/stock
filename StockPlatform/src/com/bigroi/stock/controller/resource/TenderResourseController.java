@@ -30,6 +30,12 @@ import com.bigroi.stock.service.TenderService;
 @RequestMapping("/tender/json")
 public class TenderResourseController extends BaseResourseController {
 	
+	private static final String MAX_PRICE_ERROR_LABEL = "label.tender.maxPrice_error";
+	private static final String PRODUCT_ERROR_LABEL = "label.tender.product_error";
+	private static final String MIN_VOLUME_ERROR_LABEL = "label.tender.minVolume_error";
+	private static final String MAX_VOLUME_ERROR_LABEL = "label.tender.maxVolume_error";
+	private static final String EXP_DATE_ERROR_LABEL= "label.tender.expDate_error";
+	
 	@Autowired
 	private TenderService tenderService;
 	
@@ -41,7 +47,7 @@ public class TenderResourseController extends BaseResourseController {
 		Tender tender = tenderService.getTender(id, getUserCompanyId());
 		if (tender.getId() == -1){
 			StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			tender.setAddressId(user.getCompany().getAddress().getId());
+			tender.setAddressId(user.getCompany().getCompanyAddress().getId());
 		}
 		return new ResultBean(1, tender, null).toString();
 	}
@@ -73,7 +79,7 @@ public class TenderResourseController extends BaseResourseController {
 	
 	private String save(Tender tender) throws ServiceException{
 		List<String> errors = activationCheck(tender);
-		if (errors.size() > 0) {
+		if (!errors.isEmpty()) {
 			String str = errors.toString().substring(1, errors.toString().length() - 2);
 			return new ResultBean(-1, str).toString();
 		}
@@ -96,7 +102,7 @@ public class TenderResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String startTrading(@RequestParam("id") long id) throws ServiceException {
 		List<String> errors = activationCheck(id);
-		if (errors.size() > 0) {
+		if (!errors.isEmpty()) {
 			String str = errors.toString().substring(1, errors.toString().length() - 1);
 			return new ResultBean(-1, str).toString();
 		}
@@ -131,19 +137,19 @@ public class TenderResourseController extends BaseResourseController {
 	}
 	
 	private List<String> activationCheck(Tender tender){
-		List<String> errors = new ArrayList<String>();
+		List<String> errors = new ArrayList<>();
 		
 		if (tender.getProductId() < 0) {
-			errors.add("label.tender.product_error");
+			errors.add(PRODUCT_ERROR_LABEL);
 		}
-		if (tender.getMaxPrice() < 0.01) {
-			errors.add("label.tender.maxPrice_error");
+		if (tender.getPrice() < 0.01) {
+			errors.add(MAX_PRICE_ERROR_LABEL);
 		}
 		if (tender.getMinVolume() < 1) {
-			errors.add("label.tender.minVolume_error");
+			errors.add(MIN_VOLUME_ERROR_LABEL);
 		}
 		if (tender.getMaxVolume() < tender.getMinVolume()) {
-			errors.add("label.tender.maxVolume_error");
+			errors.add(MAX_VOLUME_ERROR_LABEL);
 		}
 		
 		Calendar calendar = Calendar.getInstance();
@@ -152,7 +158,7 @@ public class TenderResourseController extends BaseResourseController {
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
 		if( tender.getExparationDate().getTime() < calendar.getTimeInMillis()){
-			errors.add("label.tender.expDate_error");
+			errors.add(EXP_DATE_ERROR_LABEL);
 		}
 		return errors;
 	}

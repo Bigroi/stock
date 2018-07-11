@@ -14,7 +14,7 @@ $(document).ready(function(){
 	if ($('#deal-form').length > 0){
 		var dealForm = $('#deal-form');
 		initDealForm(dealForm, dealForm.attr("data-url"), dealForm.attr("data-id"));
-	};
+	}
 });
 
 function sendFormData(formContainer, buttonDef, $dialogbox) {
@@ -70,7 +70,7 @@ function sendFormData(formContainer, buttonDef, $dialogbox) {
 			}
 		}
 	}
-};
+}
 
 function setFormInputs(formContainer, object){
 	var formElementNames = ["input", "select", "textarea"];

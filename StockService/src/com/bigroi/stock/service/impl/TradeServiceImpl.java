@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bigroi.stock.bean.common.Bid;
+import com.bigroi.stock.bean.db.Bid;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
@@ -21,12 +21,9 @@ import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.ProductDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.jobs.trade.TradeBid;
-import com.bigroi.stock.jobs.trade.TradeLot;
-import com.bigroi.stock.jobs.trade.TradeTender;
-import com.bigroi.stock.messager.message.DealConfirmationMessageForCustomer;
-import com.bigroi.stock.messager.message.DealConfirmationMessageForSeller;
 import com.bigroi.stock.messager.message.MessageException;
+import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForCustomer;
+import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.TradeService;
 
@@ -69,18 +66,18 @@ public class TradeServiceImpl implements TradeService{
 	
 	private void productTrade(Product product) throws ServiceException{
 		try{
-			List<TradeLot> tradeLots = new ArrayList<>();
-			List<TradeTender> tradeTenders = new ArrayList<>();
+			List<Lot> tradeLots = new ArrayList<>();
+			List<Tender> tradeTenders = new ArrayList<>();
 			dealDao.getPosibleDeals(tradeLots, tradeTenders, product.getId());
 			
 			tradeLots.forEach(l -> l.setProduct(product));
 			tradeTenders.forEach(t -> t.setProduct(product));
 			
-			while(tradeTenders.size() > 0 && tradeLots.size() > 0){
+			while(!tradeTenders.isEmpty() && !tradeLots.isEmpty()){
 				
-				List<? extends TradeBid> majorBids = getMinVolumeBids(tradeLots, tradeTenders);
+				List<? extends Bid> majorBids = getMinVolumeBids(tradeLots, tradeTenders);
 				
-				TradeBid majorBid = getBestBid(majorBids);
+				Bid majorBid = getBestBid(majorBids);
 				
 				createDealsForBid(majorBid, product);
 				
@@ -92,9 +89,9 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 
-	private void createDealsForBid(TradeBid bid, Product product) throws ServiceException{
-		while(bid.getMaxVolume() > 0 && bid.getPosiblePartners().size() > 0){
-			TradeBid partner = bid.getBestPartner();
+	private void createDealsForBid(Bid bid, Product product) throws ServiceException{
+		while(bid.getMaxVolume() > 0 && !bid.getPosiblePartners().isEmpty()){
+			Bid partner = bid.getBestPartner();
 			Deal deal = createDeal(bid, partner);
 			deal.setProduct(product);
 			sendConfimationMails(deal);
@@ -119,12 +116,12 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 
-	private Deal createDeal(TradeBid bid, TradeBid partner) {
+	private Deal createDeal(Bid bid, Bid partner) {
 		int volume = Math.min(bid.getMaxVolume(), partner.getMaxVolume());
 		bid.setMaxVolume(bid.getMaxVolume() - volume);
 		partner.setMaxVolume(partner.getMaxVolume() - volume);
 		
-		double maxTransportPrice = TradeBid.getDistancePrice(bid, partner);
+		double maxTransportPrice = Bid.getDistancePrice(bid, partner);
 		
 		Lot lot;
 		Tender tender;
@@ -142,8 +139,8 @@ public class TradeServiceImpl implements TradeService{
 		return deal;
 	}
 	
-	private TradeBid getBestBid(List<? extends TradeBid> bids) {
-		TradeBid bid = Collections
+	private Bid getBestBid(List<? extends Bid> bids) {
+		Bid bid = Collections
 				.min(bids, 
 					(o1, o2) -> o1.getPosiblePartners().size() - o2.getPosiblePartners().size()
 				);
@@ -157,7 +154,7 @@ public class TradeServiceImpl implements TradeService{
 					);
 	}
 
-	private List<? extends TradeBid> getMinVolumeBids(List<TradeLot> tradeLots, List<TradeTender> tradeTenders) {
+	private List<? extends Bid> getMinVolumeBids(List<Lot> tradeLots, List<Tender> tradeTenders) {
 		if (getTotalVolume(tradeLots) < getTotalVolume(tradeTenders)){
 			return tradeLots;
 		} else {
@@ -173,14 +170,14 @@ public class TradeServiceImpl implements TradeService{
 		return result;
 	}
 	
-	private void removeAllZeroBids(List<TradeTender> tradeTenders, List<TradeLot> tradeLots) {
-		for (TradeTender tender : new ArrayList<>(tradeTenders)){
-			if (tender.getPosiblePartners().size() == 0){
+	private void removeAllZeroBids(List<Tender> tradeTenders, List<Lot> tradeLots) {
+		for (Tender tender : new ArrayList<>(tradeTenders)){
+			if (tender.getPosiblePartners().isEmpty()){
 				tradeTenders.remove(tender);
 			}
 		}
-		for (TradeLot lot : new ArrayList<>(tradeLots)){
-			if (lot.getPosiblePartners().size() == 0){
+		for (Lot lot : new ArrayList<>(tradeLots)){
+			if (lot.getPosiblePartners().isEmpty()){
 				tradeLots.remove(lot);
 			}
 		}

@@ -14,6 +14,10 @@ import com.bigroi.stock.service.UserService;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
+	private static final String INDEX_LINK = "/Index.spr";
+	private static final String LOGIN_LINK = "/account/json/Login.spr";
+	private static final String LOGOUT_LINK = "/account/json/Logout.spr";
+	
 	@Autowired
 	private AuthenticationHandler authenticationHandler;
 	
@@ -24,20 +28,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.formLogin()
-				.loginPage("/Index.spr")
+				.loginPage(INDEX_LINK)
 				.failureHandler(authenticationHandler)
 				.successHandler(authenticationHandler)
-				.loginProcessingUrl("/account/json/Login.spr")
+				.loginProcessingUrl(LOGIN_LINK)
 			.and()
 			.httpBasic()
 			.and()
 			.logout()
-				.logoutSuccessUrl("/Index.spr")
-				.logoutUrl("/account/json/Logout.spr")
+				.logoutSuccessUrl(INDEX_LINK)
+				.logoutUrl(LOGOUT_LINK)
 			.and()
 			.csrf().disable()
 			.exceptionHandling()
-				.accessDeniedPage("/Index.spr")
+				.accessDeniedPage(INDEX_LINK)
 			.and();
 	}
 

@@ -7,7 +7,6 @@ function showDialog(params){
 	addDefaults(params);
 	params.container.load(params.formUrl, params.formParams, function() {
 		var $dialogbox = $(".dialogbox");
-		var $dialogboxChild = $(".dialogbox-child");
 		var $dialogboxElementContent = $(".dialogbox-elementContent");
 		var $formList = $("#form-list");
 		var $dialogboxHead = $(".dialogbox-Head");

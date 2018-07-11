@@ -18,14 +18,14 @@ import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.common.PartnerChoice;
-import com.bigroi.stock.bean.db.Address;
 import com.bigroi.stock.bean.db.Company;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Deal;
+import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
+import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
-import com.bigroi.stock.jobs.trade.TradeLot;
-import com.bigroi.stock.jobs.trade.TradeTender;
 
 @Repository
 public class DealDaoImpl implements DealDao {
@@ -171,65 +171,84 @@ public class DealDaoImpl implements DealDao {
 	private DataSource datasource;
 	
 	@Override
-	public void getPosibleDeals(List<TradeLot> tradeLots, List<TradeTender> tradeTenders, long productId) throws DaoException {
+	public void getPosibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		Map<Long, TradeLot> lots = new HashMap<>();
-		Map<Long, TradeTender> tenders = new HashMap<>();
+		Map<Long, Lot> lots = new HashMap<>();
+		Map<Long, Tender> tenders = new HashMap<>();
 		template.query(GET_POSIBLE_BIDS, new RowMapper<Void>(){
 
+			private SQLException exception = null;
+			
 			@Override
 			public Void mapRow(ResultSet rs, int rowNumber) throws SQLException {
 				
 				long lotId = rs.getLong("LOT_ID");
-				TradeLot lot = lots.get(lotId);
-				if (lot == null){
-					lot = new TradeLot();
-					lot.setId(lotId);
-					lot.setDescription(rs.getString("LOT_DESCRIPTION"));
-					lot.setExparationDate(rs.getDate("LOT_EXP_DATE"));
-					lot.setMinPrice(rs.getDouble("LOT_PRICE"));
-					lot.setProductId(rs.getLong("PRODUCT_ID"));
-					lot.setStatus(BidStatus.valueOf(rs.getString("LOT_STATUS")));
-					lot.setMaxVolume(rs.getInt("LOT_VOLUME"));
-					lot.setMinVolume(rs.getInt("LOT_MIN_VOLUME"));
-					lot.setAddressId(rs.getLong("LOT_ADDRESS_ID"));
-					
-					Address address = new Address();
-					address.setLatitude(rs.getDouble("LOT_LATITUDE"));
-					address.setLongitude(rs.getDouble("LOT_LONGITUDE"));
-					address.setCompanyId(rs.getLong("LOT_COMPANY_ID"));
-					address.setId(rs.getLong("LOT_ADDRESS_ID"));
-					lot.setAddress(address);
-					
-					lots.put(lotId, lot);
-				}
+				Lot lot = lots.computeIfAbsent(lotId, id -> createLotForDeal(id, rs));
 
 				long tenderId = rs.getLong("TENDER_ID");
-				TradeTender tender = tenders.get(tenderId);
-				if (tender == null){
-					tender = new TradeTender();
+				Tender tender = tenders.computeIfAbsent(tenderId, id -> createTenderForDeal(id, rs));
+				
+				tender.addPosiblePartner(lot);
+				lot.addPosiblePartner(tender);
+				
+				if (exception != null){
+					throw exception;
+				}
+				return null;
+			}
+			
+			private Tender createTenderForDeal(Long tenderId, ResultSet rs) {
+				try{
+					Tender tender = new Tender();
 					tender.setId(tenderId);
 					tender.setDescription(rs.getString("TENDER_DESCRIPTION"));
 					tender.setExparationDate(rs.getDate("TENDER_EXP_DATE"));
-					tender.setMaxPrice(rs.getDouble("TENDER_PRICE"));
+					tender.setPrice(rs.getDouble("TENDER_PRICE"));
 					tender.setProductId(rs.getLong("PRODUCT_ID"));
 					tender.setStatus(BidStatus.valueOf(rs.getString("TENDER_STATUS")));
 					tender.setMaxVolume(rs.getInt("TENDER_VOLUME"));
 					tender.setMinVolume(rs.getInt("TENDER_MIN_VOLUME"));
 					tender.setAddressId(rs.getLong("TENDER_ADDRESS_ID"));
 					
-					Address address = new Address();
+					CompanyAddress address = new CompanyAddress();
 					address.setLatitude(rs.getDouble("TENDER_LATITUDE"));
 					address.setLongitude(rs.getDouble("TENDER_LONGITUDE"));
 					address.setCompanyId(rs.getLong("TENDER_COMPANY_ID"));
 					address.setId(rs.getLong("TENDER_ADDRESS_ID"));
-					tender.setAddress(address);
+					tender.setCompanyAddress(address);
 					
-					tenders.put(tenderId, tender);
+					return tender;
+				}catch (SQLException e) {
+					exception = e;
+					return null;
 				}
-				tender.addPosiblePartner(lot);
-				lot.addPosiblePartner(tender);
-				return null;
+			}
+			
+			private Lot createLotForDeal(Long lotId, ResultSet rs) {
+				try{
+					Lot lot = new Lot();
+					lot.setId(lotId);
+					lot.setDescription(rs.getString("LOT_DESCRIPTION"));
+					lot.setExparationDate(rs.getDate("LOT_EXP_DATE"));
+					lot.setPrice(rs.getDouble("LOT_PRICE"));
+					lot.setProductId(rs.getLong("PRODUCT_ID"));
+					lot.setStatus(BidStatus.valueOf(rs.getString("LOT_STATUS")));
+					lot.setMaxVolume(rs.getInt("LOT_VOLUME"));
+					lot.setMinVolume(rs.getInt("LOT_MIN_VOLUME"));
+					lot.setAddressId(rs.getLong("LOT_ADDRESS_ID"));
+					
+					CompanyAddress address = new CompanyAddress();
+					address.setLatitude(rs.getDouble("LOT_LATITUDE"));
+					address.setLongitude(rs.getDouble("LOT_LONGITUDE"));
+					address.setCompanyId(rs.getLong("LOT_COMPANY_ID"));
+					address.setId(rs.getLong("LOT_ADDRESS_ID"));
+					lot.setCompanyAddress(address);
+					
+					return lot;
+				}catch (SQLException e) {
+					exception = e;
+					return null;
+				}
 			}
 			
 		}, productId);
@@ -242,7 +261,7 @@ public class DealDaoImpl implements DealDao {
 	public Deal getById(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Deal> list = template.query(GET_BY_ID, new DealRowMapper(), id);
-		if (list.size() == 0){
+		if (list.isEmpty()){
 			return null;
 		} else {
 			return list.get(0);
@@ -308,9 +327,7 @@ public class DealDaoImpl implements DealDao {
 	@Override
 	public List<Deal> getListBySellerAndBuyerApproved() throws DaoException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
-		List<Deal> listDeals = jdbcTemplate.query(GET_LIST_BY_SELLER_BUYER_APPROVE, 
-				new DealRowMapper());
-			return listDeals;
+		return jdbcTemplate.query(GET_LIST_BY_SELLER_BUYER_APPROVE, new DealRowMapper());
 	}
 
 	private static final class DealRowMapper implements RowMapper<Deal>{
@@ -352,7 +369,7 @@ public class DealDaoImpl implements DealDao {
 			product.setName(rs.getString("PRODUCT_NAME"));
 			deal.setProduct(product);
 			
-			Address address = new Address();
+			CompanyAddress address = new CompanyAddress();
 			address.setCompanyId(rs.getLong("SELLER_COMPANY_ID"));
 			address.setLatitude(rs.getDouble("SELLER_LATITUDE"));
 			address.setLongitude(rs.getDouble("SELLER_LONGITUDE"));
@@ -369,7 +386,7 @@ public class DealDaoImpl implements DealDao {
 			company.setRegNumber(rs.getString("SELLER_REG_NUMBER"));
 			address.setCompany(company);
 			
-			address = new Address();
+			address = new CompanyAddress();
 			address.setCompanyId(rs.getLong("BUYER_COMPANY_ID"));
 			address.setLatitude(rs.getDouble("BUYER_LATITUDE"));
 			address.setLongitude(rs.getDouble("BUYER_LONGITUDE"));

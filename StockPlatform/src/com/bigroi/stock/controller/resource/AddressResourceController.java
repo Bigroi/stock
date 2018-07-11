@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.bean.ui.AddressForUI;
 import com.bigroi.stock.controller.BaseResourseController;
@@ -27,6 +27,11 @@ import com.bigroi.stock.service.ServiceException;
 @RequestMapping(value = "/address/json", produces = "text/plain;charset=UTF-8")
 public class AddressResourceController extends BaseResourseController {
 	
+	private static final String DEFAULT_ADDRESS_LABEL = "label.address.default_address";
+	private static final String NOT_DEFAULT_ADDRESS_LABEL = "label.address.not_default_address";
+	private static final String AUTHORISATION_ERROR_LABEL = "label.address.not_authorized";
+	private static final String DEFAULT_DELETE_ERROR_LABEL = "label.address.deffalt_delete_error";
+	
 	@Autowired
 	private AddressService addressService;
 	
@@ -34,13 +39,13 @@ public class AddressResourceController extends BaseResourseController {
 	@ResponseBody
 	public String getAddresses() throws ServiceException, TableException{
 		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		List<Address> listAddresses = addressService.getCompanyAddresses(user.getCompanyId());
+		List<CompanyAddress> listAddresses = addressService.getCompanyAddresses(user.getCompanyId());
 		List<AddressForUI> addressesForUI = listAddresses.stream()
 				.map(address -> new AddressForUI(
 						address,
 						address.getId() == user.getCompany().getAddressId() ? 
-								getLabelValue("label.address.default_address") :
-								getLabelValue("label.address.not_default_address")
+								getLabelValue(DEFAULT_ADDRESS_LABEL) :
+								getLabelValue(NOT_DEFAULT_ADDRESS_LABEL)
 						))
 				.collect(Collectors.toList());
 		TableResponse<AddressForUI> table = new TableResponse<>(AddressForUI.class, addressesForUI);
@@ -52,11 +57,11 @@ public class AddressResourceController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String form(@RequestParam(value = "id", defaultValue = "-1") long id, Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
-		Address address = addressService.getAddressById(id);
-		if (id!= -1 && user.getCompanyId() != user.getCompanyId()){
-			return new ResultBean(-1, "label.address.not_authorized").toString();
+		CompanyAddress companyAddress = addressService.getAddressById(id);
+		if (id!= -1 && user.getCompanyId() != companyAddress.getCompanyId()){
+			return new ResultBean(-1, AUTHORISATION_ERROR_LABEL).toString();
 		} else {
-			return new ResultBean(1, new AddressForUI(address), "").toString();
+			return new ResultBean(1, new AddressForUI(companyAddress), "").toString();
 		}
 	}
 	
@@ -65,13 +70,13 @@ public class AddressResourceController extends BaseResourseController {
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String save(@RequestParam("json") String jsonAddress) throws ServiceException{
 		StockUser user =  (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Address address = GsonUtil.getGson().fromJson(jsonAddress, Address.class);
+		CompanyAddress address = GsonUtil.getGson().fromJson(jsonAddress, CompanyAddress.class);
 		addressService.merge(address, user.getCompanyId());
 		return new ResultBean(1, new AddressForUI(address,
 				address.getId() == user.getCompany().getAddressId() ? 
-				getLabelValue("label.address.default_address") :
-				getLabelValue("label.address.not_default_address")
-			), "label.address.save_success").toString();
+				getLabelValue(DEFAULT_ADDRESS_LABEL) :
+				getLabelValue(NOT_DEFAULT_ADDRESS_LABEL)
+			), null).toString();
 	}
 	
 	@RequestMapping(value = "/Delete.spr")
@@ -80,9 +85,9 @@ public class AddressResourceController extends BaseResourseController {
 	public String delete(@RequestParam("id") long id, Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		if (user.getCompany().getAddressId() == id){
-			return new ResultBean(-1, "label.address.deffalt_delete_error").toString();
+			return new ResultBean(-1, DEFAULT_DELETE_ERROR_LABEL).toString();
 		}
 		addressService.delete(id, user.getCompany().getId());
-		return new ResultBean(1, "success").toString();
+		return new ResultBean(1, null).toString();
 	}
 }

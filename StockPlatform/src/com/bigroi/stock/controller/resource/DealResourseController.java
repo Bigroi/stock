@@ -27,6 +27,11 @@ import com.bigroi.stock.service.ServiceException;
 @RequestMapping(value = "/deal/json", produces = "text/plain;charset=UTF-8")
 public class DealResourseController extends BaseResourseController {
 
+	private static final String NOT_AUTORISED_ERROR_LABEL = "label.deal.not_authorized";
+	private static final String TRANSPORT_SUCCESS_LABEL = "label.deal.transport";
+	private static final String REJECT_SUCCESS_LABEL = "label.deal.rejected";
+	private static final String APPROVE_SUCCESS_LABEL = "label.deal.approved";
+	
 	@Autowired
 	private DealService dealService;
 	
@@ -39,7 +44,7 @@ public class DealResourseController extends BaseResourseController {
 		Deal deal = dealService.getById(id, user.getCompanyId());
 		if (user.getCompanyId() != deal.getBuyerAddress().getCompanyId() && 
 				user.getCompanyId() != deal.getSellerAddress().getCompanyId()){
-			return new ResultBean(-1, "label.deal.not_authorized").toString();
+			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
 		} else {
 			return new ResultBean(1, translateDeal(new DealForUI(deal, user.getCompanyId())), "").toString();
 		}
@@ -75,9 +80,9 @@ public class DealResourseController extends BaseResourseController {
 		
 		deal.setStatus(DealStatus.ON_PARTNER_APPROVE.toString());
 		if (dealService.approve(deal.getId(), userBean.getCompanyId())){
-			return new ResultBean(1, deal, "label.deal.approved").toString();
+			return new ResultBean(1, deal, APPROVE_SUCCESS_LABEL).toString();
 		} else {
-			return new ResultBean(-1, "label.deal.not_authorized").toString();
+			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
 		}
 	}
 	
@@ -91,9 +96,9 @@ public class DealResourseController extends BaseResourseController {
 		
 		deal.setStatus(DealStatus.REJECTED.toString());
 		if (dealService.reject(deal.getId(), userBean.getCompanyId())){
-			return new ResultBean(1, deal, "label.deal.rejected").toString();
+			return new ResultBean(1, deal, REJECT_SUCCESS_LABEL).toString();
 		} else {
-			return new ResultBean(-1, "label.deal.not_authorized").toString();
+			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
 		}
 	}
 	
@@ -107,9 +112,9 @@ public class DealResourseController extends BaseResourseController {
 		
 		deal.setStatus(DealStatus.TRANSPORT.toString());
 		if (dealService.transport(deal.getId(), userBean.getCompanyId())){
-			return new ResultBean(1, deal, "label.deal.rejected").toString();
+			return new ResultBean(1, deal, TRANSPORT_SUCCESS_LABEL).toString();
 		} else {
-			return new ResultBean(-1, "label.deal.not_authorized").toString();
+			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
 		}
 	}
 }

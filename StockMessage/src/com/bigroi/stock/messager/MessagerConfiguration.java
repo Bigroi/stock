@@ -7,20 +7,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import com.bigroi.stock.messager.message.CustomerCanceledMessage;
-import com.bigroi.stock.messager.message.DealConfirmationMessageForCustomer;
-import com.bigroi.stock.messager.message.DealConfirmationMessageForSeller;
-import com.bigroi.stock.messager.message.DealExparationMessageForCustomer;
-import com.bigroi.stock.messager.message.DealExparationMessageForSeller;
 import com.bigroi.stock.messager.message.FeedBackMessage;
 import com.bigroi.stock.messager.message.LinkResetPasswordMessage;
 import com.bigroi.stock.messager.message.LotExparationMessage;
 import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.messager.message.ResetUserPasswordMessage;
-import com.bigroi.stock.messager.message.SellerCanceledMessage;
-import com.bigroi.stock.messager.message.SuccessDealMessageForCustomer;
-import com.bigroi.stock.messager.message.SuccessDealMessageForSeller;
 import com.bigroi.stock.messager.message.TenderExparationMessage;
+import com.bigroi.stock.messager.message.deal.CustomerCanceledMessage;
+import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForCustomer;
+import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
+import com.bigroi.stock.messager.message.deal.DealExparationMessageForCustomer;
+import com.bigroi.stock.messager.message.deal.DealExparationMessageForSeller;
+import com.bigroi.stock.messager.message.deal.SellerCanceledMessage;
+import com.bigroi.stock.messager.message.deal.SuccessDealMessageForCustomer;
+import com.bigroi.stock.messager.message.deal.SuccessDealMessageForSeller;
 
 @Configuration
 @PropertySource("classpath:mail.properties")

@@ -3,12 +3,12 @@ package com.bigroi.stock.dao;
 import java.util.List;
 
 import com.bigroi.stock.bean.db.Deal;
-import com.bigroi.stock.jobs.trade.TradeLot;
-import com.bigroi.stock.jobs.trade.TradeTender;
+import com.bigroi.stock.bean.db.Lot;
+import com.bigroi.stock.bean.db.Tender;
 
 public interface DealDao {
 	
-	void getPosibleDeals(List<TradeLot> tradeLots, List<TradeTender> tradeTenders, long productId) throws DaoException;
+	void getPosibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId) throws DaoException;
 
 	Deal getById(long id, long companyId) throws DaoException;
 

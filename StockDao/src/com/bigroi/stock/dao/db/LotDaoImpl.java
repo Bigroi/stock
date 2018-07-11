@@ -117,7 +117,7 @@ public class LotDaoImpl implements LotDao {
 				PreparedStatement ps = con.prepareStatement(ADD_LOT, PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, lot.getDescription());
 				ps.setLong(2, lot.getProductId());
-				ps.setDouble(3, lot.getMinPrice());
+				ps.setDouble(3, lot.getPrice());
 				ps.setInt(4, lot.getMinVolume());
 				ps.setInt(5, lot.getMaxVolume());
 				ps.setLong(6, lot.getCompanyId());
@@ -139,7 +139,7 @@ public class LotDaoImpl implements LotDao {
 		return template.update(UPDATE_LOT_BY_ID_AND_SELLER, 
 				lot.getDescription(), 
 				lot.getProductId(), 
-				lot.getMinPrice(), 
+				lot.getPrice(), 
 				lot.getMinVolume(),
 				lot.getMaxVolume(), 
 				lot.getStatus().name(),
@@ -155,7 +155,7 @@ public class LotDaoImpl implements LotDao {
 	public Lot getById(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Lot> lots = template.query(GET_LOT_BY_ID, new LotRowMapper(), id);
-		if(lots.size() == 0 || (companyId != -1 && lots.get(0).getCompanyId() != companyId)){
+		if(lots.isEmpty() || (companyId != -1 && lots.get(0).getCompanyId() != companyId)){
 			return null;
 		}else{
 			return lots.get(0);
@@ -246,7 +246,7 @@ public class LotDaoImpl implements LotDao {
 			lot.setId(rs.getLong("ID"));
 			lot.setMaxVolume(rs.getInt("MAX_VOLUME"));
 			lot.setMinVolume(rs.getInt("MIN_VOLUME"));
-			lot.setMinPrice(rs.getDouble("MIN_PRICE"));
+			lot.setPrice(rs.getDouble("MIN_PRICE"));
 			lot.setProductId(rs.getLong("PRODUCT_ID"));
 			lot.setStatus(BidStatus.valueOf(rs.getString("STATUS")));
 			

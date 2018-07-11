@@ -18,7 +18,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.CompanyStatus;
-import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.dao.DaoException;
@@ -110,7 +110,7 @@ public class UserDaoImpl implements UserDao {
 					user.setPassword(rs.getString("PASSWORD"));
 					user.setCompanyId(rs.getLong("COMPANY_ID"));
 					
-					Address address = new Address();
+					CompanyAddress address = new CompanyAddress();
 					address.setAddress(rs.getString("ADDRESS"));
 					address.setCity(rs.getString("CITY"));
 					address.setCompanyId(rs.getLong("COMPANY_ID"));
@@ -120,7 +120,7 @@ public class UserDaoImpl implements UserDao {
 					address.setLongitude(rs.getDouble("LONGITUDE"));
 					
 					Company company = new Company();
-					company.setAddress(address);
+					company.setCompanyAddress(address);
 					company.setAddressId(address.getId());
 					company.setId(rs.getLong("COMPANY_ID"));
 					company.setName(rs.getString("NAME"));
@@ -137,7 +137,7 @@ public class UserDaoImpl implements UserDao {
 				return user;
 			}
 		 }, username.toLowerCase());
-		if(list.size() == 0){
+		if(list.isEmpty()){
 			return null;
 		}else{
 			updateCountAndLastTimeForLogin(user);

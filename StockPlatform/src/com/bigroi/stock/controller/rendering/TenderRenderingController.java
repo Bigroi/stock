@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.controller.BaseRenderingController;
@@ -36,7 +36,7 @@ public class TenderRenderingController extends BaseRenderingController{
 			) throws ServiceException {
 		ModelAndView modelAndView = createModelAndView("tenderForm");
 		List<Product> products = productService.getAllActiveProducts();
-		List<Address> addressList = addressService.getCompanyAddresses(((StockUser)loggedInUser.getPrincipal()).getCompanyId());
+		List<CompanyAddress> addressList = addressService.getCompanyAddresses(((StockUser)loggedInUser.getPrincipal()).getCompanyId());
 		
 		modelAndView.addObject("newTender", id < 0);
 		modelAndView.addObject("listOfProducts", products);

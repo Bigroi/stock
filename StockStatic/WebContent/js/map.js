@@ -42,8 +42,6 @@ function initRegistrationMap(){
 			geocodeAddress(geocoder);
 		});
 		
-		var markers = [];
-		
 		function geocodeAddress(geocoder) {
 			var address = getAddress();
 			geocoder.geocode({'address': address}, function(results, status) {
@@ -117,15 +115,14 @@ function initDealMap() {
 				lng: (sellerLng + buyerLng) / 2
 			}
 		});
-		var geocoder = new google.maps.Geocoder();
-		var sellerMarker = new google.maps.Marker({
+		new google.maps.Marker({
 			map: map,
 			position: {
 				lat: sellerLat, 
 				lng: sellerLng
 			}
 		});
-		var buyerMarker = new google.maps.Marker({
+		new google.maps.Marker({
 			map: map,
 			position: {
 				lat: buyerLat, 

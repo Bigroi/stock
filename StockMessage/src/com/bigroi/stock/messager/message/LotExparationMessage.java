@@ -28,7 +28,7 @@ public class LotExparationMessage extends BaseMessage<Lot> {
 	@Override
 	protected String getText(Lot lot) throws MessageException {
 		return super.getText(lot)
-				.replaceAll("@price", lot.getMinPrice() + "")
+				.replaceAll("@price", lot.getPrice() + "")
 				.replaceAll("@description", lot.getDescription())
 				.replaceAll("@volume", lot.getMaxVolume() + "");
 	}

@@ -61,7 +61,7 @@ public class CommonRenderingController extends BaseRenderingController{
 	
 	@RequestMapping("/account/Form.spr")
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public ModelAndView form() throws ServiceException {
+	public ModelAndView form() {
 		return createModelAndView("account");
 	}
 }

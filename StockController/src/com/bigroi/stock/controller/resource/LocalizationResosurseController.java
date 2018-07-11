@@ -16,7 +16,7 @@ public class LocalizationResosurseController extends BaseRenderingController{
 
 	@RequestMapping(value = "/Labels.spr")
 	@ResponseBody
-	public String Labels() {
+	public String labels() {
 		Map<String, String> result = new HashMap<>();
 		Map<String, Object> labels = createModelAndView("").getModel();
 		

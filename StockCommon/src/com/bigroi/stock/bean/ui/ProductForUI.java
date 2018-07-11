@@ -1,7 +1,6 @@
 package com.bigroi.stock.bean.ui;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.json.Column;
@@ -10,6 +9,8 @@ import com.bigroi.stock.json.Id;
 
 public class ProductForUI {
 
+	public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("# ###.##");
+	
 	@Id
 	private long id;
 	
@@ -29,9 +30,9 @@ public class ProductForUI {
 	@Column(value = "label.product.edit", responsivePriority = -4)
 	private String edit = "YNN";
 	
-	private double sellPrice;
+	private String sellPrice;
 	
-	private double buyPrice;
+	private String buyPrice;
 	
 	private int sellVolume;
 	
@@ -55,24 +56,12 @@ public class ProductForUI {
 		this.edit = edit;
 	}
 
-	public long getId() {
-		return id;
-	}
-
 	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
 	}
 
 	public void setDescription(String description) {
@@ -95,20 +84,20 @@ public class ProductForUI {
 		this.delivaryPrice = delivaryPrice;
 	}
 
-	public double getSellPrice() {
+	public String getSellPrice() {
 		return sellPrice;
 	}
 
 	public void setSellPrice(double sellPrice) {
-		this.sellPrice = new BigDecimal(sellPrice).setScale(2, RoundingMode.UP).doubleValue();
+		this.sellPrice = DECIMAL_FORMAT.format(sellPrice);
 	}
 
-	public double getBuyPrice() {
+	public String getBuyPrice() {
 		return buyPrice;
 	}
 
 	public void setBuyPrice(double buyPrice) {
-		this.buyPrice = new BigDecimal(buyPrice).setScale(2, RoundingMode.UP).doubleValue();
+		this.buyPrice = DECIMAL_FORMAT.format(buyPrice);
 	}
 
 	public int getSellVolume() {
@@ -139,4 +128,15 @@ public class ProductForUI {
 		this.picture = picture;
 	}
 	
+	public long getId() {
+		return id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
 }

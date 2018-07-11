@@ -18,6 +18,8 @@ import com.bigroi.stock.messager.message.MessageException;
 @RequestMapping("feedback/json")
 public class FeedBackResourceController extends BaseResourseController {
 
+	private static final String FB_SUCCESS_LABEL = "lable.registration.fb_success";
+	
 	@Autowired
 	private FeedBackMessage feedBackMessage;
 	
@@ -40,7 +42,7 @@ public class FeedBackResourceController extends BaseResourseController {
 	public String getForm(String json) throws MessageException{
 		FeedBack message = GsonUtil.getGson().fromJson(json, FeedBack.class);
 		feedBackMessage.send(message);
-		return new ResultBean(1, message, "lable.registration.fb_success").toString();
+		return new ResultBean(1, message, FB_SUCCESS_LABEL).toString();
 	}
 	
 }

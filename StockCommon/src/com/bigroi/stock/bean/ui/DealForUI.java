@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.bigroi.stock.bean.common.DealStatus;
 import com.bigroi.stock.bean.common.PartnerChoice;
-import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Edit;
@@ -16,26 +16,26 @@ public class DealForUI {
 	private long id;
 	
 	@Column(value = "label.deal.productName", responsivePriority=-3)
-	private String productName;
+	private final String productName;
 	
 	@Column(value = "label.deal.time", allowSorting = true, responsivePriority=-1)
-	private Date time;
+	private final Date time;
 	
 	@Column(value = "label.deal.status", responsivePriority=-2)
 	private String status;
 
 	@Column(value = "edit", responsivePriority=-4)
 	@Edit(details="/deal/Form.spr", remove="", edit="")
-	private String edit = "NNY";
+	private final String edit;
 	
-	private final Address sellerAddrress;
-	private final Address buyerAddrress;
-	private final Address partnerAddress;
+	private final CompanyAddress sellerAddrress;
+	private final CompanyAddress buyerAddrress;
+	private final CompanyAddress partnerAddress;
 	private final String sellerFoto;
 	private final double price;
 	private final int volume;
 	private final String partnerDescription;
-	private DealStatus statusCode;
+	private final DealStatus statusCode;
 	
 	public DealForUI(Deal deal, long companyId){
 		this.id = deal.getId();
@@ -55,33 +55,30 @@ public class DealForUI {
 		this.sellerFoto = deal.getSellerFoto();
 		this.price = deal.getPrice();
 		this.volume = deal.getVolume();
+		this.edit = "NNY";
 	}
 	
 	private DealStatus getDealStatus(Deal deal, long companyId){
 		PartnerChoice companyChoice = deal.getBuyerAddress().getCompanyId() == companyId ? 
 				deal.getBuyerChoice() : deal.getSellerChoice();
-		DealStatus status = DealStatus.calculateStatus(deal.getBuyerChoice(), deal.getSellerChoice());
-		if (status == DealStatus.ON_APPROVE && companyChoice != PartnerChoice.ON_APPROVE){
+		DealStatus dealStatus = DealStatus.calculateStatus(deal.getBuyerChoice(), deal.getSellerChoice());
+		if (dealStatus == DealStatus.ON_APPROVE && companyChoice != PartnerChoice.ON_APPROVE){
 			return DealStatus.ON_PARTNER_APPROVE;
 		} else {
-			return status;
+			return dealStatus;
 		}
 	}
 	
-	public Address getBuyerAddrress() {
+	public CompanyAddress getBuyerAddrress() {
 		return buyerAddrress;
 	}
 	
-	public Address getPartnerAddress() {
+	public CompanyAddress getPartnerAddress() {
 		return partnerAddress;
 	}
 	
-	public Address getSellerAddrress() {
+	public CompanyAddress getSellerAddrress() {
 		return sellerAddrress;
-	}
-	
-	public String getSellerFoto() {
-		return sellerFoto;
 	}
 	
 	public double getPrice() {
@@ -96,14 +93,18 @@ public class DealForUI {
 		return partnerDescription;
 	}
 	
-	public void setStatus(String status) {
-		this.status = status;
+	public String getSellerFoto() {
+		return sellerFoto;
 	}
-	
+
 	public long getId() {
 		return id;
 	}
-	
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public String getStatus() {
 		return status;
 	}

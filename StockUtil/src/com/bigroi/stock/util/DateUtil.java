@@ -19,4 +19,5 @@ public class DateUtil {
 		return c;
 	}
 
+	private DateUtil(){}
 }

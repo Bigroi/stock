@@ -38,7 +38,7 @@ public class AccountResourceController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String accountPage(Authentication loggedInUser) throws ServiceException, CloneNotSupportedException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
-		user = user.clone();
+		user = user.cloneUser();
 		user.setPassword("");
 		user.setPasswordRepeat("");
 		return new ResultBean(1, user, "").toString();
@@ -105,7 +105,7 @@ public class AccountResourceController extends BaseResourseController {
 	
 	@RequestMapping(value = "/ResetPassword.spr")
 	@ResponseBody
-	public String ResetPassword(@RequestParam("json") String json) throws ServiceException {
+	public String resetPassword(@RequestParam("json") String json) throws ServiceException {
 		StockUser user = GsonUtil.getGson().fromJson(json, StockUser.class);
 		userService.sendLinkResetPassword(user.getUsername());
 		return new ResultBean(1, user, "label.account.password_reset").toString();

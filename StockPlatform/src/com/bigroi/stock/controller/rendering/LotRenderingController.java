@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.controller.BaseRenderingController;
@@ -35,7 +35,7 @@ public class LotRenderingController extends BaseRenderingController{
 			Authentication loggedInUser) throws ServiceException {
 		ModelAndView modelAndView = createModelAndView("lotForm");
 		List<Product> productList = productService.getAllActiveProducts();
-		List<Address> addressList = addressService.getCompanyAddresses(((StockUser)loggedInUser.getPrincipal()).getCompanyId());
+		List<CompanyAddress> addressList = addressService.getCompanyAddresses(((StockUser)loggedInUser.getPrincipal()).getCompanyId());
 		
 		modelAndView.addObject("listOfProducts", productList);
 		modelAndView.addObject("listOfAddresses", addressList);

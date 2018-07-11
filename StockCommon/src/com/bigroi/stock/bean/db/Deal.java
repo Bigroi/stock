@@ -31,18 +31,18 @@ public class Deal {
 	//Related objects
 	
 	private Product product;
-	private Address buyerAddress;
-	private Address sellerAddress;
+	private CompanyAddress buyerAddress;
+	private CompanyAddress sellerAddress;
 	
 	public Deal(Lot lot, Tender tender, int volume, double maxTransportPrice) {
 		this.lotId = lot.getId();
-		this.buyerAddress = tender.getAddress();
+		this.buyerAddress = tender.getCompanyAddress();
 		this.buyerAddressId = tender.getAddressId();
 		this.buyerChoice = PartnerChoice.ON_APPROVE;
 		this.buyerDescription = tender.getDescription();
-		this.price = (lot.getMinPrice() + tender.getMaxPrice()) / 2;
+		this.price = (lot.getPrice() + tender.getPrice()) / 2;
 		this.productId = lot.getProductId();
-		this.sellerAddress = lot.getAddress();
+		this.sellerAddress = lot.getCompanyAddress();
 		this.sellerAddressId = lot.getAddressId();
 		this.sellerChoice = PartnerChoice.ON_APPROVE;
 		this.sellerDescription = lot.getDescription();
@@ -72,19 +72,19 @@ public class Deal {
 		this.product = product;
 	}
 
-	public Address getBuyerAddress() {
+	public CompanyAddress getBuyerAddress() {
 		return buyerAddress;
 	}
 
-	public void setBuyerAddress(Address buyerAddress) {
+	public void setBuyerAddress(CompanyAddress buyerAddress) {
 		this.buyerAddress = buyerAddress;
 	}
 
-	public Address getSellerAddress() {
+	public CompanyAddress getSellerAddress() {
 		return sellerAddress;
 	}
 
-	public void setSellerAddress(Address sellerAddress) {
+	public void setSellerAddress(CompanyAddress sellerAddress) {
 		this.sellerAddress = sellerAddress;
 	}
 

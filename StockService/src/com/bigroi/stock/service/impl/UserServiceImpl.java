@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.bean.common.Role;
-import com.bigroi.stock.bean.db.GeneratedKey;
+import com.bigroi.stock.bean.db.TempKey;
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.bean.db.UserRole;
 import com.bigroi.stock.dao.AddressDao;
@@ -57,10 +57,10 @@ public class UserServiceImpl implements UserService {
 			
 			companyDao.add(user.getCompany());
 			user.setCompanyId(user.getCompany().getId());
-			if (user.getCompany().getAddress() != null){
-				user.getCompany().getAddress().setCompanyId(user.getCompanyId());;
-				addressDao.addAddress(user.getCompany().getAddress());
-				user.getCompany().setAddressId(user.getCompany().getAddress().getId());
+			if (user.getCompany().getCompanyAddress() != null){
+				user.getCompany().getCompanyAddress().setCompanyId(user.getCompanyId());
+				addressDao.addAddress(user.getCompany().getCompanyAddress());
+				user.getCompany().setAddressId(user.getCompany().getCompanyAddress().getId());
 				companyDao.update(user.getCompany());
 			}
 			userDao.add(user);
@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
 	public void update(StockUser user) throws ServiceException {
 		try {
 			userDao.update(user);
-			user.getCompany().setAddressId(user.getCompany().getAddress().getId());
+			user.getCompany().setAddressId(user.getCompany().getCompanyAddress().getId());
 			companyDao.update(user.getCompany());
 		} catch (DaoException e) {
 			throw new ServiceException(e);
@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) {
 		try {
 			StockUser user = userDao.getByUsernameWithRoles(username);
 			if (user == null){
@@ -119,7 +119,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			StockUser user = userDao.getByUsernameWithRoles(username);
 			if (user != null){
-				GeneratedKey key = keysDao.generateKey();
+				TempKey key = keysDao.generateKey();
 				user.setKeyId(key.getId());
 				userDao.updateKeyById(user);
 				Map<String,String> map = new HashMap<>();
@@ -135,7 +135,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean checkCodeAndEmail(String email, String code) throws ServiceException {
 		try {
-			return keysDao.ñheckResetKey(email, code);
+			return keysDao.checkResetKey(email, code);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}

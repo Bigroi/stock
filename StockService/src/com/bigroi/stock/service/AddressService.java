@@ -4,16 +4,16 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.CompanyAddress;
 
 @Service
 public interface AddressService {
 
-	List<Address> getCompanyAddresses(long companyId) throws ServiceException;
+	List<CompanyAddress> getCompanyAddresses(long companyId) throws ServiceException;
 
-	Address getAddressById(long id) throws ServiceException;
+	CompanyAddress getAddressById(long id) throws ServiceException;
 
-	void merge(Address address, long companyId) throws ServiceException;
+	void merge(CompanyAddress address, long companyId) throws ServiceException;
 
 	void delete(long id, long companyId) throws ServiceException;
 }

@@ -29,9 +29,15 @@ import com.bigroi.stock.service.ServiceException;
 @RequestMapping("/lot/json")
 public class LotResourseController extends BaseResourseController {
 
+	private static final String MIN_PRICE_ERROR_LABEL = "label.lot.minPrice_error";
+	private static final String PRODUCT_ERROR_LABEL = "label.lot.product_error";
+	private static final String MIN_VOLUME_ERROR_LABEL = "label.lot.minVolume_error";
+	private static final String MAX_VOLUME_ERROR_LABEL = "label.lot.maxVolume_error";
+	private static final String EXP_DATE_ERROR_LABEL= "label.lot.expDate_error";
+	
 	@Autowired
 	private LotService lotService;
-	
+			
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
@@ -39,7 +45,7 @@ public class LotResourseController extends BaseResourseController {
 		Lot lot = lotService.getLot(id, getUserCompanyId());
 		if (lot.getId() == -1){
 			StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			lot.setAddressId(user.getCompany().getAddress().getId());
+			lot.setAddressId(user.getCompany().getCompanyAddress().getId());
 		}
 		return new ResultBean(1, lot, null).toString();
 	}
@@ -62,7 +68,7 @@ public class LotResourseController extends BaseResourseController {
 		if (lot.getId() < 0) {
 			lot.setStatus(BidStatus.INACTIVE);
 		} else {
-			Lot oldLot = (Lot) lotService.getLot(lot.getId(), getUserCompanyId());
+			Lot oldLot = lotService.getLot(lot.getId(), getUserCompanyId());
 			lot.setStatus(oldLot.getStatus());
 		}
 		return save(lot);
@@ -79,13 +85,13 @@ public class LotResourseController extends BaseResourseController {
 
 	private String save(Lot lot) throws ServiceException {
 		List<String> errors = activationCheck(lot);
-		if (errors.size() > 0) {
+		if (!errors.isEmpty()) {
 			String str = errors.toString().substring(1, errors.toString().length() - 2);
 			return new ResultBean(-1, str).toString();
 		}
 
 		lotService.merge(lot, getUserCompanyId());
-		return new ResultBean(1, new LotForUI(lot), "label.lot.save_success").toString();
+		return new ResultBean(1, new LotForUI(lot), "").toString();
 	}
 
 	@RequestMapping(value = "/StartTrading.spr")
@@ -93,12 +99,12 @@ public class LotResourseController extends BaseResourseController {
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String startTrading(@RequestParam("id") long id) throws ServiceException {
 		List<String> errors = activationCheck(id);
-		if (errors.size() > 0) {
+		if (!errors.isEmpty()) {
 			String str = errors.toString().substring(1, errors.toString().length() - 1);
 			return new ResultBean(-1, str).toString();
 		}
 		lotService.activate(id, getUserCompanyId());
-		return new ResultBean(1, "success").toString();
+		return new ResultBean(1, "").toString();
 	}
 
 	@RequestMapping(value = "/StopTrading.spr")
@@ -106,7 +112,7 @@ public class LotResourseController extends BaseResourseController {
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String stopTrading(@RequestParam("id") long id) throws ServiceException {
 		lotService.deactivate(id, getUserCompanyId());
-		return new ResultBean(1, "success").toString();
+		return new ResultBean(1, "").toString();
 	}
 
 	@RequestMapping(value = "/Delete.spr")
@@ -114,7 +120,7 @@ public class LotResourseController extends BaseResourseController {
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String delete(@RequestParam("id") long id) throws ServiceException {
 		lotService.delete(id, getUserCompanyId());
-		return new ResultBean(1, "success").toString();
+		return new ResultBean(1, "").toString();
 	}
 
 	private long getUserCompanyId() {
@@ -128,19 +134,19 @@ public class LotResourseController extends BaseResourseController {
 	}
 
 	private List<String> activationCheck(Lot newLot) {
-		List<String> errors = new ArrayList<String>();
+		List<String> errors = new ArrayList<>();
 
-		if (newLot.getMinPrice() < 0.1) {
-			errors.add("label.lot.minPrice_error");
+		if (newLot.getPrice() < 0.1) {
+			errors.add(MIN_PRICE_ERROR_LABEL);
 		}
 		if (newLot.getProductId() < 0) {
-			errors.add("label.lot.product_error");
+			errors.add(PRODUCT_ERROR_LABEL);
 		}
 		if (newLot.getMinVolume() < 1) {
-			errors.add("label.lot.minVolume_error");
+			errors.add(MIN_VOLUME_ERROR_LABEL);
 		}
 		if (newLot.getMaxVolume() <= newLot.getMinVolume()) {
-			errors.add("label.lot.maxVolume_error");
+			errors.add(MAX_VOLUME_ERROR_LABEL);
 		}
 
 		Calendar calendar = Calendar.getInstance();
@@ -149,7 +155,7 @@ public class LotResourseController extends BaseResourseController {
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
 		if (newLot.getExparationDate().getTime() < calendar.getTimeInMillis()) {
-			errors.add("label.lot.expDate_error");
+			errors.add(EXP_DATE_ERROR_LABEL);
 		}
 		return errors;
 	}

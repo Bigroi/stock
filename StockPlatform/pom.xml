@@ -108,11 +108,6 @@
 			<version>${stock.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>Stock</groupId>
 			<artifactId>Jobs</artifactId>
 			<version>${stock.version}</version>

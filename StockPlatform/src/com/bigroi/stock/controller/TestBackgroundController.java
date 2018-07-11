@@ -14,6 +14,9 @@ import com.bigroi.stock.service.TradeService;
 @RequestMapping("/test/background")
 public class TestBackgroundController extends BaseRenderingController {
 	
+	private static final String TEST_PAGE = "testBG";
+	private static final String MESSAGE = "message";
+	
 	@Autowired
 	private MarketService marketService;
 	
@@ -25,49 +28,49 @@ public class TestBackgroundController extends BaseRenderingController {
 	
 	@RequestMapping(value = "/Index.spr")
 	public ModelAndView showPage(){
-		return createModelAndView("testBG");
+		return createModelAndView(TEST_PAGE);
 	} 
 
 	@RequestMapping(value = "/ClearPreDeals.spr")
 	public ModelAndView startClearPredeal() throws ServiceException {
-		ModelAndView modelAndView = createModelAndView("testBG");
+		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		
 		marketService.clearPreDeal();
 		String message = "ClearPreDeal is finished";
-		modelAndView.addObject("message", message);
+		modelAndView.addObject(MESSAGE, message);
 		
 		return modelAndView;
 	}
  
 	@RequestMapping(value = "/Trading.spr")
 	public ModelAndView startTrade() throws ServiceException {
-		ModelAndView modelAndView = createModelAndView("testBG");
+		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		
 		tradeService.trade();
 		String message = "Trade is finished";
-		modelAndView.addObject("message", message);
+		modelAndView.addObject(MESSAGE, message);
 		
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/SendEmails.spr")
 	public ModelAndView startSendMail() throws ServiceException {
-		ModelAndView modelAndView = createModelAndView("testBG");
+		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		
 		messageService.sendAllEmails();
 		String message = "SendEmails is finished";
-		modelAndView.addObject("message", message);
+		modelAndView.addObject(MESSAGE, message);
 		
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/CheckStatus.spr")
 	public ModelAndView checkStatus() throws ServiceException {
-		ModelAndView modelAndView = createModelAndView("testBG");
+		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		
 		marketService.checkExparations();
 		String message = "CheckStatus is finished";
-		modelAndView.addObject("message", message);
+		modelAndView.addObject(MESSAGE, message);
 		
 		return modelAndView;
 	}

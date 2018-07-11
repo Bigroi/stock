@@ -15,7 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.dao.AddressDao;
 import com.bigroi.stock.dao.DaoException;
 
@@ -48,13 +48,13 @@ public class AddressDaoImpl implements AddressDao{
 	private DataSource datasource;
 
 	@Override
-	public List<Address> getAddressesForCompany(long companyId) throws DaoException{
+	public List<CompanyAddress> getAddressesForCompany(long companyId) throws DaoException{
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(GET_ADDRESSES_BY_COMPANY_ID, new BeanPropertyRowMapper<Address>(Address.class), companyId);
+		return template.query(GET_ADDRESSES_BY_COMPANY_ID, new BeanPropertyRowMapper<CompanyAddress>(CompanyAddress.class), companyId);
 	}
 	
 	@Override
-	public boolean updateAddress(Address address) throws DaoException{
+	public boolean updateAddress(CompanyAddress address) throws DaoException{
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_ADDRESS_BY_ID_AND_COMPANY_ID, 
 				address.getCity(),
@@ -67,7 +67,7 @@ public class AddressDaoImpl implements AddressDao{
 	}
 	
 	@Override
-	public void addAddress(Address address) throws DaoException{
+	public void addAddress(CompanyAddress address) throws DaoException{
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -95,11 +95,11 @@ public class AddressDaoImpl implements AddressDao{
 	}
 
 	@Override
-	public Address getAddressById(long id) throws DaoException {
+	public CompanyAddress getAddressById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Address> listAddresses = template.query(GET_ADDRESS_BY_ID, 
-				new BeanPropertyRowMapper<Address>(Address.class),id);
-		if(listAddresses.size() == 0){
+		List<CompanyAddress> listAddresses = template.query(GET_ADDRESS_BY_ID, 
+				new BeanPropertyRowMapper<CompanyAddress>(CompanyAddress.class),id);
+		if(listAddresses.isEmpty()){
 			return null;
 		}else{
 			return listAddresses.get(0);

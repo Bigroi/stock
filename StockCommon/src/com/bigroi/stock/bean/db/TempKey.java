@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.bigroi.stock.util.Generator;
 
-public class GeneratedKey {
+public class TempKey {
 	
 	private  long id;
 	private String generatedKey;

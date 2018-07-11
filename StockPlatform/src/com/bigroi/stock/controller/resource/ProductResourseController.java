@@ -25,6 +25,9 @@ import com.bigroi.stock.service.ServiceException;
 @RequestMapping("/product/json/")
 public class ProductResourseController extends BaseResourseController {
 	
+	private static final String SAVE_SUCCESS_LABEL = "label.product.save_success";
+	private static final String DELETE_SUCCESS_LABEL = "label.product.delete_success";
+	
 	@Autowired
 	private ProductService productService;
 	
@@ -62,7 +65,7 @@ public class ProductResourseController extends BaseResourseController {
 		Product product = GsonUtil.getGson().fromJson(json, Product.class);
 		product.setRemoved("N");
 		productService.merge(product);
-		return new ResultBean(1, new ProductForUI(product), "label.product.save_success").toString();
+		return new ResultBean(1, new ProductForUI(product), SAVE_SUCCESS_LABEL).toString();
 	}
 	
 	@RequestMapping("/admin/Delete.spr")
@@ -72,7 +75,7 @@ public class ProductResourseController extends BaseResourseController {
 		Product product = GsonUtil.getGson().fromJson(json, Product.class);
 		productService.delete(product.getId());
 		product.setRemoved("Y");
-		return new ResultBean(1, new ProductForUI(product), "label.product.delete_success").toString();
+		return new ResultBean(1, new ProductForUI(product), DELETE_SUCCESS_LABEL).toString();
 	}
 	
 	@RequestMapping("/TradeOffers.spr")

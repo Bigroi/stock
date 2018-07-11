@@ -39,8 +39,6 @@ $(document).ready(function(){
 		});
 		
 		function rowCallback($row, data, index) {
-			var edit = data[model.editColumn];
-			
 			if (model.statusColumn){
 				addStatusSwitcher(data, $row);
 			}

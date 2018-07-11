@@ -16,13 +16,13 @@ import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.messager.message.DealConfirmationMessageForCustomer;
-import com.bigroi.stock.messager.message.DealConfirmationMessageForSeller;
-import com.bigroi.stock.messager.message.DealExparationMessageForCustomer;
-import com.bigroi.stock.messager.message.DealExparationMessageForSeller;
 import com.bigroi.stock.messager.message.LotExparationMessage;
 import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.messager.message.TenderExparationMessage;
+import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForCustomer;
+import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
+import com.bigroi.stock.messager.message.deal.DealExparationMessageForCustomer;
+import com.bigroi.stock.messager.message.deal.DealExparationMessageForSeller;
 import com.bigroi.stock.service.MarketService;
 import com.bigroi.stock.service.ServiceException;
 

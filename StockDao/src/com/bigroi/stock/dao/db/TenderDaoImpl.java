@@ -117,7 +117,7 @@ public class TenderDaoImpl implements TenderDao{
 				PreparedStatement ps = con.prepareStatement(ADD_TENDER,PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, tender.getDescription());
 				ps.setLong(2, tender.getProductId());
-				ps.setDouble(3, tender.getMaxPrice());
+				ps.setDouble(3, tender.getPrice());
 				ps.setInt(4, tender.getMinVolume());
 				ps.setInt(5, tender.getMaxVolume());
 				ps.setLong(6, tender.getCompanyId());
@@ -139,7 +139,7 @@ public class TenderDaoImpl implements TenderDao{
 		return	template.update(UPDATE_TENDER_BY_ID_AND_COMPANY, 
 				tender.getDescription(), 
 				tender.getProductId(),
-				tender.getMaxPrice(), 
+				tender.getPrice(), 
 				tender.getMinVolume(), 
 				tender.getMaxVolume(), 
 				tender.getStatus().name(), 
@@ -154,7 +154,7 @@ public class TenderDaoImpl implements TenderDao{
 	public Tender getById(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Tender> tenders = template.query(GET_TENDER_BY_ID, new TenderRowMapper(), id);
-		if (tenders.size() == 0 || (companyId != -1 && tenders.get(0).getCompanyId() != companyId)) {
+		if (tenders.isEmpty() || (companyId != -1 && tenders.get(0).getCompanyId() != companyId)) {
 			return null;
 		} else {
 			return tenders.get(0);
@@ -241,7 +241,7 @@ public class TenderDaoImpl implements TenderDao{
 			tender.setId(rs.getLong("ID"));
 			tender.setMaxVolume(rs.getInt("MAX_VOLUME"));
 			tender.setMinVolume(rs.getInt("MIN_VOLUME"));
-			tender.setMaxPrice(rs.getDouble("MAX_PRICE"));
+			tender.setPrice(rs.getDouble("MAX_PRICE"));
 			tender.setProductId(rs.getLong("PRODUCT_ID"));
 			tender.setStatus(BidStatus.valueOf(rs.getString("STATUS")));
 			

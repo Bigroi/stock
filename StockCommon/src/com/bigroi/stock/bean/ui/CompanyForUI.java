@@ -9,21 +9,21 @@ import com.bigroi.stock.json.Status;
 public class CompanyForUI {
 
 	@Id
-	private long id;
+	private final long id;
 	
 	@Column(value = "label.companies.name", responsivePriority=-3)
-	private String name;
+	private final String name;
 	
 	@Column(value = "label.companies.phone", responsivePriority=-1)
-	private String phone;
+	private final String phone;
 	
 	@Column(value = "label.companies.reg_number", responsivePriority=-2)
-	private String regNumber;
+	private final String regNumber;
 	
 	@Column(value = "label.companies.status", responsivePriority=-4)
 	@Status(activate="/company/json/admin/ChangeStatus.spr", 
 			deactivate="/company/json/admin/ChangeStatus.spr")
-	private CompanyStatus status;
+	private final CompanyStatus status;
 	
 	public CompanyForUI(Company company) {
 		this.id = company.getId();

@@ -15,11 +15,6 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>Stock</groupId>
 			<artifactId>Message</artifactId>
 			<version>${stock.version}</version>

@@ -17,7 +17,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.bigroi.stock.bean.db.GeneratedKey;
+import com.bigroi.stock.bean.db.TempKey;
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.GenerateKeyDao;
@@ -45,17 +45,17 @@ public class GenerateKeyDaoImpl implements GenerateKeyDao {
 	private DataSource datasource;
 
 	@Override
-	public boolean ñheckResetKey(String email, String code) throws DaoException {
+	public boolean checkResetKey(String email, String code) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<StockUser> list = template.query(GET_GENERATED_KEY,
 				new BeanPropertyRowMapper<StockUser>(StockUser.class), email, code);
-		return list.size() != 0;
+		return !list.isEmpty();
 	}
 
 	@Override
-	public GeneratedKey generateKey() {
+	public TempKey generateKey() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		GeneratedKey key = new GeneratedKey();
+		TempKey key = new TempKey();
 		key.generateKey();
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {

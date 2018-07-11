@@ -71,22 +71,19 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> getAllProducts() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Product> products = template.query(GET_ALL_PRODUCTS, new BeanPropertyRowMapper<Product>(Product.class));
-		return products;
+		return template.query(GET_ALL_PRODUCTS, new BeanPropertyRowMapper<Product>(Product.class));
 	}
 	
 	@Override
 	public List<Product> getAllActiveProducts() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Product> products = template.query(GET_ALL_ACTIVE_PRODUCTS, new BeanPropertyRowMapper<Product>(Product.class));
-		return products;
+		return template.query(GET_ALL_ACTIVE_PRODUCTS, new BeanPropertyRowMapper<Product>(Product.class));
 	}
 	
 	@Override
 	public List<ProductForUI> getAllActiveProductsForUI() throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(GET_ALL_ACTIVE_PRODUCTS_FOR_UI, 
-				new BeanPropertyRowMapper<ProductForUI>(ProductForUI.class));
+		return template.query(GET_ALL_ACTIVE_PRODUCTS_FOR_UI, new BeanPropertyRowMapper<ProductForUI>(ProductForUI.class));
 	}
 
 	@Override
@@ -126,7 +123,7 @@ public class ProductDaoImpl implements ProductDao {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Product> product =  template.query(GET_PRODUCT_BY_ID,
 				new BeanPropertyRowMapper<Product>(Product.class), id);
-		if (product.size() == 0) {
+		if (product.isEmpty()) {
 			return null;
 		} else {
 			return product.get(0);

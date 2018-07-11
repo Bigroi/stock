@@ -18,7 +18,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.CompanyStatus;
-import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
@@ -76,7 +76,7 @@ public class CompanyDaoImpl implements CompanyDao {
 				GET_COMPANY_BY_ID, 
 				new CompanyRowMapper(),
 				id);
-		if (list.size()  > 0){
+		if (!list.isEmpty()){
 			return list.get(0);
 		} else {
 			return null;
@@ -132,7 +132,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	public Company getByRegNumber(String regNumber) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Company> list = template.query(GET_COMPANY_BY_REG_NUMBER, new BeanPropertyRowMapper<Company>(Company.class), regNumber);
-		if (list.size() == 0){
+		if (list.isEmpty()){
 			return null; 
 		} else {
 			return list.get(0);
@@ -143,7 +143,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	public Company getByName(String name) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Company> list = template.query(GET_COMPANY_BY_NAME, new BeanPropertyRowMapper<Company>(Company.class), name);
-		if (list.size() == 0){
+		if (list.isEmpty()){
 			return null; 
 		} else {
 			return list.get(0);
@@ -162,7 +162,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			company.setEmail(rs.getString("USERNAME"));
 			company.setType(rs.getString("TYPE"));
 
-			Address address = new Address();
+			CompanyAddress address = new CompanyAddress();
 			address.setAddress(rs.getString("ADDRESS"));
 			address.setCity(rs.getString("CITY"));
 			address.setCountry(rs.getString("COUNTRY"));
@@ -171,7 +171,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			address.setLatitude(rs.getDouble("LATITUDE"));
 			address.setLongitude(rs.getDouble("LONGITUDE"));
 			
-			company.setAddress(address);
+			company.setCompanyAddress(address);
 			
 			return company;
 		}

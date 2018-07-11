@@ -31,7 +31,7 @@ public class PropositionResourceController {
 	@RequestMapping(value = "/MyPropositions.spr")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public String MyDeallist() throws ServiceException, TableException{
+	public String myDeallist() throws ServiceException, TableException{
 		List<Proposition> prop =  propService.getListProposition();
 		List<TransportForUI> propForUI =  prop.stream().map(TransportForUI::new).collect(Collectors.toList());
 		TableResponse<TransportForUI> table = new TableResponse<>(TransportForUI.class, propForUI);
@@ -50,7 +50,7 @@ public class PropositionResourceController {
 	@RequestMapping(value = "/MyHystory.spr")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public String MyHystory(Authentication loggedInUser) throws ServiceException, TableException{
+	public String myHystory(Authentication loggedInUser) throws ServiceException, TableException{
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		List<Proposition> prop =  propService.getListHystoryProposition(user.getCompanyId());
 		List<TransportForUI> propForUI =  prop.stream().map(TransportForUI::new).collect(Collectors.toList());
@@ -61,7 +61,7 @@ public class PropositionResourceController {
 	@RequestMapping(value = "/Propositions.spr")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public String Proposions() throws ServiceException, TableException{
+	public String proposions() throws ServiceException, TableException{
 		List<Proposition> prop =  propService.getListPropositionsByTrans();
 		List<PropositionForUI> propForUI =  prop.stream().map(PropositionForUI::new).collect(Collectors.toList());
 		TableResponse<PropositionForUI> table = new TableResponse<>(PropositionForUI.class, propForUI);

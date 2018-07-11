@@ -12,5 +12,9 @@
 	<update author="Pavel" date="2.07.2018">
 		ALTER TABLE `EMAIL` ADD COLUMN `file_name` VARCHAR(50) NULL AFTER `body`, ADD COLUMN `file` BLOB NULL AFTER `file_name`;
 	</update>
+	<update author="Pavel" date="2.07.2018">
+		ALTER TABLE `lot` CHANGE COLUMN `min_price` `price` DECIMAL(10,2) NOT NULL AFTER `product_id`;
+		ALTER TABLE `tender` CHANGE COLUMN `max_price` `price` DECIMAL(10,2) NOT NULL AFTER `product_id`;
+	</update>
 </root>
 

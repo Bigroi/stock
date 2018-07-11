@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.bigroi.stock.bean.db.Address;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.dao.AddressDao;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.service.AddressService;
@@ -17,7 +17,7 @@ public class AddressServiceImpl implements AddressService{
 	@Autowired
 	private AddressDao addressDao;
 	
-	public List<Address> getCompanyAddresses(long companyId) throws ServiceException{
+	public List<CompanyAddress> getCompanyAddresses(long companyId) throws ServiceException{
 		try{
 			return addressDao.getAddressesForCompany(companyId);
 		}catch (DaoException e) {
@@ -26,11 +26,11 @@ public class AddressServiceImpl implements AddressService{
 	}
 
 	@Override
-	public Address getAddressById(long id) throws ServiceException {
+	public CompanyAddress getAddressById(long id) throws ServiceException {
 		try {
-			Address address;
+			CompanyAddress address;
 			if (id == -1) {
-				address = new Address();
+				address = new CompanyAddress();
 				address.setId(id);
 			} else {
 				address = addressDao.getAddressById(id);
@@ -42,7 +42,7 @@ public class AddressServiceImpl implements AddressService{
 	}
 
 	@Override
-	public void merge(Address address, long companyId) throws ServiceException {
+	public void merge(CompanyAddress address, long companyId) throws ServiceException {
 		try{
 			if(address.getId() == -1){
 				address.setCompanyId(companyId);

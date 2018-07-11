@@ -16,35 +16,37 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class BaseRenderingController {
 
-	public static Map<String, Object> defaultLabels = new HashMap<>();
-	public static Properties pageTitles;
-	private static Properties devProperties;
+	private static final Map<String, Object> defaultLabels = new HashMap<>();
+	private static final Properties pageTitles;
+	private static final Properties devProperties;
 	
 	private static final String PAGE_NAMES = "_pageNames.properties";
 	private static final String PAGE_LABELS_FILES = "_pageLabelsFiles.properties";
 	private static final String DEV_PROPERTIES_FILES = "dev.properties";
 	
 	static{
-		devProperties = readProperties(DEV_PROPERTIES_FILES);
-		pageTitles = readProperties(PAGE_NAMES);
-		Map<String, Object> map = new HashMap<>();
-		for (String fileName : getLabelsFileNames()){
-			map.put(fileName.split("\\.")[0], readProperties(fileName));
+		try{
+			devProperties = readProperties(DEV_PROPERTIES_FILES);
+			pageTitles = readProperties(PAGE_NAMES);
+			Map<String, Object> map = new HashMap<>();
+			for (String fileName : getLabelsFileNames()){
+				map.put(fileName.split("\\.")[0], readProperties(fileName));
+			}
+			defaultLabels.put("label", map);
+		}catch (IOException e) {
+			throw new InitException(e);
 		}
-		defaultLabels.put("label", map);
 	}
 	
-	private static Properties readProperties(String fileName){
+	private static Properties readProperties(String fileName) throws IOException{
 		try(BufferedReader reader = getBufferedReader(fileName)){
 			Properties properties = new LabelMap();
 			properties.load(reader);
 			return properties;
-		}catch (IOException e) {
-			throw new RuntimeException(e);
 		}
 	}
 	
-	private static List<String> getLabelsFileNames(){
+	private static List<String> getLabelsFileNames() throws IOException{
 		try(BufferedReader reader = getBufferedReader(PAGE_LABELS_FILES)){
 			List<String> result = new ArrayList<>();
 			while (reader.ready()){
@@ -54,8 +56,6 @@ public class BaseRenderingController {
 				}
 			}
 			return result;
-		}catch (IOException e) {
-			throw new RuntimeException(e);
 		}
 	}
 	
@@ -63,8 +63,6 @@ public class BaseRenderingController {
 		InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
 		return new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
 	}
-	
-	
 	
 	protected final ModelAndView createModelAndView(String pageName){
 		Object user = null;
@@ -96,9 +94,23 @@ public class BaseRenderingController {
 		public synchronized Object get(Object key) {
 			Object obj = super.get(key);
 			if (obj == null){
-				throw new RuntimeException("Can not find label " + key);
+				throw new InitException("Can not find label " + key);
 			}
 			return obj;
 		}
-	};
+	}
+	
+	private static class InitException extends RuntimeException{
+
+		private static final long serialVersionUID = -8330666930298807296L;
+
+		public InitException(Throwable cause) {
+			super(cause);
+		}
+		
+		public InitException(String cause) {
+			super(cause);
+		}
+		
+	}
 }

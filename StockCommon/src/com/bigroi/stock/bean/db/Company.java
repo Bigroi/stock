@@ -16,7 +16,7 @@ public class Company implements Serializable{
 	
 	private String regNumber;
 	
-	private Address address;
+	private CompanyAddress companyAddress;
 	
 	private String email;
 	
@@ -82,12 +82,12 @@ public class Company implements Serializable{
 		this.status = status;
 	}
 
-	public Address getAddress() {
-		return address;
+	public CompanyAddress getCompanyAddress() {
+		return companyAddress;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setCompanyAddress(CompanyAddress companyAddress) {
+		this.companyAddress = companyAddress;
 	}
 	
 	public String getEmail() {
@@ -100,8 +100,8 @@ public class Company implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Company [id=" + id + ", name=" + name + ", phone=" + phone + ", regNumber=" + regNumber + ", address="
-				+ address + ", email=" + email + ", type=" + type + ", status=" + status + ", addressId=" + addressId
+		return "Company [id=" + id + ", name=" + name + ", phone=" + phone + ", regNumber=" + regNumber + ", companyAddress="
+				+ companyAddress + ", email=" + email + ", type=" + type + ", status=" + status + ", addressId=" + addressId
 				+ "]";
 	}
 

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import javax.sql.DataSource;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -36,11 +37,11 @@ public class SqlUpdater {
 	
 	private static final Logger logger = Logger.getLogger(SqlUpdater.class);
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException, IOException, JAXBException {
 		new SqlUpdater().updateDataBase();
 	}
 	
-	public void updateDataBase(){
+	public void updateDataBase() throws SQLException, IOException, JAXBException{
 		DataSource dataSource = CONTEXT.getBean(DataSource.class);
 		Connection connection = null;
 		try{
@@ -66,18 +67,22 @@ public class SqlUpdater {
 			updateLastUpdate(connection, queries.size());
 			connection.commit();
 			logger.info("Sql updater: finish");
-		}catch (Exception e) {
+		}catch (SQLException e) {
 			if (connection != null){
 				try {
 					connection.rollback();
-				} catch (SQLException e1) {	}
+				} catch (SQLException e1) {	
+					logger.warn("", e1);
+				}
 			}
-			throw new RuntimeException(e);
+			throw e;
 		}finally {
 			if (connection != null){
 				try {
 					connection.close();
-				} catch (SQLException e1) {	}
+				} catch (SQLException e) {	
+					logger.warn("", e);
+				}
 			}
 		}
 	}
@@ -89,21 +94,20 @@ public class SqlUpdater {
 	}
 
 	private int getLastUpdate(Connection connection) throws SQLException {
-		PreparedStatement statement = connection.prepareStatement(GET_SIZE);
-		ResultSet set = statement.executeQuery();
-		set.next();
-		return set.getInt("LAST_UPDATE");
+		try(PreparedStatement statement = connection.prepareStatement(GET_SIZE);
+				ResultSet set = statement.executeQuery()){
+			set.next();
+			return set.getInt("LAST_UPDATE");
+		}
 	}
 
-	private List<String> getUpdateQueries() {
+	private List<String> getUpdateQueries() throws IOException, JAXBException {
 		try(BufferedReader reader = openReader(UPDATE_SQL_FILE_NAME)){
 			JAXBContext jaxbContext = JAXBContext.newInstance(Root.class);
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 			Root root = (Root)unmarshaller.unmarshal(reader);
 				
 			return root.updates.stream().map(r -> r.sql).collect(Collectors.toList());
-		}catch (Exception e) {
-			throw new RuntimeException(e);
 		}
 	}
 
@@ -112,12 +116,12 @@ public class SqlUpdater {
 			PreparedStatement statement = connection.prepareStatement(CHECK_BD);
 			statement.executeQuery();
 			return true;
-		}catch (Exception e) {
+		}catch (SQLException e) {
 			return false;
 		}
 	}
 	
-	private void executeMainScript(Connection connection) throws SQLException{
+	private void executeMainScript(Connection connection) throws SQLException, IOException{
 		try(BufferedReader reader = openReader(MAIN_SQL_FILE_NAME)){
 			StringBuilder builder = new StringBuilder();
 			while (reader.ready()){
@@ -126,8 +130,6 @@ public class SqlUpdater {
 			
 			executeQuery(connection, builder.toString());
 			
-		}catch (IOException e) {
-			throw new RuntimeException(e);
 		}
 	}
 	

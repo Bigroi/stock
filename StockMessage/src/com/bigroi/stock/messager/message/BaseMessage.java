@@ -13,7 +13,7 @@ import com.bigroi.stock.dao.EmailDao;
 import com.bigroi.stock.messager.MailManager;
 import com.bigroi.stock.messager.MailManagerException;
 
-abstract class BaseMessage<T> implements Message<T>{
+public abstract class BaseMessage<T> implements Message<T>{
 	
 	@Autowired
 	private EmailDao emailDao;
@@ -26,8 +26,7 @@ abstract class BaseMessage<T> implements Message<T>{
 	private String text;	
 	
 	protected BaseMessage(String fileName) throws MessageException {
-		try{
-			if (fileName != null && !fileName.equals(""))
+		if (fileName != null && !fileName.equals("")){
 			try (BufferedReader reader = new BufferedReader(
 					new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName),
 							StandardCharsets.UTF_8))) {
@@ -44,9 +43,9 @@ abstract class BaseMessage<T> implements Message<T>{
 					}
 				}
 				text = textBuld.toString();
+			} catch (IOException e) {
+				throw new MessageException(e);
 			}
-		}catch (IOException e) {
-			throw new MessageException(e);
 		}
 	}
 	

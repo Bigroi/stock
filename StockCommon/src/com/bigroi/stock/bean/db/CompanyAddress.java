@@ -2,7 +2,7 @@ package com.bigroi.stock.bean.db;
 
 import java.io.Serializable;
 
-public class Address implements Serializable{
+public class CompanyAddress implements Serializable{
 
 	private static final long serialVersionUID = 8556087465990620455L;
 
