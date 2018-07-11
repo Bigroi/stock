@@ -23,7 +23,7 @@ public class LotServiceImpl implements LotService {
 	private ProductDao productDao;
 
 	@Override
-	public Lot getLot(long id, long companyId) throws ServiceException {
+	public Lot getById(long id, long companyId) throws ServiceException {
 		try{
 			Lot lot;
 			if (id == -1) {

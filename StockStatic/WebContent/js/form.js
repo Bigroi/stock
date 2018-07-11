@@ -114,7 +114,7 @@ function processRequestResult(formContainer, answer, messageDiv){
 		document.location = answer.data;
 		return 0;
 	}
-	messageDiv.text(l10n.translate(answer.message));
+	messageDiv.text(l10n.translate(answer.message.split(",")));
 	if (messageDiv.length > 0){
 		messageDiv[0].scrollIntoView(true);
 	}

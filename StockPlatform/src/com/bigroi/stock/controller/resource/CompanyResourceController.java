@@ -33,7 +33,7 @@ public class CompanyResourceController extends BaseResourseController {
 		List<Company> list = companyService.getAllCompanies();
 		List<CompanyForUI> listForUI = list.stream().map(CompanyForUI::new).collect(Collectors.toList());
 		TableResponse<CompanyForUI> tableResponse = new TableResponse<>(CompanyForUI.class, listForUI);
-		return new ResultBean(1, tableResponse, "").toString();
+		return new ResultBean(1, tableResponse, null).toString();
 	}
 
 	@RequestMapping("/ChangeStatus.spr")

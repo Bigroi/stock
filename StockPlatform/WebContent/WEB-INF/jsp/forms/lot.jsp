@@ -21,8 +21,8 @@
 				</select>
 			</div>
 			<div>
-				<label for="forMinPrice">${label.lot.min_price}</label>
-				<input type="text" name="minPrice" placeholder="9.99" pattern="^\d+\.{0,1}\d{0,2}$" required id="forMinPrice"/>
+				<label for="forPrice">${label.lot.min_price}</label>
+				<input type="text" name="price" placeholder="9.99" pattern="^\d+\.{0,1}\d{0,2}$" required id="forPrice"/>
 			</div>
 			<div>
 				<label for="forMinVolume">${label.lot.min_volume}</label>

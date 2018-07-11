@@ -21,8 +21,8 @@
 				</select>
 			</div>
 			<div>
-				<label for="forMinPrice">${label.tender.max_price}</label>
-				<input type="text" name="maxPrice" placeholder="9.99" pattern="^\d+\.{0,1}\d{0,2}$" required id="forMinPrice"/>
+				<label for="forPrice">${label.tender.max_price}</label>
+				<input type="text" name="price" placeholder="9.99" pattern="^\d+\.{0,1}\d{0,2}$" required id="forPrice"/>
 			</div>
 			<div>
 				<label for="forMinVolume">${label.tender.min_volume}</label>

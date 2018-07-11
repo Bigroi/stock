@@ -23,7 +23,7 @@ public class TenderServiceImpl implements TenderService{
 	private ProductDao productDao;
 	
 	@Override
-	public Tender getTender(long id, long companyId) throws ServiceException {
+	public Tender getById(long id, long companyId) throws ServiceException {
 		try{
 			Tender tender;
 			if (id == -1) {
@@ -41,7 +41,7 @@ public class TenderServiceImpl implements TenderService{
 	}
 
 	@Override
-	public List<Tender> getMyList(long companyId) throws ServiceException {
+	public List<Tender> getByCompanyId(long companyId) throws ServiceException {
 		try{
 			return tenderDao.getByCompanyId(companyId);
 		}catch(DaoException e){
@@ -85,15 +85,6 @@ public class TenderServiceImpl implements TenderService{
 		}
 	}
 	
-	@Override
-	public List<Tender> getByProduct(int productId) throws ServiceException {
-		try{
-			return tenderDao.getActiveByProductId(productId);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-	}
-
 	@Override
 	public void deactivate(long id, long companyId) throws ServiceException {
 		try{

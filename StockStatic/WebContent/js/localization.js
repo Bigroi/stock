@@ -1,12 +1,19 @@
 'use strict';
 var l10n = { 
 	translate: function(word){
-		var translation = this._l10n[word];
-		if (translation || translation == ''){
-			return translation;
-		} else {
-			return "not found " + word;
+		if (typeof word !== 'object'){
+			word = [word];
 		}
+		var result = "";
+		for (var i = 0; i < word.length; i++){
+			var translation = this._l10n[word[i].trim()];
+			if (translation || translation == ''){
+				result += translation + " ";
+			} else {
+				result += "not found " + word[i] + " ";
+			}
+		}
+		return result;
 	},
 	_l10n:{},
 	localization: function(){
