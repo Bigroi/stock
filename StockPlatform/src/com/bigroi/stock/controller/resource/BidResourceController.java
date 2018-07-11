@@ -23,25 +23,25 @@ import com.bigroi.stock.service.AddressService;
 import com.bigroi.stock.service.BidService;
 import com.bigroi.stock.service.ServiceException;
 
-public abstract class BidResourceController<BID extends Bid, FOR_UI> extends BaseResourseController{
+public abstract class BidResourceController<B extends Bid, U> extends BaseResourseController{
 	
 	private static final String LABEL_PREFIX = "label.";
 	
 	@Autowired
 	private AddressService addressService;
 			
-	protected abstract BidService<BID> getBidService();
+	protected abstract BidService<B> getBidService();
 	
-	protected abstract Function<BID, FOR_UI> getObjectForUIConstructor();
+	protected abstract Function<B, U> getObjectForUIConstructor();
 	
-	protected abstract Class<BID> getBidClass(); 
+	protected abstract Class<B> getBidClass(); 
 	
-	protected abstract Class<FOR_UI> getForUIClass(); 
+	protected abstract Class<U> getForUIClass(); 
 	
 	protected abstract String getPropertyFileName();
 	
 	protected ResultBean bidForm(long id) throws ServiceException {
-		BID bid = getBidService().getById(id, getUserCompanyId());
+		B bid = getBidService().getById(id, getUserCompanyId());
 		if (bid.getId() == -1){
 			StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			bid.setAddressId(user.getCompany().getCompanyAddress().getId());
@@ -50,20 +50,20 @@ public abstract class BidResourceController<BID extends Bid, FOR_UI> extends Bas
 	}
 
 	protected ResultBean bidList() throws ServiceException, TableException {
-		List<BID> bids = getBidService().getByCompanyId(getUserCompanyId());
-		List<FOR_UI> objectForUI = bids.stream().map(getObjectForUIConstructor()).collect(Collectors.toList());
-		Class<FOR_UI> clazz = getForUIClass();
-		TableResponse<FOR_UI> table = new TableResponse<>(clazz, objectForUI);
+		List<B> bids = getBidService().getByCompanyId(getUserCompanyId());
+		List<U> objectForUI = bids.stream().map(getObjectForUIConstructor()).collect(Collectors.toList());
+		Class<U> clazz = getForUIClass();
+		TableResponse<U> table = new TableResponse<>(clazz, objectForUI);
 		return new ResultBean(1, table, null);
 	}
 
 	protected ResultBean saveBid(String json, Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser) loggedInUser.getPrincipal();
-		BID bid = GsonUtil.getGson().fromJson(json, getBidClass());
+		B bid = GsonUtil.getGson().fromJson(json, getBidClass());
 		if (bid.getId() < 0) {
 			bid.setStatus(BidStatus.INACTIVE);
 		} else {
-			BID oldLot = getBidService().getById(bid.getId(), getUserCompanyId());
+			B oldLot = getBidService().getById(bid.getId(), getUserCompanyId());
 			bid.setStatus(oldLot.getStatus());
 		}
 		return save(bid, user);
@@ -71,12 +71,12 @@ public abstract class BidResourceController<BID extends Bid, FOR_UI> extends Bas
 
 	protected ResultBean saveAndActivateBid(String json, Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser) loggedInUser.getPrincipal();
-		BID bid = GsonUtil.getGson().fromJson(json, getBidClass());
+		B bid = GsonUtil.getGson().fromJson(json, getBidClass());
 		bid.setStatus(BidStatus.ACTIVE);
 		return save(bid, user);
 	}
 
-	private ResultBean save(BID bid, StockUser user) throws ServiceException {
+	private ResultBean save(B bid, StockUser user) throws ServiceException {
 		List<String> errors = activationCheck(bid, user);
 		if (!errors.isEmpty()) {
 			String str = errors.toString().substring(1, errors.toString().length() - 1);
@@ -114,11 +114,11 @@ public abstract class BidResourceController<BID extends Bid, FOR_UI> extends Bas
 	}
 
 	private List<String> activationCheck(long id, StockUser user) throws ServiceException {
-		BID bid = getBidService().getById(id, getUserCompanyId());
+		B bid = getBidService().getById(id, getUserCompanyId());
 		return activationCheck(bid, user);
 	}
 
-	private List<String> activationCheck(BID bid, StockUser user) throws ServiceException {
+	private List<String> activationCheck(B bid, StockUser user) throws ServiceException {
 		List<String> errors = new ArrayList<>();
 
 		List<Long> addressIds = addressService
