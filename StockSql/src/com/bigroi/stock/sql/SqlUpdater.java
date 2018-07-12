@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -141,7 +142,7 @@ public class SqlUpdater {
 
 	private BufferedReader openReader(String fileName){
 		InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
-		return new BufferedReader(new InputStreamReader(stream));
+		return new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
 	}
 	
 	@XmlRootElement(name="root")

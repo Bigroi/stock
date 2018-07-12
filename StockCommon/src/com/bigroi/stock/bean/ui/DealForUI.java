@@ -52,6 +52,11 @@ public class DealForUI {
 			this.partnerAddress = deal.getSellerAddress();
 			this.partnerDescription = deal.getSellerDescription();
 		}
+		this.partnerAddress.setAddress(
+				this.partnerAddress.getCountry() + ", " +
+				this.partnerAddress.getCity() + ", " +
+				this.partnerAddress.getAddress()
+				);
 		this.sellerFoto = deal.getSellerFoto();
 		this.price = deal.getPrice();
 		this.volume = deal.getVolume();
