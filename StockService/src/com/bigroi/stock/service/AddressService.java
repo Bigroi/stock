@@ -11,7 +11,7 @@ public interface AddressService {
 
 	List<CompanyAddress> getCompanyAddresses(long companyId) throws ServiceException;
 
-	CompanyAddress getAddressById(long id) throws ServiceException;
+	CompanyAddress getAddressById(long id, long companyId) throws ServiceException;
 
 	void merge(CompanyAddress address, long companyId) throws ServiceException;
 

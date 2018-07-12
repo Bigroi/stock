@@ -26,14 +26,16 @@ public class AddressServiceImpl implements AddressService{
 	}
 
 	@Override
-	public CompanyAddress getAddressById(long id) throws ServiceException {
+	public CompanyAddress getAddressById(long id, long companyId) throws ServiceException {
 		try {
 			CompanyAddress address;
 			if (id == -1) {
 				address = new CompanyAddress();
+				address.setLatitude(-1);
+				address.setLongitude(-1);
 				address.setId(id);
 			} else {
-				address = addressDao.getAddressById(id);
+				address = addressDao.getAddressById(id, companyId);
 			}
 			return address;
 		} catch (DaoException e) {

@@ -35,6 +35,14 @@ public class AddressResourceController extends BaseResourseController {
 	@Autowired
 	private AddressService addressService;
 	
+	@RequestMapping(value = "/Get.spr")
+	@ResponseBody
+	public String getAddress(@RequestParam("id") long id) throws ServiceException {
+		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		CompanyAddress address = addressService.getAddressById(id, user.getCompanyId());
+		return new ResultBean(1, address, null).toString();
+	}
+	
 	@RequestMapping(value = "/List.spr")
 	@ResponseBody
 	public String getAddresses() throws ServiceException, TableException{
@@ -57,8 +65,8 @@ public class AddressResourceController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String form(@RequestParam(value = "id", defaultValue = "-1") long id, Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
-		CompanyAddress companyAddress = addressService.getAddressById(id);
-		if (id!= -1 && user.getCompanyId() != companyAddress.getCompanyId()){
+		CompanyAddress companyAddress = addressService.getAddressById(id, user.getCompanyId());
+		if (companyAddress == null){
 			return new ResultBean(-1, AUTHORISATION_ERROR_LABEL).toString();
 		} else {
 			return new ResultBean(1, new AddressForUI(companyAddress), "").toString();

@@ -45,6 +45,7 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		if (bid.getId() == -1){
 			StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			bid.setAddressId(user.getCompany().getCompanyAddress().getId());
+			bid.setCompanyAddress(user.getCompany().getCompanyAddress());
 		}
 		return new ResultBean(1, bid, null);
 	}

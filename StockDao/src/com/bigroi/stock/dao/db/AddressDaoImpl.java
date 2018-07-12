@@ -42,7 +42,7 @@ public class AddressDaoImpl implements AddressDao{
 			+ " VALUES (?, ?, ?, ?, ? , ?) ";
 	
 	private static final String GET_ADDRESS_BY_ID = "SELECT ID, CITY, COUNTRY, "
-			+ " ADDRESS, LATITUDE, LONGITUDE, COMPANY_ID FROM ADDRESS WHERE ID = ?";
+			+ " ADDRESS, LATITUDE, LONGITUDE, COMPANY_ID FROM ADDRESS WHERE ID = ? AND COMPANY_ID = ?";
 	
 	@Autowired
 	private DataSource datasource;
@@ -95,10 +95,10 @@ public class AddressDaoImpl implements AddressDao{
 	}
 
 	@Override
-	public CompanyAddress getAddressById(long id) throws DaoException {
+	public CompanyAddress getAddressById(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<CompanyAddress> listAddresses = template.query(GET_ADDRESS_BY_ID, 
-				new BeanPropertyRowMapper<CompanyAddress>(CompanyAddress.class),id);
+				new BeanPropertyRowMapper<CompanyAddress>(CompanyAddress.class), id, companyId);
 		if(listAddresses.isEmpty()){
 			return null;
 		}else{

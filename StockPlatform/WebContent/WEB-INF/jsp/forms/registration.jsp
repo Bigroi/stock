@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <form class="form" action="#" method="post" name="form" id="registration-form">
-	<input type="hidden" name="company.address.latitude" class="latitude">
-	<input type="hidden" name="company.address.longitude" class="longitude">
+	<input type="hidden" name="company.address.latitude" class="latitude" value="-1">
+	<input type="hidden" name="company.address.longitude" class="longitude" value="-1">
 	<h3>${label.account.registration}</h3>
 	<p>${label.account.haveAcc}<span class="go_to_login" onclick="openLoginForm();"><span>${label.account.logHere}</span></span></p>
 	<div>

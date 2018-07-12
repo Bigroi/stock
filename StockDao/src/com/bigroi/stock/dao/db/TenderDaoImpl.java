@@ -20,6 +20,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.dao.DaoException;
@@ -49,33 +50,23 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String GET_TENDERS_BY_COMPANY = 
 			" SELECT " + TenderRowMapper.ALL_COLUMNS
-			+ " FROM TENDER T "
-			+ " JOIN PRODUCT P "
-			+ " ON T.PRODUCT_ID = P.ID"
+			+ TenderRowMapper.FROM 
 			+ " WHERE T.COMPANY_ID = ? "
 			+ " AND MIN_VOLUME <= MAX_VOLUME";
 	
 	private static final String GET_TENDER_BY_ID = 
 			" SELECT " + TenderRowMapper.ALL_COLUMNS
-			+ " FROM TENDER T "
-			+ " JOIN PRODUCT P "
-			+ " ON T.PRODUCT_ID = P.ID"
+			+ TenderRowMapper.FROM
 			+ " WHERE T.ID = ? ";
 	
 	private static final String GET_ACTIVE_TENDERS = 
 			" SELECT " + TenderRowMapper.ALL_COLUMNS
-			+ " FROM TENDER T "
-			+ " JOIN PRODUCT P "
-			+ " ON T.PRODUCT_ID = P.ID"
+			+ TenderRowMapper.FROM
 			+ " WHERE T.`STATUS` = '" + BidStatus.ACTIVE + "'";
 	
 	private static final String GET_ACTIVE_TENDERS_BY_PRODUCT_ID = 
-			" SELECT T.ID, T.DESCRIPTION, T.PRODUCT_ID, T.PRICE, T.MIN_VOLUME, "
-			+ " T.MAX_VOLUME, T.COMPANY_ID, T.`STATUS`, T.CREATION_DATE, T.EXPARATION_DATE, "
-			+ " T.ADDRESS_ID, P.NAME PRODUCT_NAME "
-			+ " FROM TENDER T "
-			+ " JOIN PRODUCT P "
-			+ " ON T.PRODUCT_ID = P.ID"
+			" SELECT " + TenderRowMapper.ALL_COLUMNS
+			+ TenderRowMapper.FROM
 			+ " WHERE T.PRODUCT_ID = ? "
 			+ " AND T.`STATUS` = '" + BidStatus.ACTIVE + "'  AND T.MIN_VOLUME <= T.MAX_VOLUME ";
 	
@@ -227,8 +218,17 @@ public class TenderDaoImpl implements TenderDao{
 
 		public static final String ALL_COLUMNS = 
 				" T.ID, T.DESCRIPTION, T.PRODUCT_ID, T.PRICE, T.MIN_VOLUME, "
-			+ " T.MAX_VOLUME, T.COMPANY_ID, T.`STATUS`, T.CREATION_DATE, T.EXPARATION_DATE, "
-			+ " T.ADDRESS_ID, P.NAME PRODUCT_NAME ";
+			+ " T.MAX_VOLUME, T.COMPANY_ID, T.`STATUS`, T.CREATION_DATE, "
+			+ " T.EXPARATION_DATE, T.ADDRESS_ID, "
+			+ " P.NAME PRODUCT_NAME, "
+			+ " A.LONGITUDE LONGITUDE, A.LATITUDE LATITUDE ";
+		
+		public static final String FROM = 
+				" FROM TENDER T "
+			+ " JOIN PRODUCT P "
+			+ " ON T.PRODUCT_ID = P.ID "
+			+ " JOIN ADDRESS A "
+			+ " ON T.ADDRESS_ID = A.ID ";
 		
 		@Override
 		public Tender mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -248,8 +248,13 @@ public class TenderDaoImpl implements TenderDao{
 			Product product = new Product();
 			product.setName(rs.getString("PRODUCT_NAME"));
 			product.setId(rs.getLong("PRODUCT_ID"));
-			
 			tender.setProduct(product);
+
+			CompanyAddress address = new CompanyAddress();
+			address.setLatitude(rs.getDouble("LATITUDE"));
+			address.setLongitude(rs.getDouble("LONGITUDE"));
+			tender.setCompanyAddress(address);
+			
 			return tender;
 		}
 	}

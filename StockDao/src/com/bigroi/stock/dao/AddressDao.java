@@ -14,5 +14,5 @@ public interface AddressDao {
 		
 	public boolean deleteAddress(long id, long companyId) throws DaoException;
 
-	public CompanyAddress getAddressById(long id) throws DaoException;
+	public CompanyAddress getAddressById(long id, long companyId) throws DaoException;
 }

@@ -1,8 +1,8 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <form class="form" action="#" method="post" name="form" id="account-form">
-	<input type="hidden" name="company.address.latitude" class="latitude">
-	<input type="hidden" name="company.address.longitude" class="longitude">
+	<input type="hidden" name="company.companyAddress.latitude" class="latitude">
+	<input type="hidden" name="company.companyAddress.longitude" class="longitude">
 	<h3>${label.account.edit}</h3>
 	<div>
 		<div class="dialogbox-message"></div>

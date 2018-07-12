@@ -4,8 +4,8 @@
 	pageEncoding="UTF-8"%>
 
 <form class="form" action="#" method="post" name="form">
-	<input type="hidden" name="address.latitude" class="latitude">
-	<input type="hidden" name="address.longitude" class="longitude">
+	<input type="hidden" name="companyAddress.latitude" class="latitude">
+	<input type="hidden" name="companyAddress.longitude" class="longitude">
 	<input type="hidden" name="id" value="-1"> 
 	<h3>${label.lot.lotForm}</h3>
     <div>
@@ -46,7 +46,7 @@
 				<div>
 					<div>
 						<label for="forAddressId">${label.lot.address}</label>
-						<select name="addressId" id="forAddressId">
+						<select name="addressId" id="forAddressId" class="address-selector">
 							<c:forEach var="address" items="${listOfAddresses}">
 								<option value="${address.id}">${address.country}, ${address.city}, ${address.address}</option>
 							</c:forEach>
