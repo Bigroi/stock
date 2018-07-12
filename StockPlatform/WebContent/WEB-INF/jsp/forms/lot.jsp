@@ -4,6 +4,8 @@
 	pageEncoding="UTF-8"%>
 
 <form class="form" action="#" method="post" name="form">
+	<input type="hidden" name="address.latitude" class="latitude">
+	<input type="hidden" name="address.longitude" class="longitude">
 	<input type="hidden" name="id" value="-1"> 
 	<h3>${label.lot.lotForm}</h3>
     <div>
@@ -41,18 +43,24 @@
 		</div>
 		<div>
 			<div>
-				<label for="forAddressId">${label.lot.address}</label>
-				<select name="addressId" id="forAddressId">
-					<c:forEach var="address" items="${listOfAddresses}">
-						<option value="${address.id}">${address.country}, ${address.city}, ${address.address}</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div>
-				<label for="forDescription">${label.lot.description}</label>
-				<textarea name="description" cols="40" rows="6" maxlength="1000" id="forDescription"></textarea>
+				<div>
+					<div>
+						<label for="forAddressId">${label.lot.address}</label>
+						<select name="addressId" id="forAddressId">
+							<c:forEach var="address" items="${listOfAddresses}">
+								<option value="${address.id}">${address.country}, ${address.city}, ${address.address}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div>
+						<label for="forDescription">${label.lot.description}</label>
+						<textarea name="description" cols="40" rows="6" maxlength="1000" id="forDescription"></textarea>
+					</div>
+				</div>
+				<div class="forMapLotsTender google-map-container"></div>
 			</div>
 			<div id="form-list"></div>	
 		</div>
 	</div>	
 </form>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initRegistrationMap"></script>

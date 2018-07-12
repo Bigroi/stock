@@ -73,7 +73,7 @@ function getLotDialogParams(id, $table, model){
 		buttons: [{
 				text: l10n.translate("label.button.save"),
 				id:"save",
-				buttonClass:"lot-save",
+				buttonClass:"gray-button",
 				submitUrl: "/lot/json/Save.spr",
 				submitFunction: buttonCallbackWithTableUpdate,
 				table : $table, 
@@ -82,7 +82,6 @@ function getLotDialogParams(id, $table, model){
 			{
 				text: l10n.translate("label.button.save_start_trading"),
 				id:"save-start-trading",
-				buttonClass:"lot-activate",
 				submitUrl: "/lot/json/SaveAndActivate.spr",
 				submitFunction: buttonCallbackWithTableUpdate,
 				table : $table, 
@@ -149,7 +148,7 @@ function getTenderDialogParams(id, $table, model){
 		buttons:[{
 			text: l10n.translate("label.button.save"),
 			id:"save",
-			buttonClass:"tender-save",
+			buttonClass:"gray-button",
 			submitUrl: "/tender/json/SaveAndActivate.spr",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
@@ -158,7 +157,6 @@ function getTenderDialogParams(id, $table, model){
 		{
 			text: l10n.translate("label.button.save_start_trading"),
 			id:"save-start-trading",
-			buttonClass: "tender-activate",
 			submitUrl: "/tender/json/SaveAndActivate.spr",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
