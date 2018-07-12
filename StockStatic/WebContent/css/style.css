@@ -1131,8 +1131,13 @@ footer .container {
         -ms-flex-direction: column;
             flex-direction: column;
     width: calc(100% - 340px);
-    height: 100%;
-    padding: 0 50px 0 50px;
+    /*height: 100%;
+    padding: 0 50px 0 50px;*/
+    /*min-height: 100%;
+    height: max-content;*/
+        min-height: max-content;
+    height: auto;
+    padding: 0 50px 50px 50px;
     margin-left: 340px;
     background-color: #f4f6f8;
 }
@@ -1253,10 +1258,11 @@ footer .container {
             justify-content: space-between;
     padding-top: 30px;
     padding-bottom: 20px;
+    min-height: max-content;
 }
-/*.table-header h1 {
-	position: absolute;
-}*/
+.table-header h1 {
+	width: 370px;
+}
 #main-table_length {
 	display: none;
 }
@@ -1291,8 +1297,10 @@ footer .container {
     background-size: 30px;
     background-position: 175px center;
     position: absolute;
-    top: -60px;
-    right: 175px;
+    /*top: -60px;
+    right: 175px;*/
+    top: -85px;
+    right: 180px;
     
 }
 #main-table_filter input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -1887,4 +1895,13 @@ table.dataTable.no-footer,
   	height: 260px;
   	border-radius: 5px;
   	top: 20px;
+}
+table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before, 
+table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before {
+	top: 16px;	
+}
+table.dataTable>tbody>tr.child span.dtr-title,
+table.dataTable>tbody>tr.child span {
+	font-weight: normal;
+    font-size: 14px;
 }
