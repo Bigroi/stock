@@ -24,7 +24,7 @@ public class DealForUI {
 	@Column(value = "label.deal.status", responsivePriority=-2)
 	private String status;
 
-	@Column(value = "edit", responsivePriority=-4)
+	@Column(value = "label.deal.edit", responsivePriority=-4)
 	@Edit(details="/deal/Form.spr", remove="", edit="")
 	private final String edit;
 	

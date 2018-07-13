@@ -18,7 +18,7 @@ import com.bigroi.stock.messager.message.MessageException;
 @RequestMapping("feedback/json")
 public class FeedBackResourceController extends BaseResourseController {
 
-	private static final String FB_SUCCESS_LABEL = "lable.account.fb_success";
+	private static final String FB_SUCCESS_LABEL = "label.account.fb_success";
 	
 	@Autowired
 	private FeedBackMessage feedBackMessage;

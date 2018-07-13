@@ -172,7 +172,7 @@ $(document).ready(function(){
 			    },
 			    aria: {
 			        sortAscending:	l10n.translate("label.table.aria_sortAscending"),
-			        sortDescending:	l10n.translate("label.table.aria_sortAscending")
+			        sortDescending:	l10n.translate("label.table.aria_sortDescending")
 			    }
 			}
 		}
