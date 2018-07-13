@@ -16,6 +16,7 @@
 		<title>Your Trader! ${page_title}</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
+		<meta name="google-site-verification" content="57vTO4c-SbhNNvbqR0xSlTjHLgy0kd3Bi7173PGTMbc" />
 		<c:choose>
 			<c:when test="${devProperties.development}">
 		        <link rel="stylesheet" href="/Static/css/jquery.dataTables.min.css">
