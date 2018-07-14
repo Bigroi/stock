@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <form class="form" action="#" method="post" name="form" id="registration-form">
-	<input type="hidden" name="company.address.latitude" class="latitude" value="-1">
-	<input type="hidden" name="company.address.longitude" class="longitude" value="-1">
+	<input type="hidden" name="company.companyAddress.latitude" class="latitude" value="-1">
+	<input type="hidden" name="company.companyAddress.longitude" class="longitude" value="-1">
 	<h3>${label.account.registration}</h3>
 	<p>${label.account.haveAcc}<span class="go_to_login" onclick="openLoginForm();"><span>${label.account.logHere}</span></span></p>
 	<div>
@@ -48,15 +48,15 @@
 		<div class="flex-input">
 			<div>
 				<label for="forCountry">${label.account.city}</label>
-	            <input type="text" name="company.address.city" class="city" id="forCountry" placeholder="Minsk" maxlength="100"/>
+	            <input type="text" name="company.companyAddress.city" class="city" id="forCountry" placeholder="Minsk" maxlength="100"/>
 			</div>
 			<div>
 				<label for="forCity">${label.account.country}</label>
-	            <input type="text" name="company.address.country" class="country" id="forCity" placeholder="Belarus" maxlength="50"/>
+	            <input type="text" name="company.companyAddress.country" class="country" id="forCity" placeholder="Belarus" maxlength="50"/>
 			</div>
 			<div>
 				<label for="forAdress">${label.account.address}</label>
-	            <input type="text" name="company.address.address" class="address" id="forAdress" placeholder="Minsk" maxlength="200"/>
+	            <input type="text" name="company.companyAddress.address" class="address" id="forAdress" placeholder="Minsk" maxlength="200"/>
 			</div>
 			<div class="forMap google-map-container"></div>
 			<div class="for-checkbox">
