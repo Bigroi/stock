@@ -13,7 +13,7 @@ $(document).ready(function(){
 	});
 	if ($('#deal-form').length > 0){
 		var dealForm = $('#deal-form');
-		initDealForm(dealForm, dealForm.attr("data-url"), dealForm.attr("data-id"));
+		initDealForm(dealForm, getContextRoot() + dealForm.attr("data-url"), dealForm.attr("data-id"));
 	}
 });
 
