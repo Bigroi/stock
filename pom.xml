@@ -38,6 +38,7 @@
 	</build>
 
 	<modules>
+		<module>StockSql</module>
 		<module>StockCommon</module>
 		<module>StockDao</module>
 		<module>StockJobs</module>
@@ -46,11 +47,8 @@
 		<module>StockSecurity</module>
 		<module>StockService</module>
 		<module>StockStatic</module>
-		<module>StockTransport</module>
 		<module>StockUtil</module>
-    
 		<module>StockController</module>
-    	<module>StockSql</module>
   		<module>StockDocuments</module>
 	</modules>
 </project>

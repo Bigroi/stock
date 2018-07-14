@@ -34,7 +34,9 @@
 						</goals>
 						<configuration>
 							<mainClass>com.bigroi.stock.sql.SqlUpdater</mainClass>
-							<arguments>${SQL_SCHEMA}</arguments>
+							<arguments>
+								<argument>${SQL_SCHEMA}</argument>
+							</arguments>
 						</configuration>
 					</execution>
 				</executions>
