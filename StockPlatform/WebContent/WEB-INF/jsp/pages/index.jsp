@@ -16,43 +16,27 @@
 		<title>Your Trader! ${page_title}</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
+		<meta name="context-root" content="${label.devProperties.platform_context_root}">
 		<meta name="google-site-verification" content="57vTO4c-SbhNNvbqR0xSlTjHLgy0kd3Bi7173PGTMbc" />
-		<c:choose>
-			<c:when test="${devProperties.development}">
-		        <link rel="stylesheet" href="/Static/css/jquery.dataTables.min.css">
-		        <link rel="stylesheet" href="/Static/css/jquery.responsive.dataTables.min.css"> 
-		        <link rel="stylesheet" href="/Static/css/style.css">
-		        
-		        <script src="/Static/js/jQuery.js"></script>
-		        <script src="/Static/js/jquery.dataTables.min.js"></script>
-		        <script src="/Static/js/jquery.responsive.dataTables.min.js"></script>
-		        <script src="/Static/js/form.js"></script>
-		        <script src="/Static/js/intiFormParams.js"></script>
-		        <script src="/Static/js/localization.js"></script>
-				<script src="/Static/js/tableMaker.js"></script>
-				<script src="/Static/js/map.js"></script>
-				<script src="/Static/js/dialogbox.js"></script>
-				<script src="/Static/js/script.js"></script>
-				<script src="/Static/js/productList.js"></script>
-			</c:when>
-			<c:otherwise>
-				<link rel="stylesheet" href="/Static/css/jquery.dataTables.min.css?version=${label.build.number}">
-				<link rel="stylesheet" href="/Static/css/jquery.responsive.dataTables.min.css?version=${label.build.number}"> 
-		        <link rel="stylesheet" href="/Static/css/style.css?version=${label.build.number}">
-				
-		        <script src="/Static/js/jQuery.js?version=${label.build.number}"></script>
-		        <script src="/Static/js/jquery.dataTables.min.js?version=${label.build.number}"></script>
-		        <script src="/Static/js/jquery.responsive.dataTables.min.js?version=${label.build.number}"></script>
-		        <script src="/Static/js/form.js?version=${label.build.number}"></script>
-		        <script src="/Static/js/intiFormParams.js?version=${label.build.number}"></script>
-		        <script src="/Static/js/localization.js?version=${label.build.number}"></script>
-				<script src="/Static/js/tableMaker.js?version=${label.build.number}"></script>
-				<script src="/Static/js/map.js?version=${label.build.number}"></script>
-				<script src="/Static/js/dialogbox.js?version=${label.build.number}"></script>
-				<script src="/Static/js/script.js?version=${label.build.number}"></script>
-				<script src="/Static/js/productList.js?version=${label.build.number}"></script>
-			</c:otherwise>
-		</c:choose>
+		
+		<link rel="stylesheet" href="/Static/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" href="/Static/css/jquery.responsive.dataTables.min.css"> 
+		
+		<script src="/Static/js/jQuery.js"></script>
+        <script src="/Static/js/jquery.dataTables.min.js"></script>
+        <script src="/Static/js/jquery.responsive.dataTables.min.js"></script>
+		
+		<!-- application css & js -->
+        <link rel="stylesheet" href="/Static/css/style.css?version=${label.build.number}">
+        
+        <script src="/Static/js/form.js?version=${label.build.number}"></script>
+        <script src="/Static/js/intiFormParams.js?version=${label.build.number}"></script>
+        <script src="/Static/js/localization.js?version=${label.build.number}"></script>
+		<script src="/Static/js/tableMaker.js?version=${label.build.number}"></script>
+		<script src="/Static/js/map.js?version=${label.build.number}"></script>
+		<script src="/Static/js/dialogbox.js?version=${label.build.number}"></script>
+		<script src="/Static/js/script.js?version=${label.build.number}"></script>
+		<script src="/Static/js/productList.js?version=${label.build.number}"></script>
 	</head>
 	<body>
 		<div id="form-container"></div>

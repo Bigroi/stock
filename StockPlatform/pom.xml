@@ -42,7 +42,7 @@
 				<configuration>
 					<url>http://localhost:8080/manager/text</url>
 					<server>test_server</server>
-					<path>/</path>
+					<path>${CONTEXT_ROOT}</path>
 					<username>admin</username>
 					<password>Vbycr123</password>
 				</configuration>

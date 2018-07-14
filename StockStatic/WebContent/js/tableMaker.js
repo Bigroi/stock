@@ -12,7 +12,7 @@ $(document).ready(function(){
 		
 		var table;
 		
-		$.getJSON(url, function(answer){
+		$.getJSON(getContextRoot() + url, function(answer){
 			tableElement.addClass('display responsive nowrap');
 			tableElement.css('width','100%');
 			model = answer.data.model;
@@ -32,7 +32,7 @@ $(document).ready(function(){
 	            		showDialog(editFormParams(-1, $(tableElement), model));
 	            	});
 	            } else {
-	            	$(".add-button").click(function(){document.location = model.editForm;});
+	            	$(".add-button").click(function(){document.location = getContextRoot() + model.editForm;});
 	            }
 			}
 			
@@ -66,7 +66,7 @@ $(document).ready(function(){
 	            		showDialog(editFormParams(id, $table, model));
 	            	});
 	            } else {
-	            	$edit.click(function(){document.location = model.editForm + "?id=" + id});
+	            	$edit.click(function(){document.location = getContextRoot() + model.editForm + "?id=" + id});
 	            }
 	        }
 			if(data[model.editColumn][1] == "Y"){ 
@@ -74,7 +74,7 @@ $(document).ready(function(){
 	            $remove.addClass("remove");
 	            $remove.click(function(event){
 	            	 $.getJSON(
-	            			 model.removeUrl, 
+	            			 getContextRoot() + model.removeUrl, 
 	            			 {id:id}, 
 	            			 function(answer){
 	            				 if (answer.result > 0){
@@ -94,7 +94,7 @@ $(document).ready(function(){
 	            if (detailsForm){
 	            	detailsForm(id, $table, model);
 	            } else {
-	            	$details.click(function(){document.location = model.detailsUrl + "?id=" + id});
+	            	$details.click(function(){document.location = getContextRoot() + model.detailsUrl + "?id=" + id});
 	            }
 	        }
 			$editRemove.append($edit[0]);
@@ -129,7 +129,7 @@ $(document).ready(function(){
 	        	var url = data[model.statusColumn] == "ACTIVE" ? 
 	        			model.deactivateUrl : 
 	        			model.activateUrl;
-	        	$.getJSON(url, {id:id}, function(answer){
+	        	$.getJSON(getContextRoot() + url, {id:id}, function(answer){
 	        		if (answer.result > 0){	
 	        			table.rows().every( function () {
 	        			    var d = this.data();
