@@ -19,7 +19,7 @@ private long id;
 	
 	private double price;
 	private int maxVolume;
-	private Date exparationDate = new Date();
+	private Date exparationDate = DateUtil.shiftMonths(new Date(), 1);
 	
 	private Date creationDate = new Date();
 	
@@ -33,7 +33,7 @@ private long id;
 	private List<Bid> posiblePartners = new ArrayList<>();
 	
 	public boolean isExpired() {
-		return DateUtil.beforToday(exparationDate);
+		return DateUtil.isBeforToday(exparationDate);
 	}
 	
 	public List<Bid> getPosiblePartners() {
