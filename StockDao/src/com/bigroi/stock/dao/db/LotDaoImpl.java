@@ -60,7 +60,7 @@ public class LotDaoImpl implements LotDao {
 	
 	private static final String GET_ACTIVE_LOTS_BY_PRODUCT_ID = 
 			"SELECT " + LotRowMapper.ALL_COLUMNS
-			+ " FROM " + LotRowMapper.FROM
+			+ LotRowMapper.FROM
 			+ " WHERE L.PRODUCT_ID = ? "
 			+ " AND L.`STATUS` = '" + BidStatus.ACTIVE.name() + "' AND L.MIN_VOLUME <= L.MAX_VOLUME ";
 	
