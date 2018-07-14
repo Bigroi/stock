@@ -1135,6 +1135,8 @@ footer .container {
     padding: 0 50px 0 50px;*/
     /*min-height: 100%;
     height: max-content;*/
+        min-height: -webkit-max-content;
+        min-height: -moz-max-content;
         min-height: max-content;
     height: auto;
     padding: 0 50px 50px 50px;
@@ -1258,10 +1260,13 @@ footer .container {
             justify-content: space-between;
     padding-top: 30px;
     padding-bottom: 20px;
+    min-height: -webkit-max-content;
+    min-height: -moz-max-content;
     min-height: max-content;
 }
 .table-header h1 {
 	width: 370px;
+	min-height: 100px;
 }
 #main-table_length {
 	display: none;
@@ -1433,8 +1438,6 @@ table.dataTable.stripe tbody tr:hover,
 table.dataTable.display tbody tr:hover {
     background-color: rgba(0, 0, 0, 0.02);
 }
-
-
 table.dataTable.row-border tbody th, 
 table.dataTable.row-border tbody td, 
 table.dataTable.display tbody th, 
@@ -1451,7 +1454,6 @@ table.dataTable thead th {
 	color: #96999d;
 	font-size: 14px;
 }
-
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
 	background: white;
@@ -1501,16 +1503,11 @@ table.dataTable thead th {
 .dataTables_paginate.paging_simple_numbers span .paginate_button {
 	 position: relative;
      bottom: 14px;
-     /*color: #96999d; */
      color: #96999d;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button {
 	 padding: 4px 0 0 0;
 }
-/*.dataTables_wrapper .dataTables_paginate > span {
-	position: relative;
-    top: 3px;
-}*/
 .dataTables_wrapper .dataTables_paginate > span .paginate_button {
 	 margin-left: 7px;
      margin-right: 7px;
@@ -1581,6 +1578,10 @@ table.dataTable thead th {
     background-image: url(/Static/img/remove-trash-can.png);
     background-image: url(/Static/img/remove-trash-can.png);
     background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
     background-size: auto 75%;
     background-repeat: no-repeat;
     background-position: center;
@@ -1588,6 +1589,10 @@ table.dataTable thead th {
 }
 .remove:hover,
 .remove:active {
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
@@ -1604,7 +1609,6 @@ table.dataTable thead th {
     background-repeat: no-repeat;
     border-bottom: 1px solid #d8d8d8;
     padding: 25px 0 0 0;
-    /*padding: 25px 40px 0 40px;*/
 }
 .form-tradeOffers ul{
 	padding-left: 115px;
@@ -1791,18 +1795,18 @@ table.dataTable.no-footer,
 .body-deal-form > div:first-child,
 .footer-deal-form > div:first-child{
 	width: calc(100% - 487px);
-	/*width: 330px;*/
 }
 .body-deal-form > div:last-child,
 .footer-deal-form > div:last-child {
      width: 487px;
-     /*width: 65%;*/
 }
 .footer-deal-form > div:last-child {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    justify-content: space-between;
-    /*width: 100%;*/
-    
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;  
 }
 .body-deal-form ul li {
 	margin-top: 20px;
@@ -1828,6 +1832,8 @@ table.dataTable.no-footer,
 }
 /**/
 .flex-two-input {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 }
 .flex-two-input > div:first-child{
@@ -1838,8 +1844,12 @@ table.dataTable.no-footer,
 	width: 100%;
 }
 .flex-two-input > div:last-child > div{
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 .flex-two-input > div:first-child input{
 	width: 192px;
@@ -1862,7 +1872,6 @@ table.dataTable.no-footer,
 	width: 306px;
 	margin-bottom: 20px;
 }
-
 .flex-two-input > div:last-child textarea{
 	width: 280px;
 	height: 160px;
@@ -1872,9 +1881,6 @@ table.dataTable.no-footer,
 	resize: none;
 	padding: 9px 13px;
 }
-/*.flex-two-input > div:last-child textarea{
-	
-}*/
 .contact-us-dialogbox .dialogbox-child .flex-input input,
 .contact-us-dialogbox textarea{
 	width: 342px;
@@ -1887,8 +1893,12 @@ table.dataTable.no-footer,
 .tender-dialogbox #form-list,
 .lot-dialogbox #form-list {
     width: 100%;
+   	display: -webkit-box;
+   	display: -ms-flexbox;
    	display: flex;
-    justify-content: flex-end;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
 }
 .forMapLotsTender {
 	width: 440px;
