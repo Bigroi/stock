@@ -24,6 +24,7 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler, Auth
 		case "": return "/product/List.spr";
 		case "/Transport": return "/Transport/deal-list.spr";
 		case "/demo": return "/demo/product/List.spr";
+		case "/demo/by": return "/demo/by/product/List.spr";
 		default : return contexRoot + "/Index.spr";
 		}
 	}
