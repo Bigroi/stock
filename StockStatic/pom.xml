@@ -27,7 +27,7 @@
 				<configuration>
 					<url>http://${HOST_NAME}/manager/text</url>
 					<server>test_server</server>
-					<path>${CONTEXT_ROOT}/Static</path>
+					<path>${STATIC_CONTEXT_ROOT}</path>
 					<username>${SERVER_USER}</username>
 					<password>${SERVER_PASS}</password>
 				</configuration>
