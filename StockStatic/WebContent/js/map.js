@@ -16,8 +16,8 @@ function initRegistrationMap(){
 		var map = new google.maps.Map($googleMapsContainer[i], {
 			zoom: 8,
 			center: {
-				lat: lat == -1 ? 53.1568911 : lat, 
-				lng: lng == -1 ? 26.001813399999946 : lng
+				lat: lat == -1 ? 52.2398578 : lat, 
+				lng: lng == -1 ? 20.994758899999965 : lng
 			}
 		});
 		if (lat != -1){
