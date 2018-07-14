@@ -66,4 +66,13 @@ public class AddressServiceImpl implements AddressService{
 			throw new ServiceException(e);
 		}
 	}
+
+	@Override
+	public boolean hasAddress(CompanyAddress address, long companyId) throws ServiceException {
+		try{
+			return addressDao.hasAddress(address, companyId);
+		}catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
 }

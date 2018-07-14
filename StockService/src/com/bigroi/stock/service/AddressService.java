@@ -16,4 +16,6 @@ public interface AddressService {
 	void merge(CompanyAddress address, long companyId) throws ServiceException;
 
 	void delete(long id, long companyId) throws ServiceException;
+
+	boolean hasAddress(CompanyAddress address, long companyId) throws ServiceException;
 }

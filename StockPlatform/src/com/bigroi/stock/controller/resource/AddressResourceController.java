@@ -79,6 +79,11 @@ public class AddressResourceController extends BaseResourseController {
 	public String save(@RequestParam("json") String jsonAddress) throws ServiceException{
 		StockUser user =  (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		CompanyAddress address = GsonUtil.getGson().fromJson(jsonAddress, CompanyAddress.class);
+		
+		if (addressService.hasAddress(address, user.getCompanyId())){
+			return new ResultBean(-1, "label.address.already_exists").toString();
+		}
+		
 		addressService.merge(address, user.getCompanyId());
 		return new ResultBean(1, new AddressForUI(address,
 				address.getId() == user.getCompany().getAddressId() ? 

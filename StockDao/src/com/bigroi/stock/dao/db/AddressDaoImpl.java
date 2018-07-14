@@ -22,14 +22,17 @@ import com.bigroi.stock.dao.DaoException;
 @Repository
 public class AddressDaoImpl implements AddressDao{
 
+	private static final String ALL_COLUMNS = "ID, CITY, COUNTRY, ADDRESS, LATITUDE, LONGITUDE, COMPANY_ID";
+	private static final String FROM = " FROM ADDRESS ";
+	
 	private static final String GET_ADDRESSES_BY_COMPANY_ID = 
-			"SELECT ID, CITY, COUNTRY, ADDRESS, LATITUDE, LONGITUDE, COMPANY_ID "
-			+ " FROM ADDRESS "
+			"SELECT " + ALL_COLUMNS
+			+ FROM
 			+ " WHERE COMPANY_ID = ?";
 	
 	private static final String DELETE_ADDRESS_BY_ID_AND_COMPANY_ID = 
 			"DELETE "
-			+ " FROM ADDRESS "
+			+ FROM
 			+ " WHERE COMPANY_ID = ? AND ID = ?";
 	
 	private static final String UPDATE_ADDRESS_BY_ID_AND_COMPANY_ID = 
@@ -41,8 +44,15 @@ public class AddressDaoImpl implements AddressDao{
 			"INSERT INTO ADDRESS (CITY, COUNTRY, ADDRESS, LATITUDE, LONGITUDE, COMPANY_ID)"
 			+ " VALUES (?, ?, ?, ?, ? , ?) ";
 	
-	private static final String GET_ADDRESS_BY_ID = "SELECT ID, CITY, COUNTRY, "
-			+ " ADDRESS, LATITUDE, LONGITUDE, COMPANY_ID FROM ADDRESS WHERE ID = ? AND COMPANY_ID = ?";
+	private static final String GET_ADDRESS_BY_ID = 
+			"SELECT " + ALL_COLUMNS
+			+ FROM
+			+ " WHERE ID = ? AND COMPANY_ID = ?";
+
+	private static final String GET_ADDRESS_BY_COUNTRY_AND_CITY_AND_ADDRESS_AND_COMPANY_ID = 
+			"SELECT " + ALL_COLUMNS
+			+ FROM
+			+ " WHERE COUNTRY = ? AND CITY = ? AND ADDRESS = ? AND COMPANY_ID = ?";
 	
 	@Autowired
 	private DataSource datasource;
@@ -57,9 +67,9 @@ public class AddressDaoImpl implements AddressDao{
 	public boolean updateAddress(CompanyAddress address) throws DaoException{
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_ADDRESS_BY_ID_AND_COMPANY_ID, 
-				address.getCity(),
-				address.getCountry(),
-				address.getAddress(),
+				address.getCity().trim(),
+				address.getCountry().trim(),
+				address.getAddress().trim(),
 				address.getLatitude(),
 				address.getLongitude(),
 				address.getCompanyId(),
@@ -75,9 +85,9 @@ public class AddressDaoImpl implements AddressDao{
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(ADD_ADDRESS, PreparedStatement.RETURN_GENERATED_KEYS);
-				ps.setString(1, address.getCity());
-				ps.setString(2, address.getCountry());
-				ps.setString(3, address.getAddress());
+				ps.setString(1, address.getCity().trim());
+				ps.setString(2, address.getCountry().trim());
+				ps.setString(3, address.getAddress().trim());
 				ps.setDouble(4, address.getLatitude());
 				ps.setDouble(5, address.getLongitude());
 				ps.setLong(6, address.getCompanyId());
@@ -97,12 +107,25 @@ public class AddressDaoImpl implements AddressDao{
 	@Override
 	public CompanyAddress getAddressById(long id, long companyId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<CompanyAddress> listAddresses = template.query(GET_ADDRESS_BY_ID, 
+		List<CompanyAddress> list = template.query(GET_ADDRESS_BY_ID, 
 				new BeanPropertyRowMapper<CompanyAddress>(CompanyAddress.class), id, companyId);
-		if(listAddresses.isEmpty()){
+		if(list.isEmpty()){
 			return null;
 		}else{
-			return listAddresses.get(0);
+			return list.get(0);
 		}
+	}
+
+	@Override
+	public boolean hasAddress(CompanyAddress address, long companyId) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<CompanyAddress> list = template.query(
+				GET_ADDRESS_BY_COUNTRY_AND_CITY_AND_ADDRESS_AND_COMPANY_ID, 
+				new BeanPropertyRowMapper<CompanyAddress>(CompanyAddress.class), 
+				address.getCountry().trim(), 
+				address.getCity().trim(),
+				address.getAddress().trim(),
+				companyId);
+		return !list.isEmpty();
 	}
 }
