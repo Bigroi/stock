@@ -39,6 +39,7 @@
 		<script src="/Static/js/productList.js?version=${label.build.number}"></script>
 	</head>
 	<body>
+		${label.devProperties.platform_context_root}
 		<div id="form-container"></div>
 		<div class="wrapper">
 		    <div class="content">
