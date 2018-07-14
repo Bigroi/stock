@@ -20,24 +20,24 @@
 		<meta name="context-root" content="${pageContext.request.contextPath}">
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
 		
-		<link rel="stylesheet" href="/Static/css/jquery.dataTables.min.css">
-		<link rel="stylesheet" href="/Static/css/jquery.responsive.dataTables.min.css"> 
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/jquery.responsive.dataTables.min.css"> 
 		
-		<script src="/Static/js/jQuery.js"></script>
-        <script src="/Static/js/jquery.dataTables.min.js"></script>
-        <script src="/Static/js/jquery.responsive.dataTables.min.js"></script>
+		<script src="${pageContext.request.contextPath}/Static/js/jQuery.js"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/jquery.dataTables.min.js"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/jquery.responsive.dataTables.min.js"></script>
 		
 		<!-- application css & js -->
-        <link rel="stylesheet" href="/Static/css/style.css?version=${label.build.number}">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/style.css?version=${label.build.number}">
         
-        <script src="/Static/js/form.js?version=${label.build.number}"></script>
-        <script src="/Static/js/intiFormParams.js?version=${label.build.number}"></script>
-        <script src="/Static/js/localization.js?version=${label.build.number}"></script>
-		<script src="/Static/js/tableMaker.js?version=${label.build.number}"></script>
-		<script src="/Static/js/map.js?version=${label.build.number}"></script>
-		<script src="/Static/js/dialogbox.js?version=${label.build.number}"></script>
-		<script src="/Static/js/script.js?version=${label.build.number}"></script>
-		<script src="/Static/js/productList.js?version=${label.build.number}"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/form.js?version=${label.build.number}"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/intiFormParams.js?version=${label.build.number}"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/localization.js?version=${label.build.number}"></script>
+		<script src="${pageContext.request.contextPath}/Static/js/tableMaker.js?version=${label.build.number}"></script>
+		<script src="${pageContext.request.contextPath}/Static/js/map.js?version=${label.build.number}"></script>
+		<script src="${pageContext.request.contextPath}/Static/js/dialogbox.js?version=${label.build.number}"></script>
+		<script src="${pageContext.request.contextPath}/Static/js/script.js?version=${label.build.number}"></script>
+		<script src="${pageContext.request.contextPath}/Static/js/productList.js?version=${label.build.number}"></script>
 			
 	</head>
 	<body class="body-pages">

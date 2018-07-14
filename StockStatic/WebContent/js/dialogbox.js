@@ -102,6 +102,7 @@ function showDialog(params){
 				}
 			}
 		}
+		return params;
 	}
 }		
  
