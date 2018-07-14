@@ -4,7 +4,7 @@ function showMessageDialog(message, type, action){
 }
 
 function showDialog(params){
-	addDefaults(params);
+	params = addDefaults(params);
 	params.container.load(params.formUrl, params.formParams, function() {
 		var $dialogbox = $(".dialogbox");
 		var $dialogboxElementContent = $(".dialogbox-elementContent");
@@ -74,6 +74,7 @@ function showDialog(params){
 	return false;
 	
 	function addDefaults(params){
+		params = Object.assign({}, params);
 		if (!params.container){
 			params.container = $("#form-container");
 		}
