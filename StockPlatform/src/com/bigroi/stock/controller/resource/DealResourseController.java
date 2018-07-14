@@ -37,7 +37,7 @@ public class DealResourseController extends BaseResourseController {
 	
 	@RequestMapping(value = "/Form.spr", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+//	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String form(@RequestParam("id") long id, Authentication loggedInUser) 
 					throws ServiceException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
