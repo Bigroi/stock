@@ -33,28 +33,34 @@ public class SqlUpdater {
 	private static final String UPDATE_SQL_FILE_NAME = "Update.xml";
 	private static final ApplicationContext CONTEXT = new ClassPathXmlApplicationContext("spring.xml");
 	private static final String UPDATE_SIZE = "UPDATE SQL_UPDATE SET LAST_UPDATE = ?";
-	private static final String CHECK_BD= "USE `stock`; SELECT LAST_UPDATE FROM SQL_UPDATE";
+	private static final String CHECK_BD = "USE `@schema@`; SELECT LAST_UPDATE FROM SQL_UPDATE";
 	private static final String GET_SIZE = "SELECT LAST_UPDATE FROM SQL_UPDATE";
 	
 	private static final Logger logger = Logger.getLogger(SqlUpdater.class);
 	
 	public static void main(String[] args) throws SQLException, IOException, JAXBException {
-		new SqlUpdater().updateDataBase();
+		String schema;
+		if (args.length == 0){
+			schema = "stock";
+		} else {
+			schema = args[0];
+		}
+		new SqlUpdater().updateDataBase(schema);
 	}
 	
-	public void updateDataBase() throws SQLException, IOException, JAXBException{
+	public void updateDataBase(String schema) throws SQLException, IOException, JAXBException{
 		DataSource dataSource = CONTEXT.getBean(DataSource.class);
 		Connection connection = null;
 		try{
 			logger.info("Sql updater: start");
 			String url = ((DriverManagerDataSource)dataSource).getUrl();
-			((DriverManagerDataSource)dataSource).setUrl(url.replaceAll("stock", "") + "&allowMultiQueries=true");
+			((DriverManagerDataSource)dataSource).setUrl(url.replaceAll(schema, "") + "&allowMultiQueries=true");
 			connection = dataSource.getConnection();
 			connection.setAutoCommit(false);
 			int lastUpdate = 0;
-			if (!doesDatabaseExists(connection)){
-				logger.info("Sql updater: create new schema");
-				executeMainScript(connection);
+			if (!doesDatabaseExists(connection, schema)){
+				logger.info("Sql updater: create new schema " + schema);
+				executeMainScript(connection, schema);
 			} else {
 				lastUpdate = getLastUpdate(connection);
 			}
@@ -112,9 +118,9 @@ public class SqlUpdater {
 		}
 	}
 
-	private boolean doesDatabaseExists(Connection connection){
+	private boolean doesDatabaseExists(Connection connection, String schema){
 		try{
-			PreparedStatement statement = connection.prepareStatement(CHECK_BD);
+			PreparedStatement statement = connection.prepareStatement(CHECK_BD.replaceAll("@schema@", schema));
 			statement.executeQuery();
 			return true;
 		}catch (SQLException e) {
@@ -122,14 +128,14 @@ public class SqlUpdater {
 		}
 	}
 	
-	private void executeMainScript(Connection connection) throws SQLException, IOException{
+	private void executeMainScript(Connection connection, String schema) throws SQLException, IOException{
 		try(BufferedReader reader = openReader(MAIN_SQL_FILE_NAME)){
 			StringBuilder builder = new StringBuilder();
 			while (reader.ready()){
 				builder.append(reader.readLine()).append("\n");
 			}
 			
-			executeQuery(connection, builder.toString());
+			executeQuery(connection, builder.toString().replaceAll("@schema@", schema));
 			
 		}
 	}
