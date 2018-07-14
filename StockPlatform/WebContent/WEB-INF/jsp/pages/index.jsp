@@ -16,7 +16,7 @@
 		<title>Your Trader! ${page_title}</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
-		<meta name="context-root" content="${label.devProperties.platform_context_root}">
+		<meta name="context-root" content="${pageContext.request.contextPath}">
 		<meta name="google-site-verification" content="57vTO4c-SbhNNvbqR0xSlTjHLgy0kd3Bi7173PGTMbc" />
 		
 		<link rel="stylesheet" href="/Static/css/jquery.dataTables.min.css">
@@ -39,7 +39,6 @@
 		<script src="/Static/js/productList.js?version=${label.build.number}"></script>
 	</head>
 	<body>
-		${label.devProperties.platform_context_root}
 		<div id="form-container"></div>
 		<div class="wrapper">
 		    <div class="content">

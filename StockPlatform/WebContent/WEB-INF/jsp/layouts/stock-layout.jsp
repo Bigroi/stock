@@ -17,7 +17,7 @@
 		
 		<title>Your Trader! ${page_title}</title>
 		<meta charset = "utf-8">
-		<meta name="context-root" content="${label.devProperties.platform_context_root}">
+		<meta name="context-root" content="${pageContext.request.contextPath}">
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
 		
 		<link rel="stylesheet" href="/Static/css/jquery.dataTables.min.css">
