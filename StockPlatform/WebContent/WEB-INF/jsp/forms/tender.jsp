@@ -24,15 +24,15 @@
 			</div>
 			<div>
 				<label for="forPrice">${label.tender.max_price}</label>
-				<input type="text" name="price" placeholder="9.99" pattern="^\d+\.{0,1}\d{0,2}$" required id="forPrice"/>
+				<input type="number" name="price" placeholder="9.99" step="0.01" pattern="^\d+\.{0,1}\d{0,2}$" required id="forPrice"/>
 			</div>
 			<div>
 				<label for="forMinVolume">${label.tender.min_volume}</label>
-				<input type="text" name="minVolume" placeholder="150" pattern="^\d+$" required id="forMinVolume"/>
+				<input type="number" name="minVolume" placeholder="150" pattern="^\d+$" required id="forMinVolume"/>
 			</div>
 			<div>
 				<label for="forMaxVolume">${label.tender.max_volume}</label>
-				<input type="text" name="maxVolume" placeholder="150" pattern="^\d+$" required id="forMaxVolume"/>
+				<input type="number" name="maxVolume" placeholder="150" pattern="^\d+$" required id="forMaxVolume"/>
 			</div>
 			<div>
 				<label for="forExpDate">${label.tender.exp_date}</label>
