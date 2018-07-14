@@ -23,6 +23,7 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler, Auth
 		switch (contexRoot){
 		case "": return "/product/List.spr";
 		case "/Transport": return "/Transport/deal-list.spr";
+		case "/demo": return "/demo/product/List.spr";
 		default : return contexRoot + "/Index.spr";
 		}
 	}
