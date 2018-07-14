@@ -42,12 +42,12 @@ public class DealResourseController extends BaseResourseController {
 					throws ServiceException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Deal deal = dealService.getById(id, user.getCompanyId());
-		if (user.getCompanyId() != deal.getBuyerAddress().getCompanyId() && 
-				user.getCompanyId() != deal.getSellerAddress().getCompanyId()){
-			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
-		} else {
+//		if (user.getCompanyId() != deal.getBuyerAddress().getCompanyId() && 
+//				user.getCompanyId() != deal.getSellerAddress().getCompanyId()){
+//			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
+//		} else {
 			return new ResultBean(1, translateDeal(new DealForUI(deal, user.getCompanyId())), "").toString();
-		}
+//		}
 	}
 	
 	private DealForUI translateDeal(DealForUI deal){
