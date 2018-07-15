@@ -16,5 +16,9 @@
 		ALTER TABLE `LOT` CHANGE COLUMN `min_price` `price` DECIMAL(10,2) NOT NULL AFTER `product_id`;
 		ALTER TABLE `TENDER` CHANGE COLUMN `max_price` `price` DECIMAL(10,2) NOT NULL AFTER `product_id`;
 	</update>
+	<update author="Pavel" date="15.07.2018">
+		ALTER TABLE `USER` CHANGE COLUMN `password` `password` VARCHAR(60) NOT NULL COLLATE 'utf8_general_ci' AFTER `username`;
+		UPDATE `USER` SET `password`='$2a$10$uzpFt2/Uxp3XWXh/.lTK3uptEwIEw.j4W1aP3MGSuQ3G7HkL2BBRK';
+	</update>
 </root>
 

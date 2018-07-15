@@ -8,6 +8,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +34,9 @@ public class AccountResourceController extends BaseResourseController {
 	@Autowired
 	private CompanyService companyService;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
@@ -55,7 +59,7 @@ public class AccountResourceController extends BaseResourseController {
 			if (!newUser.getPassword().equals(newUser.getPasswordRepeat())){
 				return new ResultBean(-1, "label.account.error_password").toString();
 			}
-			loggedIn.setPassword(newUser.getPassword());
+			loggedIn.setPassword(passwordEncoder.encode(newUser.getPassword()));
 		}
 		
 		if (!newUser.getUsername().equals(loggedIn.getUsername()) 
@@ -91,6 +95,9 @@ public class AccountResourceController extends BaseResourseController {
 		
 		if (!user.getPassword().equals(user.getPasswordRepeat())) {
 			return new ResultBean(-1, "label.account.error_password").toString();
+		} else {
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			user.setPasswordRepeat("");
 		}
 		user.setUsername(user.getUsername().toLowerCase());
 		user.getCompany().setType(AuthenticationHandler.getApplicationType(request.getContextPath()));

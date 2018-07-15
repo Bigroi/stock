@@ -7,6 +7,8 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.bigroi.stock.service.UserService;
 
@@ -48,8 +50,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Bean("daoAuthenticationProvider")
 	public DaoAuthenticationProvider getDaoAuthenticationProvider(){
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+		provider.setPasswordEncoder(getPasswordEncoder());
 		provider.setUserDetailsService(userService);
 		return provider;
+	}
+	
+	@Bean
+	public PasswordEncoder getPasswordEncoder(){
+		return new BCryptPasswordEncoder();
 	}
 	
 }
