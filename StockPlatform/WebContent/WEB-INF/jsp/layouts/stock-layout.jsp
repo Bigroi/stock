@@ -20,6 +20,7 @@
 		<meta name="context-root" content="${pageContext.request.contextPath}">
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
 		
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/Static/img/logo.png" type="image/png">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/jquery.dataTables.min.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/jquery.responsive.dataTables.min.css"> 
 		
