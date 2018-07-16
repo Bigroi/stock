@@ -11,33 +11,33 @@
 	<div class="registration-first-part">
 		<div class="flex-input">
 		<div>
-			<label for="forLogin">${label.account.login}</label>
+			<label for="forLogin">${label.account.login} *</label>
 			<input type="email" name="username" id="forLogin" placeholder="john_doe@example.com" required maxlength="50">
 		</div>
 		<div>
-			<label for="forPhone">${label.account.phone}</label>
+			<label for="forPhone">${label.account.phone} *</label>
 			<input type="text" name="company.phone" 
 				placeholder="${label.account.phone_placeholder}" 
 				pattern="${label.account.phone_pattern}" required/>
 		</div>
 		<div>
-            <label for="forCompanyName">${label.account.company_name}</label>
+            <label for="forCompanyName">${label.account.company_name} *</label>
             <input type="text" name="company.name" 
             	placeholder="Stock ltd" id="forCompanyName" required maxlength="100"/>
 	     </div>
 	     <div>
-            <label for="forRegNumber">${label.account.reg_number}</label>
+            <label for="forRegNumber">${label.account.reg_number} *</label>
             <input type="text" name="company.regNumber" 
             	placeholder="${label.account.reg_number_placeholder}" 
             	pattern="${label.account.reg_number_pattern}"
             	id="forRegNumber" required/>
 	     </div>
 		<div>
-			<label for="forPassword">${label.account.password}</label>
+			<label for="forPassword">${label.account.password} *</label>
 			<input type="password" name="password" id="forPassword" placeholder="***********" required maxlength="50">
 		</div>
 		<div>
-			<label for="forPasswordAgain">${label.account.repeat_password}</label>
+			<label for="forPasswordAgain">${label.account.repeat_password} *</label>
 			<input type="password" name="passwordRepeat" id="forPasswordAgain" placeholder="***********" required maxlength="50">
 		</div>
 	 </div>
@@ -47,15 +47,15 @@
 	<div class="registration-second-part">
 		<div class="flex-input">
 			<div>
-				<label for="forCountry">${label.account.city}</label>
+				<label for="forCountry">${label.account.city} *</label>
 	            <input type="text" name="company.companyAddress.city" class="city" id="forCountry" placeholder="Minsk" maxlength="100"/>
 			</div>
 			<div>
-				<label for="forCity">${label.account.country}</label>
+				<label for="forCity">${label.account.country} *</label>
 	            <input type="text" name="company.companyAddress.country" class="country" id="forCity" placeholder="Belarus" maxlength="50"/>
 			</div>
 			<div>
-				<label for="forAdress">${label.account.address}</label>
+				<label for="forAdress">${label.account.address} *</label>
 	            <input type="text" name="company.companyAddress.address" class="address" id="forAdress" placeholder="Minsk" maxlength="200"/>
 			</div>
 			<div class="forMap google-map-container"></div>

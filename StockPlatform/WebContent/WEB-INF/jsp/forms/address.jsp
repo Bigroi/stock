@@ -13,15 +13,15 @@
 	</div>
 	<div class="flex-input">
 		<div>
-			<label for="forCountry">${label.address.country}</label> 
+			<label for="forCountry">${label.address.country} *</label> 
 			<input type="text" name="country" class="country" id="forCountry" required maxlength="50">
 		</div>
 		<div>
-			<label for="forCity">${label.address.city}</label>
+			<label for="forCity">${label.address.city} *</label>
 			<input type="text" name="city" class="city" id="forCity" required maxlength="50"/>
 		</div>
 		<div>
-			<label for="forAddress">${label.address.address}</label> 
+			<label for="forAddress">${label.address.address} *</label> 
 			<input type="text" name="address" class="address" id="forAddress" required maxlength="50"/>
 		</div>
 

@@ -31,7 +31,7 @@
 			<input type="password" name="password" id="forPassword" placeholder="***********" maxlength="50">
 		</div>
 		<div>
-			<label for="forPasswordAgain">${label.account.repeat_password}</label>
+			<label for="forPasswordAgain">${label.account.repeat_password} *</label>
 			<input type="password" name="passwordRepeat" id="forPasswordAgain" placeholder="***********" maxlength="50">
 		</div>
 		<div class="forMap google-map-container"></div>
