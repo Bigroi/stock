@@ -1,0 +1,8 @@
+Oferta została przyjęta.
+Witamy,
+
+Zarówno twój kontrahent jak i Ty zatwierdziliście ofertę dotyczącą @product.
+
+Umowa zawarta z kontrahentem znajduje się na naszej stronie @server w zakładce Umowy.
+
+Your Trader!

@@ -1,0 +1,10 @@
+Prosimy, zatwierdź umowę. Znaleziono sprzedawcę dla twojej oferty kupna @product. 
+Oferowana cena @price.  
+
+Ofertę można znaleźć na naszej stronie @server w zakładce Umowy.
+
+Oferta obowiązuje przez 12 godzin lub do momentu odwołania jej przez kontrahenta.
+
+
+W przypadku odrzucenia oferty lub nie podjęcia żadnego działania z Twojej strony oraz strony kontrahenta w przeciągu 12 godzin twoja oferta kupna zostanie wystawiona w następnej sesji handlowej.
+Your trader!

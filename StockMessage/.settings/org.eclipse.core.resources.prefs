@@ -1,2 +1,12 @@
 eclipse.preferences.version=1
+encoding//templates_pl/confirmationForCustomer.txt=UTF-8
+encoding//templates_pl/confirmationForSeller.txt=UTF-8
+encoding//templates_pl/dealCancelled.txt=UTF-8
+encoding//templates_pl/expiredDeal.txt=UTF-8
+encoding//templates_pl/expiredDealOpponent.txt=UTF-8
+encoding//templates_pl/linkResetPassw.txt=UTF-8
+encoding//templates_pl/lotExparied.txt=UTF-8
+encoding//templates_pl/passwordReset.txt=UTF-8
+encoding//templates_pl/successDeal.txt=UTF-8
+encoding//templates_pl/tenderExparied.txt=UTF-8
 encoding/src=Cp1251

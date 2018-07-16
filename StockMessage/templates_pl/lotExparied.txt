@@ -1,0 +1,13 @@
+Oferta sprzedaży wygasła.
+Twoja oferta sprzedaży wygasła i nie zostanie wystawiona w przyszłych sesjach handlowych.
+
+Szczegóły oferty:
+
+Opis: @description
+Cena: @price
+Ilość: @volume
+
+Ofertę możesz znaleć na naszej stronie @server w zakładce Sprzedaż.
+
+Możesz odświeżyć ofertę i brać udział w następnych sesjach handlowych.
+Your trader!
