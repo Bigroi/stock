@@ -1,0 +1,13 @@
+Oferta kupna wygasła.
+Twoja oferta kupna wygasła i nie zostanie wystawiona w przyszłych sesjach handlowych.
+
+Request details:
+
+Opis: @description
+Cena: @price
+Ilość: @volume
+
+Ofertę możesz znaleć na naszej stronie @server w zakładce Sprzedaż.
+
+Możesz odświeżyć ofertę i brać udział w następnych sesjach handlowych.
+Your trader!
