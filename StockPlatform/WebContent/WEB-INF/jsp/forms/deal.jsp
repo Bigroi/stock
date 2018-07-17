@@ -66,7 +66,7 @@
 					        <textarea name="partnerAddress.address" disabled></textarea>
 					    </li>
 					</ul>
-					<div style=" width: 487px;height: 220px;position:relative; display: block;">				        
+					<div class="map-deal-form" style=" ">				        
 						<div style="bottom:0;top: 0;right: 0; left: 0; position: absolute;" id="map-mob-deal">
 							<div id="map" style="width: 100%; height: 100%"></div>
 						</div>

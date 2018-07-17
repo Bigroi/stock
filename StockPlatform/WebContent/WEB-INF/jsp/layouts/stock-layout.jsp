@@ -44,7 +44,7 @@
 	<body class="body-pages">
 		<div id="message-dialog-container"></div>
 		<div id="form-container"></div>
-        <div class = "aside">
+        <div class="aside">
             <div class="logo-pages">
                 <img src="/Static/img/logo-pages.png" alt="YourTrader" title="YourTrader">
             </div>
@@ -59,6 +59,25 @@
             </nav>
             <tiles:insertAttribute name="footer" />
         </div>
+         <div class="aside-modile">
+         	 <div class="burger-logo">
+         	 	<div class="burger"></div>
+         	 	<div class="logo-mobile"></div>
+         	 </div>
+	         <div class="login-box">
+				<div class="login-button-page">
+			    	<div>${user.company.name}</div>
+				</div>
+				<div class="login-list">
+					<div>
+						<a href="#" class="edit-account">${label.navigation.account}</a>
+						<a href="#" onclick="document.location = getContextRoot() + '/account/json/Logout.spr'" id="session-start">
+							${label.navigation.logout}
+						</a>
+					</div>
+				</div>
+			</div>
+         </div>
         <div class="bgdark"></div>
         <div class = "section">
             <tiles:insertAttribute name="page-title" />

@@ -1004,7 +1004,7 @@ footer .container {
 	}
 	.dialogbox-child {
 		position: relative;
-		width: 768px;
+		width: 720px;
 		height: auto;
 	    min-height: 460px;
 	    padding: 50px 0; 
@@ -1272,7 +1272,7 @@ footer .container {
 	display: none;
 }
 .table-header-button {
-	width: 570px;
+	width: 565px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1285,7 +1285,7 @@ footer .container {
     padding-top: 10px;
 }
 .thb {
-	 /*width: 100%;*/
+	 width: auto;
 	-webkit-box-pack: end;
 	    -ms-flex-pack: end;
 	        justify-content: flex-end;
@@ -1386,7 +1386,7 @@ footer .container {
 .product-page .product {
 	margin-top: 10px;
 	margin-bottom: 30px;
-	width: 100%;
+	width: calc(100% - 82px);
 	padding: 20px 40px 30px 40px;
 	height: 130px;
 	background-position: left 27% center;
@@ -1627,8 +1627,6 @@ table.dataTable thead th {
 	width: 180px;
 	height: 40px;
 	border-radius: 5px;
-	background-color: var(--azure);
-	color: white;
 	position: absolute;
 	bottom: 40px;
 	margin-left: 85px;
@@ -1765,7 +1763,7 @@ table.dataTable.no-footer,
             align-items: center;	
 }
 .white-div-deal .deal-status input {
-	width: auto;
+	width: 100%;
 	padding-top: 0;
 	margin-left: 10px;
 }
@@ -1914,4 +1912,162 @@ table.dataTable>tbody>tr.child span.dtr-title,
 table.dataTable>tbody>tr.child span {
 	font-weight: normal;
     font-size: 14px;
+}
+.aside-modile {
+	display: none;
+}
+.map-deal-form {
+	width: 487px;
+	height: 220px;
+	position:relative; 
+	display: block;
+}
+@media (max-width: 1280px){
+	.aside {
+		display: none;
+	}
+	.section {
+		margin-left: 0;
+		padding: 0 25px;
+		width: calc(100% - 50px);
+		min-height: auto;
+    	height: inherit;
+	}
+	.aside-modile {
+		display: flex;
+    	justify-content: space-between;
+    	    align-items: center;
+    padding: 0 25px;
+    width: calc(100% - 50px);
+	    height: 80px;
+		background-color: var(--white);
+		box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+	}
+	.body-pages {
+	    flex-direction: column;
+	}
+	.table-header-button .login-box{
+		display: none;
+	}
+	.burger-logo {
+		  width: auto;
+		  height: 40px;
+		  display: flex;
+	}
+	.burger {
+		width: 40px;
+		height: 40px;
+		border-radius: 5px;
+		background-color: var(--green-teal);
+		background-image: url(/Static/img/burger.png);
+		background-repeat: no-repeat;
+		background-position: center;
+		cursor: pointer;
+	}
+	.logo-mobile {
+		margin-left: 20px;
+	    height: 40px;
+	    width: 94px;
+	    background-image: url(/Static/img/logo-pages.png);
+	    background-position: center;
+	    background-size: cover;
+	}
+	.product-page .product {
+	    margin-top: 10px;
+	    margin-bottom: 10px;
+	}
+	.product-page .product h4 {
+		font-size: 24px;
+	}
+	.product-page .product button {
+		width: 227px;
+  		height: 34px;
+  		    margin-top: 50px;
+	}
+	.table-header-button {
+		width: 410px;
+	}
+	#main-table_filter input {
+		right: 0px;
+	}
+	.header-white-div {
+		width: calc(100% - 120px);
+	}
+	.table-tradeOffers {
+		width: calc(100% - 120px);
+	}
+	.table-tradeOffers table {
+		width: 596px !important;	
+	}
+	.form-tradeOffers-button button {
+		margin-left: 60px;
+	}
+	.map-deal-form {
+		width: 350px;
+  		height: 220px;
+  		margin-bottom: 40px;
+	}
+	.body-deal-form > div:first-child{
+		width: 268px;
+	}
+	.body-deal-form > div:last-child  {
+		 padding-left: 60px;
+	} 
+	.body-deal-form, .footer-deal-form {
+		margin: 0 60px;
+	}
+	.footer-deal-form > div:first-child {
+		width: 160px;
+	}
+	.footer-deal-form > div:last-child {
+		width: calc(100% - 160px);
+		justify-content: unset
+	}
+	.footer-deal-form > div:last-child button {
+		margin-right: 20px;
+	}
+	.deal-status {
+		padding: 0 60px;
+	}
+	#back-deals {
+	    width: 140px;
+	}
+	#approve-button {
+	    width: 110px;
+	}
+	#reject-button {
+	    width: 120px;
+	}
+	#transport-button {
+	    width: 167px;
+	}
+	.flex-two-input > div:last-child > div {
+		flex-wrap: wrap;
+	}
+	.forMapLotsTender {
+		width: 308px;
+    	height: 160px;
+    	margin-bottom: 50px;
+	}
+	.tender-dialogbox #form-list, 
+	.lot-dialogbox #form-list {
+		justify-content: space-between;
+	}
+	.tender-dialogbox .dialogbox-child button, 
+	.lot-dialogbox .dialogbox-child button {
+		margin-left: 0;
+		height: 40px;
+		width: 150px;
+	}
+	.lot-dialogbox .dialogbox-child,
+	.tender-dialogbox .dialogbox-child{
+		padding: 0;
+	} 
+	.lot-dialogbox .dialogbox-child input,
+	.tender-dialogbox .dialogbox-child input{
+		height: 22px;
+	}
+	.flex-two-input > div:last-child {
+    	padding-left: 40px;
+    }
 }
