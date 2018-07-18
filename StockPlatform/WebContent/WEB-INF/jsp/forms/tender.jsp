@@ -23,19 +23,19 @@
 				</select>
 			</div>
 			<div>
-				<label for="forPrice">${label.tender.max_price}</label>
+				<label for="forPrice">${label.tender.max_price} *</label>
 				<input type="number" name="price" placeholder="9.99" step="0.01" pattern="^\d+\.{0,1}\d{0,2}$" required id="forPrice"/>
 			</div>
 			<div>
-				<label for="forMinVolume">${label.tender.min_volume}</label>
+				<label for="forMinVolume">${label.tender.min_volume} *</label>
 				<input type="number" name="minVolume" placeholder="150" pattern="^\d+$" required id="forMinVolume"/>
 			</div>
 			<div>
-				<label for="forMaxVolume">${label.tender.max_volume}</label>
+				<label for="forMaxVolume">${label.tender.max_volume} *</label>
 				<input type="number" name="maxVolume" placeholder="150" pattern="^\d+$" required id="forMaxVolume"/>
 			</div>
 			<div>
-				<label for="forExpDate">${label.tender.exp_date}</label>
+				<label for="forExpDate">${label.tender.exp_date} *</label>
 				<input type="text" name="exparationDate" placeholder="01.01.2018" required 
 					pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])\.(0[1-9]|1[012])\.[0-9]{4}"
 					id="forExpDate"/>
@@ -45,7 +45,7 @@
 			<div>
 				<div>
 					<div>
-						<label for="forAddressId">${label.tender.address}</label>
+						<label for="forAddressId">${label.tender.address} *</label>
 						<select name="addressId" id="forAddressId"  class="address-selector">
 							<c:forEach var="address" items="${listOfAddresses}">
 								<option value="${address.id}">${address.country}, ${address.city}, ${address.address}</option>
