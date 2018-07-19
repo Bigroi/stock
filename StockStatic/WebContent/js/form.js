@@ -104,14 +104,14 @@ function setFormInputs(formContainer, object){
 	}
 }
 
-function processRequestResult(formContainer, answer, messageDiv){
-	if (answer.result = 0){
+function processRequestResult(formContainer, answer, messageDiv, $dialogbox){
+	if (answer.result == 0){
 		document.location = answer.data;
 		return;
-	} else if (answer.result = 2){
+	} else if (answer.result == 2){
 		messageDiv.addClass("success-message");
 		setFormInputs(formContainer, answer.data);
-	} else if (answer.result = 1){
+	} else if (answer.result == 1){
 		if ($dialogbox){
 			$dialogbox.remove();
 		}
