@@ -7,7 +7,6 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -44,18 +43,25 @@ public class CommonRenderingController extends BaseRenderingController{
 		return createModelAndView("registration");
 	}
 	
-	@RequestMapping(value = "/ResetPassword.spr", method = RequestMethod.GET)
+	@RequestMapping(value = "/ResetForm.spr")
+	public ModelAndView resetForm()
+			throws ServiceException {
+		return createModelAndView("resetForm");
+	}
+
+	@RequestMapping(value = "/ResetPassword.spr")
 	public ModelAndView resetPassword(@RequestParam("code") String code, @RequestParam("email") String email)
 			throws ServiceException {
 		ModelAndView modelAndView = createModelAndView("resetPassw");
-		if (userService.checkCodeAndEmail(email, code)) {
-			userService.changePassword(email);
-			String message = this.getLabelValue("label.resetPassw.success");
-			modelAndView.addObject("message", message);
+		String message;
+		if (userService.changePassword(email, code)) {
+			message = this.getLabelValue("label.resetPassw.success");
 		} else {
-			String message = this.getLabelValue("label.resetPassw.error");
-			modelAndView.addObject("message", message);
+			message = this.getLabelValue("label.resetPassw.error");
 		}
+		modelAndView
+			.addObject("message", message)
+			.addObject("user", null);
 		return modelAndView;
 	}
 	

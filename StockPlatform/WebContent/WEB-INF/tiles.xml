@@ -142,4 +142,8 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/address.jsp" />
 	</definition>
 	
+	<definition name="resetForm" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/resetForm.jsp" />
+	</definition>
+	
 </tiles-definitions>

@@ -8,13 +8,12 @@
 		</div>
 		<div>
 			<label for="forLogin">${label.login.login}</label>
-			<input type="email" name="username" id="forLogin" placeholder="John Doe" required maxlength="50">
-			<!--<span class="form_hint">Proper format "name@something.com"</span>  -->
+			<input type="email" name="username" id="forLogin" placeholder="johndoe@mail.xx" required maxlength="50">
 		</div>
 		<div>
 			<label for="forPassword">${label.login.password}</label>
 			<input type="password" name="password" id="forPassword" placeholder="***********" required maxlength="50">
-			<a id="reset" href="" onclick="return sendResetFormData()"><span>${label.login.forgot}</span></a>
+			<a id="reset" onclick="openPasswordResetForm();"><span>${label.login.forgot}</span></a>
 		</div>
 		<div>
 		    <div id="form-list">

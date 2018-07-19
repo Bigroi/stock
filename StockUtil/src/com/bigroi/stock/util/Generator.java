@@ -19,7 +19,7 @@ public class Generator {
 		for (int i = 0; i < length; i++) {
 			text[i] = LINK_KEY_CHARS.charAt(rnd.nextInt(LINK_KEY_CHARS.length()));
 		}
-		return new String(text);
+		return System.currentTimeMillis() + new String(text);
 	}
 	
 	public static String generatePass(int lengthOfPass) {

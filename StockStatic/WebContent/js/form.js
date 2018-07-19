@@ -105,14 +105,19 @@ function setFormInputs(formContainer, object){
 }
 
 function processRequestResult(formContainer, answer, messageDiv){
-	if (answer.result > 0){
+	if (answer.result = 0){
+		document.location = answer.data;
+		return;
+	} else if (answer.result = 2){
 		messageDiv.addClass("success-message");
 		setFormInputs(formContainer, answer.data);
-	} else if (answer.result < 0){
-		messageDiv.addClass("error-message");
+	} else if (answer.result = 1){
+		if ($dialogbox){
+			$dialogbox.remove();
+		}
+		return;
 	} else {
-		document.location = answer.data;
-		return 0;
+		messageDiv.addClass("error-message");
 	}
 	if (answer.message){
 		messageDiv.text(l10n.translate(answer.message.split(",")));
@@ -128,10 +133,7 @@ function simpleButtonCallback(buttonDef, params, formContainer, $dialogbox){
 		if (typeof answer == 'string'){
 			answer = JSON.parse(answer);
 		}
-		processRequestResult(formContainer, answer, $('.dialogbox-message'));
-		if (answer.result > 0 && $dialogbox){
-			$dialogbox.remove();
-		}
+		processRequestResult(formContainer, answer, $('.dialogbox-message'), $dialogbox);
 	});
 }
 
@@ -209,6 +211,11 @@ function openLoginForm(){
 function openRegistrationForm(){
 	$(".dialogbox").remove();
 	showDialog(getReginDialogParams());
+}
+
+function openPasswordResetForm(){
+	$(".dialogbox").remove();
+	showDialog(getPasswordResetDialogParams());
 }
 
 

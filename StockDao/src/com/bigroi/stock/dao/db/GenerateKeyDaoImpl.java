@@ -40,6 +40,11 @@ public class GenerateKeyDaoImpl implements GenerateKeyDao {
 			" DELETE "
 			+ " FROM GENERATED_KEY "
 			+ " WHERE EXPIRATION_TIME < ? ";
+	
+	public static final String DELETE_ALL_BY_CODE = 
+			" DELETE "
+			+ " FROM GENERATED_KEY "
+			+ " WHERE GENERATED_KEY = ? ";
 
 	@Autowired
 	private DataSource datasource;
@@ -79,6 +84,12 @@ public class GenerateKeyDaoImpl implements GenerateKeyDao {
 		Calendar calendar = Calendar.getInstance();
 		calendar.roll(Calendar.DAY_OF_YEAR, -1);
 		template.update(DELETE_ALL_BY_DATE, calendar);
+	}
+
+	@Override
+	public void deleteGenerateKey(String code) {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		template.update(DELETE_ALL_BY_CODE, code);
 	}
 
 }

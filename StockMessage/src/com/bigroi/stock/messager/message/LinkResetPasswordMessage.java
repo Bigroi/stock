@@ -18,10 +18,10 @@ public class LinkResetPasswordMessage extends BaseMessage<Map<String, String>> {
 	@Override
 	protected String getText(Map<String, String> map) throws MessageException {
 		try {
-			String url = mailManager.getServerAdress();
-			url += "account/ResetPassword.spr?code=" 
-					+ URLEncoder.encode(map.get("code"), "UTF-8") + "&email=" 
-					+ URLEncoder.encode(map.get("email"), "UTF-8");
+			String url = mailManager.getServerAdress()
+				+ "ResetPassword.spr?code=" 
+				+ URLEncoder.encode(map.get("code"), "UTF-8") + "&email=" 
+				+ URLEncoder.encode(map.get("email"), "UTF-8");
 			return super.getText(map).replaceAll("@link", url);
 		} catch (UnsupportedEncodingException e) {
 			throw new MessageException(e);

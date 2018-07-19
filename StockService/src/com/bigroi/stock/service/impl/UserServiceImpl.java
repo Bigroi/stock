@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,6 +49,9 @@ public class UserServiceImpl implements UserService {
 	private ResetUserPasswordMessage resetUserPasswordMessage;
 	@Autowired
 	private LinkResetPasswordMessage linkResetPasswordMessage;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	@Transactional
@@ -133,22 +137,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean checkCodeAndEmail(String email, String code) throws ServiceException {
-		try {
-			return keysDao.checkResetKey(email, code);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-	}
-
-	@Override
 	@Transactional
-	public void changePassword(String username) throws ServiceException {
+	public boolean changePassword(String email, String code) throws ServiceException {
 		try {
-			StockUser user = userDao.getByUsernameWithRoles(username);
-			user.setPassword(Generator.generatePass(8));
-			userDao.updatePassword(user);
-			resetUserPasswordMessage.sendImediatly(user);
+			if (keysDao.checkResetKey(email, code)){
+				StockUser user = userDao.getByUsernameWithRoles(email);
+				String newPassword = Generator.generatePass(8);
+				user.setPassword(passwordEncoder.encode(newPassword));
+				userDao.updatePassword(user);
+				keysDao.deleteGenerateKey(code);
+				user.setPassword(newPassword);
+				resetUserPasswordMessage.sendImediatly(user);
+				return true;
+			} else {
+				return false;
+			}
 		} catch (DaoException | MessageException e) {
 			throw new ServiceException(e);
 		}

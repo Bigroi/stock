@@ -19,6 +19,20 @@
  * @returns
  */
 
+
+function getPasswordResetDialogParams(){
+	return {
+		formUrl:"/ResetForm.spr", 
+		dialogClass: "password-reset-dialogbox", 
+		buttons:[
+		{
+			text: l10n.translate("label.button.reset"),
+			id: "password-reset",
+			submitUrl : "/account/json/ResetPassword.spr"
+		}]			
+	};
+}
+
 function getLoginDialogParams(){
 	return {
 		formUrl:"/Login.spr",

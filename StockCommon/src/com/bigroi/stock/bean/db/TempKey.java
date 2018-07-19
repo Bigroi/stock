@@ -30,7 +30,7 @@ public class TempKey {
 	}
 	
 	public void generateKey(){
-		generatedKey = Generator.generateLinkKey(50);
+		generatedKey = Generator.generateLinkKey(30);
 		expirationDate = new Date();
 	}
 	@Override

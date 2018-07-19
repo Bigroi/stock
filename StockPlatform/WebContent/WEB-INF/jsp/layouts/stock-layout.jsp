@@ -65,9 +65,11 @@
          	 	<div class="logo-mobile"></div>
          	 </div>
 	         <div class="login-box">
-				<div class="login-button-page">
-			    	<div>${user.company.name}</div>
-				</div>
+				<c:if test="${user} != null">
+					<div class="login-button-page">
+				    	<div>${user.company.name}</div>
+					</div>
+				</c:if>
 				<div class="login-list">
 					<div>
 						<a href="#" class="edit-account">${label.navigation.account}</a>

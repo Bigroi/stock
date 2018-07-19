@@ -3,3 +3,4 @@
 	pageEncoding="UTF-8"%>
 
 <p>${message}</p>
+<p><a href="${pageContext.request.contextPath}">Home</a></p>

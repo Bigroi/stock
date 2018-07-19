@@ -16,9 +16,7 @@ public interface UserService extends UserDetailsService{
 	
 	void sendLinkResetPassword(String username) throws ServiceException;
 	
-	boolean checkCodeAndEmail(String email, String code) throws ServiceException;
-	
-	void changePassword(String username) throws ServiceException;
+	boolean changePassword(String email, String code) throws ServiceException;
 
 	StockUser getByUsername(String username) throws ServiceException;
 	

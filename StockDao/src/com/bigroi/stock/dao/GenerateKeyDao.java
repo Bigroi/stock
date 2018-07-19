@@ -9,4 +9,6 @@ public interface GenerateKeyDao {
 	TempKey generateKey() throws DaoException;
 
 	void deleteGenerateKeysByDate() throws DaoException;
+
+	void deleteGenerateKey(String code);
 }
