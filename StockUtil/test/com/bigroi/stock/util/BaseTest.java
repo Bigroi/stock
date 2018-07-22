@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 
 public abstract class BaseTest {
 	
-	private Random random = new Random();
+	protected final static Random random = new Random();
 	
 	protected  <T> T createObject(Class<T> clazz){
 		try {

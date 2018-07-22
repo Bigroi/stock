@@ -1,7 +1,6 @@
 package com.bigroi.stock.service.impl;
 
 import java.util.List;
-import java.util.Random;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,8 +25,6 @@ public class AddressServiceImplTest extends BaseTest {
 	@Mock
 	private AddressDao addressDao;
 	
-	private Random random = new Random();
-
 	@Test
 	public void getCompanyAddressesTest() throws ServiceException, DaoException {
 		// given
@@ -89,12 +86,6 @@ public class AddressServiceImplTest extends BaseTest {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		CompanyAddress updateAddress = new CompanyAddress();
-		//mock
-		Mockito.doAnswer(a -> {
-								((CompanyAddress)a.getArguments()[0]).setId(random.nextLong()); 
-								return null;
-								})
-			.when(addressDao).updateAddress(updateAddress);
 		// when
 		addressService.merge(updateAddress, COMPANY_ID);
 		// then
