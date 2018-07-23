@@ -37,7 +37,6 @@ public class CompanyServiceImplTest extends BaseTest {
 	public void getAllCompaniesTest() throws ServiceException, DaoException {
 		// mock
 		List<Company> expectedList = new ArrayList<>();
-		expectedList.add(new Company());
 		Mockito.when(companyDao.getAllCompany()).thenReturn(expectedList);
 		// when
 		List<Company> actualList = companyService.getAllCompanies();
@@ -52,7 +51,6 @@ public class CompanyServiceImplTest extends BaseTest {
 		final long COMPANY_ID = random.nextLong();
 		// mock
 		Company expectedCompany = createObject(Company.class);
-		expectedCompany.setId(COMPANY_ID);
 		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(expectedCompany);
 		// when
 		Company actualCompany = companyService.getCompanyById(COMPANY_ID);
