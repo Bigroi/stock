@@ -11,9 +11,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DaoException;
+import com.bigroi.stock.dao.LotDao;
+import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
 
@@ -24,6 +28,10 @@ public class CompanyServiceImplTest extends BaseTest {
 	private CompanyServiceImpl companyService;
 	@Mock
 	private CompanyDao companyDao;
+	@Mock
+	private LotDao lotDao;
+	@Mock
+	private TenderDao tenderDao;
 
 	@Test
 	public void getAllCompaniesTest() throws ServiceException, DaoException {
@@ -42,29 +50,102 @@ public class CompanyServiceImplTest extends BaseTest {
 	public void getCompanyByIdTest() throws ServiceException, DaoException {
 		// given
 		final long COMPANY_ID = random.nextLong();
-		//mock
-		Company expectedCompany = new Company();
+		// mock
+		Company expectedCompany = createObject(Company.class);
 		expectedCompany.setId(COMPANY_ID);
 		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(expectedCompany);
-		//when
+		// when
 		Company actualCompany = companyService.getCompanyById(COMPANY_ID);
-		//then
+		// then
 		Assert.assertEquals(expectedCompany, actualCompany);
 		Mockito.verify(companyDao, Mockito.times(1)).getById(COMPANY_ID);
 	}
-	
-	/*@Test
+
+	@Test
 	public void getByNameTest() throws ServiceException, DaoException {
 		// given
-		final long COMPANY_ID = random.nextLong();
-		//mock
-		Company expectedCompany = new Company();
-		expectedCompany.setId(COMPANY_ID);
-		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(expectedCompany);
-		//when
-		Company actualCompany = companyService.getCompanyById(COMPANY_ID);
-		//then
+		final String name = randomString;
+		Company expectedCompany = createObject(Company.class);
+		expectedCompany.setName(name);
+		// mock
+		Mockito.when(companyDao.getByName(name)).thenReturn(expectedCompany);
+		// when
+		Company actualCompany = companyService.getByName(name);
+		// then
 		Assert.assertEquals(expectedCompany, actualCompany);
-		Mockito.verify(companyDao, Mockito.times(1)).getById(COMPANY_ID);
-	}*/
+		Mockito.verify(companyDao, Mockito.times(1)).getByName(name);
+	}
+
+	@Test
+	public void getByRegNumberTest() throws ServiceException, DaoException {
+		// given
+		final String regNumber = randomString;
+		Company expectedCompany = createObject(Company.class);
+		expectedCompany.setRegNumber(regNumber);
+		// mock
+		Mockito.when(companyDao.getByRegNumber(regNumber)).thenReturn(expectedCompany);
+		// when
+		Company actualCompany = companyService.getByRegNumber(regNumber);
+		// then
+		Assert.assertEquals(expectedCompany, actualCompany);
+		Mockito.verify(companyDao, Mockito.times(1)).getByRegNumber(regNumber);
+	}
+
+	@Test
+	public void changeStatusCompanyAsNotVerifiedTest() throws ServiceException, DaoException {
+		// given
+		final long COMPANY_ID = random.nextLong();
+		Company company = createObject(Company.class);
+		company.setId(COMPANY_ID);
+		company.setStatus(CompanyStatus.NOT_VERIFIED);
+		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(company);
+		Mockito.doNothing().when(companyDao).setStatus(COMPANY_ID, CompanyStatus.VERIFIED);
+		// when
+		companyService.changeStatusCompany(COMPANY_ID);
+		// then
+		Assert.assertEquals(COMPANY_ID, company.getId());
+		Assert.assertEquals(company.getStatus(), CompanyStatus.NOT_VERIFIED);
+		
+		Mockito.verify(companyDao, Mockito.times(1)).setStatus(COMPANY_ID, CompanyStatus.VERIFIED);
+	}
+	
+	@Test
+	public void changeStatusCompanyAsVerifiedTest() throws ServiceException, DaoException {
+		// given
+		final long COMPANY_ID = random.nextLong();
+		Company company = createObject(Company.class);
+		company.setId(COMPANY_ID);
+		company.setStatus(CompanyStatus.VERIFIED);
+		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(company);
+		Mockito.doNothing().when(companyDao).setStatus(COMPANY_ID, CompanyStatus.REVOKED);
+		Mockito.when(lotDao.setStatusByCompanyId(COMPANY_ID, BidStatus.INACTIVE)).thenReturn(true);
+		Mockito.when(tenderDao.setStatusByCompanyId(COMPANY_ID, BidStatus.INACTIVE)).thenReturn(true);
+		// when
+		companyService.changeStatusCompany(COMPANY_ID);
+		// then
+		Assert.assertEquals(COMPANY_ID, company.getId());
+		Assert.assertEquals(company.getStatus(), CompanyStatus.VERIFIED);
+		
+		Mockito.verify(companyDao, Mockito.times(1)).setStatus(COMPANY_ID, CompanyStatus.REVOKED);
+		Mockito.verify(lotDao, Mockito.times(1)).setStatusByCompanyId(COMPANY_ID, BidStatus.INACTIVE);
+		Mockito.verify(tenderDao, Mockito.times(1)).setStatusByCompanyId(COMPANY_ID, BidStatus.INACTIVE);
+	}
+	
+	@Test
+	public void changeStatusCompanyAsRevokedTest() throws ServiceException, DaoException {
+		// given
+		final long COMPANY_ID = random.nextLong();
+		Company company = createObject(Company.class);
+		company.setId(COMPANY_ID);
+		company.setStatus(CompanyStatus.REVOKED);
+		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(company);
+		Mockito.doNothing().when(companyDao).setStatus(COMPANY_ID, CompanyStatus.VERIFIED);
+		// when
+		companyService.changeStatusCompany(COMPANY_ID);
+		// then
+		Assert.assertEquals(COMPANY_ID, company.getId());
+		Assert.assertEquals(company.getStatus(), CompanyStatus.REVOKED);
+		
+		Mockito.verify(companyDao, Mockito.times(1)).setStatus(COMPANY_ID, CompanyStatus.VERIFIED);
+	}
 }
