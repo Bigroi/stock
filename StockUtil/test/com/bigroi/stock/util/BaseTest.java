@@ -43,4 +43,8 @@ public abstract class BaseTest {
 		field.set(object, funnction.call());
 		field.setAccessible(false);
 	}
+	
+	/*private String randomString(){
+		return null;
+	}*/
 }
