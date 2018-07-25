@@ -1922,13 +1922,28 @@ table.dataTable>tbody>tr.child span {
 	position:relative; 
 	display: block;
 }
+.error-message {
+	width: 316px;
+    height: 42px;
+    display: flex;
+    margin-bottom: 15px;
+    align-items: center;
+    border-radius: 4px;
+    background-color: rgba(255, 18, 18, 0.1);
+    color: #ff0000;
+    padding-left: 55px;
+    background-image: url(/Static/img/error-message.png);
+    background-repeat: no-repeat;
+    background-position: 14px center;
+    font-size: 14px;
+}
 @media (max-width: 1280px){
 	.aside {
 		display: none;
 	}
 	.section {
 		margin-left: 0;
-		padding: 0 25px;
+		padding: 0 25px 30px 25px;
 		width: calc(100% - 50px);
 		min-height: auto;
     	height: inherit;
@@ -1942,6 +1957,15 @@ table.dataTable>tbody>tr.child span {
 	    height: 80px;
 		background-color: var(--white);
 		box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+		
+	}
+	.bgdark {
+		display: none;
+	    background-color: rgba(0, 0, 0, 0.5);
+	    width: 100%;
+	    height: 100%;
+	    position: absolute;
+	    z-index: 1;
 	}
 	.body-pages {
 	    flex-direction: column;
@@ -2070,4 +2094,196 @@ table.dataTable>tbody>tr.child span {
 	.flex-two-input > div:last-child {
     	padding-left: 40px;
     }
+    .aside-adaptive {
+    	display: flex;
+    	position: absolute;
+    	width: 328px;
+    	z-index: 2;
+    }
+    .aside-adaptive .main-menu {
+    	display: flex;
+    }
+    .aside-adaptive .logo-pages {
+   		padding-top: 20px;
+    	padding-left: 25px;
+   }
+   .aside-adaptive .big-logo {
+   		display: none;
+   }
+   .small-logo {
+   	  display: flex;
+   }
+   .burger-close {
+	   	width: 40px;
+	  	height: 40px;
+	  	border-radius: 5px;
+	  	background-color: var(--silver);
+	  	background-image: url(/Static/img/burger-close.png);
+	    background-position: center;
+	}
+   
+}
+@media (max-width: 758px) {
+	.body-pages {
+		height: initial; 
+	}  
+	.table-tradeOffers{
+		width: 290px;
+	}
+	.header-white-div {
+		width: calc(100% - 40px);
+	}
+	.table-tradeOffers table {
+    	width: 290px !important;
+	}
+	.form-tradeOffers-button button {
+		margin-left: 15px;
+		width: 290px;
+	}
+	/*.section {
+		min-height: 100%;
+    	padding-bottom: 50px;
+	}*/
+	.table-header {
+		flex-wrap: wrap;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		height: 80px;
+		
+	}
+	.table-header h1 {
+		width: 100%;
+		font-size: 30px;
+		min-height: 40px;
+	}
+	.table-header-button {
+		width: 100%;
+	}
+	#main-table_filter input {
+		width: 150px;
+		background-position: 115px center;
+		top: -59px;
+	}
+	.section .add-button {
+		width: 125px;
+	}
+	.section .add-button p {
+		font-size: 16px;
+	}
+	.login-button-page div {
+		font-size: 0;
+	}
+	.login-button-page {
+		
+	}
+	.login-button-page {
+		width: 60px;
+		padding-left: 0;
+		background-position: 6px center;
+	}
+	.login-button-page div:after {
+		right: 13px;
+	}
+	.login-list {
+		width: 60px;
+	}
+	.login-list > div {
+		width: 85%;
+	}
+	.header-white-div {
+		height: auto;
+		padding-bottom: 20px;
+	}
+	.header-white-div ul{
+		flex-wrap: wrap;
+	}
+	.header-white-div ul li{
+		width: 50%;
+	}
+	.deal-status {
+		padding: 0 20px;
+	}
+	.body-deal-form, 
+	.footer-deal-form {
+		margin: 0 20px;
+		flex-wrap: wrap;
+	}
+	.body-deal-form > div:last-child {
+		padding-left: 0;
+	}
+	.map-deal-form {
+		width: 290px;
+  		height: 150px;
+	}
+	#back-deals, #approve-button,
+	#transport-button, #reject-button,
+	.footer-deal-form > div:first-child,
+	.footer-deal-form > div:last-child {
+		width: 285px;
+	}
+	.footer-deal-form > div:first-child,
+	.footer-deal-form > div:last-child {
+		flex-wrap: wrap;
+		margin-right: 20px;
+	}
+	.footer-deal-form > div:last-child button {
+		margin-right: 0;
+	}
+	.map-deal-form {
+		margin-bottom: 25px;
+	}
+	.footer-deal-form button {
+		margin-bottom: 15px;
+	}
+	.flex-two-input {
+		flex-wrap: wrap;
+	}
+	.lot-dialogbox .popUp-container, 
+	.tender-dialogbox  .popUp-container{
+		width: 290px;
+	}
+	.flex-two-input > div:last-child {
+		    padding-left: 0;
+	}
+	.flex-two-input > div:first-child {
+	    border-right: none;
+	}
+	.flex-two-input > div {
+		width: 100%;
+	}
+	.flex-two-input > div:first-child select,
+	.flex-two-input > div:last-child select {
+		width: 100%;
+	}
+	.flex-two-input > div:first-child input {
+		width: calc(100% - 28px);
+	}
+	.flex-two-input > div:last-child > div > div {
+		width: 100%;
+	}
+	.flex-two-input > div:last-child textarea {
+    	width: 260px; 
+    }
+    .tender-dialogbox #form-list, 
+    .lot-dialogbox #form-list{
+	    flex-wrap: nowrap;
+	}
+	.tender-dialogbox .dialogbox-child button, 
+	.lot-dialogbox .dialogbox-child button {
+		width: 140px;
+	}
+	.flex-two-input > div:first-child > div:last-child input {
+		margin-bottom: 30px;
+	}
+	.flex-two-input > div:last-child textarea {
+		margin-bottom: 0;
+	}
+	.forMapLotsTender {
+		margin-bottom: 30px;
+		width: 100%;
+	}
+	.flex-two-input > div:first-child {
+		border-bottom: 1px solid var(--silver);
+		margin-bottom: 15px;
+	}
 }
