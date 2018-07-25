@@ -46,9 +46,11 @@
 		<div id="form-container"></div>
         <div class="aside">
             <div class="logo-pages">
-                <img src="/Static/img/logo-pages.png" alt="YourTrader" title="YourTrader">
+                <img class="big-logo" src="/Static/img/logo-pages.png" alt="YourTrader" title="YourTrader">
+                <div class=" small-logo">
+                	<div class="burger-close"></div>
+                </div>
             </div>
-            <div class="burger"></div>
             <nav class="main-menu">
             	<ul>
             		<c:if test="${user} != null">
