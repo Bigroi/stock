@@ -2121,6 +2121,9 @@ table.dataTable>tbody>tr.child span {
 	  	background-image: url(/Static/img/burger-close.png);
 	    background-position: center;
 	}
+	.product-page table {
+		width: 392px;
+	}
    
 }
 @media (max-width: 758px) {

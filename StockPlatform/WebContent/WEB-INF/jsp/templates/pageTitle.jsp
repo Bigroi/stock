@@ -4,7 +4,7 @@
 	<h1>${page_title}</h1>
 	<div class="table-header-button <tiles:getAsString name='thb-cls'/>">
 		<tiles:insertAttribute name="add-button"/>
-		<c:if test="${user} != null">
+		<c:if test="${not empty user}">
 			<div class="login-box">
 				<div class="login-button-page">
 			    	<div>${user.company.name}</div>

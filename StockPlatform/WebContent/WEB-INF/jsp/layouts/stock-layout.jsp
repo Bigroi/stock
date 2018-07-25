@@ -54,7 +54,7 @@
             </div>
             <nav class="main-menu">
             	<ul>
-            		<c:if test="${user} != null">
+            		<c:if test="${not empty user}">
 		            	<tiles:insertAttribute name="userHeader" />
 		            	<sec:authorize access="hasAnyRole('ADMIN')">
 					    	<tiles:insertAttribute name="adminHeader" />
