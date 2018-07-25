@@ -49,6 +49,7 @@
                 <img class="big-logo" src="/Static/img/logo-pages.png" alt="YourTrader" title="YourTrader">
                 <div class=" small-logo">
                 	<div class="burger-close"></div>
+                	<div class="logo-mobile"></div>
                 </div>
             </div>
             <nav class="main-menu">
