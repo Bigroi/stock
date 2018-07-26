@@ -1582,6 +1582,14 @@ table.dataTable thead th {
     background-image: url(/Static/img/remove-trash-can.png);
     background-image: url(/Static/img/remove-trash-can.png);
     background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
     background-size: auto 75%;
     background-repeat: no-repeat;
     background-position: center;
@@ -1589,6 +1597,14 @@ table.dataTable thead th {
 }
 .remove:hover,
 .remove:active {
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
@@ -1810,6 +1826,10 @@ table.dataTable.no-footer,
 	margin-top: 20px;
 }
 /**/
+.lot-dialogbox .dialogbox-child,
+.tender-dialogbox .dialogbox-child{
+	height: auto;
+}
 .lot-dialogbox .left-part,
 .tender-dialogbox .left-part{
 	display: none;
@@ -1925,9 +1945,13 @@ table.dataTable>tbody>tr.child span {
 .error-message {
 	width: 316px;
     height: 42px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin-bottom: 15px;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     border-radius: 4px;
     background-color: rgba(255, 18, 18, 0.1);
     color: #ff0000;
@@ -1937,6 +1961,21 @@ table.dataTable>tbody>tr.child span {
     background-position: 14px center;
     font-size: 14px;
 }
+/*.error-message {
+	width: 316px;
+    height: 42px;
+    display: flex;
+    margin-bottom: 15px;
+    align-items: center;
+    border-radius: 4px;
+    background-color: rgba(15, 198, 104, 0.1);
+    color: #0fc668;
+    padding-left: 55px;
+    background-image: url(/Static/img/wm.png);
+    background-repeat: no-repeat;
+    background-position: 14px center;
+    font-size: 14px;
+}*/
 @media (max-width: 1280px){
 	.aside {
 		display: none;
@@ -1949,9 +1988,15 @@ table.dataTable>tbody>tr.child span {
     	height: inherit;
 	}
 	.aside-modile {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-    	justify-content: space-between;
-    	    align-items: center;
+    	-webkit-box-pack: justify;
+    	    -ms-flex-pack: justify;
+    	        justify-content: space-between;
+    	    -webkit-box-align: center;
+    	        -ms-flex-align: center;
+    	            align-items: center;
     padding: 0 25px;
     width: calc(100% - 50px);
 	    height: 80px;
@@ -1968,7 +2013,10 @@ table.dataTable>tbody>tr.child span {
 	    z-index: 1;
 	}
 	.body-pages {
-	    flex-direction: column;
+	    -webkit-box-orient: vertical;
+	    -webkit-box-direction: normal;
+	        -ms-flex-direction: column;
+	            flex-direction: column;
 	}
 	.table-header-button .login-box{
 		display: none;
@@ -1976,6 +2024,8 @@ table.dataTable>tbody>tr.child span {
 	.burger-logo {
 		  width: auto;
 		  height: 40px;
+		  display: -webkit-box;
+		  display: -ms-flexbox;
 		  display: flex;
 	}
 	.burger {
@@ -1999,14 +2049,18 @@ table.dataTable>tbody>tr.child span {
 	.product-page .product {
 	    margin-top: 10px;
 	    margin-bottom: 10px;
+	    background-size: 120px;
+    	background-position: left 140px top 20px;
 	}
 	.product-page .product h4 {
 		font-size: 24px;
+		position: relative;
+    	top: 30px;
 	}
 	.product-page .product button {
 		width: 227px;
-  		height: 34px;
-  		    margin-top: 50px;
+  		height: 40px;
+  		margin-top: 50px;
 	}
 	.table-header-button {
 		width: 410px;
@@ -2045,7 +2099,9 @@ table.dataTable>tbody>tr.child span {
 	}
 	.footer-deal-form > div:last-child {
 		width: calc(100% - 160px);
-		justify-content: unset
+		-webkit-box-pack: unset;
+		    -ms-flex-pack: unset;
+		        justify-content: unset
 	}
 	.footer-deal-form > div:last-child button {
 		margin-right: 20px;
@@ -2066,7 +2122,8 @@ table.dataTable>tbody>tr.child span {
 	    width: 167px;
 	}
 	.flex-two-input > div:last-child > div {
-		flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		    flex-wrap: wrap;
 	}
 	.forMapLotsTender {
 		width: 308px;
@@ -2075,7 +2132,9 @@ table.dataTable>tbody>tr.child span {
 	}
 	.tender-dialogbox #form-list, 
 	.lot-dialogbox #form-list {
-		justify-content: space-between;
+		-webkit-box-pack: justify;
+		    -ms-flex-pack: justify;
+		        justify-content: space-between;
 	}
 	.tender-dialogbox .dialogbox-child button, 
 	.lot-dialogbox .dialogbox-child button {
@@ -2095,12 +2154,16 @@ table.dataTable>tbody>tr.child span {
     	padding-left: 40px;
     }
     .aside-adaptive {
+    	display: -webkit-box;
+    	display: -ms-flexbox;
     	display: flex;
     	position: absolute;
     	width: 328px;
     	z-index: 2;
     }
     .aside-adaptive .main-menu {
+    	display: -webkit-box;
+    	display: -ms-flexbox;
     	display: flex;
     }
     .aside-adaptive .logo-pages {
@@ -2111,6 +2174,8 @@ table.dataTable>tbody>tr.child span {
    		display: none;
    }
    .small-logo {
+   	  display: -webkit-box;
+   	  display: -ms-flexbox;
    	  display: flex;
    }
    .burger-close {
@@ -2124,6 +2189,9 @@ table.dataTable>tbody>tr.child span {
 	.product-page table {
 		width: 392px;
 	}
+	.error-message {
+    	width: 550px;
+    }
    
 }
 @media (max-width: 758px) {
@@ -2148,7 +2216,8 @@ table.dataTable>tbody>tr.child span {
     	padding-bottom: 50px;
 	}*/
 	.table-header {
-		flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		    flex-wrap: wrap;
 		padding-top: 10px;
 		padding-bottom: 10px;
 		height: 80px;
@@ -2198,7 +2267,8 @@ table.dataTable>tbody>tr.child span {
 		padding-bottom: 20px;
 	}
 	.header-white-div ul{
-		flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		    flex-wrap: wrap;
 	}
 	.header-white-div ul li{
 		width: 50%;
@@ -2209,7 +2279,8 @@ table.dataTable>tbody>tr.child span {
 	.body-deal-form, 
 	.footer-deal-form {
 		margin: 0 20px;
-		flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		    flex-wrap: wrap;
 	}
 	.body-deal-form > div:last-child {
 		padding-left: 0;
@@ -2226,7 +2297,8 @@ table.dataTable>tbody>tr.child span {
 	}
 	.footer-deal-form > div:first-child,
 	.footer-deal-form > div:last-child {
-		flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		    flex-wrap: wrap;
 		margin-right: 20px;
 	}
 	.footer-deal-form > div:last-child button {
@@ -2239,7 +2311,8 @@ table.dataTable>tbody>tr.child span {
 		margin-bottom: 15px;
 	}
 	.flex-two-input {
-		flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		    flex-wrap: wrap;
 	}
 	.lot-dialogbox .popUp-container, 
 	.tender-dialogbox  .popUp-container{
@@ -2269,7 +2342,8 @@ table.dataTable>tbody>tr.child span {
     }
     .tender-dialogbox #form-list, 
     .lot-dialogbox #form-list{
-	    flex-wrap: nowrap;
+	    -ms-flex-wrap: nowrap;
+	        flex-wrap: nowrap;
 	}
 	.tender-dialogbox .dialogbox-child button, 
 	.lot-dialogbox .dialogbox-child button {
@@ -2289,4 +2363,30 @@ table.dataTable>tbody>tr.child span {
 		border-bottom: 1px solid var(--silver);
 		margin-bottom: 15px;
 	}
+	.product-page .product {
+		height: 310px;
+		position: relative;
+		width: calc(100% - 42px);
+    	padding: 20px 20px 30px 20px;
+	}
+	.product-page .product button {
+		position: absolute;
+		bottom: 20px;
+		width: 280px;
+	}
+	.product-page table {
+	    width: 280px;
+	}
+	.sell-tr td, .buy-tr td {
+	    font-size: 18px;
+	}
+	.product-page table thead tr td {
+		font-size: 12px;
+	}
+	.product-page .about-product {
+		top: 135px;
+	}
+	.error-message {
+    	width: 230px;
+    }
 }
