@@ -54,7 +54,7 @@ public class DealServiceImpl implements DealService{
 	@Override
 	public Deal getById(long id, long companyId) throws ServiceException {
 		try {
-			Deal deal = dealDao.getById(id, companyId);
+			Deal deal = dealDao.getById(id);
 			if (deal != null){
 				Company seller = companyDao.getById(deal.getSellerAddress().getCompanyId());
 				deal.getSellerAddress().setCompany(seller);
@@ -82,9 +82,9 @@ public class DealServiceImpl implements DealService{
 	public boolean reject(long id, long companyId) throws ServiceException {
 		try{
 			Message<Deal> message;
-			Deal deal = dealDao.getById(id, companyId);
-			long buyerId = companyDao.getById(deal.getBuyerAddress().getCompanyId()).getId();
-			long sellerId = companyDao.getById(deal.getSellerAddress().getCompanyId()).getId();
+			Deal deal = dealDao.getById(id);
+			long buyerId = deal.getBuyerAddress().getCompanyId();
+			long sellerId = deal.getSellerAddress().getCompanyId();
 			if (buyerId == companyId){
 				deal.setBuyerChoice(PartnerChoice.REJECTED);
 				dealDao.setBuyerStatus(deal);
@@ -121,9 +121,9 @@ public class DealServiceImpl implements DealService{
 	@Override
 	public boolean approve(long id, long companyId) throws ServiceException {
 		try{
-			Deal deal = dealDao.getById(id, companyId);
-			long buyerId = companyDao.getById(deal.getBuyerAddress().getCompanyId()).getId();
-			long sellerId = companyDao.getById(deal.getSellerAddress().getCompanyId()).getId();
+			Deal deal = dealDao.getById(id);
+			long buyerId = deal.getBuyerAddress().getCompanyId();
+			long sellerId = deal.getSellerAddress().getCompanyId();
 			if (buyerId == companyId){
 				deal.setBuyerChoice(PartnerChoice.APPROVED);
 				dealDao.setBuyerStatus(deal);
@@ -154,9 +154,9 @@ public class DealServiceImpl implements DealService{
 	@Override
 	public boolean transport(long id, long companyId) throws ServiceException {
 		try{
-			Deal deal = dealDao.getById(id, companyId);
-			long buyerId = companyDao.getById(deal.getBuyerAddress().getCompanyId()).getId();
-			long sellerId = companyDao.getById(deal.getSellerAddress().getCompanyId()).getId();
+			Deal deal = dealDao.getById(id);
+			long buyerId = deal.getBuyerAddress().getCompanyId();
+			long sellerId = deal.getSellerAddress().getCompanyId();
 			
 			if (buyerId == companyId){
 				deal.setBuyerChoice(PartnerChoice.TRANSPORT);

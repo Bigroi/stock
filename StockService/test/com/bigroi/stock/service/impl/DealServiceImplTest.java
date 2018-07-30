@@ -62,7 +62,7 @@ public class DealServiceImplTest extends BaseTest {
 		deal.getBuyerAddress().setCompany(buyer);
 		deal.getSellerAddress().setCompany(seller);
 		
-		Mockito.when(dealDao.getById(DEAL_ID, COMPANY_ID)).thenReturn(deal);
+		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
 		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(buyer);
 		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(seller);
 		// when
@@ -102,28 +102,26 @@ public class DealServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void approveBuyerTest() throws DaoException, ServiceException{
+	public void approveNotAuthorizedTest() throws DaoException, ServiceException{
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
 		// mock
 		Deal deal = createObject(Deal.class);
-		deal.setBuyerChoice(PartnerChoice.APPROVED);
+		deal.setBuyerAddress(createObject(CompanyAddress.class));
+		deal.setSellerAddress(createObject(CompanyAddress.class));
 		
 		Company company = createObject(Company.class);
 		company.setId(COMPANY_ID);
 		
-		Mockito.when(dealDao.getById(DEAL_ID, COMPANY_ID)).thenReturn(deal);
-		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(company);
+		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
 		Mockito.doNothing().when(dealDao).setBuyerStatus(deal);
     	// when
-		//boolean bool = dealService.approve(DEAL_ID, COMPANY_ID);
+		boolean bool = dealService.approve(DEAL_ID, COMPANY_ID);
 		// then
-		//Assert.assertEquals(bool, true);
-		Assert.assertEquals(COMPANY_ID, company.getId());
-		Assert.assertEquals(deal.getBuyerChoice(),PartnerChoice.APPROVED);
-		//Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID, COMPANY_ID);
-		//Mockito.verify(companyDao, Mockito.times(1)).getById(COMPANY_ID);
+		Assert.assertEquals(bool, false);
+		Mockito.verify(dealDao, Mockito.times(0)).setBuyerStatus(Mockito.any());
+		Mockito.verify(dealDao, Mockito.times(0)).setSellerStatus(Mockito.any());
 	}
 	
 	@Test
@@ -138,7 +136,7 @@ public class DealServiceImplTest extends BaseTest {
 		Company company = createObject(Company.class);
 		company.setId(COMPANY_ID);
 		
-		Mockito.when(dealDao.getById(DEAL_ID, COMPANY_ID)).thenReturn(deal);
+		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
 		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(company);
 		Mockito.doNothing().when(dealDao).setSellerStatus(deal);
     	// when
@@ -172,7 +170,7 @@ public class DealServiceImplTest extends BaseTest {
 		Tender tender = createObject(Tender.class);
 		tender.setCompanyId(COMPANY_ID);
 		
-		Mockito.when(dealDao.getById(DEAL_ID, COMPANY_ID)).thenReturn(deal);
+		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
 		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(company);
 		Mockito.doNothing().when(dealDao).setBuyerStatus(deal);
 		Mockito.doAnswer(a -> {
@@ -216,7 +214,7 @@ public class DealServiceImplTest extends BaseTest {
 		Lot lot = createObject(Lot.class);
 		lot.setCompanyId(COMPANY_ID);
 		
-		Mockito.when(dealDao.getById(DEAL_ID, COMPANY_ID)).thenReturn(deal);
+		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
 		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(company);
 		Mockito.doNothing().when(dealDao).setSellerStatus(deal);
 		Mockito.doAnswer(a -> {

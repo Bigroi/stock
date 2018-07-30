@@ -10,7 +10,7 @@ public interface DealDao {
 	
 	void getPosibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId) throws DaoException;
 
-	Deal getById(long id, long companyId) throws DaoException;
+	Deal getById(long id) throws DaoException;
 
 	List<Deal> getOnApprove() throws DaoException;
 

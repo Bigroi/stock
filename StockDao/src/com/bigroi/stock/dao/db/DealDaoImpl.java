@@ -258,7 +258,7 @@ public class DealDaoImpl implements DealDao {
 	}
 
 	@Override
-	public Deal getById(long id, long companyId) throws DaoException {
+	public Deal getById(long id) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Deal> list = template.query(GET_BY_ID, new DealRowMapper(), id);
 		if (list.isEmpty()){
