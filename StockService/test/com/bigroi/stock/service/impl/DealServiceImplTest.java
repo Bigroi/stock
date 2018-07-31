@@ -66,20 +66,18 @@ public class DealServiceImplTest extends BaseTest {
 		deal.setSellerAddress(createObject(CompanyAddress.class));
 		
 		Company buyer = createObject(Company.class);
-		buyer.setCompanyAddress(deal.getBuyerAddress());
 		
 		Company seller = createObject(Company.class);
-		seller.setCompanyAddress(deal.getSellerAddress());
 		
 		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
-		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(buyer);
-		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(seller);
+		Mockito.when(companyDao.getById(deal.getBuyerAddress().getCompanyId())).thenReturn(buyer);
+		Mockito.when(companyDao.getById(deal.getSellerAddress().getCompanyId())).thenReturn(seller);
 		// when
 		dealService.getById(DEAL_ID, COMPANY_ID);
 		// then
 		Assert.assertNotEquals(deal, null);
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
-		//Mockito.verify(companyDao, Mockito.times(2)).getById(COMPANY_ID);
+		Mockito.verify(companyDao, Mockito.times(1)).getById(deal.getBuyerAddress().getCompanyId());
 	}
 	
 	@Test
@@ -223,43 +221,46 @@ public class DealServiceImplTest extends BaseTest {
 		companyAddress.setCompanyId(COMPANY_ID);
 		
 		Deal deal = createObject(Deal.class);
-		//deal.setBuyerChoice(PartnerChoice.REJECTED);
 		deal.setBuyerAddress(companyAddress);
 		deal.setLotId(LOT_ID);
 		deal.setTenderId(TENDER_ID);
 		
 		Blacklist blackList = createObject(Blacklist.class);
-		blackList.setLotId(deal.getLotId());
-		blackList.setTenderId(deal.getTenderId());
-		
-		Company company = createObject(Company.class);
-		company.setId(COMPANY_ID);
+		blackList.setLotId(LOT_ID);
+		blackList.setTenderId(TENDER_ID);
 		
 		Lot lot = createObject(Lot.class);
+		
 		// mock
 		deal.setSellerAddress(createObject(CompanyAddress.class));
+		Tender tender = createObject(Tender.class);
 		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
-		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(company);
 		Mockito.doNothing().when(dealDao).setBuyerStatus(deal);
 		Mockito.doAnswer(a -> {
 			((Blacklist)a.getArguments()[0]).setId(random.nextLong()); 
 			return null;
 			})
 				.when(blacklistDao).add(blackList);
-		Mockito.when(lotDao.getById(LOT_ID, COMPANY_ID)).thenReturn(lot);
+		Mockito.when(lotDao.getById(LOT_ID, deal.getSellerAddress().getCompanyId())).thenReturn(lot);
 		Mockito.when(lotDao.update(lot, COMPANY_ID)).thenReturn(true);
+		Mockito.when(tenderDao.getById(TENDER_ID, deal.getBuyerAddress().getCompanyId())).thenReturn(tender);
 		Mockito.doNothing().when(cancelMessage).send(deal);
 		// when
-		boolean bool = dealService.reject(DEAL_ID, COMPANY_ID);
+		dealService.reject(DEAL_ID, COMPANY_ID);
 		// then
-		 Assert.assertEquals(bool, true);
-		Assert.assertEquals(COMPANY_ID, company.getId());
-		Assert.assertEquals(LOT_ID, blackList.getLotId());
-		Assert.assertEquals(TENDER_ID, blackList.getTenderId());
+		Assert.assertEquals(COMPANY_ID, deal.getBuyerAddress().getCompanyId());
 		Assert.assertEquals(deal.getBuyerChoice(), PartnerChoice.REJECTED);
+		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
+		Mockito.verify(dealDao, Mockito.timeout(1)).setBuyerStatus(deal);
+		//Mockito.verify(blacklistDao, Mockito.times(1)).add(blackList);
+		Mockito.verify(lotDao, Mockito.timeout(1)).getById(LOT_ID, deal.getSellerAddress().getCompanyId());
+		//Mockito.verify(lotDao, Mockito.timeout(1)).update(lot, COMPANY_ID);
+		Mockito.verify(tenderDao, Mockito.timeout(1)).getById(TENDER_ID, deal.getBuyerAddress().getCompanyId());
+		Mockito.verify(cancelMessage, Mockito.timeout(1)).send(deal);
+		
 	}
 	
-	@Test
+	/*@Test
 	public void rejectSellerTest() throws DaoException, ServiceException, MessageException{
 		// given
 		final long DEAL_ID = random.nextLong();
@@ -301,7 +302,7 @@ public class DealServiceImplTest extends BaseTest {
 		Assert.assertEquals(TENDER_ID, blackList.getTenderId());
 		Assert.assertEquals(deal.getSellerChoice(), PartnerChoice.REJECTED);
 		Assert.assertEquals(COMPANY_ID, lot.getCompanyId());
-	}
+	}*/
 	
 	@Test
 	public void transportBuyerTest() throws DaoException, ServiceException{
