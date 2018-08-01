@@ -10,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bigroi.stock.bean.common.PartnerChoice;
 import com.bigroi.stock.bean.db.Blacklist;
@@ -27,6 +26,7 @@ import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.messager.message.deal.CustomerCanceledMessage;
+import com.bigroi.stock.messager.message.deal.SellerCanceledMessage;
 import com.bigroi.stock.messager.message.deal.SuccessDealMessageForCustomer;
 import com.bigroi.stock.messager.message.deal.SuccessDealMessageForSeller;
 import com.bigroi.stock.service.ServiceException;
@@ -44,7 +44,9 @@ public class DealServiceImplTest extends BaseTest {
 	@Mock
 	private BlacklistDao blacklistDao;
 	@Mock
-	private CustomerCanceledMessage cancelMessage;
+	private CustomerCanceledMessage buyerCancelMessage;
+	@Mock
+	private SellerCanceledMessage sellerCanceledMessage;
 	@Mock
 	private TenderDao tenderDao;
 	@Mock
@@ -229,11 +231,13 @@ public class DealServiceImplTest extends BaseTest {
 		blackList.setLotId(LOT_ID);
 		blackList.setTenderId(TENDER_ID);
 		
-		Lot lot = createObject(Lot.class);
+		Tender tender = createObject(Tender.class);
+		tender.setId(TENDER_ID);
+		tender.setCompanyId(COMPANY_ID);
 		
 		// mock
 		deal.setSellerAddress(createObject(CompanyAddress.class));
-		Tender tender = createObject(Tender.class);
+		Lot lot = createObject(Lot.class);
 		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
 		Mockito.doNothing().when(dealDao).setBuyerStatus(deal);
 		Mockito.doAnswer(a -> {
@@ -242,9 +246,9 @@ public class DealServiceImplTest extends BaseTest {
 			})
 				.when(blacklistDao).add(blackList);
 		Mockito.when(lotDao.getById(LOT_ID, deal.getSellerAddress().getCompanyId())).thenReturn(lot);
-		Mockito.when(lotDao.update(lot, COMPANY_ID)).thenReturn(true);
 		Mockito.when(tenderDao.getById(TENDER_ID, deal.getBuyerAddress().getCompanyId())).thenReturn(tender);
-		Mockito.doNothing().when(cancelMessage).send(deal);
+		Mockito.when(tenderDao.update(tender,COMPANY_ID)).thenReturn(true);
+		Mockito.doNothing().when(buyerCancelMessage).send(deal);
 		// when
 		dealService.reject(DEAL_ID, COMPANY_ID);
 		// then
@@ -252,72 +256,105 @@ public class DealServiceImplTest extends BaseTest {
 		Assert.assertEquals(deal.getBuyerChoice(), PartnerChoice.REJECTED);
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 		Mockito.verify(dealDao, Mockito.timeout(1)).setBuyerStatus(deal);
-		//Mockito.verify(blacklistDao, Mockito.times(1)).add(blackList);
+		//Mockito.verify(blacklistDao, Mockito.times(1)).add(blackList); //different arguments...
 		Mockito.verify(lotDao, Mockito.timeout(1)).getById(LOT_ID, deal.getSellerAddress().getCompanyId());
-		//Mockito.verify(lotDao, Mockito.timeout(1)).update(lot, COMPANY_ID);
 		Mockito.verify(tenderDao, Mockito.timeout(1)).getById(TENDER_ID, deal.getBuyerAddress().getCompanyId());
-		Mockito.verify(cancelMessage, Mockito.timeout(1)).send(deal);
+		Mockito.verify(tenderDao, Mockito.timeout(1)).update(tender,COMPANY_ID);
+		Mockito.verify(buyerCancelMessage, Mockito.timeout(1)).send(deal);
 		
 	}
 	
-	/*@Test
+	@Test
 	public void rejectSellerTest() throws DaoException, ServiceException, MessageException{
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
 		final long LOT_ID = random.nextLong();
 		final long TENDER_ID = random.nextLong();
-		// mock
+
+		CompanyAddress companyAddress = createObject(CompanyAddress.class);
+		companyAddress.setCompanyId(COMPANY_ID);
+
 		Deal deal = createObject(Deal.class);
-		deal.setSellerChoice(PartnerChoice.REJECTED);
+		deal.setSellerAddress(companyAddress);
 		deal.setLotId(LOT_ID);
 		deal.setTenderId(TENDER_ID);
-		
+
 		Blacklist blackList = createObject(Blacklist.class);
-		blackList.setLotId(deal.getLotId());
-		blackList.setTenderId(deal.getTenderId());
-		
-		Company company = createObject(Company.class);
-		company.setId(COMPANY_ID);
-		
+		blackList.setLotId(LOT_ID);
+		blackList.setTenderId(TENDER_ID);
+
 		Lot lot = createObject(Lot.class);
+		lot.setId(TENDER_ID);
 		lot.setCompanyId(COMPANY_ID);
-		
+
+		// mock
+		deal.setBuyerAddress(createObject(CompanyAddress.class));
+		Tender tender = createObject(Tender.class);
 		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
-		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(company);
-		Mockito.doNothing().when(dealDao).setSellerStatus(deal);
+		Mockito.doNothing().when(dealDao).setBuyerStatus(deal);
 		Mockito.doAnswer(a -> {
-			((Blacklist)a.getArguments()[0]).setId(random.nextLong()); 
+			((Blacklist) a.getArguments()[0]).setId(random.nextLong());
 			return null;
-			})
-				.when(blacklistDao).add(blackList);
+		}).when(blacklistDao).add(blackList);
+		Mockito.when(tenderDao.getById(TENDER_ID, deal.getBuyerAddress().getCompanyId())).thenReturn(tender);
+		Mockito.when(lotDao.getById(LOT_ID, deal.getSellerAddress().getCompanyId())).thenReturn(lot);
 		Mockito.when(lotDao.update(lot, COMPANY_ID)).thenReturn(true);
-		Mockito.doNothing().when(cancelMessage).send(deal);
+		Mockito.doNothing().when(sellerCanceledMessage).send(deal);
 		// when
-		//boolean bool = dealService.reject(DEAL_ID, COMPANY_ID);
+		dealService.reject(DEAL_ID, COMPANY_ID);
 		// then
-		// Assert.assertEquals(bool, true);
-		Assert.assertEquals(COMPANY_ID, company.getId());
-		Assert.assertEquals(LOT_ID, blackList.getLotId());
-		Assert.assertEquals(TENDER_ID, blackList.getTenderId());
+		Assert.assertEquals(COMPANY_ID, deal.getSellerAddress().getCompanyId());
 		Assert.assertEquals(deal.getSellerChoice(), PartnerChoice.REJECTED);
-		Assert.assertEquals(COMPANY_ID, lot.getCompanyId());
-	}*/
+		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
+		Mockito.verify(dealDao, Mockito.timeout(1)).setSellerStatus(deal);
+		//Mockito.verify(blacklistDao, Mockito.times(1)).add(blackList); //different arguments...
+		Mockito.verify(tenderDao, Mockito.timeout(1)).getById(TENDER_ID, deal.getBuyerAddress().getCompanyId());
+		Mockito.verify(lotDao, Mockito.timeout(1)).getById(LOT_ID, deal.getSellerAddress().getCompanyId());
+		Mockito.verify(lotDao, Mockito.timeout(1)).update(lot, COMPANY_ID);
+		Mockito.verify(sellerCanceledMessage, Mockito.timeout(1)).send(deal);
+	}
+	
+	@Test
+	public void rejectNotAuthorizedTest() throws DaoException, ServiceException, MessageException{
+		// given
+		final long DEAL_ID = random.nextLong();
+		final long COMPANY_ID = random.nextLong();
+		
+		Deal deal = createObject(Deal.class);
+		deal.setBuyerAddress(createObject(CompanyAddress.class));
+		deal.setSellerAddress(createObject(CompanyAddress.class));
+		// mock
+		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
+		// when
+		boolean bool = dealService.reject(DEAL_ID, COMPANY_ID);
+		// then
+		Assert.assertEquals(bool, false);
+		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
+	}
 	
 	@Test
 	public void transportBuyerTest() throws DaoException, ServiceException{
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
-		// mock
+		
+		CompanyAddress companyAddress = createObject(CompanyAddress.class);
+		companyAddress.setCompanyId(COMPANY_ID);
+		
 		Deal deal = createObject(Deal.class);
-		deal.setBuyerChoice(PartnerChoice.TRANSPORT);
+		deal.setBuyerAddress(companyAddress);
+		deal.setSellerAddress(createObject(CompanyAddress.class));
+		
+		// mock
+		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
 		Mockito.doNothing().when(dealDao).setBuyerStatus(deal);
 		// when
-		//boolean bool = dealService.transport(DEAL_ID, COMPANY_ID);
+		dealService.transport(DEAL_ID, COMPANY_ID);
 		// then
-		//Assert.assertEquals(bool, true);
 		Assert.assertEquals(deal.getBuyerChoice(), PartnerChoice.TRANSPORT);
+		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
+		Mockito.verify(dealDao, Mockito.times(1)).setBuyerStatus(deal);
 	}
 	
 	@Test
@@ -325,14 +362,39 @@ public class DealServiceImplTest extends BaseTest {
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
-		// mock
+		
+		CompanyAddress companyAddress = createObject(CompanyAddress.class);
+		companyAddress.setCompanyId(COMPANY_ID);
+		
 		Deal deal = createObject(Deal.class);
-		deal.setSellerChoice(PartnerChoice.TRANSPORT);
+		deal.setBuyerAddress(createObject(CompanyAddress.class));
+		deal.setSellerAddress(companyAddress);
+		// mock
+		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
 		Mockito.doNothing().when(dealDao).setSellerStatus(deal);
 		// when
-		//boolean bool = dealService.transport(DEAL_ID, COMPANY_ID);
+		dealService.transport(DEAL_ID, COMPANY_ID);
 		// then
-		//Assert.assertEquals(bool, true);
 		Assert.assertEquals(deal.getSellerChoice(), PartnerChoice.TRANSPORT);
+		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
+		Mockito.verify(dealDao, Mockito.times(1)).setSellerStatus(deal);
+	}
+	
+	@Test
+	public void transportNotAuthorizedTest() throws DaoException, ServiceException{
+		// given
+		final long DEAL_ID = random.nextLong();
+		final long COMPANY_ID = random.nextLong();
+
+		Deal deal = createObject(Deal.class);
+		deal.setBuyerAddress(createObject(CompanyAddress.class));
+		deal.setSellerAddress(createObject(CompanyAddress.class));
+		// mock
+		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
+		// when
+		boolean bool = dealService.transport(DEAL_ID, COMPANY_ID);
+		// then
+		Assert.assertEquals(bool, false);
+		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 	}
 }
