@@ -3,6 +3,11 @@ package com.bigroi.stock.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.nio.charset.Charset;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.Callable;
 
@@ -10,7 +15,7 @@ public abstract class BaseTest {
 
 	protected final static Random random = new Random();
 	
-	protected final static String randomString = randomString();
+	//protected final static String randomString = randomString();
 
 	protected <T> T createObject(Class<T> clazz) {
 		try {
@@ -47,9 +52,16 @@ public abstract class BaseTest {
 		field.setAccessible(false);
 	}
 
-	private static String randomString() {
+	protected String randomString() {
 		byte[] array = new byte[7];
 		new Random().nextBytes(array);
 		return new String(array, Charset.forName("UTF-8"));
+	}
+	
+	protected Date getExpDate() throws ParseException{
+		String dateStr = "17.06.2017";// anniversary stockPlatform ;-)
+		DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+		Date date = format.parse(dateStr);
+		return date;
 	}
 }

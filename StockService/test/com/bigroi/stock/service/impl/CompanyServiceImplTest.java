@@ -62,7 +62,7 @@ public class CompanyServiceImplTest extends BaseTest {
 	@Test
 	public void getByNameTest() throws ServiceException, DaoException {
 		// given
-		final String name = randomString;
+		final String name = randomString();
 		Company expectedCompany = createObject(Company.class);
 		expectedCompany.setName(name);
 		// mock
@@ -77,7 +77,7 @@ public class CompanyServiceImplTest extends BaseTest {
 	@Test
 	public void getByRegNumberTest() throws ServiceException, DaoException {
 		// given
-		final String regNumber = randomString;
+		final String regNumber = randomString();
 		Company expectedCompany = createObject(Company.class);
 		expectedCompany.setRegNumber(regNumber);
 		// mock

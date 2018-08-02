@@ -1,5 +1,6 @@
 package com.bigroi.stock.service.impl;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -11,8 +12,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.bigroi.stock.bean.db.Bid;
+import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.common.PartnerChoice;
+import com.bigroi.stock.bean.db.CompanyAddress;
+import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Lot;
+import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
@@ -50,26 +55,22 @@ public class MarketServiceImplTest extends BaseTest {
 	@Mock
 	private DealConfirmationMessageForSeller dealConfirmationMessageForSeller;
 	@Mock
-	//@Qualifier("dealExparationMessageForSellerByOpponent")
 	private DealExparationMessageForSeller dealExparationMessageForSellerByOpponent;
 	@Mock
-	//@Qualifier("dealExparationMessageForCustomer")
 	private DealExparationMessageForCustomer dealExparationMessageForCustomer;
 	@Mock
-	//@Qualifier("dealExparationMessageForSeller")
 	private DealExparationMessageForSeller dealExparationMessageForSeller;
 	@Mock
-	//@Qualifier("dealExparationMessageForCustomerByOpponent")
 	private DealExparationMessageForCustomer dealExparationMessageForCustomerByOpponent;
 	
 	@Test
-	public void checkExparationsTest() throws DaoException, ServiceException, MessageException{
+	public void checkLotExparationsTest() throws DaoException, ServiceException, MessageException, ParseException{
+		// given
+		final BidStatus STATUS = BidStatus.INACTIVE;
+		final Date DATE = getExpDate();
 		// mock
 		Lot lot = createObject(Lot.class);
-		Date date = new Date();
-		date.before(new Date());
-		lot.setExparationDate(date);
-		boolean bol = lot.isExpired();
+		lot.setExparationDate(DATE);
 		List<Lot> expectedList = ImmutableList.of(lot);
 		Mockito.when(lotDao.getActive()).thenReturn(expectedList);
 		Mockito.doNothing().when(lotExparationMessage).send(lot);
@@ -78,9 +79,219 @@ public class MarketServiceImplTest extends BaseTest {
 		marketService.checkExparations();
 		// then
 		Assert.assertNotEquals(expectedList, null);
+		Assert.assertEquals(STATUS, lot.getStatus());
 		Mockito.verify(lotDao, Mockito.times(1)).getActive();
 		Mockito.verify(lotDao, Mockito.times(1)).update(expectedList);
-		
+		Mockito.verify(lotExparationMessage, Mockito.times(1)).send(lot);
 	}
-
+	
+	@Test
+	public void checkTenderExparationsTest() throws DaoException, ServiceException, MessageException, ParseException{
+		// given
+		final BidStatus STATUS = BidStatus.INACTIVE;
+		final Date DATE = getExpDate();
+		// mock
+		Tender tender = createObject(Tender.class);
+		tender.setExparationDate(DATE);
+		List<Tender> expectedList = ImmutableList.of(tender);
+		Mockito.when(tenderDao.getActive()).thenReturn(expectedList);
+		Mockito.doNothing().when(tenderExparationMessage).send(tender);
+		Mockito.doNothing().when(tenderDao).update(expectedList);
+		// when
+		marketService.checkExparations();
+		// then
+		Assert.assertNotEquals(expectedList, null);
+		Assert.assertEquals(STATUS, tender.getStatus());
+		Mockito.verify(tenderDao, Mockito.times(1)).getActive();
+		Mockito.verify(tenderDao, Mockito.times(1)).update(expectedList);
+		Mockito.verify(tenderExparationMessage, Mockito.times(1)).send(tender);
+	}
+	
+	@Test
+	public void clearPreDealNullTest() throws DaoException, ServiceException{
+		// mock
+		Deal deal = createObject(Deal.class);
+		deal.setLotId(null);
+		
+		List<Deal> dealList = ImmutableList.of(deal);
+		
+		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
+		Mockito.doNothing().when(dealDao).deleteOnApprove();
+		Mockito.doNothing().when(lotDao).closeLots();
+		Mockito.doNothing().when(tenderDao).closeTeners();
+		// when
+		marketService.clearPreDeal();
+		// then
+		Mockito.verify(dealDao, Mockito.times(1)).getOnApprove();
+		Mockito.verify(dealDao, Mockito.times(1)).deleteOnApprove();
+		Mockito.verify(lotDao, Mockito.times(1)).closeLots();
+		Mockito.verify(tenderDao, Mockito.times(1)).closeTeners();
+	}
+	
+	@Test
+	public void clearPreDealSellerNotOnApproveTest() throws DaoException, ServiceException, MessageException{
+		// given
+		final long LOT_ID = random.nextLong();
+		final long COMPANY_ID = random.nextLong();
+		final long TENDER_ID = random.nextLong();
+		// mock
+		Deal deal = createObject(Deal.class);
+		deal.setLotId(LOT_ID);
+		deal.setTenderId(TENDER_ID);
+		deal.setSellerChoice(PartnerChoice.REJECTED);
+		deal.setBuyerChoice(PartnerChoice.ON_APPROVE);
+		deal.setBuyerAddress(createObject(CompanyAddress.class));
+		deal.setSellerAddress(createObject(CompanyAddress.class));
+		
+		List<Deal> dealList = ImmutableList.of(deal);
+		
+		Lot lot = createObject(Lot.class);
+		lot.setId(TENDER_ID);
+		lot.setCompanyId(COMPANY_ID);
+		
+		Tender tender = createObject(Tender.class);
+		tender.setId(TENDER_ID);
+		tender.setCompanyId(COMPANY_ID);
+		
+		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
+		Mockito.doNothing().when(dealExparationMessageForSellerByOpponent).send(deal);
+		Mockito.doNothing().when(dealExparationMessageForCustomer).send(deal);
+		Mockito.when(tenderDao.getById(TENDER_ID, deal.getBuyerAddress().getCompanyId())).thenReturn(tender);
+		Mockito.when(tenderDao.update(tender,COMPANY_ID)).thenReturn(true);
+		Mockito.when(lotDao.getById(LOT_ID, deal.getSellerAddress().getCompanyId())).thenReturn(lot);
+		Mockito.when(lotDao.update(lot, COMPANY_ID)).thenReturn(true);
+		Mockito.doNothing().when(dealDao).deleteOnApprove();
+		Mockito.doNothing().when(lotDao).closeLots();
+		Mockito.doNothing().when(tenderDao).closeTeners();
+		// when
+		marketService.clearPreDeal();
+		// then
+		Mockito.verify(dealDao, Mockito.times(1)).getOnApprove();
+		Mockito.verify(dealExparationMessageForSellerByOpponent, Mockito.times(1)).send(deal);
+		Mockito.verify(dealExparationMessageForCustomer, Mockito.times(1)).send(deal);
+		Mockito.verify(tenderDao, Mockito.timeout(1)).getById(TENDER_ID, deal.getBuyerAddress().getCompanyId());
+		Mockito.verify(tenderDao, Mockito.timeout(1)).update(tender,COMPANY_ID);
+		Mockito.verify(lotDao, Mockito.timeout(1)).getById(LOT_ID, deal.getSellerAddress().getCompanyId());
+		Mockito.verify(lotDao, Mockito.timeout(1)).update(lot, COMPANY_ID);
+		Mockito.verify(dealDao, Mockito.times(1)).deleteOnApprove();
+		Mockito.verify(lotDao, Mockito.times(1)).closeLots();
+		Mockito.verify(tenderDao, Mockito.times(1)).closeTeners();
+	}
+	
+	@Test
+	public void clearPreDealBuyerNotOnApproveTest() throws DaoException, ServiceException, MessageException{
+		// given
+		final long LOT_ID = random.nextLong();
+		final long COMPANY_ID = random.nextLong();
+		final long TENDER_ID = random.nextLong();
+		// mock
+		Deal deal = createObject(Deal.class);
+		deal.setLotId(LOT_ID);
+		deal.setTenderId(TENDER_ID);
+		deal.setBuyerChoice(PartnerChoice.REJECTED);
+		deal.setSellerChoice(PartnerChoice.ON_APPROVE);
+		deal.setBuyerAddress(createObject(CompanyAddress.class));
+		deal.setSellerAddress(createObject(CompanyAddress.class));
+		
+		List<Deal> dealList = ImmutableList.of(deal);
+		
+		Lot lot = createObject(Lot.class);
+		lot.setId(TENDER_ID);
+		lot.setCompanyId(COMPANY_ID);
+		
+		Tender tender = createObject(Tender.class);
+		tender.setId(TENDER_ID);
+		tender.setCompanyId(COMPANY_ID);
+		
+		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
+		Mockito.doNothing().when(dealExparationMessageForSeller).send(deal);
+		Mockito.doNothing().when(dealExparationMessageForCustomerByOpponent).send(deal);
+		Mockito.when(tenderDao.getById(TENDER_ID, deal.getBuyerAddress().getCompanyId())).thenReturn(tender);
+		Mockito.when(tenderDao.update(tender,COMPANY_ID)).thenReturn(true);
+		Mockito.when(lotDao.getById(LOT_ID, deal.getSellerAddress().getCompanyId())).thenReturn(lot);
+		Mockito.when(lotDao.update(lot, COMPANY_ID)).thenReturn(true);
+		Mockito.doNothing().when(dealDao).deleteOnApprove();
+		Mockito.doNothing().when(lotDao).closeLots();
+		Mockito.doNothing().when(tenderDao).closeTeners();
+		// when
+		marketService.clearPreDeal();
+		// then
+		Mockito.verify(dealDao, Mockito.times(1)).getOnApprove();
+		Mockito.verify(dealExparationMessageForSeller, Mockito.times(1)).send(deal);
+		Mockito.verify(dealExparationMessageForCustomerByOpponent, Mockito.times(1)).send(deal);
+		Mockito.verify(tenderDao, Mockito.timeout(1)).getById(TENDER_ID, deal.getBuyerAddress().getCompanyId());
+		Mockito.verify(tenderDao, Mockito.timeout(1)).update(tender,COMPANY_ID);
+		Mockito.verify(lotDao, Mockito.timeout(1)).getById(LOT_ID, deal.getSellerAddress().getCompanyId());
+		Mockito.verify(lotDao, Mockito.timeout(1)).update(lot, COMPANY_ID);
+		Mockito.verify(dealDao, Mockito.times(1)).deleteOnApprove();
+		Mockito.verify(lotDao, Mockito.times(1)).closeLots();
+		Mockito.verify(tenderDao, Mockito.times(1)).closeTeners();
+	}
+	
+	@Test
+	public void clearPreDealNotOnApproveTest() throws DaoException, ServiceException, MessageException{
+		// given
+		final long LOT_ID = random.nextLong();
+		final long COMPANY_ID = random.nextLong();
+		final long TENDER_ID = random.nextLong();
+		// mock
+		Deal deal = createObject(Deal.class);
+		deal.setLotId(LOT_ID);
+		deal.setTenderId(TENDER_ID);
+		deal.setBuyerChoice(PartnerChoice.ON_APPROVE);
+		deal.setSellerChoice(PartnerChoice.ON_APPROVE);
+		deal.setBuyerAddress(createObject(CompanyAddress.class));
+		deal.setSellerAddress(createObject(CompanyAddress.class));
+		
+		List<Deal> dealList = ImmutableList.of(deal);
+		
+		Lot lot = createObject(Lot.class);
+		lot.setId(TENDER_ID);
+		lot.setCompanyId(COMPANY_ID);
+		
+		Tender tender = createObject(Tender.class);
+		tender.setId(TENDER_ID);
+		tender.setCompanyId(COMPANY_ID);
+		
+		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
+		Mockito.doNothing().when(dealExparationMessageForSeller).send(deal);
+		Mockito.doNothing().when(dealExparationMessageForCustomer).send(deal);
+		Mockito.when(tenderDao.getById(TENDER_ID, deal.getBuyerAddress().getCompanyId())).thenReturn(tender);
+		Mockito.when(tenderDao.update(tender,COMPANY_ID)).thenReturn(true);
+		Mockito.when(lotDao.getById(LOT_ID, deal.getSellerAddress().getCompanyId())).thenReturn(lot);
+		Mockito.when(lotDao.update(lot, COMPANY_ID)).thenReturn(true);
+		Mockito.doNothing().when(dealDao).deleteOnApprove();
+		Mockito.doNothing().when(lotDao).closeLots();
+		Mockito.doNothing().when(tenderDao).closeTeners();
+		// when
+		marketService.clearPreDeal();
+		// then
+		Mockito.verify(dealDao, Mockito.times(1)).getOnApprove();
+		Mockito.verify(dealExparationMessageForSeller, Mockito.times(1)).send(deal);
+		Mockito.verify(dealExparationMessageForCustomer, Mockito.times(1)).send(deal);
+		Mockito.verify(tenderDao, Mockito.timeout(1)).getById(TENDER_ID, deal.getBuyerAddress().getCompanyId());
+		Mockito.verify(tenderDao, Mockito.timeout(1)).update(tender,COMPANY_ID);
+		Mockito.verify(lotDao, Mockito.timeout(1)).getById(LOT_ID, deal.getSellerAddress().getCompanyId());
+		Mockito.verify(lotDao, Mockito.timeout(1)).update(lot, COMPANY_ID);
+		Mockito.verify(dealDao, Mockito.times(1)).deleteOnApprove();
+		Mockito.verify(lotDao, Mockito.times(1)).closeLots();
+		Mockito.verify(tenderDao, Mockito.times(1)).closeTeners();
+	}
+	
+	@Test
+	public void sendConfirmationMessagesTest() throws DaoException, MessageException, ServiceException{
+		// mock
+		Deal deal = createObject(Deal.class);
+		List<Deal> dealList = ImmutableList.of(deal);
+		
+		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
+		Mockito.doNothing().when(dealConfirmationMessageForCustomer).send(deal);
+		Mockito.doNothing().when(dealConfirmationMessageForSeller).send(deal);
+		// when
+		marketService.sendConfirmationMessages();
+		// then
+		Mockito.verify(dealDao, Mockito.times(1)).getOnApprove();
+		Mockito.verify(dealConfirmationMessageForCustomer, Mockito.times(1)).send(deal);
+		Mockito.verify(dealConfirmationMessageForSeller, Mockito.times(1)).send(deal);
+	}
 }
