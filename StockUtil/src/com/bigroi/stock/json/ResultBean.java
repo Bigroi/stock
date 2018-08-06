@@ -38,4 +38,7 @@ public class ResultBean {
 		return message;
 	}
 	
+	public void setData(Object data) {
+		this.data = data;
+	}
 }

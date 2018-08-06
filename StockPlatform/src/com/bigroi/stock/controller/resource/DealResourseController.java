@@ -1,5 +1,6 @@
 package com.bigroi.stock.controller.resource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,7 @@ import com.bigroi.stock.bean.common.DealStatus;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.bean.ui.DealForUI;
+import com.bigroi.stock.bean.ui.TestDealForUI;
 import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
@@ -67,6 +69,14 @@ public class DealResourseController extends BaseResourseController {
 				.map(this::translateDeal)
 				.collect(Collectors.toList());
 		TableResponse<DealForUI> table = new TableResponse<>(DealForUI.class, dealsForUI);
+		return new ResultBean(1, table, "").toString();
+	}
+	
+	@RequestMapping(value = "/TestDeals.spr")
+	@ResponseBody
+	public String testDealList(Authentication loggedInUser) 
+			throws ServiceException, TableException {
+		TableResponse<TestDealForUI> table = new TableResponse<>(TestDealForUI.class, new ArrayList<>());
 		return new ResultBean(1, table, "").toString();
 	}
 	

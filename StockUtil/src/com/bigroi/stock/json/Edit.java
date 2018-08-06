@@ -10,9 +10,9 @@ import java.lang.annotation.Target;
 @Target(FIELD)
 public @interface Edit {
 
-	public String edit();
+	public String edit() default "";
 	
-	public String remove();
+	public String remove() default "";
 
 	public String details() default "";
 }

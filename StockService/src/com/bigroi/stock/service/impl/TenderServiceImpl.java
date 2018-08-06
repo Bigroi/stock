@@ -92,6 +92,14 @@ public class TenderServiceImpl implements TenderService{
 		}catch(DaoException e){
 			throw new ServiceException(e);
 		}
-		
+	}
+	
+	@Override
+	public List<Tender> getBySessionId(String sessionId) throws ServiceException {
+		try {
+			return tenderDao.setBySessionId(sessionId);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
 	}
 }

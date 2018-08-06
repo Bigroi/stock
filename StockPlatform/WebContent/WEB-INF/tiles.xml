@@ -111,17 +111,18 @@
 	</definition>
 	
 	<definition name="account" extends="base-form-definition">
-		<put-attribute name="nav-account" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/account.jsp" />
 	</definition>
 	
 	<definition name="lotForm" extends="base-form-definition">
-		<put-attribute name="nav-lots" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/lot.jsp" />
 	</definition>
 	
+	<definition name="testLotForm" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/testLot.jsp" />
+	</definition>
+	
 	<definition name="productForm" extends="base-form-definition">
-		<put-attribute name="nav-welcome" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/product.jsp" />
 	</definition>
 	
@@ -130,8 +131,11 @@
 	</definition> 
 	
 	<definition name="tenderForm" extends="base-form-definition">
-		<put-attribute name="nav-tenders" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/tender.jsp" />
+	</definition>
+	
+	<definition name="testTenderForm" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/testTender.jsp" />
 	</definition>
 	
 	<definition name="feedback" extends="base-form-definition">

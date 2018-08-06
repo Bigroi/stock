@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 public class BaseRenderingController {
@@ -84,6 +86,11 @@ public class BaseRenderingController {
 			object = map.get(key);
 		}
 		return object.toString();
+	}
+	
+	protected final String getSessionId(){
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+	    return attr.getRequest().getSession(true).getId(); 
 	}
 	
 	private static class LabelMap extends Properties{

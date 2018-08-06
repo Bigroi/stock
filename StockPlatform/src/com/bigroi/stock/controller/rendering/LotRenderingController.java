@@ -43,6 +43,17 @@ public class LotRenderingController extends BaseRenderingController{
 		return modelAndView;
 	}
 	
+	@RequestMapping("/TestForm.spr")
+	public ModelAndView testForm() throws ServiceException {
+		ModelAndView modelAndView = createModelAndView("testLotForm");
+		List<Product> productList = productService.getAllActiveProducts();
+		List<CompanyAddress> addressList = addressService.getCompanyAddresses(0);
+		
+		modelAndView.addObject("listOfProducts", productList);
+		modelAndView.addObject("listOfAddresses", addressList);
+		return modelAndView;
+	}
+	
 	@RequestMapping("/MyLots.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView myList() throws  ServiceException {

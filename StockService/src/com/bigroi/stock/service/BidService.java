@@ -11,6 +11,8 @@ public interface BidService<T> {
 	
 	List<T> getByCompanyId(long salerId) throws ServiceException;
 	
+	List<T> getBySessionId(String sessionId) throws ServiceException;
+	
 	void activate(long id, long companyId) throws ServiceException;
 	
 	void delete(long id, long companyId) throws ServiceException;

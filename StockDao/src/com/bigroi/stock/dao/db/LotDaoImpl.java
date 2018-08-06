@@ -70,6 +70,12 @@ public class LotDaoImpl implements LotDao {
 			+ " WHERE L.COMPANY_ID = ?"
 			+ " AND MIN_VOLUME <= MAX_VOLUME";
 	
+	private static final String GET_LOTS_BY_SESSION_ID = 
+			"SELECT " + LotRowMapper.ALL_COLUMNS
+			+ LotRowMapper.FROM
+			+ " WHERE L.COMPANY_ID = 0 "
+			+ " AND L.DESCRIPTION = ?";
+	
 	private static final String SET_STATUS_BY_COMPANY =
 			  "UPDATE LOT SET "
 			+ "STATUS = ? "
@@ -216,6 +222,12 @@ public class LotDaoImpl implements LotDao {
 	public List<Lot> getActiveByProductId(long productId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_ACTIVE_LOTS_BY_PRODUCT_ID, new LotRowMapper(), productId);
+	}
+	
+	@Override
+	public List<Lot> setBySessionId(String sessionId) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		return template.query(GET_LOTS_BY_SESSION_ID, new LotRowMapper(), sessionId);
 	}
 	
 	private static class LotRowMapper implements RowMapper<Lot>{

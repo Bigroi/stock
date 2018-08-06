@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,16 +36,24 @@ public class AddressResourceController extends BaseResourseController {
 	
 	@RequestMapping(value = "/Get.spr")
 	@ResponseBody
-	public String getAddress(@RequestParam("id") long id) throws ServiceException {
-		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		CompanyAddress address = addressService.getAddressById(id, user.getCompanyId());
+	public String getAddress(@RequestParam("id") long id, Authentication loggedInUser) 
+			throws ServiceException {
+		long companyId;
+		if (loggedInUser != null && loggedInUser.getPrincipal() instanceof StockUser){
+			StockUser user = (StockUser) loggedInUser.getPrincipal();
+			companyId = user.getCompanyId();
+		} else {
+			companyId = 0;
+		}
+		CompanyAddress address = addressService.getAddressById(id, companyId);
 		return new ResultBean(1, address, null).toString();
 	}
 	
 	@RequestMapping(value = "/List.spr")
 	@ResponseBody
-	public String getAddresses() throws ServiceException, TableException{
-		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
+	public String getAddresses(Authentication loggedInUser) throws ServiceException, TableException{
+		StockUser user = (StockUser) loggedInUser.getPrincipal();
 		List<CompanyAddress> listAddresses = addressService.getCompanyAddresses(user.getCompanyId());
 		List<AddressForUI> addressesForUI = listAddresses.stream()
 				.map(address -> new AddressForUI(
@@ -63,7 +70,8 @@ public class AddressResourceController extends BaseResourseController {
 	@RequestMapping(value = "/Form.spr", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String form(@RequestParam(value = "id", defaultValue = "-1") long id, Authentication loggedInUser) throws ServiceException {
+	public String form(@RequestParam(value = "id", defaultValue = "-1") long id, 
+			Authentication loggedInUser) throws ServiceException {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		CompanyAddress companyAddress = addressService.getAddressById(id, user.getCompanyId());
 		if (companyAddress == null){
@@ -76,8 +84,9 @@ public class AddressResourceController extends BaseResourseController {
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public String save(@RequestParam("json") String jsonAddress) throws ServiceException{
-		StockUser user =  (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	public String save(@RequestParam("json") String jsonAddress, Authentication loggedInUser) 
+			throws ServiceException{
+		StockUser user =  (StockUser) loggedInUser.getPrincipal();
 		CompanyAddress address = GsonUtil.getGson().fromJson(jsonAddress, CompanyAddress.class);
 		
 		if (addressService.hasAddress(address, user.getCompanyId())){

@@ -95,4 +95,13 @@ public class LotServiceImpl implements LotService {
 		
 	}
 
+	@Override
+	public List<Lot> getBySessionId(String sessionId) throws ServiceException {
+		try {
+			return lotDao.setBySessionId(sessionId);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
+
 }

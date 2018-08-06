@@ -104,6 +104,22 @@ function getLotDialogParams(id, $table, model){
 	};	
 }
 
+function getTestLotDialogParams(id, $table, model){
+	return {
+		formUrl: "/lot/TestForm.spr", 
+		dialogClass: "lot-dialogbox", 
+		buttons: [
+			{
+				text: l10n.translate("label.button.save_start_trading"),
+				id:"save-start-trading",
+				submitUrl: "/lot/json/TestSave.spr",
+				submitFunction: buttonCallbackWithTableUpdate,
+				table : $table, 
+				model : model
+			}]
+	};	
+}
+
 function getAccountDialogParams(id){
 	return {
 		formUrl: "/account/Form.spr", 
@@ -172,6 +188,22 @@ function getTenderDialogParams(id, $table, model){
 			text: l10n.translate("label.button.save_start_trading"),
 			id:"save-start-trading",
 			submitUrl: "/tender/json/SaveAndActivate.spr",
+			submitFunction: buttonCallbackWithTableUpdate,
+			table : $table, 
+			model : model
+		}],
+	};
+}
+
+function getTestTenderDialogParams(id, $table, model){
+	return{
+		formUrl: "/tender/TestForm.spr", 
+		dialogClass: "tender-dialogbox",
+		buttons:[
+		{
+			text: l10n.translate("label.button.save_start_trading"),
+			id:"save-start-trading",
+			submitUrl: "/tender/json/TestSave.spr",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model

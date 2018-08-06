@@ -1,10 +1,11 @@
 'use strict';
 $(document).ready(function(){
-	var container = $("#main-table")
-	if (container.length > 0){
-		makeTable(container.attr("data-url"), container);
-	}
-	function makeTable(url, tableElement){
+	$("*[id*=main-table]:visible").each(function() {
+		var $container = $(this);
+		makeTable($container.attr("data-url"), $container);
+	});
+	
+	function makeTable(url, $tableElement){
 		
 		var model;
 		
@@ -13,8 +14,8 @@ $(document).ready(function(){
 		var table;
 		
 		$.getJSON(getContextRoot() + url, function(answer){
-			tableElement.addClass('display responsive nowrap');
-			tableElement.css('width','100%');
+			$tableElement.addClass('display responsive nowrap');
+			$tableElement.css('width','100%');
 			model = answer.data.model;
 			
 			tableData = answer.data.table;
@@ -23,19 +24,22 @@ $(document).ready(function(){
 			tableData.drawCallback = removePagination;
 			tableData.language = getLanguage();
 			tableData.aaSorting = [];
-			table = $(tableElement).DataTable(tableData);
+			table = $tableElement.DataTable(tableData);
 	
-			if ($(".add-button").length > 0){
+			var addButtonClass = $tableElement.attr("data-add-button");
+			if (!addButtonClass){
+				addButtonClass = "add-button";
+			}
+			if ($("." + addButtonClass).length > 0){
 				var editFormParams = window[model.editForm];
 	            if (editFormParams){
-	            	$(".add-button").on("click", function(){
-	            		showDialog(editFormParams(-1, $(tableElement), model));
+	            	$("." + addButtonClass).on("click", function(){
+	            		showDialog(editFormParams(-1, $tableElement, model));
 	            	});
 	            } else {
-	            	$(".add-button").click(function(){document.location = getContextRoot() + model.editForm;});
+	            	$("." + addButtonClass).click(function(){document.location = getContextRoot() + model.editForm;});
 	            }
 			}
-			
 		});
 		
 		function rowCallback($row, data, index) {
@@ -43,7 +47,7 @@ $(document).ready(function(){
 				addStatusSwitcher(data, $row);
 			}
 			
-			if(model.editColumn){
+			if(model.editColumn && getCell(model.editColumn, $row)){
 				addEditRemoveIcons(data, $row, this);
 			}
 		}

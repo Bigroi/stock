@@ -58,8 +58,7 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		return new ResultBean(1, table, null);
 	}
 
-	protected ResultBean saveBid(String json, Authentication loggedInUser) throws ServiceException {
-		StockUser user = (StockUser) loggedInUser.getPrincipal();
+	protected ResultBean saveBid(String json) throws ServiceException {
 		B bid = GsonUtil.getGson().fromJson(json, getBidClass());
 		if (bid.getId() < 0) {
 			bid.setStatus(BidStatus.INACTIVE);
@@ -67,18 +66,24 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 			B oldLot = getBidService().getById(bid.getId(), getUserCompanyId());
 			bid.setStatus(oldLot.getStatus());
 		}
-		return save(bid, user);
+		return save(bid);
+	}
+	
+	protected ResultBean testSaveBid(String json) throws ServiceException {
+		B bid = GsonUtil.getGson().fromJson(json, getBidClass());
+		bid.setDescription(getSessionId());
+		bid.setStatus(BidStatus.ACTIVE);
+		return save(bid);
 	}
 
-	protected ResultBean saveAndActivateBid(String json, Authentication loggedInUser) throws ServiceException {
-		StockUser user = (StockUser) loggedInUser.getPrincipal();
+	protected ResultBean saveAndActivateBid(String json) throws ServiceException {
 		B bid = GsonUtil.getGson().fromJson(json, getBidClass());
 		bid.setStatus(BidStatus.ACTIVE);
-		return save(bid, user);
+		return save(bid);
 	}
 
-	private ResultBean save(B bid, StockUser user) throws ServiceException {
-		List<String> errors = activationCheck(bid, user);
+	private ResultBean save(B bid) throws ServiceException {
+		List<String> errors = activationCheck(bid, getUserCompanyId());
 		if (!errors.isEmpty()) {
 			String str = errors.toString().substring(1, errors.toString().length() - 1);
 			return new ResultBean(-1, str);
@@ -88,9 +93,8 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		return new ResultBean(1, getObjectForUIConstructor().apply(bid), "");
 	}
 
-	protected ResultBean startTradingBid(long id, Authentication loggedInUser) throws ServiceException {
-		StockUser user = (StockUser) loggedInUser.getPrincipal();
-		List<String> errors = activationCheck(id, user);
+	protected ResultBean startTradingBid(long id) throws ServiceException {
+		List<String> errors = activationCheck(id, getUserCompanyId());
 		if (!errors.isEmpty()) {
 			String str = errors.toString().substring(1, errors.toString().length() - 1);
 			return new ResultBean(-1, str);
@@ -110,20 +114,25 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 	}
 
 	private long getUserCompanyId() {
-		StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		return user.getCompanyId();
+		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+		if (loggedInUser != null && loggedInUser.getPrincipal() instanceof StockUser){
+			StockUser user = (StockUser) loggedInUser.getPrincipal();
+			return user.getCompanyId();
+		} else {
+			return 0;
+		}
 	}
 
-	private List<String> activationCheck(long id, StockUser user) throws ServiceException {
+	private List<String> activationCheck(long id, long companyId) throws ServiceException {
 		B bid = getBidService().getById(id, getUserCompanyId());
-		return activationCheck(bid, user);
+		return activationCheck(bid, companyId);
 	}
 
-	private List<String> activationCheck(B bid, StockUser user) throws ServiceException {
+	private List<String> activationCheck(B bid, long companyId) throws ServiceException {
 		List<String> errors = new ArrayList<>();
 
 		List<Long> addressIds = addressService
-				.getCompanyAddresses(user.getCompanyId())
+				.getCompanyAddresses(companyId)
 				.stream().map(CompanyAddress::getId)
 				.collect(Collectors.toList());
 		if (!addressIds.contains(bid.getAddressId())) {

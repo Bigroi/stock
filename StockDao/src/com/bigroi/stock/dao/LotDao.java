@@ -31,4 +31,6 @@ public interface LotDao {
 	List<Lot> getActiveByProductId(long productId) throws DaoException;
 	
 	void closeLots() throws DaoException;
+
+	List<Lot> setBySessionId(String sessionId) throws DaoException;
 }

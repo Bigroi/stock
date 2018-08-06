@@ -44,6 +44,18 @@ public class TenderRenderingController extends BaseRenderingController{
 		return modelAndView;
 	}
 	
+	@RequestMapping("/TestForm.spr")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	public ModelAndView testForm() throws ServiceException {
+		ModelAndView modelAndView = createModelAndView("testTenderForm");
+		List<Product> products = productService.getAllActiveProducts();
+		List<CompanyAddress> addressList = addressService.getCompanyAddresses(0);
+		
+		modelAndView.addObject("listOfProducts", products);
+		modelAndView.addObject("listOfAddresses", addressList);
+		return modelAndView;
+	}
+	
 	@RequestMapping("/MyTenders.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView myList() throws  ServiceException {

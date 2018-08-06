@@ -54,6 +54,12 @@ public class TenderDaoImpl implements TenderDao{
 			+ " WHERE T.COMPANY_ID = ? "
 			+ " AND MIN_VOLUME <= MAX_VOLUME";
 	
+	private static final String GET_TENDERS_BY_SESSION_ID = 
+			" SELECT " + TenderRowMapper.ALL_COLUMNS
+			+ TenderRowMapper.FROM 
+			+ " WHERE T.COMPANY_ID = 0 "
+			+ " AND T.DESCRIPTION = ?";
+	
 	private static final String GET_TENDER_BY_ID = 
 			" SELECT " + TenderRowMapper.ALL_COLUMNS
 			+ TenderRowMapper.FROM
@@ -212,6 +218,12 @@ public class TenderDaoImpl implements TenderDao{
 	public List<Tender> getActiveByProductId(long productId) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_ACTIVE_TENDERS_BY_PRODUCT_ID, new TenderRowMapper(), productId);
+	}
+	
+	@Override
+	public List<Tender> setBySessionId(String sessionId) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		return template.query(GET_TENDERS_BY_SESSION_ID, new TenderRowMapper(), sessionId);
 	}
 	
 	private static class TenderRowMapper implements RowMapper<Tender>{

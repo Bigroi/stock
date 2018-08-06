@@ -12,30 +12,30 @@ import com.bigroi.stock.json.Status;
 public class TenderForUI {
 
 	@Id
-	private long id;
+	long id;
 	
 	@Column(value = "label.tender.product", responsivePriority=-6)
-	private final String productName;
+	final String productName;
 	
 	@Column(value = "label.tender.status", responsivePriority=-5)
 	@Status(activate="/tender/json/StartTrading.spr", deactivate="/tender/json/StopTrading.spr")
-	private final BidStatus status;
+	final BidStatus status;
 	
 	@Column(value = "label.tender.max_price", responsivePriority=-1)
-	private final double maxPrice;
+	final double maxPrice;
 	
 	@Column(value = "label.tender.max_volume", responsivePriority=-2)
-	private final int maxVolume;
+	final int maxVolume;
 	
 	@Column(value = "label.tender.exp_date", allowSorting = true, responsivePriority=-4)
-	private final Date exparationDate;
+	final Date exparationDate;
 	
 	@Column(value = "label.tender.creation_date", allowSorting = false, responsivePriority=-3)
-	private final Date creationDate;
+	final Date creationDate;
 	
 	@Edit(edit="getTenderDialogParams", remove="/tender/json/Delete.spr")
 	@Column(value = "label.tender.edit", responsivePriority=-7)
-	private final String edit;
+	final String edit;
 	
 	public TenderForUI(Tender tender) {
 		this.id = tender.getId();
