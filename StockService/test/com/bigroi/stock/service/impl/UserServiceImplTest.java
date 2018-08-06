@@ -9,9 +9,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.bigroi.stock.bean.common.CompanyStatus;
+import com.bigroi.stock.bean.common.Role;
 import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.StockUser;
@@ -65,7 +67,7 @@ public class UserServiceImplTest extends BaseTest {
 		StockUser user = createObject(StockUser.class);
 		user.setCompanyId(COMPANY_ID);
 		user.setCompany(company);
-		user.getAuthorities();// null
+		user.addAuthority(new SimpleGrantedAuthority(Role.ROLE_USER.name()));
 		
 		List<UserRole> listRole = ImmutableList.of(createObject(UserRole.class));
 		// mock
@@ -95,6 +97,6 @@ public class UserServiceImplTest extends BaseTest {
 		Mockito.verify(addressDao, Mockito.times(1)).addAddress(user.getCompany().getCompanyAddress());
 		Mockito.verify(companyDao, Mockito.times(1)).update(user.getCompany());
 		Mockito.verify(userDao, Mockito.times(1)).add(user);
-		//Mockito.verify(userRoleDao, Mockito.times(1)).add(listRole);
+		Mockito.verify(userRoleDao, Mockito.times(1)).add(Mockito.any());
 	}
 }

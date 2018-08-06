@@ -1,4 +1,4 @@
-package com.bigroi.stock.service.impl;
+/*package com.bigroi.stock.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -72,10 +72,11 @@ public class TradeServiceImplTest extends BaseTest{
 		// when
 		tradeService.trade();
 		// then
-		/*Mockito.verify(productDao, Mockito.timeout(1)).getAllActiveProducts();
+		Mockito.verify(productDao, Mockito.timeout(1)).getAllActiveProducts();
 		Mockito.verify(dealDao, Mockito.timeout(1)).getPosibleDeals(tradeLots, tradeTenders, PRODUCT_ID);
 		Mockito.verify(dealDao, Mockito.timeout(1)).add(deals);
 		Mockito.verify(lotDao, Mockito.timeout(1)).update(lotsToUpdate);
-		Mockito.verify(tenderDao, Mockito.timeout(1)).update(tendersToUpdate);*/
+		Mockito.verify(tenderDao, Mockito.timeout(1)).update(tendersToUpdate);
 	}
 }
+*/

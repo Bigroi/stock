@@ -256,7 +256,7 @@ public class DealServiceImplTest extends BaseTest {
 		Assert.assertEquals(deal.getBuyerChoice(), PartnerChoice.REJECTED);
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 		Mockito.verify(dealDao, Mockito.timeout(1)).setBuyerStatus(deal);
-		//Mockito.verify(blacklistDao, Mockito.times(1)).add(blackList); //different arguments...
+		Mockito.verify(blacklistDao, Mockito.times(1)).add(Mockito.any());
 		Mockito.verify(lotDao, Mockito.timeout(1)).getById(LOT_ID, deal.getSellerAddress().getCompanyId());
 		Mockito.verify(tenderDao, Mockito.timeout(1)).getById(TENDER_ID, deal.getBuyerAddress().getCompanyId());
 		Mockito.verify(tenderDao, Mockito.timeout(1)).update(tender,COMPANY_ID);
