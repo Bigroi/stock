@@ -1,24 +1,6 @@
 <root>
-	<update author="Evgeni" date="21.06.2018">
+	<!-- <update author="Evgeni" date="21.06.2018">
 		ALTER TABLE `TRANSPORT_PROPOSITION` ADD COLUMN `status` VARCHAR(30) NOT NULL AFTER `price`;
-	</update>
-	<update author="Pavel" date="23.06.2018">
-		UPDATE `stock`.`PRODUCT` SET `picture`='/Static/img/apple.png' WHERE  `id`=135;
-		UPDATE `stock`.`PRODUCT` SET `picture`='/Static/img/potato.png' WHERE  `id`=136;
-	</update>
-	<update author="Evgeni" date="28.06.2018">
-	   	ALTER TABLE `TRANSPORT_PROPOSITION` CHANGE COLUMN `price` `price` DECIMAL(10,2) NOT NULL AFTER `company_id`;
-	</update>
-	<update author="Pavel" date="2.07.2018">
-		ALTER TABLE `EMAIL` ADD COLUMN `file_name` VARCHAR(50) NULL AFTER `body`, ADD COLUMN `file` BLOB NULL AFTER `file_name`;
-	</update>
-	<update author="Pavel" date="2.07.2018">
-		ALTER TABLE `LOT` CHANGE COLUMN `min_price` `price` DECIMAL(10,2) NOT NULL AFTER `product_id`;
-		ALTER TABLE `TENDER` CHANGE COLUMN `max_price` `price` DECIMAL(10,2) NOT NULL AFTER `product_id`;
-	</update>
-	<update author="Pavel" date="15.07.2018">
-		ALTER TABLE `USER` CHANGE COLUMN `password` `password` VARCHAR(60) NOT NULL COLLATE 'utf8_general_ci' AFTER `username`;
-		UPDATE `USER` SET `password`='$2a$10$uzpFt2/Uxp3XWXh/.lTK3uptEwIEw.j4W1aP3MGSuQ3G7HkL2BBRK';
-	</update>
+	</update> -->
 </root>
 
