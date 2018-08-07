@@ -145,17 +145,28 @@
 						</div>
 					</div>
 					<div class="test-trading">
-						<button class="add-test-lot">NEW LOT</button>
-						<div id="table-container">
-						    <table id="main-table-lot" class="test-lot-table" data-url="/lot/json/TestList.spr" data-add-button="add-test-lot"></table>
-						</div>
-						<button class="add-test-tender">NEW TENDER</button>
-						<div id="table-container">
-						    <table id="main-table-tender" class="test-tender-table" data-url="/tender/json/TestList.spr" data-add-button="add-test-tender"></table>
-						</div>
-						<button class="test-trade">TRADE</button>
-						<div id="table-container">
-						    <table id="main-table-deal" data-url="/deal/json/TestDeals.spr" data-add-button="test-trade"></table>
+						<div class="container">
+							<h3>${label.index.try_it_now}</h3>
+							<div class="test-lot-tender-container">
+								<div class="test-lot">
+									<button class="add-test-lot background-blue">${label.button.new_lot}</button>
+									<div id="table-container">
+									    <table id="main-table" class="test-lot-table" data-url="/lot/json/TestList.spr" data-add-button="add-test-lot"></table>
+									</div>
+								</div>
+								<div class="test-tender">
+									<button class="add-test-tender background-blue">${label.button.new_tender}</button>
+									<div id="table-container">
+									    <table id="main-table" class="test-tender-table" data-url="/tender/json/TestList.spr" data-add-button="add-test-tender"></table>
+									</div>
+								</div>
+							</div>
+							<div class="test-trade-container">
+								<div id="table-container">
+								    <table id="main-table-deal" data-url="/deal/json/TestDeals.spr" data-add-button="test-trade"></table>
+								</div>
+								<button class="add-test-trade background-green">${label.button.trade}</button>
+							</div>
 						</div>
 					</div>
 					<div class="preview-platform">

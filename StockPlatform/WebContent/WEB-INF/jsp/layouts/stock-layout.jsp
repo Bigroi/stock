@@ -69,6 +69,19 @@
          	 	<div class="burger"></div>
          	 	<div class="logo-mobile"></div>
  			</div>
+ 			<div class="login-box">
+				<div class="login-button-page">
+			    	<div>Apple Trader</div>
+				</div>
+				<div class="login-list">
+					<div>
+						<a href="#" class="edit-account">Аккаунт</a>
+						<a href="#" onclick="document.location = getContextRoot() + '/account/json/Logout.spr'" id="session-start">
+							Выйти
+						</a>
+					</div>
+				</div>
+			</div>
        	</div>
         <div class="bgdark"></div>
         <div class = "section">
