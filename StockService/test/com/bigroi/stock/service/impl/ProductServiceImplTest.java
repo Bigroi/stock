@@ -147,12 +147,9 @@ public class ProductServiceImplTest extends BaseTest {
 		// given
 		final long PRODUCT_ID = random.nextLong();
 		
-		Lot lot = createObject(Lot.class);
-		Tender tender = createObject(Tender.class);
-		
 		List<Bid> bids = new ArrayList<>();
-		List<Lot> listLot = ImmutableList.of(lot);
-		List<Tender> listTender = ImmutableList.of(tender);
+		List<Lot> listLot = ImmutableList.of(createObject(Lot.class));
+		List<Tender> listTender = ImmutableList.of(createObject(Tender.class));
 		// mock
 		Mockito.when(lotDao.getActiveByProductId(PRODUCT_ID)).thenReturn(listLot);
 		Mockito.when(tenderDao.getActiveByProductId(PRODUCT_ID)).thenReturn(listTender);

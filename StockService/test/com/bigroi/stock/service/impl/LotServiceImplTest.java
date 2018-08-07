@@ -35,9 +35,10 @@ public class LotServiceImplTest extends BaseTest{
 		// given
 		final long LOT_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
-		// mock
+		
 		Lot lot = createObject(Lot.class);
 		lot.setCompanyId(COMPANY_ID);
+		// mock
 		Mockito.when(lotDao.getById(LOT_ID, COMPANY_ID)).thenReturn(lot);
 		// when
 		Lot actualLot = lotService.getById(LOT_ID, COMPANY_ID);
@@ -104,9 +105,8 @@ public class LotServiceImplTest extends BaseTest{
 	public void getByCompanyIdTest() throws ServiceException, DaoException{
 		// given
 		final long COMPANY_ID = random.nextLong();
+		List<Lot> expectedList = ImmutableList.of(createObject(Lot.class));
 		// mock
-		Lot lot =createObject(Lot.class);
-		List<Lot> expectedList = ImmutableList.of(lot);
 		Mockito.when(lotDao.getByCompanyId(COMPANY_ID)).thenReturn(expectedList);
 		// when
 		List<Lot> actualList = lotService. getByCompanyId(COMPANY_ID);

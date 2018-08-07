@@ -46,9 +46,10 @@ public class AddressServiceImplTest extends BaseTest {
 		// given
 		final long ADDRESS_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
-		//mock
+
 		CompanyAddress expectedAddress = new CompanyAddress();
 		expectedAddress.setCompanyId(COMPANY_ID);
+		//mock
 		Mockito.when(addressDao.getAddressById(ADDRESS_ID, COMPANY_ID)).thenReturn(expectedAddress);
 		// when
 		CompanyAddress actualAddress = addressService.getAddressById(ADDRESS_ID, COMPANY_ID);

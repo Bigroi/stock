@@ -61,16 +61,14 @@ public class DealServiceImplTest extends BaseTest {
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
-		// mock
 		
 		Deal deal = createObject(Deal.class);
 		deal.setBuyerAddress(createObject(CompanyAddress.class));
 		deal.setSellerAddress(createObject(CompanyAddress.class));
 		
 		Company buyer = createObject(Company.class);
-		
 		Company seller = createObject(Company.class);
-		
+		// mock
 		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
 		Mockito.when(companyDao.getById(deal.getBuyerAddress().getCompanyId())).thenReturn(buyer);
 		Mockito.when(companyDao.getById(deal.getSellerAddress().getCompanyId())).thenReturn(seller);
@@ -86,8 +84,8 @@ public class DealServiceImplTest extends BaseTest {
 	public void getByUserIdTest() throws ServiceException, DaoException{
 		// given
 		final long COMPANY_ID = random.nextLong();
-		// mock
 		List<Deal> expectedList = new ArrayList<>();
+		// mock
 		Mockito.when(dealDao.getByCompanyId(COMPANY_ID)).thenReturn(expectedList);
 		// when
 		List<Deal> actualList = dealService.getByUserId(COMPANY_ID);
@@ -113,14 +111,14 @@ public class DealServiceImplTest extends BaseTest {
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
-		// mock
+		
 		Deal deal = createObject(Deal.class);
 		deal.setBuyerAddress(createObject(CompanyAddress.class));
 		deal.setSellerAddress(createObject(CompanyAddress.class));
 		
 		Company company = createObject(Company.class);
 		company.setId(COMPANY_ID);
-		
+		// mock
 		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
 		Mockito.doNothing().when(dealDao).setBuyerStatus(deal);
     	// when
@@ -194,13 +192,14 @@ public class DealServiceImplTest extends BaseTest {
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
-		// mock
+		
 		Deal deal = createObject(Deal.class);
 		deal.setBuyerAddress(createObject(CompanyAddress.class));
 		deal.setSellerAddress(createObject(CompanyAddress.class));
 		deal.setBuyerChoice(PartnerChoice.APPROVED);
 		deal.setSellerChoice(PartnerChoice.APPROVED);
 		
+		// mock
 		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
 		Mockito.doNothing().when(successDealMessageForCustomer).send(deal);
 		Mockito.doNothing().when(successDealMessageForSeller).send(deal);

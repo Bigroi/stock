@@ -35,8 +35,9 @@ public class CompanyServiceImplTest extends BaseTest {
 
 	@Test
 	public void getAllCompaniesTest() throws ServiceException, DaoException {
-		// mock
+		// given
 		List<Company> expectedList = new ArrayList<>();
+		// mock
 		Mockito.when(companyDao.getAllCompany()).thenReturn(expectedList);
 		// when
 		List<Company> actualList = companyService.getAllCompanies();
@@ -49,8 +50,8 @@ public class CompanyServiceImplTest extends BaseTest {
 	public void getCompanyByIdTest() throws ServiceException, DaoException {
 		// given
 		final long COMPANY_ID = random.nextLong();
-		// mock
 		Company expectedCompany = createObject(Company.class);
+		// mock
 		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(expectedCompany);
 		// when
 		Company actualCompany = companyService.getCompanyById(COMPANY_ID);
@@ -63,6 +64,7 @@ public class CompanyServiceImplTest extends BaseTest {
 	public void getByNameTest() throws ServiceException, DaoException {
 		// given
 		final String name = randomString();
+		
 		Company expectedCompany = createObject(Company.class);
 		expectedCompany.setName(name);
 		// mock
@@ -78,6 +80,7 @@ public class CompanyServiceImplTest extends BaseTest {
 	public void getByRegNumberTest() throws ServiceException, DaoException {
 		// given
 		final String regNumber = randomString();
+		
 		Company expectedCompany = createObject(Company.class);
 		expectedCompany.setRegNumber(regNumber);
 		// mock
@@ -93,9 +96,11 @@ public class CompanyServiceImplTest extends BaseTest {
 	public void changeStatusCompanyAsNotVerifiedTest() throws ServiceException, DaoException {
 		// given
 		final long COMPANY_ID = random.nextLong();
+		
 		Company company = createObject(Company.class);
 		company.setId(COMPANY_ID);
 		company.setStatus(CompanyStatus.NOT_VERIFIED);
+		// mock
 		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(company);
 		Mockito.doNothing().when(companyDao).setStatus(COMPANY_ID, CompanyStatus.VERIFIED);
 		// when
@@ -111,9 +116,11 @@ public class CompanyServiceImplTest extends BaseTest {
 	public void changeStatusCompanyAsVerifiedTest() throws ServiceException, DaoException {
 		// given
 		final long COMPANY_ID = random.nextLong();
+		
 		Company company = createObject(Company.class);
 		company.setId(COMPANY_ID);
 		company.setStatus(CompanyStatus.VERIFIED);
+		// mock
 		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(company);
 		Mockito.doNothing().when(companyDao).setStatus(COMPANY_ID, CompanyStatus.REVOKED);
 		Mockito.when(lotDao.setStatusByCompanyId(COMPANY_ID, BidStatus.INACTIVE)).thenReturn(true);
@@ -133,9 +140,11 @@ public class CompanyServiceImplTest extends BaseTest {
 	public void changeStatusCompanyAsRevokedTest() throws ServiceException, DaoException {
 		// given
 		final long COMPANY_ID = random.nextLong();
+		
 		Company company = createObject(Company.class);
 		company.setId(COMPANY_ID);
 		company.setStatus(CompanyStatus.REVOKED);
+		// mock
 		Mockito.when(companyDao.getById(COMPANY_ID)).thenReturn(company);
 		Mockito.doNothing().when(companyDao).setStatus(COMPANY_ID, CompanyStatus.VERIFIED);
 		// when

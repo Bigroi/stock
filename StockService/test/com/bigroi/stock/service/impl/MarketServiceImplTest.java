@@ -68,10 +68,11 @@ public class MarketServiceImplTest extends BaseTest {
 		// given
 		final BidStatus STATUS = BidStatus.INACTIVE;
 		final Date DATE = getExpDate();
-		// mock
+		
 		Lot lot = createObject(Lot.class);
 		lot.setExparationDate(DATE);
 		List<Lot> expectedList = ImmutableList.of(lot);
+		// mock
 		Mockito.when(lotDao.getActive()).thenReturn(expectedList);
 		Mockito.doNothing().when(lotExparationMessage).send(lot);
 		Mockito.doNothing().when(lotDao).update(expectedList);
@@ -90,10 +91,11 @@ public class MarketServiceImplTest extends BaseTest {
 		// given
 		final BidStatus STATUS = BidStatus.INACTIVE;
 		final Date DATE = getExpDate();
-		// mock
+		
 		Tender tender = createObject(Tender.class);
 		tender.setExparationDate(DATE);
 		List<Tender> expectedList = ImmutableList.of(tender);
+		// mock
 		Mockito.when(tenderDao.getActive()).thenReturn(expectedList);
 		Mockito.doNothing().when(tenderExparationMessage).send(tender);
 		Mockito.doNothing().when(tenderDao).update(expectedList);
@@ -109,12 +111,12 @@ public class MarketServiceImplTest extends BaseTest {
 	
 	@Test
 	public void clearPreDealNullTest() throws DaoException, ServiceException{
-		// mock
+		// given
 		Deal deal = createObject(Deal.class);
 		deal.setLotId(null);
 		
 		List<Deal> dealList = ImmutableList.of(deal);
-		
+		// mock
 		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
 		Mockito.doNothing().when(dealDao).deleteOnApprove();
 		Mockito.doNothing().when(lotDao).closeLots();
@@ -134,7 +136,7 @@ public class MarketServiceImplTest extends BaseTest {
 		final long LOT_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
 		final long TENDER_ID = random.nextLong();
-		// mock
+		
 		Deal deal = createObject(Deal.class);
 		deal.setLotId(LOT_ID);
 		deal.setTenderId(TENDER_ID);
@@ -152,7 +154,7 @@ public class MarketServiceImplTest extends BaseTest {
 		Tender tender = createObject(Tender.class);
 		tender.setId(TENDER_ID);
 		tender.setCompanyId(COMPANY_ID);
-		
+		// mock
 		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
 		Mockito.doNothing().when(dealExparationMessageForSellerByOpponent).send(deal);
 		Mockito.doNothing().when(dealExparationMessageForCustomer).send(deal);
@@ -184,7 +186,7 @@ public class MarketServiceImplTest extends BaseTest {
 		final long LOT_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
 		final long TENDER_ID = random.nextLong();
-		// mock
+		
 		Deal deal = createObject(Deal.class);
 		deal.setLotId(LOT_ID);
 		deal.setTenderId(TENDER_ID);
@@ -202,7 +204,7 @@ public class MarketServiceImplTest extends BaseTest {
 		Tender tender = createObject(Tender.class);
 		tender.setId(TENDER_ID);
 		tender.setCompanyId(COMPANY_ID);
-		
+		// mock
 		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
 		Mockito.doNothing().when(dealExparationMessageForSeller).send(deal);
 		Mockito.doNothing().when(dealExparationMessageForCustomerByOpponent).send(deal);
@@ -234,7 +236,7 @@ public class MarketServiceImplTest extends BaseTest {
 		final long LOT_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
 		final long TENDER_ID = random.nextLong();
-		// mock
+		
 		Deal deal = createObject(Deal.class);
 		deal.setLotId(LOT_ID);
 		deal.setTenderId(TENDER_ID);
@@ -252,7 +254,7 @@ public class MarketServiceImplTest extends BaseTest {
 		Tender tender = createObject(Tender.class);
 		tender.setId(TENDER_ID);
 		tender.setCompanyId(COMPANY_ID);
-		
+		// mock
 		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
 		Mockito.doNothing().when(dealExparationMessageForSeller).send(deal);
 		Mockito.doNothing().when(dealExparationMessageForCustomer).send(deal);
@@ -280,10 +282,10 @@ public class MarketServiceImplTest extends BaseTest {
 	
 	@Test
 	public void sendConfirmationMessagesTest() throws DaoException, MessageException, ServiceException{
-		// mock
+		// given
 		Deal deal = createObject(Deal.class);
 		List<Deal> dealList = ImmutableList.of(deal);
-		
+		// mock
 		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
 		Mockito.doNothing().when(dealConfirmationMessageForCustomer).send(deal);
 		Mockito.doNothing().when(dealConfirmationMessageForSeller).send(deal);
