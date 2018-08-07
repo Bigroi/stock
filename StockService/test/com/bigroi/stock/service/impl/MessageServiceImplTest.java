@@ -1,6 +1,5 @@
 package com.bigroi.stock.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -17,6 +16,7 @@ import com.bigroi.stock.messager.MailManager;
 import com.bigroi.stock.messager.MailManagerException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
+import com.google.common.collect.ImmutableList;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MessageServiceImplTest extends BaseTest {
@@ -32,16 +32,16 @@ public class MessageServiceImplTest extends BaseTest {
 	public void sendAllEmailsTest() throws DaoException, MailManagerException, ServiceException{
 		// given
 		final long EMAIL_ID = random.nextLong();
-		// mock
+		
 		Email email = createObject(Email.class);
 		email.setId(EMAIL_ID);
-		List<Email> emailList = new ArrayList<>();//ImmutableList.of(email);
-		emailList.add(email);
 		
+		List<Email> emailList = ImmutableList.of(email);
+		// mock
 		Mockito.when(emailDao.getAll()).thenReturn(emailList);
 		Mockito.doNothing().when(mailManager).send(email);
 	    Mockito.when(emailDao.deleteById(EMAIL_ID)).thenReturn(true);
-	    Mockito.stub(!emailList.isEmpty()).toReturn(true);
+	    Mockito.stub(!emailList.isEmpty()).toReturn(true);// TODO sendAllEmailsTest fix
 		// when
 		messageServicel.sendAllEmails();
 		// then

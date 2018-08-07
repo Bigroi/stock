@@ -35,9 +35,10 @@ public class TenderServiceImplTest extends BaseTest {
 		// given
 		final long TENDER_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
-		// mock
+		
 		Tender tender = createObject(Tender.class);
 		tender.setCompanyId(COMPANY_ID);
+		// mock
 		Mockito.when(tenderDao.getById(TENDER_ID, COMPANY_ID)).thenReturn(tender);
 		// when
 		Tender actualLot = tenderService.getById(TENDER_ID, COMPANY_ID);
@@ -53,9 +54,10 @@ public class TenderServiceImplTest extends BaseTest {
 	public void getByCompanyIdTest() throws DaoException, ServiceException{
 		// given
 		final long COMPANY_ID = random.nextLong();
-		// mock
+		
 		Tender tender = createObject(Tender.class);
 		List<Tender> expectedList = ImmutableList.of(tender);
+		// mock
 		Mockito.when(tenderDao.getByCompanyId(COMPANY_ID)).thenReturn(expectedList);
 		// when
 		List<Tender> actualList = tenderService.getByCompanyId(COMPANY_ID);

@@ -1,5 +1,6 @@
 package com.bigroi.stock.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Assert;
@@ -10,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.bigroi.stock.bean.common.CompanyStatus;
@@ -17,6 +19,7 @@ import com.bigroi.stock.bean.common.Role;
 import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.StockUser;
+import com.bigroi.stock.bean.db.TempKey;
 import com.bigroi.stock.bean.db.UserRole;
 import com.bigroi.stock.dao.AddressDao;
 import com.bigroi.stock.dao.CompanyDao;
@@ -25,6 +28,7 @@ import com.bigroi.stock.dao.GenerateKeyDao;
 import com.bigroi.stock.dao.UserDao;
 import com.bigroi.stock.dao.UserRoleDao;
 import com.bigroi.stock.messager.message.LinkResetPasswordMessage;
+import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.messager.message.ResetUserPasswordMessage;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
@@ -98,5 +102,138 @@ public class UserServiceImplTest extends BaseTest {
 		Mockito.verify(companyDao, Mockito.times(1)).update(user.getCompany());
 		Mockito.verify(userDao, Mockito.times(1)).add(user);
 		Mockito.verify(userRoleDao, Mockito.times(1)).add(Mockito.any());
+	}
+	
+	@Test
+	public void updateTest() throws DaoException, ServiceException{
+		// given
+		Company company = createObject(Company.class);
+		company.setCompanyAddress(createObject(CompanyAddress.class));
+		
+		StockUser user = createObject(StockUser.class);
+		user.setCompany(company);
+		// mock 
+		Mockito.when(userDao.update(user)).thenReturn(true);
+		Mockito.when(companyDao.update(user.getCompany())).thenReturn(true);
+		// when
+		userService.update(user);
+		// then
+		Assert.assertNotEquals(user.getCompany().getCompanyAddress().getId(), null);
+		Mockito.verify(userDao, Mockito.times(1)).update(user);
+		Mockito.verify(companyDao, Mockito.times(1)).update(user.getCompany());
+	}
+	
+	@Test
+	public void loadUserByUsernameTest() throws DaoException{
+		// given
+		final String USER_NAME = randomString();
+		
+		StockUser user = createObject(StockUser.class);
+		user.setUsername(USER_NAME);
+		// mock
+		Mockito.when(userDao.getByUsernameWithRoles(USER_NAME)).thenReturn(user);
+		// when
+		userService.loadUserByUsername(USER_NAME);
+		// then
+		Assert.assertNotEquals(user, null);
+		Mockito.verify(userDao, Mockito.times(1)).getByUsernameWithRoles(USER_NAME);
+	}
+	
+	@Test(expected = UsernameNotFoundException.class)
+	public void loadUserByUsernameExceptionTest(){
+		// given
+		final String USER_NAME = randomString();
+		// when
+		userService.loadUserByUsername(USER_NAME);
+	}
+	
+	@Test
+	public void deleteGenerateKeysTest() throws DaoException, ServiceException{
+		// mock
+		Mockito.doNothing().when(keysDao).deleteGenerateKeysByDate();
+		// when
+		userService.deleteGenerateKeys();
+		// then
+		Mockito.verify(keysDao, Mockito.times(1)).deleteGenerateKeysByDate();
+	}
+	
+	@Test
+	public void sendLinkResetPasswordTest() throws DaoException, MessageException, ServiceException{
+		// given
+		final String USER_NAME = randomString();
+				
+		StockUser user = createObject(StockUser.class);
+		user.setUsername(USER_NAME);
+		
+		TempKey key = createObject(TempKey.class);
+		// mock
+		Mockito.when(userDao.getByUsernameWithRoles(USER_NAME)).thenReturn(user);
+		Mockito.when(keysDao.generateKey()).thenReturn(key);
+		Mockito.when(userDao.updateKeyById(user)).thenReturn(true);
+		Mockito.doNothing().when(linkResetPasswordMessage).sendImediatly(new HashMap<>());
+		// when
+		userService.sendLinkResetPassword(USER_NAME);
+		// then
+		Assert.assertNotEquals(user, null);
+		Assert.assertEquals(user.getKeyId(), key.getId());
+		Mockito.verify(userDao, Mockito.times(1)).getByUsernameWithRoles(USER_NAME);
+		Mockito.verify(userDao, Mockito.times(1)).updateKeyById(user);
+		Mockito.verify(keysDao, Mockito.times(1)).generateKey();
+		Mockito.verify(linkResetPasswordMessage, Mockito.times(1)).sendImediatly(Mockito.any());
+	}
+	
+	@Test
+	public void changePasswordTest() throws DaoException, MessageException, ServiceException{
+		// given
+		final String USER_NAME = randomString();
+		final String CODE = randomString();
+		
+		StockUser user = createObject(StockUser.class);
+		user.setUsername(USER_NAME);
+		// mock
+		Mockito.when(keysDao.checkResetKey(USER_NAME, CODE)).thenReturn(true);
+		Mockito.when(userDao.getByUsernameWithRoles(USER_NAME)).thenReturn(user);
+		Mockito.when(userDao.updatePassword(user)).thenReturn(true);
+		Mockito.doNothing().when(keysDao).deleteGenerateKey(CODE);
+		Mockito.doNothing().when(resetUserPasswordMessage).sendImediatly(user);
+		// when
+		boolean bool = userService.changePassword(USER_NAME, CODE);
+		// then
+		Assert.assertEquals(bool, true);
+		Assert.assertNotEquals(user.getPassword(), null);
+		Mockito.verify(keysDao, Mockito.times(1)).checkResetKey(USER_NAME, CODE);
+		Mockito.verify(userDao, Mockito.times(1)).getByUsernameWithRoles(USER_NAME);
+		Mockito.verify(userDao, Mockito.times(1)).updatePassword(user);
+		Mockito.verify(keysDao, Mockito.times(1)).deleteGenerateKey(CODE);
+		Mockito.verify(resetUserPasswordMessage, Mockito.times(1)).sendImediatly(user);
+	}
+	
+	@Test
+	public void notChangePasswordTest() throws DaoException, MessageException, ServiceException{
+		// given
+		final String USER_NAME = null;
+		final String CODE = null;
+		// mock
+		Mockito.when(keysDao.checkResetKey(USER_NAME, CODE)).thenReturn(false);
+		// when
+		boolean bool = userService.changePassword(USER_NAME, CODE);
+		// then
+		Assert.assertEquals(bool, false);
+		Mockito.verify(keysDao, Mockito.times(1)).checkResetKey(USER_NAME, CODE);
+	}
+	
+	@Test
+	public void getByUsernameTest() throws DaoException, ServiceException{
+		// given
+		final String USER_NAME = randomString();
+		
+		StockUser user = createObject(StockUser.class);
+		// mock
+		Mockito.when(userDao.getByUsernameWithRoles(USER_NAME)).thenReturn(user);
+		// when
+		StockUser userExpected = userService.getByUsername(USER_NAME);
+		Assert.assertEquals(user, userExpected);
+		Mockito.verify(userDao, Mockito.times(1)).getByUsernameWithRoles(USER_NAME);
+		
 	}
 }
