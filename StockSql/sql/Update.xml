@@ -1,6 +1,6 @@
 <root>
 	<update author="Pavel" date="6.08.2018">
-		UPDATE `STOCK`.`company` SET `id`='0' WHERE  `id`=35;;
+		UPDATE `stock`.`COMPANY` SET `id`='0' WHERE  `id`=35;;
 	</update>
 </root>
 
