@@ -16,6 +16,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigroi.stock.util.exception.StockRuntimeException;
+
 public class BaseRenderingController {
 
 	private static final Map<String, Object> defaultLabels = new HashMap<>();
@@ -36,7 +38,7 @@ public class BaseRenderingController {
 			}
 			defaultLabels.put("label", map);
 		}catch (IOException e) {
-			throw new InitException(e);
+			throw new StockRuntimeException(e);
 		}
 	}
 	
@@ -101,23 +103,10 @@ public class BaseRenderingController {
 		public synchronized Object get(Object key) {
 			Object obj = super.get(key);
 			if (obj == null){
-				throw new InitException("Can not find label " + key);
+				throw new StockRuntimeException("Can not find label " + key);
 			}
 			return obj;
 		}
 	}
-	
-	private static class InitException extends RuntimeException{
 
-		private static final long serialVersionUID = -8330666930298807296L;
-
-		public InitException(Throwable cause) {
-			super(cause);
-		}
-		
-		public InitException(String cause) {
-			super(cause);
-		}
-		
-	}
 }

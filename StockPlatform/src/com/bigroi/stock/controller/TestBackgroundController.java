@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bigroi.stock.service.MarketService;
 import com.bigroi.stock.service.MessageService;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.TradeService;
+import com.bigroi.stock.service.impl.TradeServiceImpl;
 
 @Controller
 @RequestMapping("/test/background")
@@ -19,9 +19,6 @@ public class TestBackgroundController extends BaseRenderingController {
 	
 	@Autowired
 	private MarketService marketService;
-	
-	@Autowired
-	private TradeService tradeService;
 	
 	@Autowired
 	private MessageService messageService;
@@ -46,7 +43,7 @@ public class TestBackgroundController extends BaseRenderingController {
 	public ModelAndView startTrade() throws ServiceException {
 		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		
-		tradeService.trade();
+		new TradeServiceImpl().trade();
 		String message = "Trade is finished";
 		modelAndView.addObject(MESSAGE, message);
 		

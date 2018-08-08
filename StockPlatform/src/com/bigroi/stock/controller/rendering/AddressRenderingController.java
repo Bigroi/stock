@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.controller.BaseRenderingController;
-import com.bigroi.stock.service.ServiceException;
 
 @Controller
 @RequestMapping("/address")
@@ -21,7 +20,7 @@ public class AddressRenderingController extends BaseRenderingController {
 	
 	@RequestMapping("/Form.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView deal(@RequestParam(value="id", defaultValue="-1") long id) throws  ServiceException {
+	public ModelAndView deal(@RequestParam(value="id", defaultValue="-1") long id) {
 		ModelAndView modelAndView = createModelAndView("addressForm");
 		modelAndView.addObject("id", id);
 		return modelAndView;

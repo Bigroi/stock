@@ -52,7 +52,8 @@ public class DealDaoImpl implements DealDao {
 			+ " ON L.ADDRESS_ID = LA.ID "
 			+ " AND L.`STATUS` = 'ACTIVE' "
 			+ " AND L.MAX_VOLUME >= L.MIN_VOLUME "
-			+ " LOT_DESCRIPTION_CONDITION "
+			+ " AND LOT_SPEC_CONDITION "
+			
 			+ " JOIN TENDER T "
 			+ " ON L.PRODUCT_ID = T.PRODUCT_ID "
 			+ " AND T.`STATUS` = 'ACTIVE' "
@@ -60,8 +61,9 @@ public class DealDaoImpl implements DealDao {
 			+ " AND T.PRICE > L.PRICE "
 			+ " AND T.MIN_VOLUME <= L.MAX_VOLUME "
 			+ " AND L.MIN_VOLUME <= T.MAX_VOLUME "
-			+ " TENDER_DESCRIPTIOM_CONDITION "
-			+ " AND COMPAMY_CONDITION "
+			+ " AND TENDER_SPEC_CONDITION "
+			+ " COMPAMY_CONDITION "
+			
 			+ " JOIN ADDRESS TA "
 			+ " ON T.ADDRESS_ID = TA.ID "
 			+ " LEFT JOIN BLACK_LIST BL "
@@ -176,18 +178,18 @@ public class DealDaoImpl implements DealDao {
 	public void getTestPossibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId, String sessionId)
 			throws DaoException {
 		String sql = GET_POSIBLE_BIDS
-				.replace("COMPAMY_CONDITION", " T.COMPANY_ID = 0 AND L.COMPANY_ID = 0 ")
-				.replace("LOT_DESCRIPTION_CONDITION", " AND L.DESCRIPTION = '" + sessionId + "' ")
-				.replaceAll("TENDER_DESCRIPTIOM_CONDITION", "AND T.DESCRIPTION = '" + sessionId + "' ");
+				.replace("COMPAMY_CONDITION", "")
+				.replace("LOT_SPEC_CONDITION", " L.DESCRIPTION = '" + sessionId + "' ")
+				.replaceAll("TENDER_SPEC_CONDITION", " T.DESCRIPTION = '" + sessionId + "' ");
 		getTestPossibleDeals(sql, tradeLots, tradeTenders, productId);
 	}
 	
 	@Override
 	public void getPosibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId) throws DaoException {
 		String sql = GET_POSIBLE_BIDS
-				.replace("COMPAMY_CONDITION", " T.COMPANY_ID <> L.COMPANY_ID ")
-				.replace("LOT_DESCRIPTION_CONDITION", "")
-				.replaceAll("TENDER_DESCRIPTIOM_CONDITION", "");
+				.replace("COMPAMY_CONDITION", "AND T.COMPANY_ID <> L.COMPANY_ID ")
+				.replace("LOT_SPEC_CONDITION", " L.COMPANY_ID <> 0 ")
+				.replaceAll("TENDER_SPEC_CONDITION", " T.COMPANY_ID <> 0 ");
 		getTestPossibleDeals(sql, tradeLots, tradeTenders, productId);
 	}
 	

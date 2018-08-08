@@ -32,6 +32,8 @@ public interface TenderDao {
 	
 	void closeTeners() throws DaoException;
 
-	List<Tender> setBySessionId(String sessionId) throws DaoException;
+	List<Tender> getByDescription(String decsciption) throws DaoException;
+
+	void deleteByDescription(String decsciption) throws DaoException;
 
 }

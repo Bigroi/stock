@@ -2,6 +2,7 @@ package com.bigroi.stock.controller.resource;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -22,6 +23,7 @@ import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.AddressService;
 import com.bigroi.stock.service.BidService;
 import com.bigroi.stock.service.ServiceException;
+import com.bigroi.stock.util.DateUtil;
 
 public abstract class BidResourceController<B extends Bid, U> extends BaseResourseController{
 	
@@ -73,6 +75,7 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		B bid = GsonUtil.getGson().fromJson(json, getBidClass());
 		bid.setDescription(getSessionId());
 		bid.setStatus(BidStatus.ACTIVE);
+		bid.setExparationDate(DateUtil.shiftMonths(new Date(), 1));
 		return save(bid);
 	}
 

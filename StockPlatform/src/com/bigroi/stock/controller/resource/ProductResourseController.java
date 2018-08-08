@@ -33,7 +33,7 @@ public class ProductResourseController extends BaseResourseController {
 	
 	@RequestMapping(value = "/List.spr")
 	@ResponseBody
-	public String list() throws TableException, ServiceException {
+	public String list() throws ServiceException {
 		List<ProductForUI> productsForUI = productService.getAllActiveProductsForUI();
 		return new ResultBean(1, productsForUI, null).toString();
 	}

@@ -57,7 +57,7 @@ public class TenderRenderingController extends BaseRenderingController{
 	
 	@RequestMapping("/MyTenders.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView myList() throws  ServiceException {
+	public ModelAndView myList() {
 		return createModelAndView("myTenders");
 	}
 }

@@ -1,6 +1,5 @@
 package com.bigroi.stock.controller.resource;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -39,13 +38,13 @@ public class TenderResourseController extends BidResourceController<Tender, Tend
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String save(@RequestParam("json") String json) throws ServiceException, ParseException {
+	public String save(@RequestParam("json") String json) throws ServiceException {
 		return saveBid(json).toString();
 	}
 	
 	@RequestMapping(value = "/TestSave.spr")
 	@ResponseBody
-	public String testSave(@RequestParam("json") String json) throws ServiceException, ParseException {
+	public String testSave(@RequestParam("json") String json) throws ServiceException {
 		ResultBean resultBean = testSaveBid(json);
 		if (resultBean.getResult() > 0){
 			TenderForUI tenderForUI = (TenderForUI) resultBean.getData();
@@ -57,7 +56,7 @@ public class TenderResourseController extends BidResourceController<Tender, Tend
 	@RequestMapping(value = "/SaveAndActivate.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String saveAndActivate(@RequestParam("json") String json) throws ServiceException, ParseException {
+	public String saveAndActivate(@RequestParam("json") String json) throws ServiceException {
 		return saveAndActivateBid(json).toString();
 	}
 	

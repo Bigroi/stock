@@ -54,7 +54,7 @@ public class TenderDaoImpl implements TenderDao{
 			+ " WHERE T.COMPANY_ID = ? "
 			+ " AND MIN_VOLUME <= MAX_VOLUME";
 	
-	private static final String GET_TENDERS_BY_SESSION_ID = 
+	private static final String GET_TENDERS_BY_DESCRIPTION = 
 			" SELECT " + TenderRowMapper.ALL_COLUMNS
 			+ TenderRowMapper.FROM 
 			+ " WHERE T.COMPANY_ID = 0 "
@@ -100,6 +100,11 @@ public class TenderDaoImpl implements TenderDao{
 			"DELETE "
 			+ " FROM TENDER "
 			+ " WHERE MIN_VOLUME > MAX_VOLUME";
+	
+	private static final String DELETE_BY_DESCRIPTION = 
+			"DELETE "
+			+ " FROM TENDER "
+			+ " WHERE DESCRIPTION = ? AND COMPANY_ID = 0";
 			
 	@Autowired
 	private DataSource datasource;
@@ -221,9 +226,15 @@ public class TenderDaoImpl implements TenderDao{
 	}
 	
 	@Override
-	public List<Tender> setBySessionId(String sessionId) throws DaoException {
+	public List<Tender> getByDescription(String description) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(GET_TENDERS_BY_SESSION_ID, new TenderRowMapper(), sessionId);
+		return template.query(GET_TENDERS_BY_DESCRIPTION, new TenderRowMapper(), description);
+	}
+	
+	@Override
+	public void deleteByDescription(String description) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		template.update(DELETE_BY_DESCRIPTION, description);
 	}
 	
 	private static class TenderRowMapper implements RowMapper<Tender>{
@@ -270,4 +281,5 @@ public class TenderDaoImpl implements TenderDao{
 			return tender;
 		}
 	}
+
 }

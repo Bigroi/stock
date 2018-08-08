@@ -29,6 +29,7 @@ import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
 import com.bigroi.stock.service.AddressService;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.TradeService;
+import com.bigroi.stock.util.exception.StockRuntimeException;
 
 @Repository
 public class TradeServiceImpl implements TradeService{
@@ -217,7 +218,7 @@ public class TradeServiceImpl implements TradeService{
 			deal.setBuyerAddress(addressService.getAddressById(deal.getBuyerAddressId(), 0));
 			deal.setSellerAddress(addressService.getAddressById(deal.getSellerAddressId(), 0));
 		} catch (ServiceException e) {
-			throw new RuntimeException(e);
+			throw new StockRuntimeException(e);
 		}
 	}
 	
@@ -230,7 +231,7 @@ public class TradeServiceImpl implements TradeService{
 			realDealDao.getTestPossibleDeals(lots, tenders, productId, sessionId);
 			return null;
 		}catch (DaoException e) {
-			throw new RuntimeException(e);
+			throw new StockRuntimeException(e);
 		}
 	}
 }

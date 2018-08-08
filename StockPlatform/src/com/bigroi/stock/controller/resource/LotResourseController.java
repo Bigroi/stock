@@ -1,6 +1,5 @@
 package com.bigroi.stock.controller.resource;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -61,7 +60,7 @@ public class LotResourseController extends BidResourceController<Lot, LotForUI> 
 	
 	@RequestMapping(value = "/TestSave.spr")
 	@ResponseBody
-	public String testSave(@RequestParam("json") String json) throws ServiceException, ParseException {
+	public String testSave(@RequestParam("json") String json) throws ServiceException {
 		ResultBean resultBean = testSaveBid(json);
 		if (resultBean.getResult() > 0){
 			LotForUI lotForUI = (LotForUI) resultBean.getData();

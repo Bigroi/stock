@@ -10,8 +10,8 @@ import com.bigroi.stock.messager.MailManager;
 import com.bigroi.stock.service.MarketService;
 import com.bigroi.stock.service.MessageService;
 import com.bigroi.stock.service.ServiceException;
-import com.bigroi.stock.service.TradeService;
 import com.bigroi.stock.service.UserService;
+import com.bigroi.stock.service.impl.TradeServiceImpl;
 
 @Configuration
 @EnableScheduling
@@ -24,9 +24,6 @@ public class JobConfigurator {
 	
 	@Autowired
 	private MailManager mailManager;
-	
-	@Autowired
-	private TradeService tradeService;
 	
 	@Autowired
 	private MarketService marketService;
@@ -48,7 +45,7 @@ public class JobConfigurator {
 		try{
 			marketService.clearPreDeal();
 			marketService.checkExparations();
-			tradeService.trade();
+			new TradeServiceImpl().trade();
 			marketService.sendConfirmationMessages();
 		}catch (ServiceException e) {
 			mailManager.sendToAdmin(e);

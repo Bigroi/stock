@@ -35,25 +35,17 @@
 				<input type="number" name="maxVolume" placeholder="150" pattern="^\d+$" required id="forMaxVolume"/>
 			</div>
 			<div>
-				<label for="forExpDate">${label.lot.exp_date} *</label>
-				<input type="text" name="exparationDate" placeholder="01.01.2018" required 
-					pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])\.(0[1-9]|1[012])\.[0-9]{4}"
-					id="forExpDate"/>
+				<label for="forAddressId">${label.lot.address} *</label>
+				<select name="addressId" id="forAddressId" class="address-selector">
+					<option value="-1" selected>${label.lot.list}</option>
+					<c:forEach var="address" items="${listOfAddresses}">
+						<option value="${address.id}">${address.country}, ${address.city}, ${address.address}</option>
+					</c:forEach>
+				</select>
 			</div>
 		</div>
 		<div>
 			<div>
-				<div>
-					<div>
-						<label for="forAddressId">${label.lot.address} *</label>
-						<select name="addressId" id="forAddressId" class="address-selector">
-							<option value="-1" selected>${label.lot.list}</option>
-							<c:forEach var="address" items="${listOfAddresses}">
-								<option value="${address.id}">${address.country}, ${address.city}, ${address.address}</option>
-							</c:forEach>
-						</select>
-					</div>
-				</div>
 				<div class="forMapLotsTender google-map-container"></div>
 			</div>
 			<div id="form-list"></div>	

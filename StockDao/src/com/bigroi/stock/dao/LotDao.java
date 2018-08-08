@@ -32,5 +32,7 @@ public interface LotDao {
 	
 	void closeLots() throws DaoException;
 
-	List<Lot> setBySessionId(String sessionId) throws DaoException;
+	List<Lot> getByDescription(String description) throws DaoException;
+
+	void deleteByDescription(String description) throws DaoException;
 }

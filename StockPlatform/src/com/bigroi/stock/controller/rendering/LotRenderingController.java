@@ -56,7 +56,7 @@ public class LotRenderingController extends BaseRenderingController{
 	
 	@RequestMapping("/MyLots.spr")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView myList() throws  ServiceException {
+	public ModelAndView myList() {
 		return createModelAndView("myLots");
 	}
 

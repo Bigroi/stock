@@ -97,7 +97,16 @@ public class TenderServiceImpl implements TenderService{
 	@Override
 	public List<Tender> getBySessionId(String sessionId) throws ServiceException {
 		try {
-			return tenderDao.setBySessionId(sessionId);
+			return tenderDao.getByDescription(sessionId);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	public void deleteBySessionId(String sessionId) throws ServiceException {
+		try {
+			tenderDao.deleteByDescription(sessionId);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}

@@ -20,7 +20,7 @@ public class ProductRenderingController extends BaseRenderingController{
 	
 	@RequestMapping("/List.spr")
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView activeProductList() throws ServiceException {
+	public ModelAndView activeProductList() {
 		return createModelAndView("products");
 	}
 
@@ -34,15 +34,13 @@ public class ProductRenderingController extends BaseRenderingController{
 
 	@RequestMapping("/admin/List.spr")
 	@Secured("ROLE_ADMIN")
-	public ModelAndView allProducts() throws ServiceException {
+	public ModelAndView allProducts() {
 		return createModelAndView("productsForAdmin");
 	}
 
 	@RequestMapping("/admin/Form.spr")
 	@Secured("ROLE_ADMIN")
-	public ModelAndView form(
-			@RequestParam(value = "id", defaultValue = "-1") long id) 
-					throws ServiceException {
+	public ModelAndView form(@RequestParam(value = "id", defaultValue = "-1") long id) {
 		return createModelAndView("productForm");
 	}
 

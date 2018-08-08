@@ -70,7 +70,7 @@ public class LotDaoImpl implements LotDao {
 			+ " WHERE L.COMPANY_ID = ?"
 			+ " AND MIN_VOLUME <= MAX_VOLUME";
 	
-	private static final String GET_LOTS_BY_SESSION_ID = 
+	private static final String GET_LOTS_BY_DESCRIPTION = 
 			"SELECT " + LotRowMapper.ALL_COLUMNS
 			+ LotRowMapper.FROM
 			+ " WHERE L.COMPANY_ID = 0 "
@@ -95,6 +95,11 @@ public class LotDaoImpl implements LotDao {
 			"DELETE "
 			+ " FROM LOT "
 			+ " WHERE ID = ? AND COMPANY_ID = ?";
+	
+	private static final String DELETE_BY_DESCRIPTION = 
+			"DELETE "
+			+ " FROM LOT "
+			+ " WHERE DESCRIPTION = ? AND COMPANY_ID = 0";
 	
 	private static final String CLOSE_LOTS = 
 			"DELETE "
@@ -184,6 +189,12 @@ public class LotDaoImpl implements LotDao {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(SET_STATUS_BY_ID_AND_COMPANY, status.name(), id, companyId) == 1;
 	}
+	
+	@Override
+	public void deleteByDescription(String description) throws DaoException {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		template.update(DELETE_BY_DESCRIPTION, description);
+	}
 
 	@Override
 	public void update(Collection<Lot> lotsToUpdate) throws DaoException {
@@ -225,9 +236,9 @@ public class LotDaoImpl implements LotDao {
 	}
 	
 	@Override
-	public List<Lot> setBySessionId(String sessionId) throws DaoException {
+	public List<Lot> getByDescription(String description) throws DaoException {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(GET_LOTS_BY_SESSION_ID, new LotRowMapper(), sessionId);
+		return template.query(GET_LOTS_BY_DESCRIPTION, new LotRowMapper(), description);
 	}
 	
 	private static class LotRowMapper implements RowMapper<Lot>{

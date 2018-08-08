@@ -20,4 +20,6 @@ public interface BidService<T> {
 	void merge(T lot, long companyId) throws ServiceException;
 
 	void deactivate(long id, long companyId) throws ServiceException;
+	
+	void deleteBySessionId(String sessionId) throws ServiceException;
 }

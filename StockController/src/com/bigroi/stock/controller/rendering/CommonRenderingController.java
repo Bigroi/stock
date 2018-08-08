@@ -44,8 +44,7 @@ public class CommonRenderingController extends BaseRenderingController{
 	}
 	
 	@RequestMapping(value = "/ResetForm.spr")
-	public ModelAndView resetForm()
-			throws ServiceException {
+	public ModelAndView resetForm() {
 		return createModelAndView("resetForm");
 	}
 

@@ -10,29 +10,31 @@ public class TestTenderForUI {
 	@Id
 	private final long id;
 	
-	@Column(value = "label.tender.product", responsivePriority=-6)
+	@Column(value = "label.tender.product", responsivePriority=-1)
 	private final String productName;
 	
-	@Column(value = "label.tender.min_price", responsivePriority=-1)
-	private final double price;
+	@Column(value = "label.tender.max_price", responsivePriority=-2)
+	private final double maxPrice;
 	
-	@Column(value = "label.tender.max_volume", responsivePriority=-2)
+	@Column(value = "label.tender.max_volume", responsivePriority=-3)
 	private final int maxVolume;
 	
 	@Edit(edit="getTestTenderDialogParams")
-	private final String edit = "NNN";
+	private final String edit;
 	
 	public TestTenderForUI(Tender tender) {
 		this.productName = tender.getProduct().getName();
-		this.price = tender.getPrice();
+		this.maxPrice = tender.getPrice();
 		this.maxVolume = tender.getMaxVolume();
 		this.id = tender.getId();
+		this.edit = "NNN";
 	}
 
 	public TestTenderForUI(TenderForUI tenderForUI) {
 		this.productName = tenderForUI.productName;
-		this.price = tenderForUI.maxPrice;
+		this.maxPrice = tenderForUI.maxPrice;
 		this.maxVolume = tenderForUI.maxVolume;
 		this.id = tenderForUI.id;
+		this.edit = "NNN";
 	}
 }

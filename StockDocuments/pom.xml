@@ -13,6 +13,7 @@
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
+		<testSourceDirectory>test</testSourceDirectory>
 		<resources>
 			<resource>
 				<directory>docs_${LOCALE}</directory>
@@ -35,6 +36,12 @@
 			<groupId>Stock</groupId>
 			<artifactId>Common</artifactId>
 			<version>${stock.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>

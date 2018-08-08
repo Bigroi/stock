@@ -98,7 +98,16 @@ public class LotServiceImpl implements LotService {
 	@Override
 	public List<Lot> getBySessionId(String sessionId) throws ServiceException {
 		try {
-			return lotDao.setBySessionId(sessionId);
+			return lotDao.getByDescription(sessionId);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	public void deleteBySessionId(String sessionId) throws ServiceException {
+		try {
+			lotDao.deleteByDescription(sessionId);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}

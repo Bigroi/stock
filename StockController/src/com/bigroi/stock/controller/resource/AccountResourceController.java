@@ -40,7 +40,7 @@ public class AccountResourceController extends BaseResourseController {
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String accountPage(Authentication loggedInUser) throws ServiceException, CloneNotSupportedException {
+	public String accountPage(Authentication loggedInUser) {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		user = user.cloneUser();
 		user.setPassword("");
