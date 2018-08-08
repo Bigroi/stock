@@ -24,6 +24,7 @@ import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.DealService;
 import com.bigroi.stock.service.ServiceException;
+import com.bigroi.stock.service.TradeService;
 
 @Controller
 @RequestMapping(value = "/deal/json", produces = "text/plain;charset=UTF-8")
@@ -36,6 +37,9 @@ public class DealResourseController extends BaseResourseController {
 	
 	@Autowired
 	private DealService dealService;
+	
+	@Autowired
+	private TradeService tradeService;
 	
 	@RequestMapping(value = "/Form.spr", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -77,6 +81,16 @@ public class DealResourseController extends BaseResourseController {
 	public String testDealList(Authentication loggedInUser) 
 			throws ServiceException, TableException {
 		TableResponse<TestDealForUI> table = new TableResponse<>(TestDealForUI.class, new ArrayList<>());
+		return new ResultBean(1, table, null).toString();
+	}
+	
+	@RequestMapping(value = "/TestTrade.spr")
+	@ResponseBody
+	public String testTrade(Authentication loggedInUser) 
+			throws ServiceException, TableException {
+		List<Deal> deals = tradeService.testTrade(getSessionId());
+		List<TestDealForUI> dealsForUI = deals.stream().map(TestDealForUI::new).collect(Collectors.toList());
+		TableResponse<TestDealForUI> table = new TableResponse<>(TestDealForUI.class, dealsForUI);
 		return new ResultBean(1, table, "").toString();
 	}
 	

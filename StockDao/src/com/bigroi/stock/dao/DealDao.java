@@ -26,4 +26,6 @@ public interface DealDao {
 	
 	public List<Deal> getListBySellerAndBuyerApproved() throws DaoException;
 
+	void getTestPossibleDeals(List<Lot> lots, List<Tender> tenders, long productId, String sessionId) throws DaoException;
+
 }

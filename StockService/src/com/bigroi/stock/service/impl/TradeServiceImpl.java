@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,7 @@ import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForCustomer;
 import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
+import com.bigroi.stock.service.AddressService;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.TradeService;
 
@@ -38,6 +41,9 @@ public class TradeServiceImpl implements TradeService{
 	private LotDao lotDao;
 	@Autowired
 	private TenderDao tenderDao;
+	@Autowired
+	private AddressService addressService;
+	
 	
 	@Autowired
 	private DealConfirmationMessageForCustomer dealConfirmationMessageForCustomer;
@@ -180,6 +186,51 @@ public class TradeServiceImpl implements TradeService{
 			if (lot.getPosiblePartners().isEmpty()){
 				tradeLots.remove(lot);
 			}
+		}
+	}
+
+	@Override
+	public List<Deal> testTrade(String sessionId) throws ServiceException {
+		try{
+			lotDao = Mockito.mock(LotDao.class);
+			tenderDao = Mockito.mock(TenderDao.class);
+			dealConfirmationMessageForCustomer = Mockito.mock(DealConfirmationMessageForCustomer.class);
+			dealConfirmationMessageForSeller = Mockito.mock(DealConfirmationMessageForSeller.class);
+			
+			DealDao realDealDao = dealDao;
+			dealDao = Mockito.mock(DealDao.class);
+			Mockito.doAnswer(x -> testDaalDaoAnser(x, realDealDao, sessionId))
+			.when(dealDao).getPosibleDeals(Mockito.any(), Mockito.any(), Mockito.anyLong());
+			
+			trade();
+			
+			deals.stream().forEach(this::enrichAddress);
+			
+			return deals;
+		}catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
+	
+	private void enrichAddress(Deal deal){
+		try{
+			deal.setBuyerAddress(addressService.getAddressById(deal.getBuyerAddressId(), 0));
+			deal.setSellerAddress(addressService.getAddressById(deal.getSellerAddressId(), 0));
+		} catch (ServiceException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private Void testDaalDaoAnser(InvocationOnMock invocation, DealDao realDealDao, String sessionId){
+		try{
+			List<Lot> lots = (List<Lot>) invocation.getArguments()[0];
+			List<Tender> tenders = (List<Tender>) invocation.getArguments()[1];
+			long productId = (long) invocation.getArguments()[2];
+			realDealDao.getTestPossibleDeals(lots, tenders, productId, sessionId);
+			return null;
+		}catch (DaoException e) {
+			throw new RuntimeException(e);
 		}
 	}
 }

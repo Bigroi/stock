@@ -52,6 +52,7 @@ public class DealDaoImpl implements DealDao {
 			+ " ON L.ADDRESS_ID = LA.ID "
 			+ " AND L.`STATUS` = 'ACTIVE' "
 			+ " AND L.MAX_VOLUME >= L.MIN_VOLUME "
+			+ " LOT_DESCRIPTION_CONDITION "
 			+ " JOIN TENDER T "
 			+ " ON L.PRODUCT_ID = T.PRODUCT_ID "
 			+ " AND T.`STATUS` = 'ACTIVE' "
@@ -59,7 +60,8 @@ public class DealDaoImpl implements DealDao {
 			+ " AND T.PRICE > L.PRICE "
 			+ " AND T.MIN_VOLUME <= L.MAX_VOLUME "
 			+ " AND L.MIN_VOLUME <= T.MAX_VOLUME "
-			+ " AND T.COMPANY_ID <> L.COMPANY_ID "
+			+ " TENDER_DESCRIPTIOM_CONDITION "
+			+ " AND COMPAMY_CONDITION "
 			+ " JOIN ADDRESS TA "
 			+ " ON T.ADDRESS_ID = TA.ID "
 			+ " LEFT JOIN BLACK_LIST BL "
@@ -171,87 +173,29 @@ public class DealDaoImpl implements DealDao {
 	private DataSource datasource;
 	
 	@Override
+	public void getTestPossibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId, String sessionId)
+			throws DaoException {
+		String sql = GET_POSIBLE_BIDS
+				.replace("COMPAMY_CONDITION", " T.COMPANY_ID = 0 AND L.COMPANY_ID = 0 ")
+				.replace("LOT_DESCRIPTION_CONDITION", " AND L.DESCRIPTION = '" + sessionId + "' ")
+				.replaceAll("TENDER_DESCRIPTIOM_CONDITION", "AND T.DESCRIPTION = '" + sessionId + "' ");
+		getTestPossibleDeals(sql, tradeLots, tradeTenders, productId);
+	}
+	
+	@Override
 	public void getPosibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId) throws DaoException {
+		String sql = GET_POSIBLE_BIDS
+				.replace("COMPAMY_CONDITION", " T.COMPANY_ID <> L.COMPANY_ID ")
+				.replace("LOT_DESCRIPTION_CONDITION", "")
+				.replaceAll("TENDER_DESCRIPTIOM_CONDITION", "");
+		getTestPossibleDeals(sql, tradeLots, tradeTenders, productId);
+	}
+	
+	private void getTestPossibleDeals(String sql, List<Lot> tradeLots, List<Tender> tradeTenders, long productId){
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		Map<Long, Lot> lots = new HashMap<>();
 		Map<Long, Tender> tenders = new HashMap<>();
-		template.query(GET_POSIBLE_BIDS, new RowMapper<Void>(){
-
-			private SQLException exception = null;
-			
-			@Override
-			public Void mapRow(ResultSet rs, int rowNumber) throws SQLException {
-				
-				long lotId = rs.getLong("LOT_ID");
-				Lot lot = lots.computeIfAbsent(lotId, id -> createLotForDeal(id, rs));
-
-				long tenderId = rs.getLong("TENDER_ID");
-				Tender tender = tenders.computeIfAbsent(tenderId, id -> createTenderForDeal(id, rs));
-				
-				tender.addPosiblePartner(lot);
-				lot.addPosiblePartner(tender);
-				
-				if (exception != null){
-					throw exception;
-				}
-				return null;
-			}
-			
-			private Tender createTenderForDeal(Long tenderId, ResultSet rs) {
-				try{
-					Tender tender = new Tender();
-					tender.setId(tenderId);
-					tender.setDescription(rs.getString("TENDER_DESCRIPTION"));
-					tender.setExparationDate(rs.getDate("TENDER_EXP_DATE"));
-					tender.setPrice(rs.getDouble("TENDER_PRICE"));
-					tender.setProductId(rs.getLong("PRODUCT_ID"));
-					tender.setStatus(BidStatus.valueOf(rs.getString("TENDER_STATUS")));
-					tender.setMaxVolume(rs.getInt("TENDER_VOLUME"));
-					tender.setMinVolume(rs.getInt("TENDER_MIN_VOLUME"));
-					tender.setAddressId(rs.getLong("TENDER_ADDRESS_ID"));
-					
-					CompanyAddress address = new CompanyAddress();
-					address.setLatitude(rs.getDouble("TENDER_LATITUDE"));
-					address.setLongitude(rs.getDouble("TENDER_LONGITUDE"));
-					address.setCompanyId(rs.getLong("TENDER_COMPANY_ID"));
-					address.setId(rs.getLong("TENDER_ADDRESS_ID"));
-					tender.setCompanyAddress(address);
-					
-					return tender;
-				}catch (SQLException e) {
-					exception = e;
-					return null;
-				}
-			}
-			
-			private Lot createLotForDeal(Long lotId, ResultSet rs) {
-				try{
-					Lot lot = new Lot();
-					lot.setId(lotId);
-					lot.setDescription(rs.getString("LOT_DESCRIPTION"));
-					lot.setExparationDate(rs.getDate("LOT_EXP_DATE"));
-					lot.setPrice(rs.getDouble("LOT_PRICE"));
-					lot.setProductId(rs.getLong("PRODUCT_ID"));
-					lot.setStatus(BidStatus.valueOf(rs.getString("LOT_STATUS")));
-					lot.setMaxVolume(rs.getInt("LOT_VOLUME"));
-					lot.setMinVolume(rs.getInt("LOT_MIN_VOLUME"));
-					lot.setAddressId(rs.getLong("LOT_ADDRESS_ID"));
-					
-					CompanyAddress address = new CompanyAddress();
-					address.setLatitude(rs.getDouble("LOT_LATITUDE"));
-					address.setLongitude(rs.getDouble("LOT_LONGITUDE"));
-					address.setCompanyId(rs.getLong("LOT_COMPANY_ID"));
-					address.setId(rs.getLong("LOT_ADDRESS_ID"));
-					lot.setCompanyAddress(address);
-					
-					return lot;
-				}catch (SQLException e) {
-					exception = e;
-					return null;
-				}
-			}
-			
-		}, productId);
+		template.query(sql, new TradeDealRowMapper(lots, tenders), productId);
 		
 		tradeLots.addAll(lots.values());
 		tradeTenders.addAll(tenders.values());
@@ -404,6 +348,91 @@ public class DealDaoImpl implements DealDao {
 			address.setCompany(company);
 			
 			return deal;
+		}
+		
+	}
+	
+	private static final class TradeDealRowMapper implements RowMapper<Void>{
+
+		private SQLException exception = null;
+		private Map<Long, Lot> lots;
+		private Map<Long, Tender> tenders;
+		
+		public TradeDealRowMapper(Map<Long, Lot> lots, Map<Long, Tender> tenders){
+			this.lots = lots;
+			this.tenders = tenders;
+		}
+		
+		@Override
+		public Void mapRow(ResultSet rs, int rowNumber) throws SQLException {
+			
+			long lotId = rs.getLong("LOT_ID");
+			Lot lot = lots.computeIfAbsent(lotId, id -> createLotForDeal(id, rs));
+
+			long tenderId = rs.getLong("TENDER_ID");
+			Tender tender = tenders.computeIfAbsent(tenderId, id -> createTenderForDeal(id, rs));
+			
+			tender.addPosiblePartner(lot);
+			lot.addPosiblePartner(tender);
+			
+			if (exception != null){
+				throw exception;
+			}
+			return null;
+		}
+		
+		private Tender createTenderForDeal(Long tenderId, ResultSet rs) {
+			try{
+				Tender tender = new Tender();
+				tender.setId(tenderId);
+				tender.setDescription(rs.getString("TENDER_DESCRIPTION"));
+				tender.setExparationDate(rs.getDate("TENDER_EXP_DATE"));
+				tender.setPrice(rs.getDouble("TENDER_PRICE"));
+				tender.setProductId(rs.getLong("PRODUCT_ID"));
+				tender.setStatus(BidStatus.valueOf(rs.getString("TENDER_STATUS")));
+				tender.setMaxVolume(rs.getInt("TENDER_VOLUME"));
+				tender.setMinVolume(rs.getInt("TENDER_MIN_VOLUME"));
+				tender.setAddressId(rs.getLong("TENDER_ADDRESS_ID"));
+				
+				CompanyAddress address = new CompanyAddress();
+				address.setLatitude(rs.getDouble("TENDER_LATITUDE"));
+				address.setLongitude(rs.getDouble("TENDER_LONGITUDE"));
+				address.setCompanyId(rs.getLong("TENDER_COMPANY_ID"));
+				address.setId(rs.getLong("TENDER_ADDRESS_ID"));
+				tender.setCompanyAddress(address);
+				
+				return tender;
+			}catch (SQLException e) {
+				exception = e;
+				return null;
+			}
+		}
+		
+		private Lot createLotForDeal(Long lotId, ResultSet rs) {
+			try{
+				Lot lot = new Lot();
+				lot.setId(lotId);
+				lot.setDescription(rs.getString("LOT_DESCRIPTION"));
+				lot.setExparationDate(rs.getDate("LOT_EXP_DATE"));
+				lot.setPrice(rs.getDouble("LOT_PRICE"));
+				lot.setProductId(rs.getLong("PRODUCT_ID"));
+				lot.setStatus(BidStatus.valueOf(rs.getString("LOT_STATUS")));
+				lot.setMaxVolume(rs.getInt("LOT_VOLUME"));
+				lot.setMinVolume(rs.getInt("LOT_MIN_VOLUME"));
+				lot.setAddressId(rs.getLong("LOT_ADDRESS_ID"));
+				
+				CompanyAddress address = new CompanyAddress();
+				address.setLatitude(rs.getDouble("LOT_LATITUDE"));
+				address.setLongitude(rs.getDouble("LOT_LONGITUDE"));
+				address.setCompanyId(rs.getLong("LOT_COMPANY_ID"));
+				address.setId(rs.getLong("LOT_ADDRESS_ID"));
+				lot.setCompanyAddress(address);
+				
+				return lot;
+			}catch (SQLException e) {
+				exception = e;
+				return null;
+			}
 		}
 		
 	}

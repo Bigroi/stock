@@ -1,10 +1,8 @@
 $(document).ready(function(){
-//	$(".add-test-lot").on("click", function(){
-//		showDialog(getTestLotDialogParams($(".test-lot-table"), {idColumn:"id"}));
-//	});
-//	$(".add-test-tender").on("click", function(){
-//		showDialog(getTestTenderDialogParams($(".test-tender-table"), {idColumn:"id"}));
-//	});
-//	$('.test-trade').on("click", function(){
-//	});
+	$('.test-trade').on("click", function(evt){
+		$table = $("#main-table-deal");
+		$table.DataTable().destroy();
+		makeTable("/deal/json/TestTrade.spr", $table);
+		return false;
+	});
 });
