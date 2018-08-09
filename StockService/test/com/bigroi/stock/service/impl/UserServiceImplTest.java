@@ -140,11 +140,19 @@ public class UserServiceImplTest extends BaseTest {
 	}
 	
 	@Test(expected = UsernameNotFoundException.class)
-	public void loadUserByUsernameExceptionTest(){
+	public void loadUserByUsernameThrowExceptionTest(){
 		// given
 		final String USER_NAME = randomString();
 		// when
 		userService.loadUserByUsername(USER_NAME);
+	}
+	
+	@Test(expected = ServiceException.class)
+	public void deleteGenerateKeysThrowExceptionTest() throws DaoException, ServiceException{
+		// given
+		 Mockito.doThrow(DaoException.class).when(keysDao).deleteGenerateKeysByDate();
+		// when
+		userService.deleteGenerateKeys();
 	}
 	
 	@Test

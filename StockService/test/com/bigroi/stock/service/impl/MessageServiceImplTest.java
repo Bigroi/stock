@@ -1,5 +1,6 @@
 package com.bigroi.stock.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -16,7 +17,6 @@ import com.bigroi.stock.messager.MailManager;
 import com.bigroi.stock.messager.MailManagerException;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
-import com.google.common.collect.ImmutableList;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MessageServiceImplTest extends BaseTest {
@@ -31,23 +31,23 @@ public class MessageServiceImplTest extends BaseTest {
 	//@Test
 	public void sendAllEmailsTest() throws DaoException, MailManagerException, ServiceException{
 		// given
-		final long EMAIL_ID = random.nextLong();
+		final int EMAIL_COUNT = 5;
 		
-		Email email = createObject(Email.class);
-		email.setId(EMAIL_ID);
+		List<Email> emailList = new ArrayList<>();
+		for(int i = 0; i < EMAIL_COUNT; i++){
+			emailList.add(createObject(Email.class));
+		}
 		
-		List<Email> emailList = ImmutableList.of(email);
 		// mock
 		Mockito.when(emailDao.getAll()).thenReturn(emailList);
-		Mockito.doNothing().when(mailManager).send(email);
-	    Mockito.when(emailDao.deleteById(EMAIL_ID)).thenReturn(true);
-	    Mockito.stub(!emailList.isEmpty()).toReturn(true);// TODO sendAllEmailsTest fix
+		Mockito.doNothing().when(mailManager).send(Mockito.any());
+	    Mockito.when(emailDao.deleteById(Mockito.anyLong())).thenReturn(true);
 		// when
 		messageServicel.sendAllEmails();
 		// then
 		Mockito.verify(emailDao, Mockito.times(1)).getAll();
-		Mockito.verify(mailManager, Mockito.times(1)).send(email);
-		Mockito.verify(emailDao, Mockito.times(1)).deleteById(EMAIL_ID);
+		Mockito.verify(mailManager, Mockito.times(EMAIL_COUNT)).send(Mockito.any());
+		Mockito.verify(emailDao, Mockito.times(EMAIL_COUNT)).deleteById(Mockito.anyLong());
 	}
 	
 	@Test
