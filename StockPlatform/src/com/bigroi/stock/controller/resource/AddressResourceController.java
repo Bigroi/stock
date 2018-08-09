@@ -20,19 +20,24 @@ import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.AddressService;
+import com.bigroi.stock.service.LabelService;
 import com.bigroi.stock.service.ServiceException;
 
 @Controller
 @RequestMapping(value = "/address/json", produces = "text/plain;charset=UTF-8")
 public class AddressResourceController extends BaseResourseController {
 	
-	private static final String DEFAULT_ADDRESS_LABEL = "label.address.default_address";
-	private static final String NOT_DEFAULT_ADDRESS_LABEL = "label.address.not_default_address";
-	private static final String AUTHORISATION_ERROR_LABEL = "label.address.not_authorized";
-	private static final String DEFAULT_DELETE_ERROR_LABEL = "label.address.deffalt_delete_error";
+	private static final String ADDRESS_CATEGORY = "address";
+	private static final String DEFAULT_ADDRESS_LABEL = "default_address";
+	private static final String NOT_DEFAULT_ADDRESS_LABEL = "not_default_address";
+	private static final String AUTHORISATION_ERROR_LABEL = "not_authorized";
+	private static final String DEFAULT_DELETE_ERROR_LABEL = "deffalt_delete_error";
 	
 	@Autowired
 	private AddressService addressService;
+	
+	@Autowired
+	private LabelService labelService;
 	
 	@RequestMapping(value = "/Get.spr")
 	@ResponseBody
@@ -58,9 +63,9 @@ public class AddressResourceController extends BaseResourseController {
 		List<AddressForUI> addressesForUI = listAddresses.stream()
 				.map(address -> new AddressForUI(
 						address,
-						address.getId() == user.getCompany().getAddressId() ? 
-								getLabelValue(DEFAULT_ADDRESS_LABEL) :
-								getLabelValue(NOT_DEFAULT_ADDRESS_LABEL)
+						address.getId() == user.getCompany().getAddressId() ?
+								labelService.getLabel(ADDRESS_CATEGORY, DEFAULT_ADDRESS_LABEL, getLanguage()) :
+								labelService.getLabel(ADDRESS_CATEGORY, NOT_DEFAULT_ADDRESS_LABEL, getLanguage())
 						))
 				.collect(Collectors.toList());
 		TableResponse<AddressForUI> table = new TableResponse<>(AddressForUI.class, addressesForUI);
@@ -96,8 +101,8 @@ public class AddressResourceController extends BaseResourseController {
 		addressService.merge(address, user.getCompanyId());
 		return new ResultBean(1, new AddressForUI(address,
 				address.getId() == user.getCompany().getAddressId() ? 
-				getLabelValue(DEFAULT_ADDRESS_LABEL) :
-				getLabelValue(NOT_DEFAULT_ADDRESS_LABEL)
+				labelService.getLabel(ADDRESS_CATEGORY, DEFAULT_ADDRESS_LABEL, getLanguage()) :
+				labelService.getLabel(ADDRESS_CATEGORY, NOT_DEFAULT_ADDRESS_LABEL, getLanguage())
 			), null).toString();
 	}
 	

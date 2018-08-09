@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.json.ResultBean;
 
-public abstract class BaseResourseController extends BaseRenderingController{
+public abstract class BaseResourseController extends BaseController{
 
 	@ExceptionHandler(Throwable.class)
 	@ResponseBody

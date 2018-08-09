@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.controller.BaseRenderingController;
 import com.bigroi.stock.security.AuthenticationHandler;
+import com.bigroi.stock.service.LabelService;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.UserService;
 
@@ -21,6 +22,9 @@ public class CommonRenderingController extends BaseRenderingController{
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private LabelService labelService;
 	
 	@RequestMapping("/Login.spr")
 	public ModelAndView login() {
@@ -54,9 +58,9 @@ public class CommonRenderingController extends BaseRenderingController{
 		ModelAndView modelAndView = createModelAndView("resetPassw");
 		String message;
 		if (userService.changePassword(email, code)) {
-			message = this.getLabelValue("label.resetPassw.success");
+			message = labelService.getLabel("resetPassw", "success", getLanguage());
 		} else {
-			message = this.getLabelValue("label.resetPassw.error");
+			message = labelService.getLabel("resetPassw", "error", getLanguage());
 		}
 		modelAndView
 			.addObject("message", message)

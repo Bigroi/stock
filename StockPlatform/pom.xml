@@ -23,14 +23,6 @@
 					<webResources>
 						<webResource>
 							<targetPath>WEB-INF/classes</targetPath>
-							<directory>labels_${LOCALE}</directory>
-						</webResource>
-						<webResource>
-							<targetPath>WEB-INF/classes</targetPath>
-							<directory>resource</directory>
-						</webResource>
-						<webResource>
-							<targetPath>WEB-INF/classes</targetPath>
 							<directory>spring</directory>
 						</webResource>
 					</webResources>

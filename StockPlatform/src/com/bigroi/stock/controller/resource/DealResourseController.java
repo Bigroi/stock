@@ -23,6 +23,7 @@ import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.DealService;
+import com.bigroi.stock.service.LabelService;
 import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.impl.TradeServiceImpl;
 
@@ -37,6 +38,9 @@ public class DealResourseController extends BaseResourseController {
 	
 	@Autowired
 	private DealService dealService;
+	
+	@Autowired
+	private LabelService labelService;
 	
 	@RequestMapping(value = "/Form.spr", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -53,8 +57,8 @@ public class DealResourseController extends BaseResourseController {
 		}
 	}
 	
-	private DealForUI translateDeal(DealForUI deal){
-		deal.setStatus(this.getLabelValue(deal.getStatus()));
+	private DealForUI translateDeal(DealForUI deal) {
+		deal.setStatus(labelService.getLabel("label", deal.getStatus(), getLanguage()));
 		return deal;
 	}
 	

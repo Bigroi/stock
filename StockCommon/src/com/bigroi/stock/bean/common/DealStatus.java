@@ -25,7 +25,7 @@ public enum DealStatus {
 	
 	@Override
 	public String toString() {
-		return "label.deal." + name().toLowerCase();
+		return name().toLowerCase();
 	}
 	
 }

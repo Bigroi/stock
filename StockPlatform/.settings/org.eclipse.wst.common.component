@@ -3,9 +3,7 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/spring"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/labels_by"/>
         <dependent-module archiveName="Service-0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/StockService/StockService">
             <dependency-type>uses</dependency-type>
         </dependent-module>
