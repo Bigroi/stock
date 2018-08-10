@@ -17,14 +17,14 @@ import com.bigroi.stock.dao.LabelDao;
 @Repository
 public class LabelDaoImpl implements LabelDao {
 
-	private final static String LANGUAGE = "LANGUAGE";
+	private static final String LANGUAGE = "LANGUAGE";
 	
-	private final static String GET_LABEL = 
+	private static final String GET_LABEL = 
 			  "SELECT " + LANGUAGE 
 			+ " FROM LABEL "
 			+ " WHERE CATEGORY = ? AND NAME = ?";
 	
-	private final static String GET_ALL_LABELS = 
+	private static final String GET_ALL_LABELS = 
 			  "SELECT " + LANGUAGE + ", CATEGORY, NAME "
 			+ " FROM LABEL ";
 	
