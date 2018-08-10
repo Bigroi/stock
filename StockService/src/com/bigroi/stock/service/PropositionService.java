@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 @Service
 public interface PropositionService {
 	
-	List<Proposition> getListProposition() throws ServiceException;
+	List<Proposition> getListProposition();
 	
-	void delete(long id, long companyId) throws ServiceException;
+	void delete(long id, long companyId);
 
-	List<Proposition> getListHystoryProposition(long companyId) throws ServiceException;
+	List<Proposition> getListHystoryProposition(long companyId);
 	
-	List<Proposition> getListPropositionsByTrans() throws ServiceException;
+	List<Proposition> getListPropositionsByTrans();
 	
 }

@@ -10,17 +10,18 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.db.Deal;
+import com.bigroi.stock.util.exception.StockRuntimeException;
 
 @Repository
 public class DealDocument extends Document<Deal>{
 
 	public static final String DEAL_DOC_FILE_ANME = "Deal.doc";
 	
-	public DealDocument() throws DocumentException{
+	public DealDocument(){
 		super(DEAL_DOC_FILE_ANME);
 	}
 	
-	public byte[] getDocument(Deal deal) throws DocumentException{
+	public byte[] getDocument(Deal deal) {
 		try {
 			Map<String, Object> map = new HashMap<>();
 			map.put("{date}", new SimpleDateFormat("dd.MM.yyyy").format(new Date()));
@@ -47,7 +48,7 @@ public class DealDocument extends Document<Deal>{
 			replaceText(map).write(baos);
 			return baos.toByteArray();
 		} catch (IOException e) {
-			throw new DocumentException(e);
+			throw new StockRuntimeException(e);
 		}
 		
 	}

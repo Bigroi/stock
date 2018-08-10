@@ -9,8 +9,8 @@ import com.bigroi.stock.bean.db.Deal;
 @Service
 public interface TradeService {
 	
-	void trade() throws ServiceException;
+	void trade();
 
-	List<Deal> testTrade(String sessionId) throws ServiceException;
+	List<Deal> testTrade(String sessionId);
 
 }

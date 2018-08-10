@@ -17,11 +17,9 @@ import com.bigroi.stock.bean.ui.AddressForUI;
 import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
-import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.AddressService;
 import com.bigroi.stock.service.LabelService;
-import com.bigroi.stock.service.ServiceException;
 
 @Controller
 @RequestMapping(value = "/address/json", produces = "text/plain;charset=UTF-8")
@@ -41,8 +39,7 @@ public class AddressResourceController extends BaseResourseController {
 	
 	@RequestMapping(value = "/Get.spr")
 	@ResponseBody
-	public String getAddress(@RequestParam("id") long id, Authentication loggedInUser) 
-			throws ServiceException {
+	public String getAddress(@RequestParam("id") long id, Authentication loggedInUser){
 		long companyId;
 		if (loggedInUser != null && loggedInUser.getPrincipal() instanceof StockUser){
 			StockUser user = (StockUser) loggedInUser.getPrincipal();
@@ -57,7 +54,7 @@ public class AddressResourceController extends BaseResourseController {
 	@RequestMapping(value = "/List.spr")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public String getAddresses(Authentication loggedInUser) throws ServiceException, TableException{
+	public String getAddresses(Authentication loggedInUser){
 		StockUser user = (StockUser) loggedInUser.getPrincipal();
 		List<CompanyAddress> listAddresses = addressService.getCompanyAddresses(user.getCompanyId());
 		List<AddressForUI> addressesForUI = listAddresses.stream()
@@ -75,8 +72,7 @@ public class AddressResourceController extends BaseResourseController {
 	@RequestMapping(value = "/Form.spr", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String form(@RequestParam(value = "id", defaultValue = "-1") long id, 
-			Authentication loggedInUser) throws ServiceException {
+	public String form(@RequestParam(value = "id", defaultValue = "-1") long id, Authentication loggedInUser){
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		CompanyAddress companyAddress = addressService.getAddressById(id, user.getCompanyId());
 		if (companyAddress == null){
@@ -89,8 +85,7 @@ public class AddressResourceController extends BaseResourseController {
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public String save(@RequestParam("json") String jsonAddress, Authentication loggedInUser) 
-			throws ServiceException{
+	public String save(@RequestParam("json") String jsonAddress, Authentication loggedInUser){
 		StockUser user =  (StockUser) loggedInUser.getPrincipal();
 		CompanyAddress address = GsonUtil.getGson().fromJson(jsonAddress, CompanyAddress.class);
 		
@@ -109,7 +104,7 @@ public class AddressResourceController extends BaseResourseController {
 	@RequestMapping(value = "/Delete.spr")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public String delete(@RequestParam("id") long id, Authentication loggedInUser) throws ServiceException {
+	public String delete(@RequestParam("id") long id, Authentication loggedInUser){
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		if (user.getCompany().getAddressId() == id){
 			return new ResultBean(-1, DEFAULT_DELETE_ERROR_LABEL).toString();

@@ -18,10 +18,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.CompanyStatus;
-import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Company;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.StockUser;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserDao;
 
 @Repository
@@ -69,7 +68,7 @@ public class UserDaoImpl implements UserDao {
 	private DataSource datasource;
 
 	@Override
-	public void add(StockUser user) throws DaoException {
+	public void add(StockUser user) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -87,7 +86,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean update(StockUser user) throws DaoException {
+	public boolean update(StockUser user) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_USER_BY_ID, 
 				user.getUsername(), 
@@ -97,7 +96,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public StockUser getByUsernameWithRoles(String username) throws DaoException {
+	public StockUser getByUsernameWithRoles(String username) {
 		StockUser user = new StockUser();
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<StockUser> list = template.query(GET_USER_BY_USERNAME, new RowMapper<StockUser>(){
@@ -146,18 +145,18 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean updatePassword(StockUser user) throws DaoException {
+	public boolean updatePassword(StockUser user) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_PASSWORD_BY_ID, user.getPassword(),user.getId()) == 1;
 	}
 
 	@Override
-	public boolean updateKeyById(StockUser user) throws DaoException {
+	public boolean updateKeyById(StockUser user) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_KEY_BY_ID, user.getKeyId(), user.getId()) == 1;
 	}
 
-	private boolean updateCountAndLastTimeForLogin(StockUser user) throws DaoException {
+	private boolean updateCountAndLastTimeForLogin(StockUser user) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_COUNT_LOGINS_AND_TIME, user.getId()) == 0;
 	}

@@ -10,7 +10,6 @@ import org.springframework.context.annotation.PropertySource;
 import com.bigroi.stock.messager.message.FeedBackMessage;
 import com.bigroi.stock.messager.message.LinkResetPasswordMessage;
 import com.bigroi.stock.messager.message.LotExparationMessage;
-import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.messager.message.ResetUserPasswordMessage;
 import com.bigroi.stock.messager.message.TenderExparationMessage;
 import com.bigroi.stock.messager.message.deal.CustomerCanceledMessage;
@@ -67,77 +66,77 @@ public class MessagerConfiguration {
 	}
 	
 	@Bean
-	public CustomerCanceledMessage getCustomerCanceledMessage() throws MessageException{
+	public CustomerCanceledMessage getCustomerCanceledMessage(){
 		return new CustomerCanceledMessage("dealCancelled.txt");
 	}
 	
 	@Bean
-	public DealConfirmationMessageForCustomer getDealConfirmationMessageForCustomer() throws MessageException{
+	public DealConfirmationMessageForCustomer getDealConfirmationMessageForCustomer(){
 		return new DealConfirmationMessageForCustomer("confirmationForCustomer.txt");
 	}
 
 	@Bean
-	public DealConfirmationMessageForSeller getDealConfirmationMessageForSeller() throws MessageException{
+	public DealConfirmationMessageForSeller getDealConfirmationMessageForSeller(){
 		return new DealConfirmationMessageForSeller("confirmationForSeller.txt");
 	}
 
 	@Bean
-	public ResetUserPasswordMessage getResetUserPasswordMessage() throws MessageException{
+	public ResetUserPasswordMessage getResetUserPasswordMessage(){
 		return new ResetUserPasswordMessage("passwordReset.txt");
 	}
 	
 	@Bean
-	public SellerCanceledMessage getSellerCanceledMessage() throws MessageException{
+	public SellerCanceledMessage getSellerCanceledMessage(){
 		return new SellerCanceledMessage("dealCancelled.txt");
 	}
 	
 	@Bean
-	public SuccessDealMessageForCustomer getSuccessDealMessageForCustomer() throws MessageException{
+	public SuccessDealMessageForCustomer getSuccessDealMessageForCustomer(){
 		return new SuccessDealMessageForCustomer("successDeal.txt");
 	}
 	
 	@Bean
-	public SuccessDealMessageForSeller getSuccessDealMessageForSeller() throws MessageException{
+	public SuccessDealMessageForSeller getSuccessDealMessageForSeller(){
 		return new SuccessDealMessageForSeller("successDeal.txt");
 	}
 
 	@Bean("dealExparationMessageForCustomer")
-	public DealExparationMessageForCustomer getDealExparationMessageForCustomer() throws MessageException{
+	public DealExparationMessageForCustomer getDealExparationMessageForCustomer(){
 		return new DealExparationMessageForCustomer("expiredDeal.txt");
 	}
 	
 	@Bean("dealExparationMessageForCustomerByOpponent")
-	public DealExparationMessageForCustomer getDealExparationMessageForCustomerByOpponent() throws MessageException{
+	public DealExparationMessageForCustomer getDealExparationMessageForCustomerByOpponent(){
 		return new DealExparationMessageForCustomer("expiredDealOpponent.txt");
 	}
 
 	@Bean("dealExparationMessageForSeller")
-	public DealExparationMessageForSeller getDealExparationMessageForSeller() throws MessageException{
+	public DealExparationMessageForSeller getDealExparationMessageForSeller(){
 		return new DealExparationMessageForSeller("expiredDeal.txt");
 	}
 
 	@Bean("dealExparationMessageForSellerByOpponent")
-	public DealExparationMessageForSeller getDealExparationMessageForSellerByOpponent() throws MessageException{
+	public DealExparationMessageForSeller getDealExparationMessageForSellerByOpponent(){
 		return new DealExparationMessageForSeller("expiredDealOpponent.txt");
 	}
 
 	@Bean
-	public LotExparationMessage getLotExparationMessage() throws MessageException{
+	public LotExparationMessage getLotExparationMessage(){
 		return new LotExparationMessage("lotExparied.txt");
 	}
 
 	@Bean
-	public TenderExparationMessage getTenderExparationMessage() throws MessageException{
+	public TenderExparationMessage getTenderExparationMessage(){
 		return new TenderExparationMessage("tenderExparied.txt");
 	}
 	
 	@Bean
-	public LinkResetPasswordMessage getLinkResetPasswordMessage() throws MessageException{
+	public LinkResetPasswordMessage getLinkResetPasswordMessage(){
 		return new LinkResetPasswordMessage("linkResetPassw.txt");
 	}
 	
 	@Bean
-	public FeedBackMessage getFeedBackMessage() throws MessageException{
+	public FeedBackMessage getFeedBackMessage(){
 		return new FeedBackMessage(adminUser);
 	}
 }

@@ -6,23 +6,23 @@ public class FeedBackMessage extends BaseMessage<FeedBack>{
 
 	private String managerEmaill;
 	
-	public FeedBackMessage(String managerEmaill) throws MessageException {
+	public FeedBackMessage(String managerEmaill){
 		super(null);
 		this.managerEmaill = managerEmaill;
 	}
 	@Override
-	protected String getRecipient(FeedBack feedBack) throws MessageException {
+	protected String getRecipient(FeedBack feedBack) {
 		return managerEmaill;
 	}
 	
 	@Override
-	protected String getText(FeedBack feedBack) throws MessageException {
+	protected String getText(FeedBack feedBack) {
 		return feedBack.getMessage() + 
 				"/n email: " + feedBack.getEmail();
 	}
 	
 	@Override
-	protected String getSubject() throws MessageException {
+	protected String getSubject() {
 		return "Message from custommer";
 	}
 }

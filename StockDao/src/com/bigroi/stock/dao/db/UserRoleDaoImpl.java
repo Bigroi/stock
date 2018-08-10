@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.db.UserRole;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.UserRoleDao;
 
 @Repository
@@ -26,7 +25,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	private DataSource datasource;
 
 	@Override
-	public void add(List<UserRole> userRoles) throws DaoException {
+	public void add(List<UserRole> userRoles) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.batchUpdate(ADD_USER_ROLE_BY_USER_ID, userRoles, userRoles.size(), 
 				new ParameterizedPreparedStatementSetter<UserRole>() {

@@ -4,25 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.docs.DealDocument;
-import com.bigroi.stock.docs.DocumentException;
-import com.bigroi.stock.messager.message.MessageException;
 
 public class SuccessDealMessageForCustomer extends DealBaseMessage {
 
 	@Autowired
 	private DealDocument dealDocument;
 	
-	public SuccessDealMessageForCustomer(String fileName) throws MessageException {
+	public SuccessDealMessageForCustomer(String fileName) {
 		super(fileName);
 	}
 	
 	@Override
-	protected byte[] getFile(Deal deal) throws MessageException {
-		try {
-			return dealDocument.getDocument(deal);
-		} catch (DocumentException e) {
-			throw new MessageException(e);
-		}
+	protected byte[] getFile(Deal deal) {
+		return dealDocument.getDocument(deal);
 	}
 	
 	protected long getCompanyId(Deal deal) {
@@ -35,7 +29,7 @@ public class SuccessDealMessageForCustomer extends DealBaseMessage {
 	}
 
 	@Override
-	protected String getText(Deal deal) throws MessageException {
+	protected String getText(Deal deal) {
 		return super.getText(deal)
 				.replaceAll("@product", deal.getProduct().getName())
 				.replaceAll("@server", mailManager.getServerAdress());

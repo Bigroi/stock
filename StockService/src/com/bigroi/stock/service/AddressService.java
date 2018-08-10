@@ -9,13 +9,13 @@ import com.bigroi.stock.bean.db.CompanyAddress;
 @Service
 public interface AddressService {
 
-	List<CompanyAddress> getCompanyAddresses(long companyId) throws ServiceException;
+	List<CompanyAddress> getCompanyAddresses(long companyId);
 
-	CompanyAddress getAddressById(long id, long companyId) throws ServiceException;
+	CompanyAddress getAddressById(long id, long companyId);
 
-	void merge(CompanyAddress address, long companyId) throws ServiceException;
+	void merge(CompanyAddress address, long companyId);
 
-	void delete(long id, long companyId) throws ServiceException;
+	void delete(long id, long companyId);
 
-	boolean hasAddress(CompanyAddress address, long companyId) throws ServiceException;
+	boolean hasAddress(CompanyAddress address, long companyId);
 }

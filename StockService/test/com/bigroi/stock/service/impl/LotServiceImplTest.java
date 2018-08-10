@@ -13,10 +13,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.ProductDao;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
 import com.google.common.collect.ImmutableList;
 
@@ -31,7 +29,7 @@ public class LotServiceImplTest extends BaseTest{
 	private ProductDao productDao;
 	
 	@Test
-	public void getByIdTest() throws DaoException, ServiceException{
+	public void getByIdTest(){
 		// given
 		final long LOT_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -51,7 +49,7 @@ public class LotServiceImplTest extends BaseTest{
 	}
 	
 	@Test
-	public void mergeAddTest() throws DaoException, ServiceException {
+	public void mergeAddTest() {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		final long PRODUCT_ID = random.nextLong();
@@ -79,7 +77,7 @@ public class LotServiceImplTest extends BaseTest{
 	}
 	
 	@Test
-	public void mergeUpdateTest() throws DaoException, ServiceException {
+	public void mergeUpdateTest() {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		final long PRODUCT_ID = random.nextLong();
@@ -102,7 +100,7 @@ public class LotServiceImplTest extends BaseTest{
 	}
 	
 	@Test
-	public void getByCompanyIdTest() throws ServiceException, DaoException{
+	public void getByCompanyIdTest() {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		List<Lot> expectedList = ImmutableList.of(createObject(Lot.class));
@@ -116,7 +114,7 @@ public class LotServiceImplTest extends BaseTest{
 	}
 	
 	@Test
-	public void activateTest() throws ServiceException, DaoException{
+	public void activateTest() {
 		// given
 		final long LOT_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -130,7 +128,7 @@ public class LotServiceImplTest extends BaseTest{
 	}
 	
 	@Test
-	public void deleteTest() throws DaoException, ServiceException{
+	public void deleteTest(){
 		// given
 		final long LOT_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -143,7 +141,7 @@ public class LotServiceImplTest extends BaseTest{
 	}
 	
 	@Test
-	public void deactivateTest() throws DaoException, ServiceException{
+	public void deactivateTest(){
 		// given
 		final long LOT_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();

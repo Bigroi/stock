@@ -6,12 +6,12 @@ import com.bigroi.stock.bean.db.Proposition;
 
 public interface PropositionDao {
 	
-	List<Proposition> getListPropositions() throws DaoException;
+	List<Proposition> getListPropositions();
 	
-    boolean deleteProposition(long id, long companyId) throws DaoException;
+    boolean deleteProposition(long id, long companyId);
     
-    List<Proposition> getListPropositionsByStatusAndUserId(long userId) throws DaoException;
+    List<Proposition> getListPropositionsByStatusAndUserId(long userId);
     
-    List<Proposition> getListPropositionsTrans() throws DaoException;
+    List<Proposition> getListPropositionsTrans();
 
 }

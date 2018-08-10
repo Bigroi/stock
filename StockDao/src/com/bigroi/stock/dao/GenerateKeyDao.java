@@ -4,11 +4,11 @@ import com.bigroi.stock.bean.db.TempKey;
 
 public interface GenerateKeyDao {
 
-	boolean checkResetKey(String email, String key) throws DaoException;
+	boolean checkResetKey(String email, String key);
 
-	TempKey generateKey() throws DaoException;
+	TempKey generateKey();
 
-	void deleteGenerateKeysByDate() throws DaoException;
+	void deleteGenerateKeysByDate();
 
 	void deleteGenerateKey(String code);
 }

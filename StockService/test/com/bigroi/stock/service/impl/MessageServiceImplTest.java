@@ -11,11 +11,8 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.bigroi.stock.bean.db.Email;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.EmailDao;
 import com.bigroi.stock.messager.MailManager;
-import com.bigroi.stock.messager.MailManagerException;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -29,7 +26,7 @@ public class MessageServiceImplTest extends BaseTest {
 	private MailManager mailManager;
 	
 	//@Test
-	public void sendAllEmailsTest() throws DaoException, MailManagerException, ServiceException{
+	public void sendAllEmailsTest(){
 		// given
 		final int EMAIL_COUNT = 5;
 		
@@ -51,7 +48,7 @@ public class MessageServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void addTest() throws DaoException, ServiceException{
+	public void addTest(){
 		// given
 		Email email = createObject(Email.class);
 		// mock

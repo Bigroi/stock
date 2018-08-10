@@ -12,19 +12,16 @@ import com.bigroi.stock.bean.common.PartnerChoice;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Tender;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.messager.message.LotExparationMessage;
-import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.messager.message.TenderExparationMessage;
 import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForCustomer;
 import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
 import com.bigroi.stock.messager.message.deal.DealExparationMessageForCustomer;
 import com.bigroi.stock.messager.message.deal.DealExparationMessageForSeller;
 import com.bigroi.stock.service.MarketService;
-import com.bigroi.stock.service.ServiceException;
 
 @Repository
 public class MarketServiceImpl implements MarketService {
@@ -59,63 +56,55 @@ public class MarketServiceImpl implements MarketService {
 	
 	@Override
 	@Transactional
-	public void checkExparations() throws ServiceException{
-		try {
-			List<Lot> lots = lotDao.getActive();
-			for (Lot lot : lots) {
-				if (lot.isExpired()){
-					lot.setStatus(BidStatus.INACTIVE);
-					lotExparationMessage.send(lot);
-				}
+	public void checkExparations() {
+		List<Lot> lots = lotDao.getActive();
+		for (Lot lot : lots) {
+			if (lot.isExpired()){
+				lot.setStatus(BidStatus.INACTIVE);
+				lotExparationMessage.send(lot);
 			}
-			lotDao.update(lots);
-			
-			List<Tender> tenders = tenderDao.getActive();
-			for (Tender tender : tenders) {
-				if (tender.isExpired()){
-					tender.setStatus(BidStatus.INACTIVE);
-					tenderExparationMessage.send(tender);
-				}
-			}
-			tenderDao.update(tenders);
-		} catch (DaoException | MessageException e) {
-			throw new ServiceException(e);
 		}
+		lotDao.update(lots);
+		
+		List<Tender> tenders = tenderDao.getActive();
+		for (Tender tender : tenders) {
+			if (tender.isExpired()){
+				tender.setStatus(BidStatus.INACTIVE);
+				tenderExparationMessage.send(tender);
+			}
+		}
+		tenderDao.update(tenders);
 	}
 
 	@Override
 	@Transactional
-	public void clearPreDeal() throws ServiceException {
-		try {
-			List<Deal> deals = dealDao.getOnApprove();
-			for (Deal deal : deals) {
-				if (deal.getLotId() == null){
-					continue;
-				}
-				if (deal.getSellerChoice() != PartnerChoice.ON_APPROVE){
-					dealExparationMessageForSellerByOpponent.send(deal);
-					
-					dealExparationMessageForCustomer.send(deal);
-				} else if (deal.getBuyerChoice() != PartnerChoice.ON_APPROVE){
-					dealExparationMessageForSeller.send(deal);
-					
-					dealExparationMessageForCustomerByOpponent.send(deal);
-				} else {
-					dealExparationMessageForSeller.send(deal);
-					
-					dealExparationMessageForCustomer.send(deal);
-				}
-				returnVolumeToBids(deal);
+	public void clearPreDeal(){
+		List<Deal> deals = dealDao.getOnApprove();
+		for (Deal deal : deals) {
+			if (deal.getLotId() == null){
+				continue;
 			}
-			dealDao.deleteOnApprove();
-			lotDao.closeLots();
-			tenderDao.closeTeners();
-		} catch (DaoException | MessageException e) {
-			throw new ServiceException(e);
+			if (deal.getSellerChoice() != PartnerChoice.ON_APPROVE){
+				dealExparationMessageForSellerByOpponent.send(deal);
+				
+				dealExparationMessageForCustomer.send(deal);
+			} else if (deal.getBuyerChoice() != PartnerChoice.ON_APPROVE){
+				dealExparationMessageForSeller.send(deal);
+				
+				dealExparationMessageForCustomerByOpponent.send(deal);
+			} else {
+				dealExparationMessageForSeller.send(deal);
+				
+				dealExparationMessageForCustomer.send(deal);
+			}
+			returnVolumeToBids(deal);
 		}
+		dealDao.deleteOnApprove();
+		lotDao.closeLots();
+		tenderDao.closeTeners();
 	}
 	
-	private void returnVolumeToBids(Deal deal) throws DaoException {
+	private void returnVolumeToBids(Deal deal){
 		long buyerId = deal.getBuyerAddress().getCompanyId();
 		long sellerId = deal.getSellerAddress().getCompanyId();
 		
@@ -130,16 +119,12 @@ public class MarketServiceImpl implements MarketService {
 
 	@Override
 	@Transactional
-	public void sendConfirmationMessages() throws ServiceException {
-		try {
-			List<Deal> deals = dealDao.getOnApprove();
-			for (Deal deal : deals) {
-				dealConfirmationMessageForCustomer.send(deal);
-				
-				dealConfirmationMessageForSeller.send(deal);
-			}
-		} catch (DaoException | MessageException e) {
-			throw new ServiceException(e);
+	public void sendConfirmationMessages(){
+		List<Deal> deals = dealDao.getOnApprove();
+		for (Deal deal : deals) {
+			dealConfirmationMessageForCustomer.send(deal);
+			
+			dealConfirmationMessageForSeller.send(deal);
 		}
 	}
 }

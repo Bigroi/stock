@@ -8,18 +8,18 @@ import com.bigroi.stock.bean.db.Company;
 
 public interface CompanyDao {
 
-	Company getById(long id) throws DaoException;
+	Company getById(long id);
 
-	void add(Company company) throws DaoException;
+	void add(Company company);
 
-	boolean update(Company company) throws DaoException;
+	boolean update(Company company);
 	
-	List<Company> getAllCompany() throws DaoException;
+	List<Company> getAllCompany();
 
-	void setStatus(long companyId, CompanyStatus status) throws DaoException;
+	void setStatus(long companyId, CompanyStatus status);
 
-	Company getByRegNumber(String regNumber) throws DaoException;
+	Company getByRegNumber(String regNumber);
 
-	Company getByName(String name) throws DaoException;
+	Company getByName(String name);
 
 }

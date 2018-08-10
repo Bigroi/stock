@@ -7,8 +7,8 @@ import com.bigroi.stock.bean.db.Email;
 @Service
 public interface MessageService {
 
-	void sendAllEmails() throws ServiceException;
+	void sendAllEmails();
 
-	void add(Email email) throws ServiceException;
+	void add(Email email);
 
 }

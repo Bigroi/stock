@@ -7,19 +7,19 @@ import org.springframework.stereotype.Service;
 @Service
 public interface BidService<T> {
 	
-	T getById (long id, long companyId) throws ServiceException;
+	T getById (long id, long companyId);
 	
-	List<T> getByCompanyId(long salerId) throws ServiceException;
+	List<T> getByCompanyId(long salerId);
 	
-	List<T> getBySessionId(String sessionId) throws ServiceException;
+	List<T> getBySessionId(String sessionId);
 	
-	void activate(long id, long companyId) throws ServiceException;
+	void activate(long id, long companyId);
 	
-	void delete(long id, long companyId) throws ServiceException;
+	void delete(long id, long companyId);
 	
-	void merge(T lot, long companyId) throws ServiceException;
+	void merge(T lot, long companyId);
 
-	void deactivate(long id, long companyId) throws ServiceException;
+	void deactivate(long id, long companyId);
 	
-	void deleteBySessionId(String sessionId) throws ServiceException;
+	void deleteBySessionId(String sessionId);
 }

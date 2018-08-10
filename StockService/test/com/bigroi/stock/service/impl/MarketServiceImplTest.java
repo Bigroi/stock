@@ -18,18 +18,15 @@ import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Tender;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.messager.message.LotExparationMessage;
-import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.messager.message.TenderExparationMessage;
 import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForCustomer;
 import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
 import com.bigroi.stock.messager.message.deal.DealExparationMessageForCustomer;
 import com.bigroi.stock.messager.message.deal.DealExparationMessageForSeller;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
 import com.google.common.collect.ImmutableList;
 
@@ -64,7 +61,7 @@ public class MarketServiceImplTest extends BaseTest {
 	private DealExparationMessageForCustomer dealExparationMessageForCustomerByOpponent;
 	
 	@Test
-	public void checkLotExparationsTest() throws DaoException, ServiceException, MessageException, ParseException{
+	public void checkLotExparationsTest() throws ParseException{
 		// given
 		final BidStatus STATUS = BidStatus.INACTIVE;
 		final Date DATE = getExpDate();
@@ -87,7 +84,7 @@ public class MarketServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void checkTenderExparationsTest() throws DaoException, ServiceException, MessageException, ParseException{
+	public void checkTenderExparationsTest() throws ParseException{
 		// given
 		final BidStatus STATUS = BidStatus.INACTIVE;
 		final Date DATE = getExpDate();
@@ -110,7 +107,7 @@ public class MarketServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void clearPreDealNullTest() throws DaoException, ServiceException{
+	public void clearPreDealNullTest(){
 		// given
 		Deal deal = createObject(Deal.class);
 		deal.setLotId(null);
@@ -131,7 +128,7 @@ public class MarketServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void clearPreDealSellerNotOnApproveTest() throws DaoException, ServiceException, MessageException{
+	public void clearPreDealSellerNotOnApproveTest(){
 		// given
 		final long LOT_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -181,7 +178,7 @@ public class MarketServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void clearPreDealBuyerNotOnApproveTest() throws DaoException, ServiceException, MessageException{
+	public void clearPreDealBuyerNotOnApproveTest(){
 		// given
 		final long LOT_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -231,7 +228,7 @@ public class MarketServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void clearPreDealNotOnApproveTest() throws DaoException, ServiceException, MessageException{
+	public void clearPreDealNotOnApproveTest(){
 		// given
 		final long LOT_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -281,7 +278,7 @@ public class MarketServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void sendConfirmationMessagesTest() throws DaoException, MessageException, ServiceException{
+	public void sendConfirmationMessagesTest(){
 		// given
 		Deal deal = createObject(Deal.class);
 		List<Deal> dealList = ImmutableList.of(deal);

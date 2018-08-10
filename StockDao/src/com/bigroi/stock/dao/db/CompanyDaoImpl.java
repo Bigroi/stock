@@ -18,10 +18,9 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.CompanyStatus;
-import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Company;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.dao.CompanyDao;
-import com.bigroi.stock.dao.DaoException;
 
 @Repository
 public class CompanyDaoImpl implements CompanyDao {
@@ -70,7 +69,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	private DataSource datasource;
 
 	@Override
-	public Company getById(long id) throws DaoException {
+	public Company getById(long id) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Company> list = template.query(
 				GET_COMPANY_BY_ID, 
@@ -85,7 +84,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	}
 
 	@Override
-	public void add(Company company) throws DaoException {
+	public void add(Company company) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -105,7 +104,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	}
 
 	@Override
-	public boolean update(Company company) throws DaoException {
+	public boolean update(Company company) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_COMPANY_BY_ID, 
 				company.getName(), 
@@ -117,7 +116,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	}
 
 	@Override
-	public List<Company> getAllCompany() throws DaoException {
+	public List<Company> getAllCompany() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_ALL_COMPANIES, new BeanPropertyRowMapper<Company>(Company.class));
 	}
@@ -129,7 +128,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	}
 	
 	@Override
-	public Company getByRegNumber(String regNumber) throws DaoException {
+	public Company getByRegNumber(String regNumber) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Company> list = template.query(GET_COMPANY_BY_REG_NUMBER, new BeanPropertyRowMapper<Company>(Company.class), regNumber);
 		if (list.isEmpty()){
@@ -140,7 +139,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	}
 
 	@Override
-	public Company getByName(String name) throws DaoException {
+	public Company getByName(String name) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Company> list = template.query(GET_COMPANY_BY_NAME, new BeanPropertyRowMapper<Company>(Company.class), name);
 		if (list.isEmpty()){

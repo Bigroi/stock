@@ -16,10 +16,8 @@ import com.bigroi.stock.bean.ui.TradeOffer;
 import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
-import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.ProductService;
-import com.bigroi.stock.service.ServiceException;
 
 @Controller
 @RequestMapping("/product/json/")
@@ -33,7 +31,7 @@ public class ProductResourseController extends BaseResourseController {
 	
 	@RequestMapping(value = "/List.spr")
 	@ResponseBody
-	public String list() throws ServiceException {
+	public String list() {
 		List<ProductForUI> productsForUI = productService.getAllActiveProductsForUI();
 		return new ResultBean(1, productsForUI, null).toString();
 	}
@@ -41,7 +39,7 @@ public class ProductResourseController extends BaseResourseController {
 	@RequestMapping("/admin/List.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
-	public String listForAdmin() throws ServiceException, TableException {
+	public String listForAdmin() {
 		List<Product> products = productService.getAllProducts();
 		List<ProductForUI> productsForUI = products.stream().
 				map(ProductForUI::new).collect(Collectors.toList());
@@ -53,7 +51,7 @@ public class ProductResourseController extends BaseResourseController {
 	@RequestMapping("/admin/Form.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
-	public String get(@RequestParam(value = "id", defaultValue = "-1") long id) throws ServiceException {
+	public String get(@RequestParam(value = "id", defaultValue = "-1") long id) {
 		Product product = productService.getProductById(id);
 		return new ResultBean(1, product, null).toString();
 	}
@@ -61,7 +59,7 @@ public class ProductResourseController extends BaseResourseController {
 	@RequestMapping("/admin/Save.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
-	public String save(@RequestParam("json") String json) throws ServiceException {
+	public String save(@RequestParam("json") String json) {
 		Product product = GsonUtil.getGson().fromJson(json, Product.class);
 		product.setRemoved("N");
 		productService.merge(product);
@@ -71,7 +69,7 @@ public class ProductResourseController extends BaseResourseController {
 	@RequestMapping("/admin/Delete.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
-	public String delete(@RequestParam("json") String json) throws ServiceException {
+	public String delete(@RequestParam("json") String json) {
 		Product product = GsonUtil.getGson().fromJson(json, Product.class);
 		productService.delete(product.getId());
 		product.setRemoved("Y");
@@ -80,7 +78,7 @@ public class ProductResourseController extends BaseResourseController {
 	
 	@RequestMapping("/TradeOffers.spr")
 	@ResponseBody
-	public String getTradeOffers(@RequestParam int productId) throws ServiceException, TableException{
+	public String getTradeOffers(@RequestParam int productId) {
 		List<TradeOffer> tradeOffers = productService.getTradeOffers(productId);
 		TableResponse<TradeOffer> table = new TableResponse<>(TradeOffer.class, tradeOffers);
 		return new ResultBean(1, table, null).toString();

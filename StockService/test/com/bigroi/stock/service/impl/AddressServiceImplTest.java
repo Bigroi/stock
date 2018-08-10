@@ -12,8 +12,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.dao.AddressDao;
-import com.bigroi.stock.dao.DaoException;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
 import com.google.common.collect.ImmutableList;
 
@@ -26,7 +24,7 @@ public class AddressServiceImplTest extends BaseTest {
 	private AddressDao addressDao;
 	
 	@Test
-	public void getCompanyAddressesTest() throws ServiceException, DaoException {
+	public void getCompanyAddressesTest()  {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		//mock
@@ -42,7 +40,7 @@ public class AddressServiceImplTest extends BaseTest {
 	}
 
 	@Test
-	public void getAddressByIdTest() throws DaoException, ServiceException {
+	public void getAddressByIdTest() {
 		// given
 		final long ADDRESS_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -63,7 +61,7 @@ public class AddressServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void mergeAddTest() throws DaoException, ServiceException {
+	public void mergeAddTest() {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		CompanyAddress newAddress = createObject(CompanyAddress.class);
@@ -83,7 +81,7 @@ public class AddressServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void mergeUpdateTest() throws DaoException, ServiceException {
+	public void mergeUpdateTest() {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		CompanyAddress updateAddress = new CompanyAddress();
@@ -95,7 +93,7 @@ public class AddressServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void deleteTest() throws DaoException, ServiceException {
+	public void deleteTest() {
 		// given
 		final long ADDRESS_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -108,7 +106,7 @@ public class AddressServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void hasAddressTest() throws DaoException, ServiceException {
+	public void hasAddressTest() {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		CompanyAddress hasAddress = new CompanyAddress();

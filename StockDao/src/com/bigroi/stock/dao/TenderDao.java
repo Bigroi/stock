@@ -8,32 +8,32 @@ import com.bigroi.stock.bean.db.Tender;
 
 public interface TenderDao {
 	
-    void add(Tender tender) throws DaoException;
+    void add(Tender tender);
 	
-	boolean update(Tender tender, long companyId) throws DaoException;
+	boolean update(Tender tender, long companyId);
 	
-	Tender getById(long id, long companyId) throws DaoException;
+	Tender getById(long id, long companyId);
 	
-	List<Tender> getByCompanyId(long companyId) throws DaoException;
+	List<Tender> getByCompanyId(long companyId);
 	
-	boolean setStatusByCompanyId(long companyId, BidStatus status) throws DaoException;
+	boolean setStatusByCompanyId(long companyId, BidStatus status);
 
-	boolean setStatusByProductId(long productId, BidStatus status) throws DaoException;
+	boolean setStatusByProductId(long productId, BidStatus status);
 	
-	void setStatusById(long id, long companyId, BidStatus status) throws DaoException;
+	void setStatusById(long id, long companyId, BidStatus status);
 
-	void update(Collection<Tender> tendersToUpdate) throws DaoException;
+	void update(Collection<Tender> tendersToUpdate);
 
-	void delete(long id, long companyId) throws DaoException;
+	void delete(long id, long companyId);
 
-	List<Tender> getActive() throws DaoException;
+	List<Tender> getActive();
 
-	List<Tender> getActiveByProductId(long productId) throws DaoException;
+	List<Tender> getActiveByProductId(long productId);
 	
-	void closeTeners() throws DaoException;
+	void closeTeners();
 
-	List<Tender> getByDescription(String decsciption) throws DaoException;
+	List<Tender> getByDescription(String decsciption);
 
-	void deleteByDescription(String decsciption) throws DaoException;
+	void deleteByDescription(String decsciption);
 
 }

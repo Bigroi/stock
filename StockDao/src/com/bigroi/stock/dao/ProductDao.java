@@ -7,16 +7,16 @@ import com.bigroi.stock.bean.ui.ProductForUI;
 
 public interface ProductDao {
 	
-	List<Product> getAllProducts() throws DaoException;
+	List<Product> getAllProducts();
 	
-	List<Product> getAllActiveProducts() throws DaoException;
+	List<Product> getAllActiveProducts();
 	
-	List<ProductForUI> getAllActiveProductsForUI() throws DaoException;
+	List<ProductForUI> getAllActiveProductsForUI();
 	
-	void add(Product product) throws DaoException;
+	void add(Product product);
 	
-	boolean update(Product product) throws DaoException;
+	boolean update(Product product);
 	
-	Product getById(long id) throws DaoException;
+	Product getById(long id);
 	
 }

@@ -8,7 +8,7 @@ public class TableResponse<T> {
 	
 	private Model<T> model;
 	
-	public TableResponse(Class<T> clazz, List<T> objects) throws TableException {
+	public TableResponse(Class<T> clazz, List<T> objects) {
 		table = new Table<>(clazz, objects);
 		model = new Model<>(clazz);
 	}

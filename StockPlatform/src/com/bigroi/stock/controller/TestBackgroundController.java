@@ -7,7 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.service.MarketService;
 import com.bigroi.stock.service.MessageService;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.impl.TradeServiceImpl;
 
 @Controller
@@ -29,7 +28,7 @@ public class TestBackgroundController extends BaseRenderingController {
 	} 
 
 	@RequestMapping(value = "/ClearPreDeals.spr")
-	public ModelAndView startClearPredeal() throws ServiceException {
+	public ModelAndView startClearPredeal(){
 		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		
 		marketService.clearPreDeal();
@@ -40,7 +39,7 @@ public class TestBackgroundController extends BaseRenderingController {
 	}
  
 	@RequestMapping(value = "/Trading.spr")
-	public ModelAndView startTrade() throws ServiceException {
+	public ModelAndView startTrade(){
 		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		
 		new TradeServiceImpl().trade();
@@ -51,7 +50,7 @@ public class TestBackgroundController extends BaseRenderingController {
 	}
 
 	@RequestMapping(value = "/SendEmails.spr")
-	public ModelAndView startSendMail() throws ServiceException {
+	public ModelAndView startSendMail(){
 		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		
 		messageService.sendAllEmails();
@@ -62,7 +61,7 @@ public class TestBackgroundController extends BaseRenderingController {
 	}
 	
 	@RequestMapping(value = "/CheckStatus.spr")
-	public ModelAndView checkStatus() throws ServiceException {
+	public ModelAndView checkStatus(){
 		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		
 		marketService.checkExparations();

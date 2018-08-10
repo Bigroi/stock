@@ -16,7 +16,6 @@ import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.controller.BaseRenderingController;
 import com.bigroi.stock.service.AddressService;
 import com.bigroi.stock.service.ProductService;
-import com.bigroi.stock.service.ServiceException;
 
 @Controller
 @RequestMapping("/tender")
@@ -33,7 +32,7 @@ public class TenderRenderingController extends BaseRenderingController{
 	public ModelAndView form(
 			@RequestParam(value = "id", defaultValue = "-1") long id,
 			Authentication loggedInUser
-			) throws ServiceException {
+			) {
 		ModelAndView modelAndView = createModelAndView("tenderForm");
 		List<Product> products = productService.getAllActiveProducts();
 		List<CompanyAddress> addressList = addressService.getCompanyAddresses(((StockUser)loggedInUser.getPrincipal()).getCompanyId());
@@ -45,7 +44,7 @@ public class TenderRenderingController extends BaseRenderingController{
 	}
 	
 	@RequestMapping("/TestForm.spr")
-	public ModelAndView testForm() throws ServiceException {
+	public ModelAndView testForm() {
 		ModelAndView modelAndView = createModelAndView("testTenderForm");
 		List<Product> products = productService.getAllActiveProducts();
 		List<CompanyAddress> addressList = addressService.getCompanyAddresses(0);

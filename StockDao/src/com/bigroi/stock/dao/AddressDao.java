@@ -6,15 +6,15 @@ import com.bigroi.stock.bean.db.CompanyAddress;
 
 public interface AddressDao {
 
-	List<CompanyAddress> getAddressesForCompany(long companyId) throws DaoException;
+	List<CompanyAddress> getAddressesForCompany(long companyId);
 	
-	boolean updateAddress(CompanyAddress address) throws DaoException;
+	boolean updateAddress(CompanyAddress address);
 	
-	void addAddress(CompanyAddress address) throws DaoException;
+	void addAddress(CompanyAddress address);
 		
-	boolean deleteAddress(long id, long companyId) throws DaoException;
+	boolean deleteAddress(long id, long companyId);
 
-	CompanyAddress getAddressById(long id, long companyId) throws DaoException;
+	CompanyAddress getAddressById(long id, long companyId);
 
-	boolean hasAddress(CompanyAddress address, long companyId) throws DaoException;
+	boolean hasAddress(CompanyAddress address, long companyId);
 }

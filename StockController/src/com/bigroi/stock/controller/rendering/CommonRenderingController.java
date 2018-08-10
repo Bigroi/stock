@@ -14,11 +14,12 @@ import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.controller.BaseRenderingController;
 import com.bigroi.stock.security.AuthenticationHandler;
 import com.bigroi.stock.service.LabelService;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.UserService;
 
 @Controller
 public class CommonRenderingController extends BaseRenderingController{
+
+	private static final String RESET_PASSW_PAGE = "resetPassw";
 
 	@Autowired
 	private UserService userService;
@@ -53,14 +54,13 @@ public class CommonRenderingController extends BaseRenderingController{
 	}
 
 	@RequestMapping(value = "/ResetPassword.spr")
-	public ModelAndView resetPassword(@RequestParam("code") String code, @RequestParam("email") String email)
-			throws ServiceException {
-		ModelAndView modelAndView = createModelAndView("resetPassw");
+	public ModelAndView resetPassword(@RequestParam("code") String code, @RequestParam("email") String email){
+		ModelAndView modelAndView = createModelAndView(RESET_PASSW_PAGE);
 		String message;
 		if (userService.changePassword(email, code)) {
-			message = labelService.getLabel("resetPassw", "success", getLanguage());
+			message = labelService.getLabel(RESET_PASSW_PAGE, "success", getLanguage());
 		} else {
-			message = labelService.getLabel("resetPassw", "error", getLanguage());
+			message = labelService.getLabel(RESET_PASSW_PAGE, "error", getLanguage());
 		}
 		modelAndView
 			.addObject("message", message)

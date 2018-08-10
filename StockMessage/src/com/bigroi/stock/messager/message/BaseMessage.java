@@ -8,10 +8,9 @@ import java.nio.charset.StandardCharsets;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bigroi.stock.bean.db.Email;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.EmailDao;
 import com.bigroi.stock.messager.MailManager;
-import com.bigroi.stock.messager.MailManagerException;
+import com.bigroi.stock.util.exception.StockRuntimeException;
 
 public abstract class BaseMessage<T> implements Message<T>{
 	
@@ -25,7 +24,7 @@ public abstract class BaseMessage<T> implements Message<T>{
 	
 	private String text;	
 	
-	protected BaseMessage(String fileName) throws MessageException {
+	protected BaseMessage(String fileName) {
 		if (fileName != null && !fileName.equals("")){
 			try (BufferedReader reader = new BufferedReader(
 					new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName),
@@ -44,20 +43,16 @@ public abstract class BaseMessage<T> implements Message<T>{
 				}
 				text = textBuld.toString();
 			} catch (IOException e) {
-				throw new MessageException(e);
+				throw new StockRuntimeException(e);
 			}
 		}
 	}
 	
-	public void sendImediatly(T object) throws MessageException{
-		try {
-			mailManager.send(getEmail(object));
-		} catch (MailManagerException e) {
-			throw new MessageException(e);
-		}
+	public void sendImediatly(T object){
+		mailManager.send(getEmail(object));
 	}
 	
-	private Email getEmail(T object) throws MessageException{
+	private Email getEmail(T object) {
 		Email email = new Email();
 		email.setBody(getText(object));
 		email.setRecipient(getRecipient(object));
@@ -67,7 +62,7 @@ public abstract class BaseMessage<T> implements Message<T>{
 		return email;
 	}
 	
-	protected byte[] getFile(T object) throws MessageException {
+	protected byte[] getFile(T object) {
 		return null;
 	}
 
@@ -75,21 +70,17 @@ public abstract class BaseMessage<T> implements Message<T>{
 		return null;
 	}
 
-	protected abstract String getRecipient(T object) throws MessageException;
+	protected abstract String getRecipient(T object);
 	
-	protected String getText(T object) throws MessageException{
+	protected String getText(T object) {
 		return text;
 	}
 	
-	protected String getSubject() throws MessageException{
+	protected String getSubject() {
 		return subject;
 	}
 	
-	public void send(T object) throws MessageException{
-		try {
-			emailDao.add(getEmail(object));
-		} catch (DaoException e) {
-			throw new MessageException(e);
-		}
+	public void send(T object){
+		emailDao.add(getEmail(object));
 	}
 }

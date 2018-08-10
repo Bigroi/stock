@@ -8,24 +8,24 @@ import com.bigroi.stock.bean.db.Tender;
 
 public interface DealDao {
 	
-	void getPosibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId) throws DaoException;
+	void getPosibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId);
 
-	Deal getById(long id) throws DaoException;
+	Deal getById(long id);
 
-	List<Deal> getOnApprove() throws DaoException;
+	List<Deal> getOnApprove();
 
-	void deleteOnApprove() throws DaoException;
+	void deleteOnApprove();
 
-	void add(List<Deal> deals) throws DaoException;
+	void add(List<Deal> deals);
 
-	List<Deal> getByCompanyId(long companyId) throws DaoException;
+	List<Deal> getByCompanyId(long companyId);
 
-	public void setBuyerStatus(Deal deal) throws DaoException;
+	public void setBuyerStatus(Deal deal);
 
-	public void setSellerStatus(Deal deal) throws DaoException;
+	public void setSellerStatus(Deal deal);
 	
-	public List<Deal> getListBySellerAndBuyerApproved() throws DaoException;
+	public List<Deal> getListBySellerAndBuyerApproved();
 
-	void getTestPossibleDeals(List<Lot> lots, List<Tender> tenders, long productId, String sessionId) throws DaoException;
+	void getTestPossibleDeals(List<Lot> lots, List<Tender> tenders, long productId, String sessionId);
 
 }

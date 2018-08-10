@@ -20,11 +20,9 @@ import com.bigroi.stock.bean.ui.TestDealForUI;
 import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
-import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.DealService;
 import com.bigroi.stock.service.LabelService;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.impl.TradeServiceImpl;
 
 @Controller
@@ -45,8 +43,7 @@ public class DealResourseController extends BaseResourseController {
 	@RequestMapping(value = "/Form.spr", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String form(@RequestParam("id") long id, Authentication loggedInUser) 
-					throws ServiceException {
+	public String form(@RequestParam("id") long id, Authentication loggedInUser) {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Deal deal = dealService.getById(id, user.getCompanyId());
 		if (user.getCompanyId() != deal.getBuyerAddress().getCompanyId() && 
@@ -65,8 +62,7 @@ public class DealResourseController extends BaseResourseController {
 	@RequestMapping(value = "/MyDeals.spr", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String myDealList(Authentication loggedInUser) 
-			throws ServiceException, TableException {
+	public String myDealList(Authentication loggedInUser) {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
 		List<Deal> deals = dealService.getByUserId(userBean.getCompanyId());
 		List<DealForUI> dealsForUI = deals.stream()
@@ -79,16 +75,14 @@ public class DealResourseController extends BaseResourseController {
 	
 	@RequestMapping(value = "/TestDeals.spr")
 	@ResponseBody
-	public String testDealList(Authentication loggedInUser) 
-			throws TableException {
+	public String testDealList(Authentication loggedInUser) {
 		TableResponse<TestDealForUI> table = new TableResponse<>(TestDealForUI.class, new ArrayList<>());
 		return new ResultBean(1, table, null).toString();
 	}
 	
 	@RequestMapping(value = "/TestTrade.spr")
 	@ResponseBody
-	public String testTrade(Authentication loggedInUser) 
-			throws ServiceException, TableException {
+	public String testTrade(Authentication loggedInUser) {
 		List<Deal> deals = new TradeServiceImpl().testTrade(getSessionId());
 		List<TestDealForUI> dealsForUI = deals.stream().map(TestDealForUI::new).collect(Collectors.toList());
 		TableResponse<TestDealForUI> table = new TableResponse<>(TestDealForUI.class, dealsForUI);
@@ -98,8 +92,7 @@ public class DealResourseController extends BaseResourseController {
 	@RequestMapping(value = "/Approve.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String approve(@RequestParam("json") String json, Authentication loggedInUser) 
-			throws ServiceException {
+	public String approve(@RequestParam("json") String json, Authentication loggedInUser) {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
 		DealForUI deal = GsonUtil.getGson().fromJson(json, DealForUI.class);
 		
@@ -114,8 +107,7 @@ public class DealResourseController extends BaseResourseController {
 	@RequestMapping(value = "/Reject.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String reject(@RequestParam("json") String json, Authentication loggedInUser) 
-			throws ServiceException {
+	public String reject(@RequestParam("json") String json, Authentication loggedInUser){
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
 		DealForUI deal = GsonUtil.getGson().fromJson(json, DealForUI.class);
 		
@@ -130,8 +122,7 @@ public class DealResourseController extends BaseResourseController {
 	@RequestMapping(value = "/Transport.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String transport(@RequestParam("json") String json, Authentication loggedInUser) 
-			throws ServiceException {
+	public String transport(@RequestParam("json") String json, Authentication loggedInUser) {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
 		DealForUI deal = GsonUtil.getGson().fromJson(json, DealForUI.class);
 		

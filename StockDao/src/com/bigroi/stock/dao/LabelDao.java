@@ -8,6 +8,6 @@ public interface LabelDao {
 
 	String getLabel(String category, String name, String language);
 	
-	List<Label> getAllLabel(String language) throws DaoException;
+	List<Label> getAllLabel(String language);
 	
 }

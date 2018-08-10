@@ -17,7 +17,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.db.Email;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.EmailDao;
 
 @Repository
@@ -37,14 +36,14 @@ public class EmailDaoImpl implements EmailDao {
 	private DataSource datasource;
 
 	@Override
-	public List<Email> getAll() throws DaoException {
+	public List<Email> getAll() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_ALL_EMAILS, 
 				new BeanPropertyRowMapper<Email>(Email.class));
 	}
 
 	@Override
-	public void add(Email email) throws DaoException {
+	public void add(Email email) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -64,7 +63,7 @@ public class EmailDaoImpl implements EmailDao {
 	}
 
 	@Override
-	public boolean deleteById(long id) throws DaoException {
+	public boolean deleteById(long id) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(DELETE_EMAILS_BY_ID, id) == 1;
 

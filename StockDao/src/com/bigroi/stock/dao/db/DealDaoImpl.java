@@ -24,7 +24,6 @@ import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.Tender;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
 
 @Repository
@@ -175,8 +174,7 @@ public class DealDaoImpl implements DealDao {
 	private DataSource datasource;
 	
 	@Override
-	public void getTestPossibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId, String sessionId)
-			throws DaoException {
+	public void getTestPossibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId, String sessionId){
 		String sql = GET_POSIBLE_BIDS
 				.replace("COMPAMY_CONDITION", "")
 				.replace("LOT_SPEC_CONDITION", " L.DESCRIPTION = '" + sessionId + "' ")
@@ -185,7 +183,7 @@ public class DealDaoImpl implements DealDao {
 	}
 	
 	@Override
-	public void getPosibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId) throws DaoException {
+	public void getPosibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId) {
 		String sql = GET_POSIBLE_BIDS
 				.replace("COMPAMY_CONDITION", "AND T.COMPANY_ID <> L.COMPANY_ID ")
 				.replace("LOT_SPEC_CONDITION", " L.COMPANY_ID <> 0 ")
@@ -204,7 +202,7 @@ public class DealDaoImpl implements DealDao {
 	}
 
 	@Override
-	public Deal getById(long id) throws DaoException {
+	public Deal getById(long id) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Deal> list = template.query(GET_BY_ID, new DealRowMapper(), id);
 		if (list.isEmpty()){
@@ -215,19 +213,19 @@ public class DealDaoImpl implements DealDao {
 	}
 
 	@Override
-	public List<Deal> getOnApprove() throws DaoException {
+	public List<Deal> getOnApprove() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_ON_APPROVE, new DealRowMapper());
 	}
 
 	@Override
-	public void deleteOnApprove() throws DaoException {
+	public void deleteOnApprove() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(DELETE_ON_APPROVE);
 	}
 
 	@Override
-	public void add(List<Deal> deals) throws DaoException {
+	public void add(List<Deal> deals) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.batchUpdate(ADD, deals, deals.size(), 
 				new ParameterizedPreparedStatementSetter<Deal>() {
@@ -253,25 +251,25 @@ public class DealDaoImpl implements DealDao {
 	}
 
 	@Override
-	public List<Deal> getByCompanyId(long companyId) throws DaoException {
+	public List<Deal> getByCompanyId(long companyId) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
 		return jdbcTemplate.query(GET_BY_COMPANY_ID, new DealRowMapper(), companyId, companyId);
 	}
 	
 	@Override
-	public void setBuyerStatus(Deal deal) throws DaoException {
+	public void setBuyerStatus(Deal deal) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
 		jdbcTemplate.update(SET_BUYER_STATUS, deal.getBuyerChoice().getCode(), deal.getId());
 	}
 	
 	@Override
-	public void setSellerStatus(Deal deal) throws DaoException {
+	public void setSellerStatus(Deal deal) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
 		jdbcTemplate.update(SET_SELLER_STATUS, deal.getSellerChoice().getCode(), deal.getId());
 	}
 	
 	@Override
-	public List<Deal> getListBySellerAndBuyerApproved() throws DaoException {
+	public List<Deal> getListBySellerAndBuyerApproved() {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
 		return jdbcTemplate.query(GET_LIST_BY_SELLER_BUYER_APPROVE, new DealRowMapper());
 	}

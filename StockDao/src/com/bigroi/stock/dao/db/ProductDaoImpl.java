@@ -17,7 +17,6 @@ import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.ui.ProductForUI;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.ProductDao;
 
 @Repository
@@ -69,25 +68,25 @@ public class ProductDaoImpl implements ProductDao {
 	private DataSource datasource;
 
 	@Override
-	public List<Product> getAllProducts() throws DaoException {
+	public List<Product> getAllProducts() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_ALL_PRODUCTS, new BeanPropertyRowMapper<Product>(Product.class));
 	}
 	
 	@Override
-	public List<Product> getAllActiveProducts() throws DaoException {
+	public List<Product> getAllActiveProducts() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_ALL_ACTIVE_PRODUCTS, new BeanPropertyRowMapper<Product>(Product.class));
 	}
 	
 	@Override
-	public List<ProductForUI> getAllActiveProductsForUI() throws DaoException {
+	public List<ProductForUI> getAllActiveProductsForUI() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_ALL_ACTIVE_PRODUCTS_FOR_UI, new BeanPropertyRowMapper<ProductForUI>(ProductForUI.class));
 	}
 
 	@Override
-	public void add(Product product) throws DaoException {
+	public void add(Product product) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -107,7 +106,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public boolean update(Product product) throws DaoException {
+	public boolean update(Product product) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return	template.update(UPDATE_PRODUCTS_BY_ID, 
 				product.getName(), 
@@ -119,7 +118,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public Product getById(long id) throws DaoException {
+	public Product getById(long id) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Product> product =  template.query(GET_PRODUCT_BY_ID,
 				new BeanPropertyRowMapper<Product>(Product.class), id);

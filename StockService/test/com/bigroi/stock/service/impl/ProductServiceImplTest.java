@@ -17,11 +17,9 @@ import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.bean.ui.ProductForUI;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.ProductDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
 import com.google.common.collect.ImmutableList;
 
@@ -38,7 +36,7 @@ public class ProductServiceImplTest extends BaseTest {
 	private TenderDao tenderDao;
 	
 	@Test
-	public void getAllProductsTest() throws DaoException, ServiceException{
+	public void getAllProductsTest(){
 		// given
 		Product product = createObject(Product.class);
 		List<Product> listPRod = ImmutableList.of(product);
@@ -51,7 +49,7 @@ public class ProductServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void getAllActiveProductsForUITest() throws DaoException, ServiceException{
+	public void getAllActiveProductsForUITest(){
 		// given
 		ProductForUI productForUI = createObject(ProductForUI.class);
 		List<ProductForUI> listPRod = ImmutableList.of(productForUI);
@@ -64,7 +62,7 @@ public class ProductServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void getAllActiveProductsTest() throws DaoException, ServiceException{
+	public void getAllActiveProductsTest(){
 		// given
 		Product product = createObject(Product.class);
 		List<Product> listPRod = ImmutableList.of(product);
@@ -77,7 +75,7 @@ public class ProductServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void getProductByIdTest() throws DaoException, ServiceException{
+	public void getProductByIdTest(){
 		// given
 		final long PRODUCT_ID = random.nextLong();
 		
@@ -95,7 +93,7 @@ public class ProductServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void mergeAddTest() throws DaoException, ServiceException{
+	public void mergeAddTest(){
 		// given
 		Product product = createObject(Product.class);
 		product.setId(-1);
@@ -112,7 +110,7 @@ public class ProductServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void mergeUdateTest() throws DaoException, ServiceException{
+	public void mergeUdateTest(){
 		// given
 		Product product = createObject(Product.class);
 		// when
@@ -122,7 +120,7 @@ public class ProductServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void deleteTest() throws DaoException, ServiceException{
+	public void deleteTest(){
 		// given
 		final long PRODUCT_ID = random.nextLong();
 		final BidStatus STATUS = BidStatus.INACTIVE;
@@ -143,7 +141,7 @@ public class ProductServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void getTradeOffersLessFifthTest() throws DaoException, ServiceException{
+	public void getTradeOffersLessFifthTest(){
 		// given
 		final long PRODUCT_ID = random.nextLong();
 		
@@ -164,7 +162,7 @@ public class ProductServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void getTradeOffersSizeMoreFifthTest() throws DaoException, ServiceException{
+	public void getTradeOffersSizeMoreFifthTest(){
 		// given
 		final long PRODUCT_ID = random.nextLong();
 		final int SIZE = 3;

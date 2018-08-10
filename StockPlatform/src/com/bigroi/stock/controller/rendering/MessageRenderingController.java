@@ -8,23 +8,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.controller.BaseRenderingController;
 import com.bigroi.stock.service.LabelService;
-import com.bigroi.stock.service.ServiceException;
 
 @Controller
 @RequestMapping("Message.spr")
 public class MessageRenderingController extends BaseRenderingController {
 
+	private static final String MESSAGE_PAGE = "message";
 	@Autowired
 	private LabelService labelService;
 	
 	@RequestMapping
 	public ModelAndView getMessage(
-			@RequestParam("message") String message, 
-			@RequestParam("type") String type) throws ServiceException{
-		ModelAndView modelAndView = createModelAndView("message");
-		String tmp[] = message.split("\\.");
-		modelAndView.addObject("message", labelService.getLabel(tmp[1], tmp[2], getLanguage()));
-		modelAndView.addObject("title", labelService.getLabel("message", type, getLanguage()));
+			@RequestParam(MESSAGE_PAGE) String message, 
+			@RequestParam("type") String type){
+		ModelAndView modelAndView = createModelAndView(MESSAGE_PAGE);
+		String[] tmp = message.split("\\.");
+		modelAndView.addObject(MESSAGE_PAGE, labelService.getLabel(tmp[1], tmp[2], getLanguage()));
+		modelAndView.addObject("title", labelService.getLabel(MESSAGE_PAGE, type, getLanguage()));
 		return modelAndView;
 	}
 

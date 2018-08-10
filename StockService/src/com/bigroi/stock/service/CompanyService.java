@@ -9,13 +9,13 @@ import com.bigroi.stock.bean.db.Company;
 @Service
 public interface CompanyService {
 
-	void changeStatusCompany(long id) throws ServiceException;
+	void changeStatusCompany(long id);
 	
-	List<Company> getAllCompanies() throws ServiceException;
+	List<Company> getAllCompanies();
 	
-	Company getCompanyById(long id) throws ServiceException;
+	Company getCompanyById(long id);
 
-	Company getByName(String name) throws ServiceException;
+	Company getByName(String name);
 
-	Company getByRegNumber(String regNumber) throws ServiceException;
+	Company getByRegNumber(String regNumber);
 }

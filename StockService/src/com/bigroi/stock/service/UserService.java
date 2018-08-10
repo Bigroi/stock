@@ -8,16 +8,16 @@ import com.bigroi.stock.bean.db.StockUser;
 @Service
 public interface UserService extends UserDetailsService{
 
-	void addUser(StockUser user)throws ServiceException;
+	void addUser(StockUser user);
 	
-	void update(StockUser user) throws ServiceException;
+	void update(StockUser user);
 	
-	void deleteGenerateKeys() throws ServiceException;
+	void deleteGenerateKeys();
 	
-	void sendLinkResetPassword(String username) throws ServiceException;
+	void sendLinkResetPassword(String username);
 	
-	boolean changePassword(String email, String code) throws ServiceException;
+	boolean changePassword(String email, String code);
 
-	StockUser getByUsername(String username) throws ServiceException;
+	StockUser getByUsername(String username);
 	
 }

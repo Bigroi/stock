@@ -4,6 +4,6 @@ import com.bigroi.stock.bean.db.Blacklist;
 
 public interface BlacklistDao {
 	
-    void add(Blacklist blacklist) throws DaoException;
+    void add(Blacklist blacklist);
 	
 }

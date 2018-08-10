@@ -21,7 +21,6 @@ import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.security.AuthenticationHandler;
 import com.bigroi.stock.service.CompanyService;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.UserService;
 
 @Controller
@@ -51,7 +50,7 @@ public class AccountResourceController extends BaseResourseController {
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String editAccount( @RequestParam("json") String json, Authentication loggedInUser) throws ServiceException {
+	public String editAccount( @RequestParam("json") String json, Authentication loggedInUser){
 		StockUser newUser = GsonUtil.getGson().fromJson(json, StockUser.class);
 		StockUser loggedIn = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 
@@ -76,7 +75,7 @@ public class AccountResourceController extends BaseResourseController {
 	
 	@RequestMapping(value = "/Registration.spr")
 	@ResponseBody
-	public String registration(HttpServletRequest request, @RequestParam("json") String json) throws ServiceException {
+	public String registration(HttpServletRequest request, @RequestParam("json") String json) {
 		
 		StockUser user = GsonUtil.getGson().fromJson(json, StockUser.class);
 		user.addAuthority(new SimpleGrantedAuthority(Role.ROLE_USER.name()));
@@ -112,7 +111,7 @@ public class AccountResourceController extends BaseResourseController {
 	
 	@RequestMapping(value = "/ResetPassword.spr")
 	@ResponseBody
-	public String resetPassword(@RequestParam("json") String json) throws ServiceException {
+	public String resetPassword(@RequestParam("json") String json){
 		StockUser user = GsonUtil.getGson().fromJson(json, StockUser.class);
 		userService.sendLinkResetPassword(user.getUsername());
 		return new ResultBean(2, user, "label.account.password_reset").toString();

@@ -6,10 +6,10 @@ import com.bigroi.stock.bean.db.Email;
 
 public interface EmailDao {
 
-	List<Email> getAll() throws DaoException;
+	List<Email> getAll();
 
-	void add(Email email) throws DaoException;
+	void add(Email email);
 
-	boolean deleteById(long id) throws DaoException;
+	boolean deleteById(long id);
 
 }

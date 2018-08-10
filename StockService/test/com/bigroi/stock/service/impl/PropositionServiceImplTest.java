@@ -10,9 +10,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.bigroi.stock.bean.db.Proposition;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.PropositionDao;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
 import com.google.common.collect.ImmutableList;
 
@@ -25,7 +23,7 @@ public class PropositionServiceImplTest extends BaseTest {
 	private PropositionDao propostionDao;
 	
 	@Test
-	public void getListPropositionTest() throws DaoException, ServiceException{
+	public void getListPropositionTest(){
 		// given
 		Proposition prop = createObject(Proposition.class);
 		List<Proposition> listProp = ImmutableList.of(prop);
@@ -38,7 +36,7 @@ public class PropositionServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void deleteTest() throws DaoException, ServiceException{
+	public void deleteTest(){
 		// given
 		final long PROPOSTION_ID = random.nextLong();
 		final long COMAPNY_ID = random.nextLong();
@@ -51,7 +49,7 @@ public class PropositionServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void getListHystoryPropositionTest() throws DaoException, ServiceException{
+	public void getListHystoryPropositionTest(){
 		// given
 		final long COMAPNY_ID = random.nextLong();
 		
@@ -66,7 +64,7 @@ public class PropositionServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void getListPropositionsByTransTest() throws DaoException, ServiceException{
+	public void getListPropositionsByTransTest(){
 		// given
 		Proposition prop = createObject(Proposition.class);
 		List<Proposition> listProp = ImmutableList.of(prop);

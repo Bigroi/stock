@@ -4,13 +4,15 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bigroi.stock.util.exception.StockRuntimeException;
+
 class Table<T> {
 
 	private List<T> data;
 	
 	private List<ColumnDef> columns = new ArrayList<>();
 	
-	public Table(Class<T> clazz, List<T> objects) throws TableException {
+	public Table(Class<T> clazz, List<T> objects) {
 		try{
 			for (Field field : clazz.getDeclaredFields()){
 				Column column = field.getAnnotation(Column.class);
@@ -25,7 +27,7 @@ class Table<T> {
 			}
 			data = objects;
 		} catch(IllegalArgumentException e){
-			throw new TableException(e);
+			throw new StockRuntimeException(e);
 		}
 	}
 

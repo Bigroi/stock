@@ -23,7 +23,6 @@ import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.Tender;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.TenderDao;
 
 @Repository
@@ -110,7 +109,7 @@ public class TenderDaoImpl implements TenderDao{
 	private DataSource datasource;
 
 	@Override
-	public void add(Tender tender) throws DaoException {
+	public void add(Tender tender) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -136,7 +135,7 @@ public class TenderDaoImpl implements TenderDao{
 	}
 
 	@Override
-	public boolean update(Tender tender, long companyId) throws DaoException {
+	public boolean update(Tender tender, long companyId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return	template.update(UPDATE_TENDER_BY_ID_AND_COMPANY, 
 				tender.getDescription(), 
@@ -153,7 +152,7 @@ public class TenderDaoImpl implements TenderDao{
 	}
 
 	@Override
-	public Tender getById(long id, long companyId) throws DaoException {
+	public Tender getById(long id, long companyId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Tender> tenders = template.query(GET_TENDER_BY_ID, new TenderRowMapper(), id);
 		if (tenders.isEmpty() || (companyId != -1 && tenders.get(0).getCompanyId() != companyId)) {
@@ -164,31 +163,31 @@ public class TenderDaoImpl implements TenderDao{
 	}
 	
 	@Override
-	public List<Tender> getByCompanyId(long companyId) throws DaoException {
+	public List<Tender> getByCompanyId(long companyId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_TENDERS_BY_COMPANY, new TenderRowMapper(), companyId);
 	}
 
 	@Override
-	public boolean setStatusByCompanyId(long companyId, BidStatus status) throws DaoException {
+	public boolean setStatusByCompanyId(long companyId, BidStatus status) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_STATUS_BY_COMPANY_ID, status.toString(), companyId) == 1;
 	}
 
 	@Override
-	public boolean setStatusByProductId(long productId, BidStatus status) throws DaoException {
+	public boolean setStatusByProductId(long productId, BidStatus status) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_STATUS_BY_PRODUCT_ID, status.toString(), productId) == 1;
 	}
 
 	@Override
-	public void setStatusById(long id, long companyId, BidStatus status) throws DaoException {
+	public void setStatusById(long id, long companyId, BidStatus status) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(UPDATE_STATUS_BY_ID_AND_COMPANY, status.name(), id, companyId);
 	}
 	
 	@Override
-	public void update(Collection<Tender> tendersToUpdate) throws DaoException {
+	public void update(Collection<Tender> tendersToUpdate) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.batchUpdate(UPDATE_TENDER_BY_ID, tendersToUpdate, tendersToUpdate.size(), new ParameterizedPreparedStatementSetter<Tender>() {
 
@@ -202,37 +201,37 @@ public class TenderDaoImpl implements TenderDao{
 	}
 
 	@Override
-	public void delete(long id, long companyId) throws DaoException {
+	public void delete(long id, long companyId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(DELETE_BY_ID_AND_COMPANY, id, companyId);
 	}
 	
 	@Override
-	public void closeTeners() throws DaoException {
+	public void closeTeners() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(CLOSE_TENDERS);
 	}
 
 	@Override
-	public List<Tender> getActive() throws DaoException {
+	public List<Tender> getActive() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_ACTIVE_TENDERS, new TenderRowMapper());
 	}
 
 	@Override
-	public List<Tender> getActiveByProductId(long productId) throws DaoException {
+	public List<Tender> getActiveByProductId(long productId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_ACTIVE_TENDERS_BY_PRODUCT_ID, new TenderRowMapper(), productId);
 	}
 	
 	@Override
-	public List<Tender> getByDescription(String description) throws DaoException {
+	public List<Tender> getByDescription(String description) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_TENDERS_BY_DESCRIPTION, new TenderRowMapper(), description);
 	}
 	
 	@Override
-	public void deleteByDescription(String description) throws DaoException {
+	public void deleteByDescription(String description) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(DELETE_BY_DESCRIPTION, description);
 	}

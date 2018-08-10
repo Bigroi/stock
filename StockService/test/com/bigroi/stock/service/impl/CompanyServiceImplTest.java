@@ -15,10 +15,8 @@ import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.dao.CompanyDao;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -34,7 +32,7 @@ public class CompanyServiceImplTest extends BaseTest {
 	private TenderDao tenderDao;
 
 	@Test
-	public void getAllCompaniesTest() throws ServiceException, DaoException {
+	public void getAllCompaniesTest()  {
 		// given
 		List<Company> expectedList = new ArrayList<>();
 		// mock
@@ -47,7 +45,7 @@ public class CompanyServiceImplTest extends BaseTest {
 	}
 
 	@Test
-	public void getCompanyByIdTest() throws ServiceException, DaoException {
+	public void getCompanyByIdTest()  {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		Company expectedCompany = createObject(Company.class);
@@ -61,7 +59,7 @@ public class CompanyServiceImplTest extends BaseTest {
 	}
 
 	@Test
-	public void getByNameTest() throws ServiceException, DaoException {
+	public void getByNameTest()  {
 		// given
 		final String name = randomString();
 		
@@ -77,7 +75,7 @@ public class CompanyServiceImplTest extends BaseTest {
 	}
 
 	@Test
-	public void getByRegNumberTest() throws ServiceException, DaoException {
+	public void getByRegNumberTest()  {
 		// given
 		final String regNumber = randomString();
 		
@@ -93,7 +91,7 @@ public class CompanyServiceImplTest extends BaseTest {
 	}
 
 	@Test
-	public void changeStatusCompanyAsNotVerifiedTest() throws ServiceException, DaoException {
+	public void changeStatusCompanyAsNotVerifiedTest()  {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		
@@ -113,7 +111,7 @@ public class CompanyServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void changeStatusCompanyAsVerifiedTest() throws ServiceException, DaoException {
+	public void changeStatusCompanyAsVerifiedTest()  {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		
@@ -137,7 +135,7 @@ public class CompanyServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void changeStatusCompanyAsRevokedTest() throws ServiceException, DaoException {
+	public void changeStatusCompanyAsRevokedTest()  {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		

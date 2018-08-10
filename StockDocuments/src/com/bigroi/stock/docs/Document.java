@@ -12,19 +12,21 @@ import org.apache.poi.hwpf.usermodel.Range;
 import org.apache.poi.hwpf.usermodel.Section;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
+import com.bigroi.stock.util.exception.StockRuntimeException;
+
 public abstract class Document<T> {
 
 	private final POIFSFileSystem file;
 
-	protected Document(String fileName) throws DocumentException {
+	protected Document(String fileName) {
 		try (InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName)) {
 			file = new POIFSFileSystem(inputStream);
 		} catch (IOException e) {
-			throw new DocumentException(e);
+			throw new StockRuntimeException(e);
 		}
 	}
 
-	protected final HWPFDocument replaceText(Map<String, Object> replaceText) throws DocumentException {
+	protected final HWPFDocument replaceText(Map<String, Object> replaceText) {
 		try {
 			HWPFDocument doc = new HWPFDocument(file);
 			Range r1 = doc.getRange();
@@ -37,7 +39,7 @@ public abstract class Document<T> {
 			}
 			return doc;
 		} catch (IOException e) {
-			throw new DocumentException(e);
+			throw new StockRuntimeException(e);
 		}
 	}
 	
@@ -53,5 +55,5 @@ public abstract class Document<T> {
 		}
 	}
 
-	public abstract byte[] getDocument(T object) throws DocumentException;
+	public abstract byte[] getDocument(T object);
 }

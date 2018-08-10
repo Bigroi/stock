@@ -23,7 +23,6 @@ import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.LotDao;
 
 @Repository
@@ -110,7 +109,7 @@ public class LotDaoImpl implements LotDao {
 	private DataSource datasource;
 
 	@Override
-	public void add(Lot lot) throws DaoException {
+	public void add(Lot lot) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {
@@ -136,7 +135,7 @@ public class LotDaoImpl implements LotDao {
 	}
 
 	@Override
-	public boolean update(Lot lot, long companyId) throws DaoException {
+	public boolean update(Lot lot, long companyId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_LOT_BY_ID_AND_SELLER, 
 				lot.getDescription(), 
@@ -154,7 +153,7 @@ public class LotDaoImpl implements LotDao {
 	}
 
 	@Override
-	public Lot getById(long id, long companyId) throws DaoException {
+	public Lot getById(long id, long companyId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<Lot> lots = template.query(GET_LOT_BY_ID, new LotRowMapper(), id);
 		if(lots.isEmpty() || (companyId != -1 && lots.get(0).getCompanyId() != companyId)){
@@ -165,39 +164,39 @@ public class LotDaoImpl implements LotDao {
 	}
 
 	@Override
-	public List<Lot> getByCompanyId(long companyId) throws DaoException {
+	public List<Lot> getByCompanyId(long companyId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_LOTS_BY_COMPANY, new LotRowMapper(), companyId);
 	}
 
 	@Override
-	public  boolean setStatusByCompanyId(long companyId, BidStatus status) throws DaoException {
+	public  boolean setStatusByCompanyId(long companyId, BidStatus status) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(SET_STATUS_BY_COMPANY, status.toString(), companyId) == 1;
 		 
 	}
 
 	@Override
-	public boolean setStatusByProductId(long productId, BidStatus status) throws DaoException {
+	public boolean setStatusByProductId(long productId, BidStatus status) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(SET_STATUS_BY_PRODUCT_ID, status.toString(), productId) == 1;
 	}
 
 	
 	@Override
-	public boolean setStatusById(long id, long companyId, BidStatus status) throws DaoException {
+	public boolean setStatusById(long id, long companyId, BidStatus status) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(SET_STATUS_BY_ID_AND_COMPANY, status.name(), id, companyId) == 1;
 	}
 	
 	@Override
-	public void deleteByDescription(String description) throws DaoException {
+	public void deleteByDescription(String description) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(DELETE_BY_DESCRIPTION, description);
 	}
 
 	@Override
-	public void update(Collection<Lot> lotsToUpdate) throws DaoException {
+	public void update(Collection<Lot> lotsToUpdate) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.batchUpdate(UPDATE_LOT_BY_ID, lotsToUpdate, lotsToUpdate.size(), new ParameterizedPreparedStatementSetter<Lot>() {
 
@@ -212,31 +211,31 @@ public class LotDaoImpl implements LotDao {
 	}
 
 	@Override
-	public void delete(long id, long companyId) throws DaoException {
+	public void delete(long id, long companyId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(DELETE_BY_ID_AND_COMPANY, id, companyId);
 	}
 	
 	@Override
-	public void closeLots() throws DaoException {
+	public void closeLots() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		template.update(CLOSE_LOTS);
 	}
 
 	@Override
-	public List<Lot> getActive() throws DaoException {
+	public List<Lot> getActive() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_ACTIVE_LOTS, new LotRowMapper());
 	}
 
 	@Override
-	public List<Lot> getActiveByProductId(long productId) throws DaoException {
+	public List<Lot> getActiveByProductId(long productId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_ACTIVE_LOTS_BY_PRODUCT_ID, new LotRowMapper(), productId);
 	}
 	
 	@Override
-	public List<Lot> getByDescription(String description) throws DaoException {
+	public List<Lot> getByDescription(String description) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_LOTS_BY_DESCRIPTION, new LotRowMapper(), description);
 	}

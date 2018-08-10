@@ -18,11 +18,9 @@ import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
-import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.AddressService;
 import com.bigroi.stock.service.BidService;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.DateUtil;
 
 public abstract class BidResourceController<B extends Bid, U> extends BaseResourseController{
@@ -42,7 +40,7 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 	
 	protected abstract String getPropertyFileName();
 	
-	protected ResultBean bidForm(long id) throws ServiceException {
+	protected ResultBean bidForm(long id) {
 		B bid = getBidService().getById(id, getUserCompanyId());
 		if (bid.getId() == -1){
 			StockUser user = (StockUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -52,7 +50,7 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		return new ResultBean(1, bid, null);
 	}
 
-	protected ResultBean bidList() throws ServiceException, TableException {
+	protected ResultBean bidList() {
 		List<B> bids = getBidService().getByCompanyId(getUserCompanyId());
 		List<U> objectForUI = bids.stream().map(getObjectForUIConstructor()).collect(Collectors.toList());
 		Class<U> clazz = getForUIClass();
@@ -60,7 +58,7 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		return new ResultBean(1, table, null);
 	}
 
-	protected ResultBean saveBid(String json) throws ServiceException {
+	protected ResultBean saveBid(String json){
 		B bid = GsonUtil.getGson().fromJson(json, getBidClass());
 		if (bid.getId() < 0) {
 			bid.setStatus(BidStatus.INACTIVE);
@@ -71,7 +69,7 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		return save(bid);
 	}
 	
-	protected ResultBean testSaveBid(String json) throws ServiceException {
+	protected ResultBean testSaveBid(String json){
 		B bid = GsonUtil.getGson().fromJson(json, getBidClass());
 		bid.setDescription(getSessionId());
 		bid.setStatus(BidStatus.ACTIVE);
@@ -79,13 +77,13 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		return save(bid);
 	}
 
-	protected ResultBean saveAndActivateBid(String json) throws ServiceException {
+	protected ResultBean saveAndActivateBid(String json){
 		B bid = GsonUtil.getGson().fromJson(json, getBidClass());
 		bid.setStatus(BidStatus.ACTIVE);
 		return save(bid);
 	}
 
-	private ResultBean save(B bid) throws ServiceException {
+	private ResultBean save(B bid){
 		List<String> errors = activationCheck(bid, getUserCompanyId());
 		if (!errors.isEmpty()) {
 			String str = errors.toString().substring(1, errors.toString().length() - 1);
@@ -96,7 +94,7 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		return new ResultBean(1, getObjectForUIConstructor().apply(bid), "");
 	}
 
-	protected ResultBean startTradingBid(long id) throws ServiceException {
+	protected ResultBean startTradingBid(long id){
 		List<String> errors = activationCheck(id, getUserCompanyId());
 		if (!errors.isEmpty()) {
 			String str = errors.toString().substring(1, errors.toString().length() - 1);
@@ -106,12 +104,12 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		return new ResultBean(1, null);
 	}
 
-	protected ResultBean stopTradingBid(long id) throws ServiceException {
+	protected ResultBean stopTradingBid(long id){
 		getBidService().deactivate(id, getUserCompanyId());
 		return new ResultBean(1, null);
 	}
 
-	protected ResultBean deleteBid(long id) throws ServiceException {
+	protected ResultBean deleteBid(long id){
 		getBidService().delete(id, getUserCompanyId());
 		return new ResultBean(1, null);
 	}
@@ -126,12 +124,12 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		}
 	}
 
-	private List<String> activationCheck(long id, long companyId) throws ServiceException {
+	private List<String> activationCheck(long id, long companyId){
 		B bid = getBidService().getById(id, getUserCompanyId());
 		return activationCheck(bid, companyId);
 	}
 
-	private List<String> activationCheck(B bid, long companyId) throws ServiceException {
+	private List<String> activationCheck(B bid, long companyId){
 		List<String> errors = new ArrayList<>();
 
 		List<Long> addressIds = addressService

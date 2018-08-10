@@ -15,10 +15,8 @@ import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.bean.ui.TenderForUI;
 import com.bigroi.stock.bean.ui.TestTenderForUI;
 import com.bigroi.stock.json.ResultBean;
-import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.BidService;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.TenderService;
 
 @Controller
@@ -31,20 +29,20 @@ public class TenderResourseController extends BidResourceController<Tender, Tend
 	@RequestMapping(value = "/Form.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String form( @RequestParam(value = "id", defaultValue = "-1") long id) throws ServiceException {
+	public String form( @RequestParam(value = "id", defaultValue = "-1") long id) {
 		return bidForm(id).toString();
 	}
 
 	@RequestMapping(value = "/Save.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String save(@RequestParam("json") String json) throws ServiceException {
+	public String save(@RequestParam("json") String json) {
 		return saveBid(json).toString();
 	}
 	
 	@RequestMapping(value = "/TestSave.spr")
 	@ResponseBody
-	public String testSave(@RequestParam("json") String json) throws ServiceException {
+	public String testSave(@RequestParam("json") String json) {
 		ResultBean resultBean = testSaveBid(json);
 		if (resultBean.getResult() > 0){
 			TenderForUI tenderForUI = (TenderForUI) resultBean.getData();
@@ -56,20 +54,20 @@ public class TenderResourseController extends BidResourceController<Tender, Tend
 	@RequestMapping(value = "/SaveAndActivate.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String saveAndActivate(@RequestParam("json") String json) throws ServiceException {
+	public String saveAndActivate(@RequestParam("json") String json) {
 		return saveAndActivateBid(json).toString();
 	}
 	
 	@RequestMapping("/MyList.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String myList() throws ServiceException, TableException {
+	public String myList() {
 		return bidList().toString();
 	}
 	
 	@RequestMapping(value = "/TestList.spr")
 	@ResponseBody
-	public String testLotList() throws ServiceException, TableException {
+	public String testLotList() {
 		List<Tender> bids = tenderService.getBySessionId(getSessionId());
 		List<TestTenderForUI> testTendersForUI = bids.stream().map(TestTenderForUI::new).collect(Collectors.toList());
 		TableResponse<TestTenderForUI> table = new TableResponse<>(TestTenderForUI.class, testTendersForUI);
@@ -79,21 +77,21 @@ public class TenderResourseController extends BidResourceController<Tender, Tend
 	@RequestMapping("/StartTrading.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String startTrading(@RequestParam("id") long id) throws ServiceException {
+	public String startTrading(@RequestParam("id") long id) {
 		return startTradingBid(id).toString();
 	}
 	
 	@RequestMapping("/StopTrading.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String stopTrading(@RequestParam("id") long id) throws ServiceException {
+	public String stopTrading(@RequestParam("id") long id) {
 		return stopTradingBid(id).toString();
 	}
 
 	@RequestMapping("/Delete.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
-	public String delete(@RequestParam("id") long id) throws ServiceException {
+	public String delete(@RequestParam("id") long id) {
 		return deleteBid(id).toString();
 	}
 

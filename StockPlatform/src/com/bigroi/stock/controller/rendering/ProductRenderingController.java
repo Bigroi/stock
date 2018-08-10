@@ -9,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.controller.BaseRenderingController;
 import com.bigroi.stock.service.ProductService;
-import com.bigroi.stock.service.ServiceException;
 
 @Controller
 @RequestMapping("/product")
@@ -26,7 +25,7 @@ public class ProductRenderingController extends BaseRenderingController{
 
 	@RequestMapping("/TradeOffers.spr")
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
-	public ModelAndView tradeOffers(@RequestParam("id") long id) throws ServiceException {
+	public ModelAndView tradeOffers(@RequestParam("id") long id) {
 		ModelAndView modelAndView = createModelAndView("tradeOffers");
 		modelAndView.addObject("product", productService.getProductById(id));
 		return modelAndView;

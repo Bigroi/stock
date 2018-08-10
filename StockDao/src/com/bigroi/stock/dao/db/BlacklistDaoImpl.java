@@ -15,7 +15,6 @@ import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.db.Blacklist;
 import com.bigroi.stock.dao.BlacklistDao;
-import com.bigroi.stock.dao.DaoException;
 
 @Repository
 public class BlacklistDaoImpl implements BlacklistDao {
@@ -27,7 +26,7 @@ public class BlacklistDaoImpl implements BlacklistDao {
 	private DataSource datasource;
 
 	@Override
-	public void add(Blacklist blacklist) throws DaoException {
+	public void add(Blacklist blacklist) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		template.update(new PreparedStatementCreator() {

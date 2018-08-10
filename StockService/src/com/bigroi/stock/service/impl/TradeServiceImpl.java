@@ -18,18 +18,14 @@ import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.Tender;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.ProductDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForCustomer;
 import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
 import com.bigroi.stock.service.AddressService;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.TradeService;
-import com.bigroi.stock.util.exception.StockRuntimeException;
 
 @Repository
 public class TradeServiceImpl implements TradeService{
@@ -57,46 +53,37 @@ public class TradeServiceImpl implements TradeService{
 	
 	@Override
 	@Transactional
-	public void trade() throws ServiceException{
-		try{
-			List<Product> list = productDao.getAllActiveProducts();
-			for (Product product : list){
-				productTrade(product);
-			}
-			dealDao.add(deals);
-			lotDao.update(lotsToUpdate);
-			tenderDao.update(tendersToUpdate);
-		}catch (DaoException e) {
-			throw new ServiceException(e);
+	public void trade(){
+		List<Product> list = productDao.getAllActiveProducts();
+		for (Product product : list){
+			productTrade(product);
 		}
+		dealDao.add(deals);
+		lotDao.update(lotsToUpdate);
+		tenderDao.update(tendersToUpdate);
 	}
 	
-	private void productTrade(Product product) throws ServiceException{
-		try{
-			List<Lot> tradeLots = new ArrayList<>();
-			List<Tender> tradeTenders = new ArrayList<>();
-			dealDao.getPosibleDeals(tradeLots, tradeTenders, product.getId());
+	private void productTrade(Product product){
+		List<Lot> tradeLots = new ArrayList<>();
+		List<Tender> tradeTenders = new ArrayList<>();
+		dealDao.getPosibleDeals(tradeLots, tradeTenders, product.getId());
+		
+		tradeLots.forEach(l -> l.setProduct(product));
+		tradeTenders.forEach(t -> t.setProduct(product));
+		
+		while(!tradeTenders.isEmpty() && !tradeLots.isEmpty()){
 			
-			tradeLots.forEach(l -> l.setProduct(product));
-			tradeTenders.forEach(t -> t.setProduct(product));
+			List<? extends Bid> majorBids = getMinVolumeBids(tradeLots, tradeTenders);
 			
-			while(!tradeTenders.isEmpty() && !tradeLots.isEmpty()){
-				
-				List<? extends Bid> majorBids = getMinVolumeBids(tradeLots, tradeTenders);
-				
-				Bid majorBid = getBestBid(majorBids);
-				
-				createDealsForBid(majorBid, product);
-				
-				removeAllZeroBids(tradeTenders, tradeLots);
-			}
+			Bid majorBid = getBestBid(majorBids);
 			
-		}catch (DaoException e) {
-			throw new ServiceException(e);
+			createDealsForBid(majorBid, product);
+			
+			removeAllZeroBids(tradeTenders, tradeLots);
 		}
 	}
 
-	private void createDealsForBid(Bid bid, Product product) throws ServiceException{
+	private void createDealsForBid(Bid bid, Product product){
 		while(bid.getMaxVolume() > 0 && !bid.getPosiblePartners().isEmpty()){
 			Bid partner = bid.getBestPartner();
 			Deal deal = createDeal(bid, partner);
@@ -114,13 +101,9 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 	
-	private void sendConfimationMails(Deal deal) throws ServiceException {
-		try{
-			dealConfirmationMessageForCustomer.send(deal);
-			dealConfirmationMessageForSeller.send(deal);
-		} catch (MessageException e) {
-			throw new ServiceException(e);
-		}
+	private void sendConfimationMails(Deal deal) {
+		dealConfirmationMessageForCustomer.send(deal);
+		dealConfirmationMessageForSeller.send(deal);
 	}
 
 	private Deal createDeal(Bid bid, Bid partner) {
@@ -191,47 +174,35 @@ public class TradeServiceImpl implements TradeService{
 	}
 
 	@Override
-	public List<Deal> testTrade(String sessionId) throws ServiceException {
-		try{
-			lotDao = Mockito.mock(LotDao.class);
-			tenderDao = Mockito.mock(TenderDao.class);
-			dealConfirmationMessageForCustomer = Mockito.mock(DealConfirmationMessageForCustomer.class);
-			dealConfirmationMessageForSeller = Mockito.mock(DealConfirmationMessageForSeller.class);
-			
-			DealDao realDealDao = dealDao;
-			dealDao = Mockito.mock(DealDao.class);
-			Mockito.doAnswer(x -> testDaalDaoAnser(x, realDealDao, sessionId))
-			.when(dealDao).getPosibleDeals(Mockito.any(), Mockito.any(), Mockito.anyLong());
-			
-			trade();
-			
-			deals.stream().forEach(this::enrichAddress);
-			
-			return deals;
-		}catch (DaoException e) {
-			throw new ServiceException(e);
-		}
+	public List<Deal> testTrade(String sessionId) {
+		lotDao = Mockito.mock(LotDao.class);
+		tenderDao = Mockito.mock(TenderDao.class);
+		dealConfirmationMessageForCustomer = Mockito.mock(DealConfirmationMessageForCustomer.class);
+		dealConfirmationMessageForSeller = Mockito.mock(DealConfirmationMessageForSeller.class);
+		
+		DealDao realDealDao = dealDao;
+		dealDao = Mockito.mock(DealDao.class);
+		Mockito.doAnswer(x -> testDaalDaoAnser(x, realDealDao, sessionId))
+		.when(dealDao).getPosibleDeals(Mockito.any(), Mockito.any(), Mockito.anyLong());
+		
+		trade();
+		
+		deals.stream().forEach(this::enrichAddress);
+		
+		return deals;
 	}
 	
 	private void enrichAddress(Deal deal){
-		try{
-			deal.setBuyerAddress(addressService.getAddressById(deal.getBuyerAddressId(), 0));
-			deal.setSellerAddress(addressService.getAddressById(deal.getSellerAddressId(), 0));
-		} catch (ServiceException e) {
-			throw new StockRuntimeException(e);
-		}
+		deal.setBuyerAddress(addressService.getAddressById(deal.getBuyerAddressId(), 0));
+		deal.setSellerAddress(addressService.getAddressById(deal.getSellerAddressId(), 0));
 	}
 	
 	@SuppressWarnings("unchecked")
 	private Void testDaalDaoAnser(InvocationOnMock invocation, DealDao realDealDao, String sessionId){
-		try{
-			List<Lot> lots = (List<Lot>) invocation.getArguments()[0];
-			List<Tender> tenders = (List<Tender>) invocation.getArguments()[1];
-			long productId = (long) invocation.getArguments()[2];
-			realDealDao.getTestPossibleDeals(lots, tenders, productId, sessionId);
-			return null;
-		}catch (DaoException e) {
-			throw new StockRuntimeException(e);
-		}
+		List<Lot> lots = (List<Lot>) invocation.getArguments()[0];
+		List<Tender> tenders = (List<Tender>) invocation.getArguments()[1];
+		long productId = (long) invocation.getArguments()[2];
+		realDealDao.getTestPossibleDeals(lots, tenders, productId, sessionId);
+		return null;
 	}
 }

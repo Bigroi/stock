@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.service.LabelService;
-import com.bigroi.stock.service.ServiceException;
 
 @Controller
 @RequestMapping("/l10n/json")
@@ -19,7 +18,7 @@ public class LocalizationResosurseController extends BaseResourseController{
 	
 	@RequestMapping(value = "/Labels.spr")
 	@ResponseBody
-	public String labels() throws ServiceException {
+	public String labels() {
 		return new ResultBean(1, labelService.getAllLabel(getLanguage()), "").toString();
 	}
 

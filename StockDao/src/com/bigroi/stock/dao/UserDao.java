@@ -5,13 +5,13 @@ import com.bigroi.stock.bean.db.StockUser;
 
 public interface UserDao {
 	
-	void add(StockUser user)throws DaoException;
+	void add(StockUser user);
 	
-	boolean update(StockUser user) throws DaoException;
+	boolean update(StockUser user);
 	
-	StockUser getByUsernameWithRoles(String username) throws DaoException;
+	StockUser getByUsernameWithRoles(String username);
 
-	boolean updatePassword(StockUser user) throws DaoException;
+	boolean updatePassword(StockUser user);
 
-	boolean updateKeyById(StockUser user)throws DaoException;
+	boolean updateKeyById(StockUser user);
 }

@@ -17,7 +17,6 @@ import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.dao.AddressDao;
-import com.bigroi.stock.dao.DaoException;
 
 @Repository
 public class AddressDaoImpl implements AddressDao{
@@ -58,13 +57,13 @@ public class AddressDaoImpl implements AddressDao{
 	private DataSource datasource;
 
 	@Override
-	public List<CompanyAddress> getAddressesForCompany(long companyId) throws DaoException{
+	public List<CompanyAddress> getAddressesForCompany(long companyId){
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_ADDRESSES_BY_COMPANY_ID, new BeanPropertyRowMapper<CompanyAddress>(CompanyAddress.class), companyId);
 	}
 	
 	@Override
-	public boolean updateAddress(CompanyAddress address) throws DaoException{
+	public boolean updateAddress(CompanyAddress address){
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE_ADDRESS_BY_ID_AND_COMPANY_ID, 
 				address.getCity().trim(),
@@ -77,7 +76,7 @@ public class AddressDaoImpl implements AddressDao{
 	}
 	
 	@Override
-	public void addAddress(CompanyAddress address) throws DaoException{
+	public void addAddress(CompanyAddress address){
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -99,13 +98,13 @@ public class AddressDaoImpl implements AddressDao{
 	}
 		
 	@Override
-	public boolean deleteAddress(long id, long companyId) throws DaoException{
+	public boolean deleteAddress(long id, long companyId){
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(DELETE_ADDRESS_BY_ID_AND_COMPANY_ID, companyId, id) == 1;
 	}
 
 	@Override
-	public CompanyAddress getAddressById(long id, long companyId) throws DaoException {
+	public CompanyAddress getAddressById(long id, long companyId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<CompanyAddress> list = template.query(GET_ADDRESS_BY_ID, 
 				new BeanPropertyRowMapper<CompanyAddress>(CompanyAddress.class), id, companyId);
@@ -117,7 +116,7 @@ public class AddressDaoImpl implements AddressDao{
 	}
 
 	@Override
-	public boolean hasAddress(CompanyAddress address, long companyId) throws DaoException {
+	public boolean hasAddress(CompanyAddress address, long companyId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<CompanyAddress> list = template.query(
 				GET_ADDRESS_BY_COUNTRY_AND_CITY_AND_ADDRESS_AND_COMPANY_ID, 

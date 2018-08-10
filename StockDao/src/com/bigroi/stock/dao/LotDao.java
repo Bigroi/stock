@@ -8,31 +8,31 @@ import com.bigroi.stock.bean.db.Lot;
 
 public interface LotDao {
 	
-	void add(Lot lot) throws DaoException;
+	void add(Lot lot);
 	
-	boolean update(Lot lot, long companyId) throws DaoException;
+	boolean update(Lot lot, long companyId);
 	
-	Lot getById(long id, long companyId) throws DaoException;
+	Lot getById(long id, long companyId);
 	
-	List<Lot> getByCompanyId(long companyId) throws DaoException;
+	List<Lot> getByCompanyId(long companyId);
 	
-	void update(Collection<Lot> lotsToUpdate) throws DaoException;
+	void update(Collection<Lot> lotsToUpdate);
 
-	void delete(long id, long companyId) throws DaoException;
+	void delete(long id, long companyId);
 
-	boolean setStatusById(long id, long companyId, BidStatus active) throws DaoException;
+	boolean setStatusById(long id, long companyId, BidStatus active);
 
-	boolean setStatusByCompanyId(long companyId, BidStatus inactive) throws DaoException;
+	boolean setStatusByCompanyId(long companyId, BidStatus inactive);
 
-	boolean setStatusByProductId(long id, BidStatus inactive) throws DaoException;
+	boolean setStatusByProductId(long id, BidStatus inactive);
 
-	List<Lot> getActive() throws DaoException;
+	List<Lot> getActive();
 
-	List<Lot> getActiveByProductId(long productId) throws DaoException;
+	List<Lot> getActiveByProductId(long productId);
 	
-	void closeLots() throws DaoException;
+	void closeLots();
 
-	List<Lot> getByDescription(String description) throws DaoException;
+	List<Lot> getByDescription(String description);
 
-	void deleteByDescription(String description) throws DaoException;
+	void deleteByDescription(String description);
 }

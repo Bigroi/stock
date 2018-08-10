@@ -5,10 +5,10 @@ import org.springframework.stereotype.Service;
 @Service
 public interface MarketService {
 
-	void checkExparations() throws ServiceException;
+	void checkExparations();
 	
-	void clearPreDeal() throws ServiceException;
+	void clearPreDeal();
 
-	void sendConfirmationMessages() throws ServiceException;
+	void sendConfirmationMessages();
 	
 }

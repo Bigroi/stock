@@ -13,10 +13,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.Tender;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.ProductDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
 import com.google.common.collect.ImmutableList;
 
@@ -31,7 +29,7 @@ public class TenderServiceImplTest extends BaseTest {
 	private ProductDao productDao;
 	
 	@Test
-	public void getByIdTest() throws DaoException, ServiceException{
+	public void getByIdTest(){
 		// given
 		final long TENDER_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -51,7 +49,7 @@ public class TenderServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void getByCompanyIdTest() throws DaoException, ServiceException{
+	public void getByCompanyIdTest(){
 		// given
 		final long COMPANY_ID = random.nextLong();
 		
@@ -67,7 +65,7 @@ public class TenderServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void deleteTest() throws DaoException, ServiceException{
+	public void deleteTest(){
 		// given
 		final long TENDER_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -80,7 +78,7 @@ public class TenderServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void mergeAddTest() throws DaoException, ServiceException {
+	public void mergeAddTest() {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		final long PRODUCT_ID = random.nextLong();
@@ -107,7 +105,7 @@ public class TenderServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void mergeUpdateTest() throws DaoException, ServiceException {
+	public void mergeUpdateTest() {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		final long PRODUCT_ID = random.nextLong();
@@ -130,7 +128,7 @@ public class TenderServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void activateTest() throws ServiceException, DaoException{
+	public void activateTest() {
 		// given
 		final long TENDER_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -144,7 +142,7 @@ public class TenderServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void deactivateTest() throws ServiceException, DaoException{
+	public void deactivateTest() {
 		// given
 		final long TENDER_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();

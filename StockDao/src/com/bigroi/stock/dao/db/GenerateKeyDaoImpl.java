@@ -17,9 +17,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.bigroi.stock.bean.db.TempKey;
 import com.bigroi.stock.bean.db.StockUser;
-import com.bigroi.stock.dao.DaoException;
+import com.bigroi.stock.bean.db.TempKey;
 import com.bigroi.stock.dao.GenerateKeyDao;
 
 @Repository
@@ -50,7 +49,7 @@ public class GenerateKeyDaoImpl implements GenerateKeyDao {
 	private DataSource datasource;
 
 	@Override
-	public boolean checkResetKey(String email, String code) throws DaoException {
+	public boolean checkResetKey(String email, String code) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<StockUser> list = template.query(GET_GENERATED_KEY,
 				new BeanPropertyRowMapper<StockUser>(StockUser.class), email, code);
@@ -79,7 +78,7 @@ public class GenerateKeyDaoImpl implements GenerateKeyDao {
 	}
 
 	@Override
-	public void deleteGenerateKeysByDate() throws DaoException {
+	public void deleteGenerateKeysByDate() {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		Calendar calendar = Calendar.getInstance();
 		calendar.roll(Calendar.DAY_OF_YEAR, -1);

@@ -4,29 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.dao.CompanyDao;
-import com.bigroi.stock.dao.DaoException;
 
 public class LotExparationMessage extends BaseMessage<Lot> {
 
 	@Autowired
 	private CompanyDao companyDao;
 	
-	public LotExparationMessage(String fileName) throws MessageException {
+	public LotExparationMessage(String fileName){
 		super(fileName);
 	}
 
 	@Override
-	protected String getRecipient(Lot lot) throws MessageException {
-		try {
-			long companyId = lot.getCompanyId();
-			return companyDao.getById(companyId).getEmail();
-		} catch (DaoException e) {
-			throw new MessageException(e);
-		}
+	protected String getRecipient(Lot lot) {
+		long companyId = lot.getCompanyId();
+		return companyDao.getById(companyId).getEmail();
 	}
 	
 	@Override
-	protected String getText(Lot lot) throws MessageException {
+	protected String getText(Lot lot){
 		return super.getText(lot)
 				.replaceAll("@price", lot.getPrice() + "")
 				.replaceAll("@description", lot.getDescription())

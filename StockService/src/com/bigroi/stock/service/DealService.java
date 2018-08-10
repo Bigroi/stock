@@ -9,16 +9,16 @@ import com.bigroi.stock.bean.db.Deal;
 @Service
 public interface DealService {
 
-	Deal getById(long id, long companyId) throws ServiceException;
+	Deal getById(long id, long companyId);
 
-	List<Deal> getByUserId(long companyId) throws ServiceException;
+	List<Deal> getByUserId(long companyId);
 
-	boolean reject(long id, long companyId) throws ServiceException;
+	boolean reject(long id, long companyId);
 
-	boolean approve(long id, long companyId) throws ServiceException;
+	boolean approve(long id, long companyId);
 
-	boolean transport(long id, long companyId) throws ServiceException;
+	boolean transport(long id, long companyId);
 	
-    List<Deal> getListBySellerAndBuyerApproved() throws ServiceException;
+    List<Deal> getListBySellerAndBuyerApproved();
 
 }

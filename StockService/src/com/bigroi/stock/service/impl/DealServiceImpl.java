@@ -15,18 +15,15 @@ import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.dao.BlacklistDao;
 import com.bigroi.stock.dao.CompanyDao;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.messager.message.Message;
-import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.messager.message.deal.CustomerCanceledMessage;
 import com.bigroi.stock.messager.message.deal.SellerCanceledMessage;
 import com.bigroi.stock.messager.message.deal.SuccessDealMessageForCustomer;
 import com.bigroi.stock.messager.message.deal.SuccessDealMessageForSeller;
 import com.bigroi.stock.service.DealService;
-import com.bigroi.stock.service.ServiceException;
 
 @Repository
 public class DealServiceImpl implements DealService{
@@ -52,60 +49,48 @@ public class DealServiceImpl implements DealService{
 	private SuccessDealMessageForSeller successDealMessageForSeller;
 	
 	@Override
-	public Deal getById(long id, long companyId) throws ServiceException {
-		try {
-			Deal deal = dealDao.getById(id);
-			if (deal != null){
-				Company seller = companyDao.getById(deal.getSellerAddress().getCompanyId());
-				deal.getSellerAddress().setCompany(seller);
-				
-				Company buyer = companyDao.getById(deal.getBuyerAddress().getCompanyId());
-				deal.getBuyerAddress().setCompany(buyer);
-			}
-			return deal;
-		} catch (DaoException e) {
-			throw new ServiceException(e);
+	public Deal getById(long id, long companyId) {
+		Deal deal = dealDao.getById(id);
+		if (deal != null){
+			Company seller = companyDao.getById(deal.getSellerAddress().getCompanyId());
+			deal.getSellerAddress().setCompany(seller);
+			
+			Company buyer = companyDao.getById(deal.getBuyerAddress().getCompanyId());
+			deal.getBuyerAddress().setCompany(buyer);
 		}
+		return deal;
 	}
 
 	@Override
-	public List<Deal> getByUserId(long companyId) throws ServiceException {
-		try {
-			return dealDao.getByCompanyId(companyId);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
+	public List<Deal> getByUserId(long companyId) {
+		return dealDao.getByCompanyId(companyId);
 	}
 
 	@Override
 	@Transactional
-	public boolean reject(long id, long companyId) throws ServiceException {
-		try{
-			Message<Deal> message;
-			Deal deal = dealDao.getById(id);
-			long buyerId = deal.getBuyerAddress().getCompanyId();
-			long sellerId = deal.getSellerAddress().getCompanyId();
-			if (buyerId == companyId){
-				deal.setBuyerChoice(PartnerChoice.REJECTED);
-				dealDao.setBuyerStatus(deal);
-				message = customerCanceledMessage;
-			} else if (sellerId == companyId){
-				deal.setSellerChoice(PartnerChoice.REJECTED);
-				dealDao.setSellerStatus(deal);
-				message = sellerCanceledMessage;
-			} else {
-				return false;
-			}
-			addBlackList(deal.getLotId(), deal.getTenderId());
-			setVolumeBack(deal);
-			message.send(deal);
-			return true;
-		}catch(DaoException | MessageException e){
-			throw new ServiceException(e);
+	public boolean reject(long id, long companyId) {
+		Message<Deal> message;
+		Deal deal = dealDao.getById(id);
+		long buyerId = deal.getBuyerAddress().getCompanyId();
+		long sellerId = deal.getSellerAddress().getCompanyId();
+		if (buyerId == companyId){
+			deal.setBuyerChoice(PartnerChoice.REJECTED);
+			dealDao.setBuyerStatus(deal);
+			message = customerCanceledMessage;
+		} else if (sellerId == companyId){
+			deal.setSellerChoice(PartnerChoice.REJECTED);
+			dealDao.setSellerStatus(deal);
+			message = sellerCanceledMessage;
+		} else {
+			return false;
 		}
+		addBlackList(deal.getLotId(), deal.getTenderId());
+		setVolumeBack(deal);
+		message.send(deal);
+		return true;
 	}
 
-	private void setVolumeBack(Deal deal) throws DaoException {
+	private void setVolumeBack(Deal deal){
 		long buyerId = deal.getBuyerAddress().getCompanyId();
 		long sellerId = deal.getSellerAddress().getCompanyId();
 		
@@ -119,32 +104,28 @@ public class DealServiceImpl implements DealService{
 	}
 
 	@Override
-	public boolean approve(long id, long companyId) throws ServiceException {
-		try{
-			Deal deal = dealDao.getById(id);
-			long buyerId = deal.getBuyerAddress().getCompanyId();
-			long sellerId = deal.getSellerAddress().getCompanyId();
-			if (buyerId == companyId){
-				deal.setBuyerChoice(PartnerChoice.APPROVED);
-				dealDao.setBuyerStatus(deal);
-			} else if (sellerId == companyId){
-				deal.setSellerChoice(PartnerChoice.APPROVED);
-				dealDao.setSellerStatus(deal);
-			} else {
-				return false;
-			}
-			if (DealStatus.calculateStatus(deal.getBuyerChoice(), deal.getSellerChoice()) == DealStatus.APPROVED){
-				successDealMessageForCustomer.send(deal);
-				successDealMessageForSeller.send(deal);
-			}
-			
-			return true;
-		}catch(DaoException | MessageException e){
-			throw new ServiceException(e);
+	public boolean approve(long id, long companyId) {
+		Deal deal = dealDao.getById(id);
+		long buyerId = deal.getBuyerAddress().getCompanyId();
+		long sellerId = deal.getSellerAddress().getCompanyId();
+		if (buyerId == companyId){
+			deal.setBuyerChoice(PartnerChoice.APPROVED);
+			dealDao.setBuyerStatus(deal);
+		} else if (sellerId == companyId){
+			deal.setSellerChoice(PartnerChoice.APPROVED);
+			dealDao.setSellerStatus(deal);
+		} else {
+			return false;
 		}
+		if (DealStatus.calculateStatus(deal.getBuyerChoice(), deal.getSellerChoice()) == DealStatus.APPROVED){
+			successDealMessageForCustomer.send(deal);
+			successDealMessageForSeller.send(deal);
+		}
+		
+		return true;
 	}
 
-	private void addBlackList(long lotId, long tenderId) throws DaoException {
+	private void addBlackList(long lotId, long tenderId){
 		Blacklist blackList = new Blacklist();
 		blackList.setLotId(lotId);
 		blackList.setTenderId(tenderId);
@@ -152,33 +133,25 @@ public class DealServiceImpl implements DealService{
 	}
 
 	@Override
-	public boolean transport(long id, long companyId) throws ServiceException {
-		try{
-			Deal deal = dealDao.getById(id);
-			long buyerId = deal.getBuyerAddress().getCompanyId();
-			long sellerId = deal.getSellerAddress().getCompanyId();
-			
-			if (buyerId == companyId){
-				deal.setBuyerChoice(PartnerChoice.TRANSPORT);
-				dealDao.setBuyerStatus(deal);
-			} else if (sellerId == companyId){
-				deal.setSellerChoice(PartnerChoice.TRANSPORT);
-				dealDao.setSellerStatus(deal);
-			} else {
-				return false;
-			}
-			return true;
-		}catch(DaoException e){
-			throw new ServiceException(e);
+	public boolean transport(long id, long companyId) {
+		Deal deal = dealDao.getById(id);
+		long buyerId = deal.getBuyerAddress().getCompanyId();
+		long sellerId = deal.getSellerAddress().getCompanyId();
+		
+		if (buyerId == companyId){
+			deal.setBuyerChoice(PartnerChoice.TRANSPORT);
+			dealDao.setBuyerStatus(deal);
+		} else if (sellerId == companyId){
+			deal.setSellerChoice(PartnerChoice.TRANSPORT);
+			dealDao.setSellerStatus(deal);
+		} else {
+			return false;
 		}
+		return true;
 	}
 
 	@Override
-	public List<Deal> getListBySellerAndBuyerApproved() throws ServiceException {
-		try {
-			return dealDao.getListBySellerAndBuyerApproved();
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
+	public List<Deal> getListBySellerAndBuyerApproved() {
+		return dealDao.getListBySellerAndBuyerApproved();
 	}
 }

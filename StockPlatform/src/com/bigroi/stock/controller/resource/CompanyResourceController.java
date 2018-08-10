@@ -14,10 +14,8 @@ import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.ui.CompanyForUI;
 import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.ResultBean;
-import com.bigroi.stock.json.TableException;
 import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.CompanyService;
-import com.bigroi.stock.service.ServiceException;
 
 @Controller
 @RequestMapping("/company/json/admin")
@@ -29,7 +27,7 @@ public class CompanyResourceController extends BaseResourseController {
 	@RequestMapping("/List.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
-	public String getListCompanyAll() throws ServiceException, TableException {
+	public String getListCompanyAll() {
 		List<Company> list = companyService.getAllCompanies();
 		List<CompanyForUI> listForUI = list.stream().map(CompanyForUI::new).collect(Collectors.toList());
 		TableResponse<CompanyForUI> tableResponse = new TableResponse<>(CompanyForUI.class, listForUI);
@@ -39,7 +37,7 @@ public class CompanyResourceController extends BaseResourseController {
 	@RequestMapping("/ChangeStatus.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
-	public String changeStatus(@RequestParam("id") long id) throws ServiceException {
+	public String changeStatus(@RequestParam("id") long id) {
 		companyService.changeStatusCompany(id);
 		return new ResultBean(1, null).toString();
 	}

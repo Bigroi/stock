@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import com.bigroi.stock.messager.MailManager;
 import com.bigroi.stock.service.MarketService;
 import com.bigroi.stock.service.MessageService;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.UserService;
 import com.bigroi.stock.service.impl.TradeServiceImpl;
 
@@ -35,7 +34,7 @@ public class JobConfigurator {
 	public void deleteGenerateKeys() {
 		try{
 			userService.deleteGenerateKeys();
-		}catch (ServiceException e) {
+		}catch (Exception e) {
 			mailManager.sendToAdmin(e);
 		}
 	}
@@ -47,7 +46,7 @@ public class JobConfigurator {
 			marketService.checkExparations();
 			new TradeServiceImpl().trade();
 			marketService.sendConfirmationMessages();
-		}catch (ServiceException e) {
+		}catch (Exception e) {
 			mailManager.sendToAdmin(e);
 			logger.warn("unsucsessful trading", e);
 		}
@@ -57,7 +56,7 @@ public class JobConfigurator {
 	public void sendAllEmails() {
 		try {
 			messageService.sendAllEmails();
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			mailManager.sendToAdmin(e);
 			logger.warn("unseccessfull mailing", e);
 		}

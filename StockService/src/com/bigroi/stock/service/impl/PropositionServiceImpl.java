@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.db.Proposition;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.PropositionDao;
 import com.bigroi.stock.service.PropositionService;
-import com.bigroi.stock.service.ServiceException;
 
 @Repository
 public class PropositionServiceImpl implements PropositionService {
@@ -18,38 +16,22 @@ public class PropositionServiceImpl implements PropositionService {
 	private PropositionDao propostionDao;
 	
 	@Override
-	public List<Proposition> getListProposition() throws ServiceException {
-		try {
-			return propostionDao.getListPropositions();
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
+	public List<Proposition> getListProposition() {
+		return propostionDao.getListPropositions();
 	}
 
 	@Override
-	public void delete(long id, long companyId) throws ServiceException {
-		try {
-			 propostionDao.deleteProposition(id, companyId);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
+	public void delete(long id, long companyId) {
+		 propostionDao.deleteProposition(id, companyId);
 	}
 
 	@Override
-	public List<Proposition> getListHystoryProposition(long companyId) throws ServiceException {
-		try {
-			return propostionDao.getListPropositionsByStatusAndUserId(companyId);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
+	public List<Proposition> getListHystoryProposition(long companyId) {
+		return propostionDao.getListPropositionsByStatusAndUserId(companyId);
 	}
 
 	@Override
-	public List<Proposition> getListPropositionsByTrans() throws ServiceException {
-		try {
-			return propostionDao.getListPropositionsTrans();
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
+	public List<Proposition> getListPropositionsByTrans() {
+		return propostionDao.getListPropositionsTrans();
 	}
 }

@@ -7,9 +7,7 @@ import javax.servlet.http.HttpSessionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bigroi.stock.service.LotService;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.service.TenderService;
-import com.bigroi.stock.util.exception.StockRuntimeException;
 
 @WebListener
 public class StockSessionListener implements HttpSessionActivationListener {
@@ -25,12 +23,8 @@ public class StockSessionListener implements HttpSessionActivationListener {
     }
 
     public void sessionWillPassivate(HttpSessionEvent se)  { 
-    	try{
-	    	lotService.deleteBySessionId(se.getSession().getId());
-	    	tenderService.deleteBySessionId(se.getSession().getId());
-    	} catch (ServiceException e) {
-			throw new StockRuntimeException(e);
-		}
+    	lotService.deleteBySessionId(se.getSession().getId());
+    	tenderService.deleteBySessionId(se.getSession().getId());
     }
 	
 }

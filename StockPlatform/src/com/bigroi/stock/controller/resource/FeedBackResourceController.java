@@ -12,7 +12,6 @@ import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.messager.message.FeedBackMessage;
-import com.bigroi.stock.messager.message.MessageException;
 
 @Controller
 @RequestMapping("feedback/json")
@@ -39,7 +38,7 @@ public class FeedBackResourceController extends BaseResourseController {
 	
 	@RequestMapping("Save.spr")
 	@ResponseBody
-	public String getForm(String json) throws MessageException{
+	public String getForm(String json) {
 		FeedBack message = GsonUtil.getGson().fromJson(json, FeedBack.class);
 		feedBackMessage.send(message);
 		return new ResultBean(2, message, FB_SUCCESS_LABEL).toString();

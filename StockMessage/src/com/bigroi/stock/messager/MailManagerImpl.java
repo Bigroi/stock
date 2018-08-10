@@ -21,6 +21,7 @@ import javax.mail.util.ByteArrayDataSource;
 import org.apache.log4j.Logger;
 
 import com.bigroi.stock.bean.db.Email;
+import com.bigroi.stock.util.exception.StockRuntimeException;
 
 public class MailManagerImpl implements MailManager {
 
@@ -33,12 +34,12 @@ public class MailManagerImpl implements MailManager {
 	private String serverAdress;
 
 	@Override
-	public void send(Email email) throws MailManagerException {
+	public void send(Email email) {
 		send(user, email);
 	}
 
 	@Override
-	public void send(String fromEmail, Email email) throws MailManagerException {
+	public void send(String fromEmail, Email email) {
 		try {
 			Session session = Session.getInstance(mailProperties, new Authenticator() {
 				@Override
@@ -71,7 +72,7 @@ public class MailManagerImpl implements MailManager {
 			}
 			Transport.send(message);
 		} catch (MessagingException e) {
-			throw new MailManagerException(e);
+			throw new StockRuntimeException(e);
 		}
 	}
 
@@ -83,7 +84,7 @@ public class MailManagerImpl implements MailManager {
 			email.setRecipient(adminUser);
 			email.setSubject(e.getMessage());
 			send(email);
-		}catch (MailManagerException excep) {
+		}catch (Exception excep) {
 			LOGGER.error("Con not send error: ", e);
 			LOGGER.error("Couse ", excep);
 		}

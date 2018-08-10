@@ -23,14 +23,11 @@ import com.bigroi.stock.bean.db.TempKey;
 import com.bigroi.stock.bean.db.UserRole;
 import com.bigroi.stock.dao.AddressDao;
 import com.bigroi.stock.dao.CompanyDao;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.GenerateKeyDao;
 import com.bigroi.stock.dao.UserDao;
 import com.bigroi.stock.dao.UserRoleDao;
 import com.bigroi.stock.messager.message.LinkResetPasswordMessage;
-import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.messager.message.ResetUserPasswordMessage;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
 import com.google.common.collect.ImmutableList;
 
@@ -60,7 +57,7 @@ public class UserServiceImplTest extends BaseTest {
 	private PasswordEncoder passwordEncoder;
 	
 	@Test
-	public void addUserTest() throws DaoException, ServiceException{
+	public void addUserTest(){
 		// given
 		final long COMPANY_ID = random.nextLong();
 		
@@ -105,7 +102,7 @@ public class UserServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void updateTest() throws DaoException, ServiceException{
+	public void updateTest(){
 		// given
 		Company company = createObject(Company.class);
 		company.setCompanyAddress(createObject(CompanyAddress.class));
@@ -124,7 +121,7 @@ public class UserServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void loadUserByUsernameTest() throws DaoException{
+	public void loadUserByUsernameTest() {
 		// given
 		final String USER_NAME = randomString();
 		
@@ -147,16 +144,8 @@ public class UserServiceImplTest extends BaseTest {
 		userService.loadUserByUsername(USER_NAME);
 	}
 	
-	@Test(expected = ServiceException.class)
-	public void deleteGenerateKeysThrowExceptionTest() throws DaoException, ServiceException{
-		// given
-		 Mockito.doThrow(DaoException.class).when(keysDao).deleteGenerateKeysByDate();
-		// when
-		userService.deleteGenerateKeys();
-	}
-	
 	@Test
-	public void deleteGenerateKeysTest() throws DaoException, ServiceException{
+	public void deleteGenerateKeysTest(){
 		// mock
 		Mockito.doNothing().when(keysDao).deleteGenerateKeysByDate();
 		// when
@@ -166,7 +155,7 @@ public class UserServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void sendLinkResetPasswordTest() throws DaoException, MessageException, ServiceException{
+	public void sendLinkResetPasswordTest() {
 		// given
 		final String USER_NAME = randomString();
 				
@@ -191,7 +180,7 @@ public class UserServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void changePasswordTest() throws DaoException, MessageException, ServiceException{
+	public void changePasswordTest(){
 		// given
 		final String USER_NAME = randomString();
 		final String CODE = randomString();
@@ -217,7 +206,7 @@ public class UserServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void notChangePasswordTest() throws DaoException, MessageException, ServiceException{
+	public void notChangePasswordTest() {
 		// given
 		final String USER_NAME = null;
 		final String CODE = null;
@@ -231,7 +220,7 @@ public class UserServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void getByUsernameTest() throws DaoException, ServiceException{
+	public void getByUsernameTest(){
 		// given
 		final String USER_NAME = randomString();
 		

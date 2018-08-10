@@ -1,11 +1,10 @@
 package com.bigroi.stock.messager.message.deal;
 
 import com.bigroi.stock.bean.db.Deal;
-import com.bigroi.stock.messager.message.MessageException;
 
 public class SellerCanceledMessage extends DealBaseMessage {
 
-	public SellerCanceledMessage(String fileName) throws MessageException {
+	public SellerCanceledMessage(String fileName) {
 		super(fileName);
 	}
 
@@ -14,7 +13,7 @@ public class SellerCanceledMessage extends DealBaseMessage {
 	}
 	
 	@Override
-	protected String getText(Deal deal) throws MessageException {
+	protected String getText(Deal deal) {
 		return super.getText(deal)
 				.replaceAll("@product", deal.getProduct().getName())
 				.replaceAll("@server", mailManager.getServerAdress());

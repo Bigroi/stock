@@ -13,12 +13,11 @@ import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.CompanyType;
 import com.bigroi.stock.bean.common.PropositionStatus;
-import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Company;
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.Proposition;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.PropositionDao;
 
 @Repository
@@ -57,25 +56,25 @@ public class PropositionDaoImpl implements PropositionDao {
 	private DataSource dataSource;
 
 	@Override
-	public List<Proposition> getListPropositions() throws DaoException {
+	public List<Proposition> getListPropositions() {
 		JdbcTemplate template = new JdbcTemplate(dataSource);
 		return template.query(GET_APPROVE_PROPOSITIONS, new PropostionRowMapper());
 	}
 	
 	@Override
-	public boolean deleteProposition(long id, long companyId) throws DaoException {
+	public boolean deleteProposition(long id, long companyId) {
 		JdbcTemplate template = new JdbcTemplate(dataSource);
 		return template.update(DELETE_PROPOSITION_BY_DEAL_ID_AND_COMPANY_ID, id, companyId) == 1;
 	}
 	
 	@Override
-	public List<Proposition> getListPropositionsByStatusAndUserId(long userId) throws DaoException {
+	public List<Proposition> getListPropositionsByStatusAndUserId(long userId) {
 		JdbcTemplate template = new JdbcTemplate(dataSource);
 		return template.query(GET_CLOSED_PROPOSITIONS, new PropostionRowMapper(), userId);
 	}
 	
 	@Override
-	public List<Proposition> getListPropositionsTrans() throws DaoException {
+	public List<Proposition> getListPropositionsTrans() {
 		JdbcTemplate template = new JdbcTemplate(dataSource);
 		return template.query(GET_PROPOSITIONS_FOR_DEAL_BY_ID, new RowMapper<Proposition>() {
 

@@ -20,16 +20,13 @@ import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.dao.BlacklistDao;
 import com.bigroi.stock.dao.CompanyDao;
-import com.bigroi.stock.dao.DaoException;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.messager.message.MessageException;
 import com.bigroi.stock.messager.message.deal.CustomerCanceledMessage;
 import com.bigroi.stock.messager.message.deal.SellerCanceledMessage;
 import com.bigroi.stock.messager.message.deal.SuccessDealMessageForCustomer;
 import com.bigroi.stock.messager.message.deal.SuccessDealMessageForSeller;
-import com.bigroi.stock.service.ServiceException;
 import com.bigroi.stock.util.BaseTest;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -57,7 +54,7 @@ public class DealServiceImplTest extends BaseTest {
 	private SuccessDealMessageForSeller successDealMessageForSeller;
 
 	@Test
-	public void getByIdTest() throws DaoException, ServiceException {
+	public void getByIdTest() {
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -81,7 +78,7 @@ public class DealServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void getByUserIdTest() throws ServiceException, DaoException{
+	public void getByUserIdTest() {
 		// given
 		final long COMPANY_ID = random.nextLong();
 		List<Deal> expectedList = new ArrayList<>();
@@ -95,7 +92,7 @@ public class DealServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void getListBySellerAndBuyerApprovedTest() throws DaoException, ServiceException{
+	public void getListBySellerAndBuyerApprovedTest(){
 		// mock
 		List<Deal> expectedList = new ArrayList<>();
 		Mockito.when(dealDao.getListBySellerAndBuyerApproved()).thenReturn(expectedList);
@@ -107,7 +104,7 @@ public class DealServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void approveNotAuthorizedTest() throws DaoException, ServiceException{
+	public void approveNotAuthorizedTest(){
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -130,7 +127,7 @@ public class DealServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void approveSellerTest() throws DaoException, ServiceException, MessageException{
+	public void approveSellerTest(){
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -159,7 +156,7 @@ public class DealServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void approveBuyerTest() throws DaoException, ServiceException, MessageException{
+	public void approveBuyerTest(){
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -188,7 +185,7 @@ public class DealServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void calculateStatusTest() throws MessageException, ServiceException, DaoException{
+	public void calculateStatusTest(){
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -211,7 +208,7 @@ public class DealServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void rejectBuyerTest() throws DaoException, ServiceException, MessageException{
+	public void rejectBuyerTest(){
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -264,7 +261,7 @@ public class DealServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void rejectSellerTest() throws DaoException, ServiceException, MessageException{
+	public void rejectSellerTest(){
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -315,7 +312,7 @@ public class DealServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void rejectNotAuthorizedTest() throws DaoException, ServiceException, MessageException{
+	public void rejectNotAuthorizedTest() {
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -333,7 +330,7 @@ public class DealServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void transportBuyerTest() throws DaoException, ServiceException{
+	public void transportBuyerTest(){
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -357,7 +354,7 @@ public class DealServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void transportSellerTest() throws DaoException, ServiceException{
+	public void transportSellerTest(){
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
@@ -380,7 +377,7 @@ public class DealServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void transportNotAuthorizedTest() throws DaoException, ServiceException{
+	public void transportNotAuthorizedTest(){
 		// given
 		final long DEAL_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
