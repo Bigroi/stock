@@ -12,9 +12,9 @@ $(document).ready(function(){
 	$('.test-clear').on("click", function(evt){
 		$.getJSON(getContextRoot() + "/deal/json/TestClean.spr", function(answer){
 			if (answer.result > 0){
-				$("#main-table-deal").DataTable().clear();
-				$("#main-table-lot").DataTable().clear();
-				$("#main-table-tender").DataTable().clear();
+				$("#main-table-deal").DataTable().clear().draw(true);
+				$("#main-table-lot").DataTable().clear().draw(true);
+				$("#main-table-tender").DataTable().clear().draw(true);
 			}
 		});
 	});
