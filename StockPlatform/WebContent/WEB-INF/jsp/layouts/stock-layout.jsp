@@ -79,8 +79,16 @@
 						<a href="#" onclick="document.location = getContextRoot() + '/account/json/Logout.spr'" id="session-start">
 							Выйти
 						</a>
+						<a>
+							<select name="lang" class="language-switcher">
+								<c:forEach var="lang" items="${languages}">
+									<option value="${lang}">${lang}</option>
+								</c:forEach>
+							</select>
+						</a>
 					</div>
 				</div>
+				
 			</div>
        	</div>
         <div class="bgdark"></div>

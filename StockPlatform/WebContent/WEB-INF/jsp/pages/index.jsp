@@ -61,6 +61,13 @@
 								${label.navigation.login}
 	                		</button>
 						</div>
+						<div class="languages">
+							<select name="lang" class="language-switcher">
+								<c:forEach var="lang" items="${languages}">
+									<option value="${lang}">${lang}</option>
+								</c:forEach>
+							</select>
+						</div>
 					</div>
 				</header>
 				<main>

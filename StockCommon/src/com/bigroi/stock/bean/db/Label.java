@@ -1,5 +1,7 @@
 package com.bigroi.stock.bean.db;
 
+import com.bigroi.stock.util.LabelUtil;
+
 public class Label {
 
 	private long id;
@@ -10,9 +12,9 @@ public class Label {
 	
 	private String enUs;
 	
-	private String plPl;
+	private String pl;
 	
-	private String ruBy;
+	private String ruRu;
 	
 	private String currentLanguage;
 
@@ -48,25 +50,25 @@ public class Label {
 		this.enUs = enUs;
 	}
 
-	public String getPlPl() {
-		return plPl;
+	public String getPl() {
+		return pl;
 	}
 
-	public void setPlPl(String plPl) {
-		this.plPl = plPl;
+	public void setPl(String pl) {
+		this.pl = pl;
 	}
 
-	public String getRuBy() {
-		return ruBy;
+	public String getRuRu() {
+		return ruRu;
 	}
 
-	public void setRuBy(String ruBy) {
-		this.ruBy = ruBy;
+	public void setRuRu(String ruRu) {
+		this.ruRu = ruRu;
 	}
 
 	public String getCurrentLanguage() {
 		if (currentLanguage == null){
-			return getAnonimLabel(category, name);
+			return LabelUtil.getLabelUndefinedValue(category, name);
 		} else {
 			return currentLanguage;
 		}
@@ -82,8 +84,4 @@ public class Label {
 				.append(name).toString();
 	}
 	
-	
-	public static String getAnonimLabel(String category, String name){
-		return "LABEL:" + category.toUpperCase() + ":" + name.toLowerCase();
-	}
 }

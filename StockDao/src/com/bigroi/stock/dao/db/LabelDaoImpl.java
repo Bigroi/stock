@@ -3,6 +3,7 @@ package com.bigroi.stock.dao.db;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 
 import javax.sql.DataSource;
 
@@ -32,10 +33,10 @@ public class LabelDaoImpl implements LabelDao {
 	private DataSource datasource;
 	
 	@Override
-	public String getLabel(String category, String name, String language) {
+	public String getLabel(String category, String name, Locale language) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		List<String> list = template.query(
-				GET_LABEL.replace(LANGUAGE, language), 
+				GET_LABEL.replace(LANGUAGE, language.toString()), 
 				new RowMapper<String>(){
 					@Override
 					public String mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -51,10 +52,10 @@ public class LabelDaoImpl implements LabelDao {
 	}
 
 	@Override
-	public List<Label> getAllLabel(String language) {
+	public List<Label> getAllLabel(Locale language) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(
-				GET_ALL_LABELS.replace(LANGUAGE, language), 
+				GET_ALL_LABELS.replace(LANGUAGE, language.toString()), 
 				new RowMapper<Label>(){
 					@Override
 					public Label mapRow(ResultSet rs, int rowNum) throws SQLException {

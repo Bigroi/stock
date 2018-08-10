@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.service.LabelService;
+import com.bigroi.stock.util.LabelUtil;
 
 
 public abstract class BaseRenderingController extends BaseController{
@@ -23,6 +24,7 @@ public abstract class BaseRenderingController extends BaseController{
 		return new ModelAndView(pageName)
 				.addObject("label", new LabelMap())
 				.addObject("user", user)
+				.addObject("languages", LabelUtil.getPassibleLanguages(getLanguage()))
 				.addObject("page_title", labelService.getLabel("pageNames", pageName, getLanguage()));
 	}
 	
