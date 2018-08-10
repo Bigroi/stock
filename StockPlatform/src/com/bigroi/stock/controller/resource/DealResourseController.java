@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
@@ -23,7 +25,7 @@ import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.DealService;
 import com.bigroi.stock.service.LabelService;
-import com.bigroi.stock.service.impl.TradeServiceImpl;
+import com.bigroi.stock.service.TradeService;
 
 @Controller
 @RequestMapping(value = "/deal/json", produces = "text/plain;charset=UTF-8")
@@ -33,6 +35,9 @@ public class DealResourseController extends BaseResourseController {
 	private static final String TRANSPORT_SUCCESS_LABEL = "label.deal.transport";
 	private static final String REJECT_SUCCESS_LABEL = "label.deal.rejected";
 	private static final String APPROVE_SUCCESS_LABEL = "label.deal.approved";
+	
+	@Autowired
+	private TradeService tradeService;
 	
 	@Autowired
 	private DealService dealService;
@@ -80,10 +85,17 @@ public class DealResourseController extends BaseResourseController {
 		return new ResultBean(1, table, null).toString();
 	}
 	
+	@RequestMapping(value = "/TestClean.spr")
+	@ResponseBody
+	public String testClean(HttpSession session) {
+		session.invalidate();
+		return new ResultBean(1, null).toString();
+	}
+	
 	@RequestMapping(value = "/TestTrade.spr")
 	@ResponseBody
 	public String testTrade(Authentication loggedInUser) {
-		List<Deal> deals = new TradeServiceImpl().testTrade(getSessionId());
+		List<Deal> deals = tradeService.newInstance().testTrade(getSessionId());
 		List<TestDealForUI> dealsForUI = deals.stream().map(TestDealForUI::new).collect(Collectors.toList());
 		TableResponse<TestDealForUI> table = new TableResponse<>(TestDealForUI.class, dealsForUI);
 		return new ResultBean(1, table, "").toString();

@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.service.MarketService;
 import com.bigroi.stock.service.MessageService;
-import com.bigroi.stock.service.impl.TradeServiceImpl;
+import com.bigroi.stock.service.TradeService;
 
 @Controller
 @RequestMapping("/test/background")
@@ -15,6 +15,9 @@ public class TestBackgroundController extends BaseRenderingController {
 	
 	private static final String TEST_PAGE = "testBG";
 	private static final String MESSAGE = "message";
+	
+	@Autowired
+	private TradeService tradeService;
 	
 	@Autowired
 	private MarketService marketService;
@@ -42,7 +45,7 @@ public class TestBackgroundController extends BaseRenderingController {
 	public ModelAndView startTrade(){
 		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		
-		new TradeServiceImpl().trade();
+		tradeService.newInstance().trade();
 		String message = "Trade is finished";
 		modelAndView.addObject(MESSAGE, message);
 		

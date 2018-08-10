@@ -9,14 +9,17 @@ import org.springframework.scheduling.annotation.Scheduled;
 import com.bigroi.stock.messager.MailManager;
 import com.bigroi.stock.service.MarketService;
 import com.bigroi.stock.service.MessageService;
+import com.bigroi.stock.service.TradeService;
 import com.bigroi.stock.service.UserService;
-import com.bigroi.stock.service.impl.TradeServiceImpl;
 
 @Configuration
 @EnableScheduling
 public class JobConfigurator {
 
 	private static final Logger logger = Logger.getLogger(JobConfigurator.class);
+	
+	@Autowired
+	private TradeService tradeService;
 	
 	@Autowired
 	private MessageService messageService;
@@ -44,7 +47,7 @@ public class JobConfigurator {
 		try{
 			marketService.clearPreDeal();
 			marketService.checkExparations();
-			new TradeServiceImpl().trade();
+			tradeService.newInstance().trade();
 			marketService.sendConfirmationMessages();
 		}catch (Exception e) {
 			mailManager.sendToAdmin(e);

@@ -1,5 +1,6 @@
 package com.bigroi.stock.service.impl;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -26,6 +27,7 @@ import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForCustomer
 import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
 import com.bigroi.stock.service.AddressService;
 import com.bigroi.stock.service.TradeService;
+import com.bigroi.stock.util.exception.StockRuntimeException;
 
 @Repository
 public class TradeServiceImpl implements TradeService{
@@ -41,7 +43,6 @@ public class TradeServiceImpl implements TradeService{
 	@Autowired
 	private AddressService addressService;
 	
-	
 	@Autowired
 	private DealConfirmationMessageForCustomer dealConfirmationMessageForCustomer;
 	@Autowired
@@ -51,9 +52,14 @@ public class TradeServiceImpl implements TradeService{
 	private Set<Lot> lotsToUpdate = new HashSet<>();
 	private List<Deal> deals = new ArrayList<>();
 	
+	private boolean canUse = false;
+	
 	@Override
 	@Transactional
 	public void trade(){
+		if (!canUse){
+			throw new StockRuntimeException("use newInstance() befor use");
+		}
 		List<Product> list = productDao.getAllActiveProducts();
 		for (Product product : list){
 			productTrade(product);
@@ -175,6 +181,9 @@ public class TradeServiceImpl implements TradeService{
 
 	@Override
 	public List<Deal> testTrade(String sessionId) {
+		if (!canUse){
+			throw new StockRuntimeException("use newInstance() befor use");
+		}
 		lotDao = Mockito.mock(LotDao.class);
 		tenderDao = Mockito.mock(TenderDao.class);
 		dealConfirmationMessageForCustomer = Mockito.mock(DealConfirmationMessageForCustomer.class);
@@ -204,5 +213,21 @@ public class TradeServiceImpl implements TradeService{
 		long productId = (long) invocation.getArguments()[2];
 		realDealDao.getTestPossibleDeals(lots, tenders, productId, sessionId);
 		return null;
+	}
+
+	@Override
+	public TradeService newInstance() {
+		try {
+			TradeServiceImpl instance = new TradeServiceImpl();
+			for (Field field : getClass().getDeclaredFields()){
+				if (field.getAnnotation(Autowired.class) != null){
+					field.set(instance, field.get(this));
+				}
+			}
+			instance.canUse = true;
+			return instance;
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			throw new StockRuntimeException(e);
+		}
 	}
 }

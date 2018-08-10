@@ -10,11 +10,11 @@ $(document).ready(function(){
 	});
 	
 	$('.test-clear').on("click", function(evt){
-		$.getJSON(getContextRoot() + "/deal/json/Clean.spr", function(answer){
+		$.getJSON(getContextRoot() + "/deal/json/TestClean.spr", function(answer){
 			if (answer.result > 0){
-				$("#main-table-deal").DataTable().clean();
-				$("#main-table-lot").DataTable().clean();
-				$("#main-table-tender").DataTable().clean();
+				$("#main-table-deal").DataTable().clear();
+				$("#main-table-lot").DataTable().clear();
+				$("#main-table-tender").DataTable().clear();
 			}
 		});
 	});
