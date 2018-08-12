@@ -1,7 +1,5 @@
 package com.bigroi.stock.controller.resource;
 
-import java.util.Locale;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +27,7 @@ public class LocalizationResosurseController extends BaseResourseController{
 	@RequestMapping(value = "/ChangeLanguage.spr")
 	@ResponseBody
 	public String changeLanguage(@RequestParam("lang") String lang) {
-		Locale locale = LabelUtil.parseString(lang);
-		session.setAttribute(LANG_SESSION_ATTRIBUTE, LabelUtil.checkLocale(locale));
+		setLanguage(LabelUtil.parseString(lang));
 		return new ResultBean(1, null).toString();
 	}
 	

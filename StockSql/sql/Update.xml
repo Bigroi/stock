@@ -4,7 +4,7 @@
 	</update>
 	
 	<update author="Pavel" date="10.08.2018">
-		CREATE TABLE IF NOT EXISTS `label` (
+		CREATE TABLE IF NOT EXISTS `LABEL` (
 			`id` bigint(20) NOT NULL AUTO_INCREMENT,
 			`category` varchar(20) NOT NULL,
 			`name` varchar(30) NOT NULL,
@@ -14,7 +14,7 @@
 			PRIMARY KEY (`id`)
 		) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=utf8;
 		
-		INSERT INTO `label` (`id`, `category`, `name`, `en_us`, `ru_by`, `pl_pl`) VALUES
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_by`, `pl_pl`) VALUES
 			(237, 'account', 'haveAcc', 'Do you have account?', 'Уже есть учетная запись?', 'Czy posiadasz już konto?'),
 			(238, 'account', 'password', 'Password', 'Пароль', 'Hasło	'),
 			(239, 'account', 'reg_number', 'Registration number', 'УНП', 'Numer rejestracji'),
@@ -251,6 +251,10 @@
 			(470, 'pageNames', 'companies', 'Company list', 'Список компаний', 'Lista firm'),
 			(471, 'deal', 'transporе', 'Need a transport', NULL, 'Znajdź transport'),
 			(472, 'pageNames', 'myDelas', 'Deal list', NULL, 'Lista umów');
+	</update>
+	
+	<update>
+		ALTER TABLE `COMPANY` ADD COLUMN `language` VARCHAR(50) NOT NULL DEFAULT 'en_US' AFTER `type`;
 	</update>
 </root>
 

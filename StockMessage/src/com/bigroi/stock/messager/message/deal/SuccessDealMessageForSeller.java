@@ -10,8 +10,8 @@ public class SuccessDealMessageForSeller extends DealBaseMessage{
 	@Autowired
 	private DealDocument dealDocument;
 	
-	public SuccessDealMessageForSeller(String fileName) {
-		super(fileName);
+	public SuccessDealMessageForSeller(String fileName, String fileExtention){
+		super(fileName, fileExtention);
 	}
 	
 	@Override
@@ -25,12 +25,12 @@ public class SuccessDealMessageForSeller extends DealBaseMessage{
 	
 	@Override
 	protected String getFileName() {
-		return DealDocument.DEAL_DOC_FILE_ANME;
+		return DealDocument.DEAL_DOC_FILE_NAME + "." + DealDocument.DEAL_DOC_FILE_EXTENSION;
 	}
 
 	@Override
-	protected String getText(Deal deal) {
-		return super.getText(deal)
+	protected String getText(Deal deal, String locale) {
+		return super.getText(deal, locale)
 				.replaceAll("@product", deal.getProduct().getName())
 				.replaceAll("@server", mailManager.getServerAdress());
 	}

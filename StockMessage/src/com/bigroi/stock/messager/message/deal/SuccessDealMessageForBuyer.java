@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.docs.DealDocument;
 
-public class SuccessDealMessageForCustomer extends DealBaseMessage {
+public class SuccessDealMessageForBuyer extends DealBaseMessage {
 
 	@Autowired
 	private DealDocument dealDocument;
 	
-	public SuccessDealMessageForCustomer(String fileName) {
-		super(fileName);
+	public SuccessDealMessageForBuyer(String fileName, String fileExtention){
+		super(fileName, fileExtention);
 	}
 	
 	@Override
@@ -25,12 +25,12 @@ public class SuccessDealMessageForCustomer extends DealBaseMessage {
 	
 	@Override
 	protected String getFileName() {
-		return DealDocument.DEAL_DOC_FILE_ANME;
+		return DealDocument.DEAL_DOC_FILE_NAME + "." + DealDocument.DEAL_DOC_FILE_EXTENSION;
 	}
 
 	@Override
-	protected String getText(Deal deal) {
-		return super.getText(deal)
+	protected String getText(Deal deal, String locale) {
+		return super.getText(deal, locale)
 				.replaceAll("@product", deal.getProduct().getName())
 				.replaceAll("@server", mailManager.getServerAdress());
 	}

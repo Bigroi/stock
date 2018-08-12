@@ -109,7 +109,7 @@ public class UserServiceImpl implements UserService {
 			Map<String,String> map = new HashMap<>();
 			map.put("email", user.getUsername());
 			map.put("code", key.getGeneratedKey());
-			linkResetPasswordMessage.sendImediatly(map);
+			linkResetPasswordMessage.sendImediatly(map, user.getCompany().getLanguage());
 		}
 	}
 
@@ -123,7 +123,7 @@ public class UserServiceImpl implements UserService {
 			userDao.updatePassword(user);
 			keysDao.deleteGenerateKey(code);
 			user.setPassword(newPassword);
-			resetUserPasswordMessage.sendImediatly(user);
+			resetUserPasswordMessage.sendImediatly(user, user.getCompany().getLanguage());
 			return true;
 		} else {
 			return false;

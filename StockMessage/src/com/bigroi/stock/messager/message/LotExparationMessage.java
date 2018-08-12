@@ -10,8 +10,8 @@ public class LotExparationMessage extends BaseMessage<Lot> {
 	@Autowired
 	private CompanyDao companyDao;
 	
-	public LotExparationMessage(String fileName){
-		super(fileName);
+	public LotExparationMessage(String fileName, String fileExtention){
+		super(fileName, fileExtention);
 	}
 
 	@Override
@@ -21,8 +21,8 @@ public class LotExparationMessage extends BaseMessage<Lot> {
 	}
 	
 	@Override
-	protected String getText(Lot lot){
-		return super.getText(lot)
+	protected String getText(Lot lot, String locale){
+		return super.getText(lot, locale)
 				.replaceAll("@price", lot.getPrice() + "")
 				.replaceAll("@description", lot.getDescription())
 				.replaceAll("@volume", lot.getMaxVolume() + "");

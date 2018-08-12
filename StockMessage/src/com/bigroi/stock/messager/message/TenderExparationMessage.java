@@ -10,8 +10,8 @@ public class TenderExparationMessage extends BaseMessage<Tender> {
 	@Autowired
 	private CompanyDao companyDao;
 	
-	public TenderExparationMessage(String fileName) {
-		super(fileName);
+	public TenderExparationMessage(String fileName, String fileExtention){
+		super(fileName, fileExtention);
 	}
 
 	@Override
@@ -21,8 +21,8 @@ public class TenderExparationMessage extends BaseMessage<Tender> {
 	}
 	
 	@Override
-	protected String getText(Tender tender) {
-		return super.getText(tender)
+	protected String getText(Tender tender, String locale) {
+		return super.getText(tender, locale)
 				.replaceAll("@price", tender.getPrice() + "")
 				.replaceAll("@description", tender.getDescription())
 				.replaceAll("@volume", tender.getMaxVolume() + "");

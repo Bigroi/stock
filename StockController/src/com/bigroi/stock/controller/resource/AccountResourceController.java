@@ -22,6 +22,7 @@ import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.security.AuthenticationHandler;
 import com.bigroi.stock.service.CompanyService;
 import com.bigroi.stock.service.UserService;
+import com.bigroi.stock.util.LabelUtil;
 
 @Controller
 @RequestMapping("/account/json")
@@ -66,11 +67,19 @@ public class AccountResourceController extends BaseResourseController {
 			return new ResultBean(-1, "label.account.error_login").toString();
 		}
 		
+		boolean changeLanguage = !loggedIn.getCompany().getLanguage().equals(newUser.getCompany().getLanguage());
+		
 		loggedIn.getCompany().setPhone(newUser.getCompany().getPhone());
+		loggedIn.getCompany().setLanguage(newUser.getCompany().getLanguage());
 		loggedIn.setUsername(newUser.getUsername());
 		userService.update(loggedIn);
 		
-		return new ResultBean(1, loggedIn, "label.account.edit_success").toString();
+		if (changeLanguage){
+			setLanguage(LabelUtil.parseString(newUser.getCompany().getLanguage()));
+			return new ResultBean(0, null).toString();
+		} else {
+			return new ResultBean(1, loggedIn, "label.account.edit_success").toString();
+		}
 	}
 	
 	@RequestMapping(value = "/Registration.spr")
@@ -100,6 +109,7 @@ public class AccountResourceController extends BaseResourseController {
 		}
 		user.setUsername(user.getUsername().toLowerCase());
 		user.getCompany().setType(AuthenticationHandler.getApplicationType(request.getContextPath()));
+		user.getCompany().setLanguage(getLanguage().toString());
 		
 		userService.addUser(user);
 		

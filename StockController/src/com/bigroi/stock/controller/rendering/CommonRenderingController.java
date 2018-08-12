@@ -15,6 +15,7 @@ import com.bigroi.stock.controller.BaseRenderingController;
 import com.bigroi.stock.security.AuthenticationHandler;
 import com.bigroi.stock.service.LabelService;
 import com.bigroi.stock.service.UserService;
+import com.bigroi.stock.util.LabelUtil;
 
 @Controller
 public class CommonRenderingController extends BaseRenderingController{
@@ -71,6 +72,8 @@ public class CommonRenderingController extends BaseRenderingController{
 	@RequestMapping("/account/Form.spr")
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public ModelAndView form() {
-		return createModelAndView("account");
+		ModelAndView modelAndView = createModelAndView("account");
+		modelAndView.addObject("languages", LabelUtil.getPassibleLanguages(getLanguage()));
+		return modelAndView;
 	}
 }

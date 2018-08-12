@@ -16,7 +16,7 @@
 		<testSourceDirectory>test</testSourceDirectory>
 		<resources>
 			<resource>
-				<directory>docs_${LOCALE}</directory>
+				<directory>docs</directory>
 			</resource>
 		</resources>
 	</build>

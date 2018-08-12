@@ -11,7 +11,7 @@ import com.bigroi.stock.util.LabelUtil;
 
 public abstract class BaseController {
 
-	protected static final String LANG_SESSION_ATTRIBUTE = "lang";
+	private static final String LANG_SESSION_ATTRIBUTE = "lang";
 	
 	@Autowired
 	protected HttpSession session;
@@ -19,6 +19,10 @@ public abstract class BaseController {
 	@Autowired
 	protected HttpServletRequest request;
 
+	protected final void setLanguage(Locale locale){
+		session.setAttribute(LANG_SESSION_ATTRIBUTE, locale);
+	}
+	
 	protected final Locale getLanguage() {
 		Locale lang = (Locale)session.getAttribute(LANG_SESSION_ATTRIBUTE);
 		if (lang == null || "".equals(lang)){

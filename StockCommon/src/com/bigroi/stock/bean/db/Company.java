@@ -26,6 +26,16 @@ public class Company implements Serializable{
 	
 	private long addressId;
 	
+	private String language;
+	
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	
+	public String getLanguage() {
+		return language;
+	}
+	
 	public long getAddressId() {
 		return addressId;
 	}

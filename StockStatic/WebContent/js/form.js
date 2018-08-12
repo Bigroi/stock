@@ -106,7 +106,11 @@ function setFormInputs(formContainer, object){
 
 function processRequestResult(formContainer, answer, messageDiv, $dialogbox){
 	if (answer.result == 0){
-		document.location = answer.data;
+		if (answer.data){
+			document.location = answer.data;
+		} else {
+			location.reload()
+		}
 		return;
 	} else if (answer.result == 2){
 		messageDiv.addClass("success-message");

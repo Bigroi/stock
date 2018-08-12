@@ -23,7 +23,7 @@ import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.ProductDao;
 import com.bigroi.stock.dao.TenderDao;
-import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForCustomer;
+import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForBuyer;
 import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
 import com.bigroi.stock.service.AddressService;
 import com.bigroi.stock.service.TradeService;
@@ -44,7 +44,7 @@ public class TradeServiceImpl implements TradeService{
 	private AddressService addressService;
 	
 	@Autowired
-	private DealConfirmationMessageForCustomer dealConfirmationMessageForCustomer;
+	private DealConfirmationMessageForBuyer dealConfirmationMessageForBuyer;
 	@Autowired
 	private DealConfirmationMessageForSeller dealConfirmationMessageForSeller;
 	
@@ -108,8 +108,8 @@ public class TradeServiceImpl implements TradeService{
 	}
 	
 	private void sendConfimationMails(Deal deal) {
-		dealConfirmationMessageForCustomer.send(deal);
-		dealConfirmationMessageForSeller.send(deal);
+		dealConfirmationMessageForBuyer.send(deal, deal.getBuyerAddress().getCompany().getLanguage());
+		dealConfirmationMessageForSeller.send(deal, deal.getSellerAddress().getCompany().getLanguage());
 	}
 
 	private Deal createDeal(Bid bid, Bid partner) {
@@ -186,7 +186,7 @@ public class TradeServiceImpl implements TradeService{
 		}
 		lotDao = Mockito.mock(LotDao.class);
 		tenderDao = Mockito.mock(TenderDao.class);
-		dealConfirmationMessageForCustomer = Mockito.mock(DealConfirmationMessageForCustomer.class);
+		dealConfirmationMessageForBuyer = Mockito.mock(DealConfirmationMessageForBuyer.class);
 		dealConfirmationMessageForSeller = Mockito.mock(DealConfirmationMessageForSeller.class);
 		
 		DealDao realDealDao = dealDao;

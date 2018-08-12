@@ -26,10 +26,12 @@ public class LabelUtil {
 		}
 	}
 
-	public static Object getPassibleLanguages(Locale locale) {
+	public static List<Locale> getPassibleLanguages(Locale locale) {
 		List<Locale> locales = new ArrayList<>(SUPPORTED_LOCALES);
-		locales.remove(locale);
-		locales.add(0, locale);
+		if (locale != null){
+			locales.remove(locale);
+			locales.add(0, locale);
+		}
 		return locales;
 	}
 	
@@ -41,6 +43,6 @@ public class LabelUtil {
 			builder.setRegion(tmp[1]);
 		}
 		
-		return builder.build();
+		return checkLocale(builder.build());
 	}
 }

@@ -1,16 +1,16 @@
 package com.bigroi.stock.messager.message;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bigroi.stock.bean.db.Email;
 import com.bigroi.stock.dao.EmailDao;
 import com.bigroi.stock.messager.MailManager;
-import com.bigroi.stock.util.exception.StockRuntimeException;
+import com.bigroi.stock.util.LabelUtil;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMap.Builder;
 
 public abstract class BaseMessage<T> implements Message<T>{
 	
@@ -20,43 +20,30 @@ public abstract class BaseMessage<T> implements Message<T>{
 	@Autowired
 	protected MailManager mailManager;
 	
-	private String subject;
+	private final Map<String, MessageTemplate> messageTemplates;
 	
-	private String text;	
+	protected BaseMessage(){
+		messageTemplates = null;
+	}
 	
-	protected BaseMessage(String fileName) {
-		if (fileName != null && !fileName.equals("")){
-			try (BufferedReader reader = new BufferedReader(
-					new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName),
-							StandardCharsets.UTF_8))) {
-				subject = null;
-				StringBuilder textBuld = new StringBuilder();
-				String line;
-				while ((line = reader.readLine()) != null) {
-					if (subject == null) {
-						subject = line;
-					} else if (textBuld.length() == 0) {
-						textBuld.append(line);
-					} else {
-						textBuld.append(System.lineSeparator()).append(line);
-					}
-				}
-				text = textBuld.toString();
-			} catch (IOException e) {
-				throw new StockRuntimeException(e);
-			}
+	protected BaseMessage(String fileName, String fileExtention) {
+		Builder<String, MessageTemplate> builder = ImmutableMap.builder();
+		for (Locale locale : LabelUtil.getPassibleLanguages(null)){
+			builder.put(locale.toString(), new MessageTemplate(fileName, locale, fileExtention));
 		}
+		messageTemplates = builder.build();
+	}
+		
+		
+	public void sendImediatly(T object, String locale){
+		mailManager.send(getEmail(object, locale));
 	}
 	
-	public void sendImediatly(T object){
-		mailManager.send(getEmail(object));
-	}
-	
-	private Email getEmail(T object) {
+	private Email getEmail(T object, String locale) {
 		Email email = new Email();
-		email.setBody(getText(object));
+		email.setBody(getText(object, locale));
 		email.setRecipient(getRecipient(object));
-		email.setSubject(getSubject());
+		email.setSubject(getSubject(locale));
 		email.setFile(getFile(object));
 		email.setFileName(getFileName());
 		return email;
@@ -72,15 +59,16 @@ public abstract class BaseMessage<T> implements Message<T>{
 
 	protected abstract String getRecipient(T object);
 	
-	protected String getText(T object) {
-		return text;
+	protected String getText(T object, String locale) {
+		return messageTemplates.get(locale).getText();
 	}
 	
-	protected String getSubject() {
-		return subject;
+	protected String getSubject(String locale) {
+		return messageTemplates.get(locale).getSubject();
 	}
 	
-	public void send(T object){
-		emailDao.add(getEmail(object));
+	public void send(T object, String locale){
+		emailDao.add(getEmail(object, locale));
 	}
+	
 }

@@ -12,13 +12,13 @@ import com.bigroi.stock.messager.message.LinkResetPasswordMessage;
 import com.bigroi.stock.messager.message.LotExparationMessage;
 import com.bigroi.stock.messager.message.ResetUserPasswordMessage;
 import com.bigroi.stock.messager.message.TenderExparationMessage;
-import com.bigroi.stock.messager.message.deal.CustomerCanceledMessage;
-import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForCustomer;
+import com.bigroi.stock.messager.message.deal.BuyerCanceledMessage;
+import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForBuyer;
 import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
-import com.bigroi.stock.messager.message.deal.DealExparationMessageForCustomer;
+import com.bigroi.stock.messager.message.deal.DealExparationMessageForBuyer;
 import com.bigroi.stock.messager.message.deal.DealExparationMessageForSeller;
 import com.bigroi.stock.messager.message.deal.SellerCanceledMessage;
-import com.bigroi.stock.messager.message.deal.SuccessDealMessageForCustomer;
+import com.bigroi.stock.messager.message.deal.SuccessDealMessageForBuyer;
 import com.bigroi.stock.messager.message.deal.SuccessDealMessageForSeller;
 
 @Configuration
@@ -66,73 +66,73 @@ public class MessagerConfiguration {
 	}
 	
 	@Bean
-	public CustomerCanceledMessage getCustomerCanceledMessage(){
-		return new CustomerCanceledMessage("dealCancelled.txt");
+	public BuyerCanceledMessage getCustomerCanceledMessage(){
+		return new BuyerCanceledMessage("dealCancelled", "txt");
 	}
 	
 	@Bean
-	public DealConfirmationMessageForCustomer getDealConfirmationMessageForCustomer(){
-		return new DealConfirmationMessageForCustomer("confirmationForCustomer.txt");
+	public DealConfirmationMessageForBuyer getDealConfirmationMessageForCustomer(){
+		return new DealConfirmationMessageForBuyer("confirmationForCustomer", "txt");
 	}
 
 	@Bean
 	public DealConfirmationMessageForSeller getDealConfirmationMessageForSeller(){
-		return new DealConfirmationMessageForSeller("confirmationForSeller.txt");
+		return new DealConfirmationMessageForSeller("confirmationForSeller", "txt");
 	}
 
 	@Bean
 	public ResetUserPasswordMessage getResetUserPasswordMessage(){
-		return new ResetUserPasswordMessage("passwordReset.txt");
+		return new ResetUserPasswordMessage("passwordReset", "txt");
 	}
 	
 	@Bean
 	public SellerCanceledMessage getSellerCanceledMessage(){
-		return new SellerCanceledMessage("dealCancelled.txt");
+		return new SellerCanceledMessage("dealCancelled", "txt");
 	}
 	
 	@Bean
-	public SuccessDealMessageForCustomer getSuccessDealMessageForCustomer(){
-		return new SuccessDealMessageForCustomer("successDeal.txt");
+	public SuccessDealMessageForBuyer getSuccessDealMessageForCustomer(){
+		return new SuccessDealMessageForBuyer("successDeal", "txt");
 	}
 	
 	@Bean
 	public SuccessDealMessageForSeller getSuccessDealMessageForSeller(){
-		return new SuccessDealMessageForSeller("successDeal.txt");
+		return new SuccessDealMessageForSeller("successDeal", "txt");
 	}
 
 	@Bean("dealExparationMessageForCustomer")
-	public DealExparationMessageForCustomer getDealExparationMessageForCustomer(){
-		return new DealExparationMessageForCustomer("expiredDeal.txt");
+	public DealExparationMessageForBuyer getDealExparationMessageForCustomer(){
+		return new DealExparationMessageForBuyer("expiredDeal", "txt");
 	}
 	
 	@Bean("dealExparationMessageForCustomerByOpponent")
-	public DealExparationMessageForCustomer getDealExparationMessageForCustomerByOpponent(){
-		return new DealExparationMessageForCustomer("expiredDealOpponent.txt");
+	public DealExparationMessageForBuyer getDealExparationMessageForCustomerByOpponent(){
+		return new DealExparationMessageForBuyer("expiredDealOpponent", "txt");
 	}
 
 	@Bean("dealExparationMessageForSeller")
 	public DealExparationMessageForSeller getDealExparationMessageForSeller(){
-		return new DealExparationMessageForSeller("expiredDeal.txt");
+		return new DealExparationMessageForSeller("expiredDeal", "txt");
 	}
 
 	@Bean("dealExparationMessageForSellerByOpponent")
 	public DealExparationMessageForSeller getDealExparationMessageForSellerByOpponent(){
-		return new DealExparationMessageForSeller("expiredDealOpponent.txt");
+		return new DealExparationMessageForSeller("expiredDealOpponent", "txt");
 	}
 
 	@Bean
 	public LotExparationMessage getLotExparationMessage(){
-		return new LotExparationMessage("lotExparied.txt");
+		return new LotExparationMessage("lotExparied", "txt");
 	}
 
 	@Bean
 	public TenderExparationMessage getTenderExparationMessage(){
-		return new TenderExparationMessage("tenderExparied.txt");
+		return new TenderExparationMessage("tenderExparied", "txt");
 	}
 	
 	@Bean
 	public LinkResetPasswordMessage getLinkResetPasswordMessage(){
-		return new LinkResetPasswordMessage("linkResetPassw.txt");
+		return new LinkResetPasswordMessage("linkResetPassw", "txt");
 	}
 	
 	@Bean

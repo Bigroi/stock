@@ -1,6 +1,5 @@
 package com.bigroi.stock.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Assert;
@@ -34,6 +33,8 @@ import com.google.common.collect.ImmutableList;
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceImplTest extends BaseTest {
 	
+	private static final String TEST_LANGUAGE = "pl";
+
 	@InjectMocks
 	private UserServiceImpl userService;
 	
@@ -161,13 +162,15 @@ public class UserServiceImplTest extends BaseTest {
 				
 		StockUser user = createObject(StockUser.class);
 		user.setUsername(USER_NAME);
+		user.setCompany(createObject(Company.class));
+		user.getCompany().setLanguage(TEST_LANGUAGE);
 		
 		TempKey key = createObject(TempKey.class);
 		// mock
 		Mockito.when(userDao.getByUsernameWithRoles(USER_NAME)).thenReturn(user);
 		Mockito.when(keysDao.generateKey()).thenReturn(key);
 		Mockito.when(userDao.updateKeyById(user)).thenReturn(true);
-		Mockito.doNothing().when(linkResetPasswordMessage).sendImediatly(new HashMap<>());
+		Mockito.doNothing().when(linkResetPasswordMessage).sendImediatly(Mockito.any(), Mockito.eq(TEST_LANGUAGE));
 		// when
 		userService.sendLinkResetPassword(USER_NAME);
 		// then
@@ -176,7 +179,7 @@ public class UserServiceImplTest extends BaseTest {
 		Mockito.verify(userDao, Mockito.times(1)).getByUsernameWithRoles(USER_NAME);
 		Mockito.verify(userDao, Mockito.times(1)).updateKeyById(user);
 		Mockito.verify(keysDao, Mockito.times(1)).generateKey();
-		Mockito.verify(linkResetPasswordMessage, Mockito.times(1)).sendImediatly(Mockito.any());
+		Mockito.verify(linkResetPasswordMessage, Mockito.times(1)).sendImediatly(Mockito.any(), Mockito.eq(TEST_LANGUAGE));
 	}
 	
 	@Test
@@ -186,13 +189,15 @@ public class UserServiceImplTest extends BaseTest {
 		final String CODE = randomString();
 		
 		StockUser user = createObject(StockUser.class);
+		user.setCompany(createObject(Company.class));
+		user.getCompany().setLanguage(TEST_LANGUAGE);
 		user.setUsername(USER_NAME);
 		// mock
 		Mockito.when(keysDao.checkResetKey(USER_NAME, CODE)).thenReturn(true);
 		Mockito.when(userDao.getByUsernameWithRoles(USER_NAME)).thenReturn(user);
 		Mockito.when(userDao.updatePassword(user)).thenReturn(true);
 		Mockito.doNothing().when(keysDao).deleteGenerateKey(CODE);
-		Mockito.doNothing().when(resetUserPasswordMessage).sendImediatly(user);
+		Mockito.doNothing().when(resetUserPasswordMessage).sendImediatly(user, TEST_LANGUAGE);
 		// when
 		boolean bool = userService.changePassword(USER_NAME, CODE);
 		// then
@@ -202,7 +207,7 @@ public class UserServiceImplTest extends BaseTest {
 		Mockito.verify(userDao, Mockito.times(1)).getByUsernameWithRoles(USER_NAME);
 		Mockito.verify(userDao, Mockito.times(1)).updatePassword(user);
 		Mockito.verify(keysDao, Mockito.times(1)).deleteGenerateKey(CODE);
-		Mockito.verify(resetUserPasswordMessage, Mockito.times(1)).sendImediatly(user);
+		Mockito.verify(resetUserPasswordMessage, Mockito.times(1)).sendImediatly(user, TEST_LANGUAGE);
 	}
 	
 	@Test

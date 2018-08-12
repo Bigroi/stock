@@ -15,10 +15,11 @@ import com.bigroi.stock.util.exception.StockRuntimeException;
 @Repository
 public class DealDocument extends Document<Deal>{
 
-	public static final String DEAL_DOC_FILE_ANME = "Deal.doc";
+	public static final String DEAL_DOC_FILE_NAME = "Deal";
+	public static final String DEAL_DOC_FILE_EXTENSION = "doc";
 	
 	public DealDocument(){
-		super(DEAL_DOC_FILE_ANME);
+		super(DEAL_DOC_FILE_NAME, DEAL_DOC_FILE_EXTENSION);
 	}
 	
 	public byte[] getDocument(Deal deal) {
@@ -45,7 +46,8 @@ public class DealDocument extends Document<Deal>{
 										deal.getBuyerAddress().getAddress());
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			
-			replaceText(map).write(baos);
+			String language = deal.getSellerAddress().getCompany().getLanguage();
+			replaceText(map,language).write(baos);
 			return baos.toByteArray();
 		} catch (IOException e) {
 			throw new StockRuntimeException(e);

@@ -4,8 +4,8 @@ import com.bigroi.stock.bean.db.StockUser;
 
 public class ResetUserPasswordMessage extends BaseMessage<StockUser> {
 
-	public ResetUserPasswordMessage(String fileName) {
-		super(fileName);
+	public ResetUserPasswordMessage(String fileName, String fileExtention){
+		super(fileName, fileExtention);
 	}
 
 	@Override
@@ -15,8 +15,8 @@ public class ResetUserPasswordMessage extends BaseMessage<StockUser> {
 	}
 
 	@Override
-	protected String getText(StockUser user) {
-		return super.getText(user)
+	protected String getText(StockUser user, String locale) {
+		return super.getText(user, locale)
 				.replaceAll("@username", user.getUsername())
 				.replaceAll("@password", user.getPassword());
 	}

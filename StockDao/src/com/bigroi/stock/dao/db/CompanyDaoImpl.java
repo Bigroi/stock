@@ -26,9 +26,10 @@ import com.bigroi.stock.dao.CompanyDao;
 public class CompanyDaoImpl implements CompanyDao {
 	
 	private static final String GET_COMPANY_BY_ID = 
-			  " SELECT C.ID, C.NAME, C.PHONE, C.REG_NUMBER,"
-			+ " C.STATUS, A.CITY, A.COUNTRY, A.ADDRESS, A.ID ADDRESS_ID, "
-			+ " A.LONGITUDE, A.LATITUDE, A.COMPANY_ID, U.USERNAME, C.TYPE "
+			  " SELECT C.ID, C.NAME, C.PHONE, C.REG_NUMBER, C.STATUS, C.LANGUAGE, "
+			+ " A.CITY, A.COUNTRY, A.ADDRESS, A.ID ADDRESS_ID, "
+			+ " A.LONGITUDE, A.LATITUDE, A.COMPANY_ID, "
+			+ " U.USERNAME, C.TYPE "
 			+ " FROM COMPANY C "
 			+ " JOIN ADDRESS A "
 			+ " ON C.ADDRESS_ID = A.ID "
@@ -38,25 +39,25 @@ public class CompanyDaoImpl implements CompanyDao {
 	
 	private static final String ADD_COMPANY = 
 			 "INSERT INTO COMPANY "
-			+ " (NAME, PHONE, REG_NUMBER, STATUS, TYPE) " 
-			+ " VALUES(?, ?, ?, ?, ?)";
+			+ " (NAME, PHONE, REG_NUMBER, STATUS, TYPE, LANGUAGE) " 
+			+ " VALUES(?, ?, ?, ?, ?, ?)";
 
 	private static final String UPDATE_COMPANY_BY_ID = 
 			" UPDATE COMPANY SET NAME = ?, ADDRESS_ID = ?, "
-			+ " PHONE = ?, REG_NUMBER = ?, STATUS = ? "
+			+ " PHONE = ?, REG_NUMBER = ?, STATUS = ?, LANGUAGE = ? "
 			+ " WHERE ID = ? ";
 	
 	private static final String GET_ALL_COMPANIES = 
-			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS "
+			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS, LANGUAGE "
 			+ " FROM COMPANY ";
 	
 	private static final String GET_COMPANY_BY_NAME = 
-			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS "
+			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS, LANGUAGE "
 			+ " FROM COMPANY "
 			+ " WHERE NAME = ?";
 	
 	private static final String GET_COMPANY_BY_REG_NUMBER = 
-			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS "
+			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS, LANGUAGE "
 			+ " FROM COMPANY "
 			+ " WHERE REG_NUMBER = ?";
 	
@@ -96,6 +97,7 @@ public class CompanyDaoImpl implements CompanyDao {
 				ps.setString(3, company.getRegNumber());
 				ps.setString(4, company.getStatus().name().toUpperCase());
 				ps.setString(5, company.getType());
+				ps.setString(5, company.getLanguage());
 				return ps;
 			}
 		}, keyHolder);
@@ -112,6 +114,7 @@ public class CompanyDaoImpl implements CompanyDao {
 				company.getPhone(),
 				company.getRegNumber(), 
 				company.getStatus().name().toUpperCase(), 
+				company.getLanguage(),
 				company.getId()) == 1;
 	}
 
@@ -160,6 +163,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			company.setStatus(CompanyStatus.valueOf(rs.getString("STATUS")));
 			company.setEmail(rs.getString("USERNAME"));
 			company.setType(rs.getString("TYPE"));
+			company.setLanguage(rs.getString("LANGUAGE"));
 
 			CompanyAddress address = new CompanyAddress();
 			address.setAddress(rs.getString("ADDRESS"));

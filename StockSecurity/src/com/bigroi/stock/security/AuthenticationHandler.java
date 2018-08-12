@@ -1,6 +1,7 @@
 package com.bigroi.stock.security;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.json.ResultBean;
+import com.bigroi.stock.util.LabelUtil;
 
 @Repository
 @Service
@@ -45,6 +48,9 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler, Auth
 			HttpServletResponse response, 
 			Authentication authentication)
 					throws IOException, ServletException {
+		StockUser user = (StockUser)authentication.getPrincipal();
+		Locale locale = LabelUtil.parseString(user.getCompany().getLanguage());
+		request.getSession().setAttribute("lang", locale);
 		response.getWriter().append(new ResultBean(0, getMainPage(request.getContextPath()), null).toString());
 	}
 

@@ -1,4 +1,5 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <form class="form" action="#" method="post" name="form" id="account-form">
 	<input type="hidden" name="company.companyAddress.latitude" class="latitude">
@@ -17,6 +18,14 @@
 			<input type="text" name="company.phone" 
 				placeholder="${label.account.phone_placeholder}"
 				pattern="${label.account.phone_pattern}" required />
+		</div>
+		<div>
+			<label for="forCompanyLanguage">${label.account.company_language}</label>
+			<select name="company.language">
+				<c:forEach var="language" items="${languages}">
+					<option value="${language}">${language}</option>
+				</c:forEach>
+			</select>
 		</div>
 		<div>
 			<label for="forCompanyName">${label.account.company_name}</label>

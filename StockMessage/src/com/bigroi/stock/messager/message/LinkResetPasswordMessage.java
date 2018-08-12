@@ -8,8 +8,8 @@ import com.bigroi.stock.util.exception.StockRuntimeException;
 
 public class LinkResetPasswordMessage extends BaseMessage<Map<String, String>> {
 
-	public LinkResetPasswordMessage(String fileName){
-		super(fileName);
+	public LinkResetPasswordMessage(String fileName, String fileExtention){
+		super(fileName, fileExtention);
 	}
 
 	@Override
@@ -18,13 +18,13 @@ public class LinkResetPasswordMessage extends BaseMessage<Map<String, String>> {
 	}
 
 	@Override
-	protected String getText(Map<String, String> map) {
+	protected String getText(Map<String, String> map, String locale) {
 		try {
 			String url = mailManager.getServerAdress()
 				+ "ResetPassword.spr?code=" 
 				+ URLEncoder.encode(map.get("code"), "UTF-8") + "&email=" 
 				+ URLEncoder.encode(map.get("email"), "UTF-8");
-			return super.getText(map).replaceAll("@link", url);
+			return super.getText(map, locale).replaceAll("@link", url);
 		} catch (UnsupportedEncodingException e) {
 			throw new StockRuntimeException(e);
 		}

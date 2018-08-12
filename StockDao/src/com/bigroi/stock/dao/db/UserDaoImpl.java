@@ -37,7 +37,7 @@ public class UserDaoImpl implements UserDao {
 
 	private static final String GET_USER_BY_USERNAME = 
 			"SELECT U.ID, U.USERNAME, U.PASSWORD, UR.ROLE, "
-			+ " C.NAME, C.PHONE, C.REG_NUMBER,"
+			+ " C.NAME, C.PHONE, C.REG_NUMBER, C.LANGUAGE, "
 			+ " C.STATUS, A.CITY, A.COUNTRY, A.ADDRESS, C.ADDRESS_ID, "
 			+ " A.LONGITUDE, A.LATITUDE, A.COMPANY_ID "
 			+ " FROM  USER U "
@@ -125,6 +125,7 @@ public class UserDaoImpl implements UserDao {
 					company.setName(rs.getString("NAME"));
 					company.setPhone(rs.getString("PHONE"));
 					company.setRegNumber(rs.getString("REG_NUMBER"));
+					company.setLanguage(rs.getString("LANGUAGE"));
 					company.setStatus(CompanyStatus.valueOf(rs.getString("STATUS")));
 					
 					user.setCompany(company);

@@ -7,7 +7,7 @@ public class FeedBackMessage extends BaseMessage<FeedBack>{
 	private String managerEmaill;
 	
 	public FeedBackMessage(String managerEmaill){
-		super(null);
+		super();
 		this.managerEmaill = managerEmaill;
 	}
 	@Override
@@ -16,13 +16,10 @@ public class FeedBackMessage extends BaseMessage<FeedBack>{
 	}
 	
 	@Override
-	protected String getText(FeedBack feedBack) {
+	protected String getText(FeedBack feedBack, String locale) {
 		return feedBack.getMessage() + 
-				"/n email: " + feedBack.getEmail();
+				"/n email: " + feedBack.getEmail() +
+				"/n language: " + locale;
 	}
 	
-	@Override
-	protected String getSubject() {
-		return "Message from custommer";
-	}
 }

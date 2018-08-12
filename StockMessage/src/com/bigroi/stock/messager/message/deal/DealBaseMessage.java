@@ -11,8 +11,8 @@ public abstract class DealBaseMessage extends BaseMessage<Deal>{
 	@Autowired
 	private CompanyDao companyDao;
 	
-	protected DealBaseMessage(String fileName) {
-		super(fileName);
+	protected DealBaseMessage(String fileName, String fileExtention){
+		super(fileName, fileExtention);
 	}
 
 	@Override

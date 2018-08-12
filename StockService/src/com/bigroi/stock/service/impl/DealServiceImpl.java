@@ -19,9 +19,9 @@ import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.TenderDao;
 import com.bigroi.stock.messager.message.Message;
-import com.bigroi.stock.messager.message.deal.CustomerCanceledMessage;
+import com.bigroi.stock.messager.message.deal.BuyerCanceledMessage;
 import com.bigroi.stock.messager.message.deal.SellerCanceledMessage;
-import com.bigroi.stock.messager.message.deal.SuccessDealMessageForCustomer;
+import com.bigroi.stock.messager.message.deal.SuccessDealMessageForBuyer;
 import com.bigroi.stock.messager.message.deal.SuccessDealMessageForSeller;
 import com.bigroi.stock.service.DealService;
 
@@ -42,9 +42,9 @@ public class DealServiceImpl implements DealService{
 	@Autowired
 	private SellerCanceledMessage sellerCanceledMessage;
 	@Autowired
-	private CustomerCanceledMessage customerCanceledMessage;
+	private BuyerCanceledMessage buyerCanceledMessage;
 	@Autowired
-	private SuccessDealMessageForCustomer successDealMessageForCustomer;
+	private SuccessDealMessageForBuyer successDealMessageForBuyer;
 	@Autowired
 	private SuccessDealMessageForSeller successDealMessageForSeller;
 	
@@ -73,20 +73,23 @@ public class DealServiceImpl implements DealService{
 		Deal deal = dealDao.getById(id);
 		long buyerId = deal.getBuyerAddress().getCompanyId();
 		long sellerId = deal.getSellerAddress().getCompanyId();
+		String messageLanguage;
 		if (buyerId == companyId){
 			deal.setBuyerChoice(PartnerChoice.REJECTED);
 			dealDao.setBuyerStatus(deal);
-			message = customerCanceledMessage;
+			message = buyerCanceledMessage;
+			messageLanguage = deal.getBuyerAddress().getCompany().getLanguage();
 		} else if (sellerId == companyId){
 			deal.setSellerChoice(PartnerChoice.REJECTED);
 			dealDao.setSellerStatus(deal);
 			message = sellerCanceledMessage;
+			messageLanguage = deal.getSellerAddress().getCompany().getLanguage();
 		} else {
 			return false;
 		}
 		addBlackList(deal.getLotId(), deal.getTenderId());
 		setVolumeBack(deal);
-		message.send(deal);
+		message.send(deal, messageLanguage);
 		return true;
 	}
 
@@ -118,8 +121,8 @@ public class DealServiceImpl implements DealService{
 			return false;
 		}
 		if (DealStatus.calculateStatus(deal.getBuyerChoice(), deal.getSellerChoice()) == DealStatus.APPROVED){
-			successDealMessageForCustomer.send(deal);
-			successDealMessageForSeller.send(deal);
+			successDealMessageForBuyer.send(deal, deal.getBuyerAddress().getCompany().getLanguage());
+			successDealMessageForSeller.send(deal, deal.getSellerAddress().getCompany().getLanguage());
 		}
 		
 		return true;
