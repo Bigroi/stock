@@ -105,7 +105,7 @@ public class CompanyServiceImplTest extends BaseTest {
 		companyService.changeStatusCompany(COMPANY_ID);
 		// then
 		Assert.assertEquals(COMPANY_ID, company.getId());
-		Assert.assertEquals(company.getStatus(), CompanyStatus.NOT_VERIFIED);
+		Assert.assertEquals(CompanyStatus.NOT_VERIFIED, company.getStatus());
 		
 		Mockito.verify(companyDao, Mockito.times(1)).setStatus(COMPANY_ID, CompanyStatus.VERIFIED);
 	}
@@ -127,7 +127,7 @@ public class CompanyServiceImplTest extends BaseTest {
 		companyService.changeStatusCompany(COMPANY_ID);
 		// then
 		Assert.assertEquals(COMPANY_ID, company.getId());
-		Assert.assertEquals(company.getStatus(), CompanyStatus.VERIFIED);
+		Assert.assertEquals(CompanyStatus.VERIFIED, company.getStatus());
 		
 		Mockito.verify(companyDao, Mockito.times(1)).setStatus(COMPANY_ID, CompanyStatus.REVOKED);
 		Mockito.verify(lotDao, Mockito.times(1)).setStatusByCompanyId(COMPANY_ID, BidStatus.INACTIVE);
@@ -149,7 +149,7 @@ public class CompanyServiceImplTest extends BaseTest {
 		companyService.changeStatusCompany(COMPANY_ID);
 		// then
 		Assert.assertEquals(COMPANY_ID, company.getId());
-		Assert.assertEquals(company.getStatus(), CompanyStatus.REVOKED);
+		Assert.assertEquals(CompanyStatus.REVOKED, company.getStatus());
 		
 		Mockito.verify(companyDao, Mockito.times(1)).setStatus(COMPANY_ID, CompanyStatus.VERIFIED);
 	}

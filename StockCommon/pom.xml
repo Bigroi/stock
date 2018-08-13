@@ -12,6 +12,7 @@
 	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
+		<testSourceDirectory>test</testSourceDirectory>
 		<resources>
 			<resource>
 				<directory>resource-${ENV_NAME}</directory>

@@ -78,14 +78,27 @@ public class Proposition {
 	public void setSellerAaddress(CompanyAddress sellerAaddress) {
 		this.sellerAaddress = sellerAaddress;
 	}
-	public void setDealPriceAndVolume(Deal deal) {
-		this.dealVolume = deal.getVolume();
-		this.dealPrice = deal.getPrice();
+	
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
-	public void setCompanyNameAndPhone(Company company) {
-		this.companyName = company.getName();
-		this.companyPhone = company.getPhone();
+	
+	public void setCompanyPhone(String companyPhone) {
+		this.companyPhone = companyPhone;
 	}
+	
+	public void setDealPrice(double dealPrice) {
+		this.dealPrice = dealPrice;
+	}
+	
+	public void setDealVolume(int dealVolume) {
+		this.dealVolume = dealVolume;
+	}
+	
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+	
 	public String getCompanyName() {
 		return companyName;
 	}

@@ -25,7 +25,7 @@ public abstract class BaseController {
 	
 	protected final Locale getLanguage() {
 		Locale lang = (Locale)session.getAttribute(LANG_SESSION_ATTRIBUTE);
-		if (lang == null || "".equals(lang)){
+		if (lang == null){
 			lang = LabelUtil.checkLocale(request.getLocale());
 			session.setAttribute(LANG_SESSION_ATTRIBUTE, lang);
 		}

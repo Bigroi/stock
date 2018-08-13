@@ -85,13 +85,15 @@ public class PropositionDaoImpl implements PropositionDao {
 				Company company = new Company();
 				company.setName(rs.getString("COMPANY_NAME"));
 				company.setPhone(rs.getString("COMPANY_PHONE"));
-				prop.setCompanyNameAndPhone(company);
+				prop.setCompanyName(company.getName());
+				prop.setCompanyPhone(company.getPhone());
 				
 				
 				Deal deal = new Deal();
 				deal.setPrice(rs.getDouble("DEAL_PRICE"));
 				deal.setVolume(rs.getInt("DEAL_VOLUME"));
-				prop.setDealPriceAndVolume(deal);
+				prop.setDealPrice(deal.getPrice());
+				prop.setDealVolume(deal.getVolume());
 				
 				return prop;
 			}

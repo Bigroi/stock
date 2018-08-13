@@ -74,9 +74,9 @@ public class DealServiceImplTest extends BaseTest {
 		// when
 		dealService.getById(DEAL_ID, COMPANY_ID);
 		// then
-		Assert.assertNotEquals(deal, null);
+		Assert.assertNotNull(deal);
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
-		Mockito.verify(companyDao, Mockito.times(1)).getById(deal.getBuyerAddress().getCompanyId());
+		Mockito.verify(companyDao, Mockito.times(2)).getById(deal.getBuyerAddress().getCompanyId());
 	}
 	
 	@Test
@@ -123,7 +123,7 @@ public class DealServiceImplTest extends BaseTest {
     	// when
 		boolean bool = dealService.approve(DEAL_ID, COMPANY_ID);
 		// then
-		Assert.assertEquals(bool, false);
+		Assert.assertFalse(bool);
 		Mockito.verify(dealDao, Mockito.times(0)).setBuyerStatus(Mockito.any());
 		Mockito.verify(dealDao, Mockito.times(0)).setSellerStatus(Mockito.any());
 	}
@@ -146,7 +146,7 @@ public class DealServiceImplTest extends BaseTest {
     	// when
 		dealService.approve(DEAL_ID, COMPANY_ID);
 		// then
-		Assert.assertEquals(deal.getSellerAddress().getCompanyId(), COMPANY_ID);
+		Assert.assertEquals(COMPANY_ID, deal.getSellerAddress().getCompanyId());
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 		Mockito.verify(dealDao, Mockito.times(1)).setSellerStatus(deal);
 	}
@@ -169,7 +169,7 @@ public class DealServiceImplTest extends BaseTest {
     	// when
 		dealService.approve(DEAL_ID, COMPANY_ID);
 		// then
-		Assert.assertEquals(deal.getBuyerAddress().getCompanyId(), COMPANY_ID);
+		Assert.assertEquals(COMPANY_ID, deal.getBuyerAddress().getCompanyId());
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 		Mockito.verify(dealDao, Mockito.times(1)).setBuyerStatus(deal);
 	}
@@ -236,7 +236,7 @@ public class DealServiceImplTest extends BaseTest {
 		dealService.reject(DEAL_ID, COMPANY_ID);
 		// then
 		Assert.assertEquals(COMPANY_ID, deal.getBuyerAddress().getCompanyId());
-		Assert.assertEquals(deal.getBuyerChoice(), PartnerChoice.REJECTED);
+		Assert.assertEquals(PartnerChoice.REJECTED, deal.getBuyerChoice());
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 		Mockito.verify(dealDao, Mockito.timeout(1)).setBuyerStatus(deal);
 		Mockito.verify(blacklistDao, Mockito.times(1)).add(Mockito.any());
@@ -285,7 +285,7 @@ public class DealServiceImplTest extends BaseTest {
 		dealService.reject(DEAL_ID, COMPANY_ID);
 		// then
 		Assert.assertEquals(COMPANY_ID, deal.getSellerAddress().getCompanyId());
-		Assert.assertEquals(deal.getSellerChoice(), PartnerChoice.REJECTED);
+		Assert.assertEquals(PartnerChoice.REJECTED, deal.getSellerChoice());
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 		Mockito.verify(dealDao, Mockito.timeout(1)).setSellerStatus(deal);
 		//Mockito.verify(blacklistDao, Mockito.times(1)).add(blackList); //different arguments...
@@ -309,7 +309,7 @@ public class DealServiceImplTest extends BaseTest {
 		// when
 		boolean bool = dealService.reject(DEAL_ID, COMPANY_ID);
 		// then
-		Assert.assertEquals(bool, false);
+		Assert.assertFalse(bool);
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 	}
 	
@@ -332,7 +332,7 @@ public class DealServiceImplTest extends BaseTest {
 		// when
 		dealService.transport(DEAL_ID, COMPANY_ID);
 		// then
-		Assert.assertEquals(deal.getBuyerChoice(), PartnerChoice.TRANSPORT);
+		Assert.assertEquals(PartnerChoice.TRANSPORT, deal.getBuyerChoice());
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 		Mockito.verify(dealDao, Mockito.times(1)).setBuyerStatus(deal);
 	}
@@ -355,7 +355,7 @@ public class DealServiceImplTest extends BaseTest {
 		// when
 		dealService.transport(DEAL_ID, COMPANY_ID);
 		// then
-		Assert.assertEquals(deal.getSellerChoice(), PartnerChoice.TRANSPORT);
+		Assert.assertEquals(PartnerChoice.TRANSPORT, deal.getSellerChoice());
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 		Mockito.verify(dealDao, Mockito.times(1)).setSellerStatus(deal);
 	}
@@ -374,7 +374,7 @@ public class DealServiceImplTest extends BaseTest {
 		// when
 		boolean bool = dealService.transport(DEAL_ID, COMPANY_ID);
 		// then
-		Assert.assertEquals(bool, false);
+		Assert.assertFalse(bool);
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 	}
 	

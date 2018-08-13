@@ -9,6 +9,10 @@ import com.google.common.collect.ImmutableList;
 
 public class LabelUtil {
 
+	private LabelUtil(){
+		
+	}
+	
 	private static final List<Locale> SUPPORTED_LOCALES = ImmutableList.of(
 			new Locale("en", "US"),
 			new Locale("pl"), 

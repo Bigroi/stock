@@ -17,7 +17,7 @@
 		<servlet.version>3.0.1</servlet.version>
 		<tiles.version>3.0.8</tiles.version>
 		<jstl.version>1.2</jstl.version>
-		<junit.version>4.11</junit.version>
+		<junit.version>4.12</junit.version>
 		<poi.version>3.9</poi.version>
 		<guava.version>25.1-jre</guava.version>
 		<mockito.version>1.9.5</mockito.version>
@@ -25,6 +25,26 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.7.201606060606</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
@@ -38,7 +58,22 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	
+	<dependencies>
+		<dependency>
+		    <groupId>pl.pragmatists</groupId>
+		    <artifactId>JUnitParams</artifactId>
+		    <version>1.1.1</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
 	<modules>
 		<module>StockSql</module>
 		<module>StockCommon</module>
