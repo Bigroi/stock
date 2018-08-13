@@ -9,12 +9,12 @@
 			`category` varchar(20) NOT NULL,
 			`name` varchar(30) NOT NULL,
 			`en_us` varchar(500) DEFAULT NULL,
-			`ru_Ru` varchar(500) DEFAULT NULL,
+			`ru_by` varchar(500) DEFAULT NULL,
 			`pl_pl` varchar(500) DEFAULT NULL,
 			PRIMARY KEY (`id`)
 		) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=utf8;
 		
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl_pl`) VALUES
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_by`, `pl_pl`) VALUES
 			(237, 'account', 'haveAcc', 'Do you have account?', 'Уже есть учетная запись?', 'Czy posiadasz już konto?'),
 			(238, 'account', 'password', 'Password', 'Пароль', 'Hasło	'),
 			(239, 'account', 'reg_number', 'Registration number', 'УНП', 'Numer rejestracji'),
@@ -255,6 +255,14 @@
 	
 	<update>
 		ALTER TABLE `COMPANY` ADD COLUMN `language` VARCHAR(50) NOT NULL DEFAULT 'en_US' AFTER `type`;
+	</update>
+	
+	<update>
+		ALTER TABLE `LABEL` CHANGE COLUMN `ru_by` `ru_Ru` VARCHAR(500) NULL DEFAULT NULL AFTER `en_us`;
+	</update> 
+
+	<update>
+		ALTER TABLE `LABEL` CHANGE COLUMN `pl_pl` `pl` VARCHAR(500) NULL DEFAULT NULL AFTER `ru_Ru`;
 	</update>
 </root>
 
