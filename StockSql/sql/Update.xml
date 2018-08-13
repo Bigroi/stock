@@ -14,7 +14,7 @@
 			PRIMARY KEY (`id`)
 		) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=utf8;
 		
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_by`, `pl_pl`) VALUES
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl_pl`) VALUES
 			(237, 'account', 'haveAcc', 'Do you have account?', 'Уже есть учетная запись?', 'Czy posiadasz już konto?'),
 			(238, 'account', 'password', 'Password', 'Пароль', 'Hasło	'),
 			(239, 'account', 'reg_number', 'Registration number', 'УНП', 'Numer rejestracji'),
