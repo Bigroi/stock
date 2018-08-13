@@ -9,7 +9,7 @@
 			`category` varchar(20) NOT NULL,
 			`name` varchar(30) NOT NULL,
 			`en_us` varchar(500) DEFAULT NULL,
-			`ru_by` varchar(500) DEFAULT NULL,
+			`ru_Ru` varchar(500) DEFAULT NULL,
 			`pl_pl` varchar(500) DEFAULT NULL,
 			PRIMARY KEY (`id`)
 		) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=utf8;
