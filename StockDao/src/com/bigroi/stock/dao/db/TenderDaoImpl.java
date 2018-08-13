@@ -20,6 +20,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.Tender;
@@ -243,14 +244,17 @@ public class TenderDaoImpl implements TenderDao{
 			+ " T.MAX_VOLUME, T.COMPANY_ID, T.`STATUS`, T.CREATION_DATE, "
 			+ " T.EXPARATION_DATE, T.ADDRESS_ID, "
 			+ " P.NAME PRODUCT_NAME, "
-			+ " A.LONGITUDE LONGITUDE, A.LATITUDE LATITUDE ";
+			+ " A.LONGITUDE LONGITUDE, A.LATITUDE LATITUDE,"
+			+ " C.LANGUAGE ";
 		
 		public static final String FROM = 
 				" FROM TENDER T "
 			+ " JOIN PRODUCT P "
 			+ " ON T.PRODUCT_ID = P.ID "
 			+ " JOIN ADDRESS A "
-			+ " ON T.ADDRESS_ID = A.ID ";
+			+ " ON T.ADDRESS_ID = A.ID "
+			+ " JOIN COMPANY C "
+			+ " ON T.COMPANY_ID = C.ID ";
 		
 		@Override
 		public Tender mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -276,6 +280,10 @@ public class TenderDaoImpl implements TenderDao{
 			address.setLatitude(rs.getDouble("LATITUDE"));
 			address.setLongitude(rs.getDouble("LONGITUDE"));
 			tender.setCompanyAddress(address);
+			
+			Company company = new Company();
+			company.setLanguage(rs.getString("LANGUAGE"));
+			address.setCompany(company);
 			
 			return tender;
 		}

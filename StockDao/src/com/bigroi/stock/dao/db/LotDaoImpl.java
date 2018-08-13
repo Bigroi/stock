@@ -20,6 +20,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.BidStatus;
+import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
@@ -247,14 +248,17 @@ public class LotDaoImpl implements LotDao {
 			+ " L.MAX_VOLUME, L.COMPANY_ID, L.`STATUS`, L.CREATION_DATE, "
 			+ " L.EXPARATION_DATE, L.ADDRESS_ID, L.FOTO, "
 			+ " P.NAME PRODUCT_NAME,"
-			+ " A.LONGITUDE LONGITUDE, A.LATITUDE LATITUDE ";
+			+ " A.LONGITUDE LONGITUDE, A.LATITUDE LATITUDE, "
+			+ " C.LANGUAGE ";
 		
 		public static final String FROM = 
 				" FROM LOT L "
 			+ " JOIN PRODUCT P "
 			+ " ON L.PRODUCT_ID = P.ID "
 			+ " JOIN ADDRESS A "
-			+ " ON L.ADDRESS_ID = A.ID ";
+			+ " ON L.ADDRESS_ID = A.ID "
+			+ " JOIN COMPANY C "
+			+ " ON L.COMPANY_ID = C.ID ";
 		
 		@Override
 		public Lot mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -281,6 +285,10 @@ public class LotDaoImpl implements LotDao {
 			address.setLatitude(rs.getDouble("LATITUDE"));
 			address.setLongitude(rs.getDouble("LONGITUDE"));
 			lot.setCompanyAddress(address);
+			
+			Company company = new Company();
+			company.setLanguage(rs.getString("LANGUAGE"));
+			address.setCompany(company);
 			
 			return lot;
 		}

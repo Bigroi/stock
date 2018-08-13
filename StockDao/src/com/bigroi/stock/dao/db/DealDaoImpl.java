@@ -40,13 +40,17 @@ public class DealDaoImpl implements DealDao {
 			+ " L.ID LOT_ID, L.DESCRIPTION LOT_DESCRIPTION, L.PRICE LOT_PRICE, "
 			+ " L.`STATUS` LOT_STATUS, L.EXPARATION_DATE LOT_EXP_DATE, L.MAX_VOLUME LOT_VOLUME, L.MIN_VOLUME LOT_MIN_VOLUME, "
 			+ " LA.LONGITUDE LOT_LONGITUDE, LA.LATITUDE LOT_LATITUDE, LA.COMPANY_ID LOT_COMPANY_ID, LA.ID LOT_ADDRESS_ID, "
+			+ " LC.LANGUAGE LOT_LANGUAGE, "
 			
 			+ " T.ID TENDER_ID, T.DESCRIPTION TENDER_DESCRIPTION, T.PRICE TENDER_PRICE, "
 			+ " T.`STATUS` TENDER_STATUS, T.EXPARATION_DATE TENDER_EXP_DATE, T.MAX_VOLUME TENDER_VOLUME, T.MIN_VOLUME TENDER_MIN_VOLUME,  "
 			+ " TA.LONGITUDE TENDER_LONGITUDE, TA.LATITUDE TENDER_LATITUDE, TA.COMPANY_ID TENDER_COMPANY_ID, TA.ID TENDER_ADDRESS_ID, "
+			+ " TC.LANGUAGE TENDER_LANGUAGE, "
 			  
 			+ " L.PRODUCT_ID PRODUCT_ID "
 			+ " FROM LOT L "
+			+ " JOIN COMPANY LC "
+			+ " ON LC.ID = L.COMPANY_ID "
 			+ " JOIN ADDRESS LA "
 			+ " ON L.ADDRESS_ID = LA.ID "
 			+ " AND L.`STATUS` = 'ACTIVE' "
@@ -57,11 +61,14 @@ public class DealDaoImpl implements DealDao {
 			+ " ON L.PRODUCT_ID = T.PRODUCT_ID "
 			+ " AND T.`STATUS` = 'ACTIVE' "
 			+ " AND T.MAX_VOLUME >= T.MIN_VOLUME "
-			+ " AND T.PRICE > L.PRICE "
+			+ " AND T.PRICE >= L.PRICE "
 			+ " AND T.MIN_VOLUME <= L.MAX_VOLUME "
 			+ " AND L.MIN_VOLUME <= T.MAX_VOLUME "
 			+ " AND TENDER_SPEC_CONDITION "
 			+ " COMPAMY_CONDITION "
+			
+			+ " JOIN COMPANY TC "
+			+ " ON TC.ID = T.COMPANY_ID "
 			
 			+ " JOIN ADDRESS TA "
 			+ " ON T.ADDRESS_ID = TA.ID "
@@ -283,10 +290,10 @@ public class DealDaoImpl implements DealDao {
 				+ " P.NAME PRODUCT_NAME,  "
 				+ " SA.COMPANY_ID SELLER_COMPANY_ID, SA.LATITUDE SELLER_LATITUDE, SA.LONGITUDE SELLER_LONGITUDE, "
 				+ " SA.CITY SELLER_CITY, SA.COUNTRY SELLER_COUNTRY, SA.ADDRESS SELLER_ADDRESS, "
-				+ " SU.USERNAME SELLER_EMAIL, SC.NAME SELLER_COMPANY_NAME, SC.PHONE SELLER_PHONE, SC.REG_NUMBER SELLER_REG_NUMBER, "
+				+ " SU.USERNAME SELLER_EMAIL, SC.NAME SELLER_COMPANY_NAME, SC.PHONE SELLER_PHONE, SC.REG_NUMBER SELLER_REG_NUMBER, SC.LANGUAGE SELLER_LANGUAGE, "
 				+ " BA.COMPANY_ID BUYER_COMPANY_ID, BA.LATITUDE BUYER_LATITUDE, BA.LONGITUDE BUYER_LONGITUDE, "
 				+ " BA.CITY BUYER_CITY, BA.COUNTRY BUYER_COUNTRY, BA.ADDRESS BUYER_ADDRESS, "
-				+ " BU.USERNAME BUYER_EMAIL, BC.NAME BUYER_COMPANY_NAME, BC.PHONE BUYER_PHONE, BC.REG_NUMBER BUYER_REG_NUMBER ";
+				+ " BU.USERNAME BUYER_EMAIL, BC.NAME BUYER_COMPANY_NAME, BC.PHONE BUYER_PHONE, BC.REG_NUMBER BUYER_REG_NUMBER, BC.LANGUAGE BUYER_LANGUAGE ";
 		
 		@Override
 		public Deal mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -328,6 +335,7 @@ public class DealDaoImpl implements DealDao {
 			company.setName(rs.getString("SELLER_COMPANY_NAME"));
 			company.setPhone(rs.getString("SELLER_PHONE"));
 			company.setRegNumber(rs.getString("SELLER_REG_NUMBER"));
+			company.setLanguage(rs.getString("SELLER_LANGUAGE"));
 			address.setCompany(company);
 			
 			address = new CompanyAddress();
@@ -345,6 +353,7 @@ public class DealDaoImpl implements DealDao {
 			company.setName(rs.getString("BUYER_COMPANY_NAME"));
 			company.setPhone(rs.getString("BUYER_PHONE"));
 			company.setRegNumber(rs.getString("BUYER_REG_NUMBER"));
+			company.setLanguage(rs.getString("BUYER_LANGUAGE"));
 			address.setCompany(company);
 			
 			return deal;
@@ -401,6 +410,10 @@ public class DealDaoImpl implements DealDao {
 				address.setId(rs.getLong("TENDER_ADDRESS_ID"));
 				tender.setCompanyAddress(address);
 				
+				Company company = new Company();
+				company.setLanguage(rs.getString("TENDER_LANGUAGE"));
+				tender.getCompanyAddress().setCompany(company);
+				
 				return tender;
 			}catch (SQLException e) {
 				exception = e;
@@ -427,6 +440,10 @@ public class DealDaoImpl implements DealDao {
 				address.setCompanyId(rs.getLong("LOT_COMPANY_ID"));
 				address.setId(rs.getLong("LOT_ADDRESS_ID"));
 				lot.setCompanyAddress(address);
+				
+				Company company = new Company();
+				company.setLanguage(rs.getString("LOT_LANGUAGE"));
+				lot.getCompanyAddress().setCompany(company);
 				
 				return lot;
 			}catch (SQLException e) {
