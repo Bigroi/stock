@@ -19,6 +19,7 @@
 		<put-attribute name="nav-productsExt" value="" cascade="true"/>
 		<put-attribute name="nav-company" value="" cascade="true"/>
 		<put-attribute name="nav-testBG" value="" cascade="true"/>
+		<put-attribute name="nav-label" value="" cascade="true"/>
 		
 		<put-attribute name="footer" value="/WEB-INF/jsp/templates/defaultFooter.jsp" />
 		<put-attribute name="page-title" value="/WEB-INF/jsp/templates/pageTitle.jsp" />

@@ -14,3 +14,8 @@
 		${label.navigation.testBG}
 	</a>
 </li>
+ <li class='<tiles:getAsString name="nav-label"/>'>
+	<a href="#" onclick="document.location = getContextRoot() + '/label/admin/List.spr'">
+		${label.navigation.labels}
+	</a>
+</li> 
