@@ -319,7 +319,8 @@ h3 {
 }
 .add-test-tender,
 .add-test-lot,
-.add-test-trade {
+.test-trade,
+.test-clear {
     width: 120px;
     height: 33px;
     border-radius: 5px;
@@ -1537,34 +1538,15 @@ table.dataTable thead th {
 	 margin-left: 7px;
      margin-right: 7px;
 }
-.swtitch-row-on {
-    box-sizing: border-box;
-    height: 24px;
-    width: 40px;
-    background-color: #50C878;
-    border-radius: 15px;
-    position: relative;
-    margin: 0 auto; 
-    cursor:pointer;  
-}
-.swtitch-row-on:after{
-    content: "";
-    box-sizing: border-box;
-    height: 24px;
-    width: 24px;
-    background-color: white;
-    border: 3px solid #50C878;
-    border-radius: 50%; 
-    position: absolute;
-}
 .swtitch-row-off {
     box-sizing: border-box;
     height: 24px;
     width: 40px;
+    
     background-color: #e6e8ea;
     border-radius: 15px;
     position: relative;
-    margin: 0 auto;  
+    margin: 0 auto; 
     cursor:pointer;  
 }
 .swtitch-row-off:after{
@@ -1576,7 +1558,27 @@ table.dataTable thead th {
     border: 3px solid #e6e8ea;
     border-radius: 50%; 
     position: absolute;
-    left: 15px;
+}
+.swtitch-row-on {
+    box-sizing: border-box;
+    height: 24px;
+    width: 40px;
+    background-color: #50C878;
+    border-radius: 15px;
+    position: relative;
+    margin: 0 auto;  
+    cursor:pointer; 
+}
+.swtitch-row-on:after{
+    content: "";
+    box-sizing: border-box;
+    height: 24px;
+    width: 24px;
+    background-color: white;
+    border: 3px solid #50C878;
+    border-radius: 50%; 
+    position: absolute;
+    left: 15px; 
 }
 .inactive-row td{
 	color: #adb1b6;
@@ -1669,7 +1671,9 @@ table.dataTable thead th {
 }
 .table-tradeOffers .dataTables_filter input,
 .dataTables_info, 
-.table-tradeOffers #main-table_paginate{
+.table-tradeOffers #main-table_paginate,
+.test-trading .dataTables_filter,
+.test-trading .dataTables_length{
 	display: none !important;
 }
 .table-tradeOffers {
@@ -1956,7 +1960,7 @@ table.dataTable>tbody>tr.child span {
     background-position: 14px center;
     font-size: 14px;
 }
-/*.error-message {
+.success-message {
 	width: 316px;
     height: 42px;
     display: flex;
@@ -1966,11 +1970,11 @@ table.dataTable>tbody>tr.child span {
     background-color: rgba(15, 198, 104, 0.1);
     color: #0fc668;
     padding-left: 55px;
-    background-image: url(/Static/img/wm.png);
+    background-image: url(/Static/img/success-message.png);
     background-repeat: no-repeat;
     background-position: 14px center;
     font-size: 14px;
-}*/
+}
 @media (max-width: 1280px){
 	.aside,
 	.table-header-button .login-box,
