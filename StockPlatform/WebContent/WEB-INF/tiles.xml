@@ -102,6 +102,12 @@
 		<put-attribute name="add-button" value="/WEB-INF/jsp/templates/addButton.jsp" cascade="true"/>
 	</definition> 
 	
+	<definition name="lables" extends="base-definition">
+		<put-attribute name="nav-label" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/lables.jsp" />
+		<put-attribute name="thb-cls" value="thb"/>
+	</definition> 
+	
 	<!-- forms -->
 	<definition name="login" extends="base-form-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/login.jsp" />
@@ -149,6 +155,10 @@
 	
 	<definition name="resetForm" extends="base-form-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/resetForm.jsp" />
+	</definition>
+	
+	<definition name="labelForm" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/label.jsp" />
 	</definition>
 	
 </tiles-definitions>

@@ -235,3 +235,28 @@ function getProductDialogParams(id, $table, model){
 		}]
 	};
 }
+
+function getLabelDialogParams(id, $table, model){
+	return {
+		formUrl: "/label/admin/Form.spr", 
+		formParams:{id:id},
+		formData: "/label/json/admin/Form.spr",
+		dialogClass: "label-dialogbox",
+		buttons:[{
+			text: l10n.translate("label.button.save"),
+			id:"save",
+			submitUrl: "/label/json/admin/Save.spr",
+			submitFunction: buttonCallbackWithTableUpdate,
+			table : $table, 
+			model : model
+		},
+		{
+			text: l10n.translate("label.button.delete"),
+			id:"delete",
+			submitUrl: "/label/json/admin/Delete.spr",
+			submitFunction: buttonCallbackWithTableUpdate,
+			table : $table, 
+			model : model
+		}]
+	};
+}

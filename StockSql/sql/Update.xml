@@ -264,5 +264,16 @@
 	<update>
 		ALTER TABLE `LABEL` CHANGE COLUMN `pl_pl` `pl` VARCHAR(500) NULL DEFAULT NULL AFTER `ru_Ru`;
 	</update>
+	
+	<update>
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('473', 'navigation', 'labels', 'Labels', 'Лейблы', 'Etykiety');
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('474', 'labels', 'category', 'Category', 'Категория', 'Kategoria');
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('475', 'labels', 'name', 'Name', 'Имя', 'Imię');
+		INSERT INTO `LABEL` (`id`,`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('476','labels', 'english', 'English', 'Английский', 'Angielski');
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('477', 'labels', 'poland', 'Poland', 'Польский', 'Polski');
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('478', 'labels', 'russian', 'Russian', 'Русский', 'Ruski');
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('479', 'labels', 'edit', 'Edit', 'Редактировать', 'Edytuj');
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('480', 'labels', 'labelForm', 'Edit lable', 'Редактирование лейблы', 'Edytowanie etykiety');
+	</update>
 </root>
 
