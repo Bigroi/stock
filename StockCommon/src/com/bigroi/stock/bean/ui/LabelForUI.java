@@ -33,9 +33,9 @@ public class LabelForUI {
 		this.id = label.getId();
 		this.category = label.getCategory();
 		this.name = label.getName();
-		this.enUs = label.getEnUs();
-		this.pl = label.getPl();
-		this.ruRu = label.getRuRu();
-		this.edit = "YNN";
+		this.enUs = label.getEnUs() == null ? "$empty" : label.getEnUs();
+		this.pl = label.getPl() == null ? "$empty" : label.getPl();
+		this.ruRu = label.getRuRu() == null ? "$empty" : label.getRuRu();
+		this.edit = "YYN";
 	}
 }

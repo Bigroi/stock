@@ -105,7 +105,7 @@
 	<definition name="lables" extends="base-definition">
 		<put-attribute name="nav-label" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/lables.jsp" />
-		<put-attribute name="thb-cls" value="thb"/>
+		<put-attribute name="add-button" value="/WEB-INF/jsp/templates/addButton.jsp" cascade="true"/>
 	</definition> 
 	
 	<!-- forms -->

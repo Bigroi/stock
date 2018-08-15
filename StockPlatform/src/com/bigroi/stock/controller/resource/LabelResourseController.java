@@ -58,9 +58,8 @@ public class LabelResourseController {
 	@RequestMapping("/Delete.spr")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
-	public String delete(@RequestParam("json") String json){
-		Label label = GsonUtil.getGson().fromJson(json, Label.class);
-		labelService.delete(label.getId());
-		return new ResultBean(1, new LabelForUI(label), null).toString();
+	public String delete(@RequestParam("id") long id){
+		labelService.delete(id);
+		return new ResultBean(1, null).toString();
 	}
 }

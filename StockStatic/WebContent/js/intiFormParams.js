@@ -249,14 +249,6 @@ function getLabelDialogParams(id, $table, model){
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model
-		},
-		{
-			text: l10n.translate("label.button.delete"),
-			id:"delete",
-			submitUrl: "/label/json/admin/Delete.spr",
-			submitFunction: buttonCallbackWithTableUpdate,
-			table : $table, 
-			model : model
 		}]
 	};
 }

@@ -274,6 +274,8 @@
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('478', 'labels', 'russian', 'Russian', 'Русский', 'Ruski');
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('479', 'labels', 'edit', 'Edit', 'Редактировать', 'Edytuj');
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('480', 'labels', 'labelForm', 'Edit lable', 'Редактирование лейблы', 'Edytowanie etykiety');
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('481', 'pageNames', 'lables', 'Lables list', 'Список лейбл', 'Lista wytwórni płytowej');
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('482', 'pageNames', 'testbg', 'Test platform', 'Тест платформы', 'Platforma testowa');
 	</update>
 </root>
 
