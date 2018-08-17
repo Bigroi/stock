@@ -14,7 +14,7 @@
 	<div class="flex-two-input">
 		<div>
 			<div>
-				<label for="forProductId">${label.lot.product}</label> 
+				<label for="forProductId">${label.lot.product} *</label> 
 				<select name="productId" <c:if test="${!newLot}">disabled</c:if> id="forProductId">
 					<option value="-1" selected>${label.lot.list}</option>
 					<c:forEach var="product" items="${listOfProducts}">

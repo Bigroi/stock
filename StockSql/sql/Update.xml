@@ -277,5 +277,9 @@
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('481', 'pageNames', 'lables', 'Lables list', 'Список лейбл', 'Lista wytwórni płytowej');
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('482', 'pageNames', 'testbg', 'Test platform', 'Тест платформы', 'Platforma testowa');
 	</update>
+	
+	<update>
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('483', 'account', 'company_language', 'language', 'Язык', 'Język');
+	</update>
 </root>
 

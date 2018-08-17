@@ -10,11 +10,11 @@
 	</div>
 	<div class="flex-input">
 		<div>
-			<label for="forLogin">${label.account.login}</label> 
+			<label for="forLogin">${label.account.login} *</label> 
 			<input type="email" name="username" id="forLogin" placeholder="john_doe@example.com" required maxlength="50">
 		</div>
 		<div>
-			<label for="forPhone">${label.account.phone}</label> 
+			<label for="forPhone">${label.account.phone} *</label> 
 			<input type="text" name="company.phone" 
 				placeholder="${label.account.phone_placeholder}"
 				pattern="${label.account.phone_pattern}" required />
