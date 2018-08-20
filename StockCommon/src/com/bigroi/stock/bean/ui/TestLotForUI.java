@@ -13,11 +13,11 @@ public class TestLotForUI{
 	@Column(value = "label.lot.product", responsivePriority=-1)
 	private final String productName;
 	
-	@Column(value = "label.lot.max_volume", responsivePriority=-3)
-	private final int maxVolume;
-	
 	@Column(value = "label.lot.min_price", responsivePriority=-2)
 	private final double minPrice;
+	
+	@Column(value = "label.lot.max_volume", responsivePriority=-3)
+	private final int maxVolume;
 	
 	@Edit(edit="getTestLotDialogParams")
 	private final String edit;
