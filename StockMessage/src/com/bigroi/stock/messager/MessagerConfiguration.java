@@ -66,13 +66,13 @@ public class MessagerConfiguration {
 	}
 	
 	@Bean
-	public BuyerCanceledMessage getCustomerCanceledMessage(){
+	public BuyerCanceledMessage getBuyerCanceledMessage(){
 		return new BuyerCanceledMessage("dealCancelled", "txt");
 	}
 	
 	@Bean
-	public DealConfirmationMessageForBuyer getDealConfirmationMessageForCustomer(){
-		return new DealConfirmationMessageForBuyer("confirmationForCustomer", "txt");
+	public DealConfirmationMessageForBuyer getDealConfirmationMessageForBuyer(){
+		return new DealConfirmationMessageForBuyer("confirmationForBuyer", "txt");
 	}
 
 	@Bean
@@ -91,7 +91,7 @@ public class MessagerConfiguration {
 	}
 	
 	@Bean
-	public SuccessDealMessageForBuyer getSuccessDealMessageForCustomer(){
+	public SuccessDealMessageForBuyer getSuccessDealMessageForBuyer(){
 		return new SuccessDealMessageForBuyer("successDeal", "txt");
 	}
 	
@@ -100,13 +100,13 @@ public class MessagerConfiguration {
 		return new SuccessDealMessageForSeller("successDeal", "txt");
 	}
 
-	@Bean("dealExparationMessageForCustomer")
-	public DealExparationMessageForBuyer getDealExparationMessageForCustomer(){
+	@Bean("dealExparationMessageForBuyer")
+	public DealExparationMessageForBuyer getDealExparationMessageForBuyer(){
 		return new DealExparationMessageForBuyer("expiredDeal", "txt");
 	}
 	
-	@Bean("dealExparationMessageForCustomerByOpponent")
-	public DealExparationMessageForBuyer getDealExparationMessageForCustomerByOpponent(){
+	@Bean("dealExparationMessageForBuyerByOpponent")
+	public DealExparationMessageForBuyer getDealExparationMessageForBuyerByOpponent(){
 		return new DealExparationMessageForBuyer("expiredDealOpponent", "txt");
 	}
 

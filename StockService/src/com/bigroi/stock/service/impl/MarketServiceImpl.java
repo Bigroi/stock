@@ -45,13 +45,13 @@ public class MarketServiceImpl implements MarketService {
 	@Qualifier("dealExparationMessageForSellerByOpponent")
 	private DealExparationMessageForSeller dealExparationMessageForSellerByOpponent;
 	@Autowired
-	@Qualifier("dealExparationMessageForCustomer")
+	@Qualifier("dealExparationMessageForBuyer")
 	private DealExparationMessageForBuyer dealExparationMessageForBuyer;
 	@Autowired
 	@Qualifier("dealExparationMessageForSeller")
 	private DealExparationMessageForSeller dealExparationMessageForSeller;
 	@Autowired
-	@Qualifier("dealExparationMessageForCustomerByOpponent")
+	@Qualifier("dealExparationMessageForBuyerByOpponent")
 	private DealExparationMessageForBuyer dealExparationMessageForBuyerByOpponent;
 	
 	@Override

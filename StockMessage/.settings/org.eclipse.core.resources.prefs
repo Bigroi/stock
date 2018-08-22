@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-encoding//templates/confirmationForCustomer-pl.txt=UTF-8
+encoding//templates/confirmationForBuyer-pl.txt=UTF-8
 encoding//templates/confirmationForSeller-pl.txt=UTF-8
 encoding//templates/dealCancelled-pl.txt=UTF-8
 encoding//templates/expiredDeal-pl.txt=UTF-8
