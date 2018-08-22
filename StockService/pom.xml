@@ -30,5 +30,12 @@
 			<artifactId>mockito-all</artifactId>
 			<version>${mockito.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>Stock</groupId>
+			<artifactId>Util</artifactId>
+			<version>${stock.version}</version>
+			<classifier>tests</classifier>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>

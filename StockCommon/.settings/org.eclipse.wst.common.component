@@ -2,6 +2,5 @@
     <wb-module deploy-name="StockCommon">
         <wb-resource deploy-path="/" source-path="/src"/>
         <wb-resource deploy-path="/" source-path="/resource-local"/>
-        <wb-resource deploy-path="/" source-path="/test"/>
     </wb-module>
 </project-modules>
