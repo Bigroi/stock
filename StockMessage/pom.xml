@@ -17,7 +17,7 @@
 				<directory>resource-${ENV_NAME}</directory>
 			</resource>
 			<resource>
-				<directory>templates_${LOCALE}</directory>
+				<directory>templates</directory>
 			</resource>
 		</resources>
 	</build>
