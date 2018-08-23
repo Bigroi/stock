@@ -74,7 +74,7 @@ public class DealServiceImplTest extends BaseTest {
 		// when
 		dealService.getById(DEAL_ID, COMPANY_ID);
 		// then
-		Assert.assertNotNull(deal);
+		Assert.assertNotNull(null, deal);
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 		Mockito.verify(companyDao, Mockito.times(2)).getById(deal.getBuyerAddress().getCompanyId());
 	}
@@ -147,6 +147,7 @@ public class DealServiceImplTest extends BaseTest {
 		dealService.approve(DEAL_ID, COMPANY_ID);
 		// then
 		Assert.assertEquals(COMPANY_ID, deal.getSellerAddress().getCompanyId());
+		Assert.assertEquals(PartnerChoice.APPROVED, deal.getBuyerChoice());
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 		Mockito.verify(dealDao, Mockito.times(1)).setSellerStatus(deal);
 	}
@@ -163,15 +164,18 @@ public class DealServiceImplTest extends BaseTest {
 		// mock
 		
 		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
-		Mockito.doNothing().when(dealDao).setSellerStatus(deal);
+		Mockito.doNothing().when(dealDao).setBuyerStatus(deal);
 		Mockito.doNothing().when(successDealMessageForBuyer).send(deal, TEST_LANGUAGE);
 		Mockito.doNothing().when(successDealMessageForSeller).send(deal, TEST_LANGUAGE);
     	// when
 		dealService.approve(DEAL_ID, COMPANY_ID);
 		// then
 		Assert.assertEquals(COMPANY_ID, deal.getBuyerAddress().getCompanyId());
+		Assert.assertEquals(PartnerChoice.APPROVED, deal.getSellerChoice());
 		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
 		Mockito.verify(dealDao, Mockito.times(1)).setBuyerStatus(deal);
+		//Mockito.verify(successDealMessageForBuyer, Mockito.times(1)).send(deal, TEST_LANGUAGE);
+		//Mockito.verify(successDealMessageForSeller, Mockito.times(1)).send(deal, TEST_LANGUAGE);
 	}
 	
 	@Test
@@ -195,6 +199,9 @@ public class DealServiceImplTest extends BaseTest {
 		// then
 		Assert.assertEquals(PartnerChoice.APPROVED, deal.getBuyerChoice());
 		Assert.assertEquals(PartnerChoice.APPROVED, deal.getSellerChoice());
+		Mockito.verify(dealDao, Mockito.times(1)).getById(DEAL_ID);
+		//Mockito.verify(successDealMessageForBuyer, Mockito.times(1)).send(deal, TEST_LANGUAGE);
+		//Mockito.verify(successDealMessageForSeller, Mockito.times(1)).send(deal, TEST_LANGUAGE);
 	}
 	
 	@Test

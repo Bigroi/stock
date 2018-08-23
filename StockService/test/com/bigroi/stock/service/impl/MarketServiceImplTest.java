@@ -82,7 +82,7 @@ public class MarketServiceImplTest extends BaseTest {
 		// when
 		marketService.checkExparations();
 		// then
-		Assert.assertNotEquals(expectedList, null);
+		Assert.assertNotEquals(null, expectedList);
 		Assert.assertEquals(STATUS, lot.getStatus());
 		Mockito.verify(lotDao, Mockito.times(1)).getActive();
 		Mockito.verify(lotDao, Mockito.times(1)).update(expectedList);
@@ -108,7 +108,7 @@ public class MarketServiceImplTest extends BaseTest {
 		// when
 		marketService.checkExparations();
 		// then
-		Assert.assertNotEquals(expectedList, null);
+		Assert.assertNotEquals(null, expectedList);
 		Assert.assertEquals(STATUS, tender.getStatus());
 		Mockito.verify(tenderDao, Mockito.times(1)).getActive();
 		Mockito.verify(tenderDao, Mockito.times(1)).update(expectedList);

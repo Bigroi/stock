@@ -39,12 +39,13 @@ public class ProductServiceImplTest extends BaseTest {
 	public void getAllProductsTest(){
 		// given
 		Product product = createObject(Product.class);
-		List<Product> listPRod = ImmutableList.of(product);
+		List<Product> listProd = ImmutableList.of(product);
 		// mock
-		Mockito.when(productDao.getAllProducts()).thenReturn(listPRod);
+		Mockito.when(productDao.getAllProducts()).thenReturn(listProd);
 		// when
-		prodService.getAllProducts();
+		List<Product> actualProd = prodService.getAllProducts();
 		// then
+		Assert.assertEquals(listProd, actualProd);
 		Mockito.verify(productDao, Mockito.timeout(1)).getAllProducts();
 	}
 	
@@ -52,12 +53,13 @@ public class ProductServiceImplTest extends BaseTest {
 	public void getAllActiveProductsForUITest(){
 		// given
 		ProductForUI productForUI = createObject(ProductForUI.class);
-		List<ProductForUI> listPRod = ImmutableList.of(productForUI);
+		List<ProductForUI> listProd = ImmutableList.of(productForUI);
 		// mock
-		Mockito.when(productDao.getAllActiveProductsForUI()).thenReturn(listPRod);
+		Mockito.when(productDao.getAllActiveProductsForUI()).thenReturn(listProd);
 		// when
-		prodService.getAllActiveProductsForUI();
+		List<ProductForUI> actualProd = prodService.getAllActiveProductsForUI();
 		// then
+		Assert.assertEquals(listProd, actualProd);
 		Mockito.verify(productDao, Mockito.timeout(1)).getAllActiveProductsForUI();
 	}
 	
@@ -65,12 +67,13 @@ public class ProductServiceImplTest extends BaseTest {
 	public void getAllActiveProductsTest(){
 		// given
 		Product product = createObject(Product.class);
-		List<Product> listPRod = ImmutableList.of(product);
+		List<Product> listProd = ImmutableList.of(product);
 		// mock
-		Mockito.when(productDao.getAllActiveProducts()).thenReturn(listPRod);
+		Mockito.when(productDao.getAllActiveProducts()).thenReturn(listProd);
 		// when
-		prodService.getAllActiveProducts();
+		List<Product> actualProd = prodService.getAllActiveProducts();
 		// then
+		Assert.assertEquals(listProd, actualProd);
 		Mockito.verify(productDao, Mockito.timeout(1)).getAllActiveProducts();
 	}
 	

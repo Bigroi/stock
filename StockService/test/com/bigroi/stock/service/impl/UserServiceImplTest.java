@@ -94,7 +94,7 @@ public class UserServiceImplTest extends BaseTest {
 		userService.addUser(user);
 		// then
 		Assert.assertEquals(CompanyStatus.NOT_VERIFIED, user.getCompany().getStatus());
-		Assert.assertNotEquals(user.getCompany().getCompanyAddress(), null);
+		Assert.assertNotEquals(null, user.getCompany().getCompanyAddress());
 		Mockito.verify(companyDao, Mockito.times(1)).add(user.getCompany());
 		Mockito.verify(addressDao, Mockito.times(1)).addAddress(user.getCompany().getCompanyAddress());
 		Mockito.verify(companyDao, Mockito.times(1)).update(user.getCompany());
@@ -132,7 +132,7 @@ public class UserServiceImplTest extends BaseTest {
 		// when
 		userService.loadUserByUsername(USER_NAME);
 		// then
-		Assert.assertNotNull(user);
+		Assert.assertNotNull(null, user);
 		Mockito.verify(userDao, Mockito.times(1)).getByUsernameWithRoles(USER_NAME);
 	}
 	
@@ -173,7 +173,7 @@ public class UserServiceImplTest extends BaseTest {
 		// when
 		userService.sendLinkResetPassword(USER_NAME);
 		// then
-		Assert.assertNotNull(user);
+		Assert.assertNotNull(null, user);
 		Assert.assertEquals(user.getKeyId(), key.getId());
 		Mockito.verify(userDao, Mockito.times(1)).getByUsernameWithRoles(USER_NAME);
 		Mockito.verify(userDao, Mockito.times(1)).updateKeyById(user);
@@ -201,7 +201,7 @@ public class UserServiceImplTest extends BaseTest {
 		boolean bool = userService.changePassword(USER_NAME, CODE);
 		// then
 		Assert.assertTrue(bool);
-		Assert.assertNotNull(user.getPassword());
+		Assert.assertNotNull(null, user.getPassword());
 		Mockito.verify(keysDao, Mockito.times(1)).checkResetKey(USER_NAME, CODE);
 		Mockito.verify(userDao, Mockito.times(1)).getByUsernameWithRoles(USER_NAME);
 		Mockito.verify(userDao, Mockito.times(1)).updatePassword(user);
@@ -233,7 +233,7 @@ public class UserServiceImplTest extends BaseTest {
 		Mockito.when(userDao.getByUsernameWithRoles(USER_NAME)).thenReturn(user);
 		// when
 		StockUser expectedUser = userService.getByUsername(USER_NAME);
-		Assert.assertEquals(expectedUser, user);
+		Assert.assertEquals(user, expectedUser);
 		Mockito.verify(userDao, Mockito.times(1)).getByUsernameWithRoles(USER_NAME);
 		
 	}

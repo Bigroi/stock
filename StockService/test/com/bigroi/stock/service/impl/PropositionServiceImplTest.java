@@ -2,6 +2,7 @@ package com.bigroi.stock.service.impl;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -30,8 +31,9 @@ public class PropositionServiceImplTest extends BaseTest {
 		// mock
 		Mockito.when(propostionDao.getListPropositions()).thenReturn(listProp);
 		// when
-		propService.getListProposition();
+		List<Proposition> actualProp = propService.getListProposition();
 		// then
+		Assert.assertEquals(listProp, actualProp);
 		Mockito.verify(propostionDao, Mockito.timeout(1)).getListPropositions();
 	}
 	
@@ -58,8 +60,9 @@ public class PropositionServiceImplTest extends BaseTest {
 		// mock
 		Mockito.when(propostionDao.getListPropositionsByStatusAndUserId(COMAPNY_ID)).thenReturn(listProp);
 		// when
-		propService.getListHystoryProposition(COMAPNY_ID);
+		List<Proposition> actualProp = propService.getListHystoryProposition(COMAPNY_ID);
 		// then
+		Assert.assertEquals(listProp, actualProp);
 		Mockito.verify(propostionDao, Mockito.timeout(1)).getListPropositionsByStatusAndUserId(COMAPNY_ID);
 	}
 	
@@ -71,8 +74,9 @@ public class PropositionServiceImplTest extends BaseTest {
 		// mock
 		Mockito.when(propostionDao.getListPropositionsTrans()).thenReturn(listProp);
 		// when
-		propService.getListPropositionsByTrans();
+		List<Proposition> actualProp = propService.getListPropositionsByTrans();
 		// then
+		Assert.assertEquals(listProp, actualProp);
 		Mockito.verify(propostionDao, Mockito.timeout(1)).getListPropositionsTrans();
 	}
 
