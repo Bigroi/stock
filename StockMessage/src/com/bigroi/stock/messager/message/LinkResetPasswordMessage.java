@@ -4,9 +4,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
 
+import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.util.exception.StockRuntimeException;
 
 public class LinkResetPasswordMessage extends BaseMessage<Map<String, String>> {
+	
+	private StockUser user =  new StockUser();
 
 	public LinkResetPasswordMessage(String fileName, String fileExtention){
 		super(fileName, fileExtention);
@@ -16,10 +19,12 @@ public class LinkResetPasswordMessage extends BaseMessage<Map<String, String>> {
 	protected String getRecipient(Map<String, String> map) {
 		return map.get("email");
 	}
-
+	
 	@Override
 	protected String getText(Map<String, String> map, String locale) {
 		try {
+			String name = getName(map);
+			user.setUsername(name);
 			String url = mailManager.getServerAdress()
 				+ "ResetPassword.spr?code=" 
 				+ URLEncoder.encode(map.get("code"), "UTF-8") + "&email=" 
@@ -28,6 +33,15 @@ public class LinkResetPasswordMessage extends BaseMessage<Map<String, String>> {
 		} catch (UnsupportedEncodingException e) {
 			throw new StockRuntimeException(e);
 		}
-		
+	}
+	
+	@Override
+	protected String getSubject(String locale) {
+		return super.getSubject(locale).replaceAll("@username", user.getUsername());
+	}
+	
+	private String getName(Map<String, String> map){
+		String email = map.get("email");
+		return email.split("@")[0];	
 	}
 }

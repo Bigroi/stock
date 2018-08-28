@@ -1,4 +1,4 @@
-Hello,
+Hello, @username !
 
 Please follow the link to successfully change your password @link.
 
