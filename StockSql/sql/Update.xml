@@ -278,9 +278,9 @@
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('482', 'pageNames', 'testbg', 'Test platform', 'Тест платформы', 'Platforma testowa');
 	</update>
 	
-	<!-- <update>
+	 <update>
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('483', 'account', 'company_language', 'language', 'Язык', 'Język');
-	</update> -->
+	</update> 
 	
 	<update>
 		UPDATE `LABEL` SET `en_us`='The total volume should be more than 1 kg', `ru_Ru`='Общий объём должен быть больше 1 кг', `pl`='Całkowita objętość powinna wynosić więcej niż 1 kg' WHERE  `id`=365;
@@ -290,15 +290,11 @@
 	<update>
 		UPDATE `LABEL` SET `en_us`='Easy and user friendly interface allows you to find a partner in a few clicks' WHERE  `id`=328;
 		UPDATE `LABEL` SET `en_us`='Define total volume of your goods' WHERE  `id`=348;
-		<!-- INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('484', 'deal', 'sellerAddress', 'Seller address', 'Адрес продавца', 'Adres sprzedawcy'); -->
-		<!-- INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('485', 'deal', 'buyerAddrress', 'Buyer addrress', 'Адрес покупателя', 'Adres kupującego'); -->
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('484', 'deal', 'sellerAddress', 'Seller address', 'Адрес продавца', 'Adres sprzedawcy'); 
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('485', 'deal', 'buyerAddrress', 'Buyer address', 'Адрес покупателя', 'Adres kupującego'); 
 		UPDATE `LABEL` SET `en_us`=' Convenient platform ', `ru_Ru`='Удобство платформы', `pl`='Wygoda platformy' WHERE  `id`=322;
 	</update>
 		
-	<update>
-		UPDATE `LABEL` SET `en_us`='Buyer address' WHERE  `id`=485;
-	</update>
-	
 	<update>
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('486', 'pageNames', 'resetpassw', 'Password reset', 'Пароль сброшен', 'resetowanie hasła');
 	</update>
