@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.controller.BaseRenderingController;
 import com.bigroi.stock.security.AuthenticationHandler;
-import com.bigroi.stock.service.LabelService;
 import com.bigroi.stock.service.UserService;
 import com.bigroi.stock.util.LabelUtil;
 
@@ -24,9 +23,6 @@ public class CommonRenderingController extends BaseRenderingController{
 
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private LabelService labelService;
 	
 	@RequestMapping("/Login.spr")
 	public ModelAndView login() {

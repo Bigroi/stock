@@ -13,7 +13,7 @@ import com.bigroi.stock.util.LabelUtil;
 public abstract class BaseRenderingController extends BaseController{
 
 	@Autowired
-	private LabelService labelService;
+	protected LabelService labelService;
 	
 	protected final ModelAndView createModelAndView(String pageName){
 		Object user = null;
