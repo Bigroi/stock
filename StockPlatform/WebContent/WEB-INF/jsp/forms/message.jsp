@@ -5,9 +5,9 @@
 		<h3>${title}</h3>
     </div>
 	<div class="flex-input">
-		<dix>
+		<div>
         	${message}
-        </dix>
+        </div>
         <div id="form-list"></div>
 	</div>
 </form>
