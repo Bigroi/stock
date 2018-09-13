@@ -298,5 +298,9 @@
 	<update>
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('486', 'pageNames', 'resetpassw', 'Password reset', 'Пароль сброшен', 'resetowanie hasła');
 	</update>
+	
+	<update>
+		UPDATE `LABEL` SET `pl`='Wypróbuj teraz' WHERE  `id`=350;
+	</update>
 </root>
 
