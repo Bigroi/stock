@@ -302,5 +302,9 @@
 	<update>
 		UPDATE `LABEL` SET `pl`='Wypróbuj teraz' WHERE  `id`=350;
 	</update>
+	
+	<update author="Pavel" date="13.09.2018">
+		ALTER TABLE `LOT` CHANGE COLUMN `foto` `foto` LONGTEXT NULL DEFAULT NULL AFTER `exparation_date`;
+	</update>
 </root>
 

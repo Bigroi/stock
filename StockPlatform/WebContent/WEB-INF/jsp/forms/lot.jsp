@@ -53,6 +53,10 @@
 						</select>
 					</div>
 					<div>
+						<label for="forFoto">${label.lot.foto}</label>
+						<input type="file" name="foto" id="forFoto">
+					</div>
+					<div>
 						<label for="forDescription">${label.lot.description}</label>
 						<textarea name="description" cols="40" rows="6" maxlength="1000" id="forDescription"></textarea>
 					</div>

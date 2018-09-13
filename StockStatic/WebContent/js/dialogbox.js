@@ -35,6 +35,33 @@ function showDialog(params){
 			}   			
 		})      
 		
+		$("input:file").change(function(){
+			var element = this;
+			var fileName = $(element).val();
+			var file = element.files[0];
+		    if (file.size > 1000000){
+		    	var messageDiv = $('.dialogbox-message')
+		    	messageDiv.addClass("error-message");
+		    	messageDiv.text(l10n.translate("label.lot.too_big"));
+		    	messageDiv[0].scrollIntoView(true);
+		    	$(element).val(null);
+		    	return false;
+		    }
+		    if (!file.type.startsWith("image")){
+		    	var messageDiv = $('.dialogbox-message')
+		    	messageDiv.addClass("error-message");
+		    	messageDiv.text(l10n.translate("label.lot.not_img"));
+		    	messageDiv[0].scrollIntoView(true);
+		    	$(element).val(null);
+		    	return false;
+		    }
+			var fr = new FileReader();
+		    fr.onloadend = function(){
+		    	element.fileData = fr.result;
+		    }
+		    fr.readAsDataURL(file);
+		});
+		
 		loadData();
 		
 		function addButton($listelement, buttonDef){

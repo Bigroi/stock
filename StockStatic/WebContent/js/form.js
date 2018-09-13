@@ -48,16 +48,23 @@ function sendFormData(formContainer, buttonDef, $dialogbox) {
 			for(var j = 0; j < formElements.length; j++){
 				var name = formElements[j].getAttribute("name");
 				var value = formElements[j].value;
-				addToResult(data, name, value);
+				var type = formElements[j].getAttribute("type");
+				addToResult(data, name, value, type, formElements[j]);
 			}
 		}
 		data = JSON.stringify(data,"",1);
 		return data;
 		
-		function addToResult(toObject, name, value){
+		function addToResult(toObject, name, value, type, formElement){
 			var dotIndex = name.indexOf(".");
 			if (dotIndex < 0){
-				toObject[name] = value;
+				if (type == "file"){
+					if (formElement.fileData){
+						toObject[name] = formElement.fileData;
+					}
+				} else {
+					toObject[name] = value;
+				}
 			} else {
 				var subObjectName = name.substr(0, dotIndex);
 				var subObject = toObject[subObjectName];
@@ -66,7 +73,7 @@ function sendFormData(formContainer, buttonDef, $dialogbox) {
 					subObject = {};
 					toObject[subObjectName] = subObject;
 				}
-				addToResult(subObject, name, value);
+				addToResult(subObject, name, value, type, formElement);
 			}
 		}
 	}
@@ -80,7 +87,9 @@ function setFormInputs(formContainer, object){
 		for(var j = 0; j < formElements.length; j++){
 			var name = formElements[j].getAttribute("name");
 			var value = getValue(object, name);
-			formElements[j].value = value;
+			if (formElements[j].getAttribute("type") != "file"){
+				formElements[j].value = value;
+			}
 		}
 	}
 	
