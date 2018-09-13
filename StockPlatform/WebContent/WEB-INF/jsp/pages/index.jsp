@@ -112,8 +112,8 @@
 								<div class="adv-icon">
 									<img src="/Static/img/platform.png" alt="YourTrader" title="YourTrader"/>
 								</div>
-								<p class="adv-title">${label.index.сonvenient_title}</p>
-								<p class="adv-desc">${label.index.сonvenient_description}</p>
+								<p class="adv-title">${label.index.convenient_title}</p>
+								<p class="adv-desc">${label.index.convenient_description}</p>
 							</div>
 						</div>
 					</div>
