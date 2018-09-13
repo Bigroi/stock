@@ -48,16 +48,17 @@ public class DealForUI {
 		if (deal.getSellerAddress().getCompanyId() == companyId){
 			this.partnerAddress = deal.getBuyerAddress();
 			this.partnerDescription = deal.getBuyerDescription();
+			this.sellerFoto = null;
 		} else {
 			this.partnerAddress = deal.getSellerAddress();
 			this.partnerDescription = deal.getSellerDescription();
+			this.sellerFoto = deal.getSellerFoto();
 		}
 		this.partnerAddress.setAddress(
 				this.partnerAddress.getCountry() + ", " +
 				this.partnerAddress.getCity() + ", " +
 				this.partnerAddress.getAddress()
 				);
-		this.sellerFoto = deal.getSellerFoto();
 		this.price = deal.getPrice();
 		this.volume = deal.getVolume();
 		this.edit = "NNY";

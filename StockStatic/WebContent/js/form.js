@@ -80,7 +80,7 @@ function sendFormData(formContainer, buttonDef, $dialogbox) {
 }
 
 function setFormInputs(formContainer, object){
-	var formElementNames = ["input", "select", "textarea"];
+	var formElementNames = ["input", "select", "textarea", "img"];
 	for (var i =0; i < formElementNames.length; i++){
 		var formElementName = formElementNames[i];
 		var formElements = formContainer.find(formElementName);
@@ -88,7 +88,11 @@ function setFormInputs(formContainer, object){
 			var name = formElements[j].getAttribute("name");
 			var value = getValue(object, name);
 			if (formElements[j].getAttribute("type") != "file"){
-				formElements[j].value = value;
+				if (formElementName == "img"){
+					$(formElements[j]).attr("src", value);
+				} else {
+					formElements[j].value = value;
+				}
 			}
 		}
 	}

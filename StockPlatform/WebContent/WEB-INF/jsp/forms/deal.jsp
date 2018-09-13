@@ -1,9 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <!-- <div id="table-container">
-		<table id="main-table" data-url="/Transport/proposition/json/Propositions.spr"></table>
-	</div><br> -->
 	
  	<div class="white-div white-div-deal">
     	<form class="form" id="deal-form" data-url="/deal/json/Form.spr" data-id="${id}" action="#" method="post" name="form">
@@ -104,6 +101,7 @@
 		        					);">
 		        		${label.deal.reject }
 		        	</button>
+		        	<img name="sellerFoto" src="" alt="" width="30" height="20">
 				</div>
 			</div>
 		</form>

@@ -37,7 +37,7 @@ public class DealDaoImpl implements DealDao {
 	
 	private static final String GET_POSIBLE_BIDS = 
 			"SELECT "
-			+ " L.ID LOT_ID, L.DESCRIPTION LOT_DESCRIPTION, L.PRICE LOT_PRICE, "
+			+ " L.ID LOT_ID, L.DESCRIPTION LOT_DESCRIPTION, L.PRICE LOT_PRICE, L.FOTO LOT_FOTO, "
 			+ " L.`STATUS` LOT_STATUS, L.EXPARATION_DATE LOT_EXP_DATE, L.MAX_VOLUME LOT_VOLUME, L.MIN_VOLUME LOT_MIN_VOLUME, "
 			+ " LA.LONGITUDE LOT_LONGITUDE, LA.LATITUDE LOT_LATITUDE, LA.COMPANY_ID LOT_COMPANY_ID, LA.ID LOT_ADDRESS_ID, "
 			+ " LC.LANGUAGE LOT_LANGUAGE, "
@@ -433,6 +433,7 @@ public class DealDaoImpl implements DealDao {
 				lot.setMaxVolume(rs.getInt("LOT_VOLUME"));
 				lot.setMinVolume(rs.getInt("LOT_MIN_VOLUME"));
 				lot.setAddressId(rs.getLong("LOT_ADDRESS_ID"));
+				lot.setFoto(rs.getString("LOT_FOTO"));
 				
 				CompanyAddress address = new CompanyAddress();
 				address.setLatitude(rs.getDouble("LOT_LATITUDE"));

@@ -308,5 +308,9 @@
 		UPDATE `stock`.`label` SET `name`='convenient_description' WHERE  `id`=328;
 		UPDATE `stock`.`label` SET `name`='convenient_title' WHERE  `id`=322;
 	</update>
+	
+	<update author="Pavel" date="14.09.2018">	
+		ALTER TABLE `DEAL` CHANGE COLUMN `seller_foto` `seller_foto` LONGTEXT NULL DEFAULT NULL COLLATE 'utf8_bin' AFTER `product_id`;
+	</update>
 </root>
 
