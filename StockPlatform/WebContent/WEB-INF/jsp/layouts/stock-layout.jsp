@@ -75,9 +75,9 @@
 				</div>
 				<div class="login-list">
 					<div>
-						<a href="#" class="edit-account">Аккаунт</a>
+						<a href="#" class="edit-account">${label.navigation.account}</a>
 						<a href="#" onclick="document.location = getContextRoot() + '/account/json/Logout.spr'" id="session-start">
-							Выйти
+							${label.navigation.logout}
 						</a>
 					</div>
 				</div>
