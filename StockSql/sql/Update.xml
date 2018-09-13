@@ -305,6 +305,8 @@
 	
 	<update author="Pavel" date="13.09.2018">
 		ALTER TABLE `LOT` CHANGE COLUMN `foto` `foto` LONGTEXT NULL DEFAULT NULL AFTER `exparation_date`;
+		UPDATE `stock`.`label` SET `name`='convenient_description' WHERE  `id`=328;
+		UPDATE `stock`.`label` SET `name`='convenient_title' WHERE  `id`=322;
 	</update>
 </root>
 
