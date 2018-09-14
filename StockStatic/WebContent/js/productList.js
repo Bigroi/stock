@@ -15,7 +15,7 @@ $(document).ready(function(){
 		var authorised = container.hasClass("authorised");
 		var div = $("<div class='product'>");
 		div.css("background-image", "url(" + product.picture + ")");
-		div.append($("<h4>" + product.name + "</h4>"))
+		div.append($("<h4>" + l10n.translate("label." + product.name + ".name") + "</h4>"))
 		
 		var aboutProduct = $("<div class='about-product'>")
 		

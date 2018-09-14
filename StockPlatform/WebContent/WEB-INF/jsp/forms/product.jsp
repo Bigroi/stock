@@ -21,10 +21,6 @@
             <label for="picture">${label.product.picture} *</label>
             <input type="text" name="picture" required maxlength="50"/>
         </div>
-        <div>
-            <label for=description>${label.product.description} *</label>
-            <textarea name="description" cols="40" rows="6" required maxlength="500"></textarea>
-        </div>
         <div id="form-list"></div>
 	</div>
 </form>

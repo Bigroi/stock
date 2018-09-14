@@ -23,16 +23,16 @@ import com.bigroi.stock.dao.ProductDao;
 public class ProductDaoImpl implements ProductDao {
 	
 	private static final String GET_ALL_PRODUCTS = 
-			"SELECT ID, NAME, DESCRIPTION, REMOVED, DELIVARY_PRICE, PICTURE "
+			"SELECT ID, NAME, REMOVED, DELIVARY_PRICE, PICTURE "
 			+ " FROM PRODUCT ";
 
 	private static final String GET_ALL_ACTIVE_PRODUCTS = 
-			"SELECT ID, NAME, DESCRIPTION, REMOVED, DELIVARY_PRICE, PICTURE "
+			"SELECT ID, NAME, REMOVED, DELIVARY_PRICE, PICTURE "
 			+ " FROM PRODUCT "
 			+ " WHERE REMOVED = 'N'";
 	
 	private static final String GET_ALL_ACTIVE_PRODUCTS_FOR_UI = 
-			" SELECT P.ID, P.NAME, P.DESCRIPTION, P.DELIVARY_PRICE, P.PICTURE, "
+			" SELECT P.ID, P.NAME, P.DELIVARY_PRICE, P.PICTURE, "
 			+ " IFNULL(L.SELLVOLUME, 0) SELLVOLUME, "
 			+ " IFNULL(L.SELLPRICE, 0) SELLPRICE, "
 			+ " IFNULL(T.BUYVOLUME, 0) BUYVOLUME, "
@@ -51,16 +51,16 @@ public class ProductDaoImpl implements ProductDao {
 			+ " WHERE P.REMOVED = 'N'";
 	
 	private static final String ADD_PRODUCT = 
-			"INSERT INTO PRODUCT (NAME, DESCRIPTION, REMOVED, DELIVARY_PRICE, PICTURE) " 
-	        + "VALUES (?, ?, ?, ?, ?)";
+			"INSERT INTO PRODUCT (NAME, REMOVED, DELIVARY_PRICE, PICTURE) " 
+	        + "VALUES (?, ?, ?, ?)";
 
 	private static final String UPDATE_PRODUCTS_BY_ID = 
 			"UPDATE PRODUCT "
-			+ " SET NAME = ?, DESCRIPTION = ?, DELIVARY_PRICE = ?, REMOVED = ?, PICTURE = ?"
+			+ " SET NAME = ?, DELIVARY_PRICE = ?, REMOVED = ?, PICTURE = ?"
 			+ " WHERE ID = ?";
 
 	private static final String GET_PRODUCT_BY_ID = 
-			"SELECT ID, NAME, DESCRIPTION, REMOVED, DELIVARY_PRICE, PICTURE "
+			"SELECT ID, NAME, REMOVED, DELIVARY_PRICE, PICTURE "
 			+ " FROM PRODUCT "
 			+ " WHERE ID = ? ";
 	
@@ -94,10 +94,9 @@ public class ProductDaoImpl implements ProductDao {
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(ADD_PRODUCT, PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, product.getName());
-				ps.setString(2, product.getDescription());
-				ps.setString(3, product.getRemoved());
-				ps.setDouble(4, product.getDelivaryPrice());
-				ps.setString(5, product.getPicture());
+				ps.setString(2, product.getRemoved());
+				ps.setDouble(3, product.getDelivaryPrice());
+				ps.setString(4, product.getPicture());
 				return ps;
 			}
 		}, keyHolder);
@@ -110,7 +109,6 @@ public class ProductDaoImpl implements ProductDao {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return	template.update(UPDATE_PRODUCTS_BY_ID, 
 				product.getName(), 
-				product.getDescription(), 
 				product.getDelivaryPrice(),
 				product.getRemoved(),
 				product.getPicture(),

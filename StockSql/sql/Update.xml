@@ -282,12 +282,12 @@
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('483', 'account', 'company_language', 'language', 'Язык', 'Język');
 	</update> 
 	
-	<update>
+	<update author="Evgeniy">
 		UPDATE `LABEL` SET `en_us`='The total volume should be more than 1 kg', `ru_Ru`='Общий объём должен быть больше 1 кг', `pl`='Całkowita objętość powinna wynosić więcej niż 1 kg' WHERE  `id`=365;
 		UPDATE `LABEL` SET `en_us`='The total volume should be more than 1 kg', `ru_Ru`='Общий объём должен быть больше 1 кг', `pl`='Całkowita objętość powinna wynosić więcej niż 1 kg' WHERE  `id`=429;
 	</update>
 		
-	<update>
+	<update author="Evgeniy">
 		UPDATE `LABEL` SET `en_us`='Easy and user friendly interface allows you to find a partner in a few clicks' WHERE  `id`=328;
 		UPDATE `LABEL` SET `en_us`='Define total volume of your goods' WHERE  `id`=348;
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('484', 'deal', 'sellerAddress', 'Seller address', 'Адрес продавца', 'Adres sprzedawcy'); 
@@ -295,11 +295,11 @@
 		UPDATE `LABEL` SET `en_us`=' Convenient platform ', `ru_Ru`='Удобство платформы', `pl`='Wygoda platformy' WHERE  `id`=322;
 	</update>
 		
-	<update>
+	<update author="Evgeniy">
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('486', 'pageNames', 'resetpassw', 'Password reset', 'Пароль сброшен', 'resetowanie hasła');
 	</update>
 	
-	<update>
+	<update author="Evgeniy">
 		UPDATE `LABEL` SET `pl`='Wypróbuj teraz' WHERE  `id`=350;
 	</update>
 	
@@ -311,6 +311,12 @@
 	
 	<update author="Pavel" date="14.09.2018">	
 		ALTER TABLE `DEAL` CHANGE COLUMN `seller_foto` `seller_foto` LONGTEXT NULL DEFAULT NULL COLLATE 'utf8_bin' AFTER `product_id`;
+	</update>
+	
+	<update author="Evgeniy" date="14.09.2018">
+		ALTER TABLE `PRODUCT` DROP COLUMN `description`;
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('487', 'Apple', 'name', 'Apple', 'Яблоко', 'Jabłko');
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('488', 'Potato', 'name', 'Potato', 'Картофель', 'Ziemniaki');
 	</update>
 </root>
 

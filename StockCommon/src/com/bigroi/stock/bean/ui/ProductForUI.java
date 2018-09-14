@@ -17,9 +17,6 @@ public class ProductForUI {
 	@Column(value = "label.product.name", allowSorting = true, responsivePriority = -4)
 	private String name;
 	
-	@Column(value = "label.product.description", responsivePriority = -1)
-	private String description;
-	
 	@Column(value = "label.product.archive", responsivePriority = -3)
 	private String removed;
 	
@@ -46,7 +43,6 @@ public class ProductForUI {
 	
 	public ProductForUI(Product product) {
 		this.delivaryPrice = product.getDelivaryPrice();
-		this.description = product.getDescription();
 		this.id = product.getId();
 		this.name = product.getName();
 		this.removed = product.getRemoved();
@@ -62,10 +58,6 @@ public class ProductForUI {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public String getRemoved() {
@@ -134,9 +126,5 @@ public class ProductForUI {
 	
 	public String getName() {
 		return name;
-	}
-	
-	public String getDescription() {
-		return description;
 	}
 }
