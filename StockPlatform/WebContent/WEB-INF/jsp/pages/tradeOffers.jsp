@@ -7,9 +7,6 @@
 			        <li>
 			            <input type="text" disabled value="${product.name}"/>
 			        </li>
-			        <li>
-			            <input type="text" disabled value="${product.description}"/>
-			        </li>
 			    </ul>
 			</form>
 		</div>
