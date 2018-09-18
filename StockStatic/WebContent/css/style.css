@@ -833,6 +833,9 @@ footer .container {
     margin-right: 20px;
     padding: 9px 13px;
 }
+.dialogbox-child input[type=file] {
+	width: 280px;
+}
 .dialogbox-child button {
 	width: 371px;
 	height: 42px;
@@ -1107,6 +1110,9 @@ footer .container {
 	#forAdress{
 		width: 262px;
 		height: 20px;
+	}
+	.dialogbox-child input[type=file] {
+		width: 262px;
 	}
 	#reset {
 		right: 15px;
@@ -2371,4 +2377,49 @@ table.dataTable>tbody>tr.child span {
 	.error-message {
     	width: 230px;
     }
+}
+/* select with custom icons */
+#languages-select {
+	display: none;
+}
+.ui-selectmenu-button.ui-button {
+	width: 120px;
+	padding: 6px 3px;
+}
+.languages {
+	width: 120px;
+}
+.ui-selectmenu-menu .ui-menu.customicons .ui-menu-item-wrapper {
+ 	padding: 0.5em 0 0.5em 2em;
+}
+.ui-selectmenu-menu .ui-menu.customicons .ui-menu-item .ui-icon {
+  	height: 24px;
+	width: 24px;
+	top: 0.1em;
+}
+.ui-selectmenu-text {
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: left center;
+  padding-left: 32px;
+}
+.ui-icon.ru_RU,
+.ui-icon.pl,
+.ui-icon.en_US  {
+  background-repeat: no-repeat;
+  background-size: 24px;
+}
+.ui-icon.ru_RU {
+  background-image: url("/Static/img/ru_RU.png");
+}
+.ui-icon.pl {
+  background-image: url("/Static/img/pl.png");
+}
+.ui-icon.en_US {
+  background-image: url("/Static/img/en_US.png");
+}
+.ui-button .ui-icon,
+.ui-button:hover .ui-icon, 
+.ui-button:focus .ui-icon{
+	background-image: url("/Static/img/ui-icons_777777_256x240.png");
 }
