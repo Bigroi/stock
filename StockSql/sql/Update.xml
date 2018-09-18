@@ -318,5 +318,17 @@
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('487', 'Apple', 'name', 'Apple', 'Яблоко', 'Jabłko');
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('488', 'Potato', 'name', 'Potato', 'Картофель', 'Ziemniaki');
 	</update>
+	
+	<update author="Evgeniy" date="18.09.2018">
+		 INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('489', 'description', 'aboutApple', 
+		 'The fruit of apple, which is eaten fresh, serves as a raw material in cooking and for making drinks.', 
+		 'Плод яблони, который употребляется в пищу в свежем виде, служит сырьём в кулинарии и для приготовления напитков.', 
+		 'Owoce jabłka, które są świeże, służą jako surowiec do gotowania i do przyrządzania napojów.');
+		 
+		 INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('490', 'description', 'aboutPotato', 
+		 'Potato tubers are an important food product. Fruits are poisonous, due to the content of solanine in them.', 
+		 'Клубни картофеля являются важным пищевым продуктом. Плоды ядовиты, в связи с содержанием в них соланина.', 
+		 'Bulwy ziemniaka są ważnym produktem żywnościowym. Owoce są trujące, ze względu na zawartość solaniny w nich.');
+	</update>
 </root>
 
