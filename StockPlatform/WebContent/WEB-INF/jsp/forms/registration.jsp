@@ -56,7 +56,7 @@
 			</div>
 			<div>
 				<label for="forAdress">${label.account.address} *</label>
-	            <input type="text" name="company.companyAddress.address" class="address" id="forAdress" placeholder="Minsk" maxlength="200"/>
+	            <input type="text" name="company.companyAddress.address" class="address" id="forAdress" placeholder="str.Nezalejnasti" maxlength="200"/>
 			</div>
 			<div class="forMap google-map-container"></div>
 			<div class="for-checkbox">
