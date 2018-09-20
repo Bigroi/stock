@@ -21,7 +21,8 @@
 		
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/Static/img/logo.png" type="image/png">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/jquery.dataTables.min.css">
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/jquery.responsive.dataTables.min.css"> 
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/jquery.responsive.dataTables.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/jquery-ui.min.css"> 
 		
 		<script src="${pageContext.request.contextPath}/Static/js/jQuery.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/jquery.dataTables.min.js"></script>
@@ -39,6 +40,8 @@
 		<script src="${pageContext.request.contextPath}/Static/js/script.js?version=${label.build.number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/productList.js?version=${label.build.number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/testTrading.js?version=${label.build.number}"></script>
+  		<script src="${pageContext.request.contextPath}/Static/js/jquery-ui.min.js"></script>
+  		
 	</head>
 	<body>
 		<div id="form-container"></div>
@@ -62,9 +65,9 @@
 	                		</button>
 						</div>
 						<div class="languages">
-							<select name="lang" class="language-switcher">
+							<select id="languages-select" name="lang" class="language-switcher">
 								<c:forEach var="lang" items="${languages}">
-									<option value="${lang}">${lang}</option>
+									<option data-class="${lang}" value="${lang}">${lang}</option>
 								</c:forEach>
 							</select>
 						</div>
