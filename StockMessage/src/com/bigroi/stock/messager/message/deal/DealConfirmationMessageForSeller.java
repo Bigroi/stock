@@ -1,15 +1,17 @@
 package com.bigroi.stock.messager.message.deal;
 
 import com.bigroi.stock.bean.db.Deal;
+import com.bigroi.stock.messager.message.BaseMessage;
 
-public class DealConfirmationMessageForSeller extends DealBaseMessage {
+public class DealConfirmationMessageForSeller extends BaseMessage<Deal> {
 
 	public DealConfirmationMessageForSeller(String fileName, String fileExtention){
 		super(fileName, fileExtention);
 	}
 	
-	protected long getCompanyId(Deal deal) {
-		return deal.getSellerAddress().getCompanyId();																						
+	@Override
+	protected String getRecipient(Deal deal) {
+		return deal.getSellerEmail();
 	}
 
 	@Override

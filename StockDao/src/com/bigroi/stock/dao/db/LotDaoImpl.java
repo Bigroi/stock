@@ -24,6 +24,7 @@ import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
+import com.bigroi.stock.bean.db.TradeLot;
 import com.bigroi.stock.dao.LotDao;
 
 @Repository
@@ -33,19 +34,24 @@ public class LotDaoImpl implements LotDao {
 			"INSERT INTO LOT "
 			+ "(DESCRIPTION, PRODUCT_ID, PRICE, MIN_VOLUME, "
 			+ " MAX_VOLUME, COMPANY_ID, `STATUS`, CREATION_DATE, EXPARATION_DATE, "
-			+ " ADDRESS_ID, FOTO) "
-			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			+ " ADDRESS_ID, FOTO, DISTANCE) "
+			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
-	private static final String UPDATE_LOT_BY_ID = 
+	private static final String UPDATE_MAX_VOLUME_BY_ID = 
 			"UPDATE LOT "
-			+ " SET MAX_VOLUME = ?, STATUS = ? "
+			+ " SET MAX_VOLUME = ? "
+			+ " WHERE ID = ?";
+	
+	private static final String UPDATE_STATUS_BY_ID = 
+			"UPDATE LOT "
+			+ " SET STATUS = ? "
 			+ " WHERE ID = ?";
 	
 	private static final String UPDATE_LOT_BY_ID_AND_SELLER = 
 			"UPDATE LOT SET "
 			+ " DESCRIPTION = ?, PRODUCT_ID = ?, PRICE = ?, MIN_VOLUME = ?, "
 			+ " MAX_VOLUME = ?, `STATUS` = ?, CREATION_DATE = ?, EXPARATION_DATE = ?, "
-			+ " ADDRESS_ID = ?, FOTO = ? "
+			+ " ADDRESS_ID = ?, FOTO = ?, DISTANCE = ? "
 			+ " WHERE ID = ? AND COMPANY_ID = ?";
 	
 	private static final String GET_LOT_BY_ID = 
@@ -128,6 +134,7 @@ public class LotDaoImpl implements LotDao {
 				ps.setDate(9, new Date(lot.getExparationDate().getTime()));
 				ps.setLong(10, lot.getAddressId());
 				ps.setString(11, lot.getFoto());
+				ps.setInt(12, lot.getDistance());
 				return ps;
 			}
 		}, keyHolder);
@@ -149,6 +156,7 @@ public class LotDaoImpl implements LotDao {
 				lot.getExparationDate(), 
 				lot.getAddressId(),
 				lot.getFoto(),
+				lot.getDistance(),
 				lot.getId(),
 				companyId) == 1;
 	}
@@ -197,18 +205,30 @@ public class LotDaoImpl implements LotDao {
 	}
 
 	@Override
-	public void update(Collection<Lot> lotsToUpdate) {
+	public void update(Collection<TradeLot> lots) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.batchUpdate(UPDATE_LOT_BY_ID, lotsToUpdate, lotsToUpdate.size(), new ParameterizedPreparedStatementSetter<Lot>() {
+		template.batchUpdate(UPDATE_MAX_VOLUME_BY_ID, lots, lots.size(), new ParameterizedPreparedStatementSetter<TradeLot>() {
 
 			@Override
-			public void setValues(PreparedStatement ps, Lot lot) throws SQLException {
+			public void setValues(PreparedStatement ps, TradeLot lot) throws SQLException {
 				ps.setInt(1, lot.getMaxVolume());
-				ps.setString(2, lot.getStatus().name());
-				ps.setLong(3, lot.getId());
+				ps.setLong(2, lot.getId());
 			}
 		});
 		
+	}
+	
+	@Override
+	public void updateStatus(List<Lot> lots) {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		template.batchUpdate(UPDATE_STATUS_BY_ID, lots, lots.size(), new ParameterizedPreparedStatementSetter<Lot>() {
+
+			@Override
+			public void setValues(PreparedStatement ps, Lot lot) throws SQLException {
+				ps.setString(1, lot.getStatus().name());
+				ps.setLong(2, lot.getId());
+			}
+		});
 	}
 
 	@Override
@@ -246,7 +266,7 @@ public class LotDaoImpl implements LotDao {
 		public static final String ALL_COLUMNS = 
 				" L.ID, L.DESCRIPTION, L.PRODUCT_ID, L.PRICE, L.MIN_VOLUME, "
 			+ " L.MAX_VOLUME, L.COMPANY_ID, L.`STATUS`, L.CREATION_DATE, "
-			+ " L.EXPARATION_DATE, L.ADDRESS_ID, L.FOTO, "
+			+ " L.EXPARATION_DATE, L.ADDRESS_ID, L.FOTO, L.DISTANCE, "
 			+ " P.NAME PRODUCT_NAME,"
 			+ " A.LONGITUDE LONGITUDE, A.LATITUDE LATITUDE, "
 			+ " C.LANGUAGE ";
@@ -275,6 +295,8 @@ public class LotDaoImpl implements LotDao {
 			lot.setPrice(rs.getDouble("PRICE"));
 			lot.setProductId(rs.getLong("PRODUCT_ID"));
 			lot.setStatus(BidStatus.valueOf(rs.getString("STATUS")));
+			lot.setDistance(rs.getInt("DISTANCE"));
+			
 			
 			Product product = new Product();
 			product.setName(rs.getString("PRODUCT_NAME"));

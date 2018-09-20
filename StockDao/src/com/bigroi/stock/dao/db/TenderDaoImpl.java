@@ -24,6 +24,7 @@ import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.Tender;
+import com.bigroi.stock.bean.db.TradeTender;
 import com.bigroi.stock.dao.TenderDao;
 
 @Repository
@@ -33,19 +34,24 @@ public class TenderDaoImpl implements TenderDao{
 			  " INSERT INTO TENDER "
 			+ " (DESCRIPTION, PRODUCT_ID, PRICE, MIN_VOLUME, "
 			+ " MAX_VOLUME, COMPANY_ID, `STATUS`, CREATION_DATE, EXPARATION_DATE, "
-			+ " ADDRESS_ID) "
-			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			+ " ADDRESS_ID, DISTANCE, PACKAGING, PROCESSING) "
+			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		
-	private static final String UPDATE_TENDER_BY_ID = 
+	private static final String UPDATE_MAX_VOLUME_BY_ID = 
 			  " UPDATE TENDER "
-			+ " SET MAX_VOLUME = ?, STATUS = ? "
+			+ " SET MAX_VOLUME = ? "
+			+ " WHERE ID = ? ";
+	
+	private static final String UPDATE_STATUS_BY_ID = 
+			  " UPDATE TENDER "
+			+ " SET STATUS = ? "
 			+ " WHERE ID = ? ";
 	
 	private static final String UPDATE_TENDER_BY_ID_AND_COMPANY = 
 			  " UPDATE TENDER "
 			  + " SET DESCRIPTION = ?, PRODUCT_ID = ?, PRICE = ?, MIN_VOLUME = ?, "
 			  + " MAX_VOLUME = ?, `STATUS` = ?, CREATION_DATE = ?, EXPARATION_DATE = ?, "
-			  + " ADDRESS_ID = ? "
+			  + " ADDRESS_ID = ?, DISTANCE = ?, PACKAGING = ?, PROCESSING = ?"
 			  + " WHERE ID = ? AND COMPANY_ID = ? ";
 	
 	private static final String GET_TENDERS_BY_COMPANY = 
@@ -127,6 +133,9 @@ public class TenderDaoImpl implements TenderDao{
 				ps.setDate(8, new Date(tender.getCreationDate().getTime()));
 				ps.setDate(9, new Date(tender.getExparationDate().getTime()));
 				ps.setLong(10, tender.getAddressId());
+				ps.setInt(11, tender.getDistance());
+				ps.setString(12, tender.getPackaging());
+				ps.setString(13, tender.getProcessing());
 				
 				return ps;
 			}
@@ -148,6 +157,9 @@ public class TenderDaoImpl implements TenderDao{
 				tender.getCreationDate(),
 				tender.getExparationDate(), 
 				tender.getAddressId(),
+				tender.getDistance(),
+				tender.getPackaging(),
+				tender.getProcessing(),
 				tender.getId(),
 				companyId) == 1;
 	}
@@ -188,15 +200,27 @@ public class TenderDaoImpl implements TenderDao{
 	}
 	
 	@Override
-	public void update(Collection<Tender> tendersToUpdate) {
+	public void update(Collection<TradeTender> tenders) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.batchUpdate(UPDATE_TENDER_BY_ID, tendersToUpdate, tendersToUpdate.size(), new ParameterizedPreparedStatementSetter<Tender>() {
+		template.batchUpdate(UPDATE_MAX_VOLUME_BY_ID, tenders, tenders.size(), new ParameterizedPreparedStatementSetter<TradeTender>() {
 
 			@Override
-			public void setValues(PreparedStatement ps, Tender tender) throws SQLException {
+			public void setValues(PreparedStatement ps, TradeTender tender) throws SQLException {
 				ps.setInt(1, tender.getMaxVolume());
-				ps.setString(2, tender.getStatus().name());
-				ps.setLong(3, tender.getId());
+				ps.setLong(2, tender.getId());
+			}
+		});
+	}
+	
+	@Override
+	public void updateStatus(List<Tender> lots) {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		template.batchUpdate(UPDATE_STATUS_BY_ID, lots, lots.size(), new ParameterizedPreparedStatementSetter<Tender>() {
+
+			@Override
+			public void setValues(PreparedStatement ps, Tender lot) throws SQLException {
+				ps.setString(1, lot.getStatus().name());
+				ps.setLong(2, lot.getId());
 			}
 		});
 	}
@@ -242,7 +266,7 @@ public class TenderDaoImpl implements TenderDao{
 		public static final String ALL_COLUMNS = 
 				" T.ID, T.DESCRIPTION, T.PRODUCT_ID, T.PRICE, T.MIN_VOLUME, "
 			+ " T.MAX_VOLUME, T.COMPANY_ID, T.`STATUS`, T.CREATION_DATE, "
-			+ " T.EXPARATION_DATE, T.ADDRESS_ID, "
+			+ " T.EXPARATION_DATE, T.ADDRESS_ID, T.DISTANCE, T.PACKAGING, T.PROCESSING, "
 			+ " P.NAME PRODUCT_NAME, "
 			+ " A.LONGITUDE LONGITUDE, A.LATITUDE LATITUDE,"
 			+ " C.LANGUAGE ";
@@ -270,6 +294,9 @@ public class TenderDaoImpl implements TenderDao{
 			tender.setPrice(rs.getDouble("PRICE"));
 			tender.setProductId(rs.getLong("PRODUCT_ID"));
 			tender.setStatus(BidStatus.valueOf(rs.getString("STATUS")));
+			tender.setDistance(rs.getInt("DISTANCE"));
+			tender.setPackaging(rs.getString("PACKAGING"));
+			tender.setProcessing(rs.getString("PROCESSING"));
 			
 			Product product = new Product();
 			product.setName(rs.getString("PRODUCT_NAME"));

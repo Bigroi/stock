@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.db.Lot;
+import com.bigroi.stock.bean.db.TradeLot;
 
 public interface LotDao {
 	
@@ -16,7 +17,7 @@ public interface LotDao {
 	
 	List<Lot> getByCompanyId(long companyId);
 	
-	void update(Collection<Lot> lotsToUpdate);
+	void update(Collection<TradeLot> lots);
 
 	void delete(long id, long companyId);
 
@@ -35,4 +36,7 @@ public interface LotDao {
 	List<Lot> getByDescription(String description);
 
 	void deleteByDescription(String description);
+
+	void updateStatus(List<Lot> lots);
+
 }

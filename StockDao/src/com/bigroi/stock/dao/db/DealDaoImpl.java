@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
 import javax.sql.DataSource;
 
@@ -16,38 +17,48 @@ import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.common.PartnerChoice;
 import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Deal;
-import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
-import com.bigroi.stock.bean.db.Tender;
+import com.bigroi.stock.bean.db.TradeBid;
+import com.bigroi.stock.bean.db.TradeLot;
+import com.bigroi.stock.bean.db.TradeTender;
 import com.bigroi.stock.dao.DealDao;
 
 @Repository
 public class DealDaoImpl implements DealDao {
 	
 	private static final String ADD = 
-					" INSERT INTO DEAL(LOT_ID, TENDER_ID, TIME, BUYER_CHOICE, SELLER_CHOICE, "
-					+ " PRICE, VOLUME, PRODUCT_ID, SELLER_FOTO, MAX_TRANSPORT_PRICE, "
-					+ " SELLER_ADDRESS_ID, BUYER_ADDRESS_ID, SELLER_DESCRIPTION, BUYER_DESCRIPTION) "
-					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			"INSERT INTO DEAL (LOT_ID, TENDER_ID, TIME, BUYER_CHOICE, SELLER_CHOICE, PRICE, "
+			+ " MAX_TRANSPORT_PRICE, VOLUME, PRODUCT_ID, SELLER_FOTO, SELLER_ADDRESS_ID, "
+			+ " BUYER_ADDRESS_ID, SELLER_DESCRIPTION, BUYER_DESCRIPTION, BUYER_PROCESSING, BUYER_PACKAGING, "
+			+ " BUYER_LANGUAGE, SELLER_LANGUAGE, BUYER_EMAIL, SELLER_EMAIL ) "
+			+ " SELECT L.ID, T.ID, ?, ?, ?, ?, "
+			+ " ?, ?, L.PRODUCT_ID, L.FOTO, L.ADDRESS_ID, "
+			+ " T.ADDRESS_ID, L.DESCRIPTION, T.DESCRIPTION, T.PROCESSING, T.PACKAGING, "
+			+ " ?, ?, ?, ? "
+			+ " FROM LOT L "
+			+ " JOIN TENDER T "
+			+ " ON L.PRODUCT_ID = T.PRODUCT_ID "
+			+ " WHERE L.ID = ? AND T.ID = ?";
 	
 	private static final String GET_POSIBLE_BIDS = 
 			"SELECT "
-			+ " L.ID LOT_ID, L.DESCRIPTION LOT_DESCRIPTION, L.PRICE LOT_PRICE, L.FOTO LOT_FOTO, "
-			+ " L.`STATUS` LOT_STATUS, L.EXPARATION_DATE LOT_EXP_DATE, L.MAX_VOLUME LOT_VOLUME, L.MIN_VOLUME LOT_MIN_VOLUME, "
-			+ " LA.LONGITUDE LOT_LONGITUDE, LA.LATITUDE LOT_LATITUDE, LA.COMPANY_ID LOT_COMPANY_ID, LA.ID LOT_ADDRESS_ID, "
-			+ " LC.LANGUAGE LOT_LANGUAGE, "
-			
-			+ " T.ID TENDER_ID, T.DESCRIPTION TENDER_DESCRIPTION, T.PRICE TENDER_PRICE, "
-			+ " T.`STATUS` TENDER_STATUS, T.EXPARATION_DATE TENDER_EXP_DATE, T.MAX_VOLUME TENDER_VOLUME, T.MIN_VOLUME TENDER_MIN_VOLUME,  "
-			+ " TA.LONGITUDE TENDER_LONGITUDE, TA.LATITUDE TENDER_LATITUDE, TA.COMPANY_ID TENDER_COMPANY_ID, TA.ID TENDER_ADDRESS_ID, "
-			+ " TC.LANGUAGE TENDER_LANGUAGE, "
+			+ " L.ID LOT_ID, L.PRICE LOT_PRICE, L.MAX_VOLUME LOT_VOLUME, "
+			+ " L.MIN_VOLUME LOT_MIN_VOLUME, L.CREATION_DATE LOT_CREATION_DATE, "
+			+ " L.DISTANCE LOT_DISTANCE, "
+			+ " LA.LONGITUDE LOT_LONGITUDE, LA.LATITUDE LOT_LATITUDE, LA.COMPANY_ID LOT_COMPANY_ID, "
+			+ " LC.LANGUAGE LOT_LANGUAGE, LU.USERNAME LOT_EMAIL,"
+
+			+ " T.ID TENDER_ID, T.PRICE TENDER_PRICE, T.MAX_VOLUME TENDER_VOLUME, "
+			+ " T.MIN_VOLUME TENDER_MIN_VOLUME, T.CREATION_DATE TENDER_CREATION_DATE, "
+			+ " T.DISTANCE TENDER_DISTANCE, "
+			+ " TA.LONGITUDE TENDER_LONGITUDE, TA.LATITUDE TENDER_LATITUDE, TA.COMPANY_ID TENDER_COMPANY_ID, "
+			+ " TC.LANGUAGE TENDER_LANGUAGE, TU.USERNAME TENDER_EMAIL,"
 			  
-			+ " L.PRODUCT_ID PRODUCT_ID "
+			+ " P.ID PRODUCT_ID, P.DELIVARY_PRICE DELIVARY_PRICE "
 			+ " FROM LOT L "
 			+ " JOIN COMPANY LC "
 			+ " ON LC.ID = L.COMPANY_ID "
@@ -74,25 +85,17 @@ public class DealDaoImpl implements DealDao {
 			+ " ON T.ADDRESS_ID = TA.ID "
 			+ " LEFT JOIN BLACK_LIST BL "
 			+ " ON BL.TENDER_ID = T.ID AND BL.LOT_ID = L.ID "
+			+ " JOIN PRODUCT P "
+			+ " ON P.ID = T.PRODUCT_ID "
+			+ " JOIN USER LU "
+			+ " ON LU.COMPANY_ID = LC.ID "
+			+ " JOIN USER TU "
+			+ " ON TU.COMPANY_ID = TC.ID "
 			+ " WHERE BL.ID IS NULL AND T.PRODUCT_ID = ?";
 
 	private static final String GET_BY_ID = 
 			" SELECT " + DealRowMapper.ALL_COLUMNS
-			+ " FROM DEAL D "
-			+ " JOIN PRODUCT P "
-			+ " ON D.PRODUCT_ID = P.ID "
-			+ " JOIN ADDRESS SA "
-			+ " ON SA.ID = D.SELLER_ADDRESS_ID "
-			+ " JOIN COMPANY SC "
-			+ " ON SA.COMPANY_ID = SC.ID "
-			+ " JOIN USER SU "
-			+ " ON SU.COMPANY_ID = SC.ID "
-			+ " JOIN ADDRESS BA "
-			+ " ON BA.ID = D.BUYER_ADDRESS_ID "
-			+ " JOIN COMPANY BC "
-			+ " ON BA.COMPANY_ID = BC.ID "
-			+ " JOIN USER BU "
-			+ " ON BU.COMPANY_ID = BC.ID "
+			+ DealRowMapper.FROM
 			+ " WHERE D.ID = ?";
 
 	private static final String ON_APPROVE_CRITERIA =
@@ -105,21 +108,7 @@ public class DealDaoImpl implements DealDao {
 	
 	private static final String GET_ON_APPROVE = 
 					  " SELECT " + DealRowMapper.ALL_COLUMNS
-						+ " FROM DEAL D "
-						+ " JOIN PRODUCT P "
-						+ " ON D.PRODUCT_ID = P.ID "
-						+ " JOIN ADDRESS SA "
-						+ " ON SA.ID = D.SELLER_ADDRESS_ID "
-						+ " JOIN COMPANY SC "
-						+ " ON SA.COMPANY_ID = SC.ID "
-						+ " JOIN USER SU "
-						+ " ON SU.COMPANY_ID = SC.ID "
-						+ " JOIN ADDRESS BA "
-						+ " ON BA.ID = D.BUYER_ADDRESS_ID "
-						+ " JOIN COMPANY BC "
-						+ " ON BA.COMPANY_ID = BC.ID "
-						+ " JOIN USER BU "
-						+ " ON BU.COMPANY_ID = BC.ID "
+						+ DealRowMapper.FROM
 					    + " WHERE " + ON_APPROVE_CRITERIA;
 	
 
@@ -130,21 +119,7 @@ public class DealDaoImpl implements DealDao {
 
 	private static final String GET_BY_COMPANY_ID = 
 			" SELECT " + DealRowMapper.ALL_COLUMNS
-			+ " FROM DEAL D "
-			+ " JOIN PRODUCT P "
-			+ " ON D.PRODUCT_ID = P.ID "
-			+ " JOIN ADDRESS SA "
-			+ " ON SA.ID = D.SELLER_ADDRESS_ID "
-			+ " JOIN COMPANY SC "
-			+ " ON SA.COMPANY_ID = SC.ID "
-			+ " JOIN USER SU "
-			+ " ON SU.COMPANY_ID = SC.ID "
-			+ " JOIN ADDRESS BA "
-			+ " ON BA.ID = D.BUYER_ADDRESS_ID "
-			+ " JOIN COMPANY BC "
-			+ " ON BA.COMPANY_ID = BC.ID "
-			+ " JOIN USER BU "
-			+ " ON BU.COMPANY_ID = BC.ID "
+			+ DealRowMapper.FROM
 			+ " WHERE SA.COMPANY_ID = ? OR BA.COMPANY_ID = ? ";
 
 	private static final String SET_SELLER_STATUS = 
@@ -159,29 +134,15 @@ public class DealDaoImpl implements DealDao {
 	
 	private static final String GET_LIST_BY_SELLER_BUYER_APPROVE = 
 			" SELECT " + DealRowMapper.ALL_COLUMNS 
-			+ " FROM DEAL D "
-			+ " JOIN PRODUCT P "
-			+ " ON D.PRODUCT_ID = P.ID "
-			+ " JOIN ADDRESS SA "
-			+ " ON SA.ID = D.SELLER_ADDRESS_ID "
-			+ " JOIN COMPANY SC "
-			+ " ON SA.COMPANY_ID = SC.ID "
-			+ " JOIN USER SU "
-			+ " ON SU.COMPANY_ID = SC.ID "
-			+ " JOIN ADDRESS BA "
-			+ " ON BA.ID = D.BUYER_ADDRESS_ID "
-			+ " JOIN COMPANY BC "
-			+ " ON BA.COMPANY_ID = BC.ID "
-			+ " JOIN USER BU "
-			+ " ON BU.COMPANY_ID = BC.ID "
-			  + "WHERE ((BUYER_CHOICE | SELLER_CHOICE) & 15) = 8";
+			+ DealRowMapper.FROM
+			+ "WHERE ((BUYER_CHOICE | SELLER_CHOICE) & 15) = 8";
 
 
 	@Autowired
 	private DataSource datasource;
 	
 	@Override
-	public void getTestPossibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId, String sessionId){
+	public void getTestPossibleDeals(List<TradeLot> tradeLots, List<TradeTender> tradeTenders, long productId, String sessionId){
 		String sql = GET_POSIBLE_BIDS
 				.replace("COMPAMY_CONDITION", "")
 				.replace("LOT_SPEC_CONDITION", " L.DESCRIPTION = '" + sessionId + "' ")
@@ -190,7 +151,7 @@ public class DealDaoImpl implements DealDao {
 	}
 	
 	@Override
-	public void getPosibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId) {
+	public void getPosibleDeals(List<TradeLot> tradeLots, List<TradeTender> tradeTenders, long productId) {
 		String sql = GET_POSIBLE_BIDS
 				.replace("COMPAMY_CONDITION", "AND T.COMPANY_ID <> L.COMPANY_ID ")
 				.replace("LOT_SPEC_CONDITION", " L.COMPANY_ID <> 0 ")
@@ -198,10 +159,10 @@ public class DealDaoImpl implements DealDao {
 		getTestPossibleDeals(sql, tradeLots, tradeTenders, productId);
 	}
 	
-	private void getTestPossibleDeals(String sql, List<Lot> tradeLots, List<Tender> tradeTenders, long productId){
+	private void getTestPossibleDeals(String sql, List<TradeLot> tradeLots, List<TradeTender> tradeTenders, long productId){
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		Map<Long, Lot> lots = new HashMap<>();
-		Map<Long, Tender> tenders = new HashMap<>();
+		Map<Long, TradeLot> lots = new HashMap<>();
+		Map<Long, TradeTender> tenders = new HashMap<>();
 		template.query(sql, new TradeDealRowMapper(lots, tenders), productId);
 		
 		tradeLots.addAll(lots.values());
@@ -238,21 +199,18 @@ public class DealDaoImpl implements DealDao {
 				new ParameterizedPreparedStatementSetter<Deal>() {
 					@Override
 					public void setValues(PreparedStatement ps, Deal deal) throws SQLException {
-						ps.setLong(1, deal.getLotId());
-						ps.setLong(2, deal.getTenderId());
-						ps.setTimestamp(3, new Timestamp(deal.getTime().getTime()));
-						ps.setInt(4, deal.getBuyerChoice().getCode());
-						ps.setInt(5, deal.getSellerChoice().getCode());
-						ps.setDouble(6, deal.getPrice());
-						ps.setInt(7, deal.getVolume());
-						ps.setLong(8, deal.getProductId());
-						ps.setString(9, deal.getSellerFoto());
-						ps.setDouble(10, deal.getMaxTransportPrice());
-						ps.setLong(11, deal.getSellerAddressId());
-						ps.setLong(12, deal.getBuyerAddressId());
-						ps.setString(13, deal.getSellerDescription());
-						ps.setString(14, deal.getBuyerDescription());
-						
+						ps.setTimestamp(1, new Timestamp(deal.getTime().getTime()));
+						ps.setInt(2, deal.getBuyerChoice().getCode());
+						ps.setInt(3, deal.getSellerChoice().getCode());
+						ps.setDouble(4, deal.getPrice());
+						ps.setDouble(5, deal.getMaxTransportPrice());
+						ps.setInt(6, deal.getVolume());
+						ps.setString(7, deal.getBuyerLanguage());
+						ps.setString(8, deal.getSellerLanguage());
+						ps.setString(9, deal.getBuyerEmail());
+						ps.setString(10, deal.getSellerEmail());
+						ps.setLong(11, deal.getLotId());
+						ps.setLong(12, deal.getTenderId());
 					}
 		});
 	}
@@ -283,17 +241,32 @@ public class DealDaoImpl implements DealDao {
 
 	private static final class DealRowMapper implements RowMapper<Deal>{
 
+		public static final String FROM = 
+						  " FROM DEAL D "
+						+ " JOIN PRODUCT P "
+						+ " ON D.PRODUCT_ID = P.ID "
+						+ " JOIN ADDRESS SA "
+						+ " ON SA.ID = D.SELLER_ADDRESS_ID "
+						+ " JOIN COMPANY SC "
+						+ " ON SA.COMPANY_ID = SC.ID "
+						+ " JOIN ADDRESS BA "
+						+ " ON BA.ID = D.BUYER_ADDRESS_ID "
+						+ " JOIN COMPANY BC "
+						+ " ON BA.COMPANY_ID = BC.ID ";
+		
 		private static final String ALL_COLUMNS = 
 				" D.ID, D.LOT_ID, D.TENDER_ID, D.TIME, D.BUYER_CHOICE, D.SELLER_CHOICE, "
 				+ " D.PRICE, D.MAX_TRANSPORT_PRICE, D.VOLUME, D.PRODUCT_ID, D.SELLER_FOTO, "
-				+ " D.SELLER_ADDRESS_ID, D.BUYER_ADDRESS_ID, D.SELLER_DESCRIPTION, D.BUYER_DESCRIPTION, "
+				+ " D.SELLER_ADDRESS_ID, D.BUYER_ADDRESS_ID, D.SELLER_DESCRIPTION, "
+				+ " D.BUYER_DESCRIPTION, D.BUYER_PACKAGING, D.BUYER_PROCESSING, "
+				+ " D.BUYER_LANGUAGE, D.SELLER_LANGUAGE, D.BUYER_EMAIL, D.SELLER_EMAIL, "
 				+ " P.NAME PRODUCT_NAME,  "
 				+ " SA.COMPANY_ID SELLER_COMPANY_ID, SA.LATITUDE SELLER_LATITUDE, SA.LONGITUDE SELLER_LONGITUDE, "
 				+ " SA.CITY SELLER_CITY, SA.COUNTRY SELLER_COUNTRY, SA.ADDRESS SELLER_ADDRESS, "
-				+ " SU.USERNAME SELLER_EMAIL, SC.NAME SELLER_COMPANY_NAME, SC.PHONE SELLER_PHONE, SC.REG_NUMBER SELLER_REG_NUMBER, SC.LANGUAGE SELLER_LANGUAGE, "
+				+ " SC.NAME SELLER_COMPANY_NAME, SC.PHONE SELLER_PHONE, SC.REG_NUMBER SELLER_REG_NUMBER, SC.LANGUAGE SELLER_LANGUAGE, "
 				+ " BA.COMPANY_ID BUYER_COMPANY_ID, BA.LATITUDE BUYER_LATITUDE, BA.LONGITUDE BUYER_LONGITUDE, "
 				+ " BA.CITY BUYER_CITY, BA.COUNTRY BUYER_COUNTRY, BA.ADDRESS BUYER_ADDRESS, "
-				+ " BU.USERNAME BUYER_EMAIL, BC.NAME BUYER_COMPANY_NAME, BC.PHONE BUYER_PHONE, BC.REG_NUMBER BUYER_REG_NUMBER, BC.LANGUAGE BUYER_LANGUAGE ";
+				+ " BC.NAME BUYER_COMPANY_NAME, BC.PHONE BUYER_PHONE, BC.REG_NUMBER BUYER_REG_NUMBER, BC.LANGUAGE BUYER_LANGUAGE ";
 		
 		@Override
 		public Deal mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -314,6 +287,14 @@ public class DealDaoImpl implements DealDao {
 			deal.setBuyerAddressId(rs.getLong("BUYER_ADDRESS_ID"));
 			deal.setSellerDescription(rs.getString("SELLER_DESCRIPTION"));
 			deal.setBuyerDescription(rs.getString("BUYER_DESCRIPTION"));
+			deal.setSellerDescription(rs.getString("SELLER_DESCRIPTION"));
+			deal.setBuyerDescription(rs.getString("BUYER_DESCRIPTION"));
+			deal.setBuyerProcessing(rs.getString("BUYER_PROCESSING"));
+			deal.setBuyerPackaging(rs.getString("BUYER_PACKAGING"));
+			deal.setBuyerEmail(rs.getString("BUYER_EMAIL"));
+			deal.setSellerEmail(rs.getString("SELLER_EMAIL"));
+			deal.setBuyerLanguage(rs.getString("BUYER_LANGUAGE"));
+			deal.setSellerLanguage(rs.getString("SELLER_LANGUAGE"));
 			
 			Product product = new Product();
 			product.setId(rs.getLong("PRODUCT_ID"));
@@ -331,7 +312,6 @@ public class DealDaoImpl implements DealDao {
 			deal.setSellerAddress(address);
 			
 			Company company = new Company();
-			company.setEmail(rs.getString("SELLER_EMAIL"));
 			company.setName(rs.getString("SELLER_COMPANY_NAME"));
 			company.setPhone(rs.getString("SELLER_PHONE"));
 			company.setRegNumber(rs.getString("SELLER_REG_NUMBER"));
@@ -349,7 +329,6 @@ public class DealDaoImpl implements DealDao {
 			deal.setBuyerAddress(address);
 			
 			company = new Company();
-			company.setEmail(rs.getString("BUYER_EMAIL"));
 			company.setName(rs.getString("BUYER_COMPANY_NAME"));
 			company.setPhone(rs.getString("BUYER_PHONE"));
 			company.setRegNumber(rs.getString("BUYER_REG_NUMBER"));
@@ -364,10 +343,10 @@ public class DealDaoImpl implements DealDao {
 	private static final class TradeDealRowMapper implements RowMapper<Void>{
 
 		private SQLException exception = null;
-		private Map<Long, Lot> lots;
-		private Map<Long, Tender> tenders;
+		private Map<Long, TradeLot> lots;
+		private Map<Long, TradeTender> tenders;
 		
-		public TradeDealRowMapper(Map<Long, Lot> lots, Map<Long, Tender> tenders){
+		public TradeDealRowMapper(Map<Long, TradeLot> lots, Map<Long, TradeTender> tenders){
 			this.lots = lots;
 			this.tenders = tenders;
 		}
@@ -376,10 +355,12 @@ public class DealDaoImpl implements DealDao {
 		public Void mapRow(ResultSet rs, int rowNumber) throws SQLException {
 			
 			long lotId = rs.getLong("LOT_ID");
-			Lot lot = lots.computeIfAbsent(lotId, id -> createLotForDeal(id, rs));
+			TradeLot lot = lots.computeIfAbsent(lotId, id -> 
+				(TradeLot)createBidForDeal(TradeLot::new, id, rs, "LOT"));
 
 			long tenderId = rs.getLong("TENDER_ID");
-			Tender tender = tenders.computeIfAbsent(tenderId, id -> createTenderForDeal(id, rs));
+			TradeTender tender = tenders.computeIfAbsent(tenderId, id -> 
+				(TradeTender)createBidForDeal(TradeTender::new, id, rs, "TENDER"));
 			
 			tender.addPosiblePartner(lot);
 			lot.addPosiblePartner(tender);
@@ -390,63 +371,23 @@ public class DealDaoImpl implements DealDao {
 			return null;
 		}
 		
-		private Tender createTenderForDeal(Long tenderId, ResultSet rs) {
+		private TradeBid createBidForDeal(Supplier<TradeBid> constructor, Long id, ResultSet rs, String prefix) {
 			try{
-				Tender tender = new Tender();
-				tender.setId(tenderId);
-				tender.setDescription(rs.getString("TENDER_DESCRIPTION"));
-				tender.setExparationDate(rs.getDate("TENDER_EXP_DATE"));
-				tender.setPrice(rs.getDouble("TENDER_PRICE"));
-				tender.setProductId(rs.getLong("PRODUCT_ID"));
-				tender.setStatus(BidStatus.valueOf(rs.getString("TENDER_STATUS")));
-				tender.setMaxVolume(rs.getInt("TENDER_VOLUME"));
-				tender.setMinVolume(rs.getInt("TENDER_MIN_VOLUME"));
-				tender.setAddressId(rs.getLong("TENDER_ADDRESS_ID"));
+				TradeBid bid = constructor.get();
+				bid.setId(id);
+				bid.setPrice(rs.getDouble(prefix + "_PRICE"));
+				bid.setProductId(rs.getLong("PRODUCT_ID"));
+				bid.setMaxVolume(rs.getInt(prefix + "_VOLUME"));
+				bid.setMinVolume(rs.getInt(prefix + "_MIN_VOLUME"));
+				bid.setLatitude(rs.getDouble(prefix + "_LATITUDE"));
+				bid.setLongitude(rs.getDouble(prefix + "_LONGITUDE"));
+				bid.setCreationDate(rs.getDate(prefix + "_CREATION_DATE"));
+				bid.setDelivaryPrice(rs.getDouble("DELIVARY_PRICE"));
+				bid.setDistance(rs.getInt(prefix + "_DISTANCE"));
+				bid.setLanguage(rs.getString(prefix + "_LANGUAGE"));
+				bid.setEmail(rs.getString(prefix + "_EMAIL"));
 				
-				CompanyAddress address = new CompanyAddress();
-				address.setLatitude(rs.getDouble("TENDER_LATITUDE"));
-				address.setLongitude(rs.getDouble("TENDER_LONGITUDE"));
-				address.setCompanyId(rs.getLong("TENDER_COMPANY_ID"));
-				address.setId(rs.getLong("TENDER_ADDRESS_ID"));
-				tender.setCompanyAddress(address);
-				
-				Company company = new Company();
-				company.setLanguage(rs.getString("TENDER_LANGUAGE"));
-				tender.getCompanyAddress().setCompany(company);
-				
-				return tender;
-			}catch (SQLException e) {
-				exception = e;
-				return null;
-			}
-		}
-		
-		private Lot createLotForDeal(Long lotId, ResultSet rs) {
-			try{
-				Lot lot = new Lot();
-				lot.setId(lotId);
-				lot.setDescription(rs.getString("LOT_DESCRIPTION"));
-				lot.setExparationDate(rs.getDate("LOT_EXP_DATE"));
-				lot.setPrice(rs.getDouble("LOT_PRICE"));
-				lot.setProductId(rs.getLong("PRODUCT_ID"));
-				lot.setStatus(BidStatus.valueOf(rs.getString("LOT_STATUS")));
-				lot.setMaxVolume(rs.getInt("LOT_VOLUME"));
-				lot.setMinVolume(rs.getInt("LOT_MIN_VOLUME"));
-				lot.setAddressId(rs.getLong("LOT_ADDRESS_ID"));
-				lot.setFoto(rs.getString("LOT_FOTO"));
-				
-				CompanyAddress address = new CompanyAddress();
-				address.setLatitude(rs.getDouble("LOT_LATITUDE"));
-				address.setLongitude(rs.getDouble("LOT_LONGITUDE"));
-				address.setCompanyId(rs.getLong("LOT_COMPANY_ID"));
-				address.setId(rs.getLong("LOT_ADDRESS_ID"));
-				lot.setCompanyAddress(address);
-				
-				Company company = new Company();
-				company.setLanguage(rs.getString("LOT_LANGUAGE"));
-				lot.getCompanyAddress().setCompany(company);
-				
-				return lot;
+				return bid;
 			}catch (SQLException e) {
 				exception = e;
 				return null;

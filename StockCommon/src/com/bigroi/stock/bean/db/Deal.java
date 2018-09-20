@@ -28,32 +28,85 @@ public class Deal {
 	private String buyerDescription;
 	private String sellerDescription;
 	
+	private String buyerPackaging;
+	private String buyerProcessing;
+	
+	private String buyerLanguage;
+	private String sellerLanguage;
+	
+	private String buyerEmail;
+	private String sellerEmail;
+	
 	//Related objects
 	
 	private Product product;
 	private CompanyAddress buyerAddress;
 	private CompanyAddress sellerAddress;
 	
-	public Deal(Lot lot, Tender tender, int volume, double maxTransportPrice) {
+	public Deal(TradeLot lot, TradeTender tender, int volume, double maxTransportPrice) {
 		this.lotId = lot.getId();
-		this.buyerAddress = tender.getCompanyAddress();
-		this.buyerAddressId = tender.getAddressId();
 		this.buyerChoice = PartnerChoice.ON_APPROVE;
-		this.buyerDescription = tender.getDescription();
 		this.price = (lot.getPrice() + tender.getPrice()) / 2;
-		this.productId = lot.getProductId();
-		this.sellerAddress = lot.getCompanyAddress();
-		this.sellerAddressId = lot.getAddressId();
 		this.sellerChoice = PartnerChoice.ON_APPROVE;
-		this.sellerDescription = lot.getDescription();
-		this.sellerFoto = lot.getFoto();
 		this.tenderId = tender.getId();
 		this.time = new Date();
 		this.volume = volume;
 		this.maxTransportPrice = maxTransportPrice;
+		this.buyerLanguage = tender.getLanguage();
+		this.sellerLanguage = lot.getLanguage();
+		this.buyerEmail = tender.getEmail();
+		this.sellerEmail = lot.getEmail();
 	}
 	
 	public Deal() {
+	}
+	
+	public String getBuyerEmail() {
+		return buyerEmail;
+	}
+	
+	public void setBuyerEmail(String buyerEmail) {
+		this.buyerEmail = buyerEmail;
+	}
+	
+	public String getSellerEmail() {
+		return sellerEmail;
+	}
+	
+	public void setSellerEmail(String sellerEmail) {
+		this.sellerEmail = sellerEmail;
+	}
+	
+	public String getBuyerLanguage() {
+		return buyerLanguage;
+	}
+	
+	public void setBuyerLanguage(String buyerLanguage) {
+		this.buyerLanguage = buyerLanguage;
+	}
+	
+	public String getSellerLanguage() {
+		return sellerLanguage;
+	}
+	
+	public void setSellerLanguage(String sellerLanguage) {
+		this.sellerLanguage = sellerLanguage;
+	}
+	
+	public String getBuyerPackaging() {
+		return buyerPackaging;
+	}
+	
+	public void setBuyerPackaging(String buyerPackaging) {
+		this.buyerPackaging = buyerPackaging;
+	}
+	
+	public String getBuyerProcessing() {
+		return buyerProcessing;
+	}
+	
+	public void setBuyerProcessing(String buyerProcessing) {
+		this.buyerProcessing = buyerProcessing;
 	}
 	
 	public double getMaxTransportPrice() {

@@ -1,16 +1,19 @@
 package com.bigroi.stock.messager.message.deal;
 
 import com.bigroi.stock.bean.db.Deal;
+import com.bigroi.stock.messager.message.BaseMessage;
 
-public class SellerCanceledMessage extends DealBaseMessage {
+public class SellerCanceledMessage extends BaseMessage<Deal> {
 
 	public SellerCanceledMessage(String fileName, String fileExtention){
 		super(fileName, fileExtention);
 	}
 
-	protected long getCompanyId(Deal deal) {
-		return deal.getBuyerAddress().getCompanyId();																						
+	@Override
+	protected String getRecipient(Deal deal) {
+		return deal.getBuyerEmail();
 	}
+	
 	
 	@Override
 	protected String getText(Deal deal, String locale) {

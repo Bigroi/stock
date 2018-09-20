@@ -53,6 +53,17 @@
 						</select>
 					</div>
 					<div>
+						<label for="forDistance">${label.lot.ditance} *</label>
+						<select name="distance" id="forDistance" class="address-selector">
+							<option value="30000">${label.lot.distance_any}</option>
+							<option value="400">${label.lot.distance_400}</option>
+							<option value="200">${label.lot.distance_200}</option>
+							<option value="100">${label.lot.distance_100}</option>
+							<option value="50">${label.lot.distance_40}</option>
+							<option value="0">${label.distance.distance_0}</option>
+						</select>
+					</div>
+					<div>
 						<label for="forFoto">${label.lot.foto}</label>
 						<input type="file" name="foto" id="forFoto">
 					</div>

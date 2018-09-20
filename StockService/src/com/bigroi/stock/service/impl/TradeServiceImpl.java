@@ -14,11 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bigroi.stock.bean.db.Bid;
 import com.bigroi.stock.bean.db.Deal;
-import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
-import com.bigroi.stock.bean.db.Tender;
+import com.bigroi.stock.bean.db.TradeBid;
+import com.bigroi.stock.bean.db.TradeLot;
+import com.bigroi.stock.bean.db.TradeTender;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.ProductDao;
@@ -48,8 +48,8 @@ public class TradeServiceImpl implements TradeService{
 	@Autowired
 	private DealConfirmationMessageForSeller dealConfirmationMessageForSeller;
 	
-	private Set<Tender> tendersToUpdate = new HashSet<>();
-	private Set<Lot> lotsToUpdate = new HashSet<>();
+	private Set<TradeTender> tendersToUpdate = new HashSet<>();
+	private Set<TradeLot> lotsToUpdate = new HashSet<>();
 	private List<Deal> deals = new ArrayList<>();
 	
 	private boolean canUse = false;
@@ -70,18 +70,16 @@ public class TradeServiceImpl implements TradeService{
 	}
 	
 	private void productTrade(Product product){
-		List<Lot> tradeLots = new ArrayList<>();
-		List<Tender> tradeTenders = new ArrayList<>();
+		List<TradeLot> tradeLots = new ArrayList<>();
+		List<TradeTender> tradeTenders = new ArrayList<>();
 		dealDao.getPosibleDeals(tradeLots, tradeTenders, product.getId());
-		
-		tradeLots.forEach(l -> l.setProduct(product));
-		tradeTenders.forEach(t -> t.setProduct(product));
+		removeByDistance(tradeLots);
 		
 		while(!tradeTenders.isEmpty() && !tradeLots.isEmpty()){
 			
-			List<? extends Bid> majorBids = getMinVolumeBids(tradeLots, tradeTenders);
+			List<? extends TradeBid> majorBids = getMinVolumeBids(tradeLots, tradeTenders);
 			
-			Bid majorBid = getBestBid(majorBids);
+			TradeBid majorBid = getBestBid(majorBids);
 			
 			createDealsForBid(majorBid, product);
 			
@@ -89,9 +87,23 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 
-	private void createDealsForBid(Bid bid, Product product){
+	private void removeByDistance(List<? extends TradeBid> tradeBids) {
+		for (TradeBid bid : tradeBids){
+			List<TradeBid> partners = bid.getPosiblePartners();
+			for (TradeBid partner : new ArrayList<>(partners)){
+				double distance = TradeBid.getDistancePrice(bid, partner);
+				if (partner.getDistance() < distance &&
+						bid.getDistance() < distance){
+					partner.getPosiblePartners().remove(bid);
+					bid.getPosiblePartners().remove(partner);
+				}
+			}
+		}
+	}
+
+	private void createDealsForBid(TradeBid bid, Product product){
 		while(bid.getMaxVolume() > 0 && !bid.getPosiblePartners().isEmpty()){
-			Bid partner = bid.getBestPartner();
+			TradeBid partner = bid.getBestPartner();
 			Deal deal = createDeal(bid, partner);
 			deal.setProduct(product);
 			sendConfimationMails(deal);
@@ -108,25 +120,25 @@ public class TradeServiceImpl implements TradeService{
 	}
 	
 	private void sendConfimationMails(Deal deal) {
-		dealConfirmationMessageForBuyer.send(deal, deal.getBuyerAddress().getCompany().getLanguage());
-		dealConfirmationMessageForSeller.send(deal, deal.getSellerAddress().getCompany().getLanguage());
+		dealConfirmationMessageForBuyer.send(deal, deal.getBuyerLanguage());
+		dealConfirmationMessageForSeller.send(deal, deal.getSellerLanguage());
 	}
 
-	private Deal createDeal(Bid bid, Bid partner) {
+	private Deal createDeal(TradeBid bid, TradeBid partner) {
 		int volume = Math.min(bid.getMaxVolume(), partner.getMaxVolume());
 		bid.setMaxVolume(bid.getMaxVolume() - volume);
 		partner.setMaxVolume(partner.getMaxVolume() - volume);
 		
-		double maxTransportPrice = Bid.getDistancePrice(bid, partner);
+		double maxTransportPrice = TradeBid.getDistancePrice(bid, partner);
 		
-		Lot lot;
-		Tender tender;
-		if (bid instanceof Lot){
-			lot = (Lot) bid;
-			tender = (Tender) partner;
+		TradeLot lot;
+		TradeTender tender;
+		if (bid instanceof TradeLot){
+			lot = (TradeLot) bid;
+			tender = (TradeTender) partner;
 		} else {
-			lot = (Lot) partner;
-			tender = (Tender) bid;
+			lot = (TradeLot) partner;
+			tender = (TradeTender) bid;
 		}
 		Deal deal = new Deal(lot, tender, volume, maxTransportPrice);
 		
@@ -135,8 +147,8 @@ public class TradeServiceImpl implements TradeService{
 		return deal;
 	}
 	
-	private Bid getBestBid(List<? extends Bid> bids) {
-		Bid bid = Collections
+	private TradeBid getBestBid(List<? extends TradeBid> bids) {
+		TradeBid bid = Collections
 				.min(bids, 
 					(o1, o2) -> o1.getPosiblePartners().size() - o2.getPosiblePartners().size()
 				);
@@ -150,7 +162,7 @@ public class TradeServiceImpl implements TradeService{
 					);
 	}
 
-	private List<? extends Bid> getMinVolumeBids(List<Lot> tradeLots, List<Tender> tradeTenders) {
+	private List<? extends TradeBid> getMinVolumeBids(List<TradeLot> tradeLots, List<TradeTender> tradeTenders) {
 		if (getTotalVolume(tradeLots) < getTotalVolume(tradeTenders)){
 			return tradeLots;
 		} else {
@@ -158,21 +170,21 @@ public class TradeServiceImpl implements TradeService{
 		}
 	}
 	
-	private int getTotalVolume(List<? extends Bid> tradeBids) {
+	private int getTotalVolume(List<? extends TradeBid> tradeBids) {
 		int result = 0;
-		for (Bid bid : tradeBids){
+		for (TradeBid bid : tradeBids){
 			result += bid.getMaxVolume();
 		}
 		return result;
 	}
 	
-	private void removeAllZeroBids(List<Tender> tradeTenders, List<Lot> tradeLots) {
-		for (Tender tender : new ArrayList<>(tradeTenders)){
+	private void removeAllZeroBids(List<TradeTender> tradeTenders, List<TradeLot> tradeLots) {
+		for (TradeTender tender : new ArrayList<>(tradeTenders)){
 			if (tender.getPosiblePartners().isEmpty()){
 				tradeTenders.remove(tender);
 			}
 		}
-		for (Lot lot : new ArrayList<>(tradeLots)){
+		for (TradeLot lot : new ArrayList<>(tradeLots)){
 			if (lot.getPosiblePartners().isEmpty()){
 				tradeLots.remove(lot);
 			}
@@ -208,8 +220,8 @@ public class TradeServiceImpl implements TradeService{
 	
 	@SuppressWarnings("unchecked")
 	private Void testDaalDaoAnser(InvocationOnMock invocation, DealDao realDealDao, String sessionId){
-		List<Lot> lots = (List<Lot>) invocation.getArguments()[0];
-		List<Tender> tenders = (List<Tender>) invocation.getArguments()[1];
+		List<TradeLot> lots = (List<TradeLot>) invocation.getArguments()[0];
+		List<TradeTender> tenders = (List<TradeTender>) invocation.getArguments()[1];
 		long productId = (long) invocation.getArguments()[2];
 		realDealDao.getTestPossibleDeals(lots, tenders, productId, sessionId);
 		return null;

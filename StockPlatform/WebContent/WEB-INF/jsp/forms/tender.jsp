@@ -52,6 +52,25 @@
 							</c:forEach>
 						</select>
 					</div>
+					<div>
+						<label for="forDistance">${label.tender.ditance} *</label>
+						<select name="distance" id="forDistance" class="address-selector">
+							<option value="30000">${label.tender.distance_any}</option>
+							<option value="400">${label.tender.distance_400}</option>
+							<option value="200">${label.tender.distance_200}</option>
+							<option value="100">${label.tender.distance_100}</option>
+							<option value="50">${label.tender.distance_40}</option>
+							<option value="0">${label.tender.distance_0}</option>
+						</select>
+					</div>
+					<div>
+						<label for="forPackaging">${label.tender.packaging}</label>
+						<input type="text" name="packaging" id="forPackaging"/>
+					</div>
+					<div>
+						<label for="forProcessing">${label.tender.processing}</label>
+						<input type="text" name="processing" id="forProcessing"/>
+					</div>
 			       	<div>
 						<label for="forDescription">${label.tender.description}</label>
 						<textarea name="description" cols="40" rows="6" maxlength="1000" id="forDescription"></textarea>

@@ -3,12 +3,12 @@ package com.bigroi.stock.dao;
 import java.util.List;
 
 import com.bigroi.stock.bean.db.Deal;
-import com.bigroi.stock.bean.db.Lot;
-import com.bigroi.stock.bean.db.Tender;
+import com.bigroi.stock.bean.db.TradeLot;
+import com.bigroi.stock.bean.db.TradeTender;
 
 public interface DealDao {
 	
-	void getPosibleDeals(List<Lot> tradeLots, List<Tender> tradeTenders, long productId);
+	void getPosibleDeals(List<TradeLot> tradeLots, List<TradeTender> tradeTenders, long productId);
 
 	Deal getById(long id);
 
@@ -26,6 +26,6 @@ public interface DealDao {
 	
 	public List<Deal> getListBySellerAndBuyerApproved();
 
-	void getTestPossibleDeals(List<Lot> lots, List<Tender> tenders, long productId, String sessionId);
+	void getTestPossibleDeals(List<TradeLot> lots, List<TradeTender> tenders, long productId, String sessionId);
 
 }

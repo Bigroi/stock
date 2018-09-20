@@ -4,8 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.docs.DealDocument;
+import com.bigroi.stock.messager.message.BaseMessage;
 
-public class SuccessDealMessageForBuyer extends DealBaseMessage {
+public class SuccessDealMessageForBuyer extends BaseMessage<Deal> {
 
 	@Autowired
 	private DealDocument dealDocument;
@@ -19,8 +20,9 @@ public class SuccessDealMessageForBuyer extends DealBaseMessage {
 		return dealDocument.getDocument(deal);
 	}
 	
-	protected long getCompanyId(Deal deal) {
-		return deal.getBuyerAddress().getCompanyId();																						
+	@Override
+	protected String getRecipient(Deal deal) {
+		return deal.getBuyerEmail();
 	}
 	
 	@Override

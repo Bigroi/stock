@@ -78,14 +78,14 @@ public class MarketServiceImplTest extends BaseTest {
 		// mock
 		Mockito.when(lotDao.getActive()).thenReturn(expectedList);
 		Mockito.doNothing().when(lotExparationMessage).send(lot, TEST_LANGUAGE);
-		Mockito.doNothing().when(lotDao).update(expectedList);
+		Mockito.doNothing().when(lotDao).updateStatus(expectedList);
 		// when
 		marketService.checkExparations();
 		// then
 		Assert.assertNotEquals(null, expectedList);
 		Assert.assertEquals(STATUS, lot.getStatus());
 		Mockito.verify(lotDao, Mockito.times(1)).getActive();
-		Mockito.verify(lotDao, Mockito.times(1)).update(expectedList);
+		Mockito.verify(lotDao, Mockito.times(1)).updateStatus(expectedList);
 		Mockito.verify(lotExparationMessage, Mockito.times(1)).send(lot, TEST_LANGUAGE);
 	}
 	
@@ -104,14 +104,14 @@ public class MarketServiceImplTest extends BaseTest {
 		// mock
 		Mockito.when(tenderDao.getActive()).thenReturn(expectedList);
 		Mockito.doNothing().when(tenderExparationMessage).send(tender, TEST_LANGUAGE);
-		Mockito.doNothing().when(tenderDao).update(expectedList);
+		Mockito.doNothing().when(tenderDao).updateStatus(expectedList);
 		// when
 		marketService.checkExparations();
 		// then
 		Assert.assertNotEquals(null, expectedList);
 		Assert.assertEquals(STATUS, tender.getStatus());
 		Mockito.verify(tenderDao, Mockito.times(1)).getActive();
-		Mockito.verify(tenderDao, Mockito.times(1)).update(expectedList);
+		Mockito.verify(tenderDao, Mockito.times(1)).updateStatus(expectedList);
 		Mockito.verify(tenderExparationMessage, Mockito.times(1)).send(tender, TEST_LANGUAGE);
 	}
 	

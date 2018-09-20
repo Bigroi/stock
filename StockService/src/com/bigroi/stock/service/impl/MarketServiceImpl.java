@@ -64,7 +64,7 @@ public class MarketServiceImpl implements MarketService {
 				lotExparationMessage.send(lot, lot.getCompanyAddress().getCompany().getLanguage());
 			}
 		}
-		lotDao.update(lots);
+		lotDao.updateStatus(lots);
 		
 		List<Tender> tenders = tenderDao.getActive();
 		for (Tender tender : tenders) {
@@ -73,7 +73,7 @@ public class MarketServiceImpl implements MarketService {
 				tenderExparationMessage.send(tender, tender.getCompanyAddress().getCompany().getLanguage());
 			}
 		}
-		tenderDao.update(tenders);
+		tenderDao.updateStatus(tenders);
 	}
 
 	@Override
