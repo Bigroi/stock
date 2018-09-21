@@ -305,13 +305,8 @@
 	
 	<update author="Pavel" date="13.09.2018">
 		ALTER TABLE `LOT` CHANGE COLUMN `foto` `foto` LONGTEXT NULL DEFAULT NULL AFTER `exparation_date`;
-<<<<<<< HEAD
 		UPDATE `LABEL` SET `name`='convenient_description' WHERE  `id`=328;
 		UPDATE `LABEL` SET `name`='convenient_title' WHERE  `id`=322;
-=======
-		UPDATE `stock`.`LABEL` SET `name`='convenient_description' WHERE  `id`=328;
-		UPDATE `stock`.`LABEL` SET `name`='convenient_title' WHERE  `id`=322;
->>>>>>> branch 'master' of https://github.com/Bigroi/stock
 	</update>
 	
 	<update author="Pavel" date="14.09.2018">	
@@ -335,7 +330,6 @@
 		 'Клубни картофеля являются важным пищевым продуктом. Плоды ядовиты, в связи с содержанием в них соланина.', 
 		 'Bulwy ziemniaka są ważnym produktem żywnościowym. Owoce są trujące, ze względu na zawartość solaniny w nich.');
 	</update>
-<<<<<<< HEAD
 	
 	<update author="Pavel" date="18.09.2018">
 		ALTER TABLE `LOT` ADD COLUMN `distance` INT NULL AFTER `address_id`;
@@ -350,7 +344,5 @@
 		ALTER TABLE `DEAL` ADD COLUMN `seller_email` VARCHAR(500) NULL AFTER `buyer_email`;
 		
 	</update>
-=======
->>>>>>> branch 'master' of https://github.com/Bigroi/stock
 </root>
 
