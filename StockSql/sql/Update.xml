@@ -340,7 +340,7 @@
 		ALTER TABLE `DEAL` ADD COLUMN `buyer_packaging` VARCHAR(500) NULL DEFAULT NULL AFTER `buyer_processing`;
 		ALTER TABLE `DEAL` ADD COLUMN `buyer_language` CHAR(10) NULL AFTER `buyer_packaging`;
 		ALTER TABLE `DEAL` ADD COLUMN `seller_language` CHAR(10) NULL AFTER `buyer_language`;
-		ALTER TABLE `DEAL` ADD COLUMN `buyer_email` VARCHAR(500) NULL AFTER `seller_language`,
+		ALTER TABLE `DEAL` ADD COLUMN `buyer_email` VARCHAR(500) NULL AFTER `seller_language`;
 		ALTER TABLE `DEAL` ADD COLUMN `seller_email` VARCHAR(500) NULL AFTER `buyer_email`;
 		
 	</update>
