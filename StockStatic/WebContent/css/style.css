@@ -219,13 +219,8 @@ h3 {
     letter-spacing: 1px;
 } 
 .advantages {
-	height: 410px;
-	    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-            align-items: center;
+	min-height: 290px;
+    padding: 60px 0;
 }
 .advantages .container {
 	height: inherit;
@@ -288,6 +283,9 @@ h3 {
 }
 .test-trading {
 	padding-bottom: 20px;
+}
+.test-trading table.dataTable.display tbody tr:first-child td {
+	text-align: center;
 }
 .products h3,
 .test-trading h3{
@@ -568,6 +566,7 @@ footer .container {
 	}
 	.advantages {
 		height: auto;
+		padding: 0;
 	}
 	.advantages .container {
 		-ms-flex-wrap: wrap;
