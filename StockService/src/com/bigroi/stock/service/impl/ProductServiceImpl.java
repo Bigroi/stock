@@ -12,6 +12,7 @@ import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.db.Bid;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Product;
+import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.bean.ui.ProductForUI;
 import com.bigroi.stock.bean.ui.TradeOffer;
 import com.bigroi.stock.dao.LotDao;
@@ -80,62 +81,125 @@ public class ProductServiceImpl implements ProductService {
 		bids.addAll(lotDao.getActiveByProductId(productId));
 		bids.addAll(tenderDao.getActiveByProductId(productId));
 		
-		Collections.sort(bids, (a, b) -> ((int)(a.getPrice() - b.getPrice() * 100)));
+		Collections.sort(bids, (a, b) -> (int)((a.getPrice() - b.getPrice()) * 100));
 		int size = bids.size();
 		
 		
 		if (size <= 5){
 			return getTrageOffersForSmallBids(bids);
+		} else {
+			return getTradeOffersForBigBids(bids);
 		}
 		
-		double minPrice = bids.subList((int)Math.round(size * 0.07), size - 1).get(0).getPrice();
-		double maxPrice = bids.subList((int)(size - size * 0.07 - 1), size - 1).get(0).getPrice();
-		double avgMinPrice = minPrice + (maxPrice - minPrice) / 3;
-		double avgMaxPrice = minPrice + (maxPrice - minPrice) * 2 / 3;
+		
+	}
+	
+	private List<TradeOffer> getTradeOffersForBigBids(List<Bid> bids) {
+		double totalMonye = 0;
+		int totalVolume = 0;
+		for (Bid bid : bids){
+			totalMonye += bid.getPrice() * bid.getMaxVolume();
+			totalVolume += bid.getMaxVolume();
+		}
+		
+		double avgPice = totalMonye / totalVolume;
+		
+		double point1 = 2 * avgPice * 0.15;
+		double point2 = 2 * avgPice * 0.35;
+		double point3 = 2 * avgPice * 0.65;
+		double point4 = 2 * avgPice * 0.85;
 		
 		List<TradeOffer> tradeOffers = new ArrayList<>();
 		
-		
-		tradeOffers.add(new TradeOffer(
-				"< " + ProductForUI.DECIMAL_FORMAT.format(minPrice)
-				));
-		tradeOffers.add(new TradeOffer(
-				ProductForUI.DECIMAL_FORMAT.format(minPrice) + " .. " + ProductForUI.DECIMAL_FORMAT.format(avgMinPrice)
-				));
-		tradeOffers.add(new TradeOffer(
-				ProductForUI.DECIMAL_FORMAT.format(avgMinPrice) + " .. " + ProductForUI.DECIMAL_FORMAT.format(avgMaxPrice)
-				));
-		tradeOffers.add(new TradeOffer(
-				ProductForUI.DECIMAL_FORMAT.format(avgMaxPrice) + " .. " + ProductForUI.DECIMAL_FORMAT.format(maxPrice)
-				));
-		tradeOffers.add(new TradeOffer(
-				"> " + ProductForUI.DECIMAL_FORMAT.format(maxPrice)
-				));
-		
-		for (Bid bid : bids){
-			TradeOffer currentOffer;
-			if (bid.getPrice() < minPrice){
-				currentOffer = tradeOffers.get(0);
-			} else if (bid.getPrice() < avgMinPrice){
-				currentOffer = tradeOffers.get(1);
-			} else if (bid.getPrice() < avgMaxPrice){
-				currentOffer = tradeOffers.get(2);
-			} else if (bid.getPrice() <= maxPrice){
-				currentOffer = tradeOffers.get(3);
-			} else {
-				currentOffer = tradeOffers.get(4);
-			}
-			
-			if (bid instanceof Lot){
-				currentOffer.setLotVolume(currentOffer.getLotVolume() + bid.getMaxVolume());
-			} else {
-				currentOffer.setTenderVolume(currentOffer.getTenderVolume() + bid.getMaxVolume());
-			}
-		}
-		
+		//< point1
+		TradeOffer tradeOffer = new TradeOffer("< " + ProductForUI.DECIMAL_FORMAT.format(point1));
+		tradeOffers.add(tradeOffer);
+		tradeOffer.setLotVolume(bids.stream().
+				filter(b -> b instanceof Lot)
+				.filter(b -> b.getPrice() <point1)
+				.map(Bid::getMaxVolume)
+				.reduce(Integer::sum)
+				.orElse(0));
+		tradeOffer.setTenderVolume(bids.stream().
+				filter(b -> b instanceof Tender)
+				.filter(b -> b.getPrice() <point1)
+				.map(Bid::getMaxVolume)
+				.reduce(Integer::sum)
+				.orElse(0));
+		//point1 .. point2
+		tradeOffer = new TradeOffer(
+				ProductForUI.DECIMAL_FORMAT.format(point1) + 
+				" .. " +
+				ProductForUI.DECIMAL_FORMAT.format(point2));
+		tradeOffers.add(tradeOffer);
+		tradeOffer.setLotVolume(bids.stream().
+				filter(b -> b instanceof Lot)
+				.filter(b -> b.getPrice() >= point1 && b.getPrice() < point2)
+				.map(Bid::getMaxVolume)
+				.reduce(Integer::sum)
+				.orElse(0));
+		tradeOffer.setTenderVolume(bids.stream().
+				filter(b -> b instanceof Tender)
+				.filter(b -> b.getPrice() >= point1 && b.getPrice() < point2)
+				.map(Bid::getMaxVolume)
+				.reduce(Integer::sum)
+				.orElse(0));
+		//point2 .. point3
+		tradeOffer = new TradeOffer(
+				ProductForUI.DECIMAL_FORMAT.format(point2) + 
+				" .. " +
+				ProductForUI.DECIMAL_FORMAT.format(point3));
+		tradeOffers.add(tradeOffer);
+		tradeOffer.setLotVolume(bids.stream().
+				filter(b -> b instanceof Lot)
+				.filter(b -> b.getPrice() >= point2 && b.getPrice() < point3)
+				.map(Bid::getMaxVolume)
+				.reduce(Integer::sum)
+				.orElse(0));
+		tradeOffer.setTenderVolume(bids.stream().
+				filter(b -> b instanceof Tender)
+				.filter(b -> b.getPrice() >= point2 && b.getPrice() < point3)
+				.map(Bid::getMaxVolume)
+				.reduce(Integer::sum)
+				.orElse(0));
+		// point3 .. point4
+		tradeOffer = new TradeOffer(
+				ProductForUI.DECIMAL_FORMAT.format(point3) + 
+				" .. " +
+				ProductForUI.DECIMAL_FORMAT.format(point4));
+		tradeOffers.add(tradeOffer);
+		tradeOffer.setLotVolume(bids.stream().
+				filter(b -> b instanceof Lot)
+				.filter(b -> b.getPrice() >= point3 && b.getPrice() < point4)
+				.map(Bid::getMaxVolume)
+				.reduce(Integer::sum)
+				.orElse(0));
+		tradeOffer.setTenderVolume(bids.stream().
+				filter(b -> b instanceof Tender)
+				.filter(b -> b.getPrice() >= point4 && b.getPrice() < point4)
+				.map(Bid::getMaxVolume)
+				.reduce(Integer::sum)
+				.orElse(0));
+		//> point4
+		tradeOffer = new TradeOffer(
+				"> " +
+				ProductForUI.DECIMAL_FORMAT.format(point4));
+		tradeOffers.add(tradeOffer);
+		tradeOffer.setLotVolume(bids.stream().
+				filter(b -> b instanceof Lot)
+				.filter(b -> b.getPrice() >= point4)
+				.map(Bid::getMaxVolume)
+				.reduce(Integer::sum)
+				.orElse(0));
+		tradeOffer.setTenderVolume(bids.stream().
+				filter(b -> b instanceof Tender)
+				.filter(b -> b.getPrice() >= point4)
+				.map(Bid::getMaxVolume)
+				.reduce(Integer::sum)
+				.orElse(0));
 		return tradeOffers;
 	}
-	
+
 	private List<TradeOffer> getTrageOffersForSmallBids(List<Bid> bids){
 		List<TradeOffer> list = new ArrayList<>();
 		for (Bid bid : bids){
