@@ -180,7 +180,7 @@ public class ProductServiceImpl implements ProductService {
 				.orElse(0));
 		tradeOffer.setTenderVolume(bids.stream()
 				.filter(b -> b instanceof Tender)
-				.filter(b -> b.getPrice() >= point4 && b.getPrice() < point4)
+				.filter(b -> b.getPrice() >= point3 && b.getPrice() < point4)
 				.map(Bid::getMaxVolume)
 				.reduce(Integer::sum)
 				.orElse(0));
