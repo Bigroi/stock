@@ -97,31 +97,35 @@ public class ProductServiceImpl implements ProductService {
 	private List<TradeOffer> getTradeOffersForBigBids(List<Bid> bids) {
 		double totalMonye = 0;
 		int totalVolume = 0;
+		double minPrice = Integer.MAX_VALUE;
 		for (Bid bid : bids){
 			totalMonye += bid.getPrice() * bid.getMaxVolume();
 			totalVolume += bid.getMaxVolume();
+			if (minPrice > bid.getPrice()){
+				minPrice = bid.getPrice();
+			}
 		}
 		
 		double avgPice = totalMonye / totalVolume;
 		
-		double point1 = 2 * avgPice * 0.15;
-		double point2 = 2 * avgPice * 0.35;
-		double point3 = 2 * avgPice * 0.65;
-		double point4 = 2 * avgPice * 0.85;
+		double point1 = minPrice + (avgPice - minPrice) * 0.3;
+		double point2 = minPrice + (avgPice - minPrice) * 0.7;
+		double point3 = minPrice + (avgPice - minPrice) * 1.3;
+		double point4 = minPrice + (avgPice - minPrice) * 1.7;
 		
 		List<TradeOffer> tradeOffers = new ArrayList<>();
 		
 		//< point1
 		TradeOffer tradeOffer = new TradeOffer("< " + ProductForUI.DECIMAL_FORMAT.format(point1));
 		tradeOffers.add(tradeOffer);
-		tradeOffer.setLotVolume(bids.stream().
-				filter(b -> b instanceof Lot)
-				.filter(b -> b.getPrice() <point1)
+		tradeOffer.setLotVolume(bids.stream()
+				.filter(b -> b instanceof Lot)
+				.filter(b -> b.getPrice() < point1)
 				.map(Bid::getMaxVolume)
 				.reduce(Integer::sum)
 				.orElse(0));
-		tradeOffer.setTenderVolume(bids.stream().
-				filter(b -> b instanceof Tender)
+		tradeOffer.setTenderVolume(bids.stream()
+				.filter(b -> b instanceof Tender)
 				.filter(b -> b.getPrice() <point1)
 				.map(Bid::getMaxVolume)
 				.reduce(Integer::sum)
@@ -132,14 +136,14 @@ public class ProductServiceImpl implements ProductService {
 				" .. " +
 				ProductForUI.DECIMAL_FORMAT.format(point2));
 		tradeOffers.add(tradeOffer);
-		tradeOffer.setLotVolume(bids.stream().
-				filter(b -> b instanceof Lot)
+		tradeOffer.setLotVolume(bids.stream()
+				.filter(b -> b instanceof Lot)
 				.filter(b -> b.getPrice() >= point1 && b.getPrice() < point2)
 				.map(Bid::getMaxVolume)
 				.reduce(Integer::sum)
 				.orElse(0));
-		tradeOffer.setTenderVolume(bids.stream().
-				filter(b -> b instanceof Tender)
+		tradeOffer.setTenderVolume(bids.stream()
+				.filter(b -> b instanceof Tender)
 				.filter(b -> b.getPrice() >= point1 && b.getPrice() < point2)
 				.map(Bid::getMaxVolume)
 				.reduce(Integer::sum)
@@ -150,14 +154,14 @@ public class ProductServiceImpl implements ProductService {
 				" .. " +
 				ProductForUI.DECIMAL_FORMAT.format(point3));
 		tradeOffers.add(tradeOffer);
-		tradeOffer.setLotVolume(bids.stream().
-				filter(b -> b instanceof Lot)
+		tradeOffer.setLotVolume(bids.stream()
+				.filter(b -> b instanceof Lot)
 				.filter(b -> b.getPrice() >= point2 && b.getPrice() < point3)
 				.map(Bid::getMaxVolume)
 				.reduce(Integer::sum)
 				.orElse(0));
-		tradeOffer.setTenderVolume(bids.stream().
-				filter(b -> b instanceof Tender)
+		tradeOffer.setTenderVolume(bids.stream()
+				.filter(b -> b instanceof Tender)
 				.filter(b -> b.getPrice() >= point2 && b.getPrice() < point3)
 				.map(Bid::getMaxVolume)
 				.reduce(Integer::sum)
@@ -168,14 +172,14 @@ public class ProductServiceImpl implements ProductService {
 				" .. " +
 				ProductForUI.DECIMAL_FORMAT.format(point4));
 		tradeOffers.add(tradeOffer);
-		tradeOffer.setLotVolume(bids.stream().
-				filter(b -> b instanceof Lot)
+		tradeOffer.setLotVolume(bids.stream()
+				.filter(b -> b instanceof Lot)
 				.filter(b -> b.getPrice() >= point3 && b.getPrice() < point4)
 				.map(Bid::getMaxVolume)
 				.reduce(Integer::sum)
 				.orElse(0));
-		tradeOffer.setTenderVolume(bids.stream().
-				filter(b -> b instanceof Tender)
+		tradeOffer.setTenderVolume(bids.stream()
+				.filter(b -> b instanceof Tender)
 				.filter(b -> b.getPrice() >= point4 && b.getPrice() < point4)
 				.map(Bid::getMaxVolume)
 				.reduce(Integer::sum)
@@ -185,14 +189,14 @@ public class ProductServiceImpl implements ProductService {
 				"> " +
 				ProductForUI.DECIMAL_FORMAT.format(point4));
 		tradeOffers.add(tradeOffer);
-		tradeOffer.setLotVolume(bids.stream().
-				filter(b -> b instanceof Lot)
+		tradeOffer.setLotVolume(bids.stream()
+				.filter(b -> b instanceof Lot)
 				.filter(b -> b.getPrice() >= point4)
 				.map(Bid::getMaxVolume)
 				.reduce(Integer::sum)
 				.orElse(0));
-		tradeOffer.setTenderVolume(bids.stream().
-				filter(b -> b instanceof Tender)
+		tradeOffer.setTenderVolume(bids.stream()
+				.filter(b -> b instanceof Tender)
 				.filter(b -> b.getPrice() >= point4)
 				.map(Bid::getMaxVolume)
 				.reduce(Integer::sum)
