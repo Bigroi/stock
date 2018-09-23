@@ -67,7 +67,7 @@
 						<div class="languages">
 							<select id="languages-select" name="lang" class="language-switcher">
 								<c:forEach var="lang" items="${languages}">
-									<option data-class="${lang}" value="${lang}">${lang}</option>
+									<option data-class="${lang}" value="${lang}">${label.lang.get(lang)}</option>
 								</c:forEach>
 							</select>
 						</div>

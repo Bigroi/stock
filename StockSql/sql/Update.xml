@@ -359,5 +359,15 @@
 		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_USER_COMMENT_company` FOREIGN KEY (`compant_id`) REFERENCES `COMPANY` (`id`);
 		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_USER_COMMENT_company_2` FOREIGN KEY (`reporter_id`) REFERENCES `COMPANY` (`id`);		
 	</update>
+	
+	<update author="Pavel" date="23.09.2018">
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, pl) VALUES ('lang', 'pl', 'Polski', 'Polski', 'Polski');
+	</update>
+	<update author="Pavel" date="23.09.2018">
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, pl) VALUES ('lang', 'ru_ru', 'Русский', 'Русский', 'Руссуий');
+	</update>
+	<update author="Pavel" date="23.09.2018">
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, pl) VALUES ('lang', 'en_us', 'English', 'English', 'English');
+	</update>
 </root>
 
