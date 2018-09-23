@@ -344,5 +344,20 @@
 		ALTER TABLE `DEAL` ADD COLUMN `seller_email` VARCHAR(500) NULL AFTER `buyer_email`;
 		
 	</update>
+	
+	<update author="Pavel" date="23.09.2018">
+		CREATE TABLE `USER_COMMENT` (
+			`id` BIGINT NOT NULL AUTO_INCREMENT,
+			`Compant_id` BIGINT NOT NULL,
+			`Reporter_id` BIGINT NOT NULL,
+			`mark` TINYINT NOT NULL,
+			`Comment` VARCHAR(1000) NOT NULL,
+			`comment_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			PRIMARY KEY (`id`)
+		)
+		COLLATE='utf8_general_ci';
+		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_USER_COMMENT_company` FOREIGN KEY (`Compant_id`) REFERENCES `company` (`id`);
+		ALTER TABLE ADD CONSTRAINT `FK_USER_COMMENT_company_2` FOREIGN KEY (`Reporter_id`) REFERENCES `company` (`id`);		
+	</update>
 </root>
 
