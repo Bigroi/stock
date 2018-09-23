@@ -348,16 +348,16 @@
 	<update author="Pavel" date="23.09.2018">
 		CREATE TABLE `USER_COMMENT` (
 			`id` BIGINT NOT NULL AUTO_INCREMENT,
-			`Compant_id` BIGINT NOT NULL,
-			`Reporter_id` BIGINT NOT NULL,
+			`compant_id` BIGINT NOT NULL,
+			`reporter_id` BIGINT NOT NULL,
 			`mark` TINYINT NOT NULL,
-			`Comment` VARCHAR(1000) NOT NULL,
+			`comment` VARCHAR(1000) NOT NULL,
 			`comment_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 			PRIMARY KEY (`id`)
 		)
 		COLLATE='utf8_general_ci';
-		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_USER_COMMENT_company` FOREIGN KEY (`Compant_id`) REFERENCES `company` (`id`);
-		ALTER TABLE ADD CONSTRAINT `FK_USER_COMMENT_company_2` FOREIGN KEY (`Reporter_id`) REFERENCES `company` (`id`);		
+		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_USER_COMMENT_company` FOREIGN KEY (`compant_id`) REFERENCES `COMPANY` (`id`);
+		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_USER_COMMENT_company_2` FOREIGN KEY (`reporter_id`) REFERENCES `COMPANY` (`id`);		
 	</update>
 </root>
 
