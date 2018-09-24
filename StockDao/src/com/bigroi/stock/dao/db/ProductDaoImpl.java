@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.ui.ProductForUI;
 import com.bigroi.stock.dao.ProductDao;
@@ -41,11 +42,13 @@ public class ProductDaoImpl implements ProductDao {
 			+ " LEFT JOIN (SELECT PRODUCT_ID, SUM(MAX_VOLUME) SELLVOLUME, "
 			+ " 	  SUM(PRICE)/COUNT(*) SELLPRICE "
 			+ "		  FROM LOT "
+			+ "		  WHERE `STATUS` = '" + BidStatus.ACTIVE + "'"
 			+ "		  GROUP BY PRODUCT_ID) L "
 			+ " ON L.PRODUCT_ID = P.ID "
 			+ " LEFT JOIN (SELECT PRODUCT_ID, SUM(MAX_VOLUME) BUYVOLUME, "
 			+ "		  SUM(PRICE)/COUNT(*) BUYPRICE "
 			+ " 	  FROM TENDER "
+			+ "		  WHERE `STATUS` = '" + BidStatus.ACTIVE + "'"
 			+ "		  GROUP BY PRODUCT_ID) T "
 			+ " ON T.PRODUCT_ID = P.ID"
 			+ " WHERE P.REMOVED = 'N'";
