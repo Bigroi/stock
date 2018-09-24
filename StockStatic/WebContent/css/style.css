@@ -1895,6 +1895,9 @@ table.dataTable.no-footer,
 	width: 306px;
 	margin-bottom: 20px;
 }
+.tender-dialogbox .dialogbox-child input {
+	width: 283px;
+}
 .flex-two-input > div:last-child textarea{
 	width: 280px;
 	height: 160px;
@@ -2336,6 +2339,9 @@ table.dataTable>tbody>tr.child span {
 	.lot-dialogbox .dialogbox-child button {
 		width: 140px;
 	}
+	.tender-dialogbox .dialogbox-child input {
+		width: 263px;
+	} 
 	.flex-two-input > div:first-child > div:last-child input {
 		margin-bottom: 30px;
 	}
@@ -2421,4 +2427,13 @@ table.dataTable>tbody>tr.child span {
 .ui-button:hover .ui-icon, 
 .ui-button:focus .ui-icon{
 	background-image: url("/Static/img/ui-icons_777777_256x240.png");
+}
+.sellerFoto img {
+	width: 160px;
+    height: auto;
+}
+@media (max-width: 1280px) and (min-width: 758px) {
+	.sellerFoto {
+		padding-bottom: 40px;
+	}
 }

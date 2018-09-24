@@ -54,6 +54,12 @@
 				            <label for="partnerRegNumber">${label.deal.partnerRegNumber}</label>
 				            <input type="text" name="partnerAddress.company.regNumber" disabled/>
 				        </li>
+				        <li>
+				            <label>${label.deal.sellerFoto}</label>
+				            <div class="sellerFoto">
+				            	<img name="sellerFoto" src="" alt="">
+				            </div>
+				        </li>
 				    </ul>
 				</div>
 				<div>
@@ -101,7 +107,6 @@
 		        					);">
 		        		${label.deal.reject }
 		        	</button>
-		        	<img name="sellerFoto" src="" alt="" width="30" height="20">
 				</div>
 			</div>
 		</form>

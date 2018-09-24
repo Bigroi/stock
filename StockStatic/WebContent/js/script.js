@@ -18,6 +18,7 @@ $(document).ready(function(){
 	    	select: function(event, ui){ 
 		        var selectedImage = $(this).find("option:selected").attr("data-class");
 		        $(".ui-selectmenu-text").css('background-image', 'url("/Static/img/' + selectedImage +'.png")');
+		        changeLanguage();
 	    	}
 	    });
 	});
