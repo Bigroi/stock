@@ -16,6 +16,15 @@ public class UserCommentDaoImpl implements UserCommentDao {
 			"INSERT INTO USER_COMMENT (COMPANY_ID, REPORTER_ID, MARK, COMMENT, COMMENT_DATE) "
 			+ " VALUES (?, ?, ?, ?, ?)";
 	
+	private static final String UPDATE = 
+			"UPDATE USER_COMMENT SET COMPANT_ID = ?, REPORTER_ID = ?, MARK = ?, "
+			+ " COMMENT = ?, COMMENT_DATE = ? WHERE ID = ?";
+	
+	private static final String DELETE = 
+			"DELETE FROM USER_COMMENT WHERE ID = ? AND WHERE COMPANT_ID = ? ";
+	
+	
+	
 	@Autowired
 	private DataSource datasource;
 	
@@ -28,6 +37,24 @@ public class UserCommentDaoImpl implements UserCommentDao {
 				userComment.getMark(),
 				userComment.getComment(),
 				userComment.getCommentDate());
+	}
+
+	@Override
+	public boolean update(UserComment comment) {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		return template.update(UPDATE, 
+				comment.getCompanyId(),
+				comment.getReporterId(),
+				comment.getMark(),
+				comment.getComment(),
+				comment.getCommentDate(),
+				comment.getCompanyId()) == 1;
+	}
+
+	@Override
+	public boolean delete(long id, long companyId) {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		return template.update(DELETE, id, companyId) == 1;
 	}
 
 }

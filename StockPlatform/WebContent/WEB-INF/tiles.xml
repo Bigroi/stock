@@ -161,4 +161,8 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/label.jsp" />
 	</definition>
 	
+	<definition name="feedbackDealForm" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/feedbackDeal.jsp" />
+	</definition>
+	
 </tiles-definitions>

@@ -369,5 +369,13 @@
 	<update author="Pavel" date="23.09.2018">
 		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, pl) VALUES ('lang', 'en_us', 'English', 'English', 'English');
 	</update>
+	
+	<update author="Evgeniy" date="25.09.2018">
+		UPDATE`LABEL` SET `en_us`='Deal list', `ru_Ru`='Мои сделки', `pl`='Lista umów' WHERE  `id`=472;	
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('494', 'button', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne');	
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('495', 'deal', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne');
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('496', 'comment', 'mark', 'Mark', 'Оценка', 'Ocena');	
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('497', 'comment', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne');
+	</update>
 </root>
 
