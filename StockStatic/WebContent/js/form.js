@@ -89,7 +89,9 @@ function setFormInputs(formContainer, object){
 			var value = getValue(object, name);
 			if (formElements[j].getAttribute("type") != "file"){
 				if (formElementName == "img"){
-					$(formElements[j]).attr("src", value);
+					if (value){
+						$(formElements[j]).attr("src", value);
+					}
 				} else {
 					formElements[j].value = value;
 				}
@@ -98,6 +100,9 @@ function setFormInputs(formContainer, object){
 	}
 	
 	function getValue(object, name){
+		if (!name){
+			return null;
+		}
 		var dotIndex = name.indexOf(".");
 		if (dotIndex < 0){
 			if  (object[name]){
