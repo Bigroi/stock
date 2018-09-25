@@ -9,6 +9,9 @@
 			<input type="hidden" name="buyerAddrress.latitude" id="buyer_lalitude">
 			<input type="hidden" name="buyerAddrress.longitude" id="buyer_longitude">
 			<input type="hidden" name="id">
+			<div>
+				<div class="dialogbox-message"></div>
+			</div>
 			<div class="header-white-div">
 				<ul>
 			        <li>
@@ -35,7 +38,6 @@
 		   </div>
 		   <div class="body-deal-form">	
 				<div>
-					<div class="form-message"></div>
 					<ul>
 				        <li>
 				            <label for="partnerName">${label.deal.partnerName}</label>
