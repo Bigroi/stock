@@ -2,7 +2,10 @@ package com.bigroi.stock.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -205,17 +208,22 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	private List<TradeOffer> getTrageOffersForSmallBids(List<Bid> bids){
-		List<TradeOffer> list = new ArrayList<>();
+		Map<Double, TradeOffer> map = new HashMap<>();
 		for (Bid bid : bids){
-			TradeOffer offer = new TradeOffer(ProductForUI.DECIMAL_FORMAT.format(bid.getPrice()));
-			if (bid instanceof Lot){
-				offer.setLotVolume(bid.getMaxVolume());
-			} else {
-				offer.setTenderVolume(bid.getMaxVolume());
+			TradeOffer offer = map.get(bid.getPrice());
+			if (offer == null){
+				offer = new TradeOffer(bid.getPrice());
+				map.put(bid.getPrice(), offer);
 			}
-			list.add(offer);
+			if (bid instanceof Lot){
+				offer.setLotVolume(offer.getLotVolume() + bid.getMaxVolume());
+			} else {
+				offer.setTenderVolume(offer.getTenderVolume() + bid.getMaxVolume());
+			}
 		}
-		return list;
+		return map.values().stream()
+				.sorted((a,b) -> (int)((a.getPriceDouble() - b.getPriceDouble()) * 100))
+				.collect(Collectors.toList());
 	}
 
 }
