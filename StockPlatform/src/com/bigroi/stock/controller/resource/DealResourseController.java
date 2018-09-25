@@ -110,7 +110,7 @@ public class DealResourseController extends BaseResourseController {
 		
 		deal.setStatus(DealStatus.ON_PARTNER_APPROVE.toString());
 		if (dealService.approve(deal.getId(), userBean.getCompanyId())){
-			return new ResultBean(1, deal, APPROVE_SUCCESS_LABEL).toString();
+			return new ResultBean(2, deal, APPROVE_SUCCESS_LABEL).toString();
 		} else {
 			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
 		}
@@ -125,7 +125,7 @@ public class DealResourseController extends BaseResourseController {
 		
 		deal.setStatus(DealStatus.REJECTED.toString());
 		if (dealService.reject(deal.getId(), userBean.getCompanyId())){
-			return new ResultBean(1, deal, REJECT_SUCCESS_LABEL).toString();
+			return new ResultBean(2, deal, REJECT_SUCCESS_LABEL).toString();
 		} else {
 			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
 		}
@@ -140,7 +140,7 @@ public class DealResourseController extends BaseResourseController {
 		
 		deal.setStatus(DealStatus.TRANSPORT.toString());
 		if (dealService.transport(deal.getId(), userBean.getCompanyId())){
-			return new ResultBean(1, deal, TRANSPORT_SUCCESS_LABEL).toString();
+			return new ResultBean(2, deal, TRANSPORT_SUCCESS_LABEL).toString();
 		} else {
 			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
 		}
