@@ -1,8 +1,11 @@
 package com.bigroi.stock.dao.db;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -21,12 +24,21 @@ public class UserCommentDaoImpl implements UserCommentDao {
 			+ " COMMENT = ?, COMMENT_DATE = ? WHERE ID = ?";
 	
 	private static final String DELETE = 
-			"DELETE FROM USER_COMMENT WHERE ID = ? AND WHERE COMPANT_ID = ? ";
+			"DELETE FROM USER_COMMENT WHERE ID = ? AND REPORTER_ID = ? ";
 	
-	
+	private static final String GET_BY_COMPANY_ID = 
+			"SELECT MARK, COMMENT, COMMENT_DATE FROM USER_COMMENT WHERE COMPANT_ID = ? ";
 	
 	@Autowired
 	private DataSource datasource;
+	
+	@Override
+	public List<UserComment> getComments(long companyId){
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		return template.query(GET_BY_COMPANY_ID, 
+				new BeanPropertyRowMapper<UserComment>(UserComment.class),
+				companyId);
+	}
 	
 	@Override
 	public void add(UserComment userComment) {

@@ -1,5 +1,7 @@
 package com.bigroi.stock.dao;
 
+import java.util.List;
+
 import com.bigroi.stock.bean.db.UserComment;
 
 public interface UserCommentDao {
@@ -9,4 +11,6 @@ public interface UserCommentDao {
 	boolean update(UserComment comment);
 	
 	boolean delete(long id, long companyId);
+	
+	List<UserComment> getComments(long companyId);
 }
