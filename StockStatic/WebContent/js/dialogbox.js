@@ -39,7 +39,7 @@ function showDialog(params){
 			var element = this;
 			var fileName = $(element).val();
 			var file = element.files[0];
-		    if (file.size > 1000000){
+		    if (file.size > 10000000){
 		    	var messageDiv = $('.dialogbox-message')
 		    	messageDiv.addClass("error-message");
 		    	messageDiv.text(l10n.translate("label.lot.too_big"));
