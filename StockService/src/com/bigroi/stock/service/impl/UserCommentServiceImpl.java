@@ -16,18 +16,29 @@ public class UserCommentServiceImpl implements UserCommentService{
 	private UserCommentDao userCommentDao;
 
 	@Override
-	public void merge(UserComment comment, long companyId) {
-		if(comment.getId() == -1){
-			comment.setCompanyId(companyId);
-			userCommentDao.add(comment);
+	public void merge(UserComment userComment, long companyId) {
+		if(userComment.getId() == -1){
+			userComment.setCompanyId(companyId);
+			userCommentDao.add(userComment);
 		}else{
-			comment.setCompanyId(companyId);
-			userCommentDao.update(comment);
+			userComment.setCompanyId(companyId);
+			userCommentDao.update(userComment);
 		}
 	}
 
 	@Override
 	public List<UserComment> getComments(long companyId){
 		return userCommentDao.getComments(companyId);
+	}
+
+	@Override
+	public void delete(long id, long reporterId) {
+		userCommentDao.delete(id, reporterId);
+		
+	}
+
+	@Override
+	public UserComment userCommentById(long id) {
+		return userCommentDao.userCommentById(id);
 	}
 }

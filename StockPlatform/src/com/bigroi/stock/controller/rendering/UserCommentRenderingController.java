@@ -15,7 +15,9 @@ public class UserCommentRenderingController extends BaseRenderingController{
 	@RequestMapping("/Feedback.spr")
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView form(@RequestParam(value = "id", defaultValue = "-1") long id) {
-		return createModelAndView("feedback");
+		ModelAndView modelAndView = createModelAndView("feedback");
+		modelAndView.addObject("id", id);
+		return modelAndView;
 	}
 
 }

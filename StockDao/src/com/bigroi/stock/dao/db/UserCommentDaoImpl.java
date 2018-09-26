@@ -29,6 +29,9 @@ public class UserCommentDaoImpl implements UserCommentDao {
 	private static final String GET_BY_COMPANY_ID = 
 			"SELECT MARK, COMMENT, COMMENT_DATE FROM USER_COMMENT WHERE COMPANT_ID = ? ";
 	
+	private static final String GET_USER_COMMENT_BY_ID =
+			"SELECT MARK, COMMENT, COMMENT_DATE FROM USER_COMMENT WHERE ID = ? ";
+	
 	@Autowired
 	private DataSource datasource;
 	
@@ -64,9 +67,21 @@ public class UserCommentDaoImpl implements UserCommentDao {
 	}
 
 	@Override
-	public boolean delete(long id, long companyId) {
+	public boolean delete(long id, long reporterId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(DELETE, id, companyId) == 1;
+		return template.update(DELETE, id, reporterId) == 1;
+	}
+
+	@Override
+	public UserComment userCommentById(long id) {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		List<UserComment> userComment = template.query(GET_USER_COMMENT_BY_ID, 
+				new BeanPropertyRowMapper<UserComment>(UserComment.class), id);
+		if(userComment.isEmpty()){
+		return null;
+		}else{
+			return userComment.get(0);
+		}
 	}
 
 }

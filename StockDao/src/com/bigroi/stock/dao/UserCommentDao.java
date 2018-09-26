@@ -10,7 +10,9 @@ public interface UserCommentDao {
 
 	boolean update(UserComment comment);
 	
-	boolean delete(long id, long companyId);
+	boolean delete(long id, long reporterId);
 	
-	List<UserComment> getComments(long companyId);
+	List<UserComment> getComments(long reporterId);
+
+	UserComment userCommentById(long id);
 }

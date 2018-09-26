@@ -5,16 +5,29 @@ import java.util.Date;
 public class UserComment {
 
 	private long id;
-	
+
 	private long companyId;
-	
+
 	private long reporterId;
-	
+
 	private int mark;
-	
+
 	private String comment;
-	
+
 	private Date commentDate;
+
+	public UserComment() {
+
+	}
+
+	public UserComment(UserComment userComment) {
+		this.id = userComment.getId();
+		this.companyId = userComment.getCompanyId();
+		this.reporterId = userComment.getReporterId();
+		this.mark = userComment.getMark();
+		this.comment = userComment.getComment();
+		this.commentDate = userComment.getCommentDate();
+	}
 
 	public long getId() {
 		return id;

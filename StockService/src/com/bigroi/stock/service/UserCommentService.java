@@ -6,8 +6,12 @@ import com.bigroi.stock.bean.db.UserComment;
 
 public interface UserCommentService {
 	
-	void merge(UserComment comment, long companyId);
+	void merge(UserComment userComment, long companyId);
 	
 	List<UserComment> getComments(long companyId);
+
+	void delete(long id, long reporterId);
+
+	UserComment userCommentById(long id);
 
 }
