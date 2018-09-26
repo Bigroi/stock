@@ -60,6 +60,7 @@
 		<put-attribute name="nav-deals" value="active" cascade="true"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/deal.jsp" />
 		<put-attribute name="thb-cls" value="thb" cascade="true"/>
+		<put-attribute name="add-button" value="/WEB-INF/jsp/templates/feedbackButton.jsp" cascade="true"/>
 	</definition>
 
 	<definition name="myTenders" extends="base-definition">

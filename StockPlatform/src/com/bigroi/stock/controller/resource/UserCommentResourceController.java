@@ -1,6 +1,7 @@
 package com.bigroi.stock.controller.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +20,17 @@ public class UserCommentResourceController extends BaseResourseController {
 	
 	@RequestMapping("List.spr")
 	@ResponseBody
+	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public String getList(@RequestParam("companyId") long companyId){
 		return new ResultBean(1, userCommentService.getComments(companyId), null).toString();
+	}
+	
+	@RequestMapping("Feedback.spr")
+	@ResponseBody
+	@Secured({"ROLE_USER","ROLE_ADMIN"})
+	public String getFeedbackForm(@RequestParam(value = "id", defaultValue = "-1") long id){
+		return null;
+		
 	}
 	
 }
