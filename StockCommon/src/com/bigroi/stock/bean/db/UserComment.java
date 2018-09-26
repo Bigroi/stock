@@ -26,7 +26,7 @@ public class UserComment {
 		this.reporterId = userComment.getReporterId();
 		this.mark = userComment.getMark();
 		this.comment = userComment.getComment();
-		this.commentDate = userComment.getCommentDate();
+		this.commentDate = userComment.getDate();
 	}
 
 	public long getId() {
@@ -64,16 +64,20 @@ public class UserComment {
 	public String getComment() {
 		return comment;
 	}
+	
+	public Date getCommentDate() {
+		return commentDate;
+	}
 
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
 
-	public Date getCommentDate() {
-		return commentDate;
-	}
-
 	public void setCommentDate(Date commentDate) {
 		this.commentDate = commentDate;
+	}
+	
+	public Date getDate() {
+		return new Date();
 	}
 }

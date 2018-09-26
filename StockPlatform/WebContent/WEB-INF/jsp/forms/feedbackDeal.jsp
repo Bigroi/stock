@@ -3,8 +3,7 @@
 	pageEncoding="UTF-8"%>
 
 <form class="form" action="#" method="post" name="form" id="registration-form">
-	<input type="hidden" name="latitude" class="latitude">
-	<input type="hidden" name="longitude" class="longitude"> 
+
 	<input type="hidden" name="id">
 	
 	<h3>${label.deal.feedback}</h3>

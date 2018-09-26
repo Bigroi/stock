@@ -39,6 +39,13 @@ public class UserCommentServiceImpl implements UserCommentService{
 
 	@Override
 	public UserComment userCommentById(long id) {
-		return userCommentDao.userCommentById(id);
+		UserComment userComment;
+		if(id == -1){
+			userComment = new UserComment();
+			userComment.setId(id);
+		}else{
+			userComment = userCommentDao.userCommentById(id);
+		}
+		return userComment;
 	}
 }

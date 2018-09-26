@@ -252,3 +252,21 @@ function getLabelDialogParams(id, $table, model){
 		}]
 	};
 }
+
+function getDealFeedbackDialogParams(id){
+	return {
+		formUrl: "/feedback/Feedback.spr", 
+		formParams:{id:id},
+		formData: "/feedback/json/Feedback.spr",
+		dialogClass: "dealFeedback-dialogbox",
+		buttons: [{
+				text: l10n.translate("label.button.save"),
+				id:"save",
+				submitUrl: "/feedback/json/SaveFeedback.spr"
+			},{
+				text: l10n.translate("label.button.delete"),
+				id:"delete",
+				submitUrl: "/feedback/json/Delete.spr"
+			}]
+	};	
+}

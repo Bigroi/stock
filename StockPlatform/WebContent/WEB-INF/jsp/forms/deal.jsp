@@ -8,7 +8,7 @@
 			<input type="hidden" name="sellerAddrress.longitude" id="seller_longitude">
 			<input type="hidden" name="buyerAddrress.latitude" id="buyer_lalitude">
 			<input type="hidden" name="buyerAddrress.longitude" id="buyer_longitude">
-			<input type="hidden" name="id">
+			<input type="hidden" name="id" id="dealId">
 			<div>
 				<div class="dialogbox-message"></div>
 			</div>
@@ -86,7 +86,7 @@
 		        	</button>
 				</div>
 				<div>
-					<button class="submit blue-button deal-button" type="submit" id="approve-button"
+					<%-- <button class="submit blue-button deal-button" type="submit" id="approve-button"
 		        		onclick="
 		        				return sendDealFormData(
 			        					'/deal/json/Approve.spr'
@@ -108,6 +108,11 @@
 		        						'/deal/json/Reject.spr'
 		        					);">
 		        		${label.deal.reject }
+		        	</button> --%>
+		        	
+		        	<button class="submit blue-button deal-button" type="button" id="feedback-button"
+		        		onclick=" return getDealFeedbackDialogParams('#dealId') ">
+		        		${label.button.feedback }
 		        	</button>
 				</div>
 			</div>

@@ -38,7 +38,7 @@ public class UserCommentResourceController extends BaseResourseController {
 		
 	}
 	
-	@RequestMapping("Save.spr")
+	@RequestMapping("SaveFeedback.spr")
 	@ResponseBody
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public String save(@RequestParam("json") String json, Authentication loggedInUser){
