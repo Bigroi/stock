@@ -53,7 +53,7 @@
 						</select>
 					</div>
 					<div>
-						<label for="forDistance">${label.lot.ditance} *</label>
+						<label for="forDistance">${label.lot.distance} *</label>
 						<select name="distance" id="forDistance" class="address-selector">
 							<option value="30000">${label.lot.distance_any}</option>
 							<option value="400">${label.lot.distance_400}</option>
