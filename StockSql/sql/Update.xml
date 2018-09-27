@@ -371,14 +371,14 @@
 	</update>
 	
 	<update author="Evgeniy" date="25.09.2018">	
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('494', 'button', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne');	
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('495', 'deal', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('496', 'comment', 'mark', 'Mark', 'Оценка', 'Ocena');	
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('497', 'comment', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('button', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne');	
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('deal', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('comment', 'mark', 'Mark', 'Оценка', 'Ocena');	
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('comment', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne');
 	</update>
 	
 	 <update author="Evgeniy" date="27.09.2018">
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`) VALUES ('498', 'comment', 'comment', 'Сomment', 'Комментарий');
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`) VALUES ('comment', 'comment', 'Сomment', 'Комментарий');
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`) VALUES ('499', 'comment', 'date', 'Date', 'Дата');
 	</update>
 	
@@ -386,32 +386,32 @@
 		UPDATE `LABEL` SET `en_us`='My deals', `ru_Ru`='Мои сделки' WHERE  `id`=472;
 		UPDATE `LABEL` SET `ru_Ru`='Отправить' WHERE  `id`=279;
 		
-		INSERT INTO `LABEL` (`id`,`category`, `name`, `en_us`, `ru_Ru`) VALUES ('500','lot', 'foto', 'Foto', 'Фото');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`) VALUES ('501', 'lot', 'distance', 'Distance', 'Расстояние');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('lot', 'foto', 'Foto', 'Фото');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('lot', 'distance', 'Distance', 'Расстояние');
 		
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('502', 'lot', 'distance_any', '30000', '30000', '30000');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('503', 'lot', 'distance_400', '400', '400', '400');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('504', 'lot', 'distance_200', '200', '200', '200');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('505', 'lot', 'distance_100', '100', '100', '100');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('506', 'lot', 'distance_40', '40', '40', '40');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('507', 'distance', 'distance_0', '0', '0', '0');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('lot', 'distance_any', '30000', '30000', '30000');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('lot', 'distance_400', '400', '400', '400');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('lot', 'distance_200', '200', '200', '200');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('lot', 'distance_100', '100', '100', '100');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('lot', 'distance_40', '40', '40', '40');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('distance', 'distance_0', '0', '0', '0');
 		
 		
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('508', 'tender', 'distance_any', '30000', '30000', '30000');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('509', 'tender', 'distance_400', '400', '400', '400');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('510', 'tender', 'distance_200', '200', '200', '200');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('511', 'tender', 'distance_100', '100', '100', '100');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('512', 'tender', 'distance_40', '40', '40', '40');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('513', 'tender', 'distance_0', '0', '0', '0');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`) VALUES ('514', 'tender', 'distance', 'Distance', 'Расстояние');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('tender', 'distance_any', '30000', '30000', '30000');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('tender', 'distance_400', '400', '400', '400');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('tender', 'distance_200', '200', '200', '200');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('tender', 'distance_100', '100', '100', '100');
+		INSERT INTO `LABEL` (category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('tender', 'distance_40', '40', '40', '40');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('tender', 'distance_0', '0', '0', '0');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('tender', 'distance', 'Distance', 'Расстояние');
 		
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`) VALUES ('515', 'tender', 'packaging', 'Packaging', 'Упаковка');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`) VALUES ('516', 'tender', 'processing', 'Processing', 'Обработка');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('tender', 'packaging', 'Packaging', 'Упаковка');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('tender', 'processing', 'Processing', 'Обработка');
 		
 		DELETE FROM `LABEL` WHERE  `id`=461;
 		UPDATE `LABEL` SET `name`='mydeals' WHERE  `id`=472;
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`) VALUES ('517', 'label', 'on_approve', 'On approve', 'На подтверждении');
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`) VALUES ('518', 'deal', 'sellerfoto', 'Seller foto', 'Фото продавца');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('label', 'on_approve', 'On approve', 'На подтверждении');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('deal', 'sellerfoto', 'Seller foto', 'Фото продавца');
 	</update> 
 </root>
 
