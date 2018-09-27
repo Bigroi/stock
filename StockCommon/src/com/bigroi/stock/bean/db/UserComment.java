@@ -16,19 +16,7 @@ public class UserComment {
 
 	private Date commentDate;
 
-	public UserComment() {
-
-	}
-
-	public UserComment(UserComment userComment) {
-		this.id = userComment.getId();
-		this.companyId = userComment.getCompanyId();
-		this.reporterId = userComment.getReporterId();
-		this.mark = userComment.getMark();
-		this.comment = userComment.getComment();
-		this.commentDate = userComment.getDate();
-	}
-
+	
 	public long getId() {
 		return id;
 	}

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.bean.db.UserComment;
+import com.bigroi.stock.bean.ui.UserCommentForUI;
 import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
@@ -18,6 +19,8 @@ import com.bigroi.stock.service.UserCommentService;
 @Controller
 @RequestMapping("feedback/json")
 public class UserCommentResourceController extends BaseResourseController {
+	
+	private static final String MARK_ERROR_LABEL = "";
 	
 	@Autowired
 	private UserCommentService userCommentService;
@@ -34,7 +37,7 @@ public class UserCommentResourceController extends BaseResourseController {
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public String getFeedbackForm(@RequestParam(value = "id", defaultValue = "-1") long id){
 		UserComment userComment = userCommentService.userCommentById(id);
-		return new ResultBean(1, new UserComment(userComment), "").toString();
+		return new ResultBean(1, new UserCommentForUI(userComment), "").toString();
 		
 	}
 	
@@ -44,8 +47,11 @@ public class UserCommentResourceController extends BaseResourseController {
 	public String save(@RequestParam("json") String json, Authentication loggedInUser){
 		StockUser user =  (StockUser) loggedInUser.getPrincipal();
 		UserComment userComment = GsonUtil.getGson().fromJson(json, UserComment.class);
+		if(userComment.getMark() > 5){
+			return new ResultBean(-1, MARK_ERROR_LABEL).toString();
+		}
 		userCommentService.merge(userComment, user.getCompanyId());
-		return new ResultBean(1, new UserComment(userComment), null).toString();
+		return new ResultBean(1, new UserCommentForUI(userComment), null).toString();
 	}
 	
 	@RequestMapping(value = "/Delete.spr")
