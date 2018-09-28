@@ -23,6 +23,10 @@ $(document).ready(function(){
 	    });
 	});
 	
+	baguetteBox.run('.gallery', {
+		captions: false
+	});
+	
 	$(document).on("click", '#continue', function() {
 		if($('#registration-form')[0].checkValidity()){
 			$(".registration-first-part").hide();

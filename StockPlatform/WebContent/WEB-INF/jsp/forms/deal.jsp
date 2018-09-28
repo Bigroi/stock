@@ -59,7 +59,11 @@
 				        <li>
 				            <label>${label.deal.sellerFoto}</label>
 				            <div class="sellerFoto">
-				            	<img name="sellerFoto" src="" alt="">
+				            	<div class="gallery">
+								    <a href="/Static/img/bg-platform.png" data-caption="Image caption">
+								        <img name="sellerFoto" src="" alt="First image">
+								    </a>
+								</div>
 				            </div>
 				        </li>
 				    </ul>
