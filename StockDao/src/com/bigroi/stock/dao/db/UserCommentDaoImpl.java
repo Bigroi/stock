@@ -23,9 +23,6 @@ public class UserCommentDaoImpl implements UserCommentDao {
 			"UPDATE USER_COMMENT SET COMPANT_ID = ?, REPORTER_ID = ?, MARK = ?, "
 			+ " COMMENT = ?, COMMENT_DATE = ? WHERE ID = ?";
 	
-	private static final String DELETE = 
-			"DELETE FROM USER_COMMENT WHERE ID = ? AND REPORTER_ID = ? ";
-	
 	private static final String GET_BY_COMPANY_ID = 
 			"SELECT MARK, COMMENT, COMMENT_DATE FROM USER_COMMENT WHERE COMPANT_ID = ? ";
 	
@@ -64,12 +61,6 @@ public class UserCommentDaoImpl implements UserCommentDao {
 				comment.getComment(),
 				comment.getCommentDate(),
 				comment.getCompanyId()) == 1;
-	}
-
-	@Override
-	public boolean delete(long id, long reporterId) {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(DELETE, id, reporterId) == 1;
 	}
 
 	@Override

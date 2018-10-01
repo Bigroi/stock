@@ -1,8 +1,11 @@
 package com.bigroi.stock.bean.db;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserComment {
+public class UserComment implements Serializable {
+
+	private static final long serialVersionUID = -2101255437447756054L;
 
 	private long id;
 

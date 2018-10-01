@@ -32,13 +32,7 @@ public class UserCommentServiceImpl implements UserCommentService{
 	}
 
 	@Override
-	public void delete(long id, long reporterId) {
-		userCommentDao.delete(id, reporterId);
-		
-	}
-
-	@Override
-	public UserComment userCommentById(long id) {
+	public UserComment getUserCommentById(long id) {
 		UserComment userComment;
 		if(id == -1){
 			userComment = new UserComment();

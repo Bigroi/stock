@@ -9,13 +9,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bigroi.stock.controller.BaseRenderingController;
 
 @Controller
-@RequestMapping("/feedback")
+@RequestMapping("deal/feedback")
 public class UserCommentRenderingController extends BaseRenderingController{
 	
-	@RequestMapping("/Feedback.spr")
+	@RequestMapping("/Form.spr")
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView form(@RequestParam(value = "id", defaultValue = "-1") long id) {
-		ModelAndView modelAndView = createModelAndView("feedbackDeal");
+		ModelAndView modelAndView = createModelAndView("feedbackDealForm");
 		modelAndView.addObject("id", id);
 		return modelAndView;
 	}

@@ -114,8 +114,7 @@
 		        		${label.deal.reject }
 		        	</button> --%>
 		        	
-		        	<button class="submit blue-button deal-button" type="button" id="feedback-button"
-		        		onclick=" return getDealFeedbackDialogParams('#dealId') ">
+		        	<button class="submit blue-button deal-button deal-feedback" type="button" id="feedback-button">
 		        		${label.button.feedback }
 		        	</button>
 				</div>

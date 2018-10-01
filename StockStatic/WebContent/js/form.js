@@ -11,6 +11,9 @@ $(document).ready(function(){
 	$('.edit-account').on("click", function(){
 		showDialog(getAccountDialogParams());
 	});
+	$('.deal-feedback').on("click", function(){
+		showDialog(getDealFeedbackDialogParams($('#dealId').val()));
+	});
 	if ($('#deal-form').length > 0){
 		var dealForm = $('#deal-form');
 		initDealForm(dealForm, getContextRoot() + dealForm.attr("data-url"), dealForm.attr("data-id"));

@@ -17,7 +17,7 @@ import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.service.UserCommentService;
 
 @Controller
-@RequestMapping("feedback/json")
+@RequestMapping("deal/feedback/json")
 public class UserCommentResourceController extends BaseResourseController {
 	
 	private static final String MARK_ERROR_LABEL = "";
@@ -32,16 +32,16 @@ public class UserCommentResourceController extends BaseResourseController {
 		return new ResultBean(1, userCommentService.getComments(companyId), null).toString();
 	}
 	
-	@RequestMapping("Feedback.spr")
+	@RequestMapping("Form.spr")
 	@ResponseBody
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public String getFeedbackForm(@RequestParam(value = "id", defaultValue = "-1") long id){
-		UserComment userComment = userCommentService.userCommentById(id);
+		UserComment userComment = userCommentService.getUserCommentById(id);
 		return new ResultBean(1, new UserCommentForUI(userComment), "").toString();
 		
 	}
 	
-	@RequestMapping("SaveFeedback.spr")
+	@RequestMapping("Save.spr")
 	@ResponseBody
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public String save(@RequestParam("json") String json, Authentication loggedInUser){
@@ -53,14 +53,4 @@ public class UserCommentResourceController extends BaseResourseController {
 		userCommentService.merge(userComment, user.getCompanyId());
 		return new ResultBean(1, new UserCommentForUI(userComment), null).toString();
 	}
-	
-	@RequestMapping(value = "/Delete.spr")
-	@ResponseBody
-	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
-	public String delete(@RequestParam("id") long id, Authentication loggedInUser){
-		StockUser user = (StockUser)loggedInUser.getPrincipal();
-		userCommentService.delete(id, user.getCompany().getId());
-		return new ResultBean(1, null).toString();
-	}
-	
 }

@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<form class="form" action="#" method="post" name="form" id="registration-form">
+<form class="form" action="#" method="post" name="form" id="feedbackDeal-form">
 
 	<input type="hidden" name="id">
 	

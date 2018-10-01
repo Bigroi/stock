@@ -255,18 +255,14 @@ function getLabelDialogParams(id, $table, model){
 
 function getDealFeedbackDialogParams(id){
 	return {
-		formUrl: "/feedback/Feedback.spr", 
+		formUrl: "/deal/feedback/Form.spr", 
 		formParams:{id:id},
-		formData: "/feedback/json/Feedback.spr",
+		formData: "/deal/feedback/json/Form.spr",
 		dialogClass: "dealFeedback-dialogbox",
 		buttons: [{
 				text: l10n.translate("label.button.save"),
 				id:"save",
-				submitUrl: "/feedback/json/SaveFeedback.spr"
-			},{
-				text: l10n.translate("label.button.delete"),
-				id:"delete",
-				submitUrl: "/feedback/json/Delete.spr"
+				submitUrl: "/deal/feedback/json/Save.spr"
 			}]
 	};	
 }

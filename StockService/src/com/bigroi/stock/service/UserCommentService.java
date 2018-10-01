@@ -10,8 +10,6 @@ public interface UserCommentService {
 	
 	List<UserComment> getComments(long companyId);
 
-	void delete(long id, long reporterId);
-
-	UserComment userCommentById(long id);
+	UserComment getUserCommentById(long id);
 
 }
