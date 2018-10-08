@@ -1,5 +1,6 @@
 package com.bigroi.stock.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,9 @@ public class UserCommentServiceImpl implements UserCommentService{
 	private UserCommentDao userCommentDao;
 
 	@Override
-	public void merge(UserComment userComment, long companyId) {
-		if(userComment.getId() == -1){
-			userComment.setCompanyId(companyId);
+	public void merge(UserComment userComment) {
+		if(!userCommentDao.update(userComment)){
 			userCommentDao.add(userComment);
-		}else{
-			userComment.setCompanyId(companyId);
-			userCommentDao.update(userComment);
 		}
 	}
 
@@ -32,13 +29,13 @@ public class UserCommentServiceImpl implements UserCommentService{
 	}
 
 	@Override
-	public UserComment getUserCommentById(long id) {
-		UserComment userComment;
-		if(id == -1){
+	public UserComment getUserCommentByDealId(long dealId, long reporterId) {
+		UserComment userComment = userCommentDao.userCommentByDealId(dealId, reporterId);
+		if(userComment == null){
 			userComment = new UserComment();
-			userComment.setId(id);
-		}else{
-			userComment = userCommentDao.userCommentById(id);
+			userComment.setId(-1);
+			userComment.setDealId(dealId);
+			userComment.setCommentDate(new Date());
 		}
 		return userComment;
 	}

@@ -18,7 +18,16 @@ public class UserComment implements Serializable {
 	private String comment;
 
 	private Date commentDate;
-
+	
+	private long dealId;
+	
+	public long getDealId() {
+		return dealId;
+	}
+	
+	public void setDealId(long dealId) {
+		this.dealId = dealId;
+	}
 	
 	public long getId() {
 		return id;

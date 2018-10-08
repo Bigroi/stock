@@ -16,18 +16,24 @@ import com.bigroi.stock.dao.UserCommentDao;
 public class UserCommentDaoImpl implements UserCommentDao {
 
 	private static final String ADD = 
-			"INSERT INTO USER_COMMENT (COMPANY_ID, REPORTER_ID, MARK, COMMENT, COMMENT_DATE) "
-			+ " VALUES (?, ?, ?, ?, ?)";
+			"INSERT INTO USER_COMMENT "
+			+ " (COMPANY_ID, REPORTER_ID, MARK, COMMENT, COMMENT_DATE, DEAL_ID) "
+			+ " VALUES (?, ?, ?, ?, ?, ?)";
 	
 	private static final String UPDATE = 
-			"UPDATE USER_COMMENT SET COMPANT_ID = ?, REPORTER_ID = ?, MARK = ?, "
-			+ " COMMENT = ?, COMMENT_DATE = ? WHERE ID = ?";
+			"UPDATE USER_COMMENT "
+			+ " SET MARK = ?, COMMENT = ?, COMMENT_DATE = ? "
+			+ " WHERE DEAL_ID = ? AND REPORTER_ID = ?";
 	
 	private static final String GET_BY_COMPANY_ID = 
-			"SELECT MARK, COMMENT, COMMENT_DATE FROM USER_COMMENT WHERE COMPANT_ID = ? ";
+			"SELECT MARK, COMMENT, COMMENT_DATE "
+			+ " FROM USER_COMMENT "
+			+ " WHERE COMPANT_ID = ? ";
 	
-	private static final String GET_USER_COMMENT_BY_ID =
-			"SELECT MARK, COMMENT, COMMENT_DATE FROM USER_COMMENT WHERE ID = ? ";
+	private static final String GET_USER_COMMENT_BY_DEAL_ID =
+			"SELECT MARK, COMMENT, COMMENT_DATE "
+			+ " FROM USER_COMMENT "
+			+ " WHERE DEAL_ID = ? AND REPORTER_ID = ?";
 	
 	@Autowired
 	private DataSource datasource;
@@ -48,28 +54,31 @@ public class UserCommentDaoImpl implements UserCommentDao {
 				userComment.getReporterId(),
 				userComment.getMark(),
 				userComment.getComment(),
-				userComment.getCommentDate());
+				userComment.getCommentDate(),
+				userComment.getDealId());
 	}
 
 	@Override
 	public boolean update(UserComment comment) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.update(UPDATE, 
-				comment.getCompanyId(),
-				comment.getReporterId(),
 				comment.getMark(),
 				comment.getComment(),
 				comment.getCommentDate(),
-				comment.getCompanyId()) == 1;
+				comment.getDealId(),
+				comment.getReporterId()) > 0;
 	}
 
 	@Override
-	public UserComment userCommentById(long id) {
+	public UserComment userCommentByDealId(long dealId, long reporterId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<UserComment> userComment = template.query(GET_USER_COMMENT_BY_ID, 
-				new BeanPropertyRowMapper<UserComment>(UserComment.class), id);
+		List<UserComment> userComment = template.query(
+				GET_USER_COMMENT_BY_DEAL_ID, 
+				new BeanPropertyRowMapper<UserComment>(UserComment.class), 
+				dealId,
+				reporterId);
 		if(userComment.isEmpty()){
-		return null;
+			return null;
 		}else{
 			return userComment.get(0);
 		}

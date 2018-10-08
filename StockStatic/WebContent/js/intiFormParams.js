@@ -253,10 +253,10 @@ function getLabelDialogParams(id, $table, model){
 	};
 }
 
-function getDealFeedbackDialogParams(id){
+function getDealFeedbackDialogParams(dealId){
 	return {
 		formUrl: "/deal/feedback/Form.spr", 
-		formParams:{id:id},
+		formParams:{dealId:dealId},
 		formData: "/deal/feedback/json/Form.spr",
 		dialogClass: "dealFeedback-dialogbox",
 		buttons: [{

@@ -195,6 +195,8 @@ function initDealForm(formContainer, url, id){
 		setFormInputs(formContainer, answer.data);
 		if (answer.data.statusCode != 'ON_APPROVE'){
 			$(".deal-button").attr("style", "display:none");
+		} else {
+			$(".deal-feedback").attr("style", "display:none");
 		}
 		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0&callback=initDealMap");
 	}, "json");
@@ -222,6 +224,7 @@ function sendDealFormData(url){
 			processRequestResult(formContainer, answer, $('.form-message'));
 			if (answer.result > 0){
 				$('.deal-button').attr("style", "display:none");
+				$(".deal-feedback").attr("style", "");
 			}
 		});
 	} 

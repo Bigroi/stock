@@ -90,7 +90,7 @@
 		        	</button>
 				</div>
 				<div>
-					<%-- <button class="submit blue-button deal-button" type="submit" id="approve-button"
+					<button class="submit blue-button deal-button" type="submit" id="approve-button"
 		        		onclick="
 		        				return sendDealFormData(
 			        					'/deal/json/Approve.spr'
@@ -98,13 +98,13 @@
 		        		${label.deal.approve }
 		        	</button>
 		        	
-		        	<button class="submit blue-button deal-button" type="submit" id="transport-button"
+		        	<%-- <button class="submit blue-button deal-button" type="submit" id="transport-button"
 		        		onclick="
 		        				return sendDealFormData(
 			        					'/deal/json/Transport.spr'
 			        					); ">
 		        		${label.deal.transport }
-		        	</button>
+		        	</button> --%>
 		        	
 		        	<button class="submit blue-button deal-button" type="submit" id="reject-button"
 		        		onclick="
@@ -112,9 +112,9 @@
 		        						'/deal/json/Reject.spr'
 		        					);">
 		        		${label.deal.reject }
-		        	</button> --%>
+		        	</button>
 		        	
-		        	<button class="submit blue-button deal-button deal-feedback" type="button" id="feedback-button">
+		        	<button class="submit blue-button deal-feedback" type="button" id="feedback-button" style="display: none;">
 		        		${label.button.feedback }
 		        	</button>
 				</div>

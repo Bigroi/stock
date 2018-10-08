@@ -12,5 +12,5 @@ public interface UserCommentDao {
 	
 	List<UserComment> getComments(long reporterId);
 
-	UserComment userCommentById(long id);
+	UserComment userCommentByDealId(long dealId, long reporterId);
 }

@@ -5,6 +5,7 @@
 <form class="form" action="#" method="post" name="form" id="feedbackDeal-form">
 
 	<input type="hidden" name="id">
+	<input type="hidden" name="dealId">
 	
 	<h3>${label.deal.feedback}</h3>
 	<div>
@@ -13,11 +14,11 @@
 	<div class="flex-input">
 		<div>
 			<label for="forMark">${label.comment.mark}</label> 
-			<input type="number" name="country" class="mark" id="forMark" required maxlength="5">
+			<input type="number" name="mark" class="mark" id="forMark" required maxlength="5">
 		</div>
 		<div>
 			<label for="forComment">${label.comment.feedback}</label>
-			<input type="text" name="city" class="comment" id="forComment"/>
+			<textarea name="comment" class="comment" id="forComment"></textarea>
 		</div>
 		
 		<div id="form-list"></div>

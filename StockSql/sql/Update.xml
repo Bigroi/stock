@@ -397,5 +397,11 @@
 		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('label', 'on_approve', 'On approve', 'На подтверждении');
 		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('deal', 'sellerfoto', 'Seller foto', 'Фото продавца');
 	</update> 
+	
+	<update author="Pavel" date="8.10.2018">
+		ALTER TABLE `USER_COMMENT` ADD COLUMN `deal_id` BIGINT NOT NULL AFTER `comment_date`;
+		ALTER TABLE `USER_COMMENT` CHANGE COLUMN `compant_id` `company_id` BIGINT(20) NOT NULL AFTER `id`;
+		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_user_comment_deal` FOREIGN KEY (`deal_id`) REFERENCES `DEAL` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+	</update>
 </root>
 
