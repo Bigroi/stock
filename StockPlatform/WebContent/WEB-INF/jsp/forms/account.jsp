@@ -21,11 +21,13 @@
 		</div>
 		<div>
 			<label for="forCompanyLanguage">${label.account.company_language}</label>
-			<select name="company.language">
-				<c:forEach var="language" items="${languages}">
-					<option value="${language}">${language}</option>
-				</c:forEach>
-			</select>
+			<div class="languages">
+				<select id="languages-select" name="company.language">
+					<c:forEach var="language" items="${languages}">
+						<option data-class="${language}" value="${language}">${language}</option>
+					</c:forEach>
+				</select>
+			</div>
 		</div>
 		<div>
 			<label for="forCompanyName">${label.account.company_name}</label>

@@ -22,7 +22,8 @@
 		
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/Static/img/logo.png" type="image/png">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/jquery.dataTables.min.css">
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/baguetteBox.min.css"> 
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/baguetteBox.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/jquery-ui.min.css">  
 		
 		<script src="${pageContext.request.contextPath}/Static/js/jQuery.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/jquery.dataTables.min.js"></script>
@@ -40,6 +41,7 @@
 		<script src="${pageContext.request.contextPath}/Static/js/dialogbox.js?version=${label.build.number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/script.js?version=${label.build.number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/productList.js?version=${label.build.number}"></script>
+		<script src="${pageContext.request.contextPath}/Static/js/jquery-ui.min.js"></script>
 			
 	</head>
 	<body class="body-pages">
@@ -70,7 +72,7 @@
          	 	<div class="burger"></div>
          	 	<div class="logo-mobile"></div>
  			</div>
- 			<div class="login-box">
+ 			<div class="login-box login-box-shadow">
 				<div class="login-button-page">
 			    	<div>Apple Trader</div>
 				</div>

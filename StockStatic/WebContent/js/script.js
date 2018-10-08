@@ -1,28 +1,30 @@
 $(document).ready(function(){
 	
-	$( function() {
-	    $.widget( "custom.iconselectmenu", $.ui.selectmenu, {
-	      _renderItem: function( ul, item ) {
-	        var li = $( "<li>" ),
-	          wrapper = $( "<div>", { text: item.label } );
-	        if ( item.disabled ) {li.addClass( "ui-state-disabled" );}
-	        $( "<span>", {style: item.element.attr( "data-style" ),"class": "ui-icon " + item.element.attr( "data-class" )
-	        }).appendTo( wrapper );
-	        return li.append( wrapper ).appendTo( ul );
-	      }
-	    });
-	    $("#languages-select").iconselectmenu().iconselectmenu("menuWidget").addClass("ui-menu-icons customicons");
-	    var selectedImage = $(this).find("option:selected").attr("data-class");
-	    $(".ui-selectmenu-text").css('background-image', 'url("/Static/img/' + selectedImage +'.png")');
-	    $( "#languages-select" ).iconselectmenu({
-	    	select: function(event, ui){ 
-		        var selectedImage = $(this).find("option:selected").attr("data-class");
-		        $(".ui-selectmenu-text").css('background-image', 'url("/Static/img/' + selectedImage +'.png")');
-		        changeLanguage();
-	    	}
-	    });
-	});
-	
+	if($("select").is("#languages-select")) {
+		$( function() {
+		    $.widget( "custom.iconselectmenu", $.ui.selectmenu, {
+		      _renderItem: function( ul, item ) {
+		        var li = $( "<li>" ),
+		          wrapper = $( "<div>", { text: item.label } );
+		        if ( item.disabled ) {li.addClass( "ui-state-disabled" );}
+		        $( "<span>", {style: item.element.attr( "data-style" ),"class": "ui-icon " + item.element.attr( "data-class" )
+		        }).appendTo( wrapper );
+		        return li.append( wrapper ).appendTo( ul );
+		      }
+		    });
+		    $("#languages-select").iconselectmenu().iconselectmenu("menuWidget").addClass("ui-menu-icons customicons");
+		    var selectedImage = $(this).find("option:selected").attr("data-class");
+		    $(".ui-selectmenu-text").css('background-image', 'url("/Static/img/' + selectedImage +'.png")');
+		    $( "#languages-select" ).iconselectmenu({
+		    	select: function(event, ui){ 
+			        var selectedImage = $(this).find("option:selected").attr("data-class");
+			        $(".ui-selectmenu-text").css('background-image', 'url("/Static/img/' + selectedImage +'.png")');
+			        changeLanguage();
+		    	}
+		    });
+		});
+	}
+
 	baguetteBox.run('.gallery', {
 		captions: false
 	});
@@ -37,7 +39,7 @@ $(document).ready(function(){
 			return true;
 		}
 	});
-	$(".bgdark").click(function(){
+	$(document).on("click", '.bgdark, .send-message', function() {
 		  $(".bgdark").hide();
 		  $(".aside").removeClass("aside-adaptive");
 	});
@@ -47,9 +49,9 @@ $(document).ready(function(){
 	});
 	$(document).on("click", '.burger-close', function() {
 		$(".aside").removeClass("aside-adaptive");
-		$(".bgdark").hide();
+		$(".aside-adaptive").hide();
 	});
-
+	
 	/*if ($('body').width() <= 1280) {
 		$(".burger").click(function(){
 			  $(".bgdark").fadeToggle();
@@ -60,7 +62,13 @@ $(document).ready(function(){
 			});
     }*/
 	$(document).on("click", '.login-button-page', function() {
-		$(".login-list").fadeToggle();
+		if($('.login-list').is(':visible')){
+			$('.login-list').fadeOut();
+			$('.login-box').addClass("login-box-shadow");
+		} else {
+			$('.login-list').fadeIn();
+			$('.login-box').removeClass("login-box-shadow");
+		}
 	});
 	$(document).on('click', function(e) {
 		  if (!$(e.target).closest(".login-box").length) {
@@ -68,6 +76,9 @@ $(document).ready(function(){
 		  }
 		  e.stopPropagation();
 	});
+	/*if($('.login-list').css('display') == 'block'){
+		console.log('66');
+	}*/
 	$(document).on("click", '#go-back', function() {
 		$(".registration-first-part").show();
 		$(".registration-second-part").hide();

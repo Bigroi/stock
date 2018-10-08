@@ -1070,7 +1070,8 @@ footer .container {
 		height: 33px;
 	}
 	.dialogbox-child button,
-	#continue {
+	#continue,
+	.dialogbox-child .flex-input button {
 		width: 474px;
 		height: 60px;
 	}
@@ -1107,7 +1108,7 @@ footer .container {
 	.dialogbox-child input,
 	.dialogbox-child .flex-input input,
 	#forAdress{
-		width: 262px;
+		width: 258px;
 		height: 20px;
 	}
 	.dialogbox-child input[type=file] {
@@ -1121,7 +1122,8 @@ footer .container {
 	#continue,
 	.second-step,
 	#go-back,
-	#finish-registration{
+	#finish-registration,
+	.dialogbox-child .flex-input button {
 		width: 290px;
 		height: 40px;
 	}
@@ -1503,8 +1505,13 @@ table.dataTable thead th {
      transition: 0.1s;
 }
 .paginate_button.next:hover,
-.paginate_button.previous:hover {
-    box-shadow: 0 0 6px 3px rgba(221, 221, 221, 1)  !important;
+.paginate_button.previous:hover, 
+button:hover,
+.add-button:hover, .burger:hover, .burger-close:hover {
+    box-shadow: 0 0 6px 3px rgba(102, 102, 102, 0.3) !important;
+}
+.login-box-shadow:hover {
+    box-shadow: 0 0 3px 3px rgba(102, 102, 102, 0.3) !important;
 }
 .paginate_button.next {
 	background-image: url(/Static/img/next.png);
@@ -1908,7 +1915,7 @@ table.dataTable.no-footer,
 }
 .contact-us-dialogbox .dialogbox-child .flex-input input,
 .contact-us-dialogbox textarea{
-	width: 342px;
+	width: 340px;
 }
 .tender-dialogbox .dialogbox-child button,
 .lot-dialogbox .dialogbox-child button{
@@ -2188,13 +2195,15 @@ table.dataTable>tbody>tr.child span {
 	  	background-image: url(/Static/img/burger-close.png);
 	    background-position: center;
 	    background-repeat: no-repeat;
+	    cursor: pointer;
 	}
 	.product-page table {
 		width: 392px;
 	}
-	.error-message {
-    	width: 550px;
-    }
+	.contact-us-dialogbox .dialogbox-child .flex-input input, 
+	.contact-us-dialogbox textarea {
+		width: 445px;
+	}
 }
 @media (max-width: 758px) {
 	.body-pages {
@@ -2381,6 +2390,10 @@ table.dataTable>tbody>tr.child span {
 	}
 	.error-message {
     	width: 230px;
+    }
+    .contact-us-dialogbox .dialogbox-child .flex-input input,
+    .contact-us-dialogbox textarea {
+    	width: 258px;
     }
 }
 /* select with custom icons */
