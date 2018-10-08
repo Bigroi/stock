@@ -24,11 +24,13 @@ $(document).ready(function(){
 		    });
 		});
 	}
-
-	baguetteBox.run('.gallery', {
-		captions: false
-	});
 	
+	if($('select').is('.gallery')) {
+		baguetteBox.run('.gallery', {
+			captions: false
+		});
+	}
+
 	$(document).on("click", '#continue', function() {
 		if($('#registration-form')[0].checkValidity()){
 			$(".registration-first-part").hide();
@@ -49,7 +51,7 @@ $(document).ready(function(){
 	});
 	$(document).on("click", '.burger-close', function() {
 		$(".aside").removeClass("aside-adaptive");
-		$(".aside-adaptive").hide();
+		$(".bgdark").hide();
 	});
 	
 	/*if ($('body').width() <= 1280) {
@@ -135,6 +137,12 @@ $(document).ready(function(){
 		var target = $(hash);
 		$("html, body").animate({
 		    scrollTop: target.offset().top - 78
+			}, 500, function(){
+		});
+	});
+	$(document).on("click", '.logo', function() {
+		$("html, body").animate({
+		    scrollTop: 0
 			}, 500, function(){
 		});
 	});

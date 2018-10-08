@@ -49,10 +49,10 @@
 		<div id="form-container"></div>
         <div class="aside">
             <div class="logo-pages">
-                <img class="big-logo" src="/Static/img/logo-pages.png" alt="YourTrader" title="YourTrader">
+                <a href="/product/List.spr"><img class="big-logo" src="/Static/img/logo-pages.png" alt="YourTrader" title="YourTrader"></a>
                 <div class=" small-logo">
                 	<div class="burger-close"></div>
-                	<div class="logo-mobile"></div>
+                	<div class="logo-mobile"><a href="/product/List.spr"></a></div>
                 </div>
             </div>
             <nav class="main-menu">
@@ -70,7 +70,7 @@
        	<div class="aside-modile">
          	 <div class="burger-logo">
          	 	<div class="burger"></div>
-         	 	<div class="logo-mobile"></div>
+         	 	<div class="logo-mobile"><a href="/product/List.spr"></a></div>
  			</div>
  			<div class="login-box login-box-shadow">
 				<div class="login-button-page">

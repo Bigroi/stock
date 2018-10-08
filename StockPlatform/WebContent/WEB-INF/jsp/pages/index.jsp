@@ -13,11 +13,12 @@
 		  gtag('config', 'UA-114993452-1');
 		</script>
 	
-		<title>Your Trader! ${page_title}</title>
+		<title>${label.index.index_title}</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
 		<meta name="context-root" content="${pageContext.request.contextPath}">
 		<meta name="google-site-verification" content="57vTO4c-SbhNNvbqR0xSlTjHLgy0kd3Bi7173PGTMbc" />
+		<meta name="description" content="${label.index.index_description}">
 		
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/Static/img/logo.png" type="image/png">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/jquery.dataTables.min.css">
@@ -27,6 +28,7 @@
 		<script src="${pageContext.request.contextPath}/Static/js/jQuery.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/jquery.dataTables.min.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/jquery.responsive.dataTables.min.js"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/jquery-ui.min.js"></script>
 		
 		<!-- application css & js -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/style.css?version=${label.build.number}">
@@ -40,7 +42,8 @@
 		<script src="${pageContext.request.contextPath}/Static/js/script.js?version=${label.build.number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/productList.js?version=${label.build.number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/testTrading.js?version=${label.build.number}"></script>
-  		<script src="${pageContext.request.contextPath}/Static/js/jquery-ui.min.js"></script>
+  		
+  		
   		
 	</head>
 	<body>
@@ -51,10 +54,11 @@
 					<div class="container">
 						<img class="logo" src="/Static/img/logo.png" alt="YourTrader" title="YourTrader">
 						<nav class="main-page-nav">
-							<a href="#ex1" class="active">${label.index.about_your_trader}</a>
-							<a href="#ex2">${label.index.benefits}</a>
+							<!-- <a href="#ex1">${label.index.about_your_trader}</a>-->
+							<a href="#ex2" class="active">${label.index.benefits}</a>
 							<a href="#ex3">${label.index.products}</a>
 							<a href="#ex4">${label.index.for_whom}</a>
+							<a href="#ex5">${label.index.try_now}</a>
 						</nav>
 						<div class="buttons-login">
 							<button class="registration background-blue registration-button">
@@ -154,7 +158,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="test-trading">
+					<div class="test-trading" id="ex5">
 						<div class="container">
 							<h3>${label.index.try_it_now}</h3>
 							<div class="test-lot-tender-container">
