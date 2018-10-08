@@ -42,6 +42,7 @@
 				        <li>
 				            <label for="partnerName">${label.deal.partnerName}</label>
 				            <input type="text" name="partnerAddress.company.name" disabled/>
+				            <div class="partner-mark"></div>
 				        </li>
 	
 				        <li>

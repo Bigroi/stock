@@ -28,7 +28,7 @@ public class UserCommentDaoImpl implements UserCommentDao {
 	private static final String GET_BY_COMPANY_ID = 
 			"SELECT MARK, COMMENT, COMMENT_DATE "
 			+ " FROM USER_COMMENT "
-			+ " WHERE COMPANT_ID = ? ";
+			+ " WHERE COMPANY_ID = ? ";
 	
 	private static final String GET_USER_COMMENT_BY_DEAL_ID =
 			"SELECT MARK, COMMENT, COMMENT_DATE "

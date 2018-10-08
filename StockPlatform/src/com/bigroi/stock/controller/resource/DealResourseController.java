@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bigroi.stock.bean.common.DealStatus;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.StockUser;
+import com.bigroi.stock.bean.db.UserComment;
 import com.bigroi.stock.bean.ui.DealForUI;
 import com.bigroi.stock.bean.ui.TestDealForUI;
 import com.bigroi.stock.controller.BaseResourseController;
@@ -26,6 +27,7 @@ import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.DealService;
 import com.bigroi.stock.service.LabelService;
 import com.bigroi.stock.service.TradeService;
+import com.bigroi.stock.service.UserCommentService;
 
 @Controller
 @RequestMapping(value = "/deal/json", produces = "text/plain;charset=UTF-8")
@@ -45,20 +47,37 @@ public class DealResourseController extends BaseResourseController {
 	@Autowired
 	private LabelService labelService;
 	
+	@Autowired
+	private UserCommentService userCommentService;
+	
 	@RequestMapping(value = "/Form.spr", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String form(@RequestParam("id") long id, Authentication loggedInUser) {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Deal deal = dealService.getById(id, user.getCompanyId());
+		int parterMark = getPartnerMark(user.getCompanyId(), deal);
 		if (user.getCompanyId() != deal.getBuyerAddress().getCompanyId() && 
 				user.getCompanyId() != deal.getSellerAddress().getCompanyId()){
 			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
 		} else {
-			return new ResultBean(1, translateDeal(new DealForUI(deal, user.getCompanyId())), "").toString();
+			return new ResultBean(1, translateDeal(new DealForUI(deal, user.getCompanyId(), parterMark)), "").toString();
 		}
 	}
 	
+	private int getPartnerMark(long companyId, Deal deal) {
+		long partnerId = 
+				companyId == deal.getBuyerAddress().getCompanyId() ?
+				deal.getSellerAddress().getCompanyId() : 
+				deal.getBuyerAddress().getCompanyId();
+		List<UserComment> comments = userCommentService.getComments(partnerId);
+		if (comments.isEmpty()){
+			return 5;
+		} else {
+			return (int)comments.stream().mapToInt(c -> c.getMark()).average().getAsDouble();
+		}
+	}
+
 	private DealForUI translateDeal(DealForUI deal) {
 		deal.setStatus(labelService.getLabel("label", deal.getStatus(), getLanguage()));
 		return deal;

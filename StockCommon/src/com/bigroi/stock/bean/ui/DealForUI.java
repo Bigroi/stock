@@ -36,10 +36,16 @@ public class DealForUI {
 	private final int volume;
 	private final String partnerDescription;
 	private final DealStatus statusCode;
+	private final int partnerMark;
 	
 	public DealForUI(Deal deal, long companyId){
+		this(deal, companyId, 0);
+	}
+	
+	public DealForUI(Deal deal, long companyId, int partnerMark){
 		this.id = deal.getId();
-		productName = deal.getProduct().getName();
+		this.productName = deal.getProduct().getName();
+		this.partnerMark = partnerMark;
 		this.time = deal.getTime();
 		this.statusCode = getDealStatus(deal, companyId);
 		this.status = this.statusCode.toString();
@@ -73,6 +79,10 @@ public class DealForUI {
 		} else {
 			return dealStatus;
 		}
+	}
+	
+	public int getPartnerMark() {
+		return partnerMark;
 	}
 	
 	public CompanyAddress getBuyerAddrress() {

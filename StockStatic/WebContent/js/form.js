@@ -193,6 +193,8 @@ function buttonCallbackWithTableUpdate(buttonDef, params, formContainer, $dialog
 function initDealForm(formContainer, url, id){
 	$.post(url, {id:id}, function(answer){
 		setFormInputs(formContainer, answer.data);
+		var partnerMark = answer.data.partnerMark;
+		$(".partner-mark").text(partnerMark);
 		if (answer.data.statusCode != 'ON_APPROVE'){
 			$(".deal-button").attr("style", "display:none");
 		} else {
