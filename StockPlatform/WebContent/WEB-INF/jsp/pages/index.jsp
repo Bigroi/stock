@@ -58,7 +58,7 @@
 							<a href="#ex2" class="active">${label.index.benefits}</a>
 							<a href="#ex3">${label.index.products}</a>
 							<a href="#ex4">${label.index.for_whom}</a>
-							<a href="#ex5">${label.index.try_now}</a>
+							<a href="#ex5">${label.index.try_it_now}</a>
 						</nav>
 						<div class="buttons-login">
 							<button class="registration background-blue registration-button">
