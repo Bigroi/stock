@@ -77,7 +77,7 @@ public class MarketServiceImplTest extends BaseTest {
 		List<Lot> expectedList = ImmutableList.of(lot);
 		// mock
 		Mockito.when(lotDao.getActive()).thenReturn(expectedList);
-		Mockito.doNothing().when(lotExparationMessage).send(lot, TEST_LANGUAGE);
+		Mockito.when(lotExparationMessage.send(lot, TEST_LANGUAGE)).thenReturn(true);
 		Mockito.doNothing().when(lotDao).updateStatus(expectedList);
 		// when
 		marketService.checkExparations();
@@ -103,7 +103,7 @@ public class MarketServiceImplTest extends BaseTest {
 		List<Tender> expectedList = ImmutableList.of(tender);
 		// mock
 		Mockito.when(tenderDao.getActive()).thenReturn(expectedList);
-		Mockito.doNothing().when(tenderExparationMessage).send(tender, TEST_LANGUAGE);
+		Mockito.when(tenderExparationMessage.send(tender, TEST_LANGUAGE)).thenReturn(true);
 		Mockito.doNothing().when(tenderDao).updateStatus(expectedList);
 		// when
 		marketService.checkExparations();
@@ -162,8 +162,8 @@ public class MarketServiceImplTest extends BaseTest {
 		tender.setCompanyAddress(deal.getBuyerAddress());
 		// mock
 		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
-		Mockito.doNothing().when(dealExparationMessageForSellerByOpponent).send(deal, TEST_LANGUAGE);
-		Mockito.doNothing().when(dealExparationMessageForBuyer).send(deal, TEST_LANGUAGE);
+		Mockito.when(dealExparationMessageForSellerByOpponent.send(deal, TEST_LANGUAGE)).thenReturn(true);
+		Mockito.when(dealExparationMessageForBuyer.send(deal, TEST_LANGUAGE)).thenReturn(true);
 		Mockito.when(tenderDao.getById(TENDER_ID, deal.getBuyerAddress().getCompanyId())).thenReturn(tender);
 		Mockito.when(tenderDao.update(tender,COMPANY_ID)).thenReturn(true);
 		Mockito.when(lotDao.getById(LOT_ID, deal.getSellerAddress().getCompanyId())).thenReturn(lot);
@@ -210,8 +210,8 @@ public class MarketServiceImplTest extends BaseTest {
 		tender.setCompanyId(COMPANY_ID);
 		// mock
 		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
-		Mockito.doNothing().when(dealExparationMessageForSeller).send(deal, TEST_LANGUAGE);
-		Mockito.doNothing().when(dealExparationMessageForBuyerByOpponent).send(deal, TEST_LANGUAGE);
+		Mockito.when(dealExparationMessageForSeller.send(deal, TEST_LANGUAGE)).thenReturn(true);
+		Mockito.when(dealExparationMessageForBuyerByOpponent.send(deal, TEST_LANGUAGE)).thenReturn(true);
 		Mockito.when(tenderDao.getById(TENDER_ID, deal.getBuyerAddress().getCompanyId())).thenReturn(tender);
 		Mockito.when(tenderDao.update(tender,COMPANY_ID)).thenReturn(true);
 		Mockito.when(lotDao.getById(LOT_ID, deal.getSellerAddress().getCompanyId())).thenReturn(lot);
@@ -258,8 +258,8 @@ public class MarketServiceImplTest extends BaseTest {
 		tender.setCompanyId(COMPANY_ID);
 		// mock
 		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
-		Mockito.doNothing().when(dealExparationMessageForSeller).send(deal, TEST_LANGUAGE);
-		Mockito.doNothing().when(dealExparationMessageForBuyer).send(deal, TEST_LANGUAGE);
+		Mockito.when(dealExparationMessageForSeller.send(deal, TEST_LANGUAGE)).thenReturn(true);
+		Mockito.when(dealExparationMessageForBuyer.send(deal, TEST_LANGUAGE)).thenReturn(true);
 		Mockito.when(tenderDao.getById(TENDER_ID, deal.getBuyerAddress().getCompanyId())).thenReturn(tender);
 		Mockito.when(tenderDao.update(tender,COMPANY_ID)).thenReturn(true);
 		Mockito.when(lotDao.getById(LOT_ID, deal.getSellerAddress().getCompanyId())).thenReturn(lot);
@@ -289,8 +289,8 @@ public class MarketServiceImplTest extends BaseTest {
 		List<Deal> dealList = ImmutableList.of(deal);
 		// mock
 		Mockito.when(dealDao.getOnApprove()).thenReturn(dealList);
-		Mockito.doNothing().when(dealConfirmationMessageForBuyer).send(deal, TEST_LANGUAGE);
-		Mockito.doNothing().when(dealConfirmationMessageForSeller).send(deal, TEST_LANGUAGE);
+		Mockito.when(dealConfirmationMessageForBuyer.send(deal, TEST_LANGUAGE)).thenReturn(true);
+		Mockito.when(dealConfirmationMessageForSeller.send(deal, TEST_LANGUAGE)).thenReturn(true);
 		// when
 		marketService.sendConfirmationMessages();
 		// then
