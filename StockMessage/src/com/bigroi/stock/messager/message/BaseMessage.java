@@ -43,7 +43,7 @@ public abstract class BaseMessage<T> implements Message<T>{
 		Email email = new Email();
 		email.setBody(getText(object, locale));
 		email.setRecipient(getRecipient(object));
-		email.setSubject(getSubject(locale));
+		email.setSubject(getSubject(locale));// TODO 
 		email.setFile(getFile(object));
 		email.setFileName(getFileName());
 		return email;
@@ -67,8 +67,9 @@ public abstract class BaseMessage<T> implements Message<T>{
 		return messageTemplates.get(locale).getSubject();
 	}
 	
-	public void send(T object, String locale){
-		emailDao.add(getEmail(object, locale));
+	public boolean send(T object, String locale){
+		 emailDao.add(getEmail(object, locale)); 
+		 return true;
 	}
 	
 }

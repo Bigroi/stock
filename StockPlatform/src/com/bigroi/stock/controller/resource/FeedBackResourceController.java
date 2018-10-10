@@ -18,6 +18,7 @@ import com.bigroi.stock.messager.message.FeedBackMessage;
 public class FeedBackResourceController extends BaseResourseController {
 
 	private static final String FB_SUCCESS_LABEL = "label.account.fb_success";
+	private static final String FB_UNSUCCESS_LABEL = "label.account.fb_unsuccess";
 	
 	@Autowired
 	private FeedBackMessage feedBackMessage;
@@ -40,8 +41,11 @@ public class FeedBackResourceController extends BaseResourseController {
 	@ResponseBody
 	public String getForm(String json) {
 		FeedBack message = GsonUtil.getGson().fromJson(json, FeedBack.class);
-		feedBackMessage.send(message, getLanguage().toString());
+			if(feedBackMessage.send(message, getLanguage().toString())){
 		return new ResultBean(2, message, FB_SUCCESS_LABEL).toString();
+		}else{
+			return new ResultBean(-1, message, FB_UNSUCCESS_LABEL).toString();
+		}
 	}
 	
 }

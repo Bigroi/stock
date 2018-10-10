@@ -403,5 +403,9 @@
 		ALTER TABLE `USER_COMMENT` CHANGE COLUMN `compant_id` `company_id` BIGINT(20) NOT NULL AFTER `id`;
 		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_user_comment_deal` FOREIGN KEY (`deal_id`) REFERENCES `DEAL` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 	</update>
+	
+	<update author="Evgeniy" date="10.10.2018">
+		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`) VALUES ('755', 'account', 'fb_unsuccess', 'The letter hasn\'t been sent', 'Письмо не было отправлено');
+	</update>
 </root>
 
