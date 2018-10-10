@@ -141,8 +141,8 @@ public class DealServiceImplTest extends BaseTest {
 		// mock
 		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
 		Mockito.doNothing().when(dealDao).setSellerStatus(deal);
-		Mockito.doNothing().when(successDealMessageForBuyer).send(deal, TEST_LANGUAGE);
-		Mockito.doNothing().when(successDealMessageForSeller).send(deal, TEST_LANGUAGE);
+		Mockito.when(successDealMessageForBuyer.send(deal, TEST_LANGUAGE)).thenReturn(true);
+		Mockito.when(successDealMessageForSeller.send(deal, TEST_LANGUAGE)).thenReturn(true);
     	// when
 		dealService.approve(DEAL_ID, COMPANY_ID);
 		// then
@@ -165,8 +165,8 @@ public class DealServiceImplTest extends BaseTest {
 		
 		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
 		Mockito.doNothing().when(dealDao).setBuyerStatus(deal);
-		Mockito.doNothing().when(successDealMessageForBuyer).send(deal, TEST_LANGUAGE);
-		Mockito.doNothing().when(successDealMessageForSeller).send(deal, TEST_LANGUAGE);
+		Mockito.when(successDealMessageForBuyer.send(deal, TEST_LANGUAGE)).thenReturn(true);
+		Mockito.when(successDealMessageForSeller.send(deal, TEST_LANGUAGE)).thenReturn(true);
     	// when
 		dealService.approve(DEAL_ID, COMPANY_ID);
 		// then
@@ -192,8 +192,8 @@ public class DealServiceImplTest extends BaseTest {
 		
 		// mock
 		Mockito.when(dealDao.getById(DEAL_ID)).thenReturn(deal);
-		Mockito.doNothing().when(successDealMessageForBuyer).send(deal, TEST_LANGUAGE);
-		Mockito.doNothing().when(successDealMessageForSeller).send(deal, TEST_LANGUAGE);
+		Mockito.when(successDealMessageForBuyer.send(deal, TEST_LANGUAGE)).thenReturn(true);
+		Mockito.when(successDealMessageForSeller.send(deal, TEST_LANGUAGE)).thenReturn(true);
 		// when
 		dealService.approve(DEAL_ID, COMPANY_ID);
 		// then
@@ -238,7 +238,7 @@ public class DealServiceImplTest extends BaseTest {
 		Mockito.when(lotDao.getById(LOT_ID, deal.getSellerAddress().getCompanyId())).thenReturn(lot);
 		Mockito.when(tenderDao.getById(TENDER_ID, deal.getBuyerAddress().getCompanyId())).thenReturn(tender);
 		Mockito.when(tenderDao.update(tender,COMPANY_ID)).thenReturn(true);
-		Mockito.doNothing().when(buyerCancelMessage).send(deal, TEST_LANGUAGE);
+		Mockito.when(buyerCancelMessage.send(deal, TEST_LANGUAGE)).thenReturn(true);
 		// when
 		dealService.reject(DEAL_ID, COMPANY_ID);
 		// then
@@ -287,7 +287,7 @@ public class DealServiceImplTest extends BaseTest {
 		Mockito.when(tenderDao.getById(TENDER_ID, deal.getBuyerAddress().getCompanyId())).thenReturn(tender);
 		Mockito.when(lotDao.getById(LOT_ID, deal.getSellerAddress().getCompanyId())).thenReturn(lot);
 		Mockito.when(lotDao.update(lot, COMPANY_ID)).thenReturn(true);
-		Mockito.doNothing().when(sellerCanceledMessage).send(deal, TEST_LANGUAGE);
+		Mockito.when(sellerCanceledMessage.send(deal, TEST_LANGUAGE)).thenReturn(true);
 		// when
 		dealService.reject(DEAL_ID, COMPANY_ID);
 		// then
