@@ -29,6 +29,7 @@
         <script src="${pageContext.request.contextPath}/Static/js/jquery.dataTables.min.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/jquery.responsive.dataTables.min.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/baguetteBox.min.js"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/jquery-ui.min.js"></script>
 		
 		<!-- application css & js -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/style.css?version=${label.build.number}">
@@ -41,7 +42,7 @@
 		<script src="${pageContext.request.contextPath}/Static/js/dialogbox.js?version=${label.build.number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/script.js?version=${label.build.number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/productList.js?version=${label.build.number}"></script>
-		<script src="${pageContext.request.contextPath}/Static/js/jquery-ui.min.js"></script>
+		
 			
 	</head>
 	<body class="body-pages">

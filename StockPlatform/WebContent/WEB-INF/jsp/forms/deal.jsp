@@ -43,6 +43,22 @@
 				            <label for="partnerName">${label.deal.partnerName}</label>
 				            <input type="text" name="partnerAddress.company.name" disabled/>
 				            <div class="partner-mark"></div>
+		            		<div class="reviewStarsDeal">
+							    <input id="star-5" type="radio" name="reviewStars" disabled>
+							    <label title="gorgeous" for="star-5"></label>
+						
+							    <input id="star-4" type="radio" name="reviewStars" disabled>
+							    <label title="good" for="star-4"></label>
+							
+							    <input id="star-3" type="radio" name="reviewStars" checked disabled>
+							    <label title="regular" for="star-3"></label>
+							
+							    <input id="star-2" type="radio" name="reviewStars" disabled>
+							    <label title="poor" for="star-2"></label>
+							
+							    <input id="star-1" type="radio" name="reviewStars" disabled>
+							    <label title="bad" for="star-1"></label>
+							</div>
 				        </li>
 	
 				        <li>

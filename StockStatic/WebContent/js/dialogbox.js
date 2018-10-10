@@ -63,6 +63,9 @@ function showDialog(params){
 		});
 		
 		loadData();
+		if(params.afterLoad){
+			params.afterLoad();
+		}
 		
 		function addButton($listelement, buttonDef){
 			var $button;
@@ -131,5 +134,5 @@ function showDialog(params){
 		}
 		return params;
 	}
-}		
- 
+
+}

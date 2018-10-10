@@ -130,8 +130,31 @@ function getAccountDialogParams(id){
 				text: l10n.translate("label.button.save"),
 				id:"save",
 				submitUrl: "/account/json/Save.spr"
-			}]
-	};	
+			}],
+		afterLoad:selectLanguages
+	};
+	
+	function selectLanguages(){
+	    $.widget( "custom.iconselectmenu", $.ui.selectmenu, {
+		      _renderItem: function( ul, item ) {
+		        var li = $( "<li>" ),
+		          wrapper = $( "<div>", { text: item.label } );
+		        if ( item.disabled ) {li.addClass( "ui-state-disabled" );}
+		        $( "<span>", {style: item.element.attr( "data-style" ),"class": "ui-icon " + item.element.attr( "data-class" )
+		        }).appendTo( wrapper );
+		        return li.append( wrapper ).appendTo( ul );
+		      }
+		    });
+		    $("#languages-select").iconselectmenu().iconselectmenu("menuWidget").addClass("ui-menu-icons customicons");
+		    var selectedImage = $("#languages-select").find("option:selected").attr("data-class");
+		    $(".ui-selectmenu-text").css('background-image', 'url("/Static/img/' + selectedImage +'.png")');
+		    $( "#languages-select" ).iconselectmenu({
+		    	select: function(event, ui){
+			        var selectedImage = $(this).find("option:selected").attr("data-class");
+			        $(".ui-selectmenu-text").css('background-image', 'url("/Static/img/' + selectedImage +'.png")');
+		    	}
+		    });
+	}
 }
 
 function getContactUsDialogParams(){

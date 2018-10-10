@@ -1,8 +1,7 @@
 $(document).ready(function(){
 	
-	if($("select").is("#languages-select")) {
-		$( function() {
-		    $.widget( "custom.iconselectmenu", $.ui.selectmenu, {
+	function selectLanguages(){
+	    $.widget( "custom.iconselectmenu", $.ui.selectmenu, {
 		      _renderItem: function( ul, item ) {
 		        var li = $( "<li>" ),
 		          wrapper = $( "<div>", { text: item.label } );
@@ -13,19 +12,22 @@ $(document).ready(function(){
 		      }
 		    });
 		    $("#languages-select").iconselectmenu().iconselectmenu("menuWidget").addClass("ui-menu-icons customicons");
-		    var selectedImage = $(this).find("option:selected").attr("data-class");
+		    var selectedImage = $("#languages-select").find("option:selected").attr("data-class");
 		    $(".ui-selectmenu-text").css('background-image', 'url("/Static/img/' + selectedImage +'.png")');
 		    $( "#languages-select" ).iconselectmenu({
-		    	select: function(event, ui){ 
+		    	select: function(event, ui){
 			        var selectedImage = $(this).find("option:selected").attr("data-class");
 			        $(".ui-selectmenu-text").css('background-image', 'url("/Static/img/' + selectedImage +'.png")');
 			        changeLanguage();
 		    	}
 		    });
-		});
 	}
 	
-	if($('select').is('.gallery')) {
+	if($("select").is("#languages-select")) {
+		selectLanguages();
+	}
+	
+	if($('div').is('.gallery')) {
 		baguetteBox.run('.gallery', {
 			captions: false
 		});
@@ -145,5 +147,5 @@ $(document).ready(function(){
 		    scrollTop: 0
 			}, 500, function(){
 		});
-	});
+	});	
 });

@@ -286,6 +286,9 @@ h3 {
 	padding-bottom: 20px;
 }
 .test-trading table.dataTable.display tbody tr:first-child td {
+	text-align: left;
+}
+.test-trading table.dataTable.display tbody tr:first-child td.dataTables_empty {
 	text-align: center;
 }
 .products h3,
@@ -1618,6 +1621,10 @@ button:hover,
     background-image: url(/Static/img/remove-trash-can.png);
     background-image: url(/Static/img/remove-trash-can.png);
     background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
     background-size: auto 75%;
     background-repeat: no-repeat;
     background-position: center;
@@ -1625,6 +1632,10 @@ button:hover,
 }
 .remove:hover,
 .remove:active {
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
@@ -1915,7 +1926,8 @@ table.dataTable.no-footer,
 	padding: 9px 13px;
 }
 .contact-us-dialogbox .dialogbox-child .flex-input input,
-.contact-us-dialogbox textarea{
+.contact-us-dialogbox textarea,
+.dealFeedback-dialogbox textarea{
 	width: 340px;
 }
 .tender-dialogbox .dialogbox-child button,
@@ -1979,9 +1991,13 @@ table.dataTable>tbody>tr.child span {
 .success-message {
 	width: 316px;
     height: 42px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin-bottom: 15px;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     border-radius: 4px;
     background-color: rgba(15, 198, 104, 0.1);
     color: #0fc668;
@@ -2202,8 +2218,13 @@ table.dataTable>tbody>tr.child span {
 		width: 392px;
 	}
 	.contact-us-dialogbox .dialogbox-child .flex-input input, 
-	.contact-us-dialogbox textarea {
+	.contact-us-dialogbox textarea,
+	.dealFeedback-dialogbox textarea {
 		width: 445px;
+	}
+	.error-message,
+	.success-message {
+		width: 415px;
 	}
 }
 @media (max-width: 758px) {
@@ -2389,11 +2410,13 @@ table.dataTable>tbody>tr.child span {
 	.product-page .about-product {
 		top: 135px;
 	}
-	.error-message {
+	.error-message,
+	.success-message  {
     	width: 230px;
     }
     .contact-us-dialogbox .dialogbox-child .flex-input input,
-    .contact-us-dialogbox textarea {
+    .contact-us-dialogbox textarea,
+    .dealFeedback-dialogbox textarea {
     	width: 258px;
     }
 }
@@ -2455,4 +2478,104 @@ table.dataTable>tbody>tr.child span {
 	display: block;
     width: 100%;
     height: 100%;
+}
+       
+/*sprite with stars*/
+.reviewStarsFeed input:checked ~ label, 
+.reviewStarsFeed label, .reviewStarsFeed label:hover, 
+.reviewStarsFeed label:hover ~ label {
+  background: url('/Static/img/star.png') no-repeat;
+}
+.reviewStarsDeal input:checked ~ label, 
+.reviewStarsDeal label, .reviewStarsDeal label:hover, 
+.reviewStarsDeal label:hover ~ label {
+  background: url('/Static/img/star-min.png') no-repeat;
+}
+.reviewStarsFeed,
+.reviewStarsDeal {
+  overflow: hidden;
+  position: relative;
+  float: left;
+  margin: 20px 0 25px 0;
+}
+.reviewStarsDeal {
+	width: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    margin-top: 0;
+}
+.reviewStarsFeed input, 
+.reviewStarsDeal input {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+.reviewStarsFeed input:checked ~ label {
+    background-position: 0 -28px;
+    height: 28px;
+    width: 30px;
+}
+.reviewStarsDeal input:checked ~ label {
+    background-position: 0 -18px;
+    height: 19px;
+    width: 20px;
+}
+.reviewStarsFeed label,
+.reviewStarsDeal label {
+  background-position: 0 0;
+  float: right;
+  position: relative;
+  z-index: 1;
+}
+.reviewStarsFeed label {
+  background-position: 0 0;
+  height: 28px;
+  width: 30px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.reviewStarsDeal label {
+  background-position: 0 0;
+  height: 19px;
+  width: 20px;
+  cursor: default;
+  margin-right: 5px;
+}
+.reviewStarsFeed label:hover, 
+.reviewStarsFeed label:hover ~ label {
+  background-position: 0 -28px;
+  height: 28px;
+  width: 30px;
+}
+
+.account-dialogbox .languages {
+	width: 174px;
+	margin-right: 26px;
+}
+.account-dialogbox .languages .ui-selectmenu-button.ui-button {
+	width: 160px;
+    padding: 9px 3px;
+}
+@media (max-width: 1280px) {
+	.account-dialogbox .languages .ui-selectmenu-button.ui-button {
+		width: 465px;
+		padding: 15px 3px;
+		margin-bottom: 20px;
+	}
+}
+@media (max-width: 758px) {
+	.account-dialogbox .languages .ui-selectmenu-button.ui-button {
+		width: 280px;
+    	padding: 8px 3px;
+	}
 }
