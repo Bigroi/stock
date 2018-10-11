@@ -407,5 +407,10 @@
 	<update author="Evgeniy" date="10.10.2018">
 		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`) VALUES ('755', 'account', 'fb_unsuccess', 'The letter hasn\'t been sent', 'Письмо не было отправлено');
 	</update>
+	
+	<update author="Evgeniy" date="11.10.2018">
+		UPDATE `LABEL` SET `en_us`='Maximum volume less than minimum', `ru_Ru`='Максимальный объём  меньше минимального' WHERE  `id`=601;
+		UPDATE `LABEL` SET `en_us`='Maximum volume less than minimum' WHERE  `id`=665;
+	</update>
 </root>
 
