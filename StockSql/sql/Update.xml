@@ -412,5 +412,12 @@
 		UPDATE `LABEL` SET `en_us`='Maximum volume less than minimum', `ru_Ru`='Максимальный объём  меньше минимального' WHERE  `id`=601;
 		UPDATE `LABEL` SET `en_us`='Maximum volume less than minimum' WHERE  `id`=665;
 	</update>
+	
+	<update author="Evgeniy" date="14.10.2018">
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('lot', 'too_long_number', 'Too long number', 'Слишком длинное число');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('tender', 'too_long_number', 'Too long number', 'Слишком длинное число');
+		UPDATE `LABEL` SET `en_us`='Minimum volume less than 1' WHERE  `id`=610;
+		UPDATE `LABEL` SET `en_us`='Minimum volume less than 1' WHERE  `id`=675;
+	</update>
 </root>
 

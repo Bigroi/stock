@@ -26,6 +26,7 @@ import com.bigroi.stock.util.DateUtil;
 public abstract class BidResourceController<B extends Bid, U> extends BaseResourseController{
 	
 	private static final String LABEL_PREFIX = "label.";
+	//private static final String TOO_LONG_NUMBER = LABEL_PREFIX + getPropertyFileName() +".too_long_number";
 	
 	@Autowired
 	private AddressService addressService;
@@ -58,8 +59,15 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		return new ResultBean(1, table, null);
 	}
 
-	protected ResultBean saveBid(String json){
-		B bid = GsonUtil.getGson().fromJson(json, getBidClass());
+	protected ResultBean saveBid(String json) {
+		B bid = null;
+		try {
+			bid = GsonUtil.getGson().fromJson(json, getBidClass());
+		}finally {
+			if (bid == null) {
+				return new ResultBean(-1, LABEL_PREFIX + getPropertyFileName() +".too_long_number");
+			}
+		}
 		if (bid.getId() < 0) {
 			bid.setStatus(BidStatus.INACTIVE);
 		} else {
@@ -67,6 +75,7 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 			bid.setStatus(oldLot.getStatus());
 		}
 		return save(bid);
+
 	}
 	
 	protected ResultBean testSaveBid(String json){
@@ -78,7 +87,14 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 	}
 
 	protected ResultBean saveAndActivateBid(String json){
-		B bid = GsonUtil.getGson().fromJson(json, getBidClass());
+		B bid = null;
+		try {
+			bid = GsonUtil.getGson().fromJson(json, getBidClass());
+		}finally {
+			if (bid == null) {
+				return new ResultBean(-1, LABEL_PREFIX + getPropertyFileName() +".too_long_number");
+			}
+		}
 		bid.setStatus(BidStatus.ACTIVE);
 		return save(bid);
 	}
@@ -146,7 +162,7 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 			errors.add(LABEL_PREFIX + getPropertyFileName() + ".product_error");
 		}
 		if (bid.getMinVolume() < 1) {
-			errors.add(LABEL_PREFIX + getPropertyFileName() + ".minPrice_error");
+			errors.add(LABEL_PREFIX + getPropertyFileName() + ".minVolume_error");
 		}
 		if (bid.getMaxVolume() <= bid.getMinVolume()) {
 			errors.add(LABEL_PREFIX + getPropertyFileName() + ".maxVolume_error");
