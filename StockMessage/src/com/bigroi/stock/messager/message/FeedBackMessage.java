@@ -22,4 +22,9 @@ public class FeedBackMessage extends BaseMessage<FeedBack>{
 				"/n language: " + locale;
 	}
 	
+	@Override
+	protected String getSubject(String locale) {
+		return "message from user";
+	}
+	
 }
