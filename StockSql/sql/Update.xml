@@ -422,6 +422,7 @@
 	
 	<update author="Evgeniy" date="16.10.2018">
 		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('pageNames', 'myDeals', 'My deals', 'Список сделок');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('lot', 'too_big', 'File too big', 'Слишком большой файл');
 	</update>
 </root>
 
