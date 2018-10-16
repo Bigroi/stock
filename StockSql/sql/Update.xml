@@ -419,5 +419,9 @@
 		UPDATE `LABEL` SET `en_us`='Minimum volume less than 1' WHERE  `id`=610;
 		UPDATE `LABEL` SET `en_us`='Minimum volume less than 1' WHERE  `id`=675;
 	</update>
+	
+	<update author="Evgeniy" date="16.10.2018">
+		DELETE FROM `LABEL` WHERE  `id`=758;
+	</update>
 </root>
 
