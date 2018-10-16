@@ -421,7 +421,7 @@
 	</update>
 	
 	<update author="Evgeniy" date="16.10.2018">
-		DELETE FROM `LABEL` WHERE  `id`=758;
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('758', 'pageNames', 'myDeals', 'My deals', 'Список сделок');
 	</update>
 </root>
 
