@@ -422,5 +422,9 @@
 			('lot', 'too_big', 'File too big', 'Слишком большой файл', NULL),
 			('pageNames', 'myDeals', 'My deals', 'Список сделок', 'Lista umów');
 	</update>
+	
+	<update>
+		UPDATE `LABEL` SET `ru_Ru`='Отправить' WHERE  `id`=515;
+	</update>
 </root>
 
