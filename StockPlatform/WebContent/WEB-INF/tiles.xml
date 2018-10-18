@@ -73,6 +73,12 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/pages/products.jsp" />
 		<put-attribute name="thb-cls" value="thb" cascade="true"/>
 	</definition>
+	
+	<definition name="categories" extends="base-definition">
+		<put-attribute name="nav-products" value="active" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/pages/categories.jsp" />
+		<put-attribute name="add-button" value="/WEB-INF/jsp/templates/addButton.jsp" cascade="true"/>
+	</definition>
 
 	<definition name="productsForAdmin" extends="base-definition">
 		<put-attribute name="nav-productsExt" value="active" cascade="true"/>
@@ -131,6 +137,10 @@
 	
 	<definition name="productForm" extends="base-form-definition">
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/product.jsp" />
+	</definition>
+	
+	<definition name="categoryForm" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/categoryForm.jsp" />
 	</definition>
 	
 	<definition name="message" extends="base-form-definition">

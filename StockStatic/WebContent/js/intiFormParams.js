@@ -255,6 +255,36 @@ function getProductDialogParams(id, $table, model){
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model
+		},
+		{
+			text: l10n.translate("label.button.edit_categories"),
+			id:"delete",
+			submitUrl: "/product/json/admin/Categories.spr"
+		}]
+	};
+}
+
+function getProductCategoryDialogParams(id, $table, model){
+	return {
+		formUrl: "/category/Form.spr", 
+		formParams:{id:id, productId:$("input[name=productId]").val()},
+		formData: "/category/json/Get.spr",
+		dialogClass: "product-dialogbox",
+		buttons:[{
+			text: l10n.translate("label.button.save"),
+			id:"save",
+			submitUrl: "/category/json/Save.spr",
+			submitFunction: buttonCallbackWithTableUpdate,
+			table : $table, 
+			model : model
+		},
+		{
+			text: l10n.translate("label.button.delete"),
+			id:"delete",
+			submitUrl: "/category/json/Delete.spr",
+			submitFunction: buttonCallbackWithTableUpdate,
+			table : $table, 
+			model : model
 		}]
 	};
 }

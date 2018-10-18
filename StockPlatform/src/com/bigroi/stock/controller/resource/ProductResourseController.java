@@ -76,6 +76,14 @@ public class ProductResourseController extends BaseResourseController {
 		return new ResultBean(1, new ProductForUI(product), DELETE_SUCCESS_LABEL).toString();
 	}
 	
+	@RequestMapping("/admin/Categories.spr")
+	@ResponseBody
+	@Secured(value = {"ROLE_ADMIN"})
+	public String categories(@RequestParam("json") String json) {
+		Product product = GsonUtil.getGson().fromJson(json, Product.class);
+		return new ResultBean(0, "/category/List.spr?productId=" + product.getId(), null).toString();
+	}
+	
 	@RequestMapping("/TradeOffers.spr")
 	@ResponseBody
 	public String getTradeOffers(@RequestParam int productId) {

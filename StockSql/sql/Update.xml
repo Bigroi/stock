@@ -13,8 +13,123 @@
 			`pl_pl` varchar(500) DEFAULT NULL,
 			PRIMARY KEY (`id`)
 		) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=utf8;
+	</update>
+			
+	<update>
+		ALTER TABLE `COMPANY` ADD COLUMN `language` VARCHAR(50) NOT NULL DEFAULT 'en_US' AFTER `type`;
+	</update>
+	
+	<update>
+		ALTER TABLE `LABEL` CHANGE COLUMN `ru_by` `ru_Ru` VARCHAR(500) NULL DEFAULT NULL AFTER `en_us`;
+	</update> 
+
+	<update>
+		ALTER TABLE `LABEL` CHANGE COLUMN `pl_pl` `pl` VARCHAR(500) NULL DEFAULT NULL AFTER `ru_Ru`;
+	</update>
+	
+	<update>
+	</update>
+	
+	 <update>
+	</update> 
 		
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_by`, `pl_pl`) VALUES
+	<update author="Evgeniy">
+	</update>
+		
+	<update author="Evgeniy">
+	</update>
+	
+	<update author="Pavel" date="13.09.2018">
+	</update>
+	
+	<update author="Pavel" date="14.09.2018">	
+	</update>
+	
+	<update author="Evgeniy" date="14.09.2018">
+	</update>
+	
+	<update author="Evgeniy" date="18.09.2018">
+	</update>
+	
+	<update author="Pavel" date="18.09.2018">
+		ALTER TABLE `LOT` ADD COLUMN `distance` INT NULL AFTER `address_id`;
+		ALTER TABLE `TENDER` ADD COLUMN `distance` INT NULL AFTER `address_id`;
+		ALTER TABLE `TENDER` ADD COLUMN `packaging` VARCHAR(500) NULL AFTER `address_id`;
+		ALTER TABLE `TENDER` ADD COLUMN `processing` VARCHAR(500) NULL AFTER `packaging`;
+		ALTER TABLE `DEAL` ADD COLUMN `buyer_processing` VARCHAR(500) NULL DEFAULT NULL AFTER `buyer_description`;
+		ALTER TABLE `DEAL` ADD COLUMN `buyer_packaging` VARCHAR(500) NULL DEFAULT NULL AFTER `buyer_processing`;
+		ALTER TABLE `DEAL` ADD COLUMN `buyer_language` CHAR(10) NULL AFTER `buyer_packaging`;
+		ALTER TABLE `DEAL` ADD COLUMN `seller_language` CHAR(10) NULL AFTER `buyer_language`;
+		ALTER TABLE `DEAL` ADD COLUMN `buyer_email` VARCHAR(500) NULL AFTER `seller_language`;
+		ALTER TABLE `DEAL` ADD COLUMN `seller_email` VARCHAR(500) NULL AFTER `buyer_email`;
+		
+	</update>
+	
+	<update author="Pavel" date="23.09.2018">
+		CREATE TABLE `USER_COMMENT` (
+			`id` BIGINT NOT NULL AUTO_INCREMENT,
+			`compant_id` BIGINT NOT NULL,
+			`reporter_id` BIGINT NOT NULL,
+			`mark` TINYINT NOT NULL,
+			`comment` VARCHAR(1000) NOT NULL,
+			`comment_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			PRIMARY KEY (`id`)
+		)
+		COLLATE='utf8_general_ci';
+		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_USER_COMMENT_company` FOREIGN KEY (`compant_id`) REFERENCES `COMPANY` (`id`);
+		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_USER_COMMENT_company_2` FOREIGN KEY (`reporter_id`) REFERENCES `COMPANY` (`id`);		
+	</update>
+	
+	<update author="Pavel" date="23.09.2018">
+	</update>
+	<update author="Pavel" date="23.09.2018">
+	</update>
+	<update author="Pavel" date="23.09.2018">
+	</update>
+	
+	<update author="Evgeniy" date="25.09.2018">	
+	</update>
+	
+	 <update author="Evgeniy" date="27.09.2018">
+	</update>
+	
+	<update author="Evgeniy" date="27.09.2018">
+	</update> 
+	
+	<update author="Pavel" date="8.10.2018">
+		ALTER TABLE `USER_COMMENT` ADD COLUMN `deal_id` BIGINT NOT NULL AFTER `comment_date`;
+		ALTER TABLE `USER_COMMENT` CHANGE COLUMN `compant_id` `company_id` BIGINT(20) NOT NULL AFTER `id`;
+		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_user_comment_deal` FOREIGN KEY (`deal_id`) REFERENCES `DEAL` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+	</update>
+	
+	<update author="Evgeniy" date="10.10.2018">
+	</update>
+	
+	<update author="Evgeniy" date="11.10.2018">
+		UPDATE `LABEL` SET `en_us`='Maximum volume less than minimum', `ru_Ru`='Максимальный объём  меньше минимального' WHERE  `id`=601;
+		UPDATE `LABEL` SET `en_us`='Maximum volume less than minimum' WHERE  `id`=665;
+	</update>
+	
+	<update author="Evgeniy" date="14.10.2018">
+	</update>
+	
+	<update author="Evgeniy" date="16.10.2018">
+	</update>
+	
+	<update author="Pavel" date="16.10.2018">
+		CREATE TABLE `PRODUCT_CATEGORY` (
+			`id` BIGINT NOT NULL AUTO_INCREMENT,
+			`product_id` BIGINT NOT NULL,
+			`category_name` VARCHAR(500) NOT NULL,
+			`removed` char(1) NOT NULL,
+			PRIMARY KEY (`id`)
+		)
+		COLLATE='utf8_general_ci';
+		ALTER TABLE `PRODUCT_CATEGORY` ADD CONSTRAINT `FK_product_category_product` FOREIGN KEY (`product_id`) REFERENCES `PRODUCT` (`id`);
+	</update>
+	<update author="Pavel" date="16.10.2018">
+		DELETE FROM `LABEL`;
+		INSERT IGNORE INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES
 			('account', 'haveAcc', 'Do you have account?', 'Уже есть учетная запись?', 'Czy posiadasz już konto?'),
 			('account', 'password', 'Password', 'Пароль', 'Hasło	'),
 			('account', 'reg_number', 'Registration number', 'УНП', 'Numer rejestracji'),
@@ -28,7 +143,7 @@
 			('account', 'contact_us', 'Contact us', 'Напишите нам', 'Contact us'),
 			('account', 'message', 'Message', 'Сообщение', 'Wiadomość'),
 			('account', 'termsOfUse', 'terms of use', 'Условия пользования', 'warunki umowy'),
-			('account', 'login', 'Email', 'Enail', 'Email'),
+			('account', 'login', 'Email', 'Email', 'Email'),
 			('account', 'repeat_password', 'Repeat password', 'Пароль (повторить)', 'Powtórz hasło'),
 			('account', 'secondStepReg', 'Second step - address information', 'Второй шаг - Информация об адресе', 'Second step - address information'),
 			('account', 'edit', 'Account management', 'Управление аккаунтом', 'Account management'),
@@ -36,13 +151,13 @@
 			('account', 'fb_success', 'Message was sent to administrator', 'Сообщение было отправлено администратору', 'Message was sent to administrator'),
 			('account', 'email', 'Your email', 'Ваша почта', 'Twój email'),
 			('account', 'error_password', 'Passwords are not equal', 'Пароли не совпадают', 'Hasła się różnią'),
-			('account', 'phone_placeholder', '+48000000000', '+375290000000', '+48000000000'),
+			('account', 'phone_placeholder', '+48000000000', '+48000000000', '+48000000000'),
 			('account', 'reg_number_pattern', '^[0-9]{10}$', '^[0-9]{10}$', '^[0-9]{10}$'),
 			('account', 'country', 'Country', 'Страна', 'Kraj'),
 			('account', 'password_reset', 'Confirmation mail was sent', 'Письмо с подверждением выслано на вашу почту', 'Confirmation mail was sent'),
 			('account', 'send_Message', 'Send Message', 'Написать сообщение', 'Send Message'),
 			('account', 'city', 'City', 'Город', 'Miasto'),
-			('account', 'phone_pattern', '^+48[d-]{5,13}$', '^+375[d-]{5,13}$', '^+48[d-]{5,13}$'),
+			('account', 'phone_pattern', '^+48[d-]{5,13}$', '^+48[d-]{5,13}$', '^+48[d-]{5,13}$'),
 			('account', 'logHere', 'Log in here', 'Войти в систему', 'Zaloguj się tutaj'),
 			('address', 'not_authorized', 'This isn\'t your address', 'Это не ваш адрес', 'Podany adres nie należy do użytkownika'),
 			('address', 'not_default_address', 'Additional address', 'Дополнительный адрес', 'Adres dodatkowy'),
@@ -53,11 +168,11 @@
 			('address', 'title', 'Address', 'Адрес', 'Adres'),
 			('address', 'edit', 'Edit', 'Редактировать', 'Edycja'),
 			('address', 'address', 'Address', 'Адрес', 'Adres'),
-			('address', 'already_exists', 'Address is already exists', 'Адрес уже существует', 'Podany adres jest już wykorzystywany'),
+			('address', 'already_exists', 'Address is already exists', 'Адрес уже существует', NULL),
 			('build', 'number', '1', '1', '1'),
 			('button', 'start_trade_now', 'Start selling now', 'Начинайте продавать', 'Natychmiastowa sprzedaż'),
 			('button', 'trade', 'Trade', 'Сделка', NULL),
-			('button', 'send', 'Send message', 'Отпрвить', 'Wyślij wiadomość'),
+			('button', 'send', 'Send message', 'Отправить', 'Wyślij wiadomość'),
 			('button', 'start_buy_now', 'Start buying now', 'Начинайте покупать', 'Natychmiastowy zakup'),
 			('button', 'new_lot', 'New lot', 'Новый лот', NULL),
 			('button', 'create', 'New', 'Создать', 'Nowe'),
@@ -75,6 +190,11 @@
 			('button', 'delete', 'Delete', 'Удалить', 'Usuń'),
 			('button', 'reset', 'Reset', 'Сбросить', 'Zresetuj'),
 			('button', 'modify', 'Modify', 'Изменить', 'Modyfikuj'),
+			('button', 'edit_categories', 'To categories', 'К категориям', NULL),
+			('product_category', 'name', 'Name', 'Название', 'Nazwa'),
+			('product_category', 'archive', 'Archived', 'Архивный', 'Zarchiwizowano'),
+			('product_category', 'edit', 'Details', 'Детали', 'Szczegóły'),
+			('product_category', 'category_form', 'Product category', 'Категории продукта', NULL),
 			('companies', 'phone', 'Phone', 'Телефон', 'Telefon'),
 			('companies', 'status', 'Status', 'Статус', 'Status'),
 			('companies', 'name', 'Name', 'Имя', 'Nazwa'),
@@ -99,42 +219,42 @@
 			('deal', 'partnerAddress', 'Partner address', 'Адрес партнёра', 'Adres strony umowy'),
 			('deal', 'approve', 'Approve', 'Подтвердить', 'Zatwierdź'),
 			('index', 'about_your_trader', 'About YourTrader', 'О YourTrader', 'O platformie YourTrader'),
-			('index', 'buyer', 'Buyer', 'Покупатель', 'Kontrahent'),
+			('index', 'buyer', 'Buyer', 'Покупатель', 'Zamawiający'),
 			('index', 'convenient_title', 'Convenient', 'Удобство', 'Dogodny'),
-			('index', 'for_buyers_li3', 'Define min volume of a single delivery', 'Выберите минимальный объём 1 поставки', 'Define min volume of a single delivery'),
-			('index', 'for_buyers_li2', 'Define total volume you need', 'Выберите необходимы вам объём', 'Define total volume you need'),
+			('index', 'for_buyers_li3', 'Define min volume of a single delivery', 'Выберите минимальный объём 1 поставки', 'Podaj minimum logistyczne dla pojedyńczego zamówienia'),
+			('index', 'for_buyers_li2', 'Define total volume you need', 'Выберите необходимы вам объём', 'Podaj całkowitą wielkość zamówienia, które chcesz złożyć'),
 			('index', 'farmer', 'Supplier', 'Производитель', 'Producent rolny'),
 			('index', 'trust_title', 'Trusted partners', 'Проверенные партнёры', 'Zaufani kontrahenci'),
-			('index', 'for_buyers_li1', 'Define max price of the goods', 'Выберите максимальную цену на товар', 'Define max price of the goods'),
-			('index', 'convenient_description', 'Eysy and user friendly interface allows you to find a partner in few clicks', 'Наш простой и удобный интерейс позволит вам находить партнёров всего в несколько кликов', 'Intuicyjny i przyjazny użytkownikowi interfejs pozwala na znalazienie drugiej strony umowy za pomocą kilku kliknięć'),
-			('index', 'sell', 'Sell', 'Продать', 'Sell'),
-			('index', 'buy', 'Buy', 'Купить', 'Buy'),
-			('index', 'responsive_description', 'We are thinking about you and propose you modern and user friendly interface. Where ever you are we are always with you!', 'Мы думаем о Вас и предоставляем современный и удобный интерфейс. Дома, в дороге или в поле, где бы Вы ни были мы всегда будем с Вами!', 'We are thinking about you and propose you modern and user friendly interface. Where ever you are we are always with you!'),
-			('index', 'trust_description', 'We save you from unscrupulous sellers or buyers', 'Мы оберегаем вас от недобросовестных продавцов и покупателей', 'Zapewniamy ochronę przed nieskrupulatnymi producentami rolnymi i kontrahentami'),
+			('index', 'for_buyers_li1', 'Define max price of the goods', 'Выберите максимальную цену на товар', 'Podaj maksymalną cenę dla produktów, które chcesz nabyć'),
+			('index', 'convenient_description', 'Eysy and user friendly interface allows you to find a partner in few clicks', 'Наш простой и удобный интерейс позволит вам находить партнёров всего в несколько кликов', 'Intuicyjny i przyjazny użytkownikowi interfejs umożliwia znalezienie kontrahenta za pomocą kilku kliknięć'),
+			('index', 'sell', 'Sell', 'Продать', 'Sprzedaj'),
+			('index', 'buy', 'Buy', 'Купить', 'Kup'),
+			('index', 'responsive_description', 'We are thinking about you and propose you modern and user friendly interface. Where ever you are we are always with you!', 'Мы думаем о Вас и предоставляем современный и удобный интерфейс. Дома, в дороге или в поле, где бы Вы ни были мы всегда будем с Вами!', 'Zależy nam na Tobie, dlatego oferujemy nowoczesną i przyjazną w obsłudze platformę. Dokądkolwiek się udasz, będziemy tam z Tobą!'),
+			('index', 'trust_description', 'We save you from unscrupulous sellers or buyers', 'Мы оберегаем вас от недобросовестных продавцов и покупателей', 'Zapewniamy ochronę przed nieskrupulatnymi kontrahentami'),
 			('index', 'phone', '000 00 00', '000 00 00', '000 00 00'),
 			('index', 'description_title', 'Description', 'Описание', 'Opis'),
 			('index', 'responsive_title', 'Responsive platform', 'Адаптивная патформа', 'Responsywna platforma'),
 			('index', 'description', 'If you want to find trade partner for a product, this platform will make your life easier', 'Елси вы хотите найти покупателя или продавца нужного Вам товара, то этот сайт упростит вам жизнь', 'Jeśli chcesz znaleźć partnera handlowego swojego produktu, nasza platforma ułatwi Ci życie'),
-			('index', 'speed_description', 'Our main goal is to find your trade partner as fast as possible', 'Наша главная цель - найти вам торгового партнёра максимально быстро', 'Naszym głównym celem jest znaleźć Tobie kontrahenta najszybciej jak to możliwe'),
+			('index', 'speed_description', 'Our main goal is to find your trade partner as fast as possible', 'Наша главная цель - найти вам торгового партнёра максимально быстро', 'Naszym głównym celem jest pomoc w znalezieniu kontrahenta najszybciej jak to możliwe'),
 			('index', 'deal_title', 'Best prices', 'Лучшие цены', 'Najlepsze ceny'),
 			('index', 'speed_title', 'Trade speed', 'Скорость продажи', 'Prędkość transakcji'),
-			('index', 'for_farmers', 'For suppliers', 'Производителям', 'For suppliers'),
+			('index', 'for_farmers', 'For suppliers', 'Производителям', 'Dla producentów rolnych'),
 			('index', 'copyright', '© 2018, YourTrader', '© 2018, YourTrader', '© 2018, YourTrader'),
 			('index', 'regestrate_as_buyer', 'Or ', 'Или ', 'lub '),
 			('index', 'email', 'stock@info.com', 'stock@info.com', 'stock@info.com'),
 			('index', 'products', 'Products', 'Продукты', 'Produkty'),
 			('index', 'phone_prefix', '+375 (29) ', '+375 (29) ', '+375 (29) '),
-			('index', 'for_farmers_li3', 'Define min volume of a deal', 'Выберете минимальный обём сделки', 'Define min volume of a deal'),
+			('index', 'for_farmers_li3', 'Define min volume of a deal', 'Выберете минимальный обём сделки', 'Podaj minimum logistyczne dla umowy'),
 			('index', 'for_whom', 'For whom', 'Для кого', 'Dla kogo'),
-			('index', 'for_farmers_li2', 'Define total volume of you goods', 'Выберите объём вашей продукции', 'Define total volume of you goods'),
-			('index', 'for_farmers_li1', 'Define min price of your goods', 'Выберите минимальную цену ', 'Define min price of your goods'),
+			('index', 'for_farmers_li2', 'Define total volume of you goods', 'Выберите объём вашей продукции', 'Podaj całkowitą wielkość twojej oferty'),
+			('index', 'for_farmers_li1', 'Define min price of your goods', 'Выберите минимальную цену ', 'Podaj minimalną cenę dla twoich produktów'),
 			('index', 'try_it_now', 'Try it now', 'Попробуйте прямо сейчас', NULL),
-			('index', 'average_price', 'Average price, $', 'Средняя цена, $', 'Average price, $'),
+			('index', 'average_price', 'Average price, zł', 'Средняя цена, зл', 'Średnia cena, zł'),
 			('index', 'benefits', 'Benefits', 'Преимущества', 'Zalety'),
-			('index', 'for_buyers', 'For buyers', 'Покупателям', 'For buyers'),
-			('index', 'deal_description', 'We are looking for your partners with best prices and minimum transport costs', 'Мы ищем партнёров для вас с лучшими ценами и минимальными транспортными расходами', 'Wyszukujemy Tobie kontrahentów z najlepszymi cenami i najniższymi kosztami transportu'),
+			('index', 'for_buyers', 'For buyers', 'Покупателям', 'Dla zamawiających'),
+			('index', 'deal_description', 'We are looking for your partners with best prices and minimum transport costs', 'Мы ищем партнёров для вас с лучшими ценами и минимальными транспортными расходами', 'Pomagamy znaleźć kontrahentów z najlepszymi cenami i najniższymi kosztami transportu'),
 			('index', 'regestrate_as_farmer', 'Registrate like', 'Регистрируйтесь как', 'Zarejestruj jako'),
-			('index', 'requests_volume', 'Requests volume, kg', 'Объём заявок, кг', 'Requests volume, kg'),
+			('index', 'requests_volume', 'Requests volume, kg', 'Объём заявок, кг', 'Wielkość zamówienia, kg'),
 			('login', 'login', 'Login', 'Логин', 'Login'),
 			('login', 'loginResetForm', 'Password reset', 'Сбросить пароль', 'Zresetuj hasło'),
 			('login', 'password', 'Password', 'Пароль', 'Hasło'),
@@ -143,7 +263,7 @@
 			('login', 'dontHaveAcc', 'Don’t have an account?', 'У вас нет учетной записи?', 'Nie masz konta?'),
 			('login', 'loginAgain', 'Please, login once again', 'Пожалуйста, авторизуйтесь заново', 'Proszę, spróbuj ponownie!'),
 			('login', 'loginForm', 'Enter to Your Trader! ', 'Вход в  Universal Stock Belarus ', 'Zaloguj do YourTrader! '),
-			('lot', 'maxVolume_error', 'Min volume is less than 1', 'Максимальный объём меньше минимального', 'Minimum logistyczne wynosi mniej niż 1'),
+			('lot', 'maxVolume_error', 'Maximum volume less than minimum', 'Максимальный объём  меньше минимального', 'Minimum logistyczne wynosi mniej niż 1'),
 			('lot', 'product_error', 'Product is not selected', 'Продукт не выбран', 'Nie wybrano produktu'),
 			('lot', 'lotForm', 'Sell request', 'Заявка на продажу', 'Oferta sprzedaży'),
 			('lot', 'max_volume', 'Total volume, kg', 'Максимальный объем, кг', 'Łączna ilość, kg'),
@@ -151,8 +271,8 @@
 			('lot', 'status', 'Status', 'Статус', 'Status'),
 			('lot', 'expDate_error', 'Lot is expired', 'Лот просрочен.', 'Partia przeterminowana'),
 			('lot', 'min_volume', 'Min delivery volume, kg', 'Минимальный объем, кг', 'Minimum logistyczne, kg'),
-			('lot', 'exp_date', 'Valid till ', 'Активна до ', 'Valid till '),
-			('lot', 'minVolume_error', NULL, 'Минимальный объём меньше 1', NULL),
+			('lot', 'exp_date', 'Valid till ', 'Активна до ', 'Obowiązuje do '),
+			('lot', 'minVolume_error', 'Minimum volume less than 1', 'Минимальный объём меньше 1', NULL),
 			('lot', 'list', 'Select from the list', 'Выберите из списка', 'Wybierz z listy'),
 			('lot', 'price_error', 'Price is less than 0.01', 'Цена меньше 0.01', 'Cena wynosi mniej niż 0.01'),
 			('lot', 'min_price', 'Min price, $', 'Минимальная цена, р', 'Cena minimalna, zł'),
@@ -207,7 +327,7 @@
 			('table', 'details', 'Details', 'Детали', 'Szczegóły'),
 			('table', 'info', 'Record from _START_ to _END_ from _TOTAL_', 'Показаны записи с _START_ по _END_ из _TOTAL_', 'Record from _START_ to _END_ from _TOTAL_'),
 			('table', 'loadingRecords', 'Loading...', 'Загрузка...', 'Ładowanie...'),
-			('tender', 'maxVolume_error', 'Min volume is less than 1', 'Максимальный объём меньше минимального', 'Minimum logistyczne wynosi mniej niż 1'),
+			('tender', 'maxVolume_error', 'Maximum volume less than minimum', 'Максимальный объём меньше минимального', 'Minimum logistyczne wynosi mniej niż 1'),
 			('tender', 'product_error', 'Product is not selected', 'Продукт не выбран', 'Produkt nie został wybrany'),
 			('tender', 'max_volume', 'Total volume, kg', 'Максимальный объем, кг', 'Całkowity rozmiar, kg'),
 			('tender', 'creation_date', 'Creation date', 'Дата создания', 'Data utworzenia'),
@@ -217,7 +337,7 @@
 			('tender', 'min_volume', 'Min delivery volume, kg', 'Минимальный объем, кг', 'Minimum logistyczne, kg'),
 			('tender', 'tenderForm', 'Buy request', 'Заявка на покупку', 'Oferta sprzedaży'),
 			('tender', 'exp_date', 'Valid till', 'Активна до', 'Ważne do'),
-			('tender', 'minVolume_error', NULL, 'Минимальный объём меньше 1', NULL),
+			('tender', 'minVolume_error', 'Minimum volume less than 1', 'Минимальный объём меньше 1', NULL),
 			('tender', 'list', 'Select from the list', 'Выберите из списка', 'Wybierz z listy'),
 			('tender', 'price_error', 'Price is less than 0.01', 'Цена меньше 0.01', 'Cena wynosi mniej niż 0.01'),
 			('tender', 'address', 'Address', 'Адрес', 'Adres'),
@@ -229,17 +349,16 @@
 			('tradeOffers', 'graph_title', 'requests graph', 'Гафик заявок', 'wykres ofert'),
 			('user', 'not_found', 'Login or password is incorrect', 'Логин или пароль неверны', 'Login i hasło są niepoprawne'),
 			('pageNames', 'lotForm', 'lot', 'Лот', 'Grupa'),
-			('pageNames', 'addressForm', 'Editing an address', 'Редактирование адреса', 'Edycja adresu'),
+			('pageNames', 'addressForm', 'Editing an address', 'Редактирование адреса', NULL),
 			('pageNames', 'session', 'Your session is expired', 'Ваша сеесия закончилась', 'Sesja wygasła'),
 			('pageNames', 'products', 'Product list', 'Список продуктов Биржи', 'Lista produktów'),
 			('pageNames', 'myAddresses', 'Address list', 'Список адресов', 'Książka adresowa'),
-			('pageNames', 'account', 'Account', 'Управление аккаунтом', 'Konto'),
+			('pageNames', 'account', 'Account', 'Управление аккаунтом', NULL),
 			('pageNames', 'checkPassw', 'Add a user', 'Добавление пользователя', 'Dodaj użytkownika'),
 			('pageNames', 'registration', 'Registration', 'Регистрация', 'Rejestracja'),
 			('pageNames', 'myTenders', 'Tender request list', 'Список моих тендеров', 'Lista zaproszeń do przetargów'),
 			('pageNames', 'productsForAdmin', 'Product list for admin', 'Редактирование продуктов', 'Lista produktów dla administratora'),
 			('pageNames', 'index', '', '', ''),
-			('pageNames', 'myDeals', NULL, 'Список сделок', NULL),
 			('pageNames', 'productForm', 'Product', 'Продукт', 'Produkt'),
 			('pageNames', 'deal', 'Deal details', 'Детали сделки', 'Szczegóły umowy'),
 			('pageNames', 'tenderForm', 'Tender', 'Тендер', 'Przetarg'),
@@ -250,179 +369,58 @@
 			('pageNames', 'tradeOffers', 'Trade offers', 'Спрос и предложение', 'Oferty handlowe'),
 			('pageNames', 'companies', 'Company list', 'Список компаний', 'Lista firm'),
 			('deal', 'transporе', 'Need a transport', NULL, 'Znajdź transport'),
-			('pageNames', 'myDelas', 'Deal list', NULL, 'Lista umów');
-	</update>
-	
-	<update>
-		ALTER TABLE `COMPANY` ADD COLUMN `language` VARCHAR(50) NOT NULL DEFAULT 'en_US' AFTER `type`;
-	</update>
-	
-	<update>
-		ALTER TABLE `LABEL` CHANGE COLUMN `ru_by` `ru_Ru` VARCHAR(500) NULL DEFAULT NULL AFTER `en_us`;
-	</update> 
-
-	<update>
-		ALTER TABLE `LABEL` CHANGE COLUMN `pl_pl` `pl` VARCHAR(500) NULL DEFAULT NULL AFTER `ru_Ru`;
-	</update>
-	
-	<update>
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('navigation', 'labels', 'Labels', 'Лейблы', 'Etykiety');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('labels', 'category', 'Category', 'Категория', 'Kategoria');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('labels', 'name', 'Name', 'Имя', 'Imię');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('labels', 'english', 'English', 'Английский', 'Angielski');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('labels', 'poland', 'Poland', 'Польский', 'Polski');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('labels', 'russian', 'Russian', 'Русский', 'Ruski');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('labels', 'edit', 'Edit', 'Редактировать', 'Edytuj');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('labels', 'labelForm', 'Edit lable', 'Редактирование лейблы', 'Edytowanie etykiety');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('pageNames', 'lables', 'Lables list', 'Список лейбл', 'Lista wytwórni płytowej');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('pageNames', 'testbg', 'Test platform', 'Тест платформы', 'Platforma testowa');
-	</update>
-	
-	 <update>
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('account', 'company_language', 'language', 'Язык', 'Język');
-	</update> 
-		
-	<update author="Evgeniy">
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('deal', 'sellerAddress', 'Seller address', 'Адрес продавца', 'Adres sprzedawcy'); 
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('deal', 'buyerAddrress', 'Buyer address', 'Адрес покупателя', 'Adres kupującego'); 
-	</update>
-		
-	<update author="Evgeniy">
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('pageNames', 'resetpassw', 'Password reset', 'Пароль сброшен', 'resetowanie hasła');
-	</update>
-	
-	<update author="Pavel" date="13.09.2018">
-		ALTER TABLE `LOT` CHANGE COLUMN `foto` `foto` LONGTEXT NULL DEFAULT NULL AFTER `exparation_date`;
-	</update>
-	
-	<update author="Pavel" date="14.09.2018">	
-		ALTER TABLE `DEAL` CHANGE COLUMN `seller_foto` `seller_foto` LONGTEXT NULL DEFAULT NULL COLLATE 'utf8_bin' AFTER `product_id`;
-	</update>
-	
-	<update author="Evgeniy" date="14.09.2018">
-		ALTER TABLE `PRODUCT` DROP COLUMN `description`;
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('Apple', 'name', 'Apple', 'Яблоко', 'Jabłko');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('Potato', 'name', 'Potato', 'Картофель', 'Ziemniaki');
-	</update>
-	
-	<update author="Evgeniy" date="18.09.2018">
-		 INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('description', 'aboutApple', 
-		 'The fruit of apple, which is eaten fresh, serves as a raw material in cooking and for making drinks.', 
-		 'Плод яблони, который употребляется в пищу в свежем виде, служит сырьём в кулинарии и для приготовления напитков.', 
-		 'Owoce jabłka, które są świeże, służą jako surowiec do gotowania i do przyrządzania napojów.');
-		 
-		 INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('description', 'aboutPotato', 
-		 'Potato tubers are an important food product. Fruits are poisonous, due to the content of solanine in them.', 
-		 'Клубни картофеля являются важным пищевым продуктом. Плоды ядовиты, в связи с содержанием в них соланина.', 
-		 'Bulwy ziemniaka są ważnym produktem żywnościowym. Owoce są trujące, ze względu na zawartość solaniny w nich.');
-	</update>
-	
-	<update author="Pavel" date="18.09.2018">
-		ALTER TABLE `LOT` ADD COLUMN `distance` INT NULL AFTER `address_id`;
-		ALTER TABLE `TENDER` ADD COLUMN `distance` INT NULL AFTER `address_id`;
-		ALTER TABLE `TENDER` ADD COLUMN `packaging` VARCHAR(500) NULL AFTER `address_id`;
-		ALTER TABLE `TENDER` ADD COLUMN `processing` VARCHAR(500) NULL AFTER `packaging`;
-		ALTER TABLE `DEAL` ADD COLUMN `buyer_processing` VARCHAR(500) NULL DEFAULT NULL AFTER `buyer_description`;
-		ALTER TABLE `DEAL` ADD COLUMN `buyer_packaging` VARCHAR(500) NULL DEFAULT NULL AFTER `buyer_processing`;
-		ALTER TABLE `DEAL` ADD COLUMN `buyer_language` CHAR(10) NULL AFTER `buyer_packaging`;
-		ALTER TABLE `DEAL` ADD COLUMN `seller_language` CHAR(10) NULL AFTER `buyer_language`;
-		ALTER TABLE `DEAL` ADD COLUMN `buyer_email` VARCHAR(500) NULL AFTER `seller_language`;
-		ALTER TABLE `DEAL` ADD COLUMN `seller_email` VARCHAR(500) NULL AFTER `buyer_email`;
-		
-	</update>
-	
-	<update author="Pavel" date="23.09.2018">
-		CREATE TABLE `USER_COMMENT` (
-			`id` BIGINT NOT NULL AUTO_INCREMENT,
-			`compant_id` BIGINT NOT NULL,
-			`reporter_id` BIGINT NOT NULL,
-			`mark` TINYINT NOT NULL,
-			`comment` VARCHAR(1000) NOT NULL,
-			`comment_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-			PRIMARY KEY (`id`)
-		)
-		COLLATE='utf8_general_ci';
-		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_USER_COMMENT_company` FOREIGN KEY (`compant_id`) REFERENCES `COMPANY` (`id`);
-		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_USER_COMMENT_company_2` FOREIGN KEY (`reporter_id`) REFERENCES `COMPANY` (`id`);		
-	</update>
-	
-	<update author="Pavel" date="23.09.2018">
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, pl) VALUES ('lang', 'pl', 'Polski', 'Polski', 'Polski');
-	</update>
-	<update author="Pavel" date="23.09.2018">
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, pl) VALUES ('lang', 'ru_ru', 'Русский', 'Русский', 'Русский');
-	</update>
-	<update author="Pavel" date="23.09.2018">
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, pl) VALUES ('lang', 'en_us', 'English', 'English', 'English');
-	</update>
-	
-	<update author="Evgeniy" date="25.09.2018">	
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('button', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne');	
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('deal', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('comment', 'mark', 'Mark', 'Оценка', 'Ocena');	
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('comment', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne');
-	</update>
-	
-	 <update author="Evgeniy" date="27.09.2018">
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('comment', 'comment', 'Сomment', 'Комментарий');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('comment', 'date', 'Date', 'Дата');
-	</update>
-	
-	<update author="Evgeniy" date="27.09.2018">
-		
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('lot', 'foto', 'Foto', 'Фото');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('lot', 'distance', 'Distance', 'Расстояние');
-		
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('lot', 'distance_any', '30000', '30000', '30000');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('lot', 'distance_400', '400', '400', '400');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('lot', 'distance_200', '200', '200', '200');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('lot', 'distance_100', '100', '100', '100');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('lot', 'distance_40', '40', '40', '40');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('distance', 'distance_0', '0', '0', '0');
-		
-		
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('tender', 'distance_any', '30000', '30000', '30000');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('tender', 'distance_400', '400', '400', '400');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('tender', 'distance_200', '200', '200', '200');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('tender', 'distance_100', '100', '100', '100');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('tender', 'distance_40', '40', '40', '40');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES ('tender', 'distance_0', '0', '0', '0');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('tender', 'distance', 'Distance', 'Расстояние');
-		
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('tender', 'packaging', 'Packaging', 'Упаковка');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('tender', 'processing', 'Processing', 'Обработка');
-		
-		DELETE FROM `LABEL` WHERE  `id`=461;
-		UPDATE `LABEL` SET `name`='mydeals' WHERE  `id`=472;
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('label', 'on_approve', 'On approve', 'На подтверждении');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('deal', 'sellerfoto', 'Seller foto', 'Фото продавца');
-	</update> 
-	
-	<update author="Pavel" date="8.10.2018">
-		ALTER TABLE `USER_COMMENT` ADD COLUMN `deal_id` BIGINT NOT NULL AFTER `comment_date`;
-		ALTER TABLE `USER_COMMENT` CHANGE COLUMN `compant_id` `company_id` BIGINT(20) NOT NULL AFTER `id`;
-		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_user_comment_deal` FOREIGN KEY (`deal_id`) REFERENCES `DEAL` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
-	</update>
-	
-	<update author="Evgeniy" date="10.10.2018">
-		INSERT INTO `LABEL` (`id`, `category`, `name`, `en_us`, `ru_Ru`) VALUES ('755', 'account', 'fb_unsuccess', 'The letter hasn\'t been sent', 'Письмо не было отправлено');
-	</update>
-	
-	<update author="Evgeniy" date="11.10.2018">
-		UPDATE `LABEL` SET `en_us`='Maximum volume less than minimum', `ru_Ru`='Максимальный объём  меньше минимального' WHERE  `id`=601;
-		UPDATE `LABEL` SET `en_us`='Maximum volume less than minimum' WHERE  `id`=665;
-	</update>
-	
-	<update author="Evgeniy" date="14.10.2018">
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('lot', 'too_long_number', 'Too long number', 'Слишком длинное число');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('tender', 'too_long_number', 'Too long number', 'Слишком длинное число');
-		UPDATE `LABEL` SET `en_us`='Minimum volume less than 1' WHERE  `id`=610;
-		UPDATE `LABEL` SET `en_us`='Minimum volume less than 1' WHERE  `id`=675;
-	</update>
-	
-	<update author="Evgeniy" date="16.10.2018">
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('pageNames', 'myDeals', 'My deals', 'Список сделок');
-		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES ('lot', 'too_big', 'File too big', 'Слишком большой файл');
+			('pageNames', 'myDelas', 'Deal list', NULL, 'Lista umów'),
+			('navigation', 'labels', 'Labels', 'Лейблы', 'Etykiety'),
+			('labels', 'category', 'Category', 'Категория', 'Kategoria'),
+			('labels', 'name', 'Name', 'Имя', 'Imię'),
+			('labels', 'english', 'English', 'Английский', 'Angielski'),
+			('labels', 'poland', 'Poland', 'Польский', 'Polski'),
+			('labels', 'russian', 'Russian', 'Русский', 'Ruski'),
+			('labels', 'edit', 'Edit', 'Редактировать', 'Edytuj'),
+			('labels', 'labelForm', 'Edit lable', 'Редактирование лейблы', 'Edytowanie etykiety'),
+			('pageNames', 'lables', 'Lables list', 'Список лейбл', 'Lista wytwórni płytowej'),
+			('pageNames', 'testbg', 'Test platform', 'Тест платформы', 'Platforma testowa'),
+			('account', 'company_language', 'language', 'Язык', 'Język'),
+			('deal', 'sellerAddress', 'Seller address', 'Адрес продавца', 'Adres sprzedawcy'),
+			('deal', 'buyerAddrress', 'Buyer address', 'Адрес покупателя', 'Adres kupującego'),
+			('pageNames', 'resetpassw', 'Password reset', 'Пароль сброшен', 'resetowanie hasła'),
+			('Apple', 'name', 'Apple', 'Яблоко', 'Jabłko'),
+			('Potato', 'name', 'Potato', 'Картофель', 'Ziemniaki'),
+			('description', 'aboutApple', 'The fruit of apple, which is eaten fresh, serves as a raw material in cooking and for making drinks.', 'Плод яблони, который употребляется в пищу в свежем виде, служит сырьём в кулинарии и для приготовления напитков.', 'Owoce jabłka, które są świeże, służą jako surowiec do gotowania i do przyrządzania napojów.'),
+			('description', 'aboutPotato', 'Potato tubers are an important food product. Fruits are poisonous, due to the content of solanine in them.', 'Клубни картофеля являются важным пищевым продуктом. Плоды ядовиты, в связи с содержанием в них соланина.', 'Bulwy ziemniaka są ważnym produktem żywnościowym. Owoce są trujące, ze względu na zawartość solaniny w nich.'),
+			('lang', 'pl', 'Polski', 'Polski', 'Polski'),
+			('lang', 'ru_ru', 'Русский', 'Русский', 'Русский'),
+			('lang', 'en_us', 'English', 'English', 'English'),
+			('button', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne'),
+			('deal', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne'),
+			('comment', 'mark', 'Mark', 'Оценка', 'Ocena'),
+			('comment', 'feedback', 'Feedback', 'Отзыв', 'Informacje zwrotne'),
+			('comment', 'comment', 'Сomment', 'Комментарий', NULL),
+			('comment', 'date', 'Date', 'Дата', NULL),
+			('lot', 'foto', 'Foto', 'Фото', NULL),
+			('lot', 'distance', 'Distance', 'Расстояние', NULL),
+			('lot', 'distance_any', 'Any', 'Любая', NULL),
+			('lot', 'distance_400', '400', '400', '400'),
+			('lot', 'distance_200', '200', '200', '200'),
+			('lot', 'distance_100', '100', '100', '100'),
+			('lot', 'distance_40', '40', '40', '40'),
+			('distance', 'distance_0', 'No delivery', 'Нед доставки', NULL),
+			('tender', 'distance_any', 'Any', 'Любая', NULL),
+			('tender', 'distance_400', '400', '400', '400'),
+			('tender', 'distance_200', '200', '200', '200'),
+			('tender', 'distance_100', '100', '100', '100'),
+			('tender', 'distance_40', '40', '40', '40'),
+			('tender', 'distance_0', 'No delivery', 'Нед доставки', NULL),
+			('tender', 'distance', 'Distance', 'Расстояние', NULL),
+			('tender', 'packaging', 'Packaging', 'Упаковка', NULL),
+			('tender', 'processing', 'Processing', 'Обработка', NULL),
+			('label', 'on_approve', 'On approve', 'На подтверждении', NULL),
+			('deal', 'sellerfoto', 'Seller foto', 'Фото продавца', NULL),
+			('account', 'fb_unsuccess', 'The letter hasn\'t been sent', 'Письмо не было отправлено', NULL),
+			('lot', 'too_long_number', 'Too long number', 'Слишком длинное число', NULL),
+			('tender', 'too_long_number', 'Too long number', 'Слишком длинное число', NULL),
+			('lot', 'too_big', 'File too big', 'Слишком большой файл', NULL),
+			('pageNames', 'myDeals', 'My deals', 'Список сделок', 'Lista umów');
 	</update>
 </root>
 
