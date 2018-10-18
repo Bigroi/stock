@@ -116,6 +116,9 @@
 	<update author="Evgeniy" date="16.10.2018">
 	</update>
 	
+	<update author="Evgeniy" date="19.10.2018">
+	</update>
+	
 	<update author="Pavel" date="16.10.2018">
 		CREATE TABLE `PRODUCT_CATEGORY` (
 			`id` BIGINT NOT NULL AUTO_INCREMENT,
@@ -423,8 +426,5 @@
 			('pageNames', 'myDeals', 'My deals', 'Список сделок', 'Lista umów');
 	</update>
 	
-	<update>
-		UPDATE `LABEL` SET `ru_Ru`='Отправить' WHERE  `id`=515;
-	</update>
 </root>
 
