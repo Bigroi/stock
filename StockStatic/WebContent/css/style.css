@@ -1602,6 +1602,7 @@ button:hover,
 .edit{
     display: inline-block;
     width: 50%;
+    max-width: 24px;
     height: 30px;
     background-image: url(/Static/img/edit-pencil.png);
     background-size: auto 75%;
@@ -1616,6 +1617,7 @@ button:hover,
 .remove{
     display: inline-block;
     width: 50%;
+    max-width: 24px;
     height: 30px;
     background-image: url(/Static/img/remove-trash-can.png);
     background-image: url(/Static/img/remove-trash-can.png);
@@ -2579,3 +2581,22 @@ table.dataTable>tbody>tr.child span {
     	padding: 8px 3px;
 	}
 }
+.another-browser-flex {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+.another-browser-flex > div {
+	width: 50%;   
+	min-height: 300px;
+}
+.logo-browsers  {
+    background-image: url(/Static/img/browsers.png);
+    background-size: contain;
+    width: 300px;
+    height: 150px;
+    margin: 0 auto;
+}
+
