@@ -2593,7 +2593,7 @@ table.dataTable>tbody>tr.child span {
 	min-height: 300px;
 }
 .logo-browsers  {
-    background-image: url(/Static/img/browsers.png);
+    background-image: url('/Static/img/browsers.png');
     background-size: contain;
     width: 300px;
     height: 150px;
