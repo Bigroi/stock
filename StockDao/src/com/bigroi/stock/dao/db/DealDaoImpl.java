@@ -70,6 +70,7 @@ public class DealDaoImpl implements DealDao {
 			
 			+ " JOIN TENDER T "
 			+ " ON L.PRODUCT_ID = T.PRODUCT_ID "
+			+ " AND (L.CATEGORY_ID = T.CATEGORY_ID OR T.CATEGORY_ID IS NULL)"
 			+ " AND T.`STATUS` = 'ACTIVE' "
 			+ " AND T.MAX_VOLUME >= T.MIN_VOLUME "
 			+ " AND T.PRICE >= L.PRICE "
