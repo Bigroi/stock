@@ -118,4 +118,9 @@ public class LotResourseController extends BidResourceController<Lot, LotForUI> 
 	protected Class<LotForUI> getForUIClass(){
 		return LotForUI.class;
 	}
+
+	@Override
+	protected boolean isEmptyCategoryAllowed() {
+		return false;
+	}
 }

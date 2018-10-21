@@ -99,6 +99,9 @@ function setFormInputs(formContainer, object){
 					formElements[j].value = value;
 				}
 			}
+			if (i == 1){
+				$(formElements[j]).change();
+			}
 		}
 	}
 	
@@ -248,9 +251,26 @@ function openPasswordResetForm(){
 	showDialog(getPasswordResetDialogParams());
 }
 
+function loadCategories(productId){
+	$.post(getContextRoot() + "/category/json/FormList.spr", {productId : productId}, function(answer){
+		if (answer.result > 0){
+			var data = answer.data;
+			var categorySelect = $("#category-select");
+			$("#category-select option").remove();
+			for (var i = 0; i < data.length; i++){
+				var option = new Option(data[i].categoryName, data[i].id); 
+				categorySelect.append($(option));
+			}
+			if ($("input[name=categoryId]").val()){
+				categorySelect.val($("input[name=categoryId]").val());
+			}
+		} else {
+			console.log(answer);
+		}
+	});
+}
 
 function getContextRoot(){
 	var contextRoot = $("meta[name=context-root]").attr("content");
 	return contextRoot ? contextRoot : "";
-	
 }

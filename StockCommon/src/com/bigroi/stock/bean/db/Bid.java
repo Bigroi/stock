@@ -12,6 +12,8 @@ private long id;
 	private Product product;
 	private long productId = -1l;	
 	
+	private Long categoryId;
+	
 	private BidStatus status;
 	
 	private double price;
@@ -117,6 +119,12 @@ private long id;
 	}
 	public void setCompanyAddress(CompanyAddress companyAddress) {
 		this.companyAddress = companyAddress;
+	}
+	public Long getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 }

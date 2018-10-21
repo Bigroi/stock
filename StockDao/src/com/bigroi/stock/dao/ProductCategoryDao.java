@@ -15,4 +15,6 @@ public interface ProductCategoryDao {
 	ProductCategory getById(long id);
 	
 	List<ProductCategory> getByProductId(long productId);
+
+	List<ProductCategory> getActiveByProductId(long productId);
 }

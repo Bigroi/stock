@@ -118,4 +118,9 @@ public class TenderResourseController extends BidResourceController<Tender, Tend
 	protected Class<TenderForUI> getForUIClass(){
 		return TenderForUI.class;
 	}
+
+	@Override
+	protected boolean isEmptyCategoryAllowed() {
+		return true;
+	}
 }

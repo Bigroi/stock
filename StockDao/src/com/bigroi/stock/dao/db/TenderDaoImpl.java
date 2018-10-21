@@ -32,7 +32,7 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String ADD_TENDER = 
 			  " INSERT INTO TENDER "
-			+ " (DESCRIPTION, PRODUCT_ID, PRICE, MIN_VOLUME, "
+			+ " (DESCRIPTION, PRODUCT_ID, CATEGORY_ID, PRICE, MIN_VOLUME, "
 			+ " MAX_VOLUME, COMPANY_ID, `STATUS`, CREATION_DATE, EXPARATION_DATE, "
 			+ " ADDRESS_ID, DISTANCE, PACKAGING, PROCESSING) "
 			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
@@ -49,7 +49,7 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static final String UPDATE_TENDER_BY_ID_AND_COMPANY = 
 			  " UPDATE TENDER "
-			  + " SET DESCRIPTION = ?, PRODUCT_ID = ?, PRICE = ?, MIN_VOLUME = ?, "
+			  + " SET DESCRIPTION = ?, PRODUCT_ID = ?, CATEGORY_ID = ?, PRICE = ?, MIN_VOLUME = ?, "
 			  + " MAX_VOLUME = ?, `STATUS` = ?, CREATION_DATE = ?, EXPARATION_DATE = ?, "
 			  + " ADDRESS_ID = ?, DISTANCE = ?, PACKAGING = ?, PROCESSING = ?"
 			  + " WHERE ID = ? AND COMPANY_ID = ? ";
@@ -125,17 +125,18 @@ public class TenderDaoImpl implements TenderDao{
 				PreparedStatement ps = con.prepareStatement(ADD_TENDER,PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, tender.getDescription());
 				ps.setLong(2, tender.getProductId());
-				ps.setDouble(3, tender.getPrice());
-				ps.setInt(4, tender.getMinVolume());
-				ps.setInt(5, tender.getMaxVolume());
-				ps.setLong(6, tender.getCompanyId());
-				ps.setString(7, tender.getStatus().name().toUpperCase());
-				ps.setDate(8, new Date(tender.getCreationDate().getTime()));
-				ps.setDate(9, new Date(tender.getExparationDate().getTime()));
-				ps.setLong(10, tender.getAddressId());
-				ps.setInt(11, tender.getDistance());
-				ps.setString(12, tender.getPackaging());
-				ps.setString(13, tender.getProcessing());
+				ps.setLong(3, tender.getProductId());
+				ps.setDouble(4, tender.getPrice());
+				ps.setInt(5, tender.getMinVolume());
+				ps.setInt(6, tender.getMaxVolume());
+				ps.setLong(7, tender.getCompanyId());
+				ps.setString(8, tender.getStatus().name().toUpperCase());
+				ps.setDate(9, new Date(tender.getCreationDate().getTime()));
+				ps.setDate(10, new Date(tender.getExparationDate().getTime()));
+				ps.setLong(11, tender.getAddressId());
+				ps.setInt(12, tender.getDistance());
+				ps.setString(13, tender.getPackaging());
+				ps.setString(14, tender.getProcessing());
 				
 				return ps;
 			}
@@ -267,7 +268,7 @@ public class TenderDaoImpl implements TenderDao{
 				" T.ID, T.DESCRIPTION, T.PRODUCT_ID, T.PRICE, T.MIN_VOLUME, "
 			+ " T.MAX_VOLUME, T.COMPANY_ID, T.`STATUS`, T.CREATION_DATE, "
 			+ " T.EXPARATION_DATE, T.ADDRESS_ID, T.DISTANCE, T.PACKAGING, T.PROCESSING, "
-			+ " P.NAME PRODUCT_NAME, "
+			+ " P.NAME PRODUCT_NAME, T.CATEGORY_ID, "
 			+ " A.LONGITUDE LONGITUDE, A.LATITUDE LATITUDE,"
 			+ " C.LANGUAGE ";
 		
@@ -297,6 +298,7 @@ public class TenderDaoImpl implements TenderDao{
 			tender.setDistance(rs.getInt("DISTANCE"));
 			tender.setPackaging(rs.getString("PACKAGING"));
 			tender.setProcessing(rs.getString("PROCESSING"));
+			tender.setCategoryId(rs.getLong("CATEGORY_ID"));
 			
 			Product product = new Product();
 			product.setName(rs.getString("PRODUCT_NAME"));

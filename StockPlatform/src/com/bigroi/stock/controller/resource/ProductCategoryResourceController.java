@@ -16,6 +16,7 @@ import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableResponse;
+import com.bigroi.stock.service.LabelService;
 import com.bigroi.stock.service.ProductCategoryService;
 
 @Controller
@@ -24,6 +25,9 @@ public class ProductCategoryResourceController extends BaseResourseController {
 	
 	@Autowired
 	private ProductCategoryService productCategoryService;
+	
+	@Autowired
+	private LabelService labelService;
 	
 	@RequestMapping(value = "/Get.spr")
 	@ResponseBody
@@ -35,14 +39,24 @@ public class ProductCategoryResourceController extends BaseResourseController {
 	
 	@RequestMapping(value = "/List.spr")
 	@ResponseBody
-	@Secured(value = "ROLE_ADMIN")
+	@Secured("ROLE_ADMIN")
 	public String getCategories(@RequestParam("productId") long productId){
 		List<ProductCategory> categoris = productCategoryService.getByProductId(productId);
+		categoris.add(0, new ProductCategory(-1, labelService.getLabel("lot", "list", getLanguage())));
 		List<ProductCategoryForUI> categorisForUI = categoris.stream()
 				.map(ProductCategoryForUI::new)
 				.collect(Collectors.toList());
 		TableResponse<ProductCategoryForUI> table = new TableResponse<>(ProductCategoryForUI.class, categorisForUI);
 		return new ResultBean(1, table, null).toString();
+	}
+	
+	@RequestMapping(value = "/FormList.spr")
+	@ResponseBody
+	@Secured("ROLE_USER")
+	public String getFormCategories(@RequestParam("productId") long productId){
+		List<ProductCategory> categoris = productCategoryService.getActiveByProductId(productId);
+		categoris.add(0, new ProductCategory(-1, labelService.getLabel("lot", "list", getLanguage())));
+		return new ResultBean(1, categoris, null).toString();
 	}
 	
 	@RequestMapping(value = "/Save.spr")

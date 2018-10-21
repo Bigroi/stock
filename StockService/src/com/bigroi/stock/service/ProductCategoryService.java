@@ -15,5 +15,7 @@ void add(ProductCategory category);
 	List<ProductCategory> getByProductId(long productId);
 
 	ProductCategory getById(long id, long productId);
+
+	List<ProductCategory> getActiveByProductId(long productId);
 	
 }

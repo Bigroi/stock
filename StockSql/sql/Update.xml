@@ -9,23 +9,15 @@
 			`category` varchar(20) NOT NULL,
 			`name` varchar(30) NOT NULL,
 			`en_us` varchar(500) DEFAULT NULL,
-			`ru_by` varchar(500) DEFAULT NULL,
-			`pl_pl` varchar(500) DEFAULT NULL,
+			`ru_ru` varchar(500) DEFAULT NULL,
+			`pl` varchar(500) DEFAULT NULL,
 			PRIMARY KEY (`id`)
 		) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=utf8;
 	</update>
-			
-	<!-- <update>
-		ALTER TABLE `COMPANY` ADD COLUMN `language` VARCHAR(50) NOT NULL DEFAULT 'en_US' AFTER `type`;
-	</update>
 	
 	<update>
-		ALTER TABLE `LABEL` CHANGE COLUMN `ru_by` `ru_Ru` VARCHAR(500) NULL DEFAULT NULL AFTER `en_us`;
-	</update> 
-
-	<update>
-		ALTER TABLE `LABEL` CHANGE COLUMN `pl_pl` `pl` VARCHAR(500) NULL DEFAULT NULL AFTER `ru_Ru`;
-	</update> -->
+		ALTER TABLE `COMPANY` ADD COLUMN `language` VARCHAR(50) NOT NULL DEFAULT 'en_US' AFTER `type`;
+	</update>
 	
 	<update author="Pavel" date="18.09.2018">
 		ALTER TABLE `LOT` ADD COLUMN `distance` INT NULL AFTER `address_id`;
@@ -61,11 +53,6 @@
 		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_user_comment_deal` FOREIGN KEY (`deal_id`) REFERENCES `DEAL` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 	</update>
 	
-	<update author="Evgeniy" date="11.10.2018">
-		UPDATE `LABEL` SET `en_us`='Maximum volume less than minimum', `ru_Ru`='Максимальный объём  меньше минимального' WHERE  `id`=601;
-		UPDATE `LABEL` SET `en_us`='Maximum volume less than minimum' WHERE  `id`=665;
-	</update>
-	
 	<update author="Pavel" date="16.10.2018">
 		CREATE TABLE `PRODUCT_CATEGORY` (
 			`id` BIGINT NOT NULL AUTO_INCREMENT,
@@ -80,7 +67,7 @@
 	
 	<update author="Pavel" date="16.10.2018">
 		DELETE FROM `LABEL`;
-		INSERT IGNORE INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES
+		INSERT IGNORE INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES
 			('account', 'haveAcc', 'Do you have account?', 'Уже есть учетная запись?', 'Czy posiadasz już konto?'),
 			('account', 'password', 'Password', 'Пароль', 'Hasło	'),
 			('account', 'reg_number', 'Registration number', 'УНП', 'Numer rejestracji'),
@@ -214,7 +201,7 @@
 			('login', 'dontHaveAcc', 'Don’t have an account?', 'У вас нет учетной записи?', 'Nie masz konta?'),
 			('login', 'loginAgain', 'Please, login once again', 'Пожалуйста, авторизуйтесь заново', 'Proszę, spróbuj ponownie!'),
 			('login', 'loginForm', 'Enter to Your Trader! ', 'Вход в  Universal Stock Belarus ', 'Zaloguj do YourTrader! '),
-			('lot', 'maxVolume_error', 'Maximum volume less than minimum', 'Максимальный объём  меньше минимального', 'Minimum logistyczne wynosi mniej niż 1'),
+			('lot', 'maxVolume_error', 'Maximum volume less than minimum', 'Максимальный объём меньше минимального', 'Minimum logistyczne wynosi mniej niż 1'),
 			('lot', 'product_error', 'Product is not selected', 'Продукт не выбран', 'Nie wybrano produktu'),
 			('lot', 'lotForm', 'Sell request', 'Заявка на продажу', 'Oferta sprzedaży'),
 			('lot', 'max_volume', 'Total volume, kg', 'Максимальный объем, кг', 'Łączna ilość, kg'),
@@ -374,10 +361,13 @@
 			('pageNames', 'myDeals', 'My deals', 'Список сделок', 'Lista umów');
 	</update>
 	
-	<update author="Evgeniy" date="21.10.2018">
-		UPDATE `LABEL` SET `category`='label' WHERE  `id`=558;
-		UPDATE `LABEL` SET `category`='label' WHERE  `id`=548;
+	<update>
+		ALTER TABLE `LOT` ADD COLUMN `category_id` INT NULL AFTER `distance`;
+		ALTER TABLE `TENDER` ADD COLUMN `category_id` INT NULL AFTER `distance`;
+		INSERT IGNORE INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES
+			('lot', 'category', 'Сultivar', 'Сорт', NULL),
+			('tender', 'category', 'Сultivar', 'Сорт', NULL),
+			('tender', 'category_error', 'Select a cultivar', 'Выберите сорт', NULL);
 	</update>
-	
 </root>
 

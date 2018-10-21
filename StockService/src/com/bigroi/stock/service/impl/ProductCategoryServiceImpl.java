@@ -48,6 +48,11 @@ public class ProductCategoryServiceImpl implements ProductCategoryService{
 	public List<ProductCategory> getByProductId(long productId) {
 		return productCategoryDao.getByProductId(productId);
 	}
+	
+	@Override
+	public List<ProductCategory> getActiveByProductId(long productId) {
+		return productCategoryDao.getActiveByProductId(productId);
+	}
 
 	@Override
 	public void add(ProductCategory category) {

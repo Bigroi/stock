@@ -40,6 +40,8 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 	
 	protected abstract String getPropertyFileName();
 	
+	protected abstract boolean isEmptyCategoryAllowed();
+	
 	protected ResultBean bidForm(long id) {
 		B bid = getBidService().getById(id, getUserCompanyId());
 		if (bid.getId() == -1){
@@ -165,6 +167,9 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		}
 		if (bid.getMaxVolume() <= bid.getMinVolume()) {
 			errors.add(LABEL_PREFIX + getPropertyFileName() + ".maxVolume_error");
+		}
+		if (bid.getCategoryId() == -1 && !isEmptyCategoryAllowed()) {
+			errors.add(LABEL_PREFIX + getPropertyFileName() + ".category_error");
 		}
 
 		Calendar calendar = Calendar.getInstance();

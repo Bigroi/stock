@@ -29,6 +29,11 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao{
 			+ FROM
 			+ " WHERE PRODUCT_ID = ?";
 	
+	private static final String GET_ACTIVE_BY_PRODUCT_ID = 
+			"SELECT " + ALL_COLUMNS
+			+ FROM
+			+ " WHERE PRODUCT_ID = ? AND REMOVED = 'N'";
+	
 	private static final String GET_BY_ID = 
 			"SELECT " + ALL_COLUMNS
 			+ FROM
@@ -66,6 +71,12 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao{
 	public List<ProductCategory> getByProductId(long productId) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
 		return template.query(GET_BY_PRODUCT_ID, new BeanPropertyRowMapper<ProductCategory>(ProductCategory.class), productId);
+	}
+	
+	@Override
+	public List<ProductCategory> getActiveByProductId(long productId) {
+		JdbcTemplate template = new JdbcTemplate(datasource);
+		return template.query(GET_ACTIVE_BY_PRODUCT_ID, new BeanPropertyRowMapper<ProductCategory>(ProductCategory.class), productId);
 	}
 	
 	@Override

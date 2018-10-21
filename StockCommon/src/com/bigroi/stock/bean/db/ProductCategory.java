@@ -10,6 +10,14 @@ public class ProductCategory {
 	
 	private String removed;
 
+	public ProductCategory() {
+	}
+	
+	public ProductCategory(long id, String categoryName) {
+		this.id = id;
+		this.categoryName = categoryName;
+	}
+	
 	public long getId() {
 		return id;
 	}

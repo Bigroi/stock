@@ -32,10 +32,10 @@ public class LotDaoImpl implements LotDao {
 	
 	private static final String ADD_LOT = 
 			"INSERT INTO LOT "
-			+ "(DESCRIPTION, PRODUCT_ID, PRICE, MIN_VOLUME, "
+			+ "(DESCRIPTION, PRODUCT_ID, CATEGORY_ID, PRICE, MIN_VOLUME, "
 			+ " MAX_VOLUME, COMPANY_ID, `STATUS`, CREATION_DATE, EXPARATION_DATE, "
 			+ " ADDRESS_ID, FOTO, DISTANCE) "
-			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
 	private static final String UPDATE_MAX_VOLUME_BY_ID = 
 			"UPDATE LOT "
@@ -49,7 +49,7 @@ public class LotDaoImpl implements LotDao {
 	
 	private static final String UPDATE_LOT_BY_ID_AND_SELLER = 
 			"UPDATE LOT SET "
-			+ " DESCRIPTION = ?, PRODUCT_ID = ?, PRICE = ?, MIN_VOLUME = ?, "
+			+ " DESCRIPTION = ?, PRODUCT_ID = ?, CATEGORY_ID = ?, PRICE = ?, MIN_VOLUME = ?, "
 			+ " MAX_VOLUME = ?, `STATUS` = ?, CREATION_DATE = ?, EXPARATION_DATE = ?, "
 			+ " ADDRESS_ID = ?, FOTO = ?, DISTANCE = ? "
 			+ " WHERE ID = ? AND COMPANY_ID = ?";
@@ -125,16 +125,17 @@ public class LotDaoImpl implements LotDao {
 				PreparedStatement ps = con.prepareStatement(ADD_LOT, PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, lot.getDescription());
 				ps.setLong(2, lot.getProductId());
-				ps.setDouble(3, lot.getPrice());
-				ps.setInt(4, lot.getMinVolume());
-				ps.setInt(5, lot.getMaxVolume());
-				ps.setLong(6, lot.getCompanyId());
-				ps.setString(7, lot.getStatus().name().toUpperCase());
-				ps.setDate(8, new Date(lot.getCreationDate().getTime()));
-				ps.setDate(9, new Date(lot.getExparationDate().getTime()));
-				ps.setLong(10, lot.getAddressId());
-				ps.setString(11, lot.getFoto());
-				ps.setInt(12, lot.getDistance());
+				ps.setLong(3, lot.getCategoryId());
+				ps.setDouble(4, lot.getPrice());
+				ps.setInt(5, lot.getMinVolume());
+				ps.setInt(6, lot.getMaxVolume());
+				ps.setLong(7, lot.getCompanyId());
+				ps.setString(8, lot.getStatus().name().toUpperCase());
+				ps.setDate(9, new Date(lot.getCreationDate().getTime()));
+				ps.setDate(10, new Date(lot.getExparationDate().getTime()));
+				ps.setLong(11, lot.getAddressId());
+				ps.setString(12, lot.getFoto());
+				ps.setInt(13, lot.getDistance());
 				return ps;
 			}
 		}, keyHolder);
@@ -148,6 +149,7 @@ public class LotDaoImpl implements LotDao {
 		return template.update(UPDATE_LOT_BY_ID_AND_SELLER, 
 				lot.getDescription(), 
 				lot.getProductId(), 
+				lot.getCategoryId(),
 				lot.getPrice(), 
 				lot.getMinVolume(),
 				lot.getMaxVolume(), 
@@ -264,7 +266,7 @@ public class LotDaoImpl implements LotDao {
 	private static class LotRowMapper implements RowMapper<Lot>{
 
 		public static final String ALL_COLUMNS = 
-				" L.ID, L.DESCRIPTION, L.PRODUCT_ID, L.PRICE, L.MIN_VOLUME, "
+				" L.ID, L.DESCRIPTION, L.PRODUCT_ID, L.CATEGORY_ID, L.PRICE, L.MIN_VOLUME, "
 			+ " L.MAX_VOLUME, L.COMPANY_ID, L.`STATUS`, L.CREATION_DATE, "
 			+ " L.EXPARATION_DATE, L.ADDRESS_ID, L.FOTO, L.DISTANCE, "
 			+ " P.NAME PRODUCT_NAME,"
@@ -296,6 +298,7 @@ public class LotDaoImpl implements LotDao {
 			lot.setProductId(rs.getLong("PRODUCT_ID"));
 			lot.setStatus(BidStatus.valueOf(rs.getString("STATUS")));
 			lot.setDistance(rs.getInt("DISTANCE"));
+			lot.setCategoryId(rs.getLong("CATEGORY_ID"));
 			
 			
 			Product product = new Product();
