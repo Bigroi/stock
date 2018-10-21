@@ -15,7 +15,7 @@
 		) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=utf8;
 	</update>
 			
-	<update>
+	<!-- <update>
 		ALTER TABLE `COMPANY` ADD COLUMN `language` VARCHAR(50) NOT NULL DEFAULT 'en_US' AFTER `type`;
 	</update>
 	
@@ -25,31 +25,7 @@
 
 	<update>
 		ALTER TABLE `LABEL` CHANGE COLUMN `pl_pl` `pl` VARCHAR(500) NULL DEFAULT NULL AFTER `ru_Ru`;
-	</update>
-	
-	<update>
-	</update>
-	
-	 <update>
-	</update> 
-		
-	<update author="Evgeniy">
-	</update>
-		
-	<update author="Evgeniy">
-	</update>
-	
-	<update author="Pavel" date="13.09.2018">
-	</update>
-	
-	<update author="Pavel" date="14.09.2018">	
-	</update>
-	
-	<update author="Evgeniy" date="14.09.2018">
-	</update>
-	
-	<update author="Evgeniy" date="18.09.2018">
-	</update>
+	</update> -->
 	
 	<update author="Pavel" date="18.09.2018">
 		ALTER TABLE `LOT` ADD COLUMN `distance` INT NULL AFTER `address_id`;
@@ -62,7 +38,6 @@
 		ALTER TABLE `DEAL` ADD COLUMN `seller_language` CHAR(10) NULL AFTER `buyer_language`;
 		ALTER TABLE `DEAL` ADD COLUMN `buyer_email` VARCHAR(500) NULL AFTER `seller_language`;
 		ALTER TABLE `DEAL` ADD COLUMN `seller_email` VARCHAR(500) NULL AFTER `buyer_email`;
-		
 	</update>
 	
 	<update author="Pavel" date="23.09.2018">
@@ -80,43 +55,15 @@
 		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_USER_COMMENT_company_2` FOREIGN KEY (`reporter_id`) REFERENCES `COMPANY` (`id`);		
 	</update>
 	
-	<update author="Pavel" date="23.09.2018">
-	</update>
-	<update author="Pavel" date="23.09.2018">
-	</update>
-	<update author="Pavel" date="23.09.2018">
-	</update>
-	
-	<update author="Evgeniy" date="25.09.2018">	
-	</update>
-	
-	 <update author="Evgeniy" date="27.09.2018">
-	</update>
-	
-	<update author="Evgeniy" date="27.09.2018">
-	</update> 
-	
 	<update author="Pavel" date="8.10.2018">
 		ALTER TABLE `USER_COMMENT` ADD COLUMN `deal_id` BIGINT NOT NULL AFTER `comment_date`;
 		ALTER TABLE `USER_COMMENT` CHANGE COLUMN `compant_id` `company_id` BIGINT(20) NOT NULL AFTER `id`;
 		ALTER TABLE `USER_COMMENT` ADD CONSTRAINT `FK_user_comment_deal` FOREIGN KEY (`deal_id`) REFERENCES `DEAL` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 	</update>
 	
-	<update author="Evgeniy" date="10.10.2018">
-	</update>
-	
 	<update author="Evgeniy" date="11.10.2018">
 		UPDATE `LABEL` SET `en_us`='Maximum volume less than minimum', `ru_Ru`='Максимальный объём  меньше минимального' WHERE  `id`=601;
 		UPDATE `LABEL` SET `en_us`='Maximum volume less than minimum' WHERE  `id`=665;
-	</update>
-	
-	<update author="Evgeniy" date="14.10.2018">
-	</update>
-	
-	<update author="Evgeniy" date="16.10.2018">
-	</update>
-	
-	<update author="Evgeniy" date="19.10.2018">
 	</update>
 	
 	<update author="Pavel" date="16.10.2018">
@@ -130,6 +77,7 @@
 		COLLATE='utf8_general_ci';
 		ALTER TABLE `PRODUCT_CATEGORY` ADD CONSTRAINT `FK_product_category_product` FOREIGN KEY (`product_id`) REFERENCES `PRODUCT` (`id`);
 	</update>
+	
 	<update author="Pavel" date="16.10.2018">
 		DELETE FROM `LABEL`;
 		INSERT IGNORE INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES
@@ -424,6 +372,11 @@
 			('tender', 'too_long_number', 'Too long number', 'Слишком длинное число', NULL),
 			('lot', 'too_big', 'File too big', 'Слишком большой файл', NULL),
 			('pageNames', 'myDeals', 'My deals', 'Список сделок', 'Lista umów');
+	</update>
+	
+	<update author="Evgeniy" date="21.10.2018">
+		UPDATE `LABEL` SET `category`='label' WHERE  `id`=558;
+		UPDATE `LABEL` SET `category`='label' WHERE  `id`=548;
 	</update>
 	
 </root>

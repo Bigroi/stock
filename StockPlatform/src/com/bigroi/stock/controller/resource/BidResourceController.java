@@ -26,7 +26,6 @@ import com.bigroi.stock.util.DateUtil;
 public abstract class BidResourceController<B extends Bid, U> extends BaseResourseController{
 	
 	private static final String LABEL_PREFIX = "label.";
-	//private static final String TOO_LONG_NUMBER = LABEL_PREFIX + getPropertyFileName() +".too_long_number";
 	
 	@Autowired
 	private AddressService addressService;
