@@ -374,6 +374,9 @@
 		ALTER TABLE `LOT` 
 			CHANGE COLUMN `category_id` `category_id` BIGINT NULL DEFAULT NULL AFTER `distance`,
 			ADD CONSTRAINT `FK_lot_product_category` FOREIGN KEY (`category_id`) REFERENCES `PRODUCT_CATEGORY` (`id`);
+		ALTER TABLE `TENDER` 
+			CHANGE COLUMN `category_id` `category_id` BIGINT NULL DEFAULT NULL AFTER `distance`,
+			ADD CONSTRAINT `FK_tender_product_category` FOREIGN KEY (`category_id`) REFERENCES `PRODUCT_CATEGORY` (`id`);
 	</update>
 </root>
 
