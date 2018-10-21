@@ -361,13 +361,19 @@
 			('pageNames', 'myDeals', 'My deals', 'Список сделок', 'Lista umów');
 	</update>
 	
-	<update>
+	<update author="Pavel" date="15.10.2018">
 		ALTER TABLE `LOT` ADD COLUMN `category_id` INT NULL AFTER `distance`;
 		ALTER TABLE `TENDER` ADD COLUMN `category_id` INT NULL AFTER `distance`;
 		INSERT IGNORE INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES
 			('lot', 'category', 'Сultivar', 'Сорт', NULL),
 			('tender', 'category', 'Сultivar', 'Сорт', NULL),
 			('tender', 'category_error', 'Select a cultivar', 'Выберите сорт', NULL);
+	</update>
+	
+	<update author="Pavel" date="21.10.2018">
+		ALTER TABLE `LOT` 
+			CHANGE COLUMN `category_id` `category_id` BIGINT NULL DEFAULT NULL AFTER `distance`,
+			ADD CONSTRAINT `FK_lot_product_category` FOREIGN KEY (`category_id`) REFERENCES `PRODUCT_CATEGORY` (`id`);
 	</update>
 </root>
 
