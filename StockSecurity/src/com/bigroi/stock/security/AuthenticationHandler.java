@@ -25,8 +25,8 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler, Auth
 	public static String getMainPage(String contexRoot){
 		switch (contexRoot){
 		case "": return "/product/List.spr";
-		case "/Transport": return "/Transport/deal-list.spr";
-		case "/demo": return "/demo/product/List.spr";
+		case "/Transport": return "/deal-list.spr";
+		case "/demo": return "/product/List.spr";
 		default : return contexRoot + "/product/List.spr";
 		}
 	}
