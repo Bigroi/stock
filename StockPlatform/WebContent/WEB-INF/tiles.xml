@@ -38,6 +38,12 @@
 	
 	<definition name="anotherBrowser" template="/WEB-INF/jsp/pages/anotherBrowser.jsp">
 	</definition>
+	
+	<definition name="404" template="/WEB-INF/jsp/pages/404.jsp">
+	</definition>
+	
+	<definition name="500" template="/WEB-INF/jsp/pages/500.jsp">
+	</definition>
 
 	<!-- Pages -->
 

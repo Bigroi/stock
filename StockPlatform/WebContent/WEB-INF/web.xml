@@ -46,5 +46,12 @@
 	    </listener-class>
 	</listener>
 
-
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.spr</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.spr</location>
+	</error-page>
 </web-app>
