@@ -2093,21 +2093,10 @@ table.dataTable>tbody>tr.child span {
 	    background-position: center;
 	    background-size: cover;
 	}
-	.product-page .product {
-	    margin-top: 10px;
-	    margin-bottom: 10px;
-	    background-size: 120px;
-    	background-position: left 140px top 20px;
-	}
 	.product-page .product h4 {
 		font-size: 24px;
 		position: relative;
     	top: 30px;
-	}
-	.product-page .product button {
-		width: 227px;
-  		height: 40px;
-  		margin-top: 50px;
 	}
 	.table-header-button {
 		width: 410px;
@@ -2244,6 +2233,22 @@ table.dataTable>tbody>tr.child span {
 	.success-message {
 		width: 415px;
 	}
+	.product-page .product {
+		background-position: left 33% center;
+	}
+}
+@media (max-width: 1023px){
+		.product-page .product {
+		    margin-top: 10px;
+		    margin-bottom: 10px;
+		    background-size: 120px;
+	    	background-position: left 140px top 20px;
+		}
+		.product-page .product button {
+			width: 227px;
+	  		height: 40px;
+	  		margin-top: 50px;
+		}
 }
 @media (max-width: 758px) {
 	.body-pages {
@@ -2410,14 +2415,23 @@ table.dataTable>tbody>tr.child span {
 		position: relative;
 		width: calc(100% - 42px);
     	padding: 20px 20px 30px 20px;
+    	display: flex;
+    	justify-content: center;
+    	background-position: left 70% top 20px;
+	}
+	.product-page .product h4 {
+		 /*width: 280px;*/
+	     width: 240px;
 	}
 	.product-page .product button {
 		position: absolute;
 		bottom: 20px;
-		width: 280px;
+		/*width: 280px;*/
+	     width: 240px;
 	}
 	.product-page table {
-	    width: 280px;
+	    /*width: 280px;*/
+	     width: 240px;
 	}
 	.sell-tr td, .buy-tr td {
 	    font-size: 18px;
