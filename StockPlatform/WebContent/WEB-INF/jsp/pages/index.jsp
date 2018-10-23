@@ -42,14 +42,6 @@
 		<script src="${pageContext.request.contextPath}/Static/js/script.js?version=${label.build.number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/productList.js?version=${label.build.number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/testTrading.js?version=${label.build.number}"></script>
-		<script type="text/javascript"> 
-			var isChrome = !!window.chrome && !!window.chrome.webstore;
-			var isFirefox = typeof InstallTrigger !== 'undefined';
-			var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
-			if (!isChrome && !isFirefox && !isSafari) {
-				document.location = getContextRoot()+"/anotherBrowser.jsp";
-			}
-		</script>
   		
 	</head>
 	<body>
@@ -61,7 +53,7 @@
 							<img class="logo" src="/Static/img/logo.png" alt="YourTrader" title="YourTrader">
 							<nav class="main-page-nav">
 								<!-- <a href="#ex1">${label.index.about_your_trader}</a>-->
-								<a href="#ex2" class="active">${label.index.benefits}</a>
+								<a href="#ex2">${label.index.benefits}</a>
 								<a href="#ex3">${label.index.products}</a>
 								<a href="#ex4">${label.index.for_whom}</a>
 								<a href="#ex5">${label.index.try_it_now}</a>

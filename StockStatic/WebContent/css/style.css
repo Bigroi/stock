@@ -1627,6 +1627,14 @@ button:hover,
     background-image: url(/Static/img/remove-trash-can.png);
     background-image: url(/Static/img/remove-trash-can.png);
     background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
     background-size: auto 75%;
     background-repeat: no-repeat;
     background-position: center;
@@ -1634,6 +1642,14 @@ button:hover,
 }
 .remove:hover,
 .remove:active {
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
+	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
@@ -2559,7 +2575,6 @@ table.dataTable>tbody>tr.child span {
   height: 28px;
   width: 30px;
 }
-
 .account-dialogbox .languages {
 	width: 174px;
 	margin-right: 26px;
@@ -2582,21 +2597,39 @@ table.dataTable>tbody>tr.child span {
 	}
 }
 .another-browser-flex {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
-    align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     height: 100%;
     text-align: center;
+}
+.another-browser-flex h1 {
+	margin-bottom: 20px;
 }
 .another-browser-flex > div {
 	width: 50%;   
 	min-height: 300px;
 }
 .logo-browsers  {
-    background-image: url('/Static/img/browsers.png');
+    background-image: url(/Static/img/browsers.png);
+    background-repeat: no-repeat;
     background-size: contain;
-    width: 300px;
+    max-width: 300px;
     height: 150px;
     margin: 0 auto;
+}
+@media (max-width: 758px) {
+	.another-browser-flex h1 {
+		font-size: 24px;
+	}
+	.logo-browsers  {
+    	height: 95px;
+	}
 }
 

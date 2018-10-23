@@ -29,6 +29,11 @@ public class CommonRenderingController extends BaseRenderingController{
 		return createModelAndView("login");
 	}
 	
+	@RequestMapping("/AnotherBrowser.spr")
+	public ModelAndView anotherBrowser() {
+		return createModelAndView("anotherBrowser");
+	}
+	
 	@RequestMapping("/Index.spr")
 	public ModelAndView index(HttpServletRequest request, Authentication loggedInUser) {
 		if (loggedInUser != null){ 

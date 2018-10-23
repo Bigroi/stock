@@ -1,3 +1,10 @@
+var isChrome = !!window.chrome && !!window.chrome.webstore;
+var isFirefox = typeof InstallTrigger !== 'undefined';
+var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
+if (!isChrome && !isFirefox && !isSafari) {
+	document.location = getContextRoot()+"/AnotherBrowser.spr";
+}
+
 $(document).ready(function(){
 	
 	function selectLanguages(){

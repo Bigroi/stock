@@ -35,6 +35,9 @@
 	
 	<definition name="index" template="/WEB-INF/jsp/pages/index.jsp">
 	</definition>
+	
+	<definition name="anotherBrowser" template="/WEB-INF/jsp/pages/anotherBrowser.jsp">
+	</definition>
 
 	<!-- Pages -->
 
