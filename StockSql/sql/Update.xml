@@ -380,7 +380,7 @@
 	</update>
 	
 	<update author="Pavel" date="24.10.2018">
-		INSERT INTO `stock`.`label` (`category`, `name`, `en_us`, `ru_ru`) VALUES ('index', 'login_error', 'Wrong user or password', 'Неправильное имя или пароль');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`) VALUES ('index', 'login_error', 'Wrong user or password', 'Неправильное имя или пароль');
 	</update>
 </root>
 
