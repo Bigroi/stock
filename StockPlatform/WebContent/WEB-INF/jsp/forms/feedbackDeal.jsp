@@ -6,30 +6,28 @@
 
 	<input type="hidden" name="id">
 	<input type="hidden" name="dealId">
+	<input type="hidden" name="mark" id="mark" value="0">
 	
 	<h3>${label.deal.feedback}</h3>
 	<div>
 		<div class="dialogbox-message"></div>
 	</div>
 	<div class="flex-input">
-		<!-- <div>
-			<label for="forMark">${label.comment.mark}</label> 
-			<input type="number" name="mark" class="mark" id="forMark" required maxlength="5">
-		</div>  -->
+		
 		<div class="reviewStarsFeed">
-		    <input id="star-5" type="radio" name="reviewStars">
+		    <input id="star-5" type="radio" name="star-5" data-mark="5" onchange="$('#mark').val($(this).attr('data-mark'));">
 		    <label title="gorgeous" for="star-5"></label>
 	
-		    <input id="star-4" type="radio" name="reviewStars">
+		    <input id="star-4" type="radio" name="star-4" data-mark="4" onchange="$('#mark').val($(this).attr('data-mark'));">
 		    <label title="good" for="star-4"></label>
 		
-		    <input id="star-3" type="radio" name="reviewStars">
+		    <input id="star-3" type="radio" name="star-3" data-mark="3" onchange="$('#mark').val($(this).attr('data-mark'));">
 		    <label title="regular" for="star-3"></label>
 		
-		    <input id="star-2" type="radio" name="reviewStars">
+		    <input id="star-2" type="radio" name="star-2" data-mark="2" onchange="$('#mark').val($(this).attr('data-mark'));">
 		    <label title="poor" for="star-2"></label>
 		
-		    <input id="star-1" type="radio" name="reviewStars">
+		    <input id="star-1" type="radio" name="star-1" data-mark="1" onchange="$('#mark').val($(this).attr('data-mark'));">
 		    <label title="bad" for="star-1"></label>
 		</div>
 		<div>

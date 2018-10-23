@@ -36,7 +36,11 @@ public class DealForUI {
 	private final int volume;
 	private final String partnerDescription;
 	private final DealStatus statusCode;
-	private final int partnerMark;
+	private boolean star_5 = false;
+	private boolean star_4 = false;
+	private boolean star_3 = false;
+	private boolean star_2 = false;
+	private boolean star_1 = false;
 	
 	public DealForUI(Deal deal, long companyId){
 		this(deal, companyId, 0);
@@ -45,7 +49,7 @@ public class DealForUI {
 	public DealForUI(Deal deal, long companyId, int partnerMark){
 		this.id = deal.getId();
 		this.productName = deal.getProduct().getName();
-		this.partnerMark = partnerMark;
+		setStar(partnerMark);
 		this.time = deal.getTime();
 		this.statusCode = getDealStatus(deal, companyId);
 		this.status = this.statusCode.toString();
@@ -70,6 +74,28 @@ public class DealForUI {
 		this.edit = "NNY";
 	}
 	
+	private void setStar(int partnerMark) {
+		switch (partnerMark) {
+		case 1:
+			star_1 = true;
+			break;
+		case 2:
+			star_2 = true;
+			break;
+		case 3:
+			star_3 = true;
+			break;
+		case 4:
+			star_4 = true;
+			break;
+		case 5:
+			star_5 = true;
+			break;
+		default:
+			break;
+		}
+	}
+
 	private DealStatus getDealStatus(Deal deal, long companyId){
 		PartnerChoice companyChoice = deal.getBuyerAddress().getCompanyId() == companyId ? 
 				deal.getBuyerChoice() : deal.getSellerChoice();
@@ -79,10 +105,6 @@ public class DealForUI {
 		} else {
 			return dealStatus;
 		}
-	}
-	
-	public int getPartnerMark() {
-		return partnerMark;
 	}
 	
 	public CompanyAddress getBuyerAddrress() {
@@ -123,5 +145,25 @@ public class DealForUI {
 
 	public String getStatus() {
 		return status;
+	}
+
+	public boolean isStar_5() {
+		return star_5;
+	}
+
+	public boolean isStar_4() {
+		return star_4;
+	}
+
+	public boolean isStar_3() {
+		return star_3;
+	}
+
+	public boolean isStar_2() {
+		return star_2;
+	}
+
+	public boolean isStar_1() {
+		return star_1;
 	}
 }

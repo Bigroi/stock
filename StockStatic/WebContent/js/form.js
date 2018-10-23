@@ -95,11 +95,13 @@ function setFormInputs(formContainer, object){
 					if (value){
 						$(formElements[j]).attr("src", value);
 					}
+				} else if ($(formElements[j]).attr("type") == "radio" && value){
+					$(formElements[j]).prop("checked", true);
 				} else {
 					formElements[j].value = value;
 				}
 			}
-			if (i == 1){
+			if ($(formElements[j]).attr("type") == "select"){
 				$(formElements[j]).change();
 			}
 		}
@@ -196,8 +198,6 @@ function buttonCallbackWithTableUpdate(buttonDef, params, formContainer, $dialog
 function initDealForm(formContainer, url, id){
 	$.post(url, {id:id}, function(answer){
 		setFormInputs(formContainer, answer.data);
-		var partnerMark = answer.data.partnerMark;
-		$(".partner-mark").text(partnerMark);
 		if (answer.data.statusCode != 'ON_APPROVE'){
 			$(".deal-button").attr("style", "display:none");
 		} else {

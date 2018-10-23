@@ -42,22 +42,21 @@
 				        <li>
 				            <label for="partnerName">${label.deal.partnerName}</label>
 				            <input type="text" name="partnerAddress.company.name" disabled/>
-				            <div class="partner-mark"></div>
 		            		<div class="reviewStarsDeal">
-							    <input id="star-5" type="radio" name="reviewStars" disabled>
-							    <label title="gorgeous" for="star-5"></label>
+							    <input id="star_5" type="radio" name="star_5" disabled>
+							    <label title="gorgeous" for="star_5"></label>
 						
-							    <input id="star-4" type="radio" name="reviewStars" disabled>
-							    <label title="good" for="star-4"></label>
+							    <input id="star_4" type="radio" name="star_4" disabled>
+							    <label title="good" for="star_4"></label>
 							
-							    <input id="star-3" type="radio" name="reviewStars" checked disabled>
-							    <label title="regular" for="star-3"></label>
+							    <input id="star_3" type="radio" name="star_3" disabled>
+							    <label title="regular" for="star_3"></label>
 							
-							    <input id="star-2" type="radio" name="reviewStars" disabled>
-							    <label title="poor" for="star-2"></label>
+							    <input id="star_2" type="radio" name="star_2" disabled>
+							    <label title="poor" for="star_2"></label>
 							
-							    <input id="star-1" type="radio" name="reviewStars" disabled>
-							    <label title="bad" for="star-1"></label>
+							    <input id="star_1" type="radio" name="star_1" disabled>
+							    <label title="bad" for="star_1"></label>
 							</div>
 				        </li>
 	
@@ -108,30 +107,16 @@
 				</div>
 				<div>
 					<button class="submit blue-button deal-button" type="submit" id="approve-button"
-		        		onclick="
-		        				return sendDealFormData(
-			        					'/deal/json/Approve.spr'
-			        					); ">
+		        		onclick="return sendDealFormData('/deal/json/Approve.spr'); ">
 		        		${label.deal.approve }
 		        	</button>
 		        	
-		        	<%-- <button class="submit blue-button deal-button" type="submit" id="transport-button"
-		        		onclick="
-		        				return sendDealFormData(
-			        					'/deal/json/Transport.spr'
-			        					); ">
-		        		${label.deal.transport }
-		        	</button> --%>
-		        	
 		        	<button class="submit blue-button deal-button" type="submit" id="reject-button"
-		        		onclick="
-		        			return sendDealFormData( 
-		        						'/deal/json/Reject.spr'
-		        					);">
+		        		onclick="return sendDealFormData('/deal/json/Reject.spr');">
 		        		${label.deal.reject }
 		        	</button>
 		        	
-		        	<button class="submit blue-button deal-feedback" type="button" id="feedback-button" style="display: none;">
+		        	<button class="submit blue-button deal-feedback" type="button" id="feedback-button">
 		        		${label.button.feedback }
 		        	</button>
 				</div>
