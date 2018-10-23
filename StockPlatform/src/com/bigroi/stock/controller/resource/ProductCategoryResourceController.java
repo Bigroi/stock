@@ -52,7 +52,6 @@ public class ProductCategoryResourceController extends BaseResourseController {
 	
 	@RequestMapping(value = "/FormList.spr")
 	@ResponseBody
-	@Secured("ROLE_USER")
 	public String getFormCategories(@RequestParam("productId") long productId){
 		List<ProductCategory> categoris = productCategoryService.getActiveByProductId(productId);
 		categoris.add(0, new ProductCategory(-1, labelService.getLabel("lot", "list", getLanguage())));

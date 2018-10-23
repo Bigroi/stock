@@ -56,6 +56,8 @@ public class Deal {
 		this.sellerLanguage = lot.getLanguage();
 		this.buyerEmail = tender.getEmail();
 		this.sellerEmail = lot.getEmail();
+		this.buyerAddressId = tender.getAddressId();
+		this.sellerAddressId = lot.getAddressId();
 	}
 	
 	public Deal() {

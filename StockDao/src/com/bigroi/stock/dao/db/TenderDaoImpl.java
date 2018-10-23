@@ -35,7 +35,7 @@ public class TenderDaoImpl implements TenderDao{
 			+ " (DESCRIPTION, PRODUCT_ID, CATEGORY_ID, PRICE, MIN_VOLUME, "
 			+ " MAX_VOLUME, COMPANY_ID, `STATUS`, CREATION_DATE, EXPARATION_DATE, "
 			+ " ADDRESS_ID, DISTANCE, PACKAGING, PROCESSING) "
-			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		
 	private static final String UPDATE_MAX_VOLUME_BY_ID = 
 			  " UPDATE TENDER "
@@ -125,7 +125,7 @@ public class TenderDaoImpl implements TenderDao{
 				PreparedStatement ps = con.prepareStatement(ADD_TENDER,PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, tender.getDescription());
 				ps.setLong(2, tender.getProductId());
-				ps.setLong(3, tender.getProductId());
+				ps.setLong(3, tender.getCategoryId());
 				ps.setDouble(4, tender.getPrice());
 				ps.setInt(5, tender.getMinVolume());
 				ps.setInt(6, tender.getMaxVolume());
@@ -151,6 +151,7 @@ public class TenderDaoImpl implements TenderDao{
 		return	template.update(UPDATE_TENDER_BY_ID_AND_COMPANY, 
 				tender.getDescription(), 
 				tender.getProductId(),
+				tender.getCategoryId(),
 				tender.getPrice(), 
 				tender.getMinVolume(), 
 				tender.getMaxVolume(), 

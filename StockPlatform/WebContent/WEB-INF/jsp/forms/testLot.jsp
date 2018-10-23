@@ -7,6 +7,7 @@
 	<input type="hidden" name="companyAddress.latitude" class="latitude" value="-1">
 	<input type="hidden" name="companyAddress.longitude" class="longitude" value="-1">
 	<input type="hidden" name="id" value="-1"> 
+	<input type="hidden" name="distance" value="30000">
 	<h3>${label.lot.lotForm}</h3>
     <div>
 		<div class="dialogbox-message"></div>
@@ -15,11 +16,18 @@
 		<div>
 			<div>
 				<label for="forProductId">${label.lot.product}</label> 
-				<select name="productId" id="forProductId">
+				<select name="productId" id="forProductId"
+					onchange="loadCategories(this.options[this.selectedIndex].value)">
 					<option value="-1" selected>${label.lot.list}</option>
 					<c:forEach var="product" items="${listOfProducts}">
 						<option value="${product.id}">${product.name}</option>
 					</c:forEach>
+				</select>
+			</div>
+			<div>
+				<label for="forCategoryId">${label.lot.category} *</label> 
+				<select id="category-select" name="categoryId" id="forCategoryId">
+					<option value="-1" selected>${label.lot.list}</option>
 				</select>
 			</div>
 			<div>

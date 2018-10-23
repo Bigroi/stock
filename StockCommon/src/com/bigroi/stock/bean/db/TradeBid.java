@@ -33,6 +33,16 @@ public abstract class TradeBid {
 	
 	private String email;
 	
+	private long addressId;
+	
+	public long getAddressId() {
+		return addressId;
+	}
+	
+	public void setAddressId(long addressId) {
+		this.addressId = addressId;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
