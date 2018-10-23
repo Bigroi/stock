@@ -27,8 +27,6 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler, Auth
 		case "": return "/product/List.spr";
 		case "/Transport": return "/Transport/deal-list.spr";
 		case "/demo": return "/demo/product/List.spr";
-		case "/demo/by": return "/demo/by/product/List.spr";
-		case "/demo/pl": return "/demo/pl/product/List.spr";
 		default : return contexRoot + "/product/List.spr";
 		}
 	}
@@ -37,9 +35,15 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler, Auth
 	public void onAuthenticationFailure(
 			HttpServletRequest request, 
 			HttpServletResponse response, 
-			AuthenticationException authentication)
+			AuthenticationException exception)
 					throws IOException, ServletException {
-		response.getWriter().append(new ResultBean(-1, authentication.getMessage()).toString());
+		String message;
+		if ("Bad credentials".equals(exception.getMessage())){
+			message = "label.index.login_error";
+		} else {
+			message = exception.getMessage();
+		}
+		response.getWriter().append(new ResultBean(-1, message).toString());
 	}
 
 	@Override

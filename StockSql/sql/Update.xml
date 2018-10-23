@@ -378,5 +378,9 @@
 			CHANGE COLUMN `category_id` `category_id` BIGINT NULL DEFAULT NULL AFTER `distance`,
 			ADD CONSTRAINT `FK_tender_product_category` FOREIGN KEY (`category_id`) REFERENCES `PRODUCT_CATEGORY` (`id`);
 	</update>
+	
+	<update author="Pavel" date="24.10.2018">
+		INSERT INTO `stock`.`label` (`category`, `name`, `en_us`, `ru_ru`) VALUES ('index', 'login_error', 'Wrong user or password', 'Неправильное имя или пароль');
+	</update>
 </root>
 
