@@ -1426,7 +1426,12 @@ footer .container {
 	width: calc(100% - 82px);
 	padding: 20px 40px 30px 40px;
 	height: 130px;
-	background-position: left 27% center;
+	background-position: left 33% center;
+}
+@media (max-width: 1366px){
+	.product-page .product {
+		background-position: left 27% center;
+	}
 }
 .product-page .product button {
 	margin-top: 40px;
@@ -1620,21 +1625,6 @@ button:hover,
     max-width: 24px;
     height: 30px;
     background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
-    background-image: url(/Static/img/remove-trash-can.png);
     background-size: auto 75%;
     background-repeat: no-repeat;
     background-position: center;
@@ -1642,21 +1632,6 @@ button:hover,
 }
 .remove:hover,
 .remove:active {
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
-	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
 }
 .header-white-div {
@@ -2610,7 +2585,7 @@ table.dataTable>tbody>tr.child span {
     	padding: 8px 3px;
 	}
 }
-.another-browser-flex {
+.message-page-flex {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -2623,10 +2598,10 @@ table.dataTable>tbody>tr.child span {
     height: 100%;
     text-align: center;
 }
-.another-browser-flex h1 {
+.message-page-flex h1 {
 	margin-bottom: 20px;
 }
-.another-browser-flex > div {
+.message-page-flex > div {
 	width: 50%;   
 	min-height: 300px;
 }
@@ -2638,9 +2613,52 @@ table.dataTable>tbody>tr.child span {
     height: 150px;
     margin: 0 auto;
 }
+.flex-404 > div {
+	width: 35%;  
+}
+.flex-404 h1 {
+	text-align: left;
+    background-image: url(/Static/img/apple.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 77px;
+    background-position-x: 100%;
+    padding-top: 60px;
+}
+.flex-404 p {
+	padding-top: 30px;
+	font-weight: bold;
+	font-family: Museo;
+}
+.flex-404 p a {
+	color: #0fc668;
+}
+@media (max-width: 1280px) {
+	.flex-404 > div {
+		width: 50%;  
+	}
+}
+@media (max-width: 1023px){
+	.flex-404 > div {
+		width: 80%;  
+	}
+}
 @media (max-width: 758px) {
-	.another-browser-flex h1 {
+	.message-page-flex h1{
 		font-size: 24px;
+	}
+	.flex-404 h3 {
+		font-size: 20px;
+	}
+	.flex-404 h1 {
+		text-align: center;
+		background-size: 100px;
+	    height: 30px;
+	    background-position-x: 50%;
+	    padding-top: 75px;
+	}
+	.flex-404 p {
+		padding-top: 20px; 
 	}
 	.logo-browsers  {
     	height: 95px;

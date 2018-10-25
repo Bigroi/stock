@@ -15,19 +15,19 @@
 	<div class="flex-input">
 		
 		<div class="reviewStarsFeed">
-		    <input id="star-5" type="radio" name="star-5" data-mark="5" onchange="$('#mark').val($(this).attr('data-mark'));">
+		    <input id="star-5" type="radio" name="star-feedback" data-mark="5" onchange="$('#mark').val($(this).attr('data-mark'));">
 		    <label title="gorgeous" for="star-5"></label>
 	
-		    <input id="star-4" type="radio" name="star-4" data-mark="4" onchange="$('#mark').val($(this).attr('data-mark'));">
+		    <input id="star-4" type="radio" name="star-feedback" data-mark="4" onchange="$('#mark').val($(this).attr('data-mark'));">
 		    <label title="good" for="star-4"></label>
 		
-		    <input id="star-3" type="radio" name="star-3" data-mark="3" onchange="$('#mark').val($(this).attr('data-mark'));">
+		    <input id="star-3" type="radio" name="star-feedback" data-mark="3" onchange="$('#mark').val($(this).attr('data-mark'));">
 		    <label title="regular" for="star-3"></label>
 		
-		    <input id="star-2" type="radio" name="star-2" data-mark="2" onchange="$('#mark').val($(this).attr('data-mark'));">
+		    <input id="star-2" type="radio" name="star-feedback" data-mark="2" onchange="$('#mark').val($(this).attr('data-mark'));">
 		    <label title="poor" for="star-2"></label>
 		
-		    <input id="star-1" type="radio" name="star-1" data-mark="1" onchange="$('#mark').val($(this).attr('data-mark'));">
+		    <input id="star-1" type="radio" name="star-feedback" data-mark="1" onchange="$('#mark').val($(this).attr('data-mark'));">
 		    <label title="bad" for="star-1"></label>
 		</div>
 		<div>

@@ -18,7 +18,7 @@
 
 	</head>
 	<body>
-		<div class="another-browser-flex">
+		<div class="message-page-flex">
 			<div>
 				<h1>${label.index.another_browser}</h1>
 				<div class="logo-browsers"></div>
