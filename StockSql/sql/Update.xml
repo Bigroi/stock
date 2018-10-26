@@ -384,7 +384,7 @@
 	</update>
 	
 	<update author="Pavel" date="26.10.2018">
-		INSERT INTO `stock`.`label` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('index', 'index_title', 'Your Trader!', 'Your Trader!', 'Your Trader!');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('index', 'index_title', 'Your Trader!', 'Your Trader!', 'Your Trader!');
 	</update>
 </root>
 
