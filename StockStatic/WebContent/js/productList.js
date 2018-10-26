@@ -38,7 +38,7 @@ $(document).ready(function(){
 			
 			var sellButton = $("<button class='background-green'>" + 
 					l10n.translate("label.index.sell") + " " + 
-					l10n.translate("label." + product.name + ".name") + "</button>");
+					product.name + "</button>");
 			sellProduct.append(sellButton);
 			sellButton.on("click", function(){
 				showDialog(getReginDialogParams());
@@ -46,7 +46,7 @@ $(document).ready(function(){
 			
 			var buyButton = $("<button class='background-blue'>" + 
 					l10n.translate("label.index.buy") +" " + 
-					l10n.translate("label." + product.name + ".name") + "</button>");
+					product.name + "</button>");
 			buyProduct.append(buyButton);
 			buyButton.on("click", function(){
 				showDialog(getReginDialogParams());
@@ -77,7 +77,7 @@ $(document).ready(function(){
 			
 			var details = $("<button class='background-blue'>" + 
 					l10n.translate("label.product.details") + " " + 
-					l10n.translate("label." + product.name + ".name") + "</button>");
+					product.name + "</button>");
 			div.append(details);
 			details.on("click", function(){
 				document.location = getContextRoot() + "/product/TradeOffers.spr?id=" + product.id;
