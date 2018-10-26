@@ -133,7 +133,7 @@ function setFormInputs(formContainer, object){
 function processRequestResult(formContainer, answer, messageDiv, $dialogbox){
 	if (answer.result == 0){
 		if (answer.data){
-			document.location = answer.data;
+			document.location = getContextRoot() + answer.data;
 		} else {
 			location.reload()
 		}
