@@ -382,5 +382,9 @@
 	<update author="Pavel" date="24.10.2018">
 		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`) VALUES ('index', 'login_error', 'Wrong user or password', 'Неправильное имя или пароль');
 	</update>
+	
+	<update author="Pavel" date="26.10.2018">
+		INSERT INTO `stock`.`label` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('index', 'index_title', 'Your Trader!', 'Your Trader!', 'Your Trader!');
+	</update>
 </root>
 
