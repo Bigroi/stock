@@ -19,6 +19,10 @@
 	            <bean class = "org.springframework.http.converter.StringHttpMessageConverter">
 	                <property name="supportedMediaTypes" value = "text/JSON;charset=UTF-8" />
 	            </bean>
+	            <bean class = "org.springframework.http.converter.ByteArrayHttpMessageConverter">
+	                <property name="supportedMediaTypes" value = "image/png" />
+	            </bean>
+	            
 	        </array>
 	    </property>
 	</bean>

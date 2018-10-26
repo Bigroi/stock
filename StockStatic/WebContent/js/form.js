@@ -101,7 +101,7 @@ function setFormInputs(formContainer, object){
 					formElements[j].value = value;
 				}
 			}
-			if ($(formElements[j]).attr("type") == "select"){
+			if (formElementName == "select"){
 				$(formElements[j]).change();
 			}
 		}

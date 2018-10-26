@@ -76,8 +76,8 @@
 				            <label>${label.deal.sellerFoto}</label>
 				            <div class="sellerFoto">
 				            	<div class="gallery">
-								    <a href="/Static/img/bg-platform.png" data-caption="Image caption">
-								        <img name="sellerFoto" src="" alt="First image">
+								    <a href="${pageContext.request.contextPath}/deal/json/Picture.spr?dealId=${id}">
+								        <img name="sellerFoto" src="">
 								    </a>
 								</div>
 				            </div>
