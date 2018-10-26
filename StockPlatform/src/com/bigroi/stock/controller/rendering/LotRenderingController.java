@@ -34,6 +34,8 @@ public class LotRenderingController extends BaseRenderingController{
 			Authentication loggedInUser){
 		ModelAndView modelAndView = createModelAndView("lotForm");
 		List<Product> productList = productService.getAllActiveProducts();
+		productList.forEach((product) -> product.setName(labelService.getLabel(product.getName(), "name", getLanguage())));
+		
 		List<CompanyAddress> addressList = addressService.getCompanyAddresses(((StockUser)loggedInUser.getPrincipal()).getCompanyId());
 		
 		modelAndView.addObject("listOfProducts", productList);
@@ -46,6 +48,8 @@ public class LotRenderingController extends BaseRenderingController{
 	public ModelAndView testForm(){
 		ModelAndView modelAndView = createModelAndView("testLotForm");
 		List<Product> productList = productService.getAllActiveProducts();
+		productList.forEach((product) -> product.setName(labelService.getLabel(product.getName(), "name", getLanguage())));
+		
 		List<CompanyAddress> addressList = addressService.getCompanyAddresses(0);
 		
 		modelAndView.addObject("listOfProducts", productList);
