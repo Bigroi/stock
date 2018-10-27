@@ -1,6 +1,7 @@
 package com.bigroi.stock.bean.ui;
 
 import java.util.Date;
+import java.util.List;
 
 import com.bigroi.stock.bean.common.DealStatus;
 import com.bigroi.stock.bean.common.PartnerChoice;
@@ -9,6 +10,7 @@ import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Edit;
 import com.bigroi.stock.json.Id;
+import com.google.common.collect.ImmutableList;
 
 public class DealForUI {
 
@@ -41,6 +43,9 @@ public class DealForUI {
 	private boolean star_3 = false;
 	private boolean star_2 = false;
 	private boolean star_1 = false;
+	private final String packaging;
+	private final String processing;
+	private final List<String> fieldsToRemove;
 	
 	public DealForUI(Deal deal, long companyId){
 		this(deal, companyId, 0);
@@ -58,11 +63,17 @@ public class DealForUI {
 		if (deal.getSellerAddress().getCompanyId() == companyId){
 			this.partnerAddress = deal.getBuyerAddress();
 			this.partnerDescription = deal.getBuyerDescription();
+			this.packaging = deal.getBuyerPackaging();
+			this.processing = deal.getBuyerProcessing();
+			this.fieldsToRemove = ImmutableList.of("foto");
 			this.sellerFoto = null;
 		} else {
 			this.partnerAddress = deal.getSellerAddress();
 			this.partnerDescription = deal.getSellerDescription();
 			this.sellerFoto = deal.getSellerFoto();
+			this.fieldsToRemove = ImmutableList.of("processing", "packaging");
+			this.packaging = null;
+			this.processing = null;
 		}
 		this.partnerAddress.setAddress(
 				this.partnerAddress.getCountry() + ", " +
@@ -72,6 +83,18 @@ public class DealForUI {
 		this.price = deal.getPrice();
 		this.volume = deal.getVolume();
 		this.edit = "NNY";
+	}
+	
+	public String getPackaging() {
+		return packaging;
+	}
+	
+	public String getProcessing() {
+		return processing;
+	}
+	
+	public List<String> getFieldsToRemove() {
+		return fieldsToRemove;
 	}
 	
 	private void setStar(int partnerMark) {

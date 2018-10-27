@@ -391,5 +391,13 @@
 		ALTER TABLE `LOT` CHANGE COLUMN `foto` `foto` LONGTEXT NULL DEFAULT NULL COLLATE 'utf8_bin' AFTER `exparation_date`;
 		ALTER TABLE `DEAL` CHANGE COLUMN `seller_foto` `seller_foto` LONGTEXT NULL DEFAULT NULL COLLATE 'utf8_bin' AFTER `product_id`;
 	</update>
+	
+	<update author="Pavel" date="27.10.2018">
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('deal', 'packaging', 'Processing', 'Обработка', 'Przetworzenie');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('deal', 'processing', 'Packaging', 'Упаковка', 'Opakowanie');
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('index', 'page_404', 'Page not found', 'Страница не найдена', NULL);
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('index', 'message_404', 'Page not found', 'Страница не найдена', NULL);
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('index', 'another_browser', 'You browser is not supported. We suppor only Mozilla Firefox, Google Chrom and Safary.', 'Ваш браузер не поддержживается. Мы поддерживаем только Mozilla Firefox, Google Chrom and Safary.', NULL);
+	</update>
 </root>
 
