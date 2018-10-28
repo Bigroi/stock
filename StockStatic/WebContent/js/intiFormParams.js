@@ -202,7 +202,7 @@ function getTenderDialogParams(id, $table, model){
 			text: l10n.translate("label.button.save"),
 			id:"save",
 			buttonClass:"gray-button",
-			submitUrl: "/tender/json/SaveAndActivate.spr",
+			submitUrl: "/tender/json/Save.spr",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model
