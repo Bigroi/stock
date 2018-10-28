@@ -73,7 +73,7 @@
        	<div class="aside-modile">
          	 <div class="burger-logo">
          	 	<div class="burger"></div>
-         	 	<div class="logo-mobile"><a href="/product/List.spr"></a></div>
+         	 	<div class="logo-mobile"><a href="${pageContext.request.contextPath}/product/List.spr"></a></div>
  			</div>
  			<div class="login-box login-box-shadow">
 				<div class="login-button-page">
