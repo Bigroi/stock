@@ -31,17 +31,17 @@
         <script src="${pageContext.request.contextPath}/Static/js/jquery-ui.min.js"></script>
 		
 		<!-- application css & js -->
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/style.css?version=${label.build.number}">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/style.css?version=${build_number}">
         
-        <script src="${pageContext.request.contextPath}/Static/js/form.js?version=${label.build.number}"></script>
-        <script src="${pageContext.request.contextPath}/Static/js/intiFormParams.js?version=${label.build.number}"></script>
-        <script src="${pageContext.request.contextPath}/Static/js/localization.js?version=${label.build.number}"></script>
-		<script src="${pageContext.request.contextPath}/Static/js/tableMaker.js?version=${label.build.number}"></script>
-		<script src="${pageContext.request.contextPath}/Static/js/map.js?version=${label.build.number}"></script>
-		<script src="${pageContext.request.contextPath}/Static/js/dialogbox.js?version=${label.build.number}"></script>
-		<script src="${pageContext.request.contextPath}/Static/js/script.js?version=${label.build.number}"></script>
-		<script src="${pageContext.request.contextPath}/Static/js/productList.js?version=${label.build.number}"></script>
-		<script src="${pageContext.request.contextPath}/Static/js/testTrading.js?version=${label.build.number}"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/form.js?version=${build_number}"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/intiFormParams.js?version=${build_number}"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/localization.js?version=${build_number}"></script>
+		<script src="${pageContext.request.contextPath}/Static/js/tableMaker.js?version=${build_number}"></script>
+		<script src="${pageContext.request.contextPath}/Static/js/map.js?version=${build_number}"></script>
+		<script src="${pageContext.request.contextPath}/Static/js/dialogbox.js?version=${build_number}"></script>
+		<script src="${pageContext.request.contextPath}/Static/js/script.js?version=${build_number}"></script>
+		<script src="${pageContext.request.contextPath}/Static/js/productList.js?version=${build_number}"></script>
+		<script src="${pageContext.request.contextPath}/Static/js/testTrading.js?version=${build_number}"></script>
   		
 	</head>
 	<body>

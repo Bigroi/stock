@@ -1,5 +1,9 @@
 package com.bigroi.stock.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,21 @@ import com.bigroi.stock.util.LabelUtil;
 
 public abstract class BaseRenderingController extends BaseController{
 
+	private static final String BUILD_FILE = "build.txt";
+	
+	private static final String BUILD_NUMBER;
+	
+	static{
+		String buildNumber;
+		try(InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(BUILD_FILE)){
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
+			buildNumber = bufferedReader.readLine();
+		}catch (IOException e) {
+			buildNumber = "local_build";
+		}
+		BUILD_NUMBER = buildNumber;
+	}
+	
 	@Autowired
 	protected LabelService labelService;
 	
@@ -24,6 +43,7 @@ public abstract class BaseRenderingController extends BaseController{
 		return new ModelAndView(pageName)
 				.addObject("label", new LabelMap())
 				.addObject("user", user)
+				.addObject("build_number", BUILD_NUMBER)
 				.addObject("languages", LabelUtil.getPassibleLanguages(getLanguage()))
 				.addObject("page_title", labelService.getLabel("pageNames", pageName, getLanguage()));
 	}
