@@ -52,7 +52,7 @@
 		<div id="form-container"></div>
         <div class="aside">
             <div class="logo-pages">
-                <a href="/product/List.spr"><img class="big-logo" src="/Static/img/logo-pages.png" alt="YourTrader" title="YourTrader"></a>
+                <a href="${pageContext.request.contextPath}/product/List.spr"><img class="big-logo" src="/Static/img/logo-pages.png" alt="YourTrader" title="YourTrader"></a>
                 <div class=" small-logo">
                 	<div class="burger-close"></div>
                 	<div class="logo-mobile"><a href="/product/List.spr"></a></div>
