@@ -65,6 +65,7 @@ public class DealResourseController extends BaseResourseController {
 				user.getCompanyId() != deal.getSellerAddress().getCompanyId()){
 			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
 		} else {
+			deal.getProduct().setName(labelService.getLabel(deal.getProduct().getName(), "name", getLanguage()));
 			return new ResultBean(1, translateDeal(new DealForUI(deal, user.getCompanyId(), parterMark)), "").toString();
 		}
 	}
@@ -108,7 +109,10 @@ public class DealResourseController extends BaseResourseController {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
 		List<Deal> deals = dealService.getByUserId(userBean.getCompanyId());
 		List<DealForUI> dealsForUI = deals.stream()
-				.map(d -> new DealForUI(d, userBean.getCompanyId()))
+				.map(d -> {
+					d.getProduct().setName(labelService.getLabel(d.getProduct().getName(), "name", getLanguage()));
+					return new DealForUI(d, userBean.getCompanyId());
+				})
 				.map(this::translateDeal)
 				.collect(Collectors.toList());
 		TableResponse<DealForUI> table = new TableResponse<>(DealForUI.class, dealsForUI);

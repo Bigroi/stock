@@ -21,6 +21,7 @@ import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableResponse;
 import com.bigroi.stock.service.AddressService;
 import com.bigroi.stock.service.BidService;
+import com.bigroi.stock.service.LabelService;
 import com.bigroi.stock.util.DateUtil;
 
 public abstract class BidResourceController<B extends Bid, U> extends BaseResourseController{
@@ -29,6 +30,9 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 	
 	@Autowired
 	private AddressService addressService;
+	
+	@Autowired 
+	protected LabelService labelService;
 			
 	protected abstract BidService<B> getBidService();
 	
@@ -54,7 +58,12 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 
 	protected ResultBean bidList() {
 		List<B> bids = getBidService().getByCompanyId(getUserCompanyId());
-		List<U> objectForUI = bids.stream().map(getObjectForUIConstructor()).collect(Collectors.toList());
+		List<U> objectForUI = bids.stream()
+				.map((b) -> {
+					b.getProduct().setName(labelService.getLabel(b.getProduct().getName(), "name", getLanguage()));
+					return getObjectForUIConstructor().apply(b);
+				})
+				.collect(Collectors.toList());
 		Class<U> clazz = getForUIClass();
 		TableResponse<U> table = new TableResponse<>(clazz, objectForUI);
 		return new ResultBean(1, table, null);

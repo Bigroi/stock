@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.controller.BaseRenderingController;
 import com.bigroi.stock.service.ProductService;
 
@@ -27,7 +28,9 @@ public class ProductRenderingController extends BaseRenderingController{
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView tradeOffers(@RequestParam("id") long id) {
 		ModelAndView modelAndView = createModelAndView("tradeOffers");
-		modelAndView.addObject("product", productService.getProductById(id));
+		Product product = productService.getProductById(id);
+		product.setName(labelService.getLabel(product.getName(), "name", getLanguage()));
+		modelAndView.addObject("product", product);
 		return modelAndView;
 	}
 

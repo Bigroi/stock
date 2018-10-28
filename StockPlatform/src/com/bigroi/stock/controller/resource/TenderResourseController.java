@@ -69,7 +69,12 @@ public class TenderResourseController extends BidResourceController<Tender, Tend
 	@ResponseBody
 	public String testLotList() {
 		List<Tender> bids = tenderService.getBySessionId(getSessionId());
-		List<TestTenderForUI> testTendersForUI = bids.stream().map(TestTenderForUI::new).collect(Collectors.toList());
+		List<TestTenderForUI> testTendersForUI = bids.stream()
+				.map( t -> {
+					t.getProduct().setName(labelService.getLabel(t.getProduct().getName(), "name", getLanguage()));
+					return new TestTenderForUI(t);
+				})
+				.collect(Collectors.toList());
 		TableResponse<TestTenderForUI> table = new TableResponse<>(TestTenderForUI.class, testTendersForUI);
 		return new ResultBean(1, table, null).toString();
 	}

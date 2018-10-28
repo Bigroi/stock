@@ -44,7 +44,12 @@ public class LotResourseController extends BidResourceController<Lot, LotForUI> 
 	@ResponseBody
 	public String testLotList() {
 		List<Lot> bids = lotService.getBySessionId(getSessionId());
-		List<TestLotForUI> testLotsForUI = bids.stream().map(TestLotForUI::new).collect(Collectors.toList());
+		List<TestLotForUI> testLotsForUI = bids.stream()
+				.map( l -> {
+					l.getProduct().setName(labelService.getLabel(l.getProduct().getName(), "name", getLanguage()));
+					return new TestLotForUI(l);
+				})
+				.collect(Collectors.toList());
 		TableResponse<TestLotForUI> table = new TableResponse<>(TestLotForUI.class, testLotsForUI);
 		return new ResultBean(1, table, null).toString();
 	}

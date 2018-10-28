@@ -10,11 +10,11 @@
 			            <input type="text" disabled value="${product.name}"/>
 			        </li>
 			        
-			        <c:if test="${product.name == 'Apple'}">
+			        <%-- <c:if test="${product.name == 'Apple'}">
 			        	<li>
 			           		 <input type="text" disabled value="${label.description.aboutApple}"/>
 			       		</li>
-			        </c:if>
+			        </c:if> --%>
 			        
 			         <c:if test="${product.name == 'Potato'}">
 			        	<li>
