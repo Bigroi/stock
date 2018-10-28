@@ -35,6 +35,8 @@ public class TenderRenderingController extends BaseRenderingController{
 			) {
 		ModelAndView modelAndView = createModelAndView("tenderForm");
 		List<Product> products = productService.getAllActiveProducts();
+		products.forEach((product) -> product.setName(labelService.getLabel(product.getName(), "name", getLanguage())));
+		
 		List<CompanyAddress> addressList = addressService.getCompanyAddresses(((StockUser)loggedInUser.getPrincipal()).getCompanyId());
 		
 		modelAndView.addObject("newTender", id < 0);
@@ -47,6 +49,8 @@ public class TenderRenderingController extends BaseRenderingController{
 	public ModelAndView testForm() {
 		ModelAndView modelAndView = createModelAndView("testTenderForm");
 		List<Product> products = productService.getAllActiveProducts();
+		products.forEach((product) -> product.setName(labelService.getLabel(product.getName(), "name", getLanguage())));
+		
 		List<CompanyAddress> addressList = addressService.getCompanyAddresses(0);
 		
 		modelAndView.addObject("listOfProducts", products);

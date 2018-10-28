@@ -65,6 +65,14 @@
 				            <input type="text" name="partnerDescription" disabled/>
 				        </li>
 				        <li>
+				            <label for="packaging">${label.deal.packaging}</label>
+				            <input type="text" name="packaging" disabled/>
+				        </li>
+				        <li>
+				            <label for="processing">${label.deal.processing}</label>
+				            <input type="text" name="processing" disabled/>
+				        </li>
+				        <li>
 				            <label for="partnerPhone">${label.deal.partnerPhone}</label>
 				            <input type="text" name="partnerAddress.company.phone" disabled/>
 				        </li>
@@ -73,11 +81,11 @@
 				            <input type="text" name="partnerAddress.company.regNumber" disabled/>
 				        </li>
 				        <li>
-				            <label>${label.deal.sellerFoto}</label>
+				            <label for="sellerFoto">${label.deal.sellerFoto}</label>
 				            <div class="sellerFoto">
 				            	<div class="gallery">
-								    <a href="/Static/img/bg-platform.png" data-caption="Image caption">
-								        <img name="sellerFoto" src="" alt="First image">
+								    <a href="${pageContext.request.contextPath}/deal/json/Picture.spr?dealId=${id}">
+								        <img name="sellerFoto" src="">
 								    </a>
 								</div>
 				            </div>

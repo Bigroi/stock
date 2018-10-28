@@ -1,12 +1,16 @@
 package com.bigroi.stock.controller.resource;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -81,6 +85,20 @@ public class DealResourseController extends BaseResourseController {
 	private DealForUI translateDeal(DealForUI deal) {
 		deal.setStatus(labelService.getLabel("label", deal.getStatus(), getLanguage()));
 		return deal;
+	}
+	
+	@RequestMapping(value = "/Picture.spr", produces = MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	public ResponseEntity<byte[]> picture(@RequestParam("dealId") long dealId, Authentication loggedInUser) {
+		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
+		byte[] bytes =  Base64.getDecoder().decode(
+				dealService.getById(dealId, userBean.getCompanyId())
+				.getSellerFoto()
+				.substring("data:image/png;base64,".length())
+				.getBytes());
+		
+		return new ResponseEntity<byte[]>(bytes, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/MyDeals.spr", produces = "text/plain;charset=UTF-8")

@@ -101,9 +101,16 @@ function setFormInputs(formContainer, object){
 					formElements[j].value = value;
 				}
 			}
-			if ($(formElements[j]).attr("type") == "select"){
+			if (formElementName == "select"){
 				$(formElements[j]).change();
 			}
+		}
+	}
+	
+	if (object.fieldsToRemove){
+		for (var i = 0; i < object.fieldsToRemove.length; i++){
+			$("[name=" + object.fieldsToRemove[i] + "]").remove();
+			$("[for=" + object.fieldsToRemove[i] + "]").remove();
 		}
 	}
 	
@@ -133,7 +140,7 @@ function setFormInputs(formContainer, object){
 function processRequestResult(formContainer, answer, messageDiv, $dialogbox){
 	if (answer.result == 0){
 		if (answer.data){
-			document.location = answer.data;
+			document.location = getContextRoot() + answer.data;
 		} else {
 			location.reload()
 		}

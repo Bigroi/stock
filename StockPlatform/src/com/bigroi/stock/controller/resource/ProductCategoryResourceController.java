@@ -54,6 +54,7 @@ public class ProductCategoryResourceController extends BaseResourseController {
 	@ResponseBody
 	public String getFormCategories(@RequestParam("productId") long productId){
 		List<ProductCategory> categoris = productCategoryService.getActiveByProductId(productId);
+		categoris.forEach((category) -> category.setCategoryName(labelService.getLabel(category.getCategoryName(), "name", getLanguage())));
 		categoris.add(0, new ProductCategory(-1, labelService.getLabel("lot", "list", getLanguage())));
 		return new ResultBean(1, categoris, null).toString();
 	}

@@ -17,6 +17,7 @@ import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableResponse;
+import com.bigroi.stock.service.LabelService;
 import com.bigroi.stock.service.ProductService;
 
 @Controller
@@ -29,10 +30,14 @@ public class ProductResourseController extends BaseResourseController {
 	@Autowired
 	private ProductService productService;
 	
+	@Autowired
+	private LabelService labelService;
+	
 	@RequestMapping(value = "/List.spr")
 	@ResponseBody
 	public String list() {
 		List<ProductForUI> productsForUI = productService.getAllActiveProductsForUI();
+		productsForUI.forEach((p) -> p.setName(labelService.getLabel(p.getName(), "name", getLanguage())));
 		return new ResultBean(1, productsForUI, null).toString();
 	}
 
@@ -43,7 +48,10 @@ public class ProductResourseController extends BaseResourseController {
 		List<Product> products = productService.getAllProducts();
 		List<ProductForUI> productsForUI = products.stream().
 				map(ProductForUI::new).collect(Collectors.toList());
-		productsForUI.stream().forEach(p -> p.setEdit("YNN"));
+		productsForUI.stream().forEach(p -> {
+			p.setEdit("YNN");
+			p.setName(labelService.getLabel(p.getName(), "name", getLanguage()));
+		});
 		TableResponse<ProductForUI> table = new TableResponse<>(ProductForUI.class, productsForUI);
 		return new ResultBean(1, table, null).toString();
 	}
