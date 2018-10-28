@@ -1,5 +1,6 @@
 package com.bigroi.stock.controller.resource;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -98,6 +99,17 @@ public class LotResourseController extends BidResourceController<Lot, LotForUI> 
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String delete(@RequestParam("id") long id) {
 		return deleteBid(id).toString();
+	}
+	
+	@RequestMapping(value = "/Foto.spr")
+	@ResponseBody
+	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
+	public byte[] foto(@RequestParam("id") long id) {
+		return Base64.getDecoder().decode(
+				lotService.getById(id, getUserCompanyId())
+				.getFoto()
+				.substring("data:image/png;base64,".length())
+				.getBytes());
 	}
 
 	@Override

@@ -399,5 +399,9 @@
 		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('index', 'message_404', 'Page not found', 'Страница не найдена', NULL);
 		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('index', 'another_browser', 'You browser is not supported. We suppor only Mozilla Firefox, Google Chrom and Safary.', 'Ваш браузер не поддержживается. Мы поддерживаем только Mozilla Firefox, Google Chrom and Safary.', NULL);
 	</update>
+	
+	<update author="Pavel" date="29.10.2018">
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('lot', 'uploaded_foto', 'Uploaded foto', 'Загруженое фото', NULL);
+	</update>
 </root>
 

@@ -23,8 +23,12 @@ public abstract class BaseRenderingController extends BaseController{
 	static{
 		String buildNumber;
 		try(InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(BUILD_FILE)){
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
-			buildNumber = bufferedReader.readLine();
+			if (stream != null){
+				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
+				buildNumber = bufferedReader.readLine();
+			} else {
+				buildNumber = "local_build";
+			}
 		}catch (IOException e) {
 			buildNumber = "local_build";
 		}

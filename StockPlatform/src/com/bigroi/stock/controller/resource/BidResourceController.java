@@ -140,7 +140,7 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		return new ResultBean(1, null);
 	}
 
-	private long getUserCompanyId() {
+	protected long getUserCompanyId() {
 		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
 		if (loggedInUser != null && loggedInUser.getPrincipal() instanceof StockUser){
 			StockUser user = (StockUser) loggedInUser.getPrincipal();
