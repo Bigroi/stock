@@ -28,6 +28,7 @@
 		<script src="${pageContext.request.contextPath}/Static/js/jQuery.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/jquery.dataTables.min.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/jquery.responsive.dataTables.min.js"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/bowser.min.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/baguetteBox.min.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/jquery-ui.min.js"></script>
 		
@@ -42,8 +43,6 @@
 		<script src="${pageContext.request.contextPath}/Static/js/dialogbox.js?version=${build_number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/script.js?version=${build_number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/productList.js?version=${build_number}"></script>
-		
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bowser/1.9.3/bowser.min.js"></script>
 		
 			
 	</head>
@@ -77,7 +76,10 @@
  			</div>
  			<div class="login-box login-box-shadow">
 				<div class="login-button-page">
-			    	<div>Apple Trader</div>
+			    	<div>
+			    		<div>${user.company.name}</div>
+			    		<div class="hor_bg"></div>
+			    	</div>
 				</div>
 				<div class="login-list">
 					<div>
