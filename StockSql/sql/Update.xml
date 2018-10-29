@@ -407,7 +407,7 @@
 		ALTER TABLE `LABEL` CHANGE COLUMN `category` `category` VARCHAR(100) NOT NULL AFTER `id`;
 	</update>
 	<update author="Pavel" date="20.10.2018">
-		INSERT INTO `label` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES
 			('Pear', 'name', 'Pear', 'Груша', 'Grusza'),
 			('Raspberries', 'name', 'Raspberries', 'Малина', 'Malina'),
 			('Strawberries', 'name', 'Strawberries', 'Клубника', 'Truskawka'),
