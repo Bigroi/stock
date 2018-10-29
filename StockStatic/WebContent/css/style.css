@@ -220,7 +220,7 @@ h3 {
     letter-spacing: 1px;
 } 
 .advantages {
-	min-height: 290px;
+	/*min-height: 290px;*/
     padding: 60px 0;
 }
 .advantages .container {
@@ -239,7 +239,7 @@ h3 {
 }
 .advantage {
 	width: 270px;
-	min-height: 262px;
+	/*min-height: 262px;*/
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
