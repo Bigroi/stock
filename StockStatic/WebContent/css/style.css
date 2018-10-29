@@ -220,7 +220,7 @@ h3 {
     letter-spacing: 1px;
 } 
 .advantages {
-	min-height: 290px;
+	/*min-height: 290px;*/
     padding: 60px 0;
 }
 .advantages .container {
@@ -239,7 +239,7 @@ h3 {
 }
 .advantage {
 	width: 270px;
-	min-height: 262px;
+	/*min-height: 262px;*/
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -1401,12 +1401,28 @@ footer .container {
 	padding: 5px 0 5px;
 	color: #202020;
 }
-.login-button-page div {
-	font-size: 14px;
+.login-button-page > div {
 	position: relative;
 	display: block;
 }
-.login-button-page div:after {
+.login-button-page > div > div:first-child {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+    display: block;
+    width: 80px;
+}
+.hor_bg {
+    width: 20px;
+    height: 17px;
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), white 80%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white 80%);
+    position: absolute;
+    right: 35px;
+    top: 0px;
+}
+.login-button-page > div:after {
 	  content: ""; 
 	  width: 7px;
       height: 4px;
@@ -2613,10 +2629,14 @@ table.dataTable>tbody>tr.child span {
     height: 150px;
     margin: 0 auto;
 }
-.flex-404 > div {
+.flex-404 > div{
 	width: 35%;  
 }
-.flex-404 h1 {
+.flex-500 > div {
+	width: 40%;  
+}
+.flex-404 h1,
+.flex-500 h1 {
 	text-align: left;
     background-image: url(/Static/img/apple.png);
     background-repeat: no-repeat;
@@ -2625,43 +2645,75 @@ table.dataTable>tbody>tr.child span {
     background-position-x: 100%;
     padding-top: 60px;
 }
-.flex-404 p {
+.flex-500 h1 {
+	background-image: url(/Static/img/potato.png);
+}
+.flex-404 p,
+.flex-500 p {
 	padding-top: 30px;
 	font-weight: bold;
 	font-family: Museo;
 }
-.flex-404 p a {
+.flex-404 p a, 
+.flex-500 p a{
 	color: #0fc668;
+	font-family: Museo;
 }
 @media (max-width: 1280px) {
-	.flex-404 > div {
+	.flex-404 > div{
 		width: 50%;  
+	}
+	.flex-500 > div {
+		width: 65%;  
 	}
 }
 @media (max-width: 1023px){
 	.flex-404 > div {
 		width: 80%;  
 	}
+	.flex-500 > div {
+		width: 85%;  
+	}
 }
 @media (max-width: 758px) {
 	.message-page-flex h1{
 		font-size: 24px;
 	}
-	.flex-404 h3 {
+	.flex-404 h3,
+	.flex-500 h3 {
 		font-size: 20px;
 	}
-	.flex-404 h1 {
+	.flex-404 h1,
+	.flex-500 h1 {
 		text-align: center;
 		background-size: 100px;
 	    height: 30px;
 	    background-position-x: 50%;
 	    padding-top: 75px;
 	}
-	.flex-404 p {
+	.flex-500 h1 {
+		padding-top: 90px;
+	}
+	.flex-404 p,
+	.flex-500 p {
 		padding-top: 20px; 
 	}
 	.logo-browsers  {
     	height: 95px;
 	}
 }
-
+table.dataTable.display tbody tr:hover>.sorting_1, 
+table.dataTable.order-column.hover tbody tr:hover>.sorting_1,
+table.dataTable.display tbody tr.odd>.sorting_1, 
+table.dataTable.order-column.stripe tbody tr.odd>.sorting_1,
+table.dataTable.order-column tbody tr>.sorting_1, 
+table.dataTable.order-column tbody tr>.sorting_2, 
+table.dataTable.order-column tbody tr>.sorting_3, 
+table.dataTable.display tbody tr>.sorting_1, 
+table.dataTable.display tbody tr>.sorting_2, 
+table.dataTable.display tbody tr>.sorting_3,
+table.dataTable.display tbody tr.even>.sorting_1, 
+table.dataTable.order-column.stripe tbody tr.even>.sorting_1 {
+	background-color: transparent;
+	
+}

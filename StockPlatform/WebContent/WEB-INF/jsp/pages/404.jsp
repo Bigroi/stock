@@ -22,8 +22,7 @@
 			<div>
 				<h1>${label.index.page_404}</h1>
 				<h3>${label.index.message_404}</h3>
-				<p>Вернуться на <a href="/">главную</a></p>
-				<div class="logo-apple"></div>
+				<p>${label.index.message_return} <a href="/">${label.index.message_main_page}</a></p>
 			</div>
 		</div>
 	</body>

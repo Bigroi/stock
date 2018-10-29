@@ -16,7 +16,7 @@ import com.bigroi.stock.util.exception.StockRuntimeException;
 public class DealDocument extends Document<Deal>{
 
 	public static final String DEAL_DOC_FILE_NAME = "Deal";
-	public static final String DEAL_DOC_FILE_EXTENSION = "docx";
+	public static final String DEAL_DOC_FILE_EXTENSION = "doc";
 	
 	public DealDocument(){
 		super(DEAL_DOC_FILE_NAME, DEAL_DOC_FILE_EXTENSION);

@@ -28,6 +28,7 @@
 		<script src="${pageContext.request.contextPath}/Static/js/jQuery.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/jquery.dataTables.min.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/jquery.responsive.dataTables.min.js"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/bowser.min.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/jquery-ui.min.js"></script>
 		
 		<!-- application css & js -->
@@ -42,8 +43,6 @@
 		<script src="${pageContext.request.contextPath}/Static/js/script.js?version=${build_number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/productList.js?version=${build_number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/testTrading.js?version=${build_number}"></script>
-		
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bowser/1.9.3/bowser.min.js"></script>
   		
 	</head>
 	<body>
