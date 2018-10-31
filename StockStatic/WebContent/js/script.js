@@ -18,6 +18,7 @@ $(document).ready(function(){
 		    $("#languages-select").iconselectmenu().iconselectmenu("menuWidget").addClass("ui-menu-icons customicons");
 		    var selectedImage = $("#languages-select").find("option:selected").attr("data-class");
 		    $(".ui-selectmenu-text").css('background-image', 'url("/Static/img/' + selectedImage +'.png")');
+		    $(".preview-platform").css('background-image', 'url("/Static/img/' + selectedImage +'_responsive.png")');
 		    $( "#languages-select" ).iconselectmenu({
 		    	select: function(event, ui){
 			        var selectedImage = $(this).find("option:selected").attr("data-class");

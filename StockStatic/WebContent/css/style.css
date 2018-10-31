@@ -473,7 +473,8 @@ table.dataTable tbody td.dataTables_empty {
 	background-color: #f7f7f7;
 	background-image: url(/Static/img/bg-platform.png);
 	background-repeat: no-repeat;
-	background-position: right 60px center;
+	background-position: right 20% center;
+	background-size: 700px;
 }
 .preview-platform .container{
 	display: -webkit-box;
@@ -2284,8 +2285,9 @@ table.dataTable>tbody>tr.child span {
 	.section .add-button p {
 		font-size: 16px;
 	}
-	.login-button-page div {
-		font-size: 0;
+	.login-button-page > div > div:first-child,
+	.login-button-page > div > div:last-child {
+		display: none;
 	}
 	.login-button-page {
 		width: 60px;
