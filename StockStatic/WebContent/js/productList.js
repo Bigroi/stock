@@ -9,6 +9,17 @@ $(document).ready(function(){
 		for (var i = 0; i < products.length; i++){
 			addProduct(container, products[i]);
 		}
+    	var width = $(window).width();
+    	container.bxSlider({
+	    	  maxSlides: (width < 1280) ? 1 : 2,
+	    	  minSlides:(width < 1280) ? 1 : 2, 
+	    	  pager: false,
+	    	  slideWidth:(width < 1280) ? 720 : 510,
+	    	  auto: true,   
+	    	  mode: 'horizontal',
+	    	  shrinkItems: true,
+	    	  infiniteLoop: false
+	      });
 	}
 
 	function addProduct(container, product){

@@ -29,7 +29,8 @@
         <script src="${pageContext.request.contextPath}/Static/js/jquery.dataTables.min.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/jquery.responsive.dataTables.min.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/bowser.min.js"></script>
-        <script src="${pageContext.request.contextPath}/Static/js/jquery-ui.min.js"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/bowser.min.js"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/bxslider.min.js"></script>
 		
 		<!-- application css & js -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/style.css?version=${build_number}">
@@ -43,7 +44,7 @@
 		<script src="${pageContext.request.contextPath}/Static/js/script.js?version=${build_number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/productList.js?version=${build_number}"></script>
 		<script src="${pageContext.request.contextPath}/Static/js/testTrading.js?version=${build_number}"></script>
-  		
+		
 	</head>
 	<body>
 		<div id="form-container"></div>
@@ -126,7 +127,7 @@
 						<div class="products" id="ex3">
 							<div class="container">
 								<h3>${label.index.products}</h3>
-								<div class="product-cont unauthorised"></div>
+								 <div class="product-cont unauthorised slider"></div>  
 							</div>
 						</div>
 						<div class="for-whom" id="ex4">
