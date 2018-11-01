@@ -29,8 +29,9 @@
         <script src="${pageContext.request.contextPath}/Static/js/jquery.dataTables.min.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/jquery.responsive.dataTables.min.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/bowser.min.js"></script>
-        <script src="${pageContext.request.contextPath}/Static/js/bowser.min.js"></script>
         <script src="${pageContext.request.contextPath}/Static/js/bxslider.min.js"></script>
+        <script src="${pageContext.request.contextPath}/Static/js/jquery-ui.min.js"></script>
+        
 		
 		<!-- application css & js -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/Static/css/style.css?version=${build_number}">

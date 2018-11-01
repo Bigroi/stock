@@ -31,6 +31,9 @@ public class LotServiceImpl implements LotService {
 		} else {
 			lot = lotDao.getById(id, companyId);
 		}
+		if (lot.getCategoryId() == null){
+			lot.setCategoryId(-1l);
+		}
 		return lot;
 	}
 

@@ -31,6 +31,9 @@ public class TenderServiceImpl implements TenderService{
 		} else {
 			tender = tenderDao.getById(id, companyId);
 		}
+		if (tender.getCategoryId() == null){
+			tender.setCategoryId(-1l);
+		}
 		return tender;
 	}
 

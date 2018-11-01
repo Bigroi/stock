@@ -115,7 +115,10 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 			String str = errors.toString().substring(1, errors.toString().length() - 1);
 			return new ResultBean(-1, str);
 		}
-
+		
+		if (bid.getCategoryId() == -1){
+			bid.setCategoryId(null);
+		}
 		getBidService().merge(bid, getUserCompanyId());
 		return new ResultBean(1, getObjectForUIConstructor().apply(bid), "");
 	}

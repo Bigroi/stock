@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLType;
+import java.sql.Types;
 import java.util.Collection;
 import java.util.List;
 
@@ -125,7 +127,11 @@ public class TenderDaoImpl implements TenderDao{
 				PreparedStatement ps = con.prepareStatement(ADD_TENDER,PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, tender.getDescription());
 				ps.setLong(2, tender.getProductId());
-				ps.setLong(3, tender.getCategoryId());
+				if (tender.getCategoryId() != null){
+					ps.setLong(3, tender.getCategoryId());
+				} else {
+					ps.setNull(3, Types.BIGINT);
+				}
 				ps.setDouble(4, tender.getPrice());
 				ps.setInt(5, tender.getMinVolume());
 				ps.setInt(6, tender.getMaxVolume());
