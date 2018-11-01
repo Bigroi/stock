@@ -1395,7 +1395,7 @@
 		('index', 'contact_support', 'Пожалуйста, обратитесь в службу поддержки', 'Please contact support'),
 		('index', 'by_phone', 'По телефону', 'By phone'),
 		('index', 'or_email', 'или email', 'or email'),
-		('message', 'warning', 'Внимание', 'Warning');
+		('message', 'warning', 'Warning', 'Внимание');
 		
 		UPDATE `LABEL`
 		SET en_us = 'Page 404', ru_Ru = 'Страница 404'
