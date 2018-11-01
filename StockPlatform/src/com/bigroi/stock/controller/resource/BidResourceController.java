@@ -120,6 +120,7 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 			bid.setCategoryId(null);
 		}
 		getBidService().merge(bid, getUserCompanyId());
+		bid.getProduct().setName(labelService.getLabel(bid.getProduct().getName(), "name", getLanguage()));
 		return new ResultBean(1, getObjectForUIConstructor().apply(bid), "");
 	}
 
