@@ -1388,5 +1388,27 @@
 		set ru_ru = pl, en_us = pl
 		where ru_ru is null and en_us is null;
 	</update>
+	
+	<update author="Pavel" date="01.11.2018">
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`) VALUES
+		('index', 'error_500', '500 Internal Server Error', '500 Internal Server Error'),
+		('index', 'contact_support', 'Пожалуйста, обратитесь в службу поддержки', 'Please contact support'),
+		('index', 'by_phone', 'По телефону', 'By phone'),
+		('index', 'or_email', 'или email', 'or email'),
+		('message', 'warning', 'Внимание', 'Warning');
+		
+		UPDATE `LABEL`
+		SET en_us = 'Page 404', ru_Ru = 'Страница 404'
+		WHERE category = 'index' AND name = 'page_404'; 
+		
+		UPDATE `LABEL`
+		SET en_us = 'Unfortunately the page you requested does not exist', ru_Ru = 'К сожалению, запрошенная вами страница не существует'
+		WHERE category = 'index' AND name = 'message_404';
+
+		UPDATE `LABEL`
+		SET en_us = 'Please use Google Chrome, Mozilla Firefox or Safari browsers.', ru_Ru = 'Пожалуйста, используйте браузер Google Chrome, Mozilla Firefox или Safari'
+		WHERE category = 'index' AND name = 'another_browser';
+
+	</update>
 </root>
 
