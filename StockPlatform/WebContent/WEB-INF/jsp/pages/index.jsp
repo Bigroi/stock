@@ -181,7 +181,7 @@
 									    <table id="main-table-deal" data-url="/deal/json/TestDeals.spr"></table>
 									</div>
 									<button class="test-trade background-green">${label.button.trade}</button>
-									<button class="test-clear background-gray">${label.button.clear}</button>
+									<button class="test-clear gray-button">${label.button.clear}</button>
 								</div>
 							</div>
 						</div>

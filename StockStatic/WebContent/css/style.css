@@ -1243,6 +1243,7 @@ footer .container {
 	height: 40px;
 	color: #333333;
 } 
+
 .send-message {
 	width: 130px;
 }
@@ -1644,6 +1645,7 @@ button:hover,
     max-width: 24px;
     height: 30px;
     background-image: url(/Static/img/remove-trash-can.png);
+    background-image: url(/Static/img/remove-trash-can.png);
     background-size: auto 75%;
     background-repeat: no-repeat;
     background-position: center;
@@ -1651,6 +1653,7 @@ button:hover,
 }
 .remove:hover,
 .remove:active {
+	background-image: url(/Static/img/remove-trash-can-active.png);
 	background-image: url(/Static/img/remove-trash-can-active.png);
 }
 .header-white-div {
@@ -2410,8 +2413,12 @@ table.dataTable>tbody>tr.child span {
 		position: relative;
 		width: calc(100% - 42px);
     	padding: 20px 20px 30px 20px;
+    	display: -webkit-box;
+    	display: -ms-flexbox;
     	display: flex;
-    	justify-content: center;
+    	-webkit-box-pack: center;
+    	    -ms-flex-pack: center;
+    	        justify-content: center;
     	background-position: left 70% top 20px;
 	}
 	.product-page .product h4 {
@@ -2737,7 +2744,7 @@ table.dataTable.order-column.stripe tbody tr.even>.sorting_1 {
     width: 32px;
     height: 32px;
     text-indent: -9999px;
-    z-index: 9999;
+    display: block;
 }
 .bx-wrapper .bx-next {
 	background: url(/Static/img/controls.png) no-repeat -43px -32px;
@@ -2746,6 +2753,9 @@ table.dataTable.order-column.stripe tbody tr.even>.sorting_1 {
 .bx-wrapper .bx-prev {
 	background: url(/Static/img/controls.png) no-repeat 0 -32px;
 	left: -13px !important;
+}
+.bx-controls-direction a.disabled {
+	 display: none;
 }
 @media (max-width: 1280px) {
 	.bx-wrapper .bx-next {

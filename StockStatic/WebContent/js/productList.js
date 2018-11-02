@@ -17,7 +17,7 @@ $(document).ready(function(){
 	    	  slideWidth:(width < 1280) ? 720 : 510,
 	    	  auto: true,   
 	    	  mode: 'horizontal',
-	    	  shrinkItems: true,
+	    	  hideControlOnEnd: true,
 	    	  infiniteLoop: false
 	      });
 	}
