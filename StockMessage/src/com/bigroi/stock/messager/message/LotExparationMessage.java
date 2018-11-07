@@ -1,5 +1,7 @@
 package com.bigroi.stock.messager.message;
 
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bigroi.stock.bean.db.Lot;
@@ -21,7 +23,7 @@ public class LotExparationMessage extends BaseMessage<Lot> {
 	}
 	
 	@Override
-	protected String getText(Lot lot, String locale){
+	protected String getText(Lot lot, Locale locale){
 		return super.getText(lot, locale)
 				.replaceAll("@price", lot.getPrice() + "")
 				.replaceAll("@description", lot.getDescription())

@@ -1,5 +1,7 @@
 package com.bigroi.stock.messager.message.deal;
 
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bigroi.stock.bean.db.Deal;
@@ -31,9 +33,9 @@ public class SuccessDealMessageForBuyer extends BaseMessage<Deal> {
 	}
 
 	@Override
-	protected String getText(Deal deal, String locale) {
+	protected String getText(Deal deal, Locale locale) {
 		return super.getText(deal, locale)
-				.replaceAll("@product", deal.getProductName())
+				.replaceAll("@product", labelDao.getLabel(deal.getProductName(), "name", locale))
 				.replaceAll("@server", mailManager.getServerAdress());
 	}
 }

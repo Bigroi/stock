@@ -22,6 +22,7 @@ import com.bigroi.stock.messager.message.deal.SellerCanceledMessage;
 import com.bigroi.stock.messager.message.deal.SuccessDealMessageForBuyer;
 import com.bigroi.stock.messager.message.deal.SuccessDealMessageForSeller;
 import com.bigroi.stock.service.DealService;
+import com.bigroi.stock.util.LabelUtil;
 
 @Repository
 public class DealServiceImpl implements DealService{
@@ -77,7 +78,7 @@ public class DealServiceImpl implements DealService{
 		}
 		addBlackList(deal.getLotId(), deal.getTenderId());
 		setVolumeBack(deal);
-		message.send(deal, messageLanguage);
+		message.send(deal, LabelUtil.parseString(messageLanguage));
 		return true;
 	}
 
@@ -109,8 +110,8 @@ public class DealServiceImpl implements DealService{
 			return false;
 		}
 		if (DealStatus.calculateStatus(deal.getBuyerChoice(), deal.getSellerChoice()) == DealStatus.APPROVED){
-			successDealMessageForBuyer.send(deal, deal.getBuyerLanguage());
-			successDealMessageForSeller.send(deal, deal.getSellerLanguage());
+			successDealMessageForBuyer.send(deal, LabelUtil.parseString(deal.getBuyerLanguage()));
+			successDealMessageForSeller.send(deal, LabelUtil.parseString(deal.getSellerLanguage()));
 		}
 		
 		return true;

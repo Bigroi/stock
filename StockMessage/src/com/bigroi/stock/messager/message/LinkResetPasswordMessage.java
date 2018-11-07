@@ -2,6 +2,7 @@ package com.bigroi.stock.messager.message;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Locale;
 import java.util.Map;
 
 import com.bigroi.stock.bean.db.StockUser;
@@ -21,7 +22,7 @@ public class LinkResetPasswordMessage extends BaseMessage<Map<String, String>> {
 	}
 	
 	@Override
-	protected String getText(Map<String, String> map, String locale) {
+	protected String getText(Map<String, String> map, Locale locale) {
 		try {
 			String name = getName(map);
 			user.setUsername(name);
@@ -36,7 +37,7 @@ public class LinkResetPasswordMessage extends BaseMessage<Map<String, String>> {
 	}
 	
 	@Override
-	protected String getSubject(String locale) {
+	protected String getSubject(Locale locale) {
 		return super.getSubject(locale).replaceAll("@username", user.getUsername());
 	}
 	

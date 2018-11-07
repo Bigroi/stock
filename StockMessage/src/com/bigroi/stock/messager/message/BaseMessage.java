@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bigroi.stock.bean.db.Email;
 import com.bigroi.stock.dao.EmailDao;
+import com.bigroi.stock.dao.LabelDao;
 import com.bigroi.stock.messager.MailManager;
 import com.bigroi.stock.util.LabelUtil;
 import com.google.common.collect.ImmutableMap;
@@ -20,26 +21,29 @@ public abstract class BaseMessage<T> implements Message<T>{
 	@Autowired
 	protected MailManager mailManager;
 	
-	private final Map<String, MessageTemplate> messageTemplates;
+	@Autowired
+	protected LabelDao labelDao;
+	
+	private final Map<Locale, MessageTemplate> messageTemplates;
 	
 	protected BaseMessage(){
 		messageTemplates = null;
 	}
 	
 	protected BaseMessage(String fileName, String fileExtention) {
-		Builder<String, MessageTemplate> builder = ImmutableMap.builder();
+		Builder<Locale, MessageTemplate> builder = ImmutableMap.builder();
 		for (Locale locale : LabelUtil.getPassibleLanguages(null)){
-			builder.put(locale.toString(), new MessageTemplate(fileName, locale, fileExtention));
+			builder.put(locale, new MessageTemplate(fileName, locale, fileExtention));
 		}
 		messageTemplates = builder.build();
 	}
 		
 		
-	public void sendImediatly(T object, String locale){
+	public void sendImediatly(T object, Locale locale){
 		mailManager.send(getEmail(object, locale));
 	}
 	
-	private Email getEmail(T object, String locale) {
+	private Email getEmail(T object, Locale locale) {
 		Email email = new Email();
 		email.setBody(getText(object, locale));
 		email.setRecipient(getRecipient(object));
@@ -59,15 +63,15 @@ public abstract class BaseMessage<T> implements Message<T>{
 
 	protected abstract String getRecipient(T object);
 	
-	protected String getText(T object, String locale) {
+	protected String getText(T object, Locale locale) {
 		return messageTemplates.get(locale).getText();
 	}
 	
-	protected String getSubject(String locale) {
+	protected String getSubject(Locale locale) {
 		return messageTemplates.get(locale).getSubject();
 	}
 	
-	public boolean send(T object, String locale){
+	public boolean send(T object, Locale locale){
 		 emailDao.add(getEmail(object, locale)); 
 		 return true;
 	}

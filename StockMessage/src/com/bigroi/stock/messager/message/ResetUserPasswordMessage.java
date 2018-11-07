@@ -1,5 +1,7 @@
 package com.bigroi.stock.messager.message;
 
+import java.util.Locale;
+
 import com.bigroi.stock.bean.db.StockUser;
 
 public class ResetUserPasswordMessage extends BaseMessage<StockUser> {
@@ -15,7 +17,7 @@ public class ResetUserPasswordMessage extends BaseMessage<StockUser> {
 	}
 
 	@Override
-	protected String getText(StockUser user, String locale) {
+	protected String getText(StockUser user, Locale locale) {
 		return super.getText(user, locale)
 				.replaceAll("@username", user.getUsername())
 				.replaceAll("@password", user.getPassword());

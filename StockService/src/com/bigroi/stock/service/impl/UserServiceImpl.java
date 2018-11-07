@@ -27,6 +27,7 @@ import com.bigroi.stock.messager.message.LinkResetPasswordMessage;
 import com.bigroi.stock.messager.message.ResetUserPasswordMessage;
 import com.bigroi.stock.service.UserService;
 import com.bigroi.stock.util.Generator;
+import com.bigroi.stock.util.LabelUtil;
 
 @Repository
 public class UserServiceImpl implements UserService {
@@ -109,7 +110,7 @@ public class UserServiceImpl implements UserService {
 			Map<String,String> map = new HashMap<>();
 			map.put("email", user.getUsername());
 			map.put("code", key.getGeneratedKey());
-			linkResetPasswordMessage.sendImediatly(map, user.getCompany().getLanguage());
+			linkResetPasswordMessage.sendImediatly(map, LabelUtil.parseString(user.getCompany().getLanguage()));
 		}
 	}
 
@@ -123,7 +124,7 @@ public class UserServiceImpl implements UserService {
 			userDao.updatePassword(user);
 			keysDao.deleteGenerateKey(code);
 			user.setPassword(newPassword);
-			resetUserPasswordMessage.sendImediatly(user, user.getCompany().getLanguage());
+			resetUserPasswordMessage.sendImediatly(user, LabelUtil.parseString(user.getCompany().getLanguage()));
 			return true;
 		} else {
 			return false;

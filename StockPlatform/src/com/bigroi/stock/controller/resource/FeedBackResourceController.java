@@ -41,7 +41,7 @@ public class FeedBackResourceController extends BaseResourseController {
 	@ResponseBody
 	public String getForm(String json) {
 		FeedBack message = GsonUtil.getGson().fromJson(json, FeedBack.class);
-			if(feedBackMessage.send(message, getLanguage().toString())){
+			if(feedBackMessage.send(message, getLanguage())){
 		return new ResultBean(2, message, FB_SUCCESS_LABEL).toString();
 		}else{
 			return new ResultBean(-1, message, FB_UNSUCCESS_LABEL).toString();

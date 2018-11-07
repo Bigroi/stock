@@ -1,6 +1,7 @@
 package com.bigroi.stock.service.impl;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,12 +29,13 @@ import com.bigroi.stock.dao.UserRoleDao;
 import com.bigroi.stock.messager.message.LinkResetPasswordMessage;
 import com.bigroi.stock.messager.message.ResetUserPasswordMessage;
 import com.bigroi.stock.util.BaseTest;
+import com.bigroi.stock.util.LabelUtil;
 import com.google.common.collect.ImmutableList;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceImplTest extends BaseTest {
 	
-	private static final String TEST_LANGUAGE = "pl";
+	private static final Locale TEST_LANGUAGE = LabelUtil.parseString("pl");
 
 	@InjectMocks
 	private UserServiceImpl userService;
@@ -162,7 +164,7 @@ public class UserServiceImplTest extends BaseTest {
 		StockUser user = createObject(StockUser.class);
 		user.setUsername(USER_NAME);
 		user.setCompany(createObject(Company.class));
-		user.getCompany().setLanguage(TEST_LANGUAGE);
+		user.getCompany().setLanguage(TEST_LANGUAGE.toString());
 		
 		TempKey key = createObject(TempKey.class);
 		// mock
@@ -189,7 +191,7 @@ public class UserServiceImplTest extends BaseTest {
 		
 		StockUser user = createObject(StockUser.class);
 		user.setCompany(createObject(Company.class));
-		user.getCompany().setLanguage(TEST_LANGUAGE);
+		user.getCompany().setLanguage(TEST_LANGUAGE.toString());
 		user.setUsername(USER_NAME);
 		// mock
 		Mockito.when(keysDao.checkResetKey(USER_NAME, CODE)).thenReturn(true);

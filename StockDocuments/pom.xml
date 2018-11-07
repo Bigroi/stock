@@ -43,5 +43,10 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>Stock</groupId>
+			<artifactId>Dao</artifactId>
+			<version>${stock.version}</version>
+		</dependency>
 	</dependencies>
 </project>

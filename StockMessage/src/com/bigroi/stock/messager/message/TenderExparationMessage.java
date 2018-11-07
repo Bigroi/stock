@@ -1,5 +1,7 @@
 package com.bigroi.stock.messager.message;
 
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bigroi.stock.bean.db.Tender;
@@ -21,7 +23,7 @@ public class TenderExparationMessage extends BaseMessage<Tender> {
 	}
 	
 	@Override
-	protected String getText(Tender tender, String locale) {
+	protected String getText(Tender tender, Locale locale) {
 		return super.getText(tender, locale)
 				.replaceAll("@price", tender.getPrice() + "")
 				.replaceAll("@description", tender.getDescription())

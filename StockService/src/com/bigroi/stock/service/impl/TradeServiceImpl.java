@@ -28,6 +28,7 @@ import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForBuyer;
 import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
 import com.bigroi.stock.service.AddressService;
 import com.bigroi.stock.service.TradeService;
+import com.bigroi.stock.util.LabelUtil;
 import com.bigroi.stock.util.exception.StockRuntimeException;
 
 @Repository
@@ -122,8 +123,8 @@ public class TradeServiceImpl implements TradeService{
 	}
 	
 	private void sendConfimationMails(Deal deal) {
-		dealConfirmationMessageForBuyer.send(deal, deal.getBuyerLanguage());
-		dealConfirmationMessageForSeller.send(deal, deal.getSellerLanguage());
+		dealConfirmationMessageForBuyer.send(deal, LabelUtil.parseString(deal.getBuyerLanguage()));
+		dealConfirmationMessageForSeller.send(deal, LabelUtil.parseString(deal.getSellerLanguage()));
 	}
 
 	private Deal createDeal(TradeBid bid, TradeBid partner) {

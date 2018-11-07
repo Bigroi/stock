@@ -22,6 +22,7 @@ import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
 import com.bigroi.stock.messager.message.deal.DealExparationMessageForBuyer;
 import com.bigroi.stock.messager.message.deal.DealExparationMessageForSeller;
 import com.bigroi.stock.service.MarketService;
+import com.bigroi.stock.util.LabelUtil;
 
 @Repository
 public class MarketServiceImpl implements MarketService {
@@ -61,7 +62,7 @@ public class MarketServiceImpl implements MarketService {
 		for (Lot lot : lots) {
 			if (lot.isExpired()){
 				lot.setStatus(BidStatus.INACTIVE);
-				lotExparationMessage.send(lot, lot.getCompanyAddress().getCompany().getLanguage());
+				lotExparationMessage.send(lot, LabelUtil.parseString(lot.getCompanyAddress().getCompany().getLanguage()));
 			}
 		}
 		lotDao.updateStatus(lots);
@@ -70,7 +71,7 @@ public class MarketServiceImpl implements MarketService {
 		for (Tender tender : tenders) {
 			if (tender.isExpired()){
 				tender.setStatus(BidStatus.INACTIVE);
-				tenderExparationMessage.send(tender, tender.getCompanyAddress().getCompany().getLanguage());
+				tenderExparationMessage.send(tender, LabelUtil.parseString(tender.getCompanyAddress().getCompany().getLanguage()));
 			}
 		}
 		tenderDao.updateStatus(tenders);
@@ -85,17 +86,17 @@ public class MarketServiceImpl implements MarketService {
 				continue;
 			}
 			if (deal.getSellerChoice() != PartnerChoice.ON_APPROVE){
-				dealExparationMessageForSellerByOpponent.send(deal, deal.getSellerLanguage());
+				dealExparationMessageForSellerByOpponent.send(deal, LabelUtil.parseString(deal.getSellerLanguage()));
 				
-				dealExparationMessageForBuyer.send(deal, deal.getBuyerLanguage());
+				dealExparationMessageForBuyer.send(deal, LabelUtil.parseString(deal.getBuyerLanguage()));
 			} else if (deal.getBuyerChoice() != PartnerChoice.ON_APPROVE){
-				dealExparationMessageForSeller.send(deal, deal.getSellerLanguage());
+				dealExparationMessageForSeller.send(deal, LabelUtil.parseString(deal.getSellerLanguage()));
 				
-				dealExparationMessageForBuyerByOpponent.send(deal, deal.getBuyerLanguage());
+				dealExparationMessageForBuyerByOpponent.send(deal, LabelUtil.parseString(deal.getBuyerLanguage()));
 			} else {
-				dealExparationMessageForSeller.send(deal, deal.getSellerLanguage());
+				dealExparationMessageForSeller.send(deal, LabelUtil.parseString(deal.getSellerLanguage()));
 				
-				dealExparationMessageForBuyer.send(deal, deal.getBuyerLanguage());
+				dealExparationMessageForBuyer.send(deal, LabelUtil.parseString(deal.getBuyerLanguage()));
 			}
 			returnVolumeToBids(deal);
 		}
@@ -122,9 +123,9 @@ public class MarketServiceImpl implements MarketService {
 	public void sendConfirmationMessages(){
 		List<Deal> deals = dealDao.getOnApprove();
 		for (Deal deal : deals) {
-			dealConfirmationMessageForBuyer.send(deal, deal.getBuyerLanguage());
+			dealConfirmationMessageForBuyer.send(deal, LabelUtil.parseString(deal.getBuyerLanguage()));
 			
-			dealConfirmationMessageForSeller.send(deal, deal.getSellerLanguage());
+			dealConfirmationMessageForSeller.send(deal, LabelUtil.parseString(deal.getSellerLanguage()));
 		}
 	}
 }

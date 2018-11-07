@@ -3,6 +3,7 @@ package com.bigroi.stock.service.impl;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,12 +28,13 @@ import com.bigroi.stock.messager.message.deal.DealConfirmationMessageForSeller;
 import com.bigroi.stock.messager.message.deal.DealExparationMessageForBuyer;
 import com.bigroi.stock.messager.message.deal.DealExparationMessageForSeller;
 import com.bigroi.stock.util.BaseTest;
+import com.bigroi.stock.util.LabelUtil;
 import com.google.common.collect.ImmutableList;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MarketServiceImplTest extends BaseTest {
 	
-	private static final String TEST_LANGUAGE = "pl";
+	private static final Locale TEST_LANGUAGE = LabelUtil.parseString("pl");
 	
 	@InjectMocks
 	private MarketServiceImpl marketService;
@@ -70,7 +72,7 @@ public class MarketServiceImplTest extends BaseTest {
 		Lot lot = createObject(Lot.class);
 		lot.setCompanyAddress(createObject(CompanyAddress.class));
 		lot.getCompanyAddress().setCompany(createObject(Company.class));
-		lot.getCompanyAddress().getCompany().setLanguage(TEST_LANGUAGE);
+		lot.getCompanyAddress().getCompany().setLanguage(TEST_LANGUAGE.toString());
 		lot.setExparationDate(DATE);
 		List<Lot> expectedList = ImmutableList.of(lot);
 		// mock
@@ -96,7 +98,7 @@ public class MarketServiceImplTest extends BaseTest {
 		Tender tender = createObject(Tender.class);
 		tender.setCompanyAddress(createObject(CompanyAddress.class));
 		tender.getCompanyAddress().setCompany(createObject(Company.class));
-		tender.getCompanyAddress().getCompany().setLanguage(TEST_LANGUAGE);
+		tender.getCompanyAddress().getCompany().setLanguage(TEST_LANGUAGE.toString());
 		tender.setExparationDate(DATE);
 		List<Tender> expectedList = ImmutableList.of(tender);
 		// mock

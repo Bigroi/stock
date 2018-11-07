@@ -1,5 +1,7 @@
 package com.bigroi.stock.messager.message.deal;
 
+import java.util.Locale;
+
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.messager.message.BaseMessage;
 
@@ -16,9 +18,9 @@ public class SellerCanceledMessage extends BaseMessage<Deal> {
 	
 	
 	@Override
-	protected String getText(Deal deal, String locale) {
+	protected String getText(Deal deal, Locale locale) {
 		return super.getText(deal, locale)
-				.replaceAll("@product", deal.getProductName())
+				.replaceAll("@product", labelDao.getLabel(deal.getProductName(), "name", locale))
 				.replaceAll("@server", mailManager.getServerAdress());
 	}
 
