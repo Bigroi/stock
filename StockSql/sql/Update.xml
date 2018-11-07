@@ -1412,7 +1412,7 @@
 	</update>
 	
 	<update author="Pavel" date="2.11.2018">
-		ALTER TABLE `DEAL` ADD COLUMN `category` BIGINT NULL DEFAULT NULL AFTER `seller_email`;
+		ALTER TABLE `DEAL` ADD COLUMN `category_id` BIGINT NULL DEFAULT NULL AFTER `seller_email`;
 		ALTER TABLE `DEAL` ADD CONSTRAINT `FK_deal_product_category` FOREIGN KEY (`category_id`) REFERENCES `product_category` (`id`);
 	</update>
 	
