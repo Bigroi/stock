@@ -1410,5 +1410,26 @@
 		WHERE category = 'index' AND name = 'another_browser';
 
 	</update>
+	
+	<update author="Pavel" date="2.11.2018">
+		ALTER TABLE `DEAL` ADD COLUMN `category` BIGINT NULL DEFAULT NULL AFTER `seller_email`;
+		ALTER TABLE `DEAL` ADD CONSTRAINT `FK_deal_product_category` FOREIGN KEY (`category_id`) REFERENCES `product_category` (`id`);
+	</update>
+	
+	<update author="Pavel" date="2.11.2018">
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_Ru`, `pl`) VALUES
+		('deal', 'categoryName', 'Сultivar', 'Сорт', NULL);
+	</update>
+	
+	<update author="Pavel" date="2.11.2018">
+		UPDATE `LABEL`
+		SET en_us = 'Packaging', ru_Ru = 'Упаковка', pl = 'Opakowanie'
+		WHERE category = 'deal' AND name = 'packaging';
+		
+		UPDATE `LABEL`
+		SET en_us = 'Processing', ru_Ru = 'Обработка', pl = 'Przetworzenie'
+		WHERE category = 'deal' AND name = 'processing';
+		
+	</update>
 </root>
 

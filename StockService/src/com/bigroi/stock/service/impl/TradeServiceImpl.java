@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.TradeBid;
@@ -105,7 +106,8 @@ public class TradeServiceImpl implements TradeService{
 		while(bid.getMaxVolume() > 0 && !bid.getPosiblePartners().isEmpty()){
 			TradeBid partner = bid.getBestPartner();
 			Deal deal = createDeal(bid, partner);
-			deal.setProduct(product);
+			deal.setProductId(product.getId());
+			deal.setProductName(product.getName());
 			sendConfimationMails(deal);
 			deals.add(deal);
 			
@@ -214,8 +216,15 @@ public class TradeServiceImpl implements TradeService{
 	}
 	
 	private void enrichAddress(Deal deal){
-		deal.setBuyerAddress(addressService.getAddressById(deal.getBuyerAddressId(), 0));
-		deal.setSellerAddress(addressService.getAddressById(deal.getSellerAddressId(), 0));
+		CompanyAddress buyerAddress = addressService.getAddressById(deal.getBuyerAddressId(), 0);
+		deal.setBuyerAddress(buyerAddress.getAddress());
+		deal.setBuyerCity(buyerAddress.getCity());
+		deal.setBuyerCountry(buyerAddress.getCity());
+		
+		CompanyAddress sellerAddress = addressService.getAddressById(deal.getSellerAddressId(), 0);
+		deal.setSellerAddress(sellerAddress.getAddress());
+		deal.setSellerCity(sellerAddress.getCity());
+		deal.setSellerCountry(sellerAddress.getCity());
 	}
 	
 	@SuppressWarnings("unchecked")

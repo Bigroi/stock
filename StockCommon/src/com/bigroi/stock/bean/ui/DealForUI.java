@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.bigroi.stock.bean.common.DealStatus;
 import com.bigroi.stock.bean.common.PartnerChoice;
-import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.json.Column;
 import com.bigroi.stock.json.Edit;
@@ -17,8 +16,11 @@ public class DealForUI {
 	@Id
 	private long id;
 	
-	@Column(value = "label.deal.productName", responsivePriority=-3)
+	@Column(value = "label.deal.productName", responsivePriority=-4)
 	private final String productName;
+	
+	@Column(value = "label.deal.categoryName", responsivePriority=-3)
+	private final String categoryName;
 	
 	@Column(value = "label.deal.time", allowSorting = true, responsivePriority=-1)
 	private final Date time;
@@ -30,10 +32,15 @@ public class DealForUI {
 	@Edit(details="/deal/Form.spr", remove="", edit="")
 	private final String edit;
 	
-	private final CompanyAddress sellerAddrress;
-	private final CompanyAddress buyerAddrress;
-	private final CompanyAddress partnerAddress;
-	private final String sellerFoto;
+	private final double sellerLatitude;
+	private final double sellerLongitude;
+	private final double buyerLatitude;
+	private final double buyerLongitude;
+	private final String partnerAddress;
+	private final String partnerPhone;
+	private final String partnerRegNumber;
+	private final String partnerCompanyName;
+	private final String foto;
 	private final double price;
 	private final int volume;
 	private final String partnerDescription;
@@ -53,33 +60,41 @@ public class DealForUI {
 	
 	public DealForUI(Deal deal, long companyId, int partnerMark){
 		this.id = deal.getId();
-		this.productName = deal.getProduct().getName();
+		this.productName = deal.getProductName();
+		this.categoryName = deal.getCategoryName();
 		setStar(partnerMark);
 		this.time = deal.getTime();
 		this.statusCode = getDealStatus(deal, companyId);
 		this.status = this.statusCode.toString();
-		this.sellerAddrress = deal.getSellerAddress();
-		this.buyerAddrress = deal.getBuyerAddress();
-		if (deal.getSellerAddress().getCompanyId() == companyId){
-			this.partnerAddress = deal.getBuyerAddress();
+		this.sellerLatitude = deal.getSellerLatitude();
+		this.sellerLongitude = deal.getSellerLongitude();
+		this.buyerLatitude = deal.getBuyerLatitude();
+		this.buyerLongitude = deal.getBuyerLongitude();
+		if (deal.getBuyerCompanyId() == companyId){
+			this.partnerAddress = deal.getBuyerCountry() + ", " + 
+									deal.getBuyerCity() + ", " + 
+									deal.getBuyerAddress();
 			this.partnerDescription = deal.getBuyerDescription();
 			this.packaging = deal.getBuyerPackaging();
 			this.processing = deal.getBuyerProcessing();
+			this.partnerCompanyName = deal.getBuyerCompanyName();
 			this.fieldsToRemove = ImmutableList.of("foto");
-			this.sellerFoto = null;
+			this.partnerPhone = deal.getBuyerPhone();
+			this.partnerRegNumber = deal.getBuyerRegNumber();
+			this.foto = null;
 		} else {
-			this.partnerAddress = deal.getSellerAddress();
+			this.partnerAddress = deal.getSellerCountry() + ", " + 
+									deal.getSellerCity() + ", " + 
+									deal.getSellerAddress();
 			this.partnerDescription = deal.getSellerDescription();
-			this.sellerFoto = deal.getSellerFoto();
+			this.partnerPhone = deal.getSellerPhone();
+			this.partnerRegNumber = deal.getSellerRegNumber();
+			this.partnerCompanyName = deal.getSellerCompanyName();
+			this.foto = deal.getSellerFoto();
 			this.fieldsToRemove = ImmutableList.of("processing", "packaging");
 			this.packaging = null;
 			this.processing = null;
 		}
-		this.partnerAddress.setAddress(
-				this.partnerAddress.getCountry() + ", " +
-				this.partnerAddress.getCity() + ", " +
-				this.partnerAddress.getAddress()
-				);
 		this.price = deal.getPrice();
 		this.volume = deal.getVolume();
 		this.edit = "NNY";
@@ -120,7 +135,7 @@ public class DealForUI {
 	}
 
 	private DealStatus getDealStatus(Deal deal, long companyId){
-		PartnerChoice companyChoice = deal.getBuyerAddress().getCompanyId() == companyId ? 
+		PartnerChoice companyChoice = deal.getBuyerCompanyId() == companyId ? 
 				deal.getBuyerChoice() : deal.getSellerChoice();
 		DealStatus dealStatus = DealStatus.calculateStatus(deal.getBuyerChoice(), deal.getSellerChoice());
 		if (dealStatus == DealStatus.ON_APPROVE && companyChoice != PartnerChoice.ON_APPROVE){
@@ -130,16 +145,8 @@ public class DealForUI {
 		}
 	}
 	
-	public CompanyAddress getBuyerAddrress() {
-		return buyerAddrress;
-	}
-	
-	public CompanyAddress getPartnerAddress() {
+	public String getPartnerAddress() {
 		return partnerAddress;
-	}
-	
-	public CompanyAddress getSellerAddrress() {
-		return sellerAddrress;
 	}
 	
 	public double getPrice() {
@@ -154,8 +161,8 @@ public class DealForUI {
 		return partnerDescription;
 	}
 	
-	public String getSellerFoto() {
-		return sellerFoto;
+	public String getFoto() {
+		return foto;
 	}
 
 	public long getId() {
@@ -189,4 +196,33 @@ public class DealForUI {
 	public boolean isStar_1() {
 		return star_1;
 	}
+
+	public double getSellerLatitude() {
+		return sellerLatitude;
+	}
+
+	public double getSellerLongitude() {
+		return sellerLongitude;
+	}
+
+	public double getBuyerLatitude() {
+		return buyerLatitude;
+	}
+
+	public double getBuyerLongitude() {
+		return buyerLongitude;
+	}
+	
+	public String getPartnerPhone() {
+		return partnerPhone;
+	}
+	
+	public String getPartnerRegNumber() {
+		return partnerRegNumber;
+	}
+	
+	public String getPartnerCompanyName() {
+		return partnerCompanyName;
+	}
+	
 }

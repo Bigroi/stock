@@ -17,7 +17,7 @@ public class DealExparationMessageForBuyer extends BaseMessage<Deal>{
 	@Override
 	protected String getText(Deal deal, String locale) {
 		return super.getText(deal, locale)
-				.replaceAll("@product", deal.getProduct().getName())
+				.replaceAll("@product", deal.getProductName())
 				.replaceAll("@server", mailManager.getServerAdress());
 	}
 	

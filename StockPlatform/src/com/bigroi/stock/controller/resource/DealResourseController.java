@@ -61,20 +61,20 @@ public class DealResourseController extends BaseResourseController {
 		StockUser user = (StockUser)loggedInUser.getPrincipal();
 		Deal deal = dealService.getById(id, user.getCompanyId());
 		int parterMark = getPartnerMark(user.getCompanyId(), deal);
-		if (user.getCompanyId() != deal.getBuyerAddress().getCompanyId() && 
-				user.getCompanyId() != deal.getSellerAddress().getCompanyId()){
+		if (user.getCompanyId() != deal.getBuyerCompanyId() && 
+				user.getCompanyId() != deal.getSellerCompanyId()){
 			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
 		} else {
-			deal.getProduct().setName(labelService.getLabel(deal.getProduct().getName(), "name", getLanguage()));
+			deal.setProductName(labelService.getLabel(deal.getProductName(), "name", getLanguage()));
 			return new ResultBean(1, translateDeal(new DealForUI(deal, user.getCompanyId(), parterMark)), "").toString();
 		}
 	}
 	
 	private int getPartnerMark(long companyId, Deal deal) {
 		long partnerId = 
-				companyId == deal.getBuyerAddress().getCompanyId() ?
-				deal.getSellerAddress().getCompanyId() : 
-				deal.getBuyerAddress().getCompanyId();
+				companyId == deal.getBuyerCompanyId() ?
+				deal.getSellerCompanyId() : 
+				deal.getBuyerCompanyId();
 		List<UserComment> comments = userCommentService.getComments(partnerId);
 		if (comments.isEmpty()){
 			return 5;
@@ -110,7 +110,7 @@ public class DealResourseController extends BaseResourseController {
 		List<Deal> deals = dealService.getByUserId(userBean.getCompanyId());
 		List<DealForUI> dealsForUI = deals.stream()
 				.map(d -> {
-					d.getProduct().setName(labelService.getLabel(d.getProduct().getName(), "name", getLanguage()));
+					d.setProductName(labelService.getLabel(d.getProductName(), "name", getLanguage()));
 					return new DealForUI(d, userBean.getCompanyId());
 				})
 				.map(this::translateDeal)
@@ -137,7 +137,12 @@ public class DealResourseController extends BaseResourseController {
 	@ResponseBody
 	public String testTrade(Authentication loggedInUser) {
 		List<Deal> deals = tradeService.newInstance().testTrade(getSessionId());
-		List<TestDealForUI> dealsForUI = deals.stream().map(TestDealForUI::new).collect(Collectors.toList());
+		List<TestDealForUI> dealsForUI = deals.stream()
+				.map( d -> {
+					d.setProductName(labelService.getLabel(d.getProductName(), "name", getLanguage()));
+					return new TestDealForUI(d);
+				})
+				.collect(Collectors.toList());
 		TableResponse<TestDealForUI> table = new TableResponse<>(TestDealForUI.class, dealsForUI);
 		return new ResultBean(1, table, "").toString();
 	}

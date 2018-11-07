@@ -9,6 +9,7 @@ public class Deal {
 	// DB fields
 	private long id;
 	private long productId;
+	private long categoryId;
 	private Date time;
 	
 	private Long lotId;
@@ -38,10 +39,30 @@ public class Deal {
 	private String sellerEmail;
 	
 	//Related objects
+	private String productName;
+	private String categoryName;
 	
-	private Product product;
-	private CompanyAddress buyerAddress;
-	private CompanyAddress sellerAddress;
+	private String buyerCountry;
+	private String buyerCity;
+	private String buyerAddress;
+	private double buyerLongitude;
+	private double buyerLatitude;
+	
+	private long buyerCompanyId;
+	private String buyerCompanyName;
+	private String buyerPhone;
+	private String buyerRegNumber;
+	
+	private String sellerCountry;
+	private String sellerCity;
+	private String sellerAddress;
+	private double sellerLongitude;
+	private double sellerLatitude;
+	
+	private long sellerCompanyId;
+	private String sellerCompanyName;
+	private String sellerPhone;
+	private String sellerRegNumber;
 	
 	public Deal(TradeLot lot, TradeTender tender, int volume, double maxTransportPrice) {
 		this.lotId = lot.getId();
@@ -61,6 +82,14 @@ public class Deal {
 	}
 	
 	public Deal() {
+	}
+	
+	public long getCategoryId() {
+		return categoryId;
+	}
+	
+	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 	public String getBuyerEmail() {
@@ -119,30 +148,6 @@ public class Deal {
 		this.maxTransportPrice = maxTransportPrice;
 	}
 	
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public CompanyAddress getBuyerAddress() {
-		return buyerAddress;
-	}
-
-	public void setBuyerAddress(CompanyAddress buyerAddress) {
-		this.buyerAddress = buyerAddress;
-	}
-
-	public CompanyAddress getSellerAddress() {
-		return sellerAddress;
-	}
-
-	public void setSellerAddress(CompanyAddress sellerAddress) {
-		this.sellerAddress = sellerAddress;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -255,16 +260,164 @@ public class Deal {
 		this.sellerDescription = sellerDescription;
 	}
 
-	@Override
-	public String toString() {
-		return "Deal [id=" + id + ", productId=" + productId + ", time=" + time + ", lotId=" + lotId + ", tenderId="
-				+ tenderId + ", price=" + price + ", volume=" + volume + ", sellerFoto=" + sellerFoto
-				+ ", maxTransportPrice=" + maxTransportPrice + ", buyerChoice=" + buyerChoice + ", sellerChoice="
-				+ sellerChoice + ", buyerAddressId=" + buyerAddressId + ", sellerAddressId=" + sellerAddressId
-				+ ", buyerDescription=" + buyerDescription + ", sellerDescription=" + sellerDescription + ", product="
-				+ product + ",  buyerAddress=" + buyerAddress + ", sellerAddress=" + sellerAddress
-				+ "]";
+	public String getProductName() {
+		return productName;
 	}
 
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getBuyerCountry() {
+		return buyerCountry;
+	}
+
+	public void setBuyerCountry(String buyerCountry) {
+		this.buyerCountry = buyerCountry;
+	}
+
+	public String getBuyerCity() {
+		return buyerCity;
+	}
+
+	public void setBuyerCity(String buyerCity) {
+		this.buyerCity = buyerCity;
+	}
+
+	public String getBuyerAddress() {
+		return buyerAddress;
+	}
+
+	public void setBuyerAddress(String buyerAddress) {
+		this.buyerAddress = buyerAddress;
+	}
+
+	public String getSellerCountry() {
+		return sellerCountry;
+	}
+
+	public void setSellerCountry(String sellerCountry) {
+		this.sellerCountry = sellerCountry;
+	}
+
+	public String getSellerCity() {
+		return sellerCity;
+	}
+
+	public void setSellerCity(String sellerCity) {
+		this.sellerCity = sellerCity;
+	}
+
+	public String getSellerAddress() {
+		return sellerAddress;
+	}
+
+	public void setSellerAddress(String sellerAddress) {
+		this.sellerAddress = sellerAddress;
+	}
+
+	public double getBuyerLongitude() {
+		return buyerLongitude;
+	}
+
+	public void setBuyerLongitude(double buyerLongitude) {
+		this.buyerLongitude = buyerLongitude;
+	}
+
+	public double getBuyerLatitude() {
+		return buyerLatitude;
+	}
+
+	public void setBuyerLatitude(double buyerLatitude) {
+		this.buyerLatitude = buyerLatitude;
+	}
+
+	public double getSellerLongitude() {
+		return sellerLongitude;
+	}
+
+	public void setSellerLongitude(double sellerLongitude) {
+		this.sellerLongitude = sellerLongitude;
+	}
+
+	public double getSellerLatitude() {
+		return sellerLatitude;
+	}
+
+	public void setSellerLatitude(double sellerLatitude) {
+		this.sellerLatitude = sellerLatitude;
+	}
+
+	public String getBuyerCompanyName() {
+		return buyerCompanyName;
+	}
+
+	public void setBuyerCompanyName(String buyerCompanyName) {
+		this.buyerCompanyName = buyerCompanyName;
+	}
+
+	public String getBuyerPhone() {
+		return buyerPhone;
+	}
+
+	public void setBuyerPhone(String buyerPhone) {
+		this.buyerPhone = buyerPhone;
+	}
+
+	public String getBuyerRegNumber() {
+		return buyerRegNumber;
+	}
+
+	public void setBuyerRegNumber(String buyerRegNumber) {
+		this.buyerRegNumber = buyerRegNumber;
+	}
+
+	public String getSellerCompanyName() {
+		return sellerCompanyName;
+	}
+
+	public void setSellerCompanyName(String sellerCompanyName) {
+		this.sellerCompanyName = sellerCompanyName;
+	}
+
+	public String getSellerPhone() {
+		return sellerPhone;
+	}
+
+	public void setSellerPhone(String sellerPhone) {
+		this.sellerPhone = sellerPhone;
+	}
+
+	public String getSellerRegNumber() {
+		return sellerRegNumber;
+	}
+
+	public void setSellerRegNumber(String sellerRegNumber) {
+		this.sellerRegNumber = sellerRegNumber;
+	}
+
+	public long getBuyerCompanyId() {
+		return buyerCompanyId;
+	}
+
+	public void setBuyerCompanyId(long buyerCompanyId) {
+		this.buyerCompanyId = buyerCompanyId;
+	}
+
+	public long getSellerCompanyId() {
+		return sellerCompanyId;
+	}
+
+	public void setSellerCompanyId(long sellerCompanyId) {
+		this.sellerCompanyId = sellerCompanyId;
+	}
 	
 }

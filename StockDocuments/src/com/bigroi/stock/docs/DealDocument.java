@@ -25,22 +25,22 @@ public class DealDocument extends Document<Deal>{
 	public byte[] getDocument(Deal deal) {
 		try {
 			Map<String, Object> map = new HashMap<>();
-			map.put("{product_name}", deal.getProduct().getName());
+			map.put("{product_name}", deal.getProductName());
 			map.put("{deal_date}", new SimpleDateFormat("dd.MM.yyyy").format(new Date()));
-			map.put("{seller_city}", deal.getSellerAddress().getCity());
-			map.put("{seller_company_name}", deal.getSellerAddress().getCompany().getName());
-			map.put("{seller_company_reg_number}", deal.getSellerAddress().getCompany().getRegNumber());
-			map.put("{seller_address}", deal.getSellerAddress().getAddress());
-			map.put("{buyer_company_name}", deal.getBuyerAddress().getCompany().getName());
-			map.put("{buyer_company_reg_number}", deal.getBuyerAddress().getCompany().getRegNumber());
-			map.put("{buyer_city}", deal.getBuyerAddress().getCity());
-			map.put("{buyer_address}", deal.getBuyerAddress().getAddress());
+			map.put("{seller_city}", deal.getSellerCity());
+			map.put("{seller_company_name}", deal.getSellerCompanyName());
+			map.put("{seller_company_reg_number}", deal.getSellerRegNumber());
+			map.put("{seller_address}", deal.getSellerAddress());
+			map.put("{buyer_company_name}", deal.getBuyerCompanyName());
+			map.put("{buyer_company_reg_number}", deal.getBuyerRegNumber());
+			map.put("{buyer_city}", deal.getBuyerCity());
+			map.put("{buyer_address}", deal.getBuyerAddress());
 			map.put("{deal_volume}", deal.getVolume());
-			map.put("{seller_phone}", deal.getSellerAddress().getCompany().getPhone());
+			map.put("{seller_phone}", deal.getSellerPhone());
 			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			
-			String language = deal.getSellerAddress().getCompany().getLanguage();
+			String language = deal.getSellerLanguage();
 			replaceText(map,language).write(baos);
 			return baos.toByteArray();
 		} catch (IOException e) {

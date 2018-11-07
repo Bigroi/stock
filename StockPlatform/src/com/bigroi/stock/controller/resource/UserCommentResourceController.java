@@ -68,10 +68,10 @@ public class UserCommentResourceController extends BaseResourseController {
 		
 		userComment.setReporterId(user.getCompanyId());
 		userComment.setCommentDate(new Date());
-		if (user.getCompanyId() == deal.getBuyerAddress().getCompanyId()){
-			userComment.setCompanyId(deal.getSellerAddress().getCompanyId());
+		if (user.getCompanyId() == deal.getBuyerCompanyId()){
+			userComment.setCompanyId(deal.getSellerCompanyId());
 		} else {
-			userComment.setCompanyId(deal.getBuyerAddress().getCompanyId());
+			userComment.setCompanyId(deal.getBuyerCompanyId());
 		}
 		
 		userCommentService.merge(userComment);

@@ -17,13 +17,9 @@ public class TestDealForUI {
 	private final int volume;
 	
 	public TestDealForUI(Deal deal){
-		productName = deal.getProduct().getName();
-		this.sellerAddrress = 
-				deal.getSellerAddress().getCountry() + ", " +
-				deal.getSellerAddress().getCity();
-		this.buyerAddrress = 
-				deal.getBuyerAddress().getCountry() + ", " +
-				deal.getBuyerAddress().getCity();
+		productName = deal.getProductName();
+		this.sellerAddrress = deal.getSellerCity();
+		this.buyerAddrress = deal.getBuyerCity();
 		this.price = deal.getPrice();
 		this.volume = deal.getVolume();
 	}

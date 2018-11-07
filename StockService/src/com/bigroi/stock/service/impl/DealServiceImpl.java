@@ -9,12 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bigroi.stock.bean.common.DealStatus;
 import com.bigroi.stock.bean.common.PartnerChoice;
 import com.bigroi.stock.bean.db.Blacklist;
-import com.bigroi.stock.bean.db.Company;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.Tender;
 import com.bigroi.stock.dao.BlacklistDao;
-import com.bigroi.stock.dao.CompanyDao;
 import com.bigroi.stock.dao.DealDao;
 import com.bigroi.stock.dao.LotDao;
 import com.bigroi.stock.dao.TenderDao;
@@ -36,8 +34,6 @@ public class DealServiceImpl implements DealService{
 	private LotDao lotDao;
 	@Autowired
 	private TenderDao tenderDao;
-	@Autowired
-	private CompanyDao companyDao;
 	
 	@Autowired
 	private SellerCanceledMessage sellerCanceledMessage;
@@ -50,15 +46,7 @@ public class DealServiceImpl implements DealService{
 	
 	@Override
 	public Deal getById(long id, long companyId) {
-		Deal deal = dealDao.getById(id);
-		if (deal != null){
-			Company seller = companyDao.getById(deal.getSellerAddress().getCompanyId());
-			deal.getSellerAddress().setCompany(seller);
-			
-			Company buyer = companyDao.getById(deal.getBuyerAddress().getCompanyId());
-			deal.getBuyerAddress().setCompany(buyer);
-		}
-		return deal;
+		return dealDao.getById(id);
 	}
 
 	@Override
@@ -71,19 +59,19 @@ public class DealServiceImpl implements DealService{
 	public boolean reject(long id, long companyId) {
 		Message<Deal> message;
 		Deal deal = dealDao.getById(id);
-		long buyerId = deal.getBuyerAddress().getCompanyId();
-		long sellerId = deal.getSellerAddress().getCompanyId();
+		long buyerId = deal.getBuyerCompanyId();
+		long sellerId = deal.getSellerCompanyId();
 		String messageLanguage;
 		if (buyerId == companyId){
 			deal.setBuyerChoice(PartnerChoice.REJECTED);
 			dealDao.setBuyerStatus(deal);
 			message = buyerCanceledMessage;
-			messageLanguage = deal.getBuyerAddress().getCompany().getLanguage();
+			messageLanguage = deal.getBuyerLanguage();
 		} else if (sellerId == companyId){
 			deal.setSellerChoice(PartnerChoice.REJECTED);
 			dealDao.setSellerStatus(deal);
 			message = sellerCanceledMessage;
-			messageLanguage = deal.getSellerAddress().getCompany().getLanguage();
+			messageLanguage = deal.getSellerLanguage();
 		} else {
 			return false;
 		}
@@ -94,8 +82,8 @@ public class DealServiceImpl implements DealService{
 	}
 
 	private void setVolumeBack(Deal deal){
-		long buyerId = deal.getBuyerAddress().getCompanyId();
-		long sellerId = deal.getSellerAddress().getCompanyId();
+		long buyerId = deal.getBuyerCompanyId();
+		long sellerId = deal.getSellerCompanyId();
 		
 		Lot lot = lotDao.getById(deal.getLotId(), sellerId);
 		lot.setMaxVolume(lot.getMaxVolume() + deal.getVolume());
@@ -109,8 +97,8 @@ public class DealServiceImpl implements DealService{
 	@Override
 	public boolean approve(long id, long companyId) {
 		Deal deal = dealDao.getById(id);
-		long buyerId = deal.getBuyerAddress().getCompanyId();
-		long sellerId = deal.getSellerAddress().getCompanyId();
+		long buyerId = deal.getBuyerCompanyId();
+		long sellerId = deal.getSellerCompanyId();
 		if (buyerId == companyId){
 			deal.setBuyerChoice(PartnerChoice.APPROVED);
 			dealDao.setBuyerStatus(deal);
@@ -121,8 +109,8 @@ public class DealServiceImpl implements DealService{
 			return false;
 		}
 		if (DealStatus.calculateStatus(deal.getBuyerChoice(), deal.getSellerChoice()) == DealStatus.APPROVED){
-			successDealMessageForBuyer.send(deal, deal.getBuyerAddress().getCompany().getLanguage());
-			successDealMessageForSeller.send(deal, deal.getSellerAddress().getCompany().getLanguage());
+			successDealMessageForBuyer.send(deal, deal.getBuyerLanguage());
+			successDealMessageForSeller.send(deal, deal.getSellerLanguage());
 		}
 		
 		return true;
@@ -138,8 +126,8 @@ public class DealServiceImpl implements DealService{
 	@Override
 	public boolean transport(long id, long companyId) {
 		Deal deal = dealDao.getById(id);
-		long buyerId = deal.getBuyerAddress().getCompanyId();
-		long sellerId = deal.getSellerAddress().getCompanyId();
+		long buyerId = deal.getBuyerCompanyId();
+		long sellerId = deal.getSellerCompanyId();
 		
 		if (buyerId == companyId){
 			deal.setBuyerChoice(PartnerChoice.TRANSPORT);

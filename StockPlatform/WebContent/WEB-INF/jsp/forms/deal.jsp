@@ -4,10 +4,10 @@
 	
  	<div class="white-div white-div-deal">
     	<form class="form" id="deal-form" data-url="/deal/json/Form.spr" data-id="${id}" action="#" method="post" name="form">
-			<input type="hidden" name="sellerAddrress.latitude" id="seller_latitude">
-			<input type="hidden" name="sellerAddrress.longitude" id="seller_longitude">
-			<input type="hidden" name="buyerAddrress.latitude" id="buyer_lalitude">
-			<input type="hidden" name="buyerAddrress.longitude" id="buyer_longitude">
+			<input type="hidden" name="sellerLatitude" id="seller_latitude">
+			<input type="hidden" name="sellerLongitude" id="seller_longitude">
+			<input type="hidden" name="buyerLatitude" id="buyer_lalitude">
+			<input type="hidden" name="buyerLongitude" id="buyer_longitude">
 			<input type="hidden" name="id" id="dealId">
 			<div>
 				<div class="dialogbox-message"></div>
@@ -17,6 +17,10 @@
 			        <li>
 			            <label for="productName">${label.deal.productName}</label>
 			            <input type="text" name="productName" disabled/>
+			        </li>
+			        <li>
+			            <label for="productName">${label.deal.categoryName}</label>
+			            <input type="text" name="categoryName" disabled/>
 			        </li>
 			        <li>
 			            <label for="price">${label.deal.price}</label>
@@ -41,7 +45,7 @@
 					<ul>
 				        <li>
 				            <label for="partnerName">${label.deal.partnerName}</label>
-				            <input type="text" name="partnerAddress.company.name" disabled/>
+				            <input type="text" name="partnerCompanyName" disabled/>
 		            		<div class="reviewStarsDeal">
 							    <input id="star_5" type="radio" name="star_5" disabled>
 							    <label title="gorgeous" for="star_5"></label>
@@ -61,7 +65,7 @@
 				        </li>
 	
 				        <li>
-				            <label for="partnerComment">${label.deal.partnerComment}</label>
+				            <label for="partnerDescription">${label.deal.partnerComment}</label>
 				            <input type="text" name="partnerDescription" disabled/>
 				        </li>
 				        <li>
@@ -74,18 +78,18 @@
 				        </li>
 				        <li>
 				            <label for="partnerPhone">${label.deal.partnerPhone}</label>
-				            <input type="text" name="partnerAddress.company.phone" disabled/>
+				            <input type="text" name="partnerPhone" disabled/>
 				        </li>
 				        <li>
 				            <label for="partnerRegNumber">${label.deal.partnerRegNumber}</label>
-				            <input type="text" name="partnerAddress.company.regNumber" disabled/>
+				            <input type="text" name="partnerRegNumber" disabled/>
 				        </li>
 				        <li>
-				            <label for="sellerFoto">${label.deal.sellerFoto}</label>
+				            <label for="foto">${label.deal.sellerFoto}</label>
 				            <div class="sellerFoto">
 				            	<div class="gallery">
 								    <a href="${pageContext.request.contextPath}/deal/json/Picture.spr?dealId=${id}">
-								        <img name="sellerFoto" src="">
+								        <img name="foto" src="">
 								    </a>
 								</div>
 				            </div>
@@ -96,7 +100,7 @@
 					<ul>
 						<li>
 					        <label for="partnerAddress">${label.deal.partnerAddress}</label>
-					        <textarea name="partnerAddress.address" disabled></textarea>
+					        <textarea name="partnerAddress" disabled></textarea>
 					    </li>
 					</ul>
 					<div class="map-deal-form" style=" ">				        

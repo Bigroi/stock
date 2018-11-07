@@ -18,10 +18,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.PartnerChoice;
-import com.bigroi.stock.bean.db.Company;
-import com.bigroi.stock.bean.db.CompanyAddress;
 import com.bigroi.stock.bean.db.Deal;
-import com.bigroi.stock.bean.db.Product;
 import com.bigroi.stock.bean.db.TradeBid;
 import com.bigroi.stock.bean.db.TradeLot;
 import com.bigroi.stock.bean.db.TradeTender;
@@ -34,11 +31,11 @@ public class DealDaoImpl implements DealDao {
 			"INSERT INTO DEAL (LOT_ID, TENDER_ID, TIME, BUYER_CHOICE, SELLER_CHOICE, PRICE, "
 			+ " MAX_TRANSPORT_PRICE, VOLUME, PRODUCT_ID, SELLER_FOTO, SELLER_ADDRESS_ID, "
 			+ " BUYER_ADDRESS_ID, SELLER_DESCRIPTION, BUYER_DESCRIPTION, BUYER_PROCESSING, BUYER_PACKAGING, "
-			+ " BUYER_LANGUAGE, SELLER_LANGUAGE, BUYER_EMAIL, SELLER_EMAIL ) "
+			+ " BUYER_LANGUAGE, SELLER_LANGUAGE, BUYER_EMAIL, SELLER_EMAIL, CATEGORY_ID ) "
 			+ " SELECT L.ID, T.ID, ?, ?, ?, ?, "
 			+ " ?, ?, L.PRODUCT_ID, L.FOTO, L.ADDRESS_ID, "
 			+ " T.ADDRESS_ID, L.DESCRIPTION, T.DESCRIPTION, T.PROCESSING, T.PACKAGING, "
-			+ " ?, ?, ?, ? "
+			+ " ?, ?, ?, ?, L.CATEGORY_ID "
 			+ " FROM LOT L "
 			+ " JOIN TENDER T "
 			+ " ON L.PRODUCT_ID = T.PRODUCT_ID "
@@ -246,6 +243,8 @@ public class DealDaoImpl implements DealDao {
 						  " FROM DEAL D "
 						+ " JOIN PRODUCT P "
 						+ " ON D.PRODUCT_ID = P.ID "
+						+ " JOIN PRODUCT_CATEGORY PC "
+						+ " ON PC.ID = D.CATEGORY_ID "
 						+ " JOIN ADDRESS SA "
 						+ " ON SA.ID = D.SELLER_ADDRESS_ID "
 						+ " JOIN COMPANY SC "
@@ -260,8 +259,8 @@ public class DealDaoImpl implements DealDao {
 				+ " D.PRICE, D.MAX_TRANSPORT_PRICE, D.VOLUME, D.PRODUCT_ID, D.SELLER_FOTO, "
 				+ " D.SELLER_ADDRESS_ID, D.BUYER_ADDRESS_ID, D.SELLER_DESCRIPTION, "
 				+ " D.BUYER_DESCRIPTION, D.BUYER_PACKAGING, D.BUYER_PROCESSING, "
-				+ " D.BUYER_LANGUAGE, D.SELLER_LANGUAGE, D.BUYER_EMAIL, D.SELLER_EMAIL, "
-				+ " P.NAME PRODUCT_NAME,  "
+				+ " D.BUYER_LANGUAGE, D.SELLER_LANGUAGE, D.BUYER_EMAIL, D.SELLER_EMAIL, D.CATEGORY_ID, "
+				+ " P.NAME PRODUCT_NAME, PC.CATEGORY_NAME CATEGORY_NAME, "
 				+ " SA.COMPANY_ID SELLER_COMPANY_ID, SA.LATITUDE SELLER_LATITUDE, SA.LONGITUDE SELLER_LONGITUDE, "
 				+ " SA.CITY SELLER_CITY, SA.COUNTRY SELLER_COUNTRY, SA.ADDRESS SELLER_ADDRESS, "
 				+ " SC.NAME SELLER_COMPANY_NAME, SC.PHONE SELLER_PHONE, SC.REG_NUMBER SELLER_REG_NUMBER, SC.LANGUAGE SELLER_LANGUAGE, "
@@ -294,47 +293,34 @@ public class DealDaoImpl implements DealDao {
 			deal.setBuyerPackaging(rs.getString("BUYER_PACKAGING"));
 			deal.setBuyerEmail(rs.getString("BUYER_EMAIL"));
 			deal.setSellerEmail(rs.getString("SELLER_EMAIL"));
-			deal.setBuyerLanguage(rs.getString("BUYER_LANGUAGE"));
+			deal.setCategoryId(rs.getLong("CATEGORY_ID"));
+			
+			deal.setCategoryName(rs.getString("CATEGORY_NAME"));
+			deal.setProductName(rs.getString("PRODUCT_NAME"));
+			
+			deal.setSellerCountry(rs.getString("SELLER_COUNTRY"));
+			deal.setSellerCity(rs.getString("SELLER_CITY"));
+			deal.setSellerAddress(rs.getString("SELLER_ADDRESS"));
+			deal.setSellerLatitude(rs.getDouble("SELLER_LATITUDE"));
+			deal.setSellerLongitude(rs.getDouble("SELLER_LONGITUDE"));
+			
+			deal.setSellerCompanyId(rs.getLong("SELLER_COMPANY_ID"));
+			deal.setSellerCompanyName(rs.getString("SELLER_COMPANY_NAME"));
+			deal.setSellerPhone(rs.getString("SELLER_PHONE"));
+			deal.setSellerRegNumber(rs.getString("SELLER_REG_NUMBER"));
 			deal.setSellerLanguage(rs.getString("SELLER_LANGUAGE"));
 			
-			Product product = new Product();
-			product.setId(rs.getLong("PRODUCT_ID"));
-			product.setName(rs.getString("PRODUCT_NAME"));
-			deal.setProduct(product);
+			deal.setBuyerCountry(rs.getString("BUYER_COUNTRY"));
+			deal.setBuyerCity(rs.getString("BUYER_CITY"));
+			deal.setBuyerAddress(rs.getString("BUYER_ADDRESS"));
+			deal.setBuyerLatitude(rs.getDouble("BUYER_LATITUDE"));
+			deal.setBuyerLongitude(rs.getDouble("BUYER_LONGITUDE"));
 			
-			CompanyAddress address = new CompanyAddress();
-			address.setCompanyId(rs.getLong("SELLER_COMPANY_ID"));
-			address.setLatitude(rs.getDouble("SELLER_LATITUDE"));
-			address.setLongitude(rs.getDouble("SELLER_LONGITUDE"));
-			address.setCity(rs.getString("SELLER_CITY"));
-			address.setCountry(rs.getString("SELLER_COUNTRY"));
-			address.setAddress(rs.getString("SELLER_ADDRESS"));
-			address.setId(rs.getLong("SELLER_ADDRESS_ID"));
-			deal.setSellerAddress(address);
-			
-			Company company = new Company();
-			company.setName(rs.getString("SELLER_COMPANY_NAME"));
-			company.setPhone(rs.getString("SELLER_PHONE"));
-			company.setRegNumber(rs.getString("SELLER_REG_NUMBER"));
-			company.setLanguage(rs.getString("SELLER_LANGUAGE"));
-			address.setCompany(company);
-			
-			address = new CompanyAddress();
-			address.setCompanyId(rs.getLong("BUYER_COMPANY_ID"));
-			address.setLatitude(rs.getDouble("BUYER_LATITUDE"));
-			address.setLongitude(rs.getDouble("BUYER_LONGITUDE"));
-			address.setCity(rs.getString("BUYER_CITY"));
-			address.setCountry(rs.getString("BUYER_COUNTRY"));
-			address.setAddress(rs.getString("BUYER_ADDRESS"));
-			address.setId(rs.getLong("BUYER_ADDRESS_ID"));
-			deal.setBuyerAddress(address);
-			
-			company = new Company();
-			company.setName(rs.getString("BUYER_COMPANY_NAME"));
-			company.setPhone(rs.getString("BUYER_PHONE"));
-			company.setRegNumber(rs.getString("BUYER_REG_NUMBER"));
-			company.setLanguage(rs.getString("BUYER_LANGUAGE"));
-			address.setCompany(company);
+			deal.setBuyerCompanyId(rs.getLong("BUYER_COMPANY_ID"));
+			deal.setBuyerCompanyName(rs.getString("BUYER_COMPANY_NAME"));
+			deal.setBuyerPhone(rs.getString("BUYER_PHONE"));
+			deal.setBuyerRegNumber(rs.getString("BUYER_REG_NUMBER"));
+			deal.setBuyerLanguage(rs.getString("BUYER_LANGUAGE"));
 			
 			return deal;
 		}

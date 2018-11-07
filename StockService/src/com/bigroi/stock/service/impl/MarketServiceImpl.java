@@ -85,17 +85,17 @@ public class MarketServiceImpl implements MarketService {
 				continue;
 			}
 			if (deal.getSellerChoice() != PartnerChoice.ON_APPROVE){
-				dealExparationMessageForSellerByOpponent.send(deal, deal.getSellerAddress().getCompany().getLanguage());
+				dealExparationMessageForSellerByOpponent.send(deal, deal.getSellerLanguage());
 				
-				dealExparationMessageForBuyer.send(deal, deal.getBuyerAddress().getCompany().getLanguage());
+				dealExparationMessageForBuyer.send(deal, deal.getBuyerLanguage());
 			} else if (deal.getBuyerChoice() != PartnerChoice.ON_APPROVE){
-				dealExparationMessageForSeller.send(deal, deal.getSellerAddress().getCompany().getLanguage());
+				dealExparationMessageForSeller.send(deal, deal.getSellerLanguage());
 				
-				dealExparationMessageForBuyerByOpponent.send(deal, deal.getBuyerAddress().getCompany().getLanguage());
+				dealExparationMessageForBuyerByOpponent.send(deal, deal.getBuyerLanguage());
 			} else {
-				dealExparationMessageForSeller.send(deal, deal.getSellerAddress().getCompany().getLanguage());
+				dealExparationMessageForSeller.send(deal, deal.getSellerLanguage());
 				
-				dealExparationMessageForBuyer.send(deal, deal.getBuyerAddress().getCompany().getLanguage());
+				dealExparationMessageForBuyer.send(deal, deal.getBuyerLanguage());
 			}
 			returnVolumeToBids(deal);
 		}
@@ -105,8 +105,8 @@ public class MarketServiceImpl implements MarketService {
 	}
 	
 	private void returnVolumeToBids(Deal deal){
-		long buyerId = deal.getBuyerAddress().getCompanyId();
-		long sellerId = deal.getSellerAddress().getCompanyId();
+		long buyerId = deal.getBuyerCompanyId();
+		long sellerId = deal.getSellerCompanyId();
 		
 		Lot lot = lotDao.getById(deal.getLotId(), sellerId);
 		lot.setMaxVolume(lot.getMaxVolume() + deal.getVolume());
@@ -122,9 +122,9 @@ public class MarketServiceImpl implements MarketService {
 	public void sendConfirmationMessages(){
 		List<Deal> deals = dealDao.getOnApprove();
 		for (Deal deal : deals) {
-			dealConfirmationMessageForBuyer.send(deal, deal.getBuyerAddress().getCompany().getLanguage());
+			dealConfirmationMessageForBuyer.send(deal, deal.getBuyerLanguage());
 			
-			dealConfirmationMessageForSeller.send(deal, deal.getSellerAddress().getCompany().getLanguage());
+			dealConfirmationMessageForSeller.send(deal, deal.getSellerLanguage());
 		}
 	}
 }
