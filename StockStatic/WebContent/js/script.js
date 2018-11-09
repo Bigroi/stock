@@ -153,4 +153,15 @@ $(document).ready(function(){
 			}, 500, function(){
 		});
 	});	
+	$(window).scroll(function() {
+		if($(this).scrollTop() != 0) {
+			$('.button_up').fadeIn();
+		} else {
+			$('.button_up').fadeOut(); 
+		}
+	});
+	$(document).on("click", '.button_up', function() {
+		$('body,html').animate({scrollTop:0},800);
+	});
+	
 });

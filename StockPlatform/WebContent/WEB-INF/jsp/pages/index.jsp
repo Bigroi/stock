@@ -81,8 +81,8 @@
 					<main>
 						<div class="front" id="ex1">
 							<div class="container">
-								<h1>${label.index.description_title}</h1>
-								<p class="front-desc">${label.index.description}</p>
+								<span class="span_h1">${label.index.description_title}</span>
+								<h1 class="front-desc">${label.index.description}</h1>
 								<div class="front-desc-but">
 									<div class="reg-as">${label.index.regestrate_as_farmer} </div>
 									<div class="reg-but">
@@ -127,14 +127,14 @@
 						</div>
 						<div class="products" id="ex3">
 							<div class="container">
-								<h3>${label.index.products}</h3>
+								<span class="span_h3">${label.index.products}</span>
 								 <div class="product-cont unauthorised slider"></div>  
 							</div>
 						</div>
 						<div class="for-whom" id="ex4">
 							<div class="for-farmers">
 								<div class="for-farm-cont">
-									<h3>${label.index.for_farmers}</h3>
+									<span class="span_h3">${label.index.for_farmers}</span>
 									<ul>
 										<li>${label.index.for_farmers_li1}</li>
 										<li>${label.index.for_farmers_li2}</li>
@@ -147,7 +147,7 @@
 							</div>
 							<div class="for-buyers">
 								<div class="for-buyers-cont">
-									<h3>${label.index.for_buyers}</h3>
+									<span class="span_h3">${label.index.for_buyers}</span>
 									<ul>
 										<li>${label.index.for_buyers_li1}</li>
 										<li>${label.index.for_buyers_li2}</li>
@@ -161,23 +161,23 @@
 						</div>
 						<div class="test-trading" id="ex5">
 							<div class="container">
-								<h3>${label.index.try_it_now}</h3>
+								<span class="span_h3">${label.index.try_it_now}</span>
 								<div class="test-lot-tender-container">
 									<div class="test-lot">
 										<button class="add-test-lot background-blue">${label.button.new_lot}</button>
-										<div id="table-container">
+										<div class="table-container">
 										    <table id="main-table-lot" class="test-lot-table" data-url="/lot/json/TestList.spr" data-add-button="add-test-lot"></table>
 										</div>
 									</div>
 									<div class="test-tender">
 										<button class="add-test-tender background-blue">${label.button.new_tender}</button>
-										<div id="table-container">
+										<div class="table-container">
 										    <table id="main-table-tender" class="test-tender-table" data-url="/tender/json/TestList.spr" data-add-button="add-test-tender"></table>
 										</div>
 									</div>
 								</div>
 								<div class="test-trade-container">
-									<div id="table-container">
+									<div class="table-container">
 									    <table id="main-table-deal" data-url="/deal/json/TestDeals.spr"></table>
 									</div>
 									<button class="test-trade background-green">${label.button.trade}</button>
@@ -188,7 +188,7 @@
 						<div class="preview-platform">
 							<div class="container">
 								<div>
-									<h3>${label.index.responsive_title}</h3>
+									<span class="span_h3">${label.index.responsive_title}</span>
 									<p>${label.index.responsive_description}</p>
 									<button class="register background-green registration-button">
 										${label.button.registrate}
@@ -208,6 +208,7 @@
 				 			 ${label.index.copyright}
 				 		</div>
 				 	</div>
+				 	<div class="button_up"></div>
 				</footer>
 			</div>
 	</body>
