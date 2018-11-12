@@ -2253,7 +2253,7 @@ table.dataTable>tbody>tr.child span {
 		.product-page .product {
 		    margin-top: 10px;
 		    margin-bottom: 10px;
-		    background-size: 120px;
+		    background-size: 110px;
 	    	background-position: left 140px top 20px;
 		}
 		.product-page .product button {
@@ -2781,4 +2781,9 @@ table.dataTable.order-column.stripe tbody tr.even>.sorting_1 {
 	.product {
     	min-width: 248px !important;
     }
+}
+@media (max-width: 1280px) and (min-width: 758px) {
+	.login-box {
+		    top: 50px;
+	}
 }
