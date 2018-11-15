@@ -18,9 +18,10 @@ public class DealConfirmationMessageForBuyer extends BaseMessage<Deal> {
 
 	@Override
 	protected String getText(Deal deal, Locale locale) {
-		return super.getText(deal, locale)
+		return getTextTemplate(locale)
 				.replaceAll("@product", labelDao.getLabel(deal.getProductName(), "name", locale))
 				.replaceAll("@price", deal.getPrice() + "")
 				.replaceAll("@server", mailManager.getServerAdress());
 	}
+
 }

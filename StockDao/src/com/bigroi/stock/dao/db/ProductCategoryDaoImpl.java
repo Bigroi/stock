@@ -21,36 +21,37 @@ import com.bigroi.stock.dao.ProductCategoryDao;
 @Repository
 public class ProductCategoryDaoImpl implements ProductCategoryDao{
 
-	private static final String ALL_COLUMNS = "ID, PRODUCT_ID, CATEGORY_NAME, REMOVED";
+	private static final String WHERE_ID = " WHERE ID = ?";
+	private static final String SELECT_ALL_COLUMNS = "SELECT ID, PRODUCT_ID, CATEGORY_NAME, REMOVED";
 	private static final String FROM = " FROM PRODUCT_CATEGORY ";
 	
 	private static final String GET_BY_PRODUCT_ID = 
-			"SELECT " + ALL_COLUMNS
+			SELECT_ALL_COLUMNS
 			+ FROM
 			+ " WHERE PRODUCT_ID = ?";
 	
 	private static final String GET_ACTIVE_BY_PRODUCT_ID = 
-			"SELECT " + ALL_COLUMNS
+			SELECT_ALL_COLUMNS
 			+ FROM
 			+ " WHERE PRODUCT_ID = ? AND REMOVED = 'N'";
 	
 	private static final String GET_BY_ID = 
-			"SELECT " + ALL_COLUMNS
+			SELECT_ALL_COLUMNS
 			+ FROM
-			+ " WHERE ID = ?";
+			+ WHERE_ID;
 	
 	private static final String DELETE_BY_ID = 
 			"UPDATE PRODUCT_CATEGORY "
-			+ " SET REMOVED = 'Y'"
-			+ " WHERE ID = ?";
+			+ " SET REMOVED = 'Y' "
+			+ WHERE_ID;
 	
 	private static final String UPDATE_BY_ID = 
 			"UPDATE PRODUCT_CATEGORY "
 			+ " SET CATEGORY_NAME = ?, REMOVED = 'N' "
-			+ " WHERE ID = ?";
+			+ WHERE_ID;
 	
 	private static final String ADD_CATEGORY = 
-			"INSERT INTO PRODUCT_CATEGORY (" + ALL_COLUMNS + ")"
+			"INSERT INTO PRODUCT_CATEGORY (" + SELECT_ALL_COLUMNS + ")"
 			+ " VALUES (DEFAULT, ?, ? , 'N') ";
 	
 	@Autowired

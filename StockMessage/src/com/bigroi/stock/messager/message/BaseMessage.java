@@ -3,6 +3,7 @@ package com.bigroi.stock.messager.message;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bigroi.stock.bean.db.Email;
@@ -15,6 +16,8 @@ import com.google.common.collect.ImmutableMap.Builder;
 
 public abstract class BaseMessage<T> implements Message<T>{
 	
+	private static final Logger LOGGER = Logger.getLogger(BaseMessage.class);
+	
 	@Autowired
 	private EmailDao emailDao;
 	
@@ -25,6 +28,8 @@ public abstract class BaseMessage<T> implements Message<T>{
 	protected LabelDao labelDao;
 	
 	private final Map<Locale, MessageTemplate> messageTemplates;
+	
+	protected abstract String getText(T object, Locale locale);
 	
 	protected BaseMessage(){
 		messageTemplates = null;
@@ -47,14 +52,15 @@ public abstract class BaseMessage<T> implements Message<T>{
 		Email email = new Email();
 		email.setBody(getText(object, locale));
 		email.setRecipient(getRecipient(object));
-		email.setSubject(getSubject(locale));// TODO 
+		email.setSubject(getSubject(locale)); 
 		email.setFile(getFile(object));
 		email.setFileName(getFileName());
 		return email;
 	}
 	
-	protected byte[] getFile(T object) {
-		return null;
+	protected byte[] getFile(T object){
+		LOGGER.trace(object);
+		return new byte[0];
 	}
 
 	protected String getFileName() {
@@ -63,7 +69,7 @@ public abstract class BaseMessage<T> implements Message<T>{
 
 	protected abstract String getRecipient(T object);
 	
-	protected String getText(T object, Locale locale) {
+	protected final String getTextTemplate(Locale locale) {
 		return messageTemplates.get(locale).getText();
 	}
 	

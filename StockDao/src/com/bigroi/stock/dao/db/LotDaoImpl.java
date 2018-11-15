@@ -30,6 +30,14 @@ import com.bigroi.stock.dao.LotDao;
 @Repository
 public class LotDaoImpl implements LotDao {
 	
+	private static final String UPDATE_LOT_SET = "UPDATE LOT SET ";
+
+	private static final String STATUS = "STATUS = ? ";
+
+	private static final String DELETE = "DELETE ";
+
+	private static final String FROM_LOT = " FROM LOT ";
+
 	private static final String ADD_LOT = 
 			"INSERT INTO LOT "
 			+ "(DESCRIPTION, PRODUCT_ID, CATEGORY_ID, PRICE, MIN_VOLUME, "
@@ -48,68 +56,68 @@ public class LotDaoImpl implements LotDao {
 			+ " WHERE ID = ?";
 	
 	private static final String UPDATE_LOT_BY_ID_AND_SELLER = 
-			"UPDATE LOT SET "
+			UPDATE_LOT_SET
 			+ " DESCRIPTION = ?, PRODUCT_ID = ?, CATEGORY_ID = ?, PRICE = ?, MIN_VOLUME = ?, "
 			+ " MAX_VOLUME = ?, `STATUS` = ?, CREATION_DATE = ?, EXPARATION_DATE = ?, "
 			+ " ADDRESS_ID = ?, FOTO = ?, DISTANCE = ? "
 			+ " WHERE ID = ? AND COMPANY_ID = ?";
 	
 	private static final String GET_LOT_BY_ID = 
-			"SELECT " + LotRowMapper.ALL_COLUMNS
+			LotRowMapper.SELECT_ALL_COLUMNS
 			+ LotRowMapper.FROM
 			+ " WHERE L.ID = ?";
 	
 	private static final String GET_ACTIVE_LOTS = 
-			"SELECT " + LotRowMapper.ALL_COLUMNS
+			LotRowMapper.SELECT_ALL_COLUMNS
 			+ LotRowMapper.FROM
 			+ " WHERE  L.`STATUS` = '" + BidStatus.ACTIVE.name() + "'";
 	
 	private static final String GET_ACTIVE_LOTS_BY_PRODUCT_ID = 
-			"SELECT " + LotRowMapper.ALL_COLUMNS
+			LotRowMapper.SELECT_ALL_COLUMNS
 			+ LotRowMapper.FROM
 			+ " WHERE L.PRODUCT_ID = ? "
 			+ " AND L.`STATUS` = '" + BidStatus.ACTIVE.name() + "' AND L.MIN_VOLUME <= L.MAX_VOLUME ";
 	
 	private static final String GET_LOTS_BY_COMPANY = 
-			"SELECT " + LotRowMapper.ALL_COLUMNS
+			LotRowMapper.SELECT_ALL_COLUMNS
 			+ LotRowMapper.FROM
 			+ " WHERE L.COMPANY_ID = ?"
 			+ " AND MIN_VOLUME <= MAX_VOLUME";
 	
 	private static final String GET_LOTS_BY_DESCRIPTION = 
-			"SELECT " + LotRowMapper.ALL_COLUMNS
+			LotRowMapper.SELECT_ALL_COLUMNS
 			+ LotRowMapper.FROM
 			+ " WHERE L.COMPANY_ID = 0 "
 			+ " AND L.DESCRIPTION = ?";
 	
 	private static final String SET_STATUS_BY_COMPANY =
-			  "UPDATE LOT SET "
-			+ "STATUS = ? "
+			  UPDATE_LOT_SET
+			+ STATUS
 			+ "WHERE COMPANY_ID = ?";
 	
 	private static final String SET_STATUS_BY_ID_AND_COMPANY =
-			  "UPDATE LOT SET "
-			+ "STATUS = ? "
+			  UPDATE_LOT_SET
+			+ STATUS
 			+ "WHERE ID = ? AND COMPANY_ID = ?";
 	
 	private static final String SET_STATUS_BY_PRODUCT_ID =
-			  "UPDATE LOT SET "
-			+ "STATUS = ? "
+			  UPDATE_LOT_SET
+			+ STATUS
 			+ "WHERE PRODUCT_ID = ?";
 
 	private static final String DELETE_BY_ID_AND_COMPANY = 
-			"DELETE "
-			+ " FROM LOT "
+			DELETE
+			+ FROM_LOT
 			+ " WHERE ID = ? AND COMPANY_ID = ?";
 	
 	private static final String DELETE_BY_DESCRIPTION = 
-			"DELETE "
-			+ " FROM LOT "
+			DELETE
+			+ FROM_LOT
 			+ " WHERE DESCRIPTION = ? AND COMPANY_ID = 0";
 	
 	private static final String CLOSE_LOTS = 
-			"DELETE "
-			+ " FROM LOT "
+			DELETE
+			+ FROM_LOT
 			+ " WHERE MIN_VOLUME > MAX_VOLUME";
 	
 	@Autowired
@@ -265,8 +273,9 @@ public class LotDaoImpl implements LotDao {
 	
 	private static class LotRowMapper implements RowMapper<Lot>{
 
-		public static final String ALL_COLUMNS = 
-				" L.ID, L.DESCRIPTION, L.PRODUCT_ID, L.CATEGORY_ID, L.PRICE, L.MIN_VOLUME, "
+		public static final String SELECT_ALL_COLUMNS =
+				"SELECT "
+			+ " L.ID, L.DESCRIPTION, L.PRODUCT_ID, L.CATEGORY_ID, L.PRICE, L.MIN_VOLUME, "
 			+ " L.MAX_VOLUME, L.COMPANY_ID, L.`STATUS`, L.CREATION_DATE, "
 			+ " L.EXPARATION_DATE, L.ADDRESS_ID, L.FOTO, L.DISTANCE, "
 			+ " P.NAME PRODUCT_NAME,"

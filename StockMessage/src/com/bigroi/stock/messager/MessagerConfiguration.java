@@ -137,6 +137,6 @@ public class MessagerConfiguration {
 	
 	@Bean
 	public FeedBackMessage getFeedBackMessage(){
-		return new FeedBackMessage(adminUser);
+		return new FeedBackMessage(user);
 	}
 }

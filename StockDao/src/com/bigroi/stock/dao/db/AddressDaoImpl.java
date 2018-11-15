@@ -21,11 +21,13 @@ import com.bigroi.stock.dao.AddressDao;
 @Repository
 public class AddressDaoImpl implements AddressDao{
 
-	private static final String ALL_COLUMNS = "ID, CITY, COUNTRY, ADDRESS, LATITUDE, LONGITUDE, COMPANY_ID";
+	private static final String SELECT_ALL_COLUMNS = 
+			"SELECT ID, CITY, COUNTRY, ADDRESS, LATITUDE, "
+			+ " LONGITUDE, COMPANY_ID ";
 	private static final String FROM = " FROM ADDRESS ";
 	
 	private static final String GET_ADDRESSES_BY_COMPANY_ID = 
-			"SELECT " + ALL_COLUMNS
+			SELECT_ALL_COLUMNS
 			+ FROM
 			+ " WHERE COMPANY_ID = ?";
 	
@@ -44,12 +46,12 @@ public class AddressDaoImpl implements AddressDao{
 			+ " VALUES (?, ?, ?, ?, ? , ?) ";
 	
 	private static final String GET_ADDRESS_BY_ID = 
-			"SELECT " + ALL_COLUMNS
+			SELECT_ALL_COLUMNS
 			+ FROM
 			+ " WHERE ID = ? AND COMPANY_ID = ?";
 
 	private static final String GET_ADDRESS_BY_COUNTRY_AND_CITY_AND_ADDRESS_AND_COMPANY_ID = 
-			"SELECT " + ALL_COLUMNS
+			SELECT_ALL_COLUMNS
 			+ FROM
 			+ " WHERE COUNTRY = ? AND CITY = ? AND ADDRESS = ? AND COMPANY_ID = ?";
 	

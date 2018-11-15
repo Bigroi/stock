@@ -37,21 +37,20 @@ function showDialog(params){
 		
 		$("input:file").change(function(){
 			var element = this;
-			var fileName = $(element).val();
 			var file = element.files[0];
 		    if (file.size > 10000000){
-		    	var messageDiv = $('.dialogbox-message')
-		    	messageDiv.addClass("error-message");
-		    	messageDiv.text(l10n.translate("label.lot.too_big"));
-		    	messageDiv[0].scrollIntoView(true);
+		    	var messageDiv1 = $('.dialogbox-message')
+		    	messageDiv1.addClass("error-message");
+		    	messageDiv1.text(l10n.translate("label.lot.too_big"));
+		    	messageDiv1[0].scrollIntoView(true);
 		    	$(element).val(null);
 		    	return false;
 		    }
 		    if (!file.type.startsWith("image")){
-		    	var messageDiv = $('.dialogbox-message')
-		    	messageDiv.addClass("error-message");
-		    	messageDiv.text(l10n.translate("label.lot.not_img"));
-		    	messageDiv[0].scrollIntoView(true);
+		    	var messageDiv2 = $('.dialogbox-message')
+		    	messageDiv2.addClass("error-message");
+		    	messageDiv2.text(l10n.translate("label.lot.not_img"));
+		    	messageDiv2[0].scrollIntoView(true);
 		    	$(element).val(null);
 		    	return false;
 		    }

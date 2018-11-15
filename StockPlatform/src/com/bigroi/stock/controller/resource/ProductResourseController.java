@@ -37,7 +37,7 @@ public class ProductResourseController extends BaseResourseController {
 	@ResponseBody
 	public String list() {
 		List<ProductForUI> productsForUI = productService.getAllActiveProductsForUI();
-		productsForUI.forEach((p) -> p.setName(labelService.getLabel(p.getName(), "name", getLanguage())));
+		productsForUI.forEach(p -> p.setName(labelService.getLabel(p.getName(), "name", getLanguage())));
 		return new ResultBean(1, productsForUI, null).toString();
 	}
 

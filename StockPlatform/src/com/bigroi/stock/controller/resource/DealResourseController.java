@@ -79,7 +79,7 @@ public class DealResourseController extends BaseResourseController {
 		if (comments.isEmpty()){
 			return 5;
 		} else {
-			return (int)comments.stream().mapToInt(c -> c.getMark()).average().getAsDouble();
+			return (int)comments.stream().mapToInt(UserComment::getMark).average().getAsDouble();
 		}
 	}
 
@@ -99,7 +99,7 @@ public class DealResourseController extends BaseResourseController {
 				.substring("data:image/png;base64,".length())
 				.getBytes());
 		
-		return new ResponseEntity<byte[]>(bytes, HttpStatus.OK);
+		return new ResponseEntity<>(bytes, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/MyDeals.spr", produces = "text/plain;charset=UTF-8")

@@ -59,7 +59,7 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 	protected ResultBean bidList() {
 		List<B> bids = getBidService().getByCompanyId(getUserCompanyId());
 		List<U> objectForUI = bids.stream()
-				.map((b) -> {
+				.map(b -> {
 					b.getProduct().setName(labelService.getLabel(b.getProduct().getName(), "name", getLanguage()));
 					return getObjectForUIConstructor().apply(b);
 				})
@@ -73,10 +73,8 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		B bid = null;
 		try {
 			bid = GsonUtil.getGson().fromJson(json, getBidClass());
-		}finally {
-			if (bid == null) {
-				return new ResultBean(-1, LABEL_PREFIX + getPropertyFileName() +".too_long_number");
-			}
+		}catch (Exception e) {
+			return new ResultBean(-1, LABEL_PREFIX + getPropertyFileName() +".too_long_number");
 		}
 		if (bid.getId() < 0) {
 			bid.setStatus(BidStatus.INACTIVE);
@@ -100,10 +98,8 @@ public abstract class BidResourceController<B extends Bid, U> extends BaseResour
 		B bid = null;
 		try {
 			bid = GsonUtil.getGson().fromJson(json, getBidClass());
-		}finally {
-			if (bid == null) {
-				return new ResultBean(-1, LABEL_PREFIX + getPropertyFileName() +".too_long_number");
-			}
+		}catch (Exception e) {
+			return new ResultBean(-1, LABEL_PREFIX + getPropertyFileName() +".too_long_number");
 		}
 		bid.setStatus(BidStatus.ACTIVE);
 		return save(bid);

@@ -108,7 +108,7 @@ function setFormInputs(formContainer, object){
 	}
 	
 	if (object.fieldsToRemove){
-		for (var i = 0; i < object.fieldsToRemove.length; i++){
+		for (i = 0; i < object.fieldsToRemove.length; i++){
 			$("[name=" + object.fieldsToRemove[i] + "]").remove();
 			$("[for=" + object.fieldsToRemove[i] + "]").remove();
 		}

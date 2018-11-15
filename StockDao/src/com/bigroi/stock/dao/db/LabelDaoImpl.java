@@ -24,22 +24,27 @@ import com.bigroi.stock.dao.LabelDao;
 @Repository
 public class LabelDaoImpl implements LabelDao {
 
-	private static final String LANGUAGE = "LANGUAGE";
+	private static final String SELECT = "SELECT ";
+	private static final String LANGUAGE = "$LANGUAGE";
+	private static final String FROM = " FROM LABEL ";
+	private static final String SELECT_ALL_COLUMNS = "SELECT ID, CATEGORY, NAME, EN_US, RU_RU, PL ";
 	
 	private static final String GET_LABEL = 
-			  "SELECT " + LANGUAGE 
-			+ " FROM LABEL "
+			  SELECT + LANGUAGE 
+			+ FROM
 			+ " WHERE CATEGORY = ? AND NAME = ?";
 	
 	private static final String GET_ALL_LABELS = 
-			  "SELECT " + LANGUAGE + ", CATEGORY, NAME "
-			+ " FROM LABEL ";
+			  SELECT + LANGUAGE + ", CATEGORY, NAME "
+			+ FROM;
 	
 	private static final String GET_ALL_LABELS_LIST =
-			"SELECT ID, CATEGORY, NAME, EN_US, RU_RU, PL FROM LABEL ";
+			SELECT_ALL_COLUMNS
+			+ FROM;
 	
 	private static final String GET_LABEL_BY_ID = 
-			"SELECT ID, CATEGORY, NAME, EN_US, RU_RU, PL FROM LABEL "
+			SELECT_ALL_COLUMNS
+			+ FROM
 			+ "  WHERE ID = ? ";
 	
 	private static final String ADD_LABEL = 
@@ -47,11 +52,14 @@ public class LabelDaoImpl implements LabelDao {
 			+ " VALUES ( ?, ?, ?, ?, ?) ";
 	
 	private static final String UPDATE_LABEL_BY_ID = 
-			"UPDATE LABEL SET CATEGORY  = ?, NAME = ?, "
-			+ "EN_US = ?, RU_RU = ?, PL = ? WHERE ID = ? ";
+			"UPDATE LABEL "
+			+ " SET CATEGORY  = ?, NAME = ?, "
+			+ " EN_US = ?, RU_RU = ?, PL = ? WHERE ID = ? ";
 	
 	private static final String DELETE_LABEL_BY_ID = 
-			"DELETE FROM LABEL WHERE ID = ? ";
+			"DELETE "
+			+ FROM
+			+ " WHERE ID = ? ";
 	
 	@Autowired
 	private DataSource datasource;

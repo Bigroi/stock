@@ -53,7 +53,7 @@ public class MailManagerImpl implements MailManager {
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getRecipient()));
 			message.setSubject(email.getSubject());
 			
-			if (email.getFile() != null){
+			if (email.getFileName() != null){
 		        Multipart multipart = new MimeMultipart();
 	
 		        MimeBodyPart documentPart = new MimeBodyPart();

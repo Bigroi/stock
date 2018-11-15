@@ -24,7 +24,7 @@ public class LotExparationMessage extends BaseMessage<Lot> {
 	
 	@Override
 	protected String getText(Lot lot, Locale locale){
-		return super.getText(lot, locale)
+		return getTextTemplate(locale)
 				.replaceAll("@price", lot.getPrice() + "")
 				.replaceAll("@description", lot.getDescription())
 				.replaceAll("@volume", lot.getMaxVolume() + "");

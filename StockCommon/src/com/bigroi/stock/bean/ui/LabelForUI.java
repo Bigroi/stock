@@ -7,6 +7,8 @@ import com.bigroi.stock.json.Id;
 
 public class LabelForUI {
 	
+	private static final String EMPTY_LABEL = "$empty";
+	
 	@Id
 	private final long id;
 	
@@ -33,9 +35,9 @@ public class LabelForUI {
 		this.id = label.getId();
 		this.category = label.getCategory();
 		this.name = label.getName();
-		this.enUs = label.getEnUs() == null ? "$empty" : label.getEnUs();
-		this.pl = label.getPl() == null ? "$empty" : label.getPl();
-		this.ruRu = label.getRuRu() == null ? "$empty" : label.getRuRu();
+		this.enUs = label.getEnUs() == null ? EMPTY_LABEL : label.getEnUs();
+		this.pl = label.getPl() == null ? EMPTY_LABEL : label.getPl();
+		this.ruRu = label.getRuRu() == null ? EMPTY_LABEL : label.getRuRu();
 		this.edit = "YYN";
 	}
 }

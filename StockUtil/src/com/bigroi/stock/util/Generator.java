@@ -10,7 +10,7 @@ public class Generator {
 	private static final String SYMBOLS = "";
 	
 	private static final String LINK_KEY_CHARS = NUMS + CHARS + CHARS_CAPS;
-	private static final String PASSWORD_CHARS = CHARS_CAPS + CHARS + NUMS + SYMBOLS;
+	private static final String PW_CHARS = CHARS_CAPS + CHARS + NUMS + SYMBOLS;
 	
 	private static final Random rnd = new Random();
 	
@@ -25,7 +25,7 @@ public class Generator {
 	public static String generatePass(int lengthOfPass) {
 		char[] password = new char[lengthOfPass];
 		for (int i = 0; i < lengthOfPass; i++) {
-			password[i] = PASSWORD_CHARS.charAt(rnd.nextInt(PASSWORD_CHARS.length()));
+			password[i] = PW_CHARS.charAt(rnd.nextInt(PW_CHARS.length()));
 		}
 		return new String(password);
 	}

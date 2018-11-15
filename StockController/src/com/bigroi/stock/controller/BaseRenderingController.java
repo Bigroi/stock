@@ -72,6 +72,16 @@ public abstract class BaseRenderingController extends BaseController{
 				return labelService.getLabel(category, key.toString(), getLanguage());
 			}
 		}
+		
+		@Override
+		public boolean equals(Object arg0) {
+			return super.equals(arg0);
+		}
+		
+		@Override
+		public int hashCode() {
+			return super.hashCode();
+		}
 	}
 
 }

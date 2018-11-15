@@ -24,7 +24,7 @@ public class TenderExparationMessage extends BaseMessage<Tender> {
 	
 	@Override
 	protected String getText(Tender tender, Locale locale) {
-		return super.getText(tender, locale)
+		return getTextTemplate(locale)
 				.replaceAll("@price", tender.getPrice() + "")
 				.replaceAll("@description", tender.getDescription())
 				.replaceAll("@volume", tender.getMaxVolume() + "");

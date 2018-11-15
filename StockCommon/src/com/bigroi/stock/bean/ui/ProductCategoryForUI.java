@@ -22,11 +22,12 @@ public class ProductCategoryForUI {
 	
 	@Edit(edit="getProductCategoryDialogParams")
 	@Column(value = "label.product_category.edit", responsivePriority = -4)
-	private final String edit = "YNN";
+	private final String edit;
 	
 	public ProductCategoryForUI(ProductCategory category) {
 		this.id = category.getId();
 		this.categoryName = category.getCategoryName();
 		this.removed = category.getRemoved();
+		this.edit = "YNN";
 	}
 }

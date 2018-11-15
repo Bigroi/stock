@@ -95,9 +95,10 @@ public class SqlUpdater {
 	}
 
 	private void updateLastUpdate(Connection connection, int size) throws SQLException {
-		PreparedStatement statement = connection.prepareStatement(UPDATE_SIZE);
-		statement.setInt(1, size);
-		statement.executeUpdate();
+		try(PreparedStatement statement = connection.prepareStatement(UPDATE_SIZE)){
+			statement.setInt(1, size);
+			statement.executeUpdate();
+		}
 	}
 
 	private int getLastUpdate(Connection connection) throws SQLException {
@@ -119,8 +120,7 @@ public class SqlUpdater {
 	}
 
 	private boolean doesDatabaseExists(Connection connection, String schema){
-		try{
-			PreparedStatement statement = connection.prepareStatement(CHECK_BD.replaceAll("@schema@", schema));
+		try(PreparedStatement statement = connection.prepareStatement(CHECK_BD.replaceAll("@schema@", schema))){
 			statement.executeQuery();
 			return true;
 		}catch (SQLException e) {
@@ -142,8 +142,9 @@ public class SqlUpdater {
 	
 	private void executeQuery(Connection connection, String query) throws SQLException {
 		logger.info("Sql updater: execute udate query: " + query);
-		PreparedStatement statement = connection.prepareStatement(query);
-		statement.execute();
+		try(PreparedStatement statement = connection.prepareStatement(query)){
+			statement.execute();
+		}
 	}
 
 	private BufferedReader openReader(String fileName){

@@ -92,7 +92,7 @@ public class DealDaoImpl implements DealDao {
 			+ " WHERE BL.ID IS NULL AND T.PRODUCT_ID = ?";
 
 	private static final String GET_BY_ID = 
-			" SELECT " + DealRowMapper.ALL_COLUMNS
+			DealRowMapper.SELECT_ALL_COLUMNS
 			+ DealRowMapper.FROM
 			+ " WHERE D.ID = ?";
 
@@ -105,18 +105,18 @@ public class DealDaoImpl implements DealDao {
 			  		+ " AND BUYER_CHOICE = " + PartnerChoice.ON_APPROVE.getCode() + ")";
 	
 	private static final String GET_ON_APPROVE = 
-					  " SELECT " + DealRowMapper.ALL_COLUMNS
+					  DealRowMapper.SELECT_ALL_COLUMNS
 						+ DealRowMapper.FROM
 					    + " WHERE " + ON_APPROVE_CRITERIA;
 	
 
 	private static final String DELETE_ON_APPROVE = 
 					  " DELETE "
-					+ " FROM DEAL "
+					+ DealRowMapper.FROM
 					+ " WHERE " + ON_APPROVE_CRITERIA;
 
 	private static final String GET_BY_COMPANY_ID = 
-			" SELECT " + DealRowMapper.ALL_COLUMNS
+			DealRowMapper.SELECT_ALL_COLUMNS
 			+ DealRowMapper.FROM
 			+ " WHERE SA.COMPANY_ID = ? OR BA.COMPANY_ID = ? ";
 
@@ -131,7 +131,7 @@ public class DealDaoImpl implements DealDao {
 			+ " WHERE ID = ? ";
 	
 	private static final String GET_LIST_BY_SELLER_BUYER_APPROVE = 
-			" SELECT " + DealRowMapper.ALL_COLUMNS 
+			DealRowMapper.SELECT_ALL_COLUMNS 
 			+ DealRowMapper.FROM
 			+ "WHERE ((BUYER_CHOICE | SELLER_CHOICE) & 15) = 8";
 
@@ -254,8 +254,9 @@ public class DealDaoImpl implements DealDao {
 						+ " JOIN COMPANY BC "
 						+ " ON BA.COMPANY_ID = BC.ID ";
 		
-		private static final String ALL_COLUMNS = 
-				" D.ID, D.LOT_ID, D.TENDER_ID, D.TIME, D.BUYER_CHOICE, D.SELLER_CHOICE, "
+		private static final String SELECT_ALL_COLUMNS = 
+				" SELECT "
+				+ " D.ID, D.LOT_ID, D.TENDER_ID, D.TIME, D.BUYER_CHOICE, D.SELLER_CHOICE, "
 				+ " D.PRICE, D.MAX_TRANSPORT_PRICE, D.VOLUME, D.PRODUCT_ID, D.SELLER_FOTO, "
 				+ " D.SELLER_ADDRESS_ID, D.BUYER_ADDRESS_ID, D.SELLER_DESCRIPTION, "
 				+ " D.BUYER_DESCRIPTION, D.BUYER_PACKAGING, D.BUYER_PROCESSING, "

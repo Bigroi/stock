@@ -31,6 +31,14 @@ import com.bigroi.stock.dao.TenderDao;
 @Repository
 public class TenderDaoImpl implements TenderDao{
 	
+	private static final String FROM_TENDER = " FROM TENDER ";
+
+	private static final String SET_STATUS = " SET STATUS = ? ";
+
+	private static final String UPDATE_TENDER = " UPDATE TENDER ";
+
+	private static final String WHERE_ID_AND_COMPANY_ID = " WHERE ID = ? AND COMPANY_ID = ? ";
+
 	private static final String ADD_TENDER = 
 			  " INSERT INTO TENDER "
 			+ " (DESCRIPTION, PRODUCT_ID, CATEGORY_ID, PRICE, MIN_VOLUME, "
@@ -39,78 +47,78 @@ public class TenderDaoImpl implements TenderDao{
 			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		
 	private static final String UPDATE_MAX_VOLUME_BY_ID = 
-			  " UPDATE TENDER "
+			  UPDATE_TENDER
 			+ " SET MAX_VOLUME = ? "
 			+ " WHERE ID = ? ";
 	
 	private static final String UPDATE_STATUS_BY_ID = 
-			  " UPDATE TENDER "
-			+ " SET STATUS = ? "
+			  UPDATE_TENDER
+			+ SET_STATUS
 			+ " WHERE ID = ? ";
 	
 	private static final String UPDATE_TENDER_BY_ID_AND_COMPANY = 
-			  " UPDATE TENDER "
+			  UPDATE_TENDER
 			  + " SET DESCRIPTION = ?, PRODUCT_ID = ?, CATEGORY_ID = ?, PRICE = ?, MIN_VOLUME = ?, "
 			  + " MAX_VOLUME = ?, `STATUS` = ?, CREATION_DATE = ?, EXPARATION_DATE = ?, "
 			  + " ADDRESS_ID = ?, DISTANCE = ?, PACKAGING = ?, PROCESSING = ?"
-			  + " WHERE ID = ? AND COMPANY_ID = ? ";
+			  + WHERE_ID_AND_COMPANY_ID;
 	
 	private static final String GET_TENDERS_BY_COMPANY = 
-			" SELECT " + TenderRowMapper.ALL_COLUMNS
+			TenderRowMapper.SELECT_ALL_COLUMNS
 			+ TenderRowMapper.FROM 
 			+ " WHERE T.COMPANY_ID = ? "
 			+ " AND MIN_VOLUME <= MAX_VOLUME";
 	
 	private static final String GET_TENDERS_BY_DESCRIPTION = 
-			" SELECT " + TenderRowMapper.ALL_COLUMNS
+			TenderRowMapper.SELECT_ALL_COLUMNS
 			+ TenderRowMapper.FROM 
 			+ " WHERE T.COMPANY_ID = 0 "
 			+ " AND T.DESCRIPTION = ?";
 	
 	private static final String GET_TENDER_BY_ID = 
-			" SELECT " + TenderRowMapper.ALL_COLUMNS
+			TenderRowMapper.SELECT_ALL_COLUMNS
 			+ TenderRowMapper.FROM
 			+ " WHERE T.ID = ? ";
 	
 	private static final String GET_ACTIVE_TENDERS = 
-			" SELECT " + TenderRowMapper.ALL_COLUMNS
+			TenderRowMapper.SELECT_ALL_COLUMNS
 			+ TenderRowMapper.FROM
 			+ " WHERE T.`STATUS` = '" + BidStatus.ACTIVE + "'";
 	
 	private static final String GET_ACTIVE_TENDERS_BY_PRODUCT_ID = 
-			" SELECT " + TenderRowMapper.ALL_COLUMNS
+			TenderRowMapper.SELECT_ALL_COLUMNS
 			+ TenderRowMapper.FROM
 			+ " WHERE T.PRODUCT_ID = ? "
 			+ " AND T.`STATUS` = '" + BidStatus.ACTIVE + "'  AND T.MIN_VOLUME <= T.MAX_VOLUME ";
 	
 	private static final String UPDATE_STATUS_BY_COMPANY_ID =
-			  " UPDATE TENDER "
-			+ " SET STATUS = ? "
+			  UPDATE_TENDER
+			+ SET_STATUS
 			+ " WHERE COMPANY_ID = ?";
 	
 	private static final String UPDATE_STATUS_BY_PRODUCT_ID =
-			  " UPDATE TENDER "
-			+ " SET STATUS = ? "
+			  UPDATE_TENDER
+			+ SET_STATUS
 			+ " WHERE PRODUCT_ID = ?";
 	
 	private static final String UPDATE_STATUS_BY_ID_AND_COMPANY =
-			  " UPDATE TENDER "
-			+ " SET STATUS = ? "
-			+ " WHERE ID = ? AND COMPANY_ID = ? ";
+			  UPDATE_TENDER
+			+ SET_STATUS
+			+ WHERE_ID_AND_COMPANY_ID;
 	
 	private static final String DELETE_BY_ID_AND_COMPANY =
 			  " DELETE "
-			+ " FROM TENDER "
-			+ " WHERE ID = ? AND COMPANY_ID = ? ";
+			+ FROM_TENDER
+			+ WHERE_ID_AND_COMPANY_ID;
 	
 	private static final String CLOSE_TENDERS = 
 			"DELETE "
-			+ " FROM TENDER "
+			+ FROM_TENDER
 			+ " WHERE MIN_VOLUME > MAX_VOLUME";
 	
 	private static final String DELETE_BY_DESCRIPTION = 
 			"DELETE "
-			+ " FROM TENDER "
+			+ FROM_TENDER
 			+ " WHERE DESCRIPTION = ? AND COMPANY_ID = 0";
 			
 	@Autowired
@@ -270,8 +278,9 @@ public class TenderDaoImpl implements TenderDao{
 	
 	private static class TenderRowMapper implements RowMapper<Tender>{
 
-		public static final String ALL_COLUMNS = 
-				" T.ID, T.DESCRIPTION, T.PRODUCT_ID, T.PRICE, T.MIN_VOLUME, "
+		public static final String SELECT_ALL_COLUMNS =
+				"SELECT "
+			+ " T.ID, T.DESCRIPTION, T.PRODUCT_ID, T.PRICE, T.MIN_VOLUME, "
 			+ " T.MAX_VOLUME, T.COMPANY_ID, T.`STATUS`, T.CREATION_DATE, "
 			+ " T.EXPARATION_DATE, T.ADDRESS_ID, T.DISTANCE, T.PACKAGING, T.PROCESSING, "
 			+ " P.NAME PRODUCT_NAME, T.CATEGORY_ID, "

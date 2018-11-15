@@ -22,12 +22,13 @@ import com.bigroi.stock.util.LabelUtil;
 @Service
 public class AuthenticationHandler implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
 
+	private static final String PRODUCT_LIST_SPR = "/product/List.spr";
+
 	public static String getMainPage(String contexRoot){
 		switch (contexRoot){
-		case "": return "/product/List.spr";
-		case "/Transport": return "/deal-list.spr";
-		case "/demo": return "/product/List.spr";
-		default : return contexRoot + "/product/List.spr";
+		case "":
+		case "/demo": return PRODUCT_LIST_SPR;
+		default : return contexRoot + PRODUCT_LIST_SPR;
 		}
 	}
 	

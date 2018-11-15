@@ -25,6 +25,10 @@ import com.bigroi.stock.dao.CompanyDao;
 @Repository
 public class CompanyDaoImpl implements CompanyDao {
 	
+	private static final String FROM = " FROM COMPANY ";
+	private static final String SELECT_ALL_COLUMNS = 
+			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS, LANGUAGE ";
+	
 	private static final String GET_COMPANY_BY_ID = 
 			  " SELECT C.ID, C.NAME, C.PHONE, C.REG_NUMBER, C.STATUS, C.LANGUAGE, "
 			+ " A.CITY, A.COUNTRY, A.ADDRESS, A.ID ADDRESS_ID, "
@@ -48,17 +52,17 @@ public class CompanyDaoImpl implements CompanyDao {
 			+ " WHERE ID = ? ";
 	
 	private static final String GET_ALL_COMPANIES = 
-			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS, LANGUAGE "
-			+ " FROM COMPANY ";
+			SELECT_ALL_COLUMNS
+			+ FROM;
 	
 	private static final String GET_COMPANY_BY_NAME = 
-			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS, LANGUAGE "
-			+ " FROM COMPANY "
+			SELECT_ALL_COLUMNS
+			+ FROM
 			+ " WHERE NAME = ?";
 	
 	private static final String GET_COMPANY_BY_REG_NUMBER = 
-			" SELECT ID, NAME, PHONE, REG_NUMBER, STATUS, LANGUAGE "
-			+ " FROM COMPANY "
+			SELECT_ALL_COLUMNS
+			+ FROM
 			+ " WHERE REG_NUMBER = ?";
 	
 	private static final String SET_STATUS_BY_ID = 

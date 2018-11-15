@@ -23,13 +23,17 @@ import com.bigroi.stock.dao.ProductDao;
 @Repository
 public class ProductDaoImpl implements ProductDao {
 	
+	private static final String FROM_PRODUCT = " FROM PRODUCT ";
+
+	private static final String SELECT_ALL_COLUMNS = "SELECT ID, NAME, REMOVED, DELIVARY_PRICE, PICTURE ";
+
 	private static final String GET_ALL_PRODUCTS = 
-			"SELECT ID, NAME, REMOVED, DELIVARY_PRICE, PICTURE "
-			+ " FROM PRODUCT ";
+			SELECT_ALL_COLUMNS
+			+ FROM_PRODUCT;
 
 	private static final String GET_ALL_ACTIVE_PRODUCTS = 
-			"SELECT ID, NAME, REMOVED, DELIVARY_PRICE, PICTURE "
-			+ " FROM PRODUCT "
+			SELECT_ALL_COLUMNS
+			+ FROM_PRODUCT
 			+ " WHERE REMOVED = 'N'";
 	
 	private static final String GET_ALL_ACTIVE_PRODUCTS_FOR_UI = 
@@ -63,8 +67,8 @@ public class ProductDaoImpl implements ProductDao {
 			+ " WHERE ID = ?";
 
 	private static final String GET_PRODUCT_BY_ID = 
-			"SELECT ID, NAME, REMOVED, DELIVARY_PRICE, PICTURE "
-			+ " FROM PRODUCT "
+			SELECT_ALL_COLUMNS
+			+ FROM_PRODUCT
 			+ " WHERE ID = ? ";
 	
 	@Autowired

@@ -45,11 +45,11 @@ public class DealForUI {
 	private final int volume;
 	private final String partnerDescription;
 	private final DealStatus statusCode;
-	private boolean star_5 = false;
-	private boolean star_4 = false;
-	private boolean star_3 = false;
-	private boolean star_2 = false;
-	private boolean star_1 = false;
+	private boolean star5 = false;
+	private boolean star4 = false;
+	private boolean star3 = false;
+	private boolean star2 = false;
+	private boolean star1 = false;
 	private final String packaging;
 	private final String processing;
 	private final List<String> fieldsToRemove;
@@ -115,19 +115,19 @@ public class DealForUI {
 	private void setStar(int partnerMark) {
 		switch (partnerMark) {
 		case 1:
-			star_1 = true;
+			star1 = true;
 			break;
 		case 2:
-			star_2 = true;
+			star2 = true;
 			break;
 		case 3:
-			star_3 = true;
+			star3 = true;
 			break;
 		case 4:
-			star_4 = true;
+			star4 = true;
 			break;
 		case 5:
-			star_5 = true;
+			star5 = true;
 			break;
 		default:
 			break;
@@ -177,24 +177,24 @@ public class DealForUI {
 		return status;
 	}
 
-	public boolean isStar_5() {
-		return star_5;
+	public boolean isStar5() {
+		return star5;
 	}
 
-	public boolean isStar_4() {
-		return star_4;
+	public boolean isStar4() {
+		return star4;
 	}
 
-	public boolean isStar_3() {
-		return star_3;
+	public boolean isStar3() {
+		return star3;
 	}
 
-	public boolean isStar_2() {
-		return star_2;
+	public boolean isStar2() {
+		return star2;
 	}
 
-	public boolean isStar_1() {
-		return star_1;
+	public boolean isStar1() {
+		return star1;
 	}
 
 	public double getSellerLatitude() {

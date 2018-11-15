@@ -1,21 +1,17 @@
 package com.bigroi.stock.controller.rendering;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.controller.BaseRenderingController;
-import com.bigroi.stock.service.LabelService;
 
 @Controller
 @RequestMapping("Message.spr")
 public class MessageRenderingController extends BaseRenderingController {
 
 	private static final String MESSAGE_PAGE = "message";
-	@Autowired
-	private LabelService labelService;
 	
 	@RequestMapping
 	public ModelAndView getMessage(

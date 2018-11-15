@@ -47,20 +47,20 @@
 				            <label for="partnerName">${label.deal.partnerName}</label>
 				            <input type="text" name="partnerCompanyName" disabled/>
 		            		<div class="reviewStarsDeal">
-							    <input id="star_5" type="radio" name="star_5" disabled>
-							    <label title="gorgeous" for="star_5"></label>
+							    <input id="star5" type="radio" name="star5" disabled>
+							    <label title="gorgeous" for="star5"></label>
 						
-							    <input id="star_4" type="radio" name="star_4" disabled>
-							    <label title="good" for="star_4"></label>
+							    <input id="star4" type="radio" name="star4" disabled>
+							    <label title="good" for="star4"></label>
 							
-							    <input id="star_3" type="radio" name="star_3" disabled>
-							    <label title="regular" for="star_3"></label>
+							    <input id="star_3" type="radio" name="star3" disabled>
+							    <label title="regular" for="star3"></label>
 							
-							    <input id="star_2" type="radio" name="star_2" disabled>
-							    <label title="poor" for="star_2"></label>
+							    <input id="star_2" type="radio" name="star2" disabled>
+							    <label title="poor" for="star2"></label>
 							
-							    <input id="star_1" type="radio" name="star_1" disabled>
-							    <label title="bad" for="star_1"></label>
+							    <input id="star_1" type="radio" name="star1" disabled>
+							    <label title="bad" for="star1"></label>
 							</div>
 				        </li>
 	

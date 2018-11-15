@@ -26,12 +26,14 @@ import com.bigroi.stock.dao.UserDao;
 @Repository
 public class UserDaoImpl implements UserDao {
 
+	private static final String UPDATE_USER = "UPDATE USER ";
+
 	private static final String ADD_USER = 
 			"INSERT INTO USER (USERNAME, PASSWORD, COMPANY_ID) "
 			+ " VALUES (?, ?, ?) ";
 
 	private static final String UPDATE_USER_BY_ID = 
-			"UPDATE USER "
+			UPDATE_USER
 			+ "SET USERNAME = ?, PASSWORD = ?, COMPANY_ID = ? "
 			+ "WHERE ID = ? ";
 
@@ -51,13 +53,13 @@ public class UserDaoImpl implements UserDao {
 			+ " (C.`STATUS` = '" + CompanyStatus.VERIFIED.name() +"' OR "
 			+ " C.`STATUS` = '" + CompanyStatus.NOT_VERIFIED.name() +"') ";
 	
-	private static final String UPDATE_PASSWORD_BY_ID = 
-			"UPDATE USER "
+	private static final String UPDATE_PW_BY_ID = 
+			UPDATE_USER
 			+ " SET PASSWORD = ?, KEY_ID = NULL "
 			+ " WHERE ID = ? ";
 	
 	private static final String UPDATE_KEY_BY_ID = 
-			"UPDATE USER "
+			UPDATE_USER
 			+ " SET KEY_ID = ? "
 			+ " WHERE ID = ? ";
 	
@@ -107,12 +109,11 @@ public class UserDaoImpl implements UserDao {
 					user.setCompanyId(rs.getLong("COMPANY_ID"));
 					user.setUsername(rs.getString("USERNAME"));
 					user.setPassword(rs.getString("PASSWORD"));
-					user.setCompanyId(rs.getLong("COMPANY_ID"));
 					
 					CompanyAddress address = new CompanyAddress();
 					address.setAddress(rs.getString("ADDRESS"));
 					address.setCity(rs.getString("CITY"));
-					address.setCompanyId(rs.getLong("COMPANY_ID"));
+					address.setCompanyId(user.getCompanyId());
 					address.setCountry(rs.getString("COUNTRY"));
 					address.setId(rs.getLong("ADDRESS_ID"));
 					address.setLatitude(rs.getDouble("LATITUDE"));
@@ -121,7 +122,7 @@ public class UserDaoImpl implements UserDao {
 					Company company = new Company();
 					company.setCompanyAddress(address);
 					company.setAddressId(address.getId());
-					company.setId(rs.getLong("COMPANY_ID"));
+					company.setId(user.getCompanyId());
 					company.setName(rs.getString("NAME"));
 					company.setPhone(rs.getString("PHONE"));
 					company.setRegNumber(rs.getString("REG_NUMBER"));
@@ -148,7 +149,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean updatePassword(StockUser user) {
 		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_PASSWORD_BY_ID, user.getPassword(),user.getId()) == 1;
+		return template.update(UPDATE_PW_BY_ID, user.getPassword(),user.getId()) == 1;
 	}
 
 	@Override

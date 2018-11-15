@@ -28,5 +28,4 @@ public class FeedBackMessage extends BaseMessage<FeedBack>{
 	protected String getSubject(Locale locale) {
 		return "message from user";
 	}
-	
 }

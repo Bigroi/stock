@@ -18,7 +18,7 @@ public class ResetUserPasswordMessage extends BaseMessage<StockUser> {
 
 	@Override
 	protected String getText(StockUser user, Locale locale) {
-		return super.getText(user, locale)
+		return getTextTemplate(locale)
 				.replaceAll("@username", user.getUsername())
 				.replaceAll("@password", user.getPassword());
 	}
