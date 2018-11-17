@@ -63,7 +63,7 @@
 				<div class="checkbox-title">
 					<input type="checkbox" class="" id="agree" name="" value="" />
 				    <label for="agree"></label>
-				    <span>${label.account.accept}<a href="/Static/pdf/agree.pdf"><span>${label.account.termsOfUse}</span></a></span>
+				    <span>${label.account.accept}<a href="/Static/pdf/agree.pdf" target="_blank"><span>${label.account.termsOfUse}</span></a></span>
 				</div>
 			</div>
 		</div>
