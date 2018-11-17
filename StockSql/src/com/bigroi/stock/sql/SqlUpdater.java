@@ -31,6 +31,7 @@ public class SqlUpdater {
 
 	private static final String MAIN_SQL_FILE_NAME = "Main.sql";
 	private static final String UPDATE_SQL_FILE_NAME = "Update.xml";
+	private static final String LABELS_SQL_FILE_NAME = "labels.sql";
 	private static final ApplicationContext CONTEXT = new ClassPathXmlApplicationContext("spring.xml");
 	private static final String UPDATE_SIZE = "UPDATE SQL_UPDATE SET LAST_UPDATE = ?";
 	private static final String CHECK_BD = "USE `@schema@`; SELECT LAST_UPDATE FROM SQL_UPDATE";
@@ -72,6 +73,9 @@ public class SqlUpdater {
 			}
 			logger.info("Sql updater: update sql_update");
 			updateLastUpdate(connection, queries.size());
+			
+			logger.info("Sql updater: update labels");
+			updateLabels(connection);
 			connection.commit();
 			logger.info("Sql updater: finish");
 		}catch (SQLException e) {
@@ -94,6 +98,19 @@ public class SqlUpdater {
 		}
 	}
 
+	private void updateLabels(Connection connection) throws IOException, SQLException {
+		try(BufferedReader reader = openReader(LABELS_SQL_FILE_NAME);
+			PreparedStatement statement = connection.prepareStatement("DELETE FROM `LABEL`");
+		){
+			statement.execute();
+			StringBuilder builder = new StringBuilder();
+			while (reader.ready()){
+				builder.append(reader.readLine()).append("\n");
+			}
+			executeQuery(connection, builder.toString());
+		}
+	}
+
 	private void updateLastUpdate(Connection connection, int size) throws SQLException {
 		try(PreparedStatement statement = connection.prepareStatement(UPDATE_SIZE)){
 			statement.setInt(1, size);
@@ -103,7 +120,8 @@ public class SqlUpdater {
 
 	private int getLastUpdate(Connection connection) throws SQLException {
 		try(PreparedStatement statement = connection.prepareStatement(GET_SIZE);
-				ResultSet set = statement.executeQuery()){
+			ResultSet set = statement.executeQuery()
+			){
 			set.next();
 			return set.getInt("LAST_UPDATE");
 		}
@@ -114,7 +132,7 @@ public class SqlUpdater {
 			JAXBContext jaxbContext = JAXBContext.newInstance(Root.class);
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 			Root root = (Root)unmarshaller.unmarshal(reader);
-				
+			
 			return root.updates.stream().map(r -> r.sql).collect(Collectors.toList());
 		}
 	}
