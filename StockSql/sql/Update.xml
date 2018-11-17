@@ -1431,5 +1431,9 @@
 		WHERE category = 'deal' AND name = 'processing';
 		
 	</update>
+	
+	<update>
+		INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`) VALUES ('lot', 'category_error', 'Select a cultivar', 'Выберите сорт');
+	</update>
 </root>
 
