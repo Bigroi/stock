@@ -93,10 +93,10 @@ public class DealResourseController extends BaseResourseController {
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ResponseEntity<byte[]> picture(@RequestParam("dealId") long dealId, Authentication loggedInUser) {
 		StockUser userBean = (StockUser) loggedInUser.getPrincipal();
-		byte[] bytes =  Base64.getDecoder().decode(
+		String picture = 
 				dealService.getById(dealId, userBean.getCompanyId())
-				.getSellerFoto()
-				.substring("data:image/png;base64,".length())
+				.getSellerFoto();
+		byte[] bytes = Base64.getDecoder().decode(picture.substring(picture.indexOf(',') + 1)
 				.getBytes());
 		
 		return new ResponseEntity<>(bytes, HttpStatus.OK);
