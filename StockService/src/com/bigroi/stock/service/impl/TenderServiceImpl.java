@@ -15,6 +15,8 @@ import com.bigroi.stock.service.TenderService;
 @Repository
 public class TenderServiceImpl implements TenderService{
 	
+	protected static final int ANY_DISTANCE = 30000;
+
 	@Autowired
 	private TenderDao tenderDao;
 	@Autowired
@@ -27,6 +29,7 @@ public class TenderServiceImpl implements TenderService{
 			tender = new Tender();
 			tender.setCompanyId(companyId);
 			tender.setStatus(BidStatus.INACTIVE);
+			tender.setDistance(ANY_DISTANCE);
 			tender.setId(-1);
 		} else {
 			tender = tenderDao.getById(id, companyId);

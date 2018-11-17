@@ -15,6 +15,7 @@ import com.bigroi.stock.service.LotService;
 @Repository
 public class LotServiceImpl implements LotService {
 
+	protected static final int ANY_DISTANCE = 30000;
 	@Autowired
 	private LotDao lotDao;
 	@Autowired
@@ -27,6 +28,7 @@ public class LotServiceImpl implements LotService {
 			lot = new Lot();
 			lot.setCompanyId(companyId);
 			lot.setStatus(BidStatus.INACTIVE);
+			lot.setDistance(ANY_DISTANCE);
 			lot.setId(-1);
 		} else {
 			lot = lotDao.getById(id, companyId);
