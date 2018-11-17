@@ -105,10 +105,11 @@ public class LotResourseController extends BidResourceController<Lot, LotForUI> 
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public byte[] foto(@RequestParam("id") long id) {
+		String foto = lotService.getById(id, getUserCompanyId()).getFoto();
+		
 		return Base64.getDecoder().decode(
-				lotService.getById(id, getUserCompanyId())
-				.getFoto()
-				.substring("data:image/png;base64,".length())
+				foto
+				.substring(foto.indexOf(',') + 1)
 				.getBytes());
 	}
 
