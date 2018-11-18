@@ -126,6 +126,6 @@ public class TenderResourseController extends BidResourceController<Tender, Tend
 
 	@Override
 	protected boolean isEmptyCategoryAllowed() {
-		return false;
+		return true;
 	}
 }
