@@ -273,7 +273,7 @@ INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES
 	('lot', 'distance_200', '200', '200', '200'),
 	('lot', 'distance_100', '100', '100', '100'),
 	('lot', 'distance_40', '40', '40', '40'),
-	('distance', 'distance_0', 'No delivery', 'Нед доставки', 'Brak dostawy'),
+	('distance', 'distance_0', 'No delivery', 'Нет доставки', 'Brak dostawy'),
 	('tender', 'distance_any', 'Any', 'Любая', 'Dowolny'),
 	('tender', 'distance_400', '400', '400', '400'),
 	('tender', 'distance_200', '200', '200', '200'),
