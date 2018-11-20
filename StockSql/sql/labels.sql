@@ -131,7 +131,7 @@ INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES
 	('login', 'registerHere', 'Register here', 'Зарегистрируйтесь здесь', 'Zarejstruj się tutaj'),
 	('login', 'dontHaveAcc', 'Don’t have an account?', 'У вас нет учетной записи?', 'Nie masz konta?'),
 	('login', 'loginAgain', 'Please, login once again', 'Пожалуйста, авторизуйтесь заново', 'Proszę, spróbuj ponownie!'),
-	('login', 'loginForm', 'Enter to Your Trader! ', 'Вход в  Universal Stock Belarus ', 'Zaloguj do YourTrader! '),
+	('login', 'loginForm', 'Enter to Your Trader! ', 'Вход в Your Trader! ', 'Zaloguj do YourTrader! '),
 	('lot', 'maxVolume_error', 'Maximum volume less than minimum', 'Максимальный объём меньше минимального', 'Minimum logistyczne wynosi mniej niż 1'),
 	('lot', 'product_error', 'Product is not selected', 'Продукт не выбран', 'Nie wybrano produktu'),
 	('lot', 'lotForm', 'Sell request', 'Заявка на продажу', 'Oferta sprzedaży'),
