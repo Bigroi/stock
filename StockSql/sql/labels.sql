@@ -103,7 +103,7 @@ INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES
 	('index', 'phone', '000 00 00', '000 00 00', '000 00 00'),
 	('index', 'description_title', 'Description', 'Описание', 'Opis'),
 	('index', 'responsive_title', 'Responsive platform', 'Адаптивная патформа', 'Responsywna platforma'),
-	('index', 'description', 'If you want to find trade best partner for a product, online platform for selling abd buying agro goods YourTrader will make your life easier', 'Если вы хотите найти покупателя или продавца, то онлайн-площадка для покупки и продажи фермерских продуктов YourTrader упростит вам жизнь', 'Jeśli chcesz znaleźć partnera handlowego swojego produktu, nasza platforma ułatwi Ci życie'),
+	('index', 'description', 'YourTrader online platform will help you quickly find a buyer or seller of farm products', 'Онлайн-площадка YourTrader поможет Вам быстро найти покупателя или продавца фермерских продуктов', 'Platforma internetowa YourTrader pomoże Ci szybko znaleźć nabywcę lub sprzedawcę produktów rolnych'),
 	('index', 'speed_description', 'Our main goal is to find your trade partner as fast as possible', 'Наша главная цель - найти вам торгового партнёра максимально быстро', 'Naszym głównym celem jest pomoc w znalezieniu kontrahenta najszybciej jak to możliwe'),
 	('index', 'deal_title', 'Best prices', 'Лучшие цены', 'Najlepsze ceny'),
 	('index', 'speed_title', 'Trade speed', 'Скорость продажи', 'Prędkość transakcji'),

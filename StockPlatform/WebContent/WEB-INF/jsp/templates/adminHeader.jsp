@@ -9,11 +9,11 @@
 		${label.navigation.company}
 	</a>
 </li>
-<%-- <li class='<tiles:getAsString name="nav-testBG"/>'>
+<li class='<tiles:getAsString name="nav-testBG"/>'>
 	<a href="#" onclick="document.location = getContextRoot() + '/test/background/Index.spr'">
 		${label.navigation.testBG}
 	</a>
-</li> --%>
+</li>
  <li class='<tiles:getAsString name="nav-label"/>'>
 	<a href="#" onclick="document.location = getContextRoot() + '/label/admin/List.spr'">
 		${label.navigation.labels}

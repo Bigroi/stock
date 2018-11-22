@@ -61,15 +61,6 @@ $(document).ready(function(){
 		$(".bgdark").hide();
 	});
 	
-	/*if ($('body').width() <= 1280) {
-		$(".burger").click(function(){
-			  $(".bgdark").fadeToggle();
-			  $("body").toggleClass("s-hidden");
-			});
-		$(".bgdark").click(function(){
-			  $(".aside nav.main-menu, .bgdark").hide();
-			});
-    }*/
 	$(document).on("click", '.login-button-page', function() {
 		if($('.login-list').is(':visible')){
 			$('.login-list').fadeOut();
@@ -85,14 +76,13 @@ $(document).ready(function(){
 		  }
 		  e.stopPropagation();
 	});
-	/*if($('.login-list').css('display') == 'block'){
-		console.log('66');
-	}*/
+
 	$(document).on("click", '#go-back', function() {
 		$(".registration-first-part").show();
 		$(".registration-second-part").hide();
 		$(".registration-second-part input").removeAttr("required");
 	});
+	
 	if($("a").is("#session-start")){
 		var count = 0;
 		var counter = false;

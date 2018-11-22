@@ -12,14 +12,15 @@ $(document).ready(function(){
     	var width = $(window).width();
     	container.bxSlider({
 	    	  maxSlides: (width < 1280) ? 1 : 2,
-	    	  minSlides:(width < 1280) ? 1 : 2, 
-	    	  pager: false,
+	    	  minSlides:(width < 1280) ? 1 : 2,
 	    	  slideWidth:(width < 1280) ? 720 : 510,
-	    	  auto: true,   
-	    	  mode: 'horizontal',
-	    	  hideControlOnEnd: true,
-	    	  infiniteLoop: false
+	    	  pager: false,
+	    	  auto: true
 	      });
+    	$(document).on("click", '.bx-prev, .bx-next', function() {
+    		container.stopAuto();
+    		container.startAuto();
+    	});
 	}
 
 	function addProduct(container, product){

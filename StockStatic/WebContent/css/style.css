@@ -770,7 +770,7 @@ footer .container {
 }
 .dialogbox-child {
 	width: 1170px;
-	height: 560px;
+	height: 660px;
 	border-radius: 20px;
 	background-color: #ffffff;
 	box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
@@ -1849,6 +1849,9 @@ table.dataTable.no-footer,
 }
 #approve-button {
 	width: 135px;
+}
+#feedback-button {
+	width: 160px;
 }
 .white-div-deal label{
   font-size: 14px;
