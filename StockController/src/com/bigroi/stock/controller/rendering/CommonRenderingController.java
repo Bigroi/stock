@@ -46,9 +46,8 @@ public class CommonRenderingController extends BaseRenderingController {
 	}
 	
 	@RequestMapping("/Welcame.spr")
-	public ModelAndView welcome(HttpServletRequest request){
-//		request.getContextPath() http://yourtrader.eu/demo/
-		String url = request.getContextPath().replaceAll("Welcame\\.spr", "") + getLanguage().toString().toLowerCase() + "/Index.spr"; 
+	public ModelAndView welcome(){
+		String url =  getLanguage().toString().toLowerCase() + "/Index.spr"; 
 		return new ModelAndView("redirect:" + url);
 	}
 
