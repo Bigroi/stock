@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.bigroi.stock.bean.db.Bid;
+
 @Service
-public interface BidService<T> {
+public interface BidService<T extends Bid> {
 	
 	T getById (long id, long companyId);
 	

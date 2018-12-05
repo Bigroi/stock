@@ -101,8 +101,8 @@ public class MarketServiceImpl implements MarketService {
 			returnVolumeToBids(deal);
 		}
 		dealDao.deleteOnApprove();
-		lotDao.closeLots();
-		tenderDao.closeTeners();
+		lotDao.close();
+		tenderDao.close();
 	}
 	
 	private void returnVolumeToBids(Deal deal){

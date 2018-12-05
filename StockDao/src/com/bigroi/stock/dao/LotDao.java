@@ -1,42 +1,8 @@
 package com.bigroi.stock.dao;
 
-import java.util.Collection;
-import java.util.List;
-
-import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.db.Lot;
 import com.bigroi.stock.bean.db.TradeLot;
 
-public interface LotDao {
-	
-	void add(Lot lot);
-	
-	boolean update(Lot lot, long companyId);
-	
-	Lot getById(long id, long companyId);
-	
-	List<Lot> getByCompanyId(long companyId);
-	
-	void update(Collection<TradeLot> lots);
-
-	void delete(long id, long companyId);
-
-	boolean setStatusById(long id, long companyId, BidStatus active);
-
-	boolean setStatusByCompanyId(long companyId, BidStatus inactive);
-
-	boolean setStatusByProductId(long id, BidStatus inactive);
-
-	List<Lot> getActive();
-
-	List<Lot> getActiveByProductId(long productId);
-	
-	void closeLots();
-
-	List<Lot> getByDescription(String description);
-
-	void deleteByDescription(String description);
-
-	void updateStatus(List<Lot> lots);
+public interface LotDao extends BidDao<Lot, TradeLot>{
 
 }

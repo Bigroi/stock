@@ -6,18 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.Collection;
-import java.util.List;
 
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.bigroi.stock.bean.common.BidStatus;
@@ -29,15 +21,7 @@ import com.bigroi.stock.bean.db.TradeTender;
 import com.bigroi.stock.dao.TenderDao;
 
 @Repository
-public class TenderDaoImpl implements TenderDao{
-	
-	private static final String FROM_TENDER = " FROM TENDER ";
-
-	private static final String SET_STATUS = " SET STATUS = ? ";
-
-	private static final String UPDATE_TENDER = " UPDATE TENDER ";
-
-	private static final String WHERE_ID_AND_COMPANY_ID = " WHERE ID = ? AND COMPANY_ID = ? ";
+public class TenderDaoImpl extends BidBaseDao<Tender, TradeTender> implements TenderDao{
 
 	private static final String ADD_TENDER = 
 			  " INSERT INTO TENDER "
@@ -45,90 +29,17 @@ public class TenderDaoImpl implements TenderDao{
 			+ " MAX_VOLUME, COMPANY_ID, `STATUS`, CREATION_DATE, EXPARATION_DATE, "
 			+ " ADDRESS_ID, DISTANCE, PACKAGING, PROCESSING) "
 			+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
-		
-	private static final String UPDATE_MAX_VOLUME_BY_ID = 
-			  UPDATE_TENDER
-			+ " SET MAX_VOLUME = ? "
-			+ " WHERE ID = ? ";
-	
-	private static final String UPDATE_STATUS_BY_ID = 
-			  UPDATE_TENDER
-			+ SET_STATUS
-			+ " WHERE ID = ? ";
 	
 	private static final String UPDATE_TENDER_BY_ID_AND_COMPANY = 
-			  UPDATE_TENDER
+			  " UPDATE TENDER "
 			  + " SET DESCRIPTION = ?, PRODUCT_ID = ?, CATEGORY_ID = ?, PRICE = ?, MIN_VOLUME = ?, "
 			  + " MAX_VOLUME = ?, `STATUS` = ?, CREATION_DATE = ?, EXPARATION_DATE = ?, "
 			  + " ADDRESS_ID = ?, DISTANCE = ?, PACKAGING = ?, PROCESSING = ?"
-			  + WHERE_ID_AND_COMPANY_ID;
-	
-	private static final String GET_TENDERS_BY_COMPANY = 
-			TenderRowMapper.SELECT_ALL_COLUMNS
-			+ TenderRowMapper.FROM 
-			+ " WHERE T.COMPANY_ID = ? "
-			+ " AND MIN_VOLUME <= MAX_VOLUME";
-	
-	private static final String GET_TENDERS_BY_DESCRIPTION = 
-			TenderRowMapper.SELECT_ALL_COLUMNS
-			+ TenderRowMapper.FROM 
-			+ " WHERE T.COMPANY_ID = 0 "
-			+ " AND T.DESCRIPTION = ?";
-	
-	private static final String GET_TENDER_BY_ID = 
-			TenderRowMapper.SELECT_ALL_COLUMNS
-			+ TenderRowMapper.FROM
-			+ " WHERE T.ID = ? ";
-	
-	private static final String GET_ACTIVE_TENDERS = 
-			TenderRowMapper.SELECT_ALL_COLUMNS
-			+ TenderRowMapper.FROM
-			+ " WHERE T.`STATUS` = '" + BidStatus.ACTIVE + "'";
-	
-	private static final String GET_ACTIVE_TENDERS_BY_PRODUCT_ID = 
-			TenderRowMapper.SELECT_ALL_COLUMNS
-			+ TenderRowMapper.FROM
-			+ " WHERE T.PRODUCT_ID = ? "
-			+ " AND T.`STATUS` = '" + BidStatus.ACTIVE + "'  AND T.MIN_VOLUME <= T.MAX_VOLUME ";
-	
-	private static final String UPDATE_STATUS_BY_COMPANY_ID =
-			  UPDATE_TENDER
-			+ SET_STATUS
-			+ " WHERE COMPANY_ID = ?";
-	
-	private static final String UPDATE_STATUS_BY_PRODUCT_ID =
-			  UPDATE_TENDER
-			+ SET_STATUS
-			+ " WHERE PRODUCT_ID = ?";
-	
-	private static final String UPDATE_STATUS_BY_ID_AND_COMPANY =
-			  UPDATE_TENDER
-			+ SET_STATUS
-			+ WHERE_ID_AND_COMPANY_ID;
-	
-	private static final String DELETE_BY_ID_AND_COMPANY =
-			  " DELETE "
-			+ FROM_TENDER
-			+ WHERE_ID_AND_COMPANY_ID;
-	
-	private static final String CLOSE_TENDERS = 
-			"DELETE "
-			+ FROM_TENDER
-			+ " WHERE MIN_VOLUME > MAX_VOLUME";
-	
-	private static final String DELETE_BY_DESCRIPTION = 
-			"DELETE "
-			+ FROM_TENDER
-			+ " WHERE DESCRIPTION = ? AND COMPANY_ID = 0";
+			  + " WHERE ID = ? AND COMPANY_ID = ? ";
 			
-	@Autowired
-	private DataSource datasource;
-
 	@Override
-	public void add(Tender tender) {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		KeyHolder keyHolder = new GeneratedKeyHolder();
-		template.update(new PreparedStatementCreator() {
+	protected PreparedStatementCreator getPreparedStatementCreatorForAdding(Tender tender) {
+		return new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(ADD_TENDER,PreparedStatement.RETURN_GENERATED_KEYS);
@@ -153,9 +64,7 @@ public class TenderDaoImpl implements TenderDao{
 				
 				return ps;
 			}
-		},keyHolder);
-		long id = keyHolder.getKey().longValue();
-		tender.setId(id);
+		};
 	}
 
 	@Override
@@ -178,102 +87,30 @@ public class TenderDaoImpl implements TenderDao{
 				tender.getId(),
 				companyId) == 1;
 	}
+	
+	@Override
+	protected RowMapper<Tender> getRowMapper() {
+		return new TenderRowMapper();
+	}
 
 	@Override
-	public Tender getById(long id, long companyId) {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		List<Tender> tenders = template.query(GET_TENDER_BY_ID, new TenderRowMapper(), id);
-		if (tenders.isEmpty() || (companyId != -1 && tenders.get(0).getCompanyId() != companyId)) {
-			return null;
-		} else {
-			return tenders.get(0);
-		}
+	protected String selectAllColumns() {
+		return TenderRowMapper.SELECT_ALL_COLUMNS;
+	}
+
+	@Override
+	protected String from() {
+		return TenderRowMapper.FROM;
+	}
+
+	@Override
+	protected String getTableName() {
+		return " Tender ";
 	}
 	
 	@Override
-	public List<Tender> getByCompanyId(long companyId) {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(GET_TENDERS_BY_COMPANY, new TenderRowMapper(), companyId);
-	}
-
-	@Override
-	public boolean setStatusByCompanyId(long companyId, BidStatus status) {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_STATUS_BY_COMPANY_ID, status.toString(), companyId) == 1;
-	}
-
-	@Override
-	public boolean setStatusByProductId(long productId, BidStatus status) {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.update(UPDATE_STATUS_BY_PRODUCT_ID, status.toString(), productId) == 1;
-	}
-
-	@Override
-	public void setStatusById(long id, long companyId, BidStatus status) {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(UPDATE_STATUS_BY_ID_AND_COMPANY, status.name(), id, companyId);
-	}
-	
-	@Override
-	public void update(Collection<TradeTender> tenders) {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.batchUpdate(UPDATE_MAX_VOLUME_BY_ID, tenders, tenders.size(), new ParameterizedPreparedStatementSetter<TradeTender>() {
-
-			@Override
-			public void setValues(PreparedStatement ps, TradeTender tender) throws SQLException {
-				ps.setInt(1, tender.getMaxVolume());
-				ps.setLong(2, tender.getId());
-			}
-		});
-	}
-	
-	@Override
-	public void updateStatus(List<Tender> lots) {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.batchUpdate(UPDATE_STATUS_BY_ID, lots, lots.size(), new ParameterizedPreparedStatementSetter<Tender>() {
-
-			@Override
-			public void setValues(PreparedStatement ps, Tender lot) throws SQLException {
-				ps.setString(1, lot.getStatus().name());
-				ps.setLong(2, lot.getId());
-			}
-		});
-	}
-
-	@Override
-	public void delete(long id, long companyId) {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(DELETE_BY_ID_AND_COMPANY, id, companyId);
-	}
-	
-	@Override
-	public void closeTeners() {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(CLOSE_TENDERS);
-	}
-
-	@Override
-	public List<Tender> getActive() {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(GET_ACTIVE_TENDERS, new TenderRowMapper());
-	}
-
-	@Override
-	public List<Tender> getActiveByProductId(long productId) {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(GET_ACTIVE_TENDERS_BY_PRODUCT_ID, new TenderRowMapper(), productId);
-	}
-	
-	@Override
-	public List<Tender> getByDescription(String description) {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		return template.query(GET_TENDERS_BY_DESCRIPTION, new TenderRowMapper(), description);
-	}
-	
-	@Override
-	public void deleteByDescription(String description) {
-		JdbcTemplate template = new JdbcTemplate(datasource);
-		template.update(DELETE_BY_DESCRIPTION, description);
+	protected String getTableAlias() {
+		return "T";
 	}
 	
 	private static class TenderRowMapper implements RowMapper<Tender>{
