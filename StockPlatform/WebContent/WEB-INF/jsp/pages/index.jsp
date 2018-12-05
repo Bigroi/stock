@@ -4,14 +4,16 @@
 <html lang="en">
 	<head>
 	
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114993452-1"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-		
-		  gtag('config', 'UA-114993452-1');
-		</script>
+		<c:if test="${ !dev_env}">
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114993452-1"></script>
+			<script>
+			  window.dataLayer = window.dataLayer || [];
+			  function gtag(){dataLayer.push(arguments);}
+			  gtag('js', new Date());
+			
+			  gtag('config', 'UA-114993452-1');
+			</script>
+		</c:if>
 	
 		<title>${label.index.index_title}</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">

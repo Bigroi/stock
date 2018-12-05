@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,13 +13,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bigroi.stock.service.LabelService;
 import com.bigroi.stock.util.LabelUtil;
+import com.bigroi.stock.util.exception.StockRuntimeException;
 
 
 public abstract class BaseRenderingController extends BaseController{
 
 	private static final String BUILD_FILE = "build.txt";
+	private static final String DEV_PROPERTIES = "dev.properties";
 	
 	private static final String BUILD_NUMBER;
+	private static final boolean DEV_ENV;
 	
 	static{
 		String buildNumber;
@@ -33,6 +37,14 @@ public abstract class BaseRenderingController extends BaseController{
 			buildNumber = "local_build";
 		}
 		BUILD_NUMBER = buildNumber;
+		
+		try(InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(DEV_PROPERTIES)){
+			Properties properties = new Properties();
+			properties.load(stream);
+			DEV_ENV = Boolean.valueOf(properties.getProperty("dev_env"));
+		}catch (IOException e) {
+			throw new StockRuntimeException(e);
+		}
 	}
 	
 	@Autowired
@@ -49,6 +61,7 @@ public abstract class BaseRenderingController extends BaseController{
 				.addObject("user", user)
 				.addObject("build_number", BUILD_NUMBER)
 				.addObject("languages", LabelUtil.getPassibleLanguages(getLanguage()))
+				.addObject("dev_env", DEV_ENV)
 				.addObject("page_title", labelService.getLabel("pageNames", pageName, getLanguage()));
 	}
 	
