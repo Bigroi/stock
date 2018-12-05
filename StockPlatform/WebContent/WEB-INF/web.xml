@@ -6,7 +6,7 @@
 
 	<display-name>StockPlatform</display-name>
 	<welcome-file-list>
-		<welcome-file>Index.spr</welcome-file>
+		<welcome-file>Welcame.spr</welcome-file>
 	</welcome-file-list>
 
 	<servlet>

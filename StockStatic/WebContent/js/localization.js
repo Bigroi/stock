@@ -36,12 +36,3 @@ var l10n = {
 };
 
 l10n.localization();
-
- 
-function changeLanguage() {
-	$.post(getContextRoot() + "/l10n/json/ChangeLanguage.spr",{lang:$(".language-switcher").val()}, function(answer){
-		if (answer.result == 1){
-			location.reload();
-		}
-	});
-}

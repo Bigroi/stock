@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,9 +44,20 @@ public class CommonRenderingController extends BaseRenderingController {
 	public ModelAndView anotherBrowser() {
 		return createModelAndView("anotherBrowser");
 	}
+	
+	@RequestMapping("/Welcame.spr")
+	public ModelAndView welcome(HttpServletRequest request){
+//		request.getContextPath() http://yourtrader.eu/demo/
+		String url = request.getContextPath().replaceAll("Welcame\\.spr", "") + getLanguage().toString().toLowerCase() + "/Index.spr"; 
+		return new ModelAndView("redirect:" + url);
+	}
 
-	@RequestMapping("/Index.spr")
-	public ModelAndView index(HttpServletRequest request, Authentication loggedInUser) {
+	@RequestMapping("/{locale}/Index.spr")
+	public ModelAndView index(
+			@PathVariable("locale") String locale, 
+			HttpServletRequest request, 
+			Authentication loggedInUser) {
+		setLanguage(LabelUtil.parseString(locale));
 		if (loggedInUser != null) {
 			Object user = loggedInUser.getPrincipal();
 			if (user instanceof StockUser) {
