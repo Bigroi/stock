@@ -133,8 +133,6 @@ public class TenderServiceImplTest extends BaseTest {
 		final long TENDER_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
 		final BidStatus STATUS = BidStatus.ACTIVE;
-		// mock
-		Mockito.doNothing().when(tenderDao).setStatusById(TENDER_ID, COMPANY_ID,STATUS);
 		// when
 		tenderService.activate(TENDER_ID, COMPANY_ID);
 		// then
@@ -147,8 +145,6 @@ public class TenderServiceImplTest extends BaseTest {
 		final long TENDER_ID = random.nextLong();
 		final long COMPANY_ID = random.nextLong();
 		final BidStatus STATUS = BidStatus.INACTIVE;
-		// mock
-		Mockito.doNothing().when(tenderDao).setStatusById(TENDER_ID, COMPANY_ID, STATUS);
 		// when
 		tenderService.deactivate(TENDER_ID, COMPANY_ID);
 		// then
