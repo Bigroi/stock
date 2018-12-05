@@ -31,10 +31,10 @@
 		<url-pattern>*.spr</url-pattern>
 	</servlet-mapping>
 	
-	<filter-mapping>
+	<!-- <filter-mapping>
 		<filter-name>WwwRemover</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 	 <context-param>
 		<param-name>contextConfigLocation</param-name>
