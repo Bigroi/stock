@@ -100,7 +100,7 @@ INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES
 	('index', 'buy', 'Buy', 'Купить', 'Kup'),
 	('index', 'responsive_description', 'We are thinking about you and propose you modern and user friendly interface. Where ever you are we are always with you!', 'Мы думаем о Вас и предоставляем современный и удобный интерфейс. Дома, в дороге или в поле, где бы Вы ни были мы всегда будем с Вами!', 'Zależy nam na Tobie, dlatego oferujemy nowoczesną i przyjazną w obsłudze platformę. Dokądkolwiek się udasz, będziemy tam z Tobą!'),
 	('index', 'trust_description', 'We save you from unscrupulous sellers or buyers', 'Мы оберегаем вас от недобросовестных продавцов и покупателей', 'Zapewniamy ochronę przed nieskrupulatnymi kontrahentami'),
-	('index', 'phone', '000 00 00', '000 00 00', '000 00 00'),
+	('index', 'phone', '739 222 391', '739 222 391', '739 222 391'),
 	('index', 'description_title', 'Description', 'Описание', 'Opis'),
 	('index', 'responsive_title', 'Responsive platform', 'Адаптивная патформа', 'Responsywna platforma'),
 	('index', 'description', 'A quick way to find buyers or sellers of farm products', 'Быстрый способ поиска покупателей или продавцов фермерских продуктов', 'Szybki sposób na znalezienie kupujących lub sprzedających produkty rolne'),
