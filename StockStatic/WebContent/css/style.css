@@ -291,9 +291,9 @@ h3, .span_h3  {
 .test-trading {
 	padding-bottom: 20px;
 }
-.test-trading table.dataTable.display tbody tr:first-child td {
+/*.test-trading table.dataTable.display tbody tr:first-child td {
 	text-align: left;
-}
+}*/
 .test-trading table.dataTable.display tbody tr:first-child td.dataTables_empty {
 	text-align: center;
 }
@@ -362,8 +362,9 @@ table.dataTable tbody td.dataTables_empty {
 	position: relative;
 }
 .product h4 {
-  font-size: 30px;
-  padding-bottom: 20px;
+    font-size: 24px;
+    padding-bottom: 20px;
+    width: 30%;
 }
 .product h5 {
 	padding: 5px 0;
@@ -396,7 +397,7 @@ table.dataTable tbody td.dataTables_empty {
   color: #009eff;
 }
 .desc-count {
-	font-size: 14px;
+	font-size: 13px;
   	line-height: 2.14;
   	color: #a3abb3;
 }
