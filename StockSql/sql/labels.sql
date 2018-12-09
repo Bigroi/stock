@@ -112,7 +112,7 @@ INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES
 	('index', 'regestrate_as_buyer', 'Or ', 'Или ', 'lub '),
 	('index', 'email', 'stock@info.com', 'stock@info.com', 'stock@info.com'),
 	('index', 'products', 'Products', 'Продукты', 'Produkty'),
-	('index', 'phone_prefix', '+375 (29) ', '+375 (29) ', '+375 (29) '),
+	('index', 'phone_prefix', '+48 ', '+48 ', '+48 '),
 	('index', 'for_farmers_li3', 'Define min volume of a deal', 'Выберете минимальный обём сделки', 'Podaj minimum logistyczne dla umowy'),
 	('index', 'for_whom', 'For whom', 'Для кого', 'Dla kogo'),
 	('index', 'for_farmers_li2', 'Define total volume of you goods', 'Выберите объём вашей продукции', 'Podaj całkowitą wielkość twojej oferty'),
