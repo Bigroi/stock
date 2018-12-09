@@ -12,7 +12,7 @@ import com.bigroi.stock.controller.BaseRenderingController;
 @RequestMapping("deal/feedback")
 public class UserCommentRenderingController extends BaseRenderingController{
 	
-	@RequestMapping("/Form.spr")
+	@RequestMapping("/Form")
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView form(@RequestParam(value = "id", defaultValue = "-1") long id) {
 		return createModelAndView("feedbackDealForm");

@@ -33,7 +33,7 @@ public class ProductResourseController extends BaseResourseController {
 	@Autowired
 	private LabelService labelService;
 	
-	@RequestMapping(value = "/List.spr")
+	@RequestMapping(value = "/List")
 	@ResponseBody
 	public String list() {
 		List<ProductForUI> productsForUI = productService.getAllActiveProductsForUI();
@@ -41,7 +41,7 @@ public class ProductResourseController extends BaseResourseController {
 		return new ResultBean(1, productsForUI, null).toString();
 	}
 
-	@RequestMapping("/admin/List.spr")
+	@RequestMapping("/admin/List")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
 	public String listForAdmin() {
@@ -56,7 +56,7 @@ public class ProductResourseController extends BaseResourseController {
 		return new ResultBean(1, table, null).toString();
 	}
 	
-	@RequestMapping("/admin/Form.spr")
+	@RequestMapping("/admin/Form")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
 	public String get(@RequestParam(value = "id", defaultValue = "-1") long id) {
@@ -64,7 +64,7 @@ public class ProductResourseController extends BaseResourseController {
 		return new ResultBean(1, product, null).toString();
 	}
 	
-	@RequestMapping("/admin/Save.spr")
+	@RequestMapping("/admin/Save")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
 	public String save(@RequestParam("json") String json) {
@@ -74,7 +74,7 @@ public class ProductResourseController extends BaseResourseController {
 		return new ResultBean(1, new ProductForUI(product), SAVE_SUCCESS_LABEL).toString();
 	}
 	
-	@RequestMapping("/admin/Delete.spr")
+	@RequestMapping("/admin/Delete")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
 	public String delete(@RequestParam("json") String json) {
@@ -84,15 +84,15 @@ public class ProductResourseController extends BaseResourseController {
 		return new ResultBean(1, new ProductForUI(product), DELETE_SUCCESS_LABEL).toString();
 	}
 	
-	@RequestMapping("/admin/Categories.spr")
+	@RequestMapping("/admin/Categories")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
 	public String categories(@RequestParam("json") String json) {
 		Product product = GsonUtil.getGson().fromJson(json, Product.class);
-		return new ResultBean(0, "/category/List.spr?productId=" + product.getId(), null).toString();
+		return new ResultBean(0, "/category/List?productId=" + product.getId(), null).toString();
 	}
 	
-	@RequestMapping("/TradeOffers.spr")
+	@RequestMapping("/TradeOffers")
 	@ResponseBody
 	public String getTradeOffers(@RequestParam int productId) {
 		List<TradeOffer> tradeOffers = productService.getTradeOffers(productId);

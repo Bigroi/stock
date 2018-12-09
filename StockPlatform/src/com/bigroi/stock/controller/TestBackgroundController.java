@@ -25,12 +25,12 @@ public class TestBackgroundController extends BaseRenderingController {
 	@Autowired
 	private MessageService messageService;
 	
-	@RequestMapping(value = "/Index.spr")
+	@RequestMapping(value = "/Index")
 	public ModelAndView showPage(){
 		return createModelAndView(TEST_PAGE);
 	} 
 
-	@RequestMapping(value = "/ClearPreDeals.spr")
+	@RequestMapping(value = "/ClearPreDeals")
 	public ModelAndView startClearPredeal(){
 		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		
@@ -41,7 +41,7 @@ public class TestBackgroundController extends BaseRenderingController {
 		return modelAndView;
 	}
  
-	@RequestMapping(value = "/Trading.spr")
+	@RequestMapping(value = "/Trading")
 	public ModelAndView startTrade(){
 		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		
@@ -52,7 +52,7 @@ public class TestBackgroundController extends BaseRenderingController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/SendEmails.spr")
+	@RequestMapping(value = "/SendEmails")
 	public ModelAndView startSendMail(){
 		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		
@@ -63,7 +63,7 @@ public class TestBackgroundController extends BaseRenderingController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/CheckStatus.spr")
+	@RequestMapping(value = "/CheckStatus")
 	public ModelAndView checkStatus(){
 		ModelAndView modelAndView = createModelAndView(TEST_PAGE);
 		

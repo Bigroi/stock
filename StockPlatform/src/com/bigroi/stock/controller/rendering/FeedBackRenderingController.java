@@ -10,7 +10,7 @@ import com.bigroi.stock.controller.BaseRenderingController;
 @RequestMapping("feedback")
 public class FeedBackRenderingController extends BaseRenderingController {
 
-	@RequestMapping("/Form.spr")
+	@RequestMapping("/Form")
 	public ModelAndView getForm(){
 		return createModelAndView("feedback");
 	}

@@ -37,7 +37,7 @@ public class AddressResourceController extends BaseResourseController {
 	@Autowired
 	private LabelService labelService;
 	
-	@RequestMapping(value = "/Get.spr")
+	@RequestMapping(value = "/Get")
 	@ResponseBody
 	public String getAddress(@RequestParam("id") long id, Authentication loggedInUser){
 		long companyId;
@@ -51,7 +51,7 @@ public class AddressResourceController extends BaseResourseController {
 		return new ResultBean(1, address, null).toString();
 	}
 	
-	@RequestMapping(value = "/List.spr")
+	@RequestMapping(value = "/List")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String getAddresses(Authentication loggedInUser){
@@ -69,7 +69,7 @@ public class AddressResourceController extends BaseResourseController {
 		return new ResultBean(1, table, null).toString();
 	}
 	
-	@RequestMapping(value = "/Form.spr", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/Form", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String form(@RequestParam(value = "id", defaultValue = "-1") long id, Authentication loggedInUser){
@@ -82,7 +82,7 @@ public class AddressResourceController extends BaseResourseController {
 		}
 	}
 	
-	@RequestMapping(value = "/Save.spr")
+	@RequestMapping(value = "/Save")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String save(@RequestParam("json") String jsonAddress, Authentication loggedInUser){
@@ -101,7 +101,7 @@ public class AddressResourceController extends BaseResourseController {
 			), null).toString();
 	}
 	
-	@RequestMapping(value = "/Delete.spr")
+	@RequestMapping(value = "/Delete")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String delete(@RequestParam("id") long id, Authentication loggedInUser){

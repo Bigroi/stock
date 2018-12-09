@@ -16,7 +16,7 @@ public class LocalizationResosurseController extends BaseResourseController{
 	@Autowired
 	private LabelService labelService;
 	
-	@RequestMapping(value = "/Labels.spr")
+	@RequestMapping(value = "/Labels")
 	@ResponseBody
 	public String labels() {
 		return new ResultBean(1, labelService.getAllLabel(getLanguage()), "").toString();

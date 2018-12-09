@@ -27,13 +27,13 @@
 		</div>
 		
 		<div class="table-tradeOffers">
-			<table id = "main-table" data-url="/product/json/TradeOffers.spr?productId=${product.id}"></table>
+			<table id = "main-table" data-url="/product/json/TradeOffers?productId=${product.id}"></table>
 		</div>
 					
 		<form class="form form-tradeOffers-button " action="#" method="post">
 			<ul>
 				<li>
-					<button class="submit fs-submit gray-button" type="submit" onclick="document.location = getContextRoot() + '/product/List.spr'; return false;">${label.button.back}</button>
+					<button class="submit fs-submit gray-button" type="submit" onclick="document.location = getContextRoot() + '/product/List'; return false;">${label.button.back}</button>
 				</li>
 			</ul>
 		</form>

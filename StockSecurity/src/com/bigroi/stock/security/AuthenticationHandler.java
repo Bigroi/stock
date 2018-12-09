@@ -22,7 +22,7 @@ import com.bigroi.stock.util.LabelUtil;
 @Service
 public class AuthenticationHandler implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
 
-	private static final String PRODUCT_LIST_SPR = "/product/List.spr";
+	private static final String PRODUCT_LIST_SPR = "/product/List";
 
 	public static String getMainPage(String contexRoot){
 		switch (contexRoot){

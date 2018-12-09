@@ -12,13 +12,13 @@ import com.bigroi.stock.controller.BaseRenderingController;
 @RequestMapping("/deal")
 public class DealRenderingController extends BaseRenderingController {
 
-	@RequestMapping("/MyDeals.spr")
+	@RequestMapping("/MyDeals")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView myList() {
 		return createModelAndView("myDeals");
 	}
 	
-	@RequestMapping("/Form.spr")
+	@RequestMapping("/Form")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView deal(@RequestParam("id") long id) {
 		ModelAndView modelAndView = createModelAndView("deal");

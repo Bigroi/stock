@@ -23,7 +23,7 @@ public class AddressForUI {
 	private String defaultAddress;
 	
 	@Column(value = "label.address.edit", responsivePriority=-5)
-	@Edit(remove="/address/json/Delete.spr", edit="getAddressDialogParams")
+	@Edit(remove="/address/json/Delete", edit="getAddressDialogParams")
 	private final String edit;
 	
 	private final double latitude;

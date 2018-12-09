@@ -72,7 +72,7 @@
 						</select>
 					</div>
 					<div>
-						<c:if test="${foto}"><a href="${pageContext.request.contextPath}/lot/json/Foto.spr?id=${id}" target="_blank">
+						<c:if test="${foto}"><a href="${pageContext.request.contextPath}/lot/json/Foto?id=${id}" target="_blank">
 							${label.lot.uploaded_foto}
 						</a></c:if>
 						<label for="forFoto">${label.lot.foto}</label>

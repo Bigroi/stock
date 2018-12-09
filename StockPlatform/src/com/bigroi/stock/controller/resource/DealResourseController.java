@@ -54,7 +54,7 @@ public class DealResourseController extends BaseResourseController {
 	@Autowired
 	private UserCommentService userCommentService;
 	
-	@RequestMapping(value = "/Form.spr", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/Form", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String form(@RequestParam("id") long id, Authentication loggedInUser) {
@@ -88,7 +88,7 @@ public class DealResourseController extends BaseResourseController {
 		return deal;
 	}
 	
-	@RequestMapping(value = "/Picture.spr", produces = MediaType.IMAGE_JPEG_VALUE)
+	@RequestMapping(value = "/Picture", produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ResponseEntity<byte[]> picture(@RequestParam("dealId") long dealId, Authentication loggedInUser) {
@@ -102,7 +102,7 @@ public class DealResourseController extends BaseResourseController {
 		return new ResponseEntity<>(bytes, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/MyDeals.spr", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/MyDeals", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String myDealList(Authentication loggedInUser) {
@@ -119,21 +119,21 @@ public class DealResourseController extends BaseResourseController {
 		return new ResultBean(1, table, "").toString();
 	}
 	
-	@RequestMapping(value = "/TestDeals.spr")
+	@RequestMapping(value = "/TestDeals")
 	@ResponseBody
 	public String testDealList(Authentication loggedInUser) {
 		TableResponse<TestDealForUI> table = new TableResponse<>(TestDealForUI.class, new ArrayList<>());
 		return new ResultBean(1, table, null).toString();
 	}
 	
-	@RequestMapping(value = "/TestClean.spr")
+	@RequestMapping(value = "/TestClean")
 	@ResponseBody
 	public String testClean(HttpSession session) {
 		session.invalidate();
 		return new ResultBean(1, null).toString();
 	}
 	
-	@RequestMapping(value = "/TestTrade.spr")
+	@RequestMapping(value = "/TestTrade")
 	@ResponseBody
 	public String testTrade(Authentication loggedInUser) {
 		List<Deal> deals = tradeService.newInstance().testTrade(getSessionId());
@@ -147,7 +147,7 @@ public class DealResourseController extends BaseResourseController {
 		return new ResultBean(1, table, "").toString();
 	}
 	
-	@RequestMapping(value = "/Approve.spr")
+	@RequestMapping(value = "/Approve")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String approve(@RequestParam("json") String json, Authentication loggedInUser) {
@@ -162,7 +162,7 @@ public class DealResourseController extends BaseResourseController {
 		}
 	}
 	
-	@RequestMapping(value = "/Reject.spr")
+	@RequestMapping(value = "/Reject")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String reject(@RequestParam("json") String json, Authentication loggedInUser){
@@ -177,7 +177,7 @@ public class DealResourseController extends BaseResourseController {
 		}
 	}
 	
-	@RequestMapping(value = "/Transport.spr")
+	@RequestMapping(value = "/Transport")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String transport(@RequestParam("json") String json, Authentication loggedInUser) {

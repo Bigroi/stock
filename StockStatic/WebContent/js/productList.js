@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	if ($(".product-cont").length > 0){
-		$.getJSON(getContextRoot() + "/product/json/List.spr", addProducts);
+		$.getJSON(getContextRoot() + "/product/json/List", addProducts);
 	}
 	
 	function addProducts(answer){
@@ -92,7 +92,7 @@ $(document).ready(function(){
 					product.name + "</button>");
 			div.append(details);
 			details.on("click", function(){
-				document.location = getContextRoot() + "/product/TradeOffers.spr?id=" + product.id;
+				document.location = getContextRoot() + "/product/TradeOffers?id=" + product.id;
 			});
 		}
 		div.append(aboutProduct);

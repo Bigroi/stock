@@ -28,7 +28,7 @@ public class LabelForUI {
 	private final String ruRu;
 	
 	@Column(value = "label.labels.edit", responsivePriority=-6)
-	@Edit(edit="getLabelDialogParams", remove="/label/json/admin/Delete.spr")
+	@Edit(edit="getLabelDialogParams", remove="/label/json/admin/Delete")
 	private final String edit;
 	
 	public LabelForUI(Label label) {

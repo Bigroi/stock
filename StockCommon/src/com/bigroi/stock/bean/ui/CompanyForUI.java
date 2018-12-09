@@ -21,8 +21,8 @@ public class CompanyForUI {
 	private final String regNumber;
 	
 	@Column(value = "label.companies.status", responsivePriority=-4)
-	@Status(activate="/company/json/admin/ChangeStatus.spr", 
-			deactivate="/company/json/admin/ChangeStatus.spr")
+	@Status(activate="/company/json/admin/ChangeStatus", 
+			deactivate="/company/json/admin/ChangeStatus")
 	private final CompanyStatus status;
 	
 	public CompanyForUI(Company company) {

@@ -12,13 +12,13 @@ import com.bigroi.stock.controller.BaseRenderingController;
 @RequestMapping("/address")
 public class AddressRenderingController extends BaseRenderingController {
 	
-	@RequestMapping("/List.spr")
+	@RequestMapping("/List")
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public ModelAndView toAddress(){ 
 		return  createModelAndView("myAddresses"); 
 	}
 	
-	@RequestMapping("/Form.spr")
+	@RequestMapping("/Form")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView deal(@RequestParam(value="id", defaultValue="-1") long id) {
 		ModelAndView modelAndView = createModelAndView("addressForm");

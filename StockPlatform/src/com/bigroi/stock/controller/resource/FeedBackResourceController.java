@@ -23,7 +23,7 @@ public class FeedBackResourceController extends BaseResourseController {
 	@Autowired
 	private FeedBackMessage feedBackMessage;
 	
-	@RequestMapping("Form.spr")
+	@RequestMapping("Form")
 	@ResponseBody
 	public String getForm(Authentication loggedInUser){
 		FeedBack message = new FeedBack();
@@ -37,7 +37,7 @@ public class FeedBackResourceController extends BaseResourseController {
 		return new ResultBean(1, message, null).toString();
 	}
 	
-	@RequestMapping("Save.spr")
+	@RequestMapping("Save")
 	@ResponseBody
 	public String getForm(String json) {
 		FeedBack message = GsonUtil.getGson().fromJson(json, FeedBack.class);

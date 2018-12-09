@@ -33,14 +33,14 @@ public class UserCommentResourceController extends BaseResourseController {
 	@Autowired
 	private DealService dealService;
 	
-	@RequestMapping("List.spr")
+	@RequestMapping("List")
 	@ResponseBody
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public String getList(@RequestParam("companyId") long companyId){
 		return new ResultBean(1, userCommentService.getComments(companyId), null).toString();
 	}
 	
-	@RequestMapping("Form.spr")
+	@RequestMapping("Form")
 	@ResponseBody
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public String getFeedbackForm(
@@ -52,7 +52,7 @@ public class UserCommentResourceController extends BaseResourseController {
 		
 	}
 	
-	@RequestMapping("Save.spr")
+	@RequestMapping("Save")
 	@ResponseBody
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public String save(@RequestParam("json") String json, Authentication loggedInUser){

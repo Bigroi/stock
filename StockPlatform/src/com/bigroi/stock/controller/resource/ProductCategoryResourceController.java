@@ -29,7 +29,7 @@ public class ProductCategoryResourceController extends BaseResourseController {
 	@Autowired
 	private LabelService labelService;
 	
-	@RequestMapping(value = "/Get.spr")
+	@RequestMapping(value = "/Get")
 	@ResponseBody
 	@Secured("ROLE_ADMIN")
 	public String getCategory(@RequestParam("id") long id, @RequestParam("productId") long productId){
@@ -37,7 +37,7 @@ public class ProductCategoryResourceController extends BaseResourseController {
 		return new ResultBean(1, category, null).toString();
 	}
 	
-	@RequestMapping(value = "/List.spr")
+	@RequestMapping(value = "/List")
 	@ResponseBody
 	@Secured("ROLE_ADMIN")
 	public String getCategories(@RequestParam("productId") long productId){
@@ -50,7 +50,7 @@ public class ProductCategoryResourceController extends BaseResourseController {
 		return new ResultBean(1, table, null).toString();
 	}
 	
-	@RequestMapping(value = "/FormList.spr")
+	@RequestMapping(value = "/FormList")
 	@ResponseBody
 	public String getFormCategories(@RequestParam("productId") long productId){
 		List<ProductCategory> categoris = productCategoryService.getActiveByProductId(productId);
@@ -59,7 +59,7 @@ public class ProductCategoryResourceController extends BaseResourseController {
 		return new ResultBean(1, categoris, null).toString();
 	}
 	
-	@RequestMapping(value = "/Save.spr")
+	@RequestMapping(value = "/Save")
 	@ResponseBody
 	@Secured(value = "ROLE_ADMIN")
 	public String save(@RequestParam("json") String json){
@@ -69,7 +69,7 @@ public class ProductCategoryResourceController extends BaseResourseController {
 		return new ResultBean(1, new ProductCategoryForUI(category), null).toString();
 	}
 	
-	@RequestMapping(value = "/Delete.spr")
+	@RequestMapping(value = "/Delete")
 	@ResponseBody
 	@Secured(value = "ROLE_ADMIN")
 	public String delete(@RequestParam("json") String json){

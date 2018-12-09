@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bigroi.stock.controller.BaseRenderingController;
 
 @Controller
-@RequestMapping("Message.spr")
+@RequestMapping("Message")
 public class MessageRenderingController extends BaseRenderingController {
 
 	private static final String MESSAGE_PAGE = "message";

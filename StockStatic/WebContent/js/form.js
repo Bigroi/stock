@@ -218,7 +218,7 @@ function sendResetFormData(formContainer, url){
 	return sendFormData(
 			$('#login-form'),
 			{
-				submitUrl: getContextRoot() + '/account/json/ResetPassword.spr',
+				submitUrl: getContextRoot() + '/account/json/ResetPassword',
 				submitFunction: simpleButtonCallback
 			}); 
 }
@@ -259,7 +259,7 @@ function openPasswordResetForm(){
 }
 
 function loadCategories(productId){
-	$.post(getContextRoot() + "/category/json/FormList.spr", {productId : productId}, function(answer){
+	$.post(getContextRoot() + "/category/json/FormList", {productId : productId}, function(answer){
 		if (answer.result > 0){
 			var data = answer.data;
 			var categorySelect = $("#category-select");

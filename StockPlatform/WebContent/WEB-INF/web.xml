@@ -5,9 +5,6 @@
 	id="WebApp_ID" version="3.1">
 
 	<display-name>StockPlatform</display-name>
-	<welcome-file-list>
-		<welcome-file>Welcame.spr</welcome-file>
-	</welcome-file-list>
 
 	<filter>
 		<filter-name>WwwRemover</filter-name>
@@ -28,13 +25,13 @@
 
 	<servlet-mapping>
 		<servlet-name>stockPlatform</servlet-name>
-		<url-pattern>*.spr</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<!-- <filter-mapping>
+	<filter-mapping>
 		<filter-name>WwwRemover</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
+		<url-pattern>/</url-pattern>
+	</filter-mapping>
 
 	 <context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -47,7 +44,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/</url-pattern>
 	</filter-mapping>
 
 	<listener>
@@ -58,10 +55,10 @@
 
 	<error-page>
 		<error-code>404</error-code>
-		<location>/404.spr</location>
+		<location>/404</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/500.spr</location>
+		<location>/500</location>
 	</error-page>
 </web-app>

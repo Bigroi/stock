@@ -23,7 +23,7 @@ public class ProductForUI {
 	@Column(value = "label.product.price", responsivePriority = -2)
 	private double delivaryPrice;
 	
-	@Edit(details = "/product/TradeOffers.spr", edit="getProductDialogParams", remove="/product/json/admin/Delete.spr")
+	@Edit(details = "/product/TradeOffers", edit="getProductDialogParams", remove="/product/json/admin/Delete")
 	@Column(value = "label.product.edit", responsivePriority = -4)
 	private String edit = "YNN";
 	

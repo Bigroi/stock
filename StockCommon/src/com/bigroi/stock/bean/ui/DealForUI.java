@@ -29,7 +29,7 @@ public class DealForUI {
 	private String status;
 
 	@Column(value = "label.deal.edit", responsivePriority=-4)
-	@Edit(details="/deal/Form.spr", remove="", edit="")
+	@Edit(details="/deal/Form", remove="", edit="")
 	private final String edit;
 	
 	private final double sellerLatitude;

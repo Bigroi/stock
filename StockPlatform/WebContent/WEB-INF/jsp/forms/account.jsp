@@ -48,7 +48,7 @@
 		<div class="forMap google-map-container"></div>
 		<div id="form-list">
 			<button type="submit" class="submit button" 
-				onclick="document.location = getContextRoot() + '/address/List.spr'; return false;">
+				onclick="document.location = getContextRoot() + '/address/List'; return false;">
 				${label.button.addAddress }
 			</button>
 		</div>

@@ -93,7 +93,7 @@ function initRegistrationMap(){
 	}
 	
 	function changeAddress(addressId){
-		$.post(getContextRoot() + "/address/json/Get.spr", {id:addressId}, function(answer){
+		$.post(getContextRoot() + "/address/json/Get", {id:addressId}, function(answer){
 			addMarker(answer.data.latitude, answer.data.longitude);
 		});
 		

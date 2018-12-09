@@ -32,7 +32,7 @@ public class LotRenderingController extends BaseRenderingController{
 	@Autowired
 	private LotService lotService;
 	
-	@RequestMapping("/Form.spr")
+	@RequestMapping("/Form")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView form(
 			@RequestParam(value="id", defaultValue="-1") long id,
@@ -53,7 +53,7 @@ public class LotRenderingController extends BaseRenderingController{
 		return modelAndView;
 	}
 	
-	@RequestMapping("/TestForm.spr")
+	@RequestMapping("/TestForm")
 	public ModelAndView testForm(){
 		ModelAndView modelAndView = createModelAndView("testLotForm");
 		List<Product> productList = productService.getAllActiveProducts();
@@ -66,7 +66,7 @@ public class LotRenderingController extends BaseRenderingController{
 		return modelAndView;
 	}
 	
-	@RequestMapping("/MyLots.spr")
+	@RequestMapping("/MyLots")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView myList() {
 		return createModelAndView("myLots");

@@ -18,13 +18,13 @@ public class ProductRenderingController extends BaseRenderingController{
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping("/List.spr")
+	@RequestMapping("/List")
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView activeProductList() {
 		return createModelAndView("products");
 	}
 
-	@RequestMapping("/TradeOffers.spr")
+	@RequestMapping("/TradeOffers")
 	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView tradeOffers(@RequestParam("id") long id) {
 		ModelAndView modelAndView = createModelAndView("tradeOffers");
@@ -34,13 +34,13 @@ public class ProductRenderingController extends BaseRenderingController{
 		return modelAndView;
 	}
 
-	@RequestMapping("/admin/List.spr")
+	@RequestMapping("/admin/List")
 	@Secured("ROLE_ADMIN")
 	public ModelAndView allProducts() {
 		return createModelAndView("productsForAdmin");
 	}
 
-	@RequestMapping("/admin/Form.spr")
+	@RequestMapping("/admin/Form")
 	@Secured("ROLE_ADMIN")
 	public ModelAndView form(@RequestParam(value = "id", defaultValue = "-1") long id) {
 		return createModelAndView("productForm");

@@ -24,7 +24,7 @@ public class CompanyResourceController extends BaseResourseController {
 	@Autowired
 	private CompanyService companyService;
 	
-	@RequestMapping("/List.spr")
+	@RequestMapping("/List")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
 	public String getListCompanyAll() {
@@ -34,7 +34,7 @@ public class CompanyResourceController extends BaseResourseController {
 		return new ResultBean(1, tableResponse, null).toString();
 	}
 
-	@RequestMapping("/ChangeStatus.spr")
+	@RequestMapping("/ChangeStatus")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
 	public String changeStatus(@RequestParam("id") long id) {

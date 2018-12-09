@@ -53,10 +53,10 @@
 		<div id="form-container"></div>
         <div class="aside">
             <div class="logo-pages">
-                <a href="${pageContext.request.contextPath}/product/List.spr"><img class="big-logo" src="/Static/img/logo-pages.png" alt="YourTrader" title="YourTrader"></a>
+                <a href="${pageContext.request.contextPath}/product/List"><img class="big-logo" src="/Static/img/logo-pages.png" alt="YourTrader" title="YourTrader"></a>
                 <div class=" small-logo">
                 	<div class="burger-close"></div>
-                	<div class="logo-mobile"><a href="${pageContext.request.contextPath}/product/List.spr"></a></div>
+                	<div class="logo-mobile"><a href="${pageContext.request.contextPath}/product/List"></a></div>
                 </div>
             </div>
             <nav class="main-menu">
@@ -74,7 +74,7 @@
        	<div class="aside-modile">
          	 <div class="burger-logo">
          	 	<div class="burger"></div>
-         	 	<div class="logo-mobile"><a href="${pageContext.request.contextPath}/product/List.spr"></a></div>
+         	 	<div class="logo-mobile"><a href="${pageContext.request.contextPath}/product/List"></a></div>
  			</div>
  			<div class="login-box login-box-shadow">
 				<div class="login-button-page">
@@ -86,7 +86,7 @@
 				<div class="login-list">
 					<div>
 						<a href="#" class="edit-account">${label.navigation.account}</a>
-						<a href="#" onclick="document.location = getContextRoot() + '/account/json/Logout.spr'" id="session-start">
+						<a href="#" onclick="document.location = getContextRoot() + '/account/json/Logout'" id="session-start">
 							${label.navigation.logout}
 						</a>
 					</div>

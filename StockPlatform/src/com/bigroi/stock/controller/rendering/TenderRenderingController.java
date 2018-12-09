@@ -27,7 +27,7 @@ public class TenderRenderingController extends BaseRenderingController{
 	@Autowired
 	private AddressService addressService;
 	
-	@RequestMapping("/Form.spr")
+	@RequestMapping("/Form")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView form(
 			@RequestParam(value = "id", defaultValue = "-1") long id,
@@ -45,7 +45,7 @@ public class TenderRenderingController extends BaseRenderingController{
 		return modelAndView;
 	}
 	
-	@RequestMapping("/TestForm.spr")
+	@RequestMapping("/TestForm")
 	public ModelAndView testForm() {
 		ModelAndView modelAndView = createModelAndView("testTenderForm");
 		List<Product> products = productService.getAllActiveProducts();
@@ -58,7 +58,7 @@ public class TenderRenderingController extends BaseRenderingController{
 		return modelAndView;
 	}
 	
-	@RequestMapping("/MyTenders.spr")
+	@RequestMapping("/MyTenders")
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public ModelAndView myList() {
 		return createModelAndView("myTenders");

@@ -1,12 +1,17 @@
 package com.bigroi.stock.controller.rendering;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,6 +21,7 @@ import com.bigroi.stock.controller.BaseRenderingController;
 import com.bigroi.stock.security.AuthenticationHandler;
 import com.bigroi.stock.service.UserService;
 import com.bigroi.stock.util.LabelUtil;
+import com.bigroi.stock.util.exception.StockRuntimeException;
 
 @Controller
 public class CommonRenderingController extends BaseRenderingController {
@@ -25,35 +31,52 @@ public class CommonRenderingController extends BaseRenderingController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping("404.spr")
+	@RequestMapping("404")
 	public ModelAndView handle404() {
 		return createModelAndView("404");
 	}
 
-	@RequestMapping("500.spr")
+	@RequestMapping("500")
 	public ModelAndView handle500() {
 		return createModelAndView("500");
 	}
 
-	@RequestMapping("/Login.spr")
+	@RequestMapping("/Login")
 	public ModelAndView login() {
 		return createModelAndView("login");
 	}
 
-	@RequestMapping("/AnotherBrowser.spr")
+	@RequestMapping("/AnotherBrowser/")
 	public ModelAndView anotherBrowser() {
 		return createModelAndView("anotherBrowser");
 	}
 	
-	@RequestMapping("/Welcame.spr")
+	@RequestMapping("/")
 	public ModelAndView welcome(){
-		String url =  getLanguage().toString().toLowerCase() + "/Index.spr"; 
+		String url = "Index?lang=" + getLanguage().toString().toLowerCase(); 
 		return new ModelAndView("redirect:" + url);
 	}
+	
+	@RequestMapping("/robots.txt")
+	public void robot(HttpServletRequest request, 
+			HttpServletResponse response) throws IOException{
+		
+		String path = request.getServletContext().getRealPath("robots.txt");
+		try(InputStream inputStream = new FileInputStream(path);
+				ServletOutputStream out = response.getOutputStream();){
+			byte[] buffer = new byte[inputStream.available()];
+			int count = inputStream.read(buffer);
+			if (count != buffer.length){
+				throw new StockRuntimeException();
+			}
+		    response.setContentType("text/plain");
+		    out.write(buffer);
+		}
+	}
 
-	@RequestMapping("/{locale}/Index.spr")
+	@RequestMapping("/Index")
 	public ModelAndView index(
-			@PathVariable("locale") String locale, 
+			@RequestParam("lang") String locale, 
 			HttpServletRequest request, 
 			Authentication loggedInUser) {
 		setLanguage(LabelUtil.parseString(locale));
@@ -66,17 +89,17 @@ public class CommonRenderingController extends BaseRenderingController {
 		return createModelAndView("index");
 	}
 
-	@RequestMapping("/Registration.spr")
+	@RequestMapping("/Registration")
 	public ModelAndView goToRegistrationPage() {
 		return createModelAndView("registration");
 	}
 
-	@RequestMapping(value = "/ResetForm.spr")
+	@RequestMapping(value = "/ResetForm")
 	public ModelAndView resetForm() {
 		return createModelAndView("resetForm");
 	}
 
-	@RequestMapping(value = "/ResetPassword.spr")
+	@RequestMapping(value = "/ResetPassword")
 	public ModelAndView resetPassword(@RequestParam("code") String code, @RequestParam("email") String email) {
 		ModelAndView modelAndView = createModelAndView(RESET_PASSW_PAGE);
 		String message;
@@ -89,7 +112,7 @@ public class CommonRenderingController extends BaseRenderingController {
 		return modelAndView;
 	}
 
-	@RequestMapping("/account/Form.spr")
+	@RequestMapping("/account/Form")
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public ModelAndView form() {
 		ModelAndView modelAndView = createModelAndView("account");

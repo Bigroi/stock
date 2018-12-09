@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	
 	if ((bowser.name != 'Chrome') && (bowser.name != 'Firefox') && (bowser.name != 'Safari')) {
-		document.location = getContextRoot()+"/AnotherBrowser.spr";
+		document.location = getContextRoot()+"/AnotherBrowser";
 	}
 	
 	function selectLanguages(){
@@ -23,10 +23,7 @@ $(document).ready(function(){
 		    	select: function(event, ui){
 			        var selectedImage = $(this).find("option:selected").attr("data-class");
 			        $(".ui-selectmenu-text").css('background-image', 'url("/Static/img/' + selectedImage +'.png")');
-			        document.location = "//" + document.location.host + 
-			        					"/" + getContextRoot() + 
-			        					"/" + $(".language-switcher").val().toLowerCase() + 
-			        					"/Index.spr";
+			        document.location = "?lang=" + $(".language-switcher").val().toLowerCase();
 		    	}
 		    });
 	}
@@ -99,7 +96,7 @@ $(document).ready(function(){
 								"label.login.loginAgain", 
 								"warning",
 								function(){
-									window.location = getContextRoot() + "/account/json/Logout.spr";
+									window.location = getContextRoot() + "/account/json/Logout";
 								});
 						isRunning = false;
 					}

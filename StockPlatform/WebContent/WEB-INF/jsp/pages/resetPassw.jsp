@@ -5,5 +5,5 @@
 <p>${message}</p>
 
 <button class="submit fs-submit gray-button" type="submit"
-	onclick="document.location = getContextRoot() + '/Index.spr'; return false;">${label.button.back}
+	onclick="document.location = getContextRoot() + '/Index'; return false;">${label.button.back}
 </button> 

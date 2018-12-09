@@ -27,21 +27,21 @@ public class LotResourseController extends BidResourceController<Lot, LotForUI> 
 	@Autowired
 	private LotService lotService;
 	
-	@RequestMapping(value = "/Form.spr")
+	@RequestMapping(value = "/Form")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String form(@RequestParam(value = "id", defaultValue = "-1") long id) {
 		return bidForm(id).toString();
 	}
 
-	@RequestMapping(value = "/MyList.spr")
+	@RequestMapping(value = "/MyList")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String lotList() {
 		return bidList().toString();
 	}
 	
-	@RequestMapping(value = "/TestList.spr")
+	@RequestMapping(value = "/TestList")
 	@ResponseBody
 	public String testLotList() {
 		List<Lot> bids = lotService.getBySessionId(getSessionId());
@@ -55,14 +55,14 @@ public class LotResourseController extends BidResourceController<Lot, LotForUI> 
 		return new ResultBean(1, table, null).toString();
 	}
 
-	@RequestMapping(value = "/Save.spr")
+	@RequestMapping(value = "/Save")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String save(@RequestParam("json") String json) {
 		return saveBid(json).toString();
 	}
 	
-	@RequestMapping(value = "/TestSave.spr")
+	@RequestMapping(value = "/TestSave")
 	@ResponseBody
 	public String testSave(@RequestParam("json") String json) {
 		ResultBean resultBean = testSaveBid(json);
@@ -73,35 +73,35 @@ public class LotResourseController extends BidResourceController<Lot, LotForUI> 
 		return resultBean.toString();
 	}
 
-	@RequestMapping(value = "/SaveAndActivate.spr")
+	@RequestMapping(value = "/SaveAndActivate")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String saveAndActivate(@RequestParam("json") String json) {
 		return saveAndActivateBid(json).toString();
 	}
 
-	@RequestMapping(value = "/StartTrading.spr")
+	@RequestMapping(value = "/StartTrading")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String startTrading(@RequestParam("id") long id) {
 		return startTradingBid(id).toString();
 	}
 
-	@RequestMapping(value = "/StopTrading.spr")
+	@RequestMapping(value = "/StopTrading")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String stopTrading(@RequestParam("id") long id) {
 		return stopTradingBid(id).toString();
 	}
 
-	@RequestMapping(value = "/Delete.spr")
+	@RequestMapping(value = "/Delete")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public String delete(@RequestParam("id") long id) {
 		return deleteBid(id).toString();
 	}
 	
-	@RequestMapping(value = "/Foto.spr")
+	@RequestMapping(value = "/Foto")
 	@ResponseBody
 	@Secured(value = { "ROLE_USER", "ROLE_ADMIN" })
 	public byte[] foto(@RequestParam("id") long id) {

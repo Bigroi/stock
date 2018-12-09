@@ -18,7 +18,7 @@ public class TenderForUI {
 	final String productName;
 	
 	@Column(value = "label.tender.status", responsivePriority=-5)
-	@Status(activate="/tender/json/StartTrading.spr", deactivate="/tender/json/StopTrading.spr")
+	@Status(activate="/tender/json/StartTrading", deactivate="/tender/json/StopTrading")
 	final BidStatus status;
 	
 	@Column(value = "label.tender.max_price", responsivePriority=-1)
@@ -33,7 +33,7 @@ public class TenderForUI {
 	@Column(value = "label.tender.creation_date", allowSorting = false, responsivePriority=-3)
 	final Date creationDate;
 	
-	@Edit(edit="getTenderDialogParams", remove="/tender/json/Delete.spr")
+	@Edit(edit="getTenderDialogParams", remove="/tender/json/Delete")
 	@Column(value = "label.tender.edit", responsivePriority=-7)
 	final String edit;
 	

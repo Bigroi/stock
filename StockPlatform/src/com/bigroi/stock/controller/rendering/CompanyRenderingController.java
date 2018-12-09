@@ -12,7 +12,7 @@ import com.bigroi.stock.controller.BaseRenderingController;
 @RequestMapping("/company/admin")
 public class CompanyRenderingController extends BaseRenderingController{
 	
-	@RequestMapping("/List.spr")
+	@RequestMapping("/List")
 	@Secured("ROLE_ADMIN")
 	public ModelAndView getListCompanyAll() {
 		return createModelAndView("companies");

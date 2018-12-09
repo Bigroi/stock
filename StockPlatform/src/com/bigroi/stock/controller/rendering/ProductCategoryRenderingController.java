@@ -12,7 +12,7 @@ import com.bigroi.stock.controller.BaseRenderingController;
 @RequestMapping("/category")
 public class ProductCategoryRenderingController extends BaseRenderingController {
 	
-	@RequestMapping("/List.spr")
+	@RequestMapping("/List")
 	@Secured(value = "ROLE_ADMIN")
 	public ModelAndView list(@RequestParam(value="productId", defaultValue="-1") long productId){ 
 		ModelAndView modelAndView = createModelAndView("categories");
@@ -20,7 +20,7 @@ public class ProductCategoryRenderingController extends BaseRenderingController 
 		return modelAndView;
 	}
 	
-	@RequestMapping("/Form.spr")
+	@RequestMapping("/Form")
 	@Secured(value = "ROLE_ADMIN")
 	public ModelAndView form() {
 		return createModelAndView("categoryForm");

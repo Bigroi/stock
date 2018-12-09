@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 	
  	<div class="white-div white-div-deal">
-    	<form class="form" id="deal-form" data-url="/deal/json/Form.spr" data-id="${id}" action="#" method="post" name="form">
+    	<form class="form" id="deal-form" data-url="/deal/json/Form" data-id="${id}" action="#" method="post" name="form">
 			<input type="hidden" name="sellerLatitude" id="seller_latitude">
 			<input type="hidden" name="sellerLongitude" id="seller_longitude">
 			<input type="hidden" name="buyerLatitude" id="buyer_lalitude">
@@ -88,7 +88,7 @@
 				            <label for="foto">${label.deal.sellerFoto}</label>
 				            <div class="sellerFoto">
 				            	<div class="gallery">
-								    <a href="${pageContext.request.contextPath}/deal/json/Picture.spr?dealId=${id}">
+								    <a href="${pageContext.request.contextPath}/deal/json/Picture?dealId=${id}">
 								        <img name="foto" src="">
 								    </a>
 								</div>
@@ -113,18 +113,18 @@
 				<div class="footer-deal-form">
 				<div>
 					<button class="submit gray-button"  id="back-deals"
-		        		onclick ="document.location = '/deal/MyDeals.spr'; return false">
+		        		onclick ="document.location = '/deal/MyDeals'; return false">
 		        		${label.button.back }
 		        	</button>
 				</div>
 				<div>
 					<button class="submit blue-button deal-button" type="submit" id="approve-button"
-		        		onclick="return sendDealFormData('/deal/json/Approve.spr'); ">
+		        		onclick="return sendDealFormData('/deal/json/Approve'); ">
 		        		${label.deal.approve }
 		        	</button>
 		        	
 		        	<button class="submit blue-button deal-button" type="submit" id="reject-button"
-		        		onclick="return sendDealFormData('/deal/json/Reject.spr');">
+		        		onclick="return sendDealFormData('/deal/json/Reject');">
 		        		${label.deal.reject }
 		        	</button>
 		        	

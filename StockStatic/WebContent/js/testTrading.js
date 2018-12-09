@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$('.test-trade').on("click", function(evt){
-		$.getJSON(getContextRoot() + "/deal/json/TestTrade.spr", function(answer){
+		$.getJSON(getContextRoot() + "/deal/json/TestTrade", function(answer){
 			if (answer.result > 0){
 				var dataTable = $("#main-table-deal").DataTable();
 				dataTable.clear();
@@ -10,7 +10,7 @@ $(document).ready(function(){
 	});
 	
 	$('.test-clear').on("click", function(evt){
-		$.getJSON(getContextRoot() + "/deal/json/TestClean.spr", function(answer){
+		$.getJSON(getContextRoot() + "/deal/json/TestClean", function(answer){
 			if (answer.result > 0){
 				$("#main-table-deal").DataTable().clear().draw(true);
 				$("#main-table-lot").DataTable().clear().draw(true);

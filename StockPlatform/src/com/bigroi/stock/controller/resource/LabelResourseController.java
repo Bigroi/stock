@@ -25,7 +25,7 @@ public class LabelResourseController {
 	@Autowired
 	private LabelService labelService;
 	
-	@RequestMapping("/List.spr")
+	@RequestMapping("/List")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
 	public String getAllLabels(){
@@ -35,7 +35,7 @@ public class LabelResourseController {
 		return new ResultBean(1, tableResponse, null).toString();
 	}
 	
-	@RequestMapping(value = "/Form.spr", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/Form", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
 	public String form(@RequestParam(value = "id", defaultValue = "-1") long id, Authentication loggedInUser){
@@ -46,7 +46,7 @@ public class LabelResourseController {
 		return null;
 	}
 	
-	@RequestMapping("/Save.spr")
+	@RequestMapping("/Save")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
 	public String save(@RequestParam("json") String json){
@@ -55,7 +55,7 @@ public class LabelResourseController {
 		return new ResultBean(1, new LabelForUI(label), null).toString();
 	}
 	
-	@RequestMapping("/Delete.spr")
+	@RequestMapping("/Delete")
 	@ResponseBody
 	@Secured(value = {"ROLE_ADMIN"})
 	public String delete(@RequestParam("id") long id){

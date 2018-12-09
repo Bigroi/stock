@@ -168,19 +168,19 @@
 									<div class="test-lot">
 										<button class="add-test-lot background-blue">${label.button.new_lot}</button>
 										<div class="table-container">
-										    <table id="main-table-lot" class="test-lot-table" data-url="/lot/json/TestList.spr" data-add-button="add-test-lot"></table>
+										    <table id="main-table-lot" class="test-lot-table" data-url="/lot/json/TestList" data-add-button="add-test-lot"></table>
 										</div>
 									</div>
 									<div class="test-tender">
 										<button class="add-test-tender background-blue">${label.button.new_tender}</button>
 										<div class="table-container">
-										    <table id="main-table-tender" class="test-tender-table" data-url="/tender/json/TestList.spr" data-add-button="add-test-tender"></table>
+										    <table id="main-table-tender" class="test-tender-table" data-url="/tender/json/TestList" data-add-button="add-test-tender"></table>
 										</div>
 									</div>
 								</div>
 								<div class="test-trade-container">
 									<div class="table-container">
-									    <table id="main-table-deal" data-url="/deal/json/TestDeals.spr"></table>
+									    <table id="main-table-deal" data-url="/deal/json/TestDeals"></table>
 									</div>
 									<button class="test-trade background-green">${label.button.trade}</button>
 									<button class="test-clear gray-button">${label.button.clear}</button>

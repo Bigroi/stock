@@ -28,7 +28,7 @@ public class LinkResetPasswordMessage extends BaseMessage<Map<String, String>> {
 			String name = getName(map);
 			user.setUsername(name);
 			String url = mailManager.getServerAdress()
-				+ "ResetPassword.spr?code=" 
+				+ "ResetPassword?code=" 
 				+ URLEncoder.encode(map.get("code"), "UTF-8") + "&email=" 
 				+ URLEncoder.encode(map.get(EMAIL), "UTF-8");
 			return getTextTemplate(locale).replaceAll("@link", url);

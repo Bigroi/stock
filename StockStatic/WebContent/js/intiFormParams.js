@@ -22,26 +22,26 @@
 
 function getPasswordResetDialogParams(){
 	return {
-		formUrl:"/ResetForm.spr", 
+		formUrl:"/ResetForm", 
 		dialogClass: "password-reset-dialogbox", 
 		buttons:[
 		{
 			text: l10n.translate("label.button.reset"),
 			id: "password-reset",
-			submitUrl : "/account/json/ResetPassword.spr"
+			submitUrl : "/account/json/ResetPassword"
 		}]			
 	};
 }
 
 function getLoginDialogParams(){
 	return {
-		formUrl:"/Login.spr",
+		formUrl:"/Login",
 		dialogClass: "login-dialogbox", 
 		buttons:[
 		{
 			text: l10n.translate("label.button.login"),
 			id:"login",
-			submitUrl: "/account/json/Login.spr",
+			submitUrl: "/account/json/Login",
 			login:true
 		}], 				
 	};
@@ -49,15 +49,15 @@ function getLoginDialogParams(){
 
 function getAddressDialogParams(id, $table, model){
 	return {
-		formUrl:"/address/Form.spr", 
+		formUrl:"/address/Form", 
 		formParams:{id:id},
-		formData:"/address/json/Form.spr",
+		formData:"/address/json/Form",
 		dialogClass: "address-dialogbox", 
 		buttons:[
 		{
 			text: l10n.translate("label.button.save"),
 			id: "save",
-			submitUrl: "/address/json/Save.spr",
+			submitUrl: "/address/json/Save",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model
@@ -67,28 +67,28 @@ function getAddressDialogParams(id, $table, model){
 
 function getReginDialogParams(){
 	return {
-		formUrl:"/Registration.spr", 
+		formUrl:"/Registration", 
 		dialogClass: "registration-dialogbox", 
 		buttons:[
 		{
 			text: l10n.translate("label.button.finishRegistration"),
 			id: "finish-registration",
-			submitUrl : "/account/json/Registration.spr"
+			submitUrl : "/account/json/Registration"
 		}]			
 	};
 }
 
 function getLotDialogParams(id, $table, model){
 	return {
-		formUrl: "/lot/Form.spr", 
+		formUrl: "/lot/Form", 
 		formParams:{id:id},
-		formData: "/lot/json/Form.spr",
+		formData: "/lot/json/Form",
 		dialogClass: "lot-dialogbox", 
 		buttons: [{
 				text: l10n.translate("label.button.save"),
 				id:"save",
 				buttonClass:"gray-button",
-				submitUrl: "/lot/json/Save.spr",
+				submitUrl: "/lot/json/Save",
 				submitFunction: buttonCallbackWithTableUpdate,
 				table : $table, 
 				model : model 
@@ -96,7 +96,7 @@ function getLotDialogParams(id, $table, model){
 			{
 				text: l10n.translate("label.button.save_start_trading"),
 				id:"save-start-trading",
-				submitUrl: "/lot/json/SaveAndActivate.spr",
+				submitUrl: "/lot/json/SaveAndActivate",
 				submitFunction: buttonCallbackWithTableUpdate,
 				table : $table, 
 				model : model
@@ -106,13 +106,13 @@ function getLotDialogParams(id, $table, model){
 
 function getTestLotDialogParams(id, $table, model){
 	return {
-		formUrl: "/lot/TestForm.spr", 
+		formUrl: "/lot/TestForm", 
 		dialogClass: "lot-dialogbox", 
 		buttons: [
 			{
 				text: l10n.translate("label.button.save_start_trading"),
 				id:"save-start-trading",
-				submitUrl: "/lot/json/TestSave.spr",
+				submitUrl: "/lot/json/TestSave",
 				submitFunction: buttonCallbackWithTableUpdate,
 				table : $table, 
 				model : model
@@ -122,14 +122,14 @@ function getTestLotDialogParams(id, $table, model){
 
 function getAccountDialogParams(id){
 	return {
-		formUrl: "/account/Form.spr", 
+		formUrl: "/account/Form", 
 		formParams:{id:id},
-		formData: "/account/json/Form.spr",
+		formData: "/account/json/Form",
 		dialogClass: "account-dialogbox",
 		buttons: [{
 				text: l10n.translate("label.button.save"),
 				id:"save",
-				submitUrl: "/account/json/Save.spr"
+				submitUrl: "/account/json/Save"
 			}],
 		afterLoad:selectLanguages
 	};
@@ -160,13 +160,13 @@ function getAccountDialogParams(id){
 function getContactUsDialogParams(){
 	return {
 		container:$("#message-dialog-container"),
-		formUrl: "/feedback/Form.spr", 
-		formData: "/feedback/json/Form.spr", 
+		formUrl: "/feedback/Form", 
+		formData: "/feedback/json/Form", 
 		dialogClass: "contact-us-dialogbox",
 		buttons:[{
 			text: l10n.translate("label.button.send"),
 			id:"contact-us",
-			submitUrl: "/feedback/json/Save.spr"
+			submitUrl: "/feedback/json/Save"
 		}]
 	};
 }
@@ -174,7 +174,7 @@ function getContactUsDialogParams(){
 function getMessageDialogParams(message, type, action){
 	return {
 		container:$("#message-dialog-container"),
-		formUrl:"/Message.spr", 
+		formUrl:"/Message", 
 		formParams:{message:message,type:type},
 		dialogClass: "message-dialogbox",
 		buttons:[{
@@ -194,15 +194,15 @@ function getMessageDialogParams(message, type, action){
 
 function getTenderDialogParams(id, $table, model){
 	return{
-		formUrl: "/tender/Form.spr", 
+		formUrl: "/tender/Form", 
 		formParams:{id:id},
-		formData: "/tender/json/Form.spr",
+		formData: "/tender/json/Form",
 		dialogClass: "tender-dialogbox",
 		buttons:[{
 			text: l10n.translate("label.button.save"),
 			id:"save",
 			buttonClass:"gray-button",
-			submitUrl: "/tender/json/Save.spr",
+			submitUrl: "/tender/json/Save",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model
@@ -210,7 +210,7 @@ function getTenderDialogParams(id, $table, model){
 		{
 			text: l10n.translate("label.button.save_start_trading"),
 			id:"save-start-trading",
-			submitUrl: "/tender/json/SaveAndActivate.spr",
+			submitUrl: "/tender/json/SaveAndActivate",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model
@@ -220,13 +220,13 @@ function getTenderDialogParams(id, $table, model){
 
 function getTestTenderDialogParams(id, $table, model){
 	return{
-		formUrl: "/tender/TestForm.spr", 
+		formUrl: "/tender/TestForm", 
 		dialogClass: "tender-dialogbox",
 		buttons:[
 		{
 			text: l10n.translate("label.button.save_start_trading"),
 			id:"save-start-trading",
-			submitUrl: "/tender/json/TestSave.spr",
+			submitUrl: "/tender/json/TestSave",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model
@@ -236,14 +236,14 @@ function getTestTenderDialogParams(id, $table, model){
 
 function getProductDialogParams(id, $table, model){
 	return {
-		formUrl: "/product/admin/Form.spr", 
+		formUrl: "/product/admin/Form", 
 		formParams:{id:id},
-		formData: "/product/json/admin/Form.spr",
+		formData: "/product/json/admin/Form",
 		dialogClass: "product-dialogbox",
 		buttons:[{
 			text: l10n.translate("label.button.save"),
 			id:"save",
-			submitUrl: "/product/json/admin/Save.spr",
+			submitUrl: "/product/json/admin/Save",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model
@@ -251,7 +251,7 @@ function getProductDialogParams(id, $table, model){
 		{
 			text: l10n.translate("label.button.delete"),
 			id:"delete",
-			submitUrl: "/product/json/admin/Delete.spr",
+			submitUrl: "/product/json/admin/Delete",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model
@@ -259,21 +259,21 @@ function getProductDialogParams(id, $table, model){
 		{
 			text: l10n.translate("label.button.edit_categories"),
 			id:"delete",
-			submitUrl: "/product/json/admin/Categories.spr"
+			submitUrl: "/product/json/admin/Categories"
 		}]
 	};
 }
 
 function getProductCategoryDialogParams(id, $table, model){
 	return {
-		formUrl: "/category/Form.spr", 
+		formUrl: "/category/Form", 
 		formParams:{id:id, productId:$("input[name=productId]").val()},
-		formData: "/category/json/Get.spr",
+		formData: "/category/json/Get",
 		dialogClass: "product-dialogbox",
 		buttons:[{
 			text: l10n.translate("label.button.save"),
 			id:"save",
-			submitUrl: "/category/json/Save.spr",
+			submitUrl: "/category/json/Save",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model
@@ -281,7 +281,7 @@ function getProductCategoryDialogParams(id, $table, model){
 		{
 			text: l10n.translate("label.button.delete"),
 			id:"delete",
-			submitUrl: "/category/json/Delete.spr",
+			submitUrl: "/category/json/Delete",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model
@@ -291,14 +291,14 @@ function getProductCategoryDialogParams(id, $table, model){
 
 function getLabelDialogParams(id, $table, model){
 	return {
-		formUrl: "/label/admin/Form.spr", 
+		formUrl: "/label/admin/Form", 
 		formParams:{id:id},
-		formData: "/label/json/admin/Form.spr",
+		formData: "/label/json/admin/Form",
 		dialogClass: "label-dialogbox",
 		buttons:[{
 			text: l10n.translate("label.button.save"),
 			id:"save",
-			submitUrl: "/label/json/admin/Save.spr",
+			submitUrl: "/label/json/admin/Save",
 			submitFunction: buttonCallbackWithTableUpdate,
 			table : $table, 
 			model : model
@@ -308,14 +308,14 @@ function getLabelDialogParams(id, $table, model){
 
 function getDealFeedbackDialogParams(dealId){
 	return {
-		formUrl: "/deal/feedback/Form.spr", 
+		formUrl: "/deal/feedback/Form", 
 		formParams:{dealId:dealId},
-		formData: "/deal/feedback/json/Form.spr",
+		formData: "/deal/feedback/json/Form",
 		dialogClass: "dealFeedback-dialogbox",
 		buttons: [{
 				text: l10n.translate("label.button.save"),
 				id:"save",
-				submitUrl: "/deal/feedback/json/Save.spr"
+				submitUrl: "/deal/feedback/json/Save"
 			}]
 	};	
 }

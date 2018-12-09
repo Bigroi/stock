@@ -16,9 +16,9 @@ import com.bigroi.stock.service.UserService;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
-	private static final String INDEX_LINK = "/Index.spr";
-	private static final String LOGIN_LINK = "/account/json/Login.spr";
-	private static final String LOGOUT_LINK = "/account/json/Logout.spr";
+	private static final String INDEX_LINK = "/Index";
+	private static final String LOGIN_LINK = "/account/json/Login";
+	private static final String LOGOUT_LINK = "/account/json/Logout";
 	
 	@Autowired
 	private AuthenticationHandler authenticationHandler;

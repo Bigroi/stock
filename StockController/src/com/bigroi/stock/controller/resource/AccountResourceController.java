@@ -37,7 +37,7 @@ public class AccountResourceController extends BaseResourseController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@RequestMapping(value = "/Form.spr")
+	@RequestMapping(value = "/Form")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String accountPage(Authentication loggedInUser) {
@@ -48,7 +48,7 @@ public class AccountResourceController extends BaseResourseController {
 		return new ResultBean(1, user, "").toString();
 	}
 	
-	@RequestMapping(value = "/Save.spr")
+	@RequestMapping(value = "/Save")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
 	public String editAccount( @RequestParam("json") String json, Authentication loggedInUser){
@@ -82,7 +82,7 @@ public class AccountResourceController extends BaseResourseController {
 		}
 	}
 	
-	@RequestMapping(value = "/Registration.spr")
+	@RequestMapping(value = "/Registration")
 	@ResponseBody
 	public String registration(HttpServletRequest request, @RequestParam("json") String json) {
 		
@@ -119,7 +119,7 @@ public class AccountResourceController extends BaseResourseController {
 		return new ResultBean(0, AuthenticationHandler.getMainPage(request.getContextPath()), null).toString();
 	}
 	
-	@RequestMapping(value = "/ResetPassword.spr")
+	@RequestMapping(value = "/ResetPassword")
 	@ResponseBody
 	public String resetPassword(@RequestParam("json") String json){
 		StockUser user = GsonUtil.getGson().fromJson(json, StockUser.class);

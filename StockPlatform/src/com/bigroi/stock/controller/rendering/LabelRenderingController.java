@@ -12,13 +12,13 @@ import com.bigroi.stock.controller.BaseRenderingController;
 @RequestMapping("/label/admin/")
 public class LabelRenderingController extends BaseRenderingController{
 	
-	@RequestMapping("/List.spr")
+	@RequestMapping("/List")
 	@Secured("ROLE_ADMIN")
 	public ModelAndView getListLablesAll() {
 		return createModelAndView("lables");
 	}
 	
-	@RequestMapping("/Form.spr")
+	@RequestMapping("/Form")
 	@Secured("ROLE_ADMIN")
 	public ModelAndView form(@RequestParam(value = "id", defaultValue = "-1") long id) {
 		return createModelAndView("labelForm");

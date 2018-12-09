@@ -15,7 +15,7 @@
 				<div class="login-list">
 					<div>
 						<a href="#" class="edit-account">${label.navigation.account}</a>
-						<a href="#" onclick="document.location = getContextRoot() + '/account/json/Logout.spr'" id="session-start">
+						<a href="#" onclick="document.location = getContextRoot() + '/account/json/Logout'" id="session-start">
 							${label.navigation.logout}
 						</a>
 					</div>
