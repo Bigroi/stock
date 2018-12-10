@@ -110,7 +110,7 @@ INSERT INTO `LABEL` (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES
 	('index', 'for_farmers', 'For suppliers', 'Производителям', 'Dla producentów rolnych'),
 	('index', 'copyright', '© 2018, YourTrader', '© 2018, YourTrader', '© 2018, YourTrader'),
 	('index', 'regestrate_as_buyer', 'Or ', 'Или ', 'lub '),
-	('index', 'email', 'stock@info.com', 'stock@info.com', 'stock@info.com'),
+	('index', 'email', 'support@yourtrader.eu', 'support@yourtrader.eu', 'support@yourtrader.eu'),
 	('index', 'products', 'Products', 'Продукты', 'Produkty'),
 	('index', 'phone_prefix', '+48 ', '+48 ', '+48 '),
 	('index', 'for_farmers_li3', 'Define min volume of a deal', 'Выберете минимальный обём сделки', 'Podaj minimum logistyczne dla umowy'),
