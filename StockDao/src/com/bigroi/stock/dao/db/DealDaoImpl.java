@@ -112,7 +112,7 @@ public class DealDaoImpl implements DealDao {
 
 	private static final String DELETE_ON_APPROVE = 
 					  " DELETE "
-					+ DealRowMapper.FROM
+					+ " FROM DEAL "
 					+ " WHERE " + ON_APPROVE_CRITERIA;
 
 	private static final String GET_BY_COMPANY_ID = 
