@@ -197,8 +197,7 @@ public class DealResourseController extends BaseResourseController {
 			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
 		}
 	}
-	//------------------------------------//-------------------------------------//
-	//сделать контроллер компании  по компани id который возвращает списко оценок и коментариев
+	
 	@RequestMapping(value = "/Comments", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
