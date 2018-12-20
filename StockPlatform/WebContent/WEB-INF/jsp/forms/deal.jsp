@@ -44,7 +44,7 @@
 				<div>
 					<ul>
 				        <li>
-				            <label for="partnerName">${label.deal.partnerName}</label>
+				           <label for="partnerName" class="comment"> <a href="#">${label.deal.partnerName}</a></label>
 				            <input type="text" name="partnerCompanyName" disabled/>
 		            		<div class="reviewStarsDeal">
 							    <input id="star5" type="radio" name="star5" disabled>

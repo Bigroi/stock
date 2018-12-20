@@ -19,15 +19,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bigroi.stock.bean.common.DealStatus;
+import com.bigroi.stock.bean.db.Comment;
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.StockUser;
 import com.bigroi.stock.bean.db.UserComment;
+import com.bigroi.stock.bean.ui.CommentForUI;
 import com.bigroi.stock.bean.ui.DealForUI;
 import com.bigroi.stock.bean.ui.TestDealForUI;
 import com.bigroi.stock.controller.BaseResourseController;
 import com.bigroi.stock.json.GsonUtil;
 import com.bigroi.stock.json.ResultBean;
 import com.bigroi.stock.json.TableResponse;
+import com.bigroi.stock.service.CommentService;
 import com.bigroi.stock.service.DealService;
 import com.bigroi.stock.service.LabelService;
 import com.bigroi.stock.service.TradeService;
@@ -53,6 +56,9 @@ public class DealResourseController extends BaseResourseController {
 	
 	@Autowired
 	private UserCommentService userCommentService;
+	
+	@Autowired
+	private CommentService commentService;
 	
 	@RequestMapping(value = "/Form", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -190,5 +196,18 @@ public class DealResourseController extends BaseResourseController {
 		} else {
 			return new ResultBean(-1, NOT_AUTORISED_ERROR_LABEL).toString();
 		}
+	}
+	//------------------------------------//-------------------------------------//
+	//сделать контроллер компании  по компани id который возвращает списко оценок и коментариев
+	@RequestMapping(value = "/Comments", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	public String Company(Authentication loggedInUser){
+		StockUser user = (StockUser)loggedInUser.getPrincipal();
+		List<Comment> list = commentService.getCommentsByCompanyId(user.getCompanyId());
+		List<CommentForUI> listForUI = list.stream().map(CommentForUI::new).collect(Collectors.toList());
+		TableResponse<CommentForUI> tableResponse = new TableResponse<>(CommentForUI.class, listForUI);
+			return new ResultBean(1, tableResponse,"some message").toString();
+		
 	}
 }

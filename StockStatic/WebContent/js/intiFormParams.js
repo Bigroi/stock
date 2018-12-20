@@ -319,3 +319,11 @@ function getDealFeedbackDialogParams(dealId){
 			}]
 	};	
 }
+ function getCommentsDialogParams(){
+	return {
+		formUrl:"/deal/Comments", 
+		formData:"/deal/json/Comments",
+		//dialogClass: "comment-dialogbox"
+		
+	};
+}

@@ -184,4 +184,8 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/forms/feedbackDeal.jsp" />
 	</definition>
 	
+	 <definition name="comments" extends="base-form-definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/forms/comments.jsp" />
+	</definition>  
+	
 </tiles-definitions>

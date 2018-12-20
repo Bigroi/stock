@@ -25,5 +25,12 @@ public class DealRenderingController extends BaseRenderingController {
 		modelAndView.addObject("id", id);
 		return modelAndView;
 	}
+	
+	@RequestMapping("/Comments")
+	@Secured(value = {"ROLE_USER","ROLE_ADMIN"})
+	public ModelAndView dealCompany() {
+		ModelAndView modelAndView = createModelAndView("comments");
+		return modelAndView;
+	}
 
 }

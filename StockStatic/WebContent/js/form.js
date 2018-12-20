@@ -18,6 +18,14 @@ $(document).ready(function(){
 		var dealForm = $('#deal-form');
 		initDealForm(dealForm, getContextRoot() + dealForm.attr("data-url"), dealForm.attr("data-id"));
 	}
+	
+	$('.comment').on("click", function(){
+		showDialog(getCommentsDialogParams());
+	});
+	
+	
+	
+	
 });
 
 function sendFormData(formContainer, buttonDef, $dialogbox) {
