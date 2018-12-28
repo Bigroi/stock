@@ -2760,34 +2760,384 @@ table.dataTable.order-column.stripe tbody tr.even>.sorting_1 {
     top: 50%;
     margin-top: -16px;
     outline: 0;
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     text-indent: -9999px;
     display: block;
 }
 .bx-wrapper .bx-next {
-	background: url(/Static/img/controls.png) no-repeat -43px -32px;
-	right: 0 !important;
+	background-image: url(/Static/img/next-green.png);
+	background-repeat: no-repeat;
+    background-size: contain;
+	right: -45px !important;
 }
 .bx-wrapper .bx-prev {
-	background: url(/Static/img/controls.png) no-repeat 0 -32px;
-	left: -13px !important;
+	background-image: url(/Static/img/previous-green.png);
+	background-repeat: no-repeat;
+    background-size: contain;
+	left: -55px !important;
 }
 .bx-controls-direction a.disabled {
 	 display: none;
 }
 @media (max-width: 1280px) {
 	.bx-wrapper .bx-next {
-		right: -12px !important;
+		right: -55px !important;
 	}
 }
-@media (max-width: 758px) {
+@media (max-width: 768px) {
 	.product {
     	min-width: 248px !important;
     }
+    .bx-wrapper .bx-next {
+		right: -22px !important;
+	}
+	.bx-wrapper .bx-prev {
+		left: -20px !important;
+	}
+}
+@media (max-width: 375px) {
+	.for-whom ul li {
+		width: 240px;
+	}
+	.bx-wrapper .bx-controls-direction a {
+		width: 32px;
+    	height: 32px;
+	}
+	    .bx-wrapper .bx-next {
+		right: -16px !important;
+	}
+	.bx-wrapper .bx-prev {
+		left: -14px !important;
+	}
 }
 @media (max-width: 1280px) and (min-width: 758px) {
 	.login-box {
 		    top: 50px;
 	}
+}
+.test-test-trading {
+	padding: 70px 0 100px 0;
+}
+.cont-test-trading {
+	height: inherit;
+	background-color: #f5fbf8;
+}
+.cont-test-trading .container {
+	height: 260px;
+	display: flex;
+	justify-content: space-between;
+}
+.test-trading-farmer,
+.test-trading-buyer {
+	/*background-color: #f5fbf8;*/
+	width: 30%;
+	position: relative;
+	padding-top: 25px;
+}
+.test-trading-result {
+	width: 40%;
+	background-color: white;
+	display: flex;
+    justify-content: center;
+}
+.test-trading-farmer:after {
+	content: "";
+    position: absolute;
+    right: -50px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-top: 130px solid transparent;
+    border-left: 50px solid #f5fbf8;
+    border-bottom: 130px solid transparent;
+}
+.test-trading-buyer:after {
+    content: "";
+    position: absolute;
+    left: -50px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-top: 130px solid transparent;
+    border-right: 50px solid #f5fbf8;
+    border-bottom: 130px solid transparent;
+}
+.test-trading-farmer > div:first-child {
+	background-image: url(/Static/img/farmer.png);
+	background-repeat: no-repeat;
+	height: 180px;
+    width: 160px;
+    float: left;
+}
+.test-trading-farmer > div:last-child {
+	height: 180px;
+    width: calc(100% - 190px);
+    float: left;
+}
+.test-trading-buyer > div:last-child {
+	background-image: url(/Static/img/buyer.png);
+	background-repeat: no-repeat;
+	height: 180px;
+    width: 160px;
+    float: left;
+}
+.test-trading-buyer > div:first-child {
+	height: 180px;
+    width: calc(100% - 180px);
+    float: left;
+}
+.about-us {
+	background-color: #f7f7f7;
+	padding: 70px 0 90px 0;
+}
+.about-us .container,
+.question .container {
+	display: flex;
+    justify-content: center;
+}
+
+.about-us .container > div,
+.how-it-works .container > div {
+	width: 45%;
+}
+.about-us .container > div p {
+	margin-bottom: 28px;
+	line-height: 28px;
+}
+.question {
+	padding: 80px 0 72px 0;
+}
+.question .container > div:first-child {
+	width: 30%;
+}
+.question .container > div:last-child {
+	width: 60%;
+}
+.answer {
+	color: #96999d;
+	margin-bottom: 15px;
+}
+.question .mail a {
+	top: 0;
+}
+.question-answer div {
+	
+}
+.header-question {
+	background-color: #f4f7f8;
+    border-radius: 8px;
+    width: calc(100% - 45px);
+    min-height: 51px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 30px;
+    line-height: 28px;
+    position: relative;
+}
+.body-answer {
+	width: calc(100% - 45px);
+	min-height: 25px;
+	margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    padding: 10px 30px 10px 15px;
+    color: #96999d;
+    line-height: 28px;
+    display: none;
+}
+.question-close {
+	background-image: url(/Static/img/plus-green.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 15px;
+    width: 15px;
+    position: absolute;
+    right: 16px;
+    cursor: pointer;
+}
+.question-open {
+	background-image: url(/Static/img/close-gray.svg);
+}
+/*.test-trading-farmer > div:last-child,
+.test-trading-buyer > div:first-child  {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+.test-trading-farmer > div:last-child {
+	padding-left: 30px;
+}
+.test-trading-buyer > div:first-child {
+	padding-left: 20px;
+}
+.test-trading-farmer > div:last-child > div > p:first-child,
+.test-trading-buyer > div:first-child > div > p:first-child,
+.test-trading-result form > div:nth-child(2) > div > p:first-child {
+	color: #96999d;
+	font-size: 14px;
+	margin-bottom: 3px;
+}
+.test-trading-result > div {
+	width: 230px;
+    display: flex;
+    align-items: center;
+}
+.test-trading-result form {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 230px;
+}
+.test-trading-result form label {
+	font-size: 14px;
+	margin-bottom: 3px;
+}
+.test-trading-result form select {
+	width: 230px;
+    border-radius: 4px;
+    border: solid 1px #ced1d6;
+    padding: 9px 13px;
+    height: 40px;
+    margin-top: 3px;
+}
+.test-trading-result button {
+	width: 230px;
+	height: 33px;
+	border-radius: 5px;
+    color: #ffffff;
+}
+.test-trading-result form > div:nth-child(2) {
+	display: flex;
+    justify-content: space-between;
+}*/
+.how-it-works {
+	padding-top: 70px;
+	padding-bottom: 78px;
+}
+.how-it-works .container {
+	display: flex;
+    justify-content: space-between;
+}
+.how-it-works .container > div:first-child > div {
+	background-image: url(/Static/img/how-it-works.png);
+	min-height: 307px;
+	background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.how-it-works .container button {
+	width: 362px;
+  	height: 40px;
+  	border-radius: 5px;
+  	color: #ffffff;
+}
+.how-it-works .container table {
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+.how-it-works .container table tr td:first-child {
+	min-width: 100px;
+}
+.how-it-works .container > div:nth-child(2) > div:first-child {
+	margin-bottom: 25px;
+}
+.how-it-works .container > div:nth-child(2) > div:first-child table tbody tr:first-child td:first-child {
+	color: #96999d;
+}
+.how-it-works .container > div:nth-child(2) > div:nth-child(2) table tbody tr:first-child td:first-child {
+	color: #0fc668;
+	position: relative;
+    bottom: 10px;
+}
+.how-it-works .container > div:nth-child(2) > div:nth-child(2) table tbody tr:first-child td {
+	padding-top: 25px;
+}
+.how-it-works .container > div:nth-child(2) > div:nth-child(2) table thead tr td {
+	font-size: 14px;
+	color: #96999d;
+	border-bottom: 2px solid #d8d8d8;
+	padding-bottom: 10px;
+
+}
+.how-it-works .container > div:nth-child(2) > div:nth-child(2) table tbody tr:nth-child(2) td:first-child {
+	color: #009eff;
+	position: relative;
+    bottom: 10px;
+}
+.how-it-works .container > div:nth-child(2) > div:nth-child(2) table tbody tr:nth-child(3) td {
+	padding-bottom: 20px;
+    border-bottom: 2px solid #d8d8d8;
+}
+.how-it-works .container > div:nth-child(2) > div:nth-child(2) input{
+	width: 142px;
+    height: 20px;
+    border-radius: 4px;
+    border: solid 1px #ced1d6;
+    padding: 9px 13px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.how-it-works .container > div:nth-child(2) > div:nth-child(2) tr td:nth-child(2) input {
+	margin-right: 20px;
+}
+.how-it-works .container select {
+	width: 362px;
+    border-radius: 4px;
+    border: solid 1px #ced1d6;
+    padding: 9px 13px;
+    height: 40px;
+    margin-top: 3px;
+    font-size: 14px;
+}
+.how-it-works .container option {
+    font-size: 14px;
+}
+.how-it-works .container > div:nth-child(2) > div:nth-child(3) tr td {
+	padding-top: 25px;
+}
+.how-it-works .container > div:nth-child(2) > div:nth-child(3) input {
+	width: 190px;
+	border: none;
+	cursor: default;
+}
+@media (max-width: 1280px) {
+	.how-it-works .container select {
+		width: 225px;
+	}
+	.how-it-works .container > div:nth-child(2) > div:nth-child(2) input {
+		width: 74px;
+	}
+	.how-it-works .container button {
+		width: 226px;
+	}
+	.how-it-works .container > div:nth-child(2) > div:nth-child(3) input {
+		width: 50px;
+	}
+	.how-it-works .container > div:nth-child(2) > div:nth-child(3) tr td:nth-child(2) input {
+		width: 125px;
+	}
+}
+@media (max-width: 758px) {
+	.how-it-works .container {
+		flex-direction: column;
+	}
+	.how-it-works .container > div {
+		width: 100%;
+	}
+	.how-it-works .container select {
+		width: 184px;
+	}
+	.how-it-works .container button {
+		width: 186px;
+	}
+	.how-it-works .container > div:nth-child(2) > div:nth-child(2) input {
+		width: 54px;
+	}
+	.how-it-works .container > div:nth-child(2) > div:nth-child(3) tr td:nth-child(2) input {
+		width: 105px;
+	}
+	
 }

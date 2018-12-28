@@ -153,5 +153,10 @@ $(document).ready(function(){
 	$(document).on("click", '.button_up', function() {
 		$('body,html').animate({scrollTop:0},800);
 	});
+	$(".question-close").click(function(){ 
+		$(this).parent().parent().find(".body-answer").slideToggle();
+		$(this).toggleClass("question-open");
+	});
+	
 	
 });
