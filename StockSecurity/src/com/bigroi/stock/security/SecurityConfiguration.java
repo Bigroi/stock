@@ -3,7 +3,9 @@ package com.bigroi.stock.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -14,6 +16,7 @@ import com.bigroi.stock.service.UserService;
 
 @EnableWebSecurity
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled=true, jsr250Enabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	private static final String INDEX_LINK = "/";
@@ -23,8 +26,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private AuthenticationHandler authenticationHandler;
 	
-	@Autowired
 	private UserService userService;
+	
+	@Autowired
+    public SecurityConfiguration(@Lazy UserService userService) {
+        this.userService = userService;
+    }
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

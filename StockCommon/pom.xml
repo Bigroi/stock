@@ -10,6 +10,11 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	
+	<properties>
+		<maven.compiler.target>11</maven.compiler.target>
+	    <maven.compiler.source>11</maven.compiler.source>
+	</properties>
+	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>

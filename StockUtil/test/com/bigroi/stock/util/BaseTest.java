@@ -21,7 +21,7 @@ public abstract class BaseTest {
 	
 	protected <T> T createObject(Class<T> clazz, boolean createObjects) {
 		try {
-			T object = clazz.newInstance();
+			T object = clazz.getConstructor().newInstance();
 			for (Field field : clazz.getDeclaredFields()) {
 				if (Modifier.isFinal(field.getModifiers()) || Modifier.isStatic(field.getModifiers())) {
 					continue;
@@ -66,7 +66,7 @@ public abstract class BaseTest {
 	}
 
 	private boolean isValueNull(Field field, Object instance) throws Exception{
-		boolean accessable = field.isAccessible();
+		boolean accessable = field.canAccess(instance);
 		field.setAccessible(true);
 		Object value = field.get(instance);
 		field.setAccessible(accessable);
@@ -74,7 +74,7 @@ public abstract class BaseTest {
 	}
 
 	private void setField(Object value, Field field, Object object) throws Exception {
-		boolean accessable = field.isAccessible();
+		boolean accessable = field.canAccess(object);
 		field.setAccessible(true);
 		field.set(object, value);
 		field.setAccessible(accessable);

@@ -58,14 +58,4 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler, Auth
 		request.getSession().setAttribute("lang", locale);
 		response.getWriter().append(new ResultBean(0, getMainPage(request.getContextPath()), null).toString());
 	}
-
-	public static String getApplicationType(String contexRoot) {
-		switch (contexRoot){
-		case "": return "TRADER";
-		case "/Transport": return "TRANSPORT";
-		default : return "";
-		}
-	}
-
-
 }

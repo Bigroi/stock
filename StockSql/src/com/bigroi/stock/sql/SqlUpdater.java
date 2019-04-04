@@ -11,26 +11,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.sql.DataSource;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class SqlUpdater {
 
 	private static final String MAIN_SQL_FILE_NAME = "Main.sql";
-	private static final String UPDATE_SQL_FILE_NAME = "Update.xml";
+	private static final String UPDATE_SQL_FILE_NAME = "sql/Update.xml";
 	private static final String LABELS_SQL_FILE_NAME = "labels.sql";
 	private static final ApplicationContext CONTEXT = new ClassPathXmlApplicationContext("spring.xml");
 	private static final String UPDATE_SIZE = "UPDATE SQL_UPDATE SET LAST_UPDATE = ?";
@@ -39,7 +37,7 @@ public class SqlUpdater {
 	
 	private static final Logger logger = Logger.getLogger(SqlUpdater.class);
 	
-	public static void main(String[] args) throws SQLException, IOException, JAXBException {
+	public static void main(String[] args) throws Exception {
 		String schema;
 		if (args.length == 0){
 			schema = "stock";
@@ -49,7 +47,7 @@ public class SqlUpdater {
 		new SqlUpdater().updateDataBase(schema);
 	}
 	
-	public void updateDataBase(String schema) throws SQLException, IOException, JAXBException{
+	public void updateDataBase(String schema) throws Exception{
 		DataSource dataSource = CONTEXT.getBean(DataSource.class);
 		Connection connection = null;
 		try{
@@ -127,14 +125,20 @@ public class SqlUpdater {
 		}
 	}
 
-	private List<String> getUpdateQueries() throws IOException, JAXBException {
-		try(BufferedReader reader = openReader(UPDATE_SQL_FILE_NAME)){
-			JAXBContext jaxbContext = JAXBContext.newInstance(Root.class);
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			Root root = (Root)unmarshaller.unmarshal(reader);
-			
-			return root.updates.stream().map(r -> r.sql).collect(Collectors.toList());
-		}
+	private List<String> getUpdateQueries() throws IOException, ParserConfigurationException, SAXException {
+		DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
+	    domFactory.setNamespaceAware(true);
+	    DocumentBuilder builder = domFactory.newDocumentBuilder();
+	    Document xml = builder.parse(UPDATE_SQL_FILE_NAME);
+	    
+	    NodeList list = xml.getElementsByTagName("update");
+	    
+	    List<String> result = new ArrayList<>();
+	    
+	    for (int i = 0; i < list.getLength(); i++) {
+	    	result.add(list.item(i).getTextContent().trim());
+	    }
+		return result;
 	}
 
 	private boolean doesDatabaseExists(Connection connection, String schema){
@@ -168,21 +172,5 @@ public class SqlUpdater {
 	private BufferedReader openReader(String fileName){
 		InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
 		return new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
-	}
-	
-	@XmlRootElement(name="root")
-	private static class Root{
-		@XmlElement(name="update")
-		List<Update> updates = new ArrayList<>();
-	}
-	
-	@XmlRootElement(name="update")
-	private static class Update{
-		@XmlAttribute
-		String author;
-		@XmlAttribute
-		String date;
-		@XmlValue
-		String sql;
 	}
 }

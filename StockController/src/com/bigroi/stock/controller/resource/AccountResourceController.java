@@ -108,7 +108,7 @@ public class AccountResourceController extends BaseResourseController {
 			user.setPasswordRepeat("");
 		}
 		user.setUsername(user.getUsername().toLowerCase());
-		user.getCompany().setType(AuthenticationHandler.getApplicationType(request.getContextPath()));
+		user.getCompany().setType("TRADER");
 		user.getCompany().setLanguage(getLanguage().toString());
 		
 		userService.addUser(user);

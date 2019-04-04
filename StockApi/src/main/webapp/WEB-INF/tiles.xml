@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Base Definition -->
+	<definition name="base-definition" template="/jsp/layouts/stock-layout.jsp">
+		<put-attribute name="body" value="" />
+		<put-attribute name="userHeader" value="/jsp/templates/userHeader.jsp"/>
+		<put-attribute name="nav-account" value="" cascade="true"/>
+		<put-attribute name="nav-products" value="" cascade="true"/>
+		<put-attribute name="nav-deals" value="" cascade="true"/>
+		<put-attribute name="nav-tenders" value="" cascade="true"/>
+		<put-attribute name="nav-lots" value="" cascade="true"/>
+		<put-attribute name="nav-welcome" value="" cascade="true"/>
+		
+		<put-attribute name="adminHeader" value="/jsp/templates/adminHeader.jsp"/>
+		<put-attribute name="nav-users" value="" cascade="true"/>
+		<put-attribute name="nav-productsExt" value="" cascade="true"/>
+		<put-attribute name="nav-company" value="" cascade="true"/>
+		<put-attribute name="nav-testBG" value="" cascade="true"/>
+		<put-attribute name="nav-label" value="" cascade="true"/>
+		
+		<put-attribute name="footer" value="/jsp/templates/defaultFooter.jsp" />
+		<put-attribute name="page-title" value="/jsp/templates/pageTitle.jsp" />
+		<put-attribute name="add-button" value="" cascade="true"/>
+		<put-attribute name="thb-cls" value="" cascade="true"/>
+	</definition>
+	
+	<definition name="base-form-definition" template="/jsp/layouts/popupLayout.jsp">
+		<put-attribute name="body" value="" />
+	</definition>
+
+	<!-- Index -->
+	
+	<definition name="index" template="/jsp/pages/index.jsp">
+	</definition>
+	
+	<definition name="anotherBrowser" template="/jsp/pages/anotherBrowser.jsp">
+	</definition>
+	
+	<definition name="404" template="/jsp/pages/404.jsp">
+	</definition>
+	
+	<definition name="500" template="/jsp/pages/500.jsp">
+	</definition>
+
+	<!-- Pages -->
+
+	<definition name="companies" extends="base-definition">
+		<put-attribute name="nav-company" value="active" cascade="true"/>
+		<put-attribute name="body" value="/jsp/pages/companies.jsp" />
+		<put-attribute name="thb-cls" value="thb" cascade="true"/>
+	</definition>
+
+	<definition name="myLots" extends="base-definition">
+		<put-attribute name="nav-lots" value="active" cascade="true"/>
+		<put-attribute name="body" value="/jsp/pages/myLots.jsp" />
+		<put-attribute name="add-button" value="/jsp/templates/addButton.jsp" cascade="true"/>
+	</definition>
+	
+	<definition name="myDeals" extends="base-definition">
+		<put-attribute name="nav-deals" value="active" cascade="true"/>
+		<put-attribute name="body" value="/jsp/pages/myDeals.jsp" />
+		<put-attribute name="thb-cls" value="thb" cascade="true"/>
+	</definition>
+	
+	<definition name="deal" extends="base-definition">
+		<put-attribute name="nav-deals" value="active" cascade="true"/>
+		<put-attribute name="body" value="/jsp/forms/deal.jsp" />
+		<put-attribute name="thb-cls" value="thb" cascade="true"/>
+	</definition>
+
+	<definition name="myTenders" extends="base-definition">
+		<put-attribute name="nav-tenders" value="active" cascade="true" />
+		<put-attribute name="body" value="/jsp/pages/myTenders.jsp" />
+		<put-attribute name="add-button" value="/jsp/templates/addButton.jsp" cascade="true"/>
+	</definition>
+
+	<definition name="products" extends="base-definition">
+		<put-attribute name="nav-products" value="active" cascade="true"/>
+		<put-attribute name="body" value="/jsp/pages/products.jsp" />
+		<put-attribute name="thb-cls" value="thb" cascade="true"/>
+	</definition>
+	
+	<definition name="categories" extends="base-definition">
+		<put-attribute name="nav-products" value="active" cascade="true"/>
+		<put-attribute name="body" value="/jsp/pages/categories.jsp" />
+		<put-attribute name="add-button" value="/jsp/templates/addButton.jsp" cascade="true"/>
+	</definition>
+
+	<definition name="productsForAdmin" extends="base-definition">
+		<put-attribute name="nav-productsExt" value="active" cascade="true"/>
+		<put-attribute name="body" value="/jsp/pages/productsForAdmin.jsp" />
+		<put-attribute name="add-button" value="/jsp/templates/addButton.jsp" cascade="true"/>
+	</definition>
+
+	<definition name="tradeOffers" extends="base-definition">
+		<put-attribute name="nav-products" value="active" cascade="true"/>
+		<put-attribute name="body" value="/jsp/pages/tradeOffers.jsp" />
+		<put-attribute name="thb-cls" value="thb" cascade="true"/>
+	</definition>
+
+	<definition name="testBG" extends="base-definition">
+		<put-attribute name="nav-testBG" value="active" cascade="true"/>
+		<put-attribute name="body" value="/jsp/pages/test/testBG.jsp" />
+		<put-attribute name="thb-cls" value="thb"/>
+	</definition> 
+	
+	<definition name="resetPassw" extends="base-definition">
+		<put-attribute name="body" value="/jsp/pages/resetPassw.jsp" />
+		<put-attribute name="thb-cls" value="thb" cascade="true"/>
+	</definition>  
+	
+	<definition name="myAddresses" extends="base-definition">
+		<put-attribute name="body" value="/jsp/pages/myAddresses.jsp" />
+		<put-attribute name="add-button" value="/jsp/templates/addButton.jsp" cascade="true"/>
+	</definition> 
+	
+	<definition name="lables" extends="base-definition">
+		<put-attribute name="nav-label" value="active" cascade="true"/>
+		<put-attribute name="body" value="/jsp/pages/lables.jsp" />
+		<put-attribute name="add-button" value="/jsp/templates/addButton.jsp" cascade="true"/>
+	</definition> 
+	
+	<!-- forms -->
+	<definition name="login" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/login.jsp" />
+	</definition>
+
+	<definition name="registration" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/registration.jsp" />
+	</definition>
+	
+	<definition name="account" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/account.jsp" />
+	</definition>
+	
+	<definition name="lotForm" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/lot.jsp" />
+	</definition>
+	
+	<definition name="testLotForm" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/testLot.jsp" />
+	</definition>
+	
+	<definition name="productForm" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/product.jsp" />
+	</definition>
+	
+	<definition name="categoryForm" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/categoryForm.jsp" />
+	</definition>
+	
+	<definition name="message" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/message.jsp" />
+	</definition> 
+	
+	<definition name="tenderForm" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/tender.jsp" />
+	</definition>
+	
+	<definition name="testTenderForm" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/testTender.jsp" />
+	</definition>
+	
+	<definition name="feedback" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/feedback.jsp" />
+	</definition>
+	
+	<definition name="addressForm" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/address.jsp" />
+	</definition>
+	
+	<definition name="resetForm" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/resetForm.jsp" />
+	</definition>
+	
+	<definition name="labelForm" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/label.jsp" />
+	</definition>
+	
+	<definition name="feedbackDealForm" extends="base-form-definition">
+		<put-attribute name="body" value="/jsp/forms/feedbackDeal.jsp" />
+	</definition>
+	
+</tiles-definitions>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -24,21 +25,26 @@ import com.bigroi.stock.util.LabelUtil;
 import com.bigroi.stock.util.exception.StockRuntimeException;
 
 @Controller
-public class CommonRenderingController extends BaseRenderingController {
+public class CommonRenderingController extends BaseRenderingController implements ErrorController{
 
 	private static final String RESET_PASSW_PAGE = "resetPassw";
 
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping("404")
-	public ModelAndView handle404() {
-		return createModelAndView("404");
+	@Override
+	public String getErrorPath() {
+		return "/error";
 	}
-
-	@RequestMapping("500")
-	public ModelAndView handle500() {
-		return createModelAndView("500");
+	
+	@RequestMapping("/error")
+	public ModelAndView handleError(HttpServletRequest request) {
+		Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
+		switch (statusCode) {
+		case 404:return createModelAndView("404");
+		default: return createModelAndView("500");
+		}
+		
 	}
 
 	@RequestMapping("/Login")

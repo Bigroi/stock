@@ -50,7 +50,7 @@ public class DbClassesTest extends BaseTest {
     		//when
     			Object methodResult = descriptor.getReadMethod().invoke(instance);
     		//than
-    			boolean accessable = field.isAccessible();
+    			boolean accessable = field.canAccess(instance);
     			field.setAccessible(true);
     			Assert.assertEquals(field.get(instance), methodResult);
     			field.setAccessible(accessable);
@@ -61,7 +61,7 @@ public class DbClassesTest extends BaseTest {
     @Test
     @Parameters(method = "testData")
     public void setterTest(Class<?> clazz) throws Exception{
-    	Object instance = clazz.newInstance();
+    	Object instance = clazz.getConstructor().newInstance();
     	for (Field field : clazz.getDeclaredFields()){
     		if (Modifier.isFinal(field.getModifiers()) || Modifier.isStatic(field.getModifiers())) {
 				continue;
@@ -73,7 +73,7 @@ public class DbClassesTest extends BaseTest {
     		//when
     			descriptor.getWriteMethod().invoke(instance, value);
     		//than
-    			boolean accessable = field.isAccessible();
+    			boolean accessable = field.canAccess(instance);
     			field.setAccessible(true);
     			Assert.assertEquals(value, field.get(instance));
     			field.setAccessible(accessable);
