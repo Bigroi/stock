@@ -84,6 +84,7 @@
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<version>9.0.17</version>
+			<scope>compile</scope>
 		</dependency>
 		
 		<dependency>

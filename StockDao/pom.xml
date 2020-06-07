@@ -12,11 +12,6 @@
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
-		<resources>
-			<resource>
-				<directory>resource-${ENV_NAME}</directory>
-			</resource>
-		</resources>
 	</build>
 	<dependencies>
 		<dependency>

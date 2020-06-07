@@ -22,7 +22,6 @@ import com.bigroi.stock.messager.message.deal.SuccessDealMessageForBuyer;
 import com.bigroi.stock.messager.message.deal.SuccessDealMessageForSeller;
 
 @Configuration
-@PropertySource("classpath:mail.properties")
 public class MessagerConfiguration {
 
 	@Value("${mail.smtp.auth}")
