@@ -1,3 +1,5 @@
+spring:
+  profiles: dev
 server:
   port: 8090
 
@@ -15,9 +17,34 @@ mail:
   adminUser: e.stock.belarus@gmail.com
   serverAdress: http://localhost:8080/
 
-dev_env: true
 data:
   db:
     url: jdbc:mysql://localhost:3306/stock?useUnicode=true&characterEncoding=UTF-8
     name: root
     pass: root123
+
+---
+spring:
+  profiles: staging
+server:
+  port: 80
+
+mail:
+  smtp:
+    auth: true
+    starttls:
+      enable: true
+    host: smtp.gmail.com
+    port: 587
+  mime:
+    charset: UTF-8
+  user: e.stock.belarus@gmail.com
+  password: P&ssw0rd
+  adminUser: e.stock.belarus@gmail.com
+  serverAdress: https://test.yourtrader.eu
+
+data:
+  db:
+    url: jdbc:mysql://stock-db.cbvszsmbiqz2.eu-central-1.rds.amazonaws.com:3306/stock?useUnicode=true&characterEncoding=UTF-8
+    name: root
+    pass: Vbycr123

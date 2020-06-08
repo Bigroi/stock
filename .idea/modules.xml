@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/StockCommon/Common.iml" filepath="$PROJECT_DIR$/StockCommon/Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StockController/Controller.iml" filepath="$PROJECT_DIR$/StockController/Controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StockDao/Dao.iml" filepath="$PROJECT_DIR$/StockDao/Dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StockDocuments/Documents.iml" filepath="$PROJECT_DIR$/StockDocuments/Documents.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StockJobs/Jobs.iml" filepath="$PROJECT_DIR$/StockJobs/Jobs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StockMessage/Message.iml" filepath="$PROJECT_DIR$/StockMessage/Message.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StockSecurity/Security.iml" filepath="$PROJECT_DIR$/StockSecurity/Security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StockService/Service.iml" filepath="$PROJECT_DIR$/StockService/Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StockSql/Sql.iml" filepath="$PROJECT_DIR$/StockSql/Sql.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StockApi/StockApi.iml" filepath="$PROJECT_DIR$/StockApi/StockApi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StockUtil/Util.iml" filepath="$PROJECT_DIR$/StockUtil/Util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_rest-client/user-service (1).iml" filepath="$PROJECT_DIR$/_rest-client/user-service (1).iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="StockApi" />
+        <module name="Service" />
+        <module name="Documents" />
+        <module name="Common" />
+        <module name="Message" />
+        <module name="Security" />
+        <module name="Sql" />
+        <module name="Util" />
+        <module name="Controller" />
+        <module name="Jobs" />
+        <module name="Dao" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="bid-service" target="11" />
+      <module name="Common" target="11" />
+      <module name="Controller" target="11" />
+      <module name="Dao" target="11" />
+      <module name="db" target="11" />
+      <module name="Documents" target="11" />
+      <module name="Jobs" target="11" />
+      <module name="Message" target="11" />
+      <module name="Security" target="11" />
+      <module name="Service" target="11" />
+      <module name="Sql" target="11" />
+      <module name="stock" target="11" />
+      <module name="Stock" target="11" />
+      <module name="StockApi" target="11" />
+      <module name="user-service" target="11" />
+      <module name="Util" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

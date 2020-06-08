@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="StockApi:war">
+    <output-path>$PROJECT_DIR$/StockApi/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>StockApi</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="StockApi-0.1.war">
+      <element id="artifact" artifact-name="StockApi:war exploded" />
+    </root>
+  </artifact>
+</component>
