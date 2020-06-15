@@ -107,6 +107,7 @@
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.29" level="project" />
     <orderEntry type="library" name="Maven: org.mockito:mockito-all:1.9.5" level="project" />
+    <orderEntry type="module" module-name="Jobs" />
     <orderEntry type="library" name="Maven: jstl:jstl:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-core:3.0.8" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-api:3.0.8" level="project" />

@@ -104,6 +104,9 @@
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.29" />
           <element id="library" level="project" name="Maven: org.mockito:mockito-all:1.9.5" />
+          <element id="archive" name="Jobs-0.1.jar">
+            <element id="module-output" name="Jobs" />
+          </element>
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
           <element id="library" level="project" name="Maven: org.apache.tiles:tiles-core:3.0.8" />
           <element id="library" level="project" name="Maven: org.apache.tiles:tiles-api:3.0.8" />
