@@ -1,39 +1,36 @@
 package com.bigroi.stock.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import com.bigroi.stock.bean.db.Email;
 import com.bigroi.stock.dao.EmailDao;
-import com.bigroi.stock.messager.MailManager;
+import com.bigroi.stock.messager.email.EmailClient;
 import com.bigroi.stock.service.MessageService;
+import org.springframework.transaction.annotation.Transactional;
 
-@Repository
-public class MessageServiceImpl implements MessageService{
+import java.util.List;
 
-	@Autowired
-	private EmailDao emailDao;
-	
-	@Autowired
-	private MailManager mailManager;
-	
-	@Override
-	public void sendAllEmails(){
-		List<Email> emails;
-		do {
-			emails = emailDao.getAll();
-			for (Email email : emails) {
-				mailManager.send(email);
-				emailDao.deleteById(email.getId());
-			}
-		} while (!emails.isEmpty());
-	}
+public class MessageServiceImpl implements MessageService {
 
-	@Override
-	public void add(Email email) {
-		emailDao.add(email);
-	}
-	
+    private final EmailDao emailDao;
+    private final EmailClient emailClient;
+
+    public MessageServiceImpl(EmailDao emailDao, EmailClient emailClient) {
+        this.emailDao = emailDao;
+        this.emailClient = emailClient;
+    }
+
+    @Override
+    public void sendAllEmails() {
+        List<Email> emails;
+        do {
+            emails = emailDao.getAll();
+            emails.forEach(this::sendEmail);
+        } while (!emails.isEmpty());
+    }
+
+    @Transactional
+    public void sendEmail(Email email) {
+        emailDao.deleteById(email.getId());
+        emailClient.sendMessageNow(email);
+    }
+
 }

@@ -3103,6 +3103,37 @@ table.dataTable.order-column.stripe tbody tr.even>.sorting_1 {
 	border: none;
 	cursor: default;
 }
+
+.bid-alert {
+	background: #ffeb3b;
+	margin-bottom: 1.2em;
+	padding: 0.2em 0.5em;
+	border-radius: 1em;
+	margin-left: 0.5em;
+	color: #ffffff;
+	font-size: 0.4em;
+}
+
+.deal-alert {
+	background: #f44336;
+	padding: 0.2em 0.5em;
+	border-radius: 1em;
+	margin-left: 0.5em;
+	margin-bottom: 1.2em;
+	color: #ffffff;
+	font-size: 0.4em;
+}
+
+.deal-on-approve {
+	background: #0fc668;
+	padding: 0.2em 0.5em;
+	border-radius: 1em;
+	margin-left: 0.5em;
+	margin-bottom: 1.2em;
+	color: #ffffff;
+	font-size: 0.4em;
+}
+
 @media (max-width: 1280px) {
 	.how-it-works .container select {
 		width: 225px;

@@ -4,11 +4,11 @@ import com.bigroi.stock.bean.db.TempKey;
 
 public interface GenerateKeyDao {
 
-	boolean checkResetKey(String email, String key);
+    boolean checkResetKey(String email, String key);
 
-	TempKey generateKey();
+    TempKey generateKey();
 
-	void deleteGenerateKeysByDate();
+    void deleteGenerateKeysByDate();
 
-	void deleteGenerateKey(String code);
+    void deleteGenerateKey(String code);
 }

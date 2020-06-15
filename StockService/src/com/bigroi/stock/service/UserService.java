@@ -1,23 +1,20 @@
 package com.bigroi.stock.service;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Service;
-
 import com.bigroi.stock.bean.db.StockUser;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-@Service
-public interface UserService extends UserDetailsService{
+public interface UserService extends UserDetailsService {
 
-	void addUser(StockUser user);
-	
-	void update(StockUser user);
-	
-	void deleteGenerateKeys();
-	
-	void sendLinkResetPassword(String username);
-	
-	boolean changePassword(String email, String code);
+    void addUser(StockUser user);
 
-	StockUser getByUsername(String username);
-	
+    void update(StockUser user);
+
+    void deleteGenerateKeys();
+
+    void sendLinkResetPassword(String username);
+
+    boolean changePassword(String email, String code);
+
+    StockUser getByUsername(String username);
+
 }

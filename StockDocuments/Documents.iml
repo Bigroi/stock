@@ -40,7 +40,7 @@
     <orderEntry type="module" module-name="Dao" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.3.9.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.14" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.49" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: pl.pragmatists:JUnitParams:1.1.1" level="project" />
   </component>
 </module>

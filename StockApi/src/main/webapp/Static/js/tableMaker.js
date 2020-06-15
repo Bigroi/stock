@@ -50,6 +50,10 @@ function makeTable(url, $tableElement){
 		if(model.editColumn && getCell(model.editColumn, $row)){
 			addEditRemoveIcons(data, $row, this);
 		}
+		if (data.alert) {
+			var $alert = $(`<span class='bid-alert' style="font-size: 1em">${l10n.translate('label.alert.' + data.alert)}</span>`);
+			getCell("productName", $row).append($alert[0]);
+		}
 	}
 	
 	function addEditRemoveIcons(data, $row, $table){
@@ -145,6 +149,9 @@ function makeTable(url, $tableElement){
         			    	return;
         			    }
         			} );
+        			if (answer.message) {
+						showMessageDialog(answer.message, "success");
+					}
         		} else {
         			showMessageDialog(answer.message, "error");
         		}

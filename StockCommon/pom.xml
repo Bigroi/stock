@@ -13,14 +13,23 @@
 	<properties>
 		<maven.compiler.target>11</maven.compiler.target>
 	    <maven.compiler.source>11</maven.compiler.source>
+		<log4j-resource>resource-local</log4j-resource>
 	</properties>
+	<profiles>
+		<profile>
+			<id>test</id>
+			<properties>
+				<log4j-resource>resource-server-demo</log4j-resource>
+			</properties>
+		</profile>
+	</profiles>
 	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
 		<resources>
 			<resource>
-				<directory>resource-${ENV_NAME}</directory>
+				<directory>${log4j-resource}</directory>
 			</resource>
 		</resources>
 	</build>

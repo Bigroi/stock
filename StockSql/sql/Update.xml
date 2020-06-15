@@ -1,3 +1,56 @@
 <root>
-<update></update>
+    <update>
+        ALTER TABLE `LOT`
+        ADD COLUMN `alert` CHAR(1) NOT NULL DEFAULT 'N' AFTER `category_id`
+    </update>
+    <update>
+        ALTER TABLE `TENDER`
+        ADD COLUMN `alert` CHAR(1) NOT NULL DEFAULT 'N' AFTER `category_id`
+    </update>
+    <update>
+        ALTER TABLE `DEAL`
+        ADD COLUMN `seller_alert` VARCHAR(1) NOT NULL DEFAULT 'N' AFTER `category_id`,
+        ADD COLUMN `buyer_alert` VARCHAR(1) NOT NULL DEFAULT 'N' AFTER `seller_alert`
+    </update>
+    <update>
+        INSERT INTO LABEL (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('lot', 'expired', 'Some of your sell requests are out of date and will not take a part in future trade sessions. They are still in your list as drafts.', 'Некоторые из Ваших заявок на продажу устарели и блольше не будут участвовать в торгах. Они всё ещё присутвтвуют в вашем списке как черновики.', 'Twoi oferty sprzedaży wygasłi i nie zostanie wystawiony w przyszłych sesjach handlowych. ');
+    </update>
+    <update>
+        INSERT INTO LABEL (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('tender', 'expired', 'Some of your buy requests are out of date and will not take a part in future trade sessions. They are still in your list as drafts.', 'Некоторые из Вашых заявок на покупку устарели и блольше не будут участвовать в торгах. Они всё ещё присутвтвуют в вашем списке как черновики.', 'Twoi oferty kupna wygasłi i nie zostanie wystawiony w przyszłych sesjach handlowych. ');
+    </update>
+    <update>
+        INSERT INTO LABEL (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('alert', 'expired', 'Expired', 'Устарела', 'Wygasła');
+    </update>
+    <update>
+        INSERT INTO LABEL (`category`, `name`, `en_us`, `ru_ru`, `pl`) VALUES ('message', 'success', 'Congratulations', 'Поздравляем', 'Gratulacje');
+    </update>
+    <update>
+        INSERT INTO LABEL (`category`, `name`, `en_us`, `ru_ru`, `pl`)
+        VALUES ('bid', 'activated-morning',
+        'Your request successfully registered and will take part in next trading session at 9-00 UTC',
+        'Ваша заявка успешно зарегестрирована и будет принимать участие в следующей торговой сессии в 9-00 UTC',
+        'Twoja oferta zostało pomyślnie zarejestrowana i zostanie wystawiony w następnej sesji handlowej a 9-00 UTC');
+    </update>
+    <update>
+        INSERT INTO LABEL (`category`, `name`, `en_us`, `ru_ru`, `pl`)
+        VALUES ('bid', 'activated-evening',
+        'Your request successfully registered and will take part in next trading session at 21-00 UTC',
+        'Ваша заявка успешно зарегестрирована и будет принимать участие в следующей торговой сессии в 21-00 UTC',
+        'Twoja oferta zostało pomyślnie zarejestrowana i zostanie wystawiony w następnej sesji handlowej a 21-00 UTC');
+    </update>
+    <update>
+        INSERT INTO LABEL (`category`, `name`, `en_us`, `ru_ru`, `pl`)
+        VALUES ('bid', 'deactivated',
+        'Your request succesfully deactivated and will not take part in next trading sessions',
+        'Ваша заявка успешно деактивирована и не будет принимать участие в следующих торговых сессиях',
+        'Twoja oferta zostało pomyślnie deaktywowana i nie zostanie wystawiony w następnyh sesjah handlowyh');
+    </update>
+
+    <update>
+        INSERT INTO LABEL (`category`, `name`, `en_us`, `ru_ru`, `pl`)
+        VALUES ('bid', 'saved',
+        'Your request save as a draft and will not take part in next trading sessions. You can edit status of your request in the table.',
+        'Ваша заявка сохранена как ччерновик и не будет принимать участие в следующих торговых сессиях. Вы можете изменить статус вашей заявки в таблице.',
+        'Twoja oferta zapisana jako wersja robocza i nie zostanie wystawiony w następnyh sesjah handlowyh. Możesz edytować status swojej oferty w tabeli');
+    </update>
 </root>

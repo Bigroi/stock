@@ -1,25 +1,24 @@
 package com.bigroi.stock.dao;
 
-import java.util.List;
-
 import com.bigroi.stock.bean.common.CompanyStatus;
 import com.bigroi.stock.bean.db.Company;
 
+import java.util.List;
 
 public interface CompanyDao {
 
-	Company getById(long id);
+    Company getById(long id);
 
-	void add(Company company);
+    void add(Company company);
 
-	boolean update(Company company);
-	
-	List<Company> getAllCompany();
+    boolean update(Company company);
 
-	void setStatus(long companyId, CompanyStatus status);
+    List<Company> getAllCompany();
 
-	Company getByRegNumber(String regNumber);
+    void setStatus(long companyId, CompanyStatus status);
 
-	Company getByName(String name);
+    Company getByRegNumber(String regNumber);
+
+    Company getByName(String name);
 
 }

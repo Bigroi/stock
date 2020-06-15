@@ -1,42 +1,43 @@
 package com.bigroi.stock.dao;
 
-import java.util.Collection;
-import java.util.List;
-
 import com.bigroi.stock.bean.common.BidStatus;
 import com.bigroi.stock.bean.db.Bid;
 import com.bigroi.stock.bean.db.TradeBid;
 
+import java.util.Collection;
+import java.util.List;
+
 public interface BidDao<T extends Bid, E extends TradeBid> {
 
-	void update(Collection<E> bids);
-	
-	void add(T bid);
-	
-	boolean update(T bid, long companyId);
-	
-	T getById(long id, long companyId);
-	
-	List<T> getByCompanyId(long companyId);
-	
-	void delete(long id, long companyId);
+    void update(Collection<E> bids);
 
-	boolean setStatusById(long id, long companyId, BidStatus active);
+    void add(T bid);
 
-	boolean setStatusByCompanyId(long companyId, BidStatus inactive);
+    boolean update(T bid, long companyId);
 
-	boolean setStatusByProductId(long id, BidStatus inactive);
+    T getById(long id, long companyId);
 
-	List<T> getActive();
+    List<T> getByCompanyId(long companyId);
 
-	List<T> getActiveByProductId(long productId);
-	
-	void close();
+    void delete(long id, long companyId);
 
-	List<T> getByDescription(String description);
+    boolean setStatusById(long id, long companyId, BidStatus active);
 
-	void deleteByDescription(String description);
+    boolean setStatusByCompanyId(long companyId, BidStatus inactive);
 
-	void updateStatus(List<T> lots);
-	
+    boolean setStatusByProductId(long id, BidStatus inactive);
+
+    List<T> getActive();
+
+    List<T> getActiveByProductId(long productId);
+
+    void close();
+
+    List<T> getByDescription(String description);
+
+    void deleteByDescription(String description);
+
+    void updateStatus(List<T> lots);
+
+    void resetAlerts(long companyId);
 }

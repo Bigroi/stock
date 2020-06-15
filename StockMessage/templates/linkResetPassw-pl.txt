@@ -1,5 +1,0 @@
-Witaj, @username !
-
-Prosimy, użyj ten link, aby zmienić swoje hasło @link.
-
-Your trader!

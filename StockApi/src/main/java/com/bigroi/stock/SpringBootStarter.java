@@ -36,7 +36,7 @@ public class SpringBootStarter implements WebMvcConfigurer {
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-        TilesViewResolver viewResolver = new TilesViewResolver();
+        var viewResolver = new TilesViewResolver();
         registry.viewResolver(viewResolver);
     }
 

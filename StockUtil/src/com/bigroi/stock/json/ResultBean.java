@@ -2,43 +2,43 @@ package com.bigroi.stock.json;
 
 public class ResultBean {
 
-	private int result;
-	private Object data;
-	private String message;
+    private int result;
+    private Object data;
+    private String message;
 
-	public ResultBean() {
+    public ResultBean() {
 
-	}
+    }
 
-	public ResultBean(int result, String message) {
-		this.result = result;
-		this.message = message;
-	}
-	
-	public ResultBean(int result, Object data, String message) {
-		this.result = result;
-		this.message = message;
-		this.data = data;
-	}
+    public ResultBean(int result, String message) {
+        this.result = result;
+        this.message = message;
+    }
 
-	public int getResult() {
-		return result;
-	}
+    public ResultBean(int result, Object data, String message) {
+        this.result = result;
+        this.message = message;
+        this.data = data;
+    }
 
-	public Object getData() {
-		return data;
-	}
+    public int getResult() {
+        return result;
+    }
 
-	@Override
-	public String toString() {
-		return GsonUtil.getGson().toJson(this);
-	}
+    public Object getData() {
+        return data;
+    }
 
-	public String getMessage() {
-		return message;
-	}
-	
-	public void setData(Object data) {
-		this.data = data;
-	}
+    @Override
+    public String toString() {
+        return GsonUtil.getGson().toJson(this);
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
 }

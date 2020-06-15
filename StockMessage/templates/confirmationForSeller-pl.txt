@@ -1,9 +1,0 @@
-Prosimy, zatwierdź umowę
-Znaleziono kontrahenta dla twojej oferty sprzedaży @product. Cena wynosi @price.  
-
-Ofertę możesz znaleć na naszej stronie @server w zakładce Oferty.
-Oferta będzie dostępna przez 12 godzin lub do momentu odrzucenia jej przez kontrahenta.
-
-W przypadku odrzucenia oferty lub nie podjęcia żadnego działania z Twojej strony oraz strony kontrahenta w przeciągu 12 godzin twoja oferta kupna zostanie wystawiona w następnej sesji handlowej.
-
-Your trader!

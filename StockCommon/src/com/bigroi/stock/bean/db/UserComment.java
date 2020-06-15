@@ -5,79 +5,73 @@ import java.util.Date;
 
 public class UserComment implements Serializable {
 
-	private static final long serialVersionUID = -2101255437447756054L;
+    private static final long serialVersionUID = -2101255437447756054L;
 
-	private long id;
+    private long id;
+    private long companyId;
+    private long reporterId;
+    private int mark;
+    private String comment;
+    private Date commentDate;
+    private long dealId;
 
-	private long companyId;
+    public long getDealId() {
+        return dealId;
+    }
 
-	private long reporterId;
+    public void setDealId(long dealId) {
+        this.dealId = dealId;
+    }
 
-	private int mark;
+    public long getId() {
+        return id;
+    }
 
-	private String comment;
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	private Date commentDate;
-	
-	private long dealId;
-	
-	public long getDealId() {
-		return dealId;
-	}
-	
-	public void setDealId(long dealId) {
-		this.dealId = dealId;
-	}
-	
-	public long getId() {
-		return id;
-	}
+    public long getCompanyId() {
+        return companyId;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setCompanyId(long companyId) {
+        this.companyId = companyId;
+    }
 
-	public long getCompanyId() {
-		return companyId;
-	}
+    public long getReporterId() {
+        return reporterId;
+    }
 
-	public void setCompanyId(long companyId) {
-		this.companyId = companyId;
-	}
+    public void setReporterId(long reporterId) {
+        this.reporterId = reporterId;
+    }
 
-	public long getReporterId() {
-		return reporterId;
-	}
+    public int getMark() {
+        return mark;
+    }
 
-	public void setReporterId(long reporterId) {
-		this.reporterId = reporterId;
-	}
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
 
-	public int getMark() {
-		return mark;
-	}
+    public String getComment() {
+        return comment;
+    }
 
-	public void setMark(int mark) {
-		this.mark = mark;
-	}
+    public Date getCommentDate() {
+        return commentDate;
+    }
 
-	public String getComment() {
-		return comment;
-	}
-	
-	public Date getCommentDate() {
-		return commentDate;
-	}
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+    public void setCommentDate(Date commentDate) {
+        this.commentDate = commentDate;
+    }
 
-	public void setCommentDate(Date commentDate) {
-		this.commentDate = commentDate;
-	}
-	
-	public Date getDate() {
-		return new Date();
-	}
+    public Date getDate() {
+        return new Date();
+    }
 }

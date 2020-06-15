@@ -1,15 +1,15 @@
 package com.bigroi.stock.dao;
 
-import java.util.List;
-
 import com.bigroi.stock.bean.db.Email;
+
+import java.util.List;
 
 public interface EmailDao {
 
-	List<Email> getAll();
+    List<Email> getAll();
 
-	void add(Email email);
+    void add(Email email);
 
-	boolean deleteById(long id);
+    boolean deleteById(long id);
 
 }

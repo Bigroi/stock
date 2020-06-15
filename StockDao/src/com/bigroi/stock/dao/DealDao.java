@@ -1,31 +1,32 @@
 package com.bigroi.stock.dao;
 
-import java.util.List;
-
 import com.bigroi.stock.bean.db.Deal;
 import com.bigroi.stock.bean.db.TradeLot;
 import com.bigroi.stock.bean.db.TradeTender;
 
+import java.util.List;
+
 public interface DealDao {
-	
-	void getPosibleDeals(List<TradeLot> tradeLots, List<TradeTender> tradeTenders, long productId);
 
-	Deal getById(long id);
+    void getPossibleDeals(List<TradeLot> tradeLots, List<TradeTender> tradeTenders, long productId);
 
-	List<Deal> getOnApprove();
+    Deal getById(long id);
 
-	void deleteOnApprove();
+    List<Deal> getOnApprove();
 
-	void add(List<Deal> deals);
+    void deleteOnApprove();
 
-	List<Deal> getByCompanyId(long companyId);
+    void add(List<Deal> deals);
 
-	public void setBuyerStatus(Deal deal);
+    List<Deal> getByCompanyId(long companyId);
 
-	public void setSellerStatus(Deal deal);
-	
-	public List<Deal> getListBySellerAndBuyerApproved();
+    public void setBuyerStatus(Deal deal);
 
-	void getTestPossibleDeals(List<TradeLot> lots, List<TradeTender> tenders, long productId, String sessionId);
+    public void setSellerStatus(Deal deal);
 
+    public List<Deal> getListBySellerAndBuyerApproved();
+
+    void getTestPossibleDeals(List<TradeLot> lots, List<TradeTender> tenders, long productId, String sessionId);
+
+    void resetAlerts(long companyId);
 }

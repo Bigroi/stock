@@ -1,21 +1,18 @@
 package com.bigroi.stock.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.bigroi.stock.bean.db.Company;
 
-@Service
+import java.util.List;
+
 public interface CompanyService {
 
-	void changeStatusCompany(long id);
-	
-	List<Company> getAllCompanies();
-	
-	Company getCompanyById(long id);
+    void changeStatusCompany(long id);
 
-	Company getByName(String name);
+    List<Company> getAllCompanies();
 
-	Company getByRegNumber(String regNumber);
+    Company getCompanyById(long id);
+
+    Company getByName(String name);
+
+    Company getByRegNumber(String regNumber);
 }

@@ -1,21 +1,21 @@
 package com.bigroi.stock.service;
 
-import java.util.List;
-
 import com.bigroi.stock.bean.db.ProductCategory;
+
+import java.util.List;
 
 public interface ProductCategoryService {
 
-void add(ProductCategory category);
-	
-	void merge(ProductCategory category);
-	
-	void delete(ProductCategory category);
-	
-	List<ProductCategory> getByProductId(long productId);
+    void add(ProductCategory category);
 
-	ProductCategory getById(long id, long productId);
+    void merge(ProductCategory category);
 
-	List<ProductCategory> getActiveByProductId(long productId);
-	
+    void delete(ProductCategory category);
+
+    List<ProductCategory> getByProductId(long productId);
+
+    ProductCategory getById(long id, long productId);
+
+    List<ProductCategory> getActiveByProductId(long productId);
+
 }

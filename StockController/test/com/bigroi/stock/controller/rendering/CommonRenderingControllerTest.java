@@ -42,7 +42,7 @@ public class CommonRenderingControllerTest extends BaseTest {
 		Mockito.when(loginUser.getPrincipal()).thenReturn(new StockUser());
 		Mockito.when(request.getContextPath()).thenReturn(PATH);
 		// when
-		ModelAndView modelAndViewActual = commonRenderingController.index("ru_ru", request, loginUser);
+		ModelAndView modelAndViewActual = commonRenderingController.index("ru_ru", loginUser);
 		// then
 		Assert.assertNotNull(modelAndViewActual);
 		Mockito.verify(loginUser, Mockito.times(1)).getPrincipal();
@@ -56,7 +56,7 @@ public class CommonRenderingControllerTest extends BaseTest {
 		// mock
 		Mockito.when(loginUser.getPrincipal()).thenReturn(new Object());
 		// whenW
-		ModelAndView modelAndViewActual = commonRenderingController.index("ru_ru", request, loginUser);
+		ModelAndView modelAndViewActual = commonRenderingController.index("ru_ru", loginUser);
 		// then
 		Assert.assertEquals(RETURN_PAGE, modelAndViewActual.getViewName());
 		Mockito.verify(loginUser, Mockito.times(1)).getPrincipal();
