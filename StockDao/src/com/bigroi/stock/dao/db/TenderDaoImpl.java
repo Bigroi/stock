@@ -13,14 +13,14 @@ import java.sql.*;
 public class TenderDaoImpl extends BidBaseDao<Tender, TradeTender> implements TenderDao {
 
     private static final String ADD_TENDER =
-            " INSERT INTO TENDER "
+            " INSERT INTO \"TENDER\" "
                     + " (DESCRIPTION, PRODUCT_ID, CATEGORY_ID, PRICE, MIN_VOLUME, "
                     + " MAX_VOLUME, COMPANY_ID, `STATUS`, CREATION_DATE, EXPARATION_DATE, "
                     + " ADDRESS_ID, DISTANCE, PACKAGING, PROCESSING, ALERT) "
                     + " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'N') ";
 
     private static final String UPDATE_TENDER_BY_ID_AND_COMPANY =
-            " UPDATE TENDER "
+            " UPDATE \"TENDER\" "
                     + " SET DESCRIPTION = ?, PRODUCT_ID = ?, CATEGORY_ID = ?, PRICE = ?, MIN_VOLUME = ?, "
                     + " MAX_VOLUME = ?, `STATUS` = ?, CREATION_DATE = ?, EXPARATION_DATE = ?, "
                     + " ADDRESS_ID = ?, DISTANCE = ?, PACKAGING = ?, PROCESSING = ?"

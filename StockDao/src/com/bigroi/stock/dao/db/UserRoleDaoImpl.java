@@ -13,7 +13,7 @@ import java.util.List;
 public class UserRoleDaoImpl implements UserRoleDao {
 
     private static final String ADD_USER_ROLE_BY_USER_ID =
-            " INSERT INTO USER_ROLE (USER_ID, ROLE) "
+            " INSERT INTO \"USER_ROLE\" (USER_ID, ROLE) "
                     + " VALUES(?, ?) ";
 
     private final DataSource datasource;

@@ -21,10 +21,10 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
-    private static final String UPDATE_USER = "UPDATE USER ";
+    private static final String UPDATE_USER = "UPDATE \"USER\" ";
 
     private static final String ADD_USER =
-            "INSERT INTO USER (USERNAME, PASSWORD, COMPANY_ID) "
+            "INSERT INTO \"USER\" (USERNAME, PASSWORD, COMPANY_ID) "
                     + " VALUES (?, ?, ?) ";
 
     private static final String UPDATE_USER_BY_ID =
@@ -37,12 +37,12 @@ public class UserDaoImpl implements UserDao {
                     + " C.NAME, C.PHONE, C.REG_NUMBER, C.LANGUAGE, "
                     + " C.STATUS, A.CITY, A.COUNTRY, A.ADDRESS, C.ADDRESS_ID, "
                     + " A.LONGITUDE, A.LATITUDE, A.COMPANY_ID "
-                    + " FROM  USER U "
-                    + " JOIN COMPANY C "
+                    + " FROM  \"USER\" U "
+                    + " JOIN \"COMPANY\" C "
                     + " ON U.COMPANY_ID = C.ID "
-                    + " JOIN ADDRESS A "
+                    + " JOIN \"ADDRESS\" A "
                     + " ON A.ID = C.ADDRESS_ID "
-                    + " LEFT JOIN USER_ROLE UR "
+                    + " LEFT JOIN \"USER_ROLE\" UR "
                     + " ON U.ID = UR.USER_ID "
                     + " WHERE U.USERNAME = ? AND "
                     + " (C.`STATUS` = '" + CompanyStatus.VERIFIED.name() + "' OR "
@@ -58,7 +58,7 @@ public class UserDaoImpl implements UserDao {
                     + " SET KEY_ID = ? "
                     + " WHERE ID = ? ";
 
-    private static final String UPDATE_COUNT_LOGINS_AND_TIME = " UPDATE USER SET LOGIN_COUNT = LOGIN_COUNT + 1, "
+    private static final String UPDATE_COUNT_LOGINS_AND_TIME = " UPDATE \"USER\" SET LOGIN_COUNT = LOGIN_COUNT + 1, "
             + " LAST_LOGIN = CURRENT_TIMESTAMP() WHERE ID = ? ";
 
     private final DataSource datasource;
