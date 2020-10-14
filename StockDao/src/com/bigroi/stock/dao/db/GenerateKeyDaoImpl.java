@@ -21,23 +21,23 @@ public class GenerateKeyDaoImpl implements GenerateKeyDao {
 
     private static final String GET_GENERATED_KEY =
             "SELECT U.USERNAME "
-                    + " FROM USER U "
+                    + " FROM USER U " // TODO: wrap quotes ??
                     + " JOIN GENERATED_KEY K "
                     + " ON U.KEY_ID = K.ID "
                     + " WHERE U.USERNAME = ? AND K.GENERATED_KEY = ? ";
 
     private static final String ADD_GENERATED_KEY =
-            "INSERT INTO GENERATED_KEY ( GENERATED_KEY, EXPIRATION_TIME) "
+            "INSERT INTO \"GENERATED_KEY\" ( GENERATED_KEY, EXPIRATION_TIME) "
                     + " VALUES (?, ?) ";
 
     public static final String DELETE_ALL_BY_DATE =
             " DELETE "
-                    + " FROM GENERATED_KEY "
+                    + " FROM \"GENERATED_KEY\" "
                     + " WHERE EXPIRATION_TIME < ? ";
 
     public static final String DELETE_ALL_BY_CODE =
             " DELETE "
-                    + " FROM GENERATED_KEY "
+                    + " FROM \"GENERATED_KEY\" "
                     + " WHERE GENERATED_KEY = ? ";
 
     private final DataSource datasource;

@@ -13,14 +13,14 @@ import java.sql.*;
 public class LotDaoImpl extends BidBaseDao<Lot, TradeLot> implements LotDao {
 
     private static final String ADD_LOT =
-            "INSERT INTO LOT "
+            "INSERT INTO \"LOT\" "
                     + " (DESCRIPTION, PRODUCT_ID, CATEGORY_ID, PRICE, MIN_VOLUME, "
                     + " MAX_VOLUME, COMPANY_ID, `STATUS`, CREATION_DATE, EXPARATION_DATE, "
                     + " ADDRESS_ID, FOTO, DISTANCE, ALERT) "
                     + " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'N') ";
 
     private static final String UPDATE_LOT_BY_ID_AND_SELLER =
-            "UPDATE LOT SET "
+            "UPDATE \"LOT\" SET "
                     + " DESCRIPTION = ?, PRODUCT_ID = ?, CATEGORY_ID = ?, PRICE = ?, MIN_VOLUME = ?, "
                     + " MAX_VOLUME = ?, `STATUS` = ?, CREATION_DATE = ?, EXPARATION_DATE = ?, "
                     + " ADDRESS_ID = ?, FOTO = ?, DISTANCE = ? "

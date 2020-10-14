@@ -18,13 +18,13 @@ import java.util.List;
 public class EmailDaoImpl implements EmailDao {
 
     private static final String GET_ALL_EMAILS =
-            " SELECT ID, RECIPIENT, SUBJECT, BODY, FILE, FILE_NAME FROM EMAIL ";
+            " SELECT ID, RECIPIENT, SUBJECT, BODY, FILE, FILE_NAME FROM \"EMAIL\" ";
 
-    private static final String ADD_EMAILS = "INSERT INTO EMAIL "
+    private static final String ADD_EMAILS = "INSERT INTO \"EMAIL\" "
             + " (RECIPIENT, SUBJECT, BODY, FILE, FILE_NAME) "
             + " VALUES (?, ?, ?, ?, ?) ";
 
-    private static final String DELETE_EMAILS_BY_ID = " DELETE FROM EMAIL "
+    private static final String DELETE_EMAILS_BY_ID = " DELETE FROM \"EMAIL\" "
             + " WHERE ID =  ? ";
 
     private final DataSource datasource;

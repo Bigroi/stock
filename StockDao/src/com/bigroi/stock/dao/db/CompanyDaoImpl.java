@@ -20,7 +20,7 @@ import java.util.List;
 
 public class CompanyDaoImpl implements CompanyDao {
 
-    private static final String FROM = " FROM COMPANY ";
+    private static final String FROM = " FROM \"COMPANY\" ";
     private static final String SELECT_ALL_COLUMNS =
             " SELECT ID, NAME, PHONE, REG_NUMBER, STATUS, LANGUAGE ";
 
@@ -29,20 +29,20 @@ public class CompanyDaoImpl implements CompanyDao {
                     + " A.CITY, A.COUNTRY, A.ADDRESS, A.ID ADDRESS_ID, "
                     + " A.LONGITUDE, A.LATITUDE, A.COMPANY_ID, "
                     + " U.USERNAME, C.TYPE "
-                    + " FROM COMPANY C "
-                    + " JOIN ADDRESS A "
+                    + " FROM \"COMPANY\" C "
+                    + " JOIN \"ADDRESS\" A "
                     + " ON C.ADDRESS_ID = A.ID "
                     + " JOIN USER U"
                     + " ON U.COMPANY_ID = C.ID"
                     + " WHERE C.ID = ? ";
 
     private static final String ADD_COMPANY =
-            "INSERT INTO COMPANY "
+            "INSERT INTO \"COMPANY\" "
                     + " (NAME, PHONE, REG_NUMBER, STATUS, TYPE, LANGUAGE) "
                     + " VALUES(?, ?, ?, ?, ?, ?)";
 
     private static final String UPDATE_COMPANY_BY_ID =
-            " UPDATE COMPANY SET NAME = ?, ADDRESS_ID = ?, "
+            " UPDATE \"COMPANY\" SET NAME = ?, ADDRESS_ID = ?, "
                     + " PHONE = ?, REG_NUMBER = ?, STATUS = ?, LANGUAGE = ? "
                     + " WHERE ID = ? ";
 
@@ -61,7 +61,7 @@ public class CompanyDaoImpl implements CompanyDao {
                     + " WHERE REG_NUMBER = ?";
 
     private static final String SET_STATUS_BY_ID =
-            "UPDATE COMPANY SET "
+            "UPDATE \"COMPANY\" SET "
                     + "STATUS = ? "
                     + "WHERE ID = ?";
 

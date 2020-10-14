@@ -20,7 +20,7 @@ public class AddressDaoImpl implements AddressDao {
             "SELECT ID, CITY, COUNTRY, ADDRESS, LATITUDE, "
                     + " LONGITUDE, COMPANY_ID ";
 
-    private static final String FROM = " FROM ADDRESS ";
+    private static final String FROM = " FROM \"ADDRESS\" ";
 
     private static final String GET_ADDRESSES_BY_COMPANY_ID =
             SELECT_ALL_COLUMNS

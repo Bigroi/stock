@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ProductDaoImpl implements ProductDao {
 
-    private static final String FROM_PRODUCT = " FROM PRODUCT ";
+    private static final String FROM_PRODUCT = " FROM \"PRODUCT\" ";
 
     private static final String SELECT_ALL_COLUMNS = "SELECT ID, NAME, REMOVED, DELIVARY_PRICE, PICTURE ";
 
@@ -33,21 +33,21 @@ public class ProductDaoImpl implements ProductDao {
 
     private static final String GET_ALL_ACTIVE_PRODUCTS_FOR_UI =
             " SELECT P.ID, P.NAME, P.DELIVARY_PRICE, P.PICTURE, "
-                    + " IFNULL(L.SELLVOLUME, 0) SELLVOLUME, "
-                    + " IFNULL(L.SELLPRICE, 0) SELLPRICE, "
-                    + " IFNULL(T.BUYVOLUME, 0) BUYVOLUME, "
-                    + " IFNULL(T.BUYPRICE, 0) BUYPRICE "
-                    + " FROM PRODUCT P "
+                    + " COALESCE(L.SELLVOLUME, 0) SELLVOLUME, "
+                    + " COALESCE(L.SELLPRICE, 0) SELLPRICE, "
+                    + " COALESCE(T.BUYVOLUME, 0) BUYVOLUME, "
+                    + " COALESCE(T.BUYPRICE, 0) BUYPRICE "
+                    + " FROM \"PRODUCT\" P "
                     + " LEFT JOIN (SELECT PRODUCT_ID, SUM(MAX_VOLUME) SELLVOLUME, "
                     + " 	  SUM(PRICE)/COUNT(*) SELLPRICE "
-                    + "		  FROM LOT "
-                    + "		  WHERE `STATUS` = '" + BidStatus.ACTIVE + "'"
+                    + "		  FROM \"LOT\" "
+                    + "		  WHERE STATUS = '" + BidStatus.ACTIVE + "'"
                     + "		  GROUP BY PRODUCT_ID) L "
                     + " ON L.PRODUCT_ID = P.ID "
                     + " LEFT JOIN (SELECT PRODUCT_ID, SUM(MAX_VOLUME) BUYVOLUME, "
                     + "		  SUM(PRICE)/COUNT(*) BUYPRICE "
-                    + " 	  FROM TENDER "
-                    + "		  WHERE `STATUS` = '" + BidStatus.ACTIVE + "'"
+                    + " 	  FROM \"TENDER\" "
+                    + "		  WHERE STATUS = '" + BidStatus.ACTIVE + "'"
                     + "		  GROUP BY PRODUCT_ID) T "
                     + " ON T.PRODUCT_ID = P.ID"
                     + " WHERE P.REMOVED = 'N'";

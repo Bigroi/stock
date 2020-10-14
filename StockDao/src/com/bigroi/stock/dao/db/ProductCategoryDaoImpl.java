@@ -18,7 +18,7 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
 
     private static final String WHERE_ID = " WHERE ID = ?";
     private static final String SELECT_ALL_COLUMNS = "SELECT ID, PRODUCT_ID, CATEGORY_NAME, REMOVED";
-    private static final String FROM = " FROM PRODUCT_CATEGORY ";
+    private static final String FROM = " FROM \"PRODUCT_CATEGORY\" ";
 
     private static final String GET_BY_PRODUCT_ID =
             SELECT_ALL_COLUMNS
@@ -36,17 +36,17 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
                     + WHERE_ID;
 
     private static final String DELETE_BY_ID =
-            "UPDATE PRODUCT_CATEGORY "
+            "UPDATE \"PRODUCT_CATEGORY\" "
                     + " SET REMOVED = 'Y' "
                     + WHERE_ID;
 
     private static final String UPDATE_BY_ID =
-            "UPDATE PRODUCT_CATEGORY "
+            "UPDATE \"PRODUCT_CATEGORY\" "
                     + " SET CATEGORY_NAME = ?, REMOVED = 'N' "
                     + WHERE_ID;
 
     private static final String ADD_CATEGORY =
-            "INSERT INTO PRODUCT_CATEGORY (" + SELECT_ALL_COLUMNS + ")"
+            "INSERT INTO \"PRODUCT_CATEGORY\" (" + SELECT_ALL_COLUMNS + ")"
                     + " VALUES (DEFAULT, ?, ? , 'N') ";
 
     private final DataSource datasource;
