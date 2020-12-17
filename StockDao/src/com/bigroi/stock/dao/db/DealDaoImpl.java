@@ -25,7 +25,7 @@ import com.bigroi.stock.dao.DealDao;
 public class DealDaoImpl implements DealDao {
 
     private static final String ADD =
-            "INSERT INTO DEAL (LOT_ID, TENDER_ID, TIME, BUYER_CHOICE, SELLER_CHOICE, PRICE, "
+            "INSERT INTO \"DEAL\" (LOT_ID, TENDER_ID, TIME, BUYER_CHOICE, SELLER_CHOICE, PRICE, "
                     + " MAX_TRANSPORT_PRICE, VOLUME, PRODUCT_ID, SELLER_FOTO, SELLER_ADDRESS_ID, "
                     + " BUYER_ADDRESS_ID, SELLER_DESCRIPTION, BUYER_DESCRIPTION, BUYER_PROCESSING, BUYER_PACKAGING, "
                     + " BUYER_LANGUAGE, SELLER_LANGUAGE, BUYER_EMAIL, SELLER_EMAIL, CATEGORY_ID,"
@@ -34,8 +34,8 @@ public class DealDaoImpl implements DealDao {
                     + " ?, ?, L.PRODUCT_ID, L.FOTO, L.ADDRESS_ID, "
                     + " T.ADDRESS_ID, L.DESCRIPTION, T.DESCRIPTION, T.PROCESSING, T.PACKAGING, "
                     + " ?, ?, ?, ?, L.CATEGORY_ID, 'N', 'N' "
-                    + " FROM LOT L "
-                    + " JOIN TENDER T "
+                    + " FROM \"LOT\" L "
+                    + " JOIN \"TENDER\" T "
                     + " ON L.PRODUCT_ID = T.PRODUCT_ID "
                     + " WHERE L.ID = ? AND T.ID = ?";
 

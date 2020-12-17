@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public class BlacklistDaoImpl implements BlacklistDao {
 
-    private static final String ADD_BLACKLIST = "INSERT INTO BLACK_LIST "
+    private static final String ADD_BLACKLIST = "INSERT INTO \"BLACK_LIST\" "
             + " (TENDER_ID, LOT_ID) VALUES (?, ?)";
 
     private final DataSource datasource;

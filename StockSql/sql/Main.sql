@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `ADDRESS` (
 
 ALTER TABLE `ADDRESS` DISABLE KEYS;
 INSERT INTO `ADDRESS` (`id`, `city`, `country`, `address`, `latitude`, `longitude`, `company_id`) VALUES
-	(1, 'Warsaw', 'Poland', '', 52.21667, 21.03333, 0),
+	(2, 'Warsaw', 'Poland', '', 52.21667, 21.03333, 0),
 	(3, 'Kraków', 'Poland', 'Jana Pawla 2, 1', 50.06667, 19.95, 23),
 	(4, 'Wrocław', 'Poland', 'Jana Pawla 2, 1', 51.11667, 17.03333, 24),
 	(5, 'Łódź', 'Poland', 'Jana Pawla 2, 1', 51.78333, 19.46667, 25),

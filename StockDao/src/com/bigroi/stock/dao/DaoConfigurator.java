@@ -22,7 +22,8 @@ public class DaoConfigurator {
     @Value("${data.db.name}")
     private String username;
 
-    private final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
+    // private final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
+    private final String DRIVER_CLASS_NAME = "org.postgresql.Driver";
 
     @Value("${data.db.pass}")
     private String password;

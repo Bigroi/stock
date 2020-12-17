@@ -21,7 +21,7 @@ public class LabelDaoImpl implements LabelDao {
 
     private static final String SELECT = "SELECT ";
     private static final String LANGUAGE = "$LANGUAGE";
-    private static final String FROM = " FROM LABEL ";
+    private static final String FROM = " FROM \"LABEL\"";
     private static final String SELECT_ALL_COLUMNS = "SELECT ID, CATEGORY, NAME, EN_US, RU_RU, PL ";
 
     private static final String GET_LABEL =

@@ -11,23 +11,23 @@ import java.util.List;
 public class UserCommentDaoImpl implements UserCommentDao {
 
     private static final String ADD =
-            "INSERT INTO USER_COMMENT "
+            "INSERT INTO \"USER_COMMENT\" "
                     + " (COMPANY_ID, REPORTER_ID, MARK, COMMENT, COMMENT_DATE, DEAL_ID) "
                     + " VALUES (?, ?, ?, ?, ?, ?)";
 
     private static final String UPDATE =
-            "UPDATE USER_COMMENT "
+            "UPDATE \"USER_COMMENT\" "
                     + " SET MARK = ?, COMMENT = ?, COMMENT_DATE = ? "
                     + " WHERE DEAL_ID = ? AND REPORTER_ID = ?";
 
     private static final String GET_BY_COMPANY_ID =
             "SELECT MARK, COMMENT, COMMENT_DATE "
-                    + " FROM USER_COMMENT "
+                    + " FROM \"USER_COMMENT\" "
                     + " WHERE COMPANY_ID = ? ";
 
     private static final String GET_USER_COMMENT_BY_DEAL_ID =
             "SELECT MARK, COMMENT, COMMENT_DATE "
-                    + " FROM USER_COMMENT "
+                    + " FROM \"USER_COMMENT\" "
                     + " WHERE DEAL_ID = ? AND REPORTER_ID = ?";
 
     private final DataSource datasource;
