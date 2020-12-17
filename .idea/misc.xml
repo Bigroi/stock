@@ -4,10 +4,25 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/StockApi" />
   </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="JSX" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/back/pom.xml" />
+        <option value="$PROJECT_DIR$/StockCommon/pom.xml" />
+        <option value="$PROJECT_DIR$/StockController/pom.xml" />
+        <option value="$PROJECT_DIR$/StockDao/pom.xml" />
+        <option value="$PROJECT_DIR$/StockJobs/pom.xml" />
+        <option value="$PROJECT_DIR$/StockDocuments/pom.xml" />
+        <option value="$PROJECT_DIR$/StockMessage/pom.xml" />
+        <option value="$PROJECT_DIR$/StockSecurity/pom.xml" />
+        <option value="$PROJECT_DIR$/StockService/pom.xml" />
+        <option value="$PROJECT_DIR$/StockSql/pom.xml" />
+        <option value="$PROJECT_DIR$/StockApi/pom.xml" />
+        <option value="$PROJECT_DIR$/StockUtil/pom.xml" />
       </list>
     </option>
   </component>

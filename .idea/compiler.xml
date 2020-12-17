@@ -8,13 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="StockApi" />
         <module name="Service" />
+        <module name="Controller" />
         <module name="Documents" />
         <module name="Common" />
-        <module name="Message" />
+        <module name="back" />
         <module name="Security" />
         <module name="Sql" />
         <module name="Util" />
-        <module name="Controller" />
+        <module name="Message" />
         <module name="Jobs" />
         <module name="Dao" />
       </profile>

@@ -41,3 +41,15 @@
 2020-06-15 16:35:51 INFO: Sql updater: get queries
 2020-06-15 16:35:51 INFO: Sql updater: execute udate query: ALTER TABLE `LOT`
         ADD COLUMN `alert` CHAR(1) NOT NULL DEFAULT 'N' AFTER `category_id`
+2020-06-16 14:09:32 INFO: Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@23a5fd2: startup date [Tue Jun 16 14:09:32 MSK 2020]; root of context hierarchy
+2020-06-16 14:09:35 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2020-06-16 14:09:37 INFO: Sql updater: start
+2020-06-16 14:09:39 INFO: Sql updater: get queries
+2020-06-16 14:09:39 INFO: Sql updater: execute udate query: ALTER TABLE `LOT`
+        ADD COLUMN `alert` CHAR(1) NOT NULL DEFAULT 'N' AFTER `category_id`
+2020-06-16 14:48:13 INFO: Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@23a5fd2: startup date [Tue Jun 16 14:48:13 MSK 2020]; root of context hierarchy
+2020-06-16 14:48:15 INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+2020-06-16 14:48:15 INFO: Sql updater: start
+2020-06-16 14:48:17 INFO: Sql updater: get queries
+2020-06-16 14:48:17 INFO: Sql updater: execute udate query: ALTER TABLE `LOT`
+        ADD COLUMN `alert` CHAR(1) NOT NULL DEFAULT 'N' AFTER `category_id`

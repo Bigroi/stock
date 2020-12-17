@@ -86,5 +86,6 @@
         <module>StockUtil</module>
         <module>StockController</module>
         <module>StockDocuments</module>
+        <module>back</module>
     </modules>
 </project>
