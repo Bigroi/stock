@@ -146,12 +146,11 @@ public class DealServiceImpl implements DealService {
             var buyerProductName = labelDao.getLabel(deal.getProductName(), "name", buyerLocale);
             attachmentParams.put("{product_name}", buyerProductName);
             buyerMessageParams.put("product", buyerProductName);
-            buyerMessageParams.put("price", deal.getPrice());
 
             emailClient.sendMessage(
                     buyerLocale,
                     deal.getBuyerEmail(),
-                    EmailType.DEAL_CONFIRMATION_FOR_BUYER,
+                    EmailType.SUCCESS_DEAL_FOR_BUYER,
                     buyerMessageParams,
                     "Deal",
                     attachmentParams
@@ -164,12 +163,11 @@ public class DealServiceImpl implements DealService {
             var sellerProductName = labelDao.getLabel(deal.getProductName(), "name", sellerLocale);
             attachmentParams.put("{product_name}", sellerProductName);
             sellerMessageParams.put("product", sellerProductName);
-            sellerMessageParams.put("price", deal.getPrice());
 
             emailClient.sendMessage(
                     sellerLocale,
                     deal.getSellerEmail(),
-                    EmailType.DEAL_CONFIRMATION_FOR_SELLER,
+                    EmailType.SUCCESS_DEAL_FOR_SELLER,
                     sellerMessageParams,
                     "Deal",
                     attachmentParams
