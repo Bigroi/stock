@@ -1,0 +1,5 @@
+{
+  "apiUrl": "/api",
+  "test": false,
+  "apiServer": "https://yourtrader.eu/api"
+}

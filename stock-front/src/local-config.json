@@ -1,0 +1,6 @@
+{
+  "apiUrl": "http://localhost:8080/api",
+  "test": true,
+  "apiServer": "http://localhost:8080/api",
+  "googleMapsApiKey": "AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0"
+}
