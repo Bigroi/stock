@@ -2,13 +2,15 @@ package com.stock.config;
 
 import com.stock.client.email.EmailClient;
 import com.stock.dao.*;
+import com.stock.entity.business.LotRecord;
+import com.stock.entity.business.TenderRecord;
 import com.stock.security.JwtTokenProcessor;
+import com.stock.service.BidService;
 import com.stock.service.FeedBackService;
 import com.stock.service.LabelService;
 import com.stock.service.UserService;
-import com.stock.service.impl.FeedBackServiceImpl;
-import com.stock.service.impl.LabelServiceImpl;
-import com.stock.service.impl.UserServiceImpl;
+import com.stock.service.impl.*;
+import com.stock.service.transactional.BidServiceTransactional;
 import com.stock.service.transactional.UserServiceTransactional;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -46,6 +48,18 @@ public class ServiceConfig {
     @Bean
     public FeedBackService createFeedBackService(EmailClient emailClient) {
         return new FeedBackServiceImpl(emailClient);
+    }
+
+    @Bean
+    public BidService<LotRecord> createLotService(LotDao lotDao, Transactional transactional) {
+        var service = new LotServiceImpl(lotDao);
+        return new BidServiceTransactional<>(transactional, service);
+    }
+
+    @Bean
+    public BidService<TenderRecord> createTenderRecord(TenderDao tenderDao, Transactional transactional) {
+        var service = new TenderServiceImpl(tenderDao);
+        return new BidServiceTransactional<>(transactional, service);
     }
 
 }

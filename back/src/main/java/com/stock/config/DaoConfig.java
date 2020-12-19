@@ -74,4 +74,14 @@ public class DaoConfig {
     public LabelDao createLabelDao(Jdbi jdbi) {
         return jdbi.onDemand(LabelDao.class);
     }
+
+    @Bean
+    public LotDao createLotDao(Jdbi jdbi) {
+        return jdbi.onDemand(LotDao.class);
+    }
+
+    @Bean
+    public TenderDao createTenderDao(Jdbi jdbi) {
+        return jdbi.onDemand(TenderDao.class);
+    }
 }

@@ -19,18 +19,22 @@ public class UserServiceTransactional implements UserService {
         this.service = service;
     }
 
+    @Override
     public Optional<LoginResponse> authenticate(String username, String password) {
         return service.authenticate(username, password);
     }
 
+    @Override
     public Optional<LoginResponse> create(RegistrationRequest request) {
         return transactional.inTransaction(() -> service.create(request));
     }
 
+    @Override
     public Optional<UserRecord> getByUsername(String username) {
         return service.getByUsername(username);
     }
 
+    @Override
     public Optional<LoginResponse> refreshTokens(String refreshToken) {
         return service.refreshTokens(refreshToken);
     }
