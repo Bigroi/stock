@@ -3,7 +3,6 @@ import {withTranslation} from 'react-i18next';
 import Dropdown from "../../components/input/Dropdown";
 import Input from "../../components/input/Input";
 import Calendar from "../../components/input/Calendar";
-import File from "../../components/input/File";
 import TextArea from "../../components/input/TextArea";
 import Button from "../../components/input/Button";
 import ApiUrls from '../../util/ApiUrls';
@@ -11,12 +10,12 @@ import Map from "../../components/map/Map";
 import Request from '../../util/Request';
 import Message, {TYPES} from "../../components/message/Message";
 
-class LotForm extends React.Component {
+class TenderForm extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            lot: this.props.lot
+            tender: this.props.tender
                 || {
                     id: null,
                     description: '',
@@ -28,10 +27,11 @@ class LotForm extends React.Component {
                     creationDate: new Date(),
                     expirationDate: this.getDefaultExpirationDate(),
                     addressId: this.props.addresses[0].id,
+                    packaging: null,
+                    processing: null,
                     distance: 30000,
                     categoryId: null,
-                    alert: null,
-                    photo: null
+                    productId: null
                 },
             error: {}
         };
@@ -53,41 +53,42 @@ class LotForm extends React.Component {
         const error = {};
         let message = null;
 
-        if (Number.isNaN(+this.state.lot.price) || this.state.lot.price < 0.01) {
+        if (Number.isNaN(+this.state.tender.price) || this.state.tender.price < 0.01) {
             message = {
                 type: TYPES.ERROR,
-                value: t('label.lot.price_error')
+                value: t('label.tender.price_error')
             };
             error.price = true;
         }
 
-        if (!Number.isInteger(+this.state.lot.minVolume) || this.state.lot.minVolume < 1) {
+        if (!Number.isInteger(+this.state.tender.minVolume) || this.state.tender.minVolume < 1) {
             message = {
                 type: TYPES.ERROR,
-                value: t('label.lot.minVolume_error')
+                value: t('label.tender.minVolume_error')
             };
             error.minVolume = true;
         }
 
-        if (!Number.isInteger(+this.state.lot.maxVolume) || this.state.lot.maxVolume < this.state.lot.minVolume) {
+        if (!Number.isInteger(+this.state.tender.maxVolume)
+            || this.state.tender.maxVolume < this.state.tender.minVolume) {
             message = {
                 type: TYPES.ERROR,
-                value: t('label.lot.maxVolume_error')
+                value: t('label.tender.maxVolume_error')
             };
             error.maxVolume = true;
         }
-        if (!this.state.lot.categoryId) {
+        if (!this.state.tender.productId) {
             message = {
                 type: TYPES.ERROR,
-                value: t('label.lot.category_error')
+                value: t('label.tender.product_error')
             };
-            error.categoryId = true;
+            error.productId = true;
         }
 
-        if (this.state.lot.expirationDate < new Date()) {
+        if (this.state.tender.expirationDate < new Date()) {
             message = {
                 type: TYPES.ERROR,
-                value: t('label.lot.expDate_error')
+                value: t('label.tender.expDate_error')
             };
             error.expirationDate = true;
         }
@@ -98,16 +99,16 @@ class LotForm extends React.Component {
 
     save = (status) => {
         if (this.validate()) {
-            const lot = {...this.state.lot, status: status};
-            const method = lot.id === null ? Request.doPost : Request.doPut;
-            method(ApiUrls.LOT.replace('{id}', lot.id || ''), null, lot)
+            const tender = {...this.state.tender, status: status};
+            const method = tender.id === null ? Request.doPost : Request.doPut;
+            method(ApiUrls.TENDER.replace('{id}', tender.id || ''), null, tender)
                 .then(async responce => {
                     if (responce.ok) {
                         const id = await responce.text();
                         if (id) {
-                            lot.id = JSON.parse(id);
+                            tender.id = JSON.parse(id);
                         }
-                        this.props.onSave(lot, !!id);
+                        this.props.onSave(tender, !!id);
                     }
                 });
         }
@@ -115,41 +116,44 @@ class LotForm extends React.Component {
 
     getProduct = () => {
         const {t} = this.props;
-        return this.props.products.find(p => p.categories.find(c => c.id === this.state.lot.categoryId))
-            || {name: t('label.lot.list'), id: null, categories: []};
+        return this.props.products.find(p => p.id === this.state.tender.productId)
+            || {name: t('label.tender.list'), id: null, categories: []};
     };
 
     getProducts = () => {
         const {t} = this.props;
-        const product = this.getProduct();
         const list = this.props.products.map(p => {
             return {
                 id: p.id,
                 name: t(`label.${p.name}.name`),
-                active: p.id === product.id
+                active: p.id === this.state.tender.productId
             }
         });
 
-        list.splice(0, 0, {name: t('label.lot.list'), id: null, active: product.id === null});
+        list.splice(0, 0, {
+            name: t('label.tender.list'),
+            id: null,
+            active: this.state.tender.productId === null
+        });
         return list;
     };
 
     getCategories = () => {
         const {t} = this.props;
-        const list = (this.props.products.find(p => p.id === this.state.lot.productId)
-            || this.getProduct()
-            || {categories: []})
+        const list = (this.props.products.find(p => p.id === this.state.tender.productId) || {categories: []})
             .categories
             .map(p => {
                 return {
                     id: p.id,
                     name: t(`label.${p.name}.name`),
-                    active: p.id === this.state.lot.categoryId
+                    active: p.id === this.state.tender.categoryId
                 }
             });
 
         list.splice(0, 0, {
-            name: t('label.lot.list'), id: null, active: this.state.lot.categoryId === null
+            name: t('label.tender.list'),
+            id: null,
+            active: this.state.tender.categoryId === null
         });
         return list;
     };
@@ -160,7 +164,7 @@ class LotForm extends React.Component {
                 return {
                     name: `${a.country}, ${a.city}, ${a.address}`,
                     id: a.id,
-                    active: a.id === this.state.lot.addressId
+                    active: a.id === this.state.tender.addressId
                 }
             });
     };
@@ -168,24 +172,19 @@ class LotForm extends React.Component {
     getDistances = () => {
         const {t} = this.props;
         return [
-            {id: 30000, name: t('label.lot.distance_any'), active: this.state.lot.distance === 30000},
-            {id: 400, name: t('label.lot.distance_400'), active: this.state.lot.distance === 400},
-            {id: 200, name: t('label.lot.distance_200'), active: this.state.lot.distance === 200},
-            {id: 100, name: t('label.lot.distance_100'), active: this.state.lot.distance === 100},
-            {id: 50, name: t('label.lot.distance_40'), active: this.state.lot.distance === 50},
-            {id: 0, name: t('label.lot.distance_0'), active: this.state.lot.distance === 0}
+            {id: 30000, name: t('label.tender.distance_any'), active: this.state.tender.distance === 30000},
+            {id: 400, name: t('label.tender.distance_400'), active: this.state.tender.distance === 400},
+            {id: 200, name: t('label.tender.distance_200'), active: this.state.tender.distance === 200},
+            {id: 100, name: t('label.tender.distance_100'), active: this.state.tender.distance === 100},
+            {id: 50, name: t('label.tender.distance_40'), active: this.state.tender.distance === 50},
+            {id: 0, name: t('label.tender.distance_0'), active: this.state.tender.distance === 0}
         ];
     };
 
-    showPhoto = (event) => {
-        event.preventDefault();
-        console.log(this.state.lot.photo);
-    };
-
-    changeLot = (propertyName, value) => {
+    changeTender = (propertyName, value) => {
         this.setState({
-            lot: {
-                ...this.state.lot,
+            tender: {
+                ...this.state.tender,
                 [propertyName]: value
             },
             error: {
@@ -196,14 +195,14 @@ class LotForm extends React.Component {
     };
 
     getCoords = () => {
-        const address = this.props.addresses.find(a => a.id === this.state.lot.addressId);
+        const address = this.props.addresses.find(a => a.id === this.state.tender.addressId);
         return {latitude: address.latitude, longitude: address.longitude};
     };
 
     render() {
         const {t} = this.props;
         return <form className="form" action="#" method="post" name="form">
-            <h3>{t('label.lot.lotForm')}</h3>
+            <h3>{t('label.tender.tenderForm')}</h3>
             <div>
                 <Message message={this.state.message}/>
             </div>
@@ -213,55 +212,54 @@ class LotForm extends React.Component {
                         id='ProductId'
                         name='productId'
                         elements={this.getProducts()}
-                        label={t('label.lot.product')}
-                        readOnly={this.state.lot.id !== null}
+                        label={t('label.tender.product')}
+                        readOnly={this.state.tender.id !== null}
                         error={this.state.error.productId}
-                        onChange={(newId) => this.changeLot('productId', newId)}
+                        onChange={(newId) => this.changeTender('productId', newId)}
                     />
 
                     <Dropdown
                         id='CategoryId'
                         name='categoryId'
                         elements={this.getCategories()}
-                        label={t('label.lot.category')}
-                        error={this.state.error.categoryId}
-                        onChange={(newId) => this.changeLot('categoryId', newId)}
+                        label={t('label.tender.category')}
+                        onChange={(newId) => this.changeTender('categoryId', newId)}
                     />
 
                     <Input
                         id='Price'
-                        label={t('label.lot.min_price')}
+                        label={t('label.tender.max_price')}
                         name='price'
                         placeholder='9.99'
-                        value={this.state.lot.price}
+                        value={this.state.tender.price}
                         error={this.state.error.price}
-                        onChange={(newValue) => this.changeLot('price', newValue)}
+                        onChange={(newValue) => this.changeTender('price', newValue)}
                     />
 
                     <Input
                         id='MinVolume'
-                        label={t('label.lot.min_volume')}
+                        label={t('label.tender.min_volume')}
                         name='minVolume'
-                        value={this.state.lot.minVolume}
+                        value={this.state.tender.minVolume}
                         error={this.state.error.minVolume}
-                        onChange={(newValue) => this.changeLot('minVolume', newValue)}
+                        onChange={(newValue) => this.changeTender('minVolume', newValue)}
                     />
 
                     <Input
                         id='MaxVolume'
-                        label={t('label.lot.max_volume')}
+                        label={t('label.tender.max_volume')}
                         name='maxVolume'
-                        value={this.state.lot.maxVolume}
+                        value={this.state.tender.maxVolume}
                         error={this.state.error.maxVolume}
-                        onChange={(newValue) => this.changeLot('maxVolume', newValue)}
+                        onChange={(newValue) => this.changeTender('maxVolume', newValue)}
                     />
 
                     <Calendar
                         id='ExpDate'
-                        label={t('label.lot.exp_date')}
-                        value={this.state.lot.expirationDate}
+                        label={t('label.tender.exp_date')}
+                        value={this.state.tender.expirationDate}
                         error={this.state.error.expirationDate}
-                        onChange={(value => this.changeLot('expirationDate', value))}
+                        onChange={(value => this.changeTender('expirationDate', value))}
                     />
                 </div>
                 <div>
@@ -272,9 +270,9 @@ class LotForm extends React.Component {
                                 name='addressId'
                                 className="address-selector"
                                 elements={this.getAddresses()}
-                                label={t('label.lot.address')}
+                                label={t('label.tender.address')}
                                 error={this.state.error.addressId}
-                                onChange={(newId) => this.changeLot('addressId', newId)}
+                                onChange={(newId) => this.changeTender('addressId', newId)}
                             />
 
                             <Dropdown
@@ -282,34 +280,39 @@ class LotForm extends React.Component {
                                 name='distance'
                                 className="address-selector"
                                 elements={this.getDistances()}
-                                label={t('label.lot.distance')}
+                                label={t('label.tender.distance')}
                                 error={this.state.error.distance}
-                                onChange={(newId) => this.changeLot('distance', newId)}
+                                onChange={(newId) => this.changeTender('distance', newId)}
                             />
 
-                            {this.state.lot.photo
-                                ? <a href='#' onClick={(e) => this.showPhoto(e)}>
-                                    {t('label.lot.uploaded_foto')}
-                                </a>
-                                : ''
-                            }
-                            <File
-                                id='Photo'
-                                name='photo'
-                                label={t('label.lot.foto')}
-                                onChange={(value) => this.changeLot('photo', value)}
+                            <Input
+                                id='Packaging'
+                                label={t('label.tender.packaging')}
+                                name='packaging'
+                                value={this.state.tender.packaging}
+                                error={this.state.error.packaging}
+                                onChange={(newValue) => this.changeTender('packaging', newValue)}
+                            />
+
+                            <Input
+                                id='Processing'
+                                label={t('label.tender.processing')}
+                                name='processing'
+                                value={this.state.tender.processing}
+                                error={this.state.error.processing}
+                                onChange={(newValue) => this.changeTender('processing', newValue)}
                             />
 
                             <TextArea
                                 id='Description'
-                                labe={t('label.lot.description')}
+                                labe={t('label.tender.description')}
                                 name='description'
                                 maxLength={1000}
-                                value={this.state.lot.description}
-                                onChange={(value) => this.changeLot('description', value)}
+                                value={this.state.tender.description}
+                                onChange={(value) => this.changeTender('description', value)}
                             />
                         </div>
-                        <div className="forMapLotsTender google-map-container"
+                        <div className="forMapTendersTender google-map-container"
                              style={{position: 'relative', overflow: 'hidden'}}>
                             <Map coords={this.getCoords()}/>
                         </div>
@@ -328,4 +331,4 @@ class LotForm extends React.Component {
     }
 }
 
-export default withTranslation()(LotForm);
+export default withTranslation()(TenderForm);

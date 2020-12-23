@@ -21,6 +21,7 @@ public class TenderRecord {
     private String processing;
     private int distance;
     private UUID categoryId;
+    private UUID productId;
     private boolean alert;
 
     public UUID getId() {
@@ -141,5 +142,13 @@ public class TenderRecord {
 
     public void setAlert(boolean alert) {
         this.alert = alert;
+    }
+
+    public UUID getProductId() {
+        return productId;
+    }
+
+    public void setProductId(UUID productId) {
+        this.productId = productId;
     }
 }

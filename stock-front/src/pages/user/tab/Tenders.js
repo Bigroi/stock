@@ -6,8 +6,9 @@ import Table from "../../../components/table/Table";
 import Form from "../../../components/form/Form";
 import LotForm from "../../../forms/lot/LotForm"
 import Message, {TYPES} from "../../../components/message/Message";
+import TenderForm from "../../../forms/tender/TenderForm";
 
-class Lots extends React.Component {
+class Tenders extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,7 +16,7 @@ class Lots extends React.Component {
             data: [],
             products: [],
             addresses: [],
-            editLot: null
+            editTender: null
         }
     }
 
@@ -29,11 +30,11 @@ class Lots extends React.Component {
     };
 
     componentDidMount() {
-        const lots = this.loadData(ApiUrls.LOT_LIST);
+        const tenders = this.loadData(ApiUrls.TENDER_LIST);
         const products = this.loadData(ApiUrls.PRODUCT_LIST);
         const addresses = this.loadData(ApiUrls.ADDRESS_LIST);
 
-        Promise.all([lots, products, addresses])
+        Promise.all([tenders, products, addresses])
             .then(values => {
                 this.setState({
                     data: values[0],
@@ -46,18 +47,18 @@ class Lots extends React.Component {
     getHeader = () => {
         const {t} = this.props;
         return [
-            {name: t('label.lot.product'), weight: 2},
-            {name: t('label.lot.status'), weight: 3},
-            {name: t('label.lot.min_price'), weight: 7},
-            {name: t('label.lot.max_volume'), weight: 6},
-            {name: t('label.lot.exp_date'), weight: 4},
-            {name: t('label.lot.creation_date'), weight: 5},
-            {name: t('label.lot.edit'), weight: 1},
+            {name: t('label.tender.product'), weight: 2},
+            {name: t('label.tender.status'), weight: 3},
+            {name: t('label.v.max_price'), weight: 7},
+            {name: t('label.tender.max_volume'), weight: 6},
+            {name: t('label.tender.exp_date'), weight: 4},
+            {name: t('label.tender.creation_date'), weight: 5},
+            {name: t('label.tender.edit'), weight: 1},
         ]
     };
 
     remove = (id) => {
-        Request.doDelete(ApiUrls.LOT.replace("{id}", id))
+        Request.doDelete(ApiUrls.TENDER.replace("{id}", id))
             .then(responce => {
                 if (responce.ok) {
                     this.setState({data: this.state.data.filter(l => l.id !== id)});
@@ -65,8 +66,8 @@ class Lots extends React.Component {
             });
     };
 
-    getProduct = (categoryId) => {
-        return this.state.products.find(p => p.categories.find(c => c.id === categoryId));
+    getProduct = (productId) => {
+        return this.state.products.find(p => p.id === productId);
     };
 
     formatDate = (date) => {
@@ -82,14 +83,14 @@ class Lots extends React.Component {
         return [year, month, day].join('-');
     };
 
-    changeStatus = (lot) => {
+    changeStatus = (tender) => {
         const {t} = this.props;
-        if (lot.status === 'ACTIVE') {
-            Request.doPut(ApiUrls.LOT_DEACTIVATE.replace('{id}', lot.id))
+        if (tender.status === 'ACTIVE') {
+            Request.doPut(ApiUrls.TENDER_DEACTIVATE.replace('{id}', tender.id))
                 .then(responce => {
                     if (responce.ok) {
                         const data = this.state.data.slice();
-                        data.find(d => d.id === lot.id).status = 'INACTIVE';
+                        data.find(d => d.id === tender.id).status = 'INACTIVE';
                         this.setState({
                             data: data,
                             message: {
@@ -99,12 +100,12 @@ class Lots extends React.Component {
                         });
                     }
                 });
-        } else if (new Date(lot.expirationDate) >= new Date()) {
-            Request.doPut(ApiUrls.LOT_ACTIVATE.replace('{id}', lot.id))
+        } else if (new Date(tender.expirationDate) >= new Date()) {
+            Request.doPut(ApiUrls.TENDER_ACTIVATE.replace('{id}', tender.id))
                 .then(responce => {
                     if (responce.ok) {
                         const data = this.state.data.slice();
-                        data.find(d => d.id === lot.id).status = 'ACTIVE';
+                        data.find(d => d.id === tender.id).status = 'ACTIVE';
                         this.setState({
                             data: data,
                             message: {
@@ -118,7 +119,7 @@ class Lots extends React.Component {
             this.setState({
                 message: {
                     type: TYPES.ERROR,
-                    value: t('label.lot.expDate_error')
+                    value: t('label.tender.expDate_error')
                 }
             });
         }
@@ -127,60 +128,60 @@ class Lots extends React.Component {
 
     getData = () => {
         const {t} = this.props;
-        return this.state.data.map(l => {
+        return this.state.data.map(p => {
             return [
-                t(`label.${this.getProduct(l.categoryId).name}.name`),
-                <div className={`swtitch-row-${l.status === 'ACTIVE' ? 'on' : 'off'}`}
-                     onClick={() => this.changeStatus(l)}
+                t(`label.${this.getProduct(p.productId).name}.name`),
+                <div className={`swtitch-row-${p.status === 'ACTIVE' ? 'on' : 'off'}`}
+                     onClick={() => this.changeStatus(p)}
                 />,
-                l.price,
-                l.maxVolume,
-                typeof l.expirationDate === 'string' ? l.expirationDate : this.formatDate(l.expirationDate),
-                typeof l.creationDate === 'string' ? l.creationDate : this.formatDate(l.creationDate),
+                p.price,
+                p.maxVolume,
+                typeof p.expirationDate === 'string' ? p.expirationDate : this.formatDate(p.expirationDate),
+                typeof p.creationDate === 'string' ? p.creationDate : this.formatDate(p.creationDate),
                 <React.Fragment>
-                    <div className='edit' onClick={() => this.setState({editLot: l})}/>
-                    <div className='remove' onClick={() => this.remove(l.id)}/>
+                    <div className='edit' onClick={() => this.setState({editTender: p})}/>
+                    <div className='remove' onClick={() => this.remove(p.id)}/>
                 </React.Fragment>
             ]
         })
     };
 
     closeForm = () => {
-        this.setState({editLot: null});
+        this.setState({editTender: null});
         this.props.onCloseForm();
     };
 
     getForm = () => {
-        if (this.state.editLot || this.props.showEmptyForm) {
+        if (this.state.editTender || this.props.showEmptyForm) {
             return <Form
-                className='lot-dialogbox'
+                className='tender-dialogbox'
                 onClose={this.closeForm}
             >
-                <LotForm
-                    lot={this.state.editLot ? {...this.state.editLot} : null}
+                <TenderForm
+                    tender={this.state.editTender ? {...this.state.editTender} : null}
                     products={this.state.products}
                     addresses={this.state.addresses}
-                    onSave={this.updateLotList}
+                    onSave={this.updateTenderList}
                 />
             </Form>
         }
     };
 
-    updateLotList = (lot, isNew) => {
+    updateTenderList = (tender, isNew) => {
         const {t} = this.props;
-        const lots = this.state.data.slice();
+        const tenders = this.state.data.slice();
         if (isNew) {
-            lots.splice(0, 0, lot);
+            tenders.splice(0, 0, tender);
         } else {
-            const lotFromList = lots.find(l => l.id === lot.id);
-            Object.keys(lotFromList)
-                .forEach(propertyName => lotFromList[propertyName] = lot[propertyName]);
+            const tenderFromList = tenders.find(l => l.id === tender.id);
+            Object.keys(tenderFromList)
+                .forEach(propertyName => tenderFromList[propertyName] = tender[propertyName]);
         }
         this.setState({
-            data: lots,
+            data: tenders,
             message: {
                 type: TYPES.SUCCESS,
-                value: t(lot.status === 'ACTIVE' ? 'label.bid.activated-morning' : 'label.bid.deactivated')
+                value: t(tender.status === 'ACTIVE' ? 'label.bid.activated-morning' : 'label.bid.deactivated')
             }
         });
         setTimeout(() => this.setState({message: null}), 3000);
@@ -200,4 +201,4 @@ class Lots extends React.Component {
     }
 }
 
-export default withTranslation()(Lots);
+export default withTranslation()(Tenders);

@@ -16,30 +16,30 @@ import java.util.UUID;
 @RegisterBeanMapper(TenderRecord.class)
 public interface TenderDao {
 
-    @SqlQuery("SELECT * FROM LOT WHERE COMPANY_ID = :companyId")
+    @SqlQuery("SELECT * FROM TENDER WHERE COMPANY_ID = :companyId")
     List<TenderRecord> getByCompanyId(@Bind("companyId") UUID companyId);
 
-    @SqlQuery("SELECT * FROM LOT WHERE COMPANY_ID = :companyId AND ID = :id")
+    @SqlQuery("SELECT * FROM TENDER WHERE COMPANY_ID = :companyId AND ID = :id")
     Optional<TenderRecord> getByIdAndCompanyId(@Bind("id") UUID id, @Bind("companyId") UUID companyId);
 
-    @SqlUpdate("DELETE FROM LOT WHERE COMPANY_ID = :companyId AND ID = :id")
+    @SqlUpdate("DELETE FROM TENDER WHERE COMPANY_ID = :companyId AND ID = :id")
     boolean deleteByIdAndCompanyId(@Bind("id") UUID id, @Bind("companyId") UUID companyId);
 
-    @SqlUpdate("INSERT INTO LOT (ID, DESCRIPTION, PRICE, MIN_VOLUME, MAX_VOLUME, COMPANY_ID, STATUS, CREATION_DATE, " +
-            "EXPIRATION_DATE, ADDRESS_ID, PACKAGING, PROCESSING, DISTANCE, CATEGORY_ID, ALERT) " +
+    @SqlUpdate("INSERT INTO TENDER (ID, DESCRIPTION, PRICE, MIN_VOLUME, MAX_VOLUME, COMPANY_ID, STATUS, CREATION_DATE, " +
+            "EXPIRATION_DATE, ADDRESS_ID, PACKAGING, PROCESSING, DISTANCE, CATEGORY_ID, ALERT, PRODUCT_ID) " +
             "VALUES (:id, :description, :price, :minVolume, :maxVolume, :companyId, :status, :creationDate, " +
-            ":expirationDate, :addressId, :packaging, :processing, :distance, :categoryId, :alert)")
+            ":expirationDate, :addressId, :packaging, :processing, :distance, :categoryId, :alert, :productId)")
     void create(@BindBean TenderRecord lot);
 
-    @SqlUpdate("UPDATE LOT " +
+    @SqlUpdate("UPDATE TENDER " +
             "SET DESCRIPTION = :description, PRICE = :price, MIN_VOLUME = :minVolume, MAX_VOLUME = :maxVolume, " +
             "STATUS = :status, EXPIRATION_DATE = :expirationDate, ADDRESS_ID = :addressId, PACKAGING = :packaging, " +
-            "PROCESSING = :processing, DISTANCE = :distance, CATEGORY_ID = :categoryId" +
+            "PROCESSING = :processing, DISTANCE = :distance, CATEGORY_ID = :categoryId " +
             "WHERE ID = :id AND COMPANY_ID = :companyId")
     boolean update(@BindBean TenderRecord lot);
 
-    @SqlUpdate("UPDATE LOT " +
-            "SET STATUS = :status" +
+    @SqlUpdate("UPDATE TENDER " +
+            "SET STATUS = :status " +
             "WHERE ID = :id AND COMPANY_ID = :companyId")
     boolean setStatus(@Bind("id") UUID id, @Bind("companyId") UUID companyId, @Bind("status") BidStatus status);
 }
