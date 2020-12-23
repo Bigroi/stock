@@ -8,7 +8,7 @@ import React from 'react';
  * value: String
  * onChange: function
  */
-export default class Input extends React.Component {
+export default class TextArea extends React.Component {
 
     onChange = (event) => {
         const newValue = event.currentTarget.value;

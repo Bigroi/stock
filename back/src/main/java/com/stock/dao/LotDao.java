@@ -38,7 +38,7 @@ public interface LotDao {
     boolean update(@BindBean LotRecord lot);
 
     @SqlUpdate("UPDATE LOT " +
-            "SET STATUS = :status" +
+            "SET STATUS = :status " +
             "WHERE ID = :id AND COMPANY_ID = :companyId")
     boolean setStatus(@Bind("id") UUID id, @Bind("companyId") UUID companyId, @Bind("status") BidStatus status);
 }

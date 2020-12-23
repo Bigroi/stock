@@ -5,6 +5,7 @@ import Form from '../../components/form/Form';
 import LocalStorage from "../../util/LocalStorage";
 import FeedBackForm from "../../forms/feed-back/FeedBackForm";
 import AccountForm from "../../forms/account/AccountForm";
+import Lots from "./tab/Lots";
 
 class UserMain extends React.Component {
 
@@ -14,7 +15,9 @@ class UserMain extends React.Component {
             activeTab: this.TAB.PRODUCTS,
             feedBackFormActive: false,
             accountPopupActive: false,
-            accountFormActive: false
+            accountFormActive: false,
+            showEmptyForm: false,
+            mobileMenuActivated: false
         }
     }
 
@@ -31,7 +34,10 @@ class UserMain extends React.Component {
 
     setActiveTab = (e, tab) => {
         e.preventDefault();
-        this.setState({activeTab: tab});
+        this.setState({
+            activeTab: tab,
+            mobileMenuActivated: false
+        });
     };
 
     getMenu = () => {
@@ -54,20 +60,20 @@ class UserMain extends React.Component {
             <li className={this.state.activeTab === this.TAB.LOTS ? 'active' : ''}>
                 <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.LOTS)}>
                     {t('label.navigation.lots')}
-                    <spna id='lot-alerts' style={{display: 'none'}} className='bid-alert'/>
+                    <span id='lot-alerts' style={{display: 'none'}} className='bid-alert'/>
                 </a>
             </li>
             <li className={this.state.activeTab === this.TAB.TENDERS ? 'active' : ''}>
                 <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.TENDERS)}>
                     {t('label.navigation.tenders')}
-                    <spna id='tender-alerts' style={{display: 'none'}} className='bid-alert'/>
+                    <span id='tender-alerts' style={{display: 'none'}} className='bid-alert'/>
                 </a>
             </li>
             <li className={this.state.activeTab === this.TAB.DEALS ? 'active' : ''}>
                 <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.DEALS)}>
                     {t('label.navigation.deals')}
-                    <spna id='deal-alerts' style={{display: 'none'}} className='deal-alert'/>
-                    <spna id='deal-on-approve' style={{display: 'none'}} className='deal-on-approve'/>
+                    <span id='deal-alerts' style={{display: 'none'}} className='deal-alert'/>
+                    <span id='deal-on-approve' style={{display: 'none'}} className='deal-on-approve'/>
                 </a>
             </li>
         </React.Fragment>
@@ -132,7 +138,7 @@ class UserMain extends React.Component {
                 <img className='big-logo' src='/img/logo-pages.png' alt='YourTrader' title='YourTrader'/>
             </a>
             <div className=' small-logo'>
-                <div className='burger-close'/>
+                <div className='burger-close' onClick={() => this.setState({mobileMenuActivated: false})}/>
                 <div className='logo-mobile'>
                     <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.PRODUCTS)}/>
                 </div>
@@ -142,7 +148,7 @@ class UserMain extends React.Component {
 
     getMobileLogo = () => {
         return <div className='burger-logo'>
-            <div className='burger'/>
+            <div className='burger' onClick={() => this.setState({mobileMenuActivated: true})}/>
             <div className='logo-mobile'>
                 <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.PRODUCTS)}/>
             </div>
@@ -216,7 +222,31 @@ class UserMain extends React.Component {
     };
 
     getTabContent = () => {
-        return 'test';
+        switch (this.state.activeTab) {
+            case this.TAB.LOTS:
+                return <Lots
+                    showEmptyForm={this.state.showEmptyForm}
+                    onCloseForm={() => this.setState({showEmptyForm: false})}
+                />;
+            default:
+                return 'test';
+        }
+    };
+
+    getAddButton = () => {
+        const {t} = this.props;
+        switch (this.state.activeTab) {
+            case this.TAB.LABELS:
+            case this.TAB.PRODUCTS_ADMIN:
+            case this.TAB.TENDERS:
+            case this.TAB.LOTS:
+                return <div className="add-button" onClick={() => this.setState({showEmptyForm: true})}>
+                    <div className="plus"/>
+                    <p>{t('label.button.create')}</p>
+                </div>;
+            default:
+                return '';
+        }
     };
 
     getAsideFooter = () => {
@@ -241,32 +271,34 @@ class UserMain extends React.Component {
     };
 
     render() {
-        return <body className='body-pages'>
-        {this.getFeedBackForm()}
-        {this.getAccountForm()}
-        <div className='aside'>
-            {this.getLogo()}
-            {this.getMenu()}
-            {this.getAsideFooter()}
-        </div>
-        <div className='aside-modile'>
-            {this.getMobileLogo()}
-            {this.getAccountButton()}
-        </div>
-        <div className='bgdark'/>
-        <div className='section'>
-            <div className='table-header'>
-                <h1>{this.getTabTitle()}</h1>
-                <div className='table-header-button thb'>
-                    {this.getAccountButton()}
+        const addButton = this.getAddButton();
+        return <React.Fragment>
+            {this.getFeedBackForm()}
+            {this.getAccountForm()}
+            <div className={`aside ${this.state.mobileMenuActivated ? 'aside-adaptive' : ''}`}>
+                {this.getLogo()}
+                {this.getMenu()}
+                {this.getAsideFooter()}
+            </div>
+            <div className='aside-modile'>
+                {this.getMobileLogo()}
+                {this.getAccountButton()}
+            </div>
+            {this.state.mobileMenuActivated ? <div className='bgdark'/> : ''}
+            <div className='section'>
+                <div className='table-header'>
+                    <h1>{this.getTabTitle()}</h1>
+                    <div className={`table-header-button ${addButton === '' ? 'thb' : ''}`}>
+                        {addButton}
+                        {this.getAccountButton()}
+                    </div>
+                </div>
+                <div className='content'>
+                    {this.getTabContent()}
                 </div>
             </div>
-            <div className='content'>
-                {this.getTabContent()}
-            </div>
-        </div>
 
-        </body>
+        </React.Fragment>
     }
 
 }

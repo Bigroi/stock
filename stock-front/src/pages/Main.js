@@ -27,7 +27,6 @@ export default class Main extends React.Component {
     render() {
         if (this.state.language) {
             if (this.state.authenticated) {
-                console.log(1);
                 return <UserMain/>
             } else {
                 return <Landing onLoginSuccess={this.onLogin}/>

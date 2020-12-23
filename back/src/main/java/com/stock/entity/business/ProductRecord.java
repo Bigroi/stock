@@ -1,5 +1,6 @@
 package com.stock.entity.business;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class ProductRecord {
@@ -48,5 +49,18 @@ public class ProductRecord {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductRecord that = (ProductRecord) o;
+        return this.id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }

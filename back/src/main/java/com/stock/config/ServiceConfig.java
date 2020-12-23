@@ -5,11 +5,9 @@ import com.stock.dao.*;
 import com.stock.entity.business.LotRecord;
 import com.stock.entity.business.TenderRecord;
 import com.stock.security.JwtTokenProcessor;
-import com.stock.service.BidService;
-import com.stock.service.FeedBackService;
-import com.stock.service.LabelService;
-import com.stock.service.UserService;
+import com.stock.service.*;
 import com.stock.service.impl.*;
+import com.stock.service.transactional.AddressServiceTransactional;
 import com.stock.service.transactional.BidServiceTransactional;
 import com.stock.service.transactional.UserServiceTransactional;
 import org.springframework.context.annotation.Bean;
@@ -57,9 +55,20 @@ public class ServiceConfig {
     }
 
     @Bean
-    public BidService<TenderRecord> createTenderRecord(TenderDao tenderDao, Transactional transactional) {
+    public BidService<TenderRecord> createTenderService(TenderDao tenderDao, Transactional transactional) {
         var service = new TenderServiceImpl(tenderDao);
         return new BidServiceTransactional<>(transactional, service);
+    }
+
+    @Bean
+    public AddressService createAddressService(AddressDao addressDao, Transactional transactional) {
+        var service = new AddressServiceImpl(addressDao);
+        return new AddressServiceTransactional(transactional, service);
+    }
+
+    @Bean
+    public ProductService createProductService(ProductDao productDao) {
+        return new ProductServiceImpl(productDao);
     }
 
 }

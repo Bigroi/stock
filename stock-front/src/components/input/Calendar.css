@@ -1,0 +1,10 @@
+.react-datepicker__input-container {
+    display: grid;
+}
+
+.react-datepicker button {
+    margin-top: 0;
+    background-color: initial;
+    height: 10px !important;
+    width: 10px !important;
+}

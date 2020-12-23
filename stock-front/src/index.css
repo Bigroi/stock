@@ -335,9 +335,6 @@ h3, .span_h3 {
     padding-bottom: 20px;
 }
 
-/*.test-trading table.dataTable.display tbody tr:first-child td {
-	text-align: left;
-}*/
 .test-trading table.dataTable.display tbody tr:first-child td.dataTables_empty {
     text-align: center;
 }
@@ -895,6 +892,8 @@ footer .container {
     overflow-x: hidden;
     overflow-y: auto;
     z-index: 2;
+    top: 0;
+    left: 0;
 }
 
 .dialogbox-child {
@@ -2216,6 +2215,16 @@ table.dataTable.no-footer,
     margin-top: 20px;
 }
 
+.table-message {
+    width: calc(100% - 55px) !important;
+    margin-bottom: 0 !important;
+    white-space: normal !important;
+}
+
+.table-message-header {
+    padding: 0 !important;
+}
+
 .lot-dialogbox .dialogbox-child,
 .tender-dialogbox .dialogbox-child {
     height: auto;
@@ -2320,6 +2329,12 @@ table.dataTable.no-footer,
     margin-left: 20px;
 }
 
+.tender-dialogbox .dialogbox-child .react-datepicker button,
+.lot-dialogbox .dialogbox-child .react-datepicker button {
+    width: inherit;
+    margin-left: inherit;
+}
+
 .tender-dialogbox #form-list,
 .lot-dialogbox #form-list {
     width: 100%;
@@ -2382,7 +2397,7 @@ table.dataTable > tbody > tr.child span {
 
 .success-message {
     width: 316px;
-    height: 42px;
+    min-height: 42px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2427,13 +2442,12 @@ table.dataTable > tbody > tr.child span {
         align-items: center;
         padding: 0 25px;
         width: calc(100% - 50px);
-        height: 80px;
+        min-height: 80px;
         background-color: #ffffff;
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
     }
 
     .bgdark {
-        display: none;
         background-color: rgba(0, 0, 0, 0.5);
         width: 100%;
         height: 100%;
@@ -2582,6 +2596,13 @@ table.dataTable > tbody > tr.child span {
         margin-left: 0;
         height: 40px;
         width: 150px;
+    }
+
+    .tender-dialogbox .dialogbox-child .react-datepicker button,
+    .lot-dialogbox .dialogbox-child .react-datepicker button {
+        margin-left: inherit;
+        height: inherit;
+        width: inherit;
     }
 
     .lot-dialogbox .dialogbox-child,
@@ -2849,6 +2870,11 @@ table.dataTable > tbody > tr.child span {
     .tender-dialogbox .dialogbox-child button,
     .lot-dialogbox .dialogbox-child button {
         width: 140px;
+    }
+
+    .tender-dialogbox .dialogbox-child .react-datepicker button,
+    .lot-dialogbox .dialogbox-child .react-datepicker button {
+        width: inherit;
     }
 
     .tender-dialogbox .dialogbox-child input {

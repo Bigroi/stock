@@ -5,6 +5,7 @@ import React from 'react';
  *     type: Message.TYPES,
  *     value: String
  * }
+ * className: String
  */
 export const TYPES = {
     ERROR: 'error-message',
@@ -14,6 +15,8 @@ export default class Message extends React.Component {
 
     render() {
         const message = this.props.message || {type: '', value: ''};
-        return <div className={`dialogbox-message ${message.type}`}>{message.value}</div>
+        return <div className={`dialogbox-message ${message.type} ${this.props.className || ''}`}>
+            {message.value}
+        </div>
     }
 }

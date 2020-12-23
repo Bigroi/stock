@@ -1,8 +1,6 @@
 import LocalStorageParams from "./LocalStrorageParams";
 
 const hasRole = (role) => {
-    console.log(localStorage.getItem(LocalStorageParams.ROLES));
-    console.log(JSON.parse(localStorage.getItem(LocalStorageParams.ROLES)));
     const roles = JSON.parse(localStorage.getItem(LocalStorageParams.ROLES));
     return roles.find(r => r === role);
 };

@@ -84,4 +84,9 @@ public class DaoConfig {
     public TenderDao createTenderDao(Jdbi jdbi) {
         return jdbi.onDemand(TenderDao.class);
     }
+
+    @Bean
+    public ProductDao createProductDao(Jdbi jdbi) {
+        return jdbi.onDemand(ProductDao.class);
+    }
 }
