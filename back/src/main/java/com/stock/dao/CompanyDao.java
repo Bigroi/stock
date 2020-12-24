@@ -36,4 +36,7 @@ public interface CompanyDao {
 
     @SqlQuery("SELECT * FROM COMPANY")
     List<CompanyRecord> getAllCompanies();
+
+    @SqlUpdate("UPDATE COMPANY SET STATUS = :status WHERE ID = :id")
+    boolean changeCompanyStatus(@Bind("id") UUID id, @Bind("status") CompanyStatus status);
 }

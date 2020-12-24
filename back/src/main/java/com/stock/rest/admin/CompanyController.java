@@ -1,11 +1,12 @@
 package com.stock.rest.admin;
 
-import com.stock.entity.ui.Label;
-import com.stock.service.LabelService;
+import com.stock.service.CompanyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Controller
 @RequestMapping("api/admin/")
@@ -17,38 +18,29 @@ import org.springframework.web.bind.annotation.*;
 })
 public class CompanyController {
 
-    private final LabelService labelService;
+    private final CompanyService companyService;
 
-    public CompanyController(LabelService labelService) {
-        this.labelService = labelService;
+    public CompanyController(CompanyService companyService) {
+        this.companyService = companyService;
     }
 
     @GetMapping("/companies")
     public ResponseEntity<?> all() {
-        return ResponseEntity.ok(labelService.getAllLabelAsAdmin());
+        return ResponseEntity.ok(companyService.getCompanies());
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestBody Label label) {
-        if (labelService.updateAsAdmin(label)) {
+    @PutMapping("/company/{id}/revoke")
+    public ResponseEntity<?> revoke(@PathVariable("id") UUID id) {
+        if (companyService.deactivate(id)) {
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();
         }
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody Label label) {
-        if (labelService.addAsAdmin(label)) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();
-        }
-    }
-
-    @DeleteMapping("/delete/{name}")
-    public ResponseEntity<?> create(@PathVariable("name") String name) {
-        if (labelService.deleteAsAdmin(name)) {
+    @PutMapping("/company/{id}/activate")
+    public ResponseEntity<?> activate(@PathVariable("id") UUID id) {
+        if (companyService.activate(id)) {
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();

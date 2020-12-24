@@ -8,6 +8,7 @@ import AccountForm from "../../forms/account/AccountForm";
 import Lots from "./tab/Lots";
 import Tenders from "./tab/Tenders";
 import Products from "./tab/Products";
+import Companies from "./tab/Companies";
 
 class UserMain extends React.Component {
 
@@ -240,6 +241,8 @@ class UserMain extends React.Component {
                     showEmptyForm={this.state.showEmptyForm}
                     onCloseForm={() => this.setState({showEmptyForm: false})}
                 />;
+            case this.TAB.COMPANY:
+                return <Companies/>;
             default:
                 return 'test';
         }

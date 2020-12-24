@@ -47,4 +47,9 @@ public interface TenderDao {
 
     @SqlUpdate("DELETE FROM TENDER WHERE PRODUCT_ID = :categoryId")
     void deleteByCategoryId(@Bind("categoryId") UUID categoryId);
+
+    @SqlUpdate("UPDATE TENDER " +
+            "SET STATUS = :status " +
+            "WHERE COMPANY_ID = :companyId")
+    void setStatusByCompanyId(@Bind("companyId") UUID companyId, @Bind("status") BidStatus inactive);
 }

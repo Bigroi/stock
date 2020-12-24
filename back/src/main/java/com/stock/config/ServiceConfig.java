@@ -88,4 +88,15 @@ public class ServiceConfig {
         return new CategoryServiceTransactional(transactional, service);
     }
 
+    @Bean
+    public CompanyService createCompanyService(
+            CompanyDao companyDao,
+            LotDao lotDao,
+            TenderDao tenderDao,
+            Transactional transactional
+    ) {
+        var service = new CompanyServiceImpl(companyDao, lotDao, tenderDao);
+        return new CompanyServiceTransactional(transactional, service);
+    }
+
 }

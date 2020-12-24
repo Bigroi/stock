@@ -51,4 +51,9 @@ public interface LotDao {
 
     @SqlUpdate("DELETE FROM LOT WHERE CATEGORY_ID = :categoryId")
     void deleteByCategoryId(@Bind("categoryId") UUID categoryId);
+
+    @SqlUpdate("UPDATE LOT " +
+            "SET STATUS = :status " +
+            "WHERE COMPANY_ID = :companyId")
+    void setStatusByCompanyId(@Bind("companyId") UUID companyId, @Bind("status") BidStatus inactive);
 }

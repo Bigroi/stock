@@ -35,6 +35,10 @@ const urls = {
     PRODUCT_CATEGORY_ADMIN: 'admin/product/{productId}/category',
     PRODUCT_CATEGORY_ADMIN_ACTIVATE: 'admin/product/{productId}/category/{id}/activate',
     PRODUCT_CATEGORY_ADMIN_DEACTIVATE: 'admin/product/{productId}/category/{id}/deactivate',
+
+    COMPANIES_ADMIN: 'admin/companies',
+    COMPANY_ADMIN_ACTIVATE: 'admin/company/{id}/activate',
+    COMPANY_ADMIN_REVOKE: 'admin/company/{id}/revoke'
 };
 
 export default urls;
