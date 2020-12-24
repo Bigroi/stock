@@ -27,7 +27,7 @@ public interface LabelDao {
     @SqlBatch("UPDATE LABEL " +
             " SET VALUE = :value " +
             " WHERE NAME = :name AND LANGUAGE = :language")
-    boolean[] update(List<LabelRecord> records);
+    boolean[] update(@BindBean List<LabelRecord> records);
 
     @SqlUpdate("DELETE FROM LABEL WHERE NAME = :name")
     boolean deleteByName(@Bind("name") String name);

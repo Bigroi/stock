@@ -38,7 +38,10 @@ const urls = {
 
     COMPANIES_ADMIN: 'admin/companies',
     COMPANY_ADMIN_ACTIVATE: 'admin/company/{id}/activate',
-    COMPANY_ADMIN_REVOKE: 'admin/company/{id}/revoke'
+    COMPANY_ADMIN_REVOKE: 'admin/company/{id}/revoke',
+
+    LABELS_ADMIN: 'admin/labels',
+    LABEL_ADMIN: 'admin/label/{name}'
 };
 
 export default urls;

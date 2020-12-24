@@ -9,6 +9,7 @@ import Lots from "./tab/Lots";
 import Tenders from "./tab/Tenders";
 import Products from "./tab/Products";
 import Companies from "./tab/Companies";
+import Labels from "./tab/Labels";
 
 class UserMain extends React.Component {
 
@@ -243,6 +244,11 @@ class UserMain extends React.Component {
                 />;
             case this.TAB.COMPANY:
                 return <Companies/>;
+            case this.TAB.LABELS:
+                return <Labels
+                    showEmptyForm={this.state.showEmptyForm}
+                    onCloseForm={() => this.setState({showEmptyForm: false})}
+                />;
             default:
                 return 'test';
         }
