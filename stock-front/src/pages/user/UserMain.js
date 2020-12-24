@@ -7,6 +7,7 @@ import FeedBackForm from "../../forms/feed-back/FeedBackForm";
 import AccountForm from "../../forms/account/AccountForm";
 import Lots from "./tab/Lots";
 import Tenders from "./tab/Tenders";
+import Products from "./tab/Products";
 
 class UserMain extends React.Component {
 
@@ -231,6 +232,11 @@ class UserMain extends React.Component {
                 />;
             case this.TAB.TENDERS:
                 return <Tenders
+                    showEmptyForm={this.state.showEmptyForm}
+                    onCloseForm={() => this.setState({showEmptyForm: false})}
+                />;
+            case this.TAB.PRODUCTS_ADMIN:
+                return <Products
                     showEmptyForm={this.state.showEmptyForm}
                     onCloseForm={() => this.setState({showEmptyForm: false})}
                 />;

@@ -5,17 +5,20 @@ import com.stock.entity.business.ProductRecord;
 import org.jdbi.v3.core.mapper.JoinRow;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.config.RegisterJoinRowMapper;
+import org.jdbi.v3.sqlobject.customizer.Bind;
+import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
+import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RegisterBeanMapper(ProductRecord.class)
 public interface ProductDao {
 
-    //    @UseRowReducer(ProductWithCategoriesReducer.class)
     @RegisterBeanMapper(value = ProductRecord.class, prefix = "P")
     @RegisterBeanMapper(value = ProductCategoryRecord.class, prefix = "C")
     @RegisterJoinRowMapper({ProductRecord.class, ProductCategoryRecord.class})
@@ -35,4 +38,16 @@ public interface ProductDao {
                         )
                 );
     }
+
+    @SqlQuery("SELECT * FROM PRODUCT P ")
+    List<ProductRecord> getAll();
+
+    @SqlUpdate("INSERT INTO PRODUCT (ID, NAME, REMOVED, PICTURE) " +
+            "VALUES (:id, :name, :removed, :picture)")
+    void create(@BindBean ProductRecord record);
+
+    @SqlUpdate("UPDATE PRODUCT " +
+            "SET REMOVED = :removed " +
+            "WHERE ID = :id")
+    boolean setRemovedById(@Bind("id") UUID id, @Bind("removed") boolean removed);
 }

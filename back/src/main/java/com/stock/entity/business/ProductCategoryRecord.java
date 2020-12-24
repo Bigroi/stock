@@ -5,7 +5,7 @@ import java.util.UUID;
 public class ProductCategoryRecord {
 
     private UUID id;
-    private UUID product_id;
+    private UUID productId;
     private String categoryName;
     private boolean removed;
 
@@ -15,14 +15,6 @@ public class ProductCategoryRecord {
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-    public UUID getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(UUID product_id) {
-        this.product_id = product_id;
     }
 
     public String getCategoryName() {
@@ -39,5 +31,13 @@ public class ProductCategoryRecord {
 
     public void setRemoved(boolean removed) {
         this.removed = removed;
+    }
+
+    public UUID getProductId() {
+        return productId;
+    }
+
+    public void setProductId(UUID productId) {
+        this.productId = productId;
     }
 }

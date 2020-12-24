@@ -1,7 +1,6 @@
 package com.stock.dao;
 
 import com.stock.entity.BidStatus;
-import com.stock.entity.business.LotRecord;
 import com.stock.entity.business.TenderRecord;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
@@ -42,4 +41,10 @@ public interface TenderDao {
             "SET STATUS = :status " +
             "WHERE ID = :id AND COMPANY_ID = :companyId")
     boolean setStatus(@Bind("id") UUID id, @Bind("companyId") UUID companyId, @Bind("status") BidStatus status);
+
+    @SqlUpdate("DELETE FROM TENDER WHERE PRODUCT_ID = :productId")
+    void deleteByProductId(@Bind("productId") UUID productId);
+
+    @SqlUpdate("DELETE FROM TENDER WHERE PRODUCT_ID = :categoryId")
+    void deleteByCategoryId(@Bind("categoryId") UUID categoryId);
 }

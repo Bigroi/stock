@@ -1,13 +1,11 @@
 package com.stock.entity.business;
 
-import java.util.Objects;
 import java.util.UUID;
 
 public class ProductRecord {
 
     private UUID id;
     private String name;
-    private String description;
     private boolean removed;
     private String picture;
 
@@ -25,14 +23,6 @@ public class ProductRecord {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public boolean isRemoved() {

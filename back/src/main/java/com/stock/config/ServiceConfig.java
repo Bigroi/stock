@@ -7,9 +7,7 @@ import com.stock.entity.business.TenderRecord;
 import com.stock.security.JwtTokenProcessor;
 import com.stock.service.*;
 import com.stock.service.impl.*;
-import com.stock.service.transactional.AddressServiceTransactional;
-import com.stock.service.transactional.BidServiceTransactional;
-import com.stock.service.transactional.UserServiceTransactional;
+import com.stock.service.transactional.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -67,8 +65,27 @@ public class ServiceConfig {
     }
 
     @Bean
-    public ProductService createProductService(ProductDao productDao) {
-        return new ProductServiceImpl(productDao);
+    public ProductService createProductService(
+            ProductDao productDao,
+            LotDao lotDao,
+            TenderDao tenderDao,
+            ProductCategoryDao productCategoryDao,
+            Transactional transactional
+    ) {
+        var service = new ProductServiceImpl(productDao, lotDao, tenderDao, productCategoryDao);
+        return new ProductServiceTransactional(transactional, service);
+    }
+
+    @Bean
+    public CategoryService createCategoryService(
+            ProductCategoryDao productCategoryDao,
+            ProductDao productDao,
+            LotDao lotDao,
+            TenderDao tenderDao,
+            Transactional transactional
+    ) {
+        var service = new CategoryServiceImpl(productCategoryDao, productDao, lotDao, tenderDao);
+        return new CategoryServiceTransactional(transactional, service);
     }
 
 }

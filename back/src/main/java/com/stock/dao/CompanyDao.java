@@ -33,4 +33,7 @@ public interface CompanyDao {
             " SET PHONE = :phone " +
             " WHERE ID = :id")
     void updatePhone(@Bind("phone") String phone, @Bind("id") UUID id);
+
+    @SqlQuery("SELECT * FROM COMPANY")
+    List<CompanyRecord> getAllCompanies();
 }

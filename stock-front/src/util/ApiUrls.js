@@ -23,7 +23,18 @@ const urls = {
     TENDER_ACTIVATE: 'user/tender/{id}/activate',
     TENDER_DEACTIVATE: 'user/tender/{id}/deactivate',
 
-    ADDRESS_LIST: 'user/addresses'
+    ADDRESS_LIST: 'user/addresses',
+
+    //admin
+    PRODUCTS_ADMIN: 'admin/products',
+    PRODUCT_ADMIN: 'admin/product',
+    PRODUCT_ADMIN_ACTIVATE: 'admin/product/{id}/activate',
+    PRODUCT_ADMIN_DEACTIVATE: 'admin/product/{id}/deactivate',
+
+    PRODUCT_CATEGORIES_ADMIN: 'admin/product/{productId}/categories',
+    PRODUCT_CATEGORY_ADMIN: 'admin/product/{productId}/category',
+    PRODUCT_CATEGORY_ADMIN_ACTIVATE: 'admin/product/{productId}/category/{id}/activate',
+    PRODUCT_CATEGORY_ADMIN_DEACTIVATE: 'admin/product/{productId}/category/{id}/deactivate',
 };
 
 export default urls;

@@ -41,4 +41,14 @@ public interface LotDao {
             "SET STATUS = :status " +
             "WHERE ID = :id AND COMPANY_ID = :companyId")
     boolean setStatus(@Bind("id") UUID id, @Bind("companyId") UUID companyId, @Bind("status") BidStatus status);
+
+    @SqlUpdate("DELETE FROM LOT " +
+            "WHERE CATEGORY_ID IN (" +
+            "       SELECT ID FROM PRODUCT_CATEGORY " +
+            "       WHERE PRODUCT_ID = :productId" +
+            ")")
+    void deleteByProductId(@Bind("productId") UUID productId);
+
+    @SqlUpdate("DELETE FROM LOT WHERE CATEGORY_ID = :categoryId")
+    void deleteByCategoryId(@Bind("categoryId") UUID categoryId);
 }
