@@ -5,9 +5,11 @@ import com.stock.entity.business.LotRecord;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
+import org.jdbi.v3.sqlobject.statement.SqlBatch;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -56,4 +58,17 @@ public interface LotDao {
             "SET STATUS = :status " +
             "WHERE COMPANY_ID = :companyId")
     void setStatusByCompanyId(@Bind("companyId") UUID companyId, @Bind("status") BidStatus inactive);
+
+    @SqlQuery("SELECT * FROM LOT WHERE STATUS = :status")
+    List<LotRecord> getByStatus(@Bind("status") BidStatus status);
+
+    @SqlBatch("UPDATE LOT " +
+            "SET STATUS = :status, ALERT = :alert " +
+            "WHERE ID = :id")
+    void updateStatusAndAlert(@BindBean List<LotRecord> lots);
+
+    @SqlBatch("UPDATE LOT " +
+            "SET MAX_VOLUME = MAX_VOLUME + :maxVolume " +
+            "WHERE ID = :id")
+    void returnVolume(@BindBean List<LotRecord> lotsToReturnValue);
 }

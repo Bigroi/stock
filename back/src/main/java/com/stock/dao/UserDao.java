@@ -41,4 +41,7 @@ public interface UserDao {
             @Bind("password") String password,
             @Bind("language") Language language,
             @Bind("userName") String userName);
+
+    @SqlQuery("SELECT * FROM SYSTEM_USER")
+    List<UserRecord> getAll();
 }

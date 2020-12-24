@@ -10,6 +10,7 @@ import Tenders from "./tab/Tenders";
 import Products from "./tab/Products";
 import Companies from "./tab/Companies";
 import Labels from "./tab/Labels";
+import Trade from "./tab/Trade";
 
 class UserMain extends React.Component {
 
@@ -175,7 +176,7 @@ class UserMain extends React.Component {
             case this.TAB.COMPANY:
                 return t('label.pageNames.companies');
             case this.TAB.TESTS:
-                return t('label.pageNames.testBG');
+                return t('label.navigation.testBG');
             case this.TAB.LABELS:
                 return t('label.pageNames.lables');
             default:
@@ -249,6 +250,8 @@ class UserMain extends React.Component {
                     showEmptyForm={this.state.showEmptyForm}
                     onCloseForm={() => this.setState({showEmptyForm: false})}
                 />;
+            case this.TAB.TESTS:
+                return <Trade/>
             default:
                 return 'test';
         }

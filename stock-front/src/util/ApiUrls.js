@@ -41,7 +41,11 @@ const urls = {
     COMPANY_ADMIN_REVOKE: 'admin/company/{id}/revoke',
 
     LABELS_ADMIN: 'admin/labels',
-    LABEL_ADMIN: 'admin/label/{name}'
+    LABEL_ADMIN: 'admin/label/{name}',
+
+    TRADE_ADMIN_EXPIRATION_CHECK: 'admin/trade/expiration-check',
+    TRADE_ADMIN_CLEAR_PREDEAL: 'admin/trade/clean-predeal',
+    TRADE_ADMIN_RUN: 'admin/trade/run'
 };
 
 export default urls;

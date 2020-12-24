@@ -151,4 +151,8 @@ public class TenderRecord {
     public void setProductId(UUID productId) {
         this.productId = productId;
     }
+
+    public boolean isExpired() {
+        return expirationDate.before(new Date());
+    }
 }

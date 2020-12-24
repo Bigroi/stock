@@ -1,13 +1,16 @@
 package com.stock.dao;
 
 import com.stock.entity.BidStatus;
+import com.stock.entity.business.LotRecord;
 import com.stock.entity.business.TenderRecord;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
+import org.jdbi.v3.sqlobject.statement.SqlBatch;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -52,4 +55,17 @@ public interface TenderDao {
             "SET STATUS = :status " +
             "WHERE COMPANY_ID = :companyId")
     void setStatusByCompanyId(@Bind("companyId") UUID companyId, @Bind("status") BidStatus inactive);
+
+    @SqlQuery("SELECT * FROM TENDER WHERE STATUS = :status")
+    List<TenderRecord> getByStatus(@Bind("status") BidStatus status);
+
+    @SqlBatch("UPDATE TENDER " +
+            "SET STATUS = :status, ALERT = :alert " +
+            "WHERE ID = :id")
+    void updateStatusAndAlert(@BindBean List<TenderRecord> lots);
+
+    @SqlBatch("UPDATE TENDER " +
+            "SET MAX_VOLUME = MAX_VOLUME + :maxVolume " +
+            "WHERE ID = :id")
+    void returnVolume(@BindBean List<TenderRecord> tendersToReturnValue);
 }

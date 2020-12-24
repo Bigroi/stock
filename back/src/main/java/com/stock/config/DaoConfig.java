@@ -94,4 +94,9 @@ public class DaoConfig {
     public ProductCategoryDao createProductCategoryDao(Jdbi jdbi) {
         return jdbi.onDemand(ProductCategoryDao.class);
     }
+
+    @Bean
+    public DealDao createDealDao(Jdbi jdbi) {
+        return jdbi.onDemand(DealDao.class);
+    }
 }

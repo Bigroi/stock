@@ -99,4 +99,19 @@ public class ServiceConfig {
         return new CompanyServiceTransactional(transactional, service);
     }
 
+    @Bean
+    public TradeService createTradeService(
+            UserDao userDao,
+            LotDao lotDao,
+            TenderDao tenderDao,
+            DealDao dealDao,
+            LabelDao labelDao,
+            ProductDao productDao,
+            EmailClient emailClient,
+            Transactional transactional
+    ) {
+        var service = new TradeServiceImpl(userDao, lotDao, tenderDao, dealDao, labelDao, productDao, emailClient);
+        return new TradeServiceTransactional(transactional, service);
+    }
+
 }

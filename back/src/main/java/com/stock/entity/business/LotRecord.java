@@ -133,4 +133,8 @@ public class LotRecord {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+    public boolean isExpired() {
+        return expirationDate.before(new Date());
+    }
 }

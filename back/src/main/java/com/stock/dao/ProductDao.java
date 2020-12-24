@@ -39,6 +39,14 @@ public interface ProductDao {
                 );
     }
 
+    default Map<UUID, ProductRecord> getActiveProductNameByCategory() {
+        return getActiveProductWithCategoriesInternal()
+                .collect(Collectors.toMap(
+                        jr -> jr.get(ProductCategoryRecord.class).getId(),
+                        jr -> jr.get(ProductRecord.class)
+                ));
+    }
+
     @SqlQuery("SELECT * FROM PRODUCT P ")
     List<ProductRecord> getAll();
 
