@@ -1,5 +1,6 @@
 package com.stock.dao;
 
+import com.stock.entity.Language;
 import com.stock.entity.business.LabelRecord;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
@@ -9,7 +10,9 @@ import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RegisterBeanMapper(LabelRecord.class)
 public interface LabelDao {
@@ -18,7 +21,12 @@ public interface LabelDao {
     List<LabelRecord> getAll();
 
     @SqlQuery("SELECT * FROM LABEL WHERE NAME = :name")
-    Optional<LabelRecord> getByName(@Bind("name") String name);
+    List<LabelRecord> getByNameInternal(@Bind("name") String name);
+
+    default Map<Language, String> getByName(String name) {
+        return getByNameInternal(name).stream()
+                .collect(Collectors.toMap(LabelRecord::getLanguage, LabelRecord::getValue));
+    }
 
     @SqlBatch("INSERT INTO LABEL (NAME, LANGUAGE, VALUE)" +
             " VALUES (:name, :language, :value)")

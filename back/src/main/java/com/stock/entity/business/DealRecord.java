@@ -197,6 +197,16 @@ public class DealRecord {
         private double latitude;
         private double longitude;
 
+        public DealAddress() {
+
+        }
+
+        public DealAddress(String address, double latitude, double longitude) {
+            this.address = address;
+            this.latitude = latitude;
+            this.longitude = longitude;
+        }
+
         public String getAddress() {
             return address;
         }

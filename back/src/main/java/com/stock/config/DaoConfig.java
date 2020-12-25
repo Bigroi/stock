@@ -99,4 +99,9 @@ public class DaoConfig {
     public DealDao createDealDao(Jdbi jdbi) {
         return jdbi.onDemand(DealDao.class);
     }
+
+    @Bean
+    public BidBlackListDao createBidBlackListDao(Jdbi jdbi) {
+        return jdbi.onDemand(BidBlackListDao.class);
+    }
 }

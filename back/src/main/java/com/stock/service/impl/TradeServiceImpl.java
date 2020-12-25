@@ -10,6 +10,7 @@ import com.stock.entity.business.LotRecord;
 import com.stock.entity.business.TenderRecord;
 import com.stock.entity.business.UserRecord;
 import com.stock.service.TradeService;
+import com.stock.trading.TradeSession;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +27,7 @@ public class TradeServiceImpl implements TradeService {
     private final LabelDao labelDao;
     private final ProductDao productDao;
     private final EmailClient emailClient;
+    private final TradeSession tradeSession;
 
     public TradeServiceImpl(
             UserDao userDao,
@@ -34,7 +36,8 @@ public class TradeServiceImpl implements TradeService {
             DealDao dealDao,
             LabelDao labelDao,
             ProductDao productDao,
-            EmailClient emailClient
+            EmailClient emailClient,
+            TradeSession tradeSession
     ) {
         this.userDao = userDao;
         this.lotDao = lotDao;
@@ -43,6 +46,7 @@ public class TradeServiceImpl implements TradeService {
         this.labelDao = labelDao;
         this.productDao = productDao;
         this.emailClient = emailClient;
+        this.tradeSession = tradeSession;
     }
 
     @Override
@@ -148,6 +152,6 @@ public class TradeServiceImpl implements TradeService {
 
     @Override
     public void trade() {
-
+        productDao.getActiveProducts().forEach(tradeSession::tradeProduct);
     }
 }

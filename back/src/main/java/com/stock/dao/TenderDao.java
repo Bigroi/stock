@@ -3,6 +3,7 @@ package com.stock.dao;
 import com.stock.entity.BidStatus;
 import com.stock.entity.business.LotRecord;
 import com.stock.entity.business.TenderRecord;
+import com.stock.trading.entity.TenderTradeRecord;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
@@ -10,10 +11,7 @@ import org.jdbi.v3.sqlobject.statement.SqlBatch;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @RegisterBeanMapper(TenderRecord.class)
 public interface TenderDao {
@@ -62,10 +60,18 @@ public interface TenderDao {
     @SqlBatch("UPDATE TENDER " +
             "SET STATUS = :status, ALERT = :alert " +
             "WHERE ID = :id")
-    void updateStatusAndAlert(@BindBean List<TenderRecord> lots);
+    void updateStatusAndAlert(@BindBean Collection<TenderRecord> lots);
 
     @SqlBatch("UPDATE TENDER " +
             "SET MAX_VOLUME = MAX_VOLUME + :maxVolume " +
             "WHERE ID = :id")
     void returnVolume(@BindBean List<TenderRecord> tendersToReturnValue);
+
+    @SqlQuery("SELECT T.*, A.LONGITUDE, A.LATITUDE, CONCAT(A.ADDRESS, ' ', A.CITY, ' ', A.COUNTRY) ADDRESS_LINE " +
+            "FROM TENDER T " +
+            "JOIN ADDRESS A " +
+            "ON A.ID = T.ADDRESS_ID " +
+            "WHERE PRODUCT_ID = :productId")
+    @RegisterBeanMapper(TenderTradeRecord.class)
+    List<TenderTradeRecord> getByProductId(@Bind("productId") UUID productId);
 }

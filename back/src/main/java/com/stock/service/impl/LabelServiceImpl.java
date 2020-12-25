@@ -46,7 +46,7 @@ public class LabelServiceImpl implements LabelService {
 
     @Override
     public boolean addAsAdmin(Label label) {
-        if (labelDao.getByName(label.getName()).isPresent()) {
+        if (!labelDao.getByName(label.getName()).isEmpty()) {
             return false;
         }
         var records = Language.getStream()

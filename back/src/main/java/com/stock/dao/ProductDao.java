@@ -29,7 +29,6 @@ public interface ProductDao {
             "WHERE P.REMOVED = FALSE AND C.REMOVED = FALSE")
     Stream<JoinRow> getActiveProductWithCategoriesInternal();
 
-
     default Map<ProductRecord, List<ProductCategoryRecord>> getActiveProductWithCategories() {
         return getActiveProductWithCategoriesInternal()
                 .collect(Collectors.groupingBy(
@@ -46,6 +45,9 @@ public interface ProductDao {
                         jr -> jr.get(ProductRecord.class)
                 ));
     }
+
+    @SqlQuery("SELECT * FROM PRODUCT WHERE REMOVED = FALSE")
+    Stream<ProductRecord> getActiveProducts();
 
     @SqlQuery("SELECT * FROM PRODUCT P ")
     List<ProductRecord> getAll();

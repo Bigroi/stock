@@ -8,8 +8,10 @@ import com.stock.security.JwtTokenProcessor;
 import com.stock.service.*;
 import com.stock.service.impl.*;
 import com.stock.service.transactional.*;
+import com.stock.trading.TradeSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
@@ -108,10 +110,32 @@ public class ServiceConfig {
             LabelDao labelDao,
             ProductDao productDao,
             EmailClient emailClient,
+            TradeSession tradeSession,
             Transactional transactional
     ) {
-        var service = new TradeServiceImpl(userDao, lotDao, tenderDao, dealDao, labelDao, productDao, emailClient);
+        var service = new TradeServiceImpl(
+                userDao,
+                lotDao,
+                tenderDao,
+                dealDao,
+                labelDao,
+                productDao,
+                emailClient,
+                tradeSession
+        );
         return new TradeServiceTransactional(transactional, service);
     }
 
+    @Bean()
+    public TradeSession createTradeSession(
+            DealDao dealDao,
+            LotDao lotDao,
+            TenderDao tenderDao,
+            LabelDao labelDao,
+            BidBlackListDao bidBlackListDao,
+            UserDao userDao,
+            EmailClient emailClient
+    ) {
+        return new TradeSession(dealDao, lotDao, tenderDao, labelDao, bidBlackListDao, userDao, emailClient);
+    }
 }

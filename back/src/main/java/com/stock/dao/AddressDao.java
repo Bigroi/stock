@@ -9,6 +9,7 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 @RegisterBeanMapper(AddressRecord.class)
 public interface AddressDao {
@@ -37,4 +38,7 @@ public interface AddressDao {
     @SqlUpdate("DELETE FROM ADDRESS " +
             " WHERE ID = :id AND COMPANY_ID = :companyId AND PRIMARY_ADDRESS = FALSE")
     boolean removeByIdAndCompanyId(@Bind("id") UUID id, @Bind("companyId") UUID companyId);
+
+    @SqlQuery("SELECT * FROM ADDRESS")
+    Stream<AddressRecord> getAll();
 }
