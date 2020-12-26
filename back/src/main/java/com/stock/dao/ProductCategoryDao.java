@@ -14,7 +14,7 @@ import java.util.UUID;
 public interface ProductCategoryDao {
 
     @SqlQuery("SELECT * FROM PRODUCT_CATEGORY WHERE PRODUCT_ID = :productId")
-    List<ProductCategoryRecord> getByproductId(@Bind("productId") UUID productId);
+    List<ProductCategoryRecord> getByProductId(@Bind("productId") UUID productId);
 
     @SqlUpdate("INSERT INTO PRODUCT_CATEGORY (ID, CATEGORY_NAME, PRODUCT_ID, REMOVED) " +
             "VALUES (:id, :categoryName, :productId, :removed)")

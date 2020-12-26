@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @Controller
 @RequestMapping("api/public/")
 @CrossOrigin(origins = {
@@ -22,7 +24,19 @@ public class ProductController {
     }
 
     @GetMapping("/products/categories")
-    public ResponseEntity<?> getProduct() {
+    public ResponseEntity<?> getProducts() {
         return ResponseEntity.ok(productService.getActiveProducts());
+    }
+
+    @GetMapping("/statistics/products")
+    public ResponseEntity<?> getProductsStatistics() {
+        return ResponseEntity.ok(productService.getProductsStatistics());
+    }
+
+    @GetMapping("/statistics/product/{id}/details")
+    public ResponseEntity<?> getProductStatisticsDetails(@PathVariable("id") UUID productId) {
+        return productService.getProductStatisticsDetails(productId)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

@@ -14,8 +14,7 @@ class Products extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
-            editCategoriesForProduct: null
+            data: []
         }
     }
 
@@ -23,7 +22,7 @@ class Products extends React.Component {
         return Request.doGet(ApiUrls.PRODUCTS_ADMIN)
             .then(async responce => {
                 if (responce.ok) {
-                    this.setState({ data: JSON.parse(await responce.text())});
+                    this.setState({data: JSON.parse(await responce.text())});
                 }
             });
     }
@@ -67,7 +66,7 @@ class Products extends React.Component {
                 <div className={`swtitch-row-${p.removed ? 'off' : 'on'}`}
                      onClick={() => this.changeStatus(p)}
                 />,
-                <div className='edit' onClick={() => this.setState({editCategoriesForProduct: p.id})}/>
+                <div className='edit' onClick={() => this.props.onToDetails(p.id)}/>
             ]
         })
     };
@@ -91,22 +90,14 @@ class Products extends React.Component {
     };
 
     render() {
-        if (this.state.editCategoriesForProduct) {
-            return <Categories
-                productId={this.state.editCategoriesForProduct}
-                showEmptyForm={this.props.showEmptyForm}
-                onCloseForm={this.props.onCloseForm}
-                />
-        } else {
-            return <React.Fragment>
-                {this.getForm()}
-                <Table
-                    data={this.getData()}
-                    header={this.getHeader()}
-                    pageSize={10}
-                />
-            </React.Fragment>;
-        }
+        return <React.Fragment>
+            {this.getForm()}
+            <Table
+                data={this.getData()}
+                header={this.getHeader()}
+                pageSize={10}
+            />
+        </React.Fragment>;
     }
 }
 

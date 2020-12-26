@@ -117,3 +117,11 @@ table.dataTable, table.dataTable th, table.dataTable td {
         display: none;
     }
 }
+
+.dataTables_wrapper:after {
+    visibility: hidden;
+    display: block;
+    content: "";
+    clear: both;
+    height: 0;
+}

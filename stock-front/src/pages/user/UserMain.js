@@ -11,30 +11,134 @@ import Products from "./tab/Products";
 import Companies from "./tab/Companies";
 import Labels from "./tab/Labels";
 import Trade from "./tab/Trade";
+import ProductsStatistics from "./tab/ProductsStatistics";
+import Categories from "./tab/Categories";
+import ProductStatisticsDetails from "./tab/ProductStatisticsDetails";
 
 class UserMain extends React.Component {
 
     constructor(props) {
         super(props);
+        this.tabMap = this.getTabMap();
         this.state = {
-            activeTab: this.TAB.PRODUCTS,
+            activeTab: this.tabMap.PRODUCTS,
             feedBackFormActive: false,
             accountPopupActive: false,
             accountFormActive: false,
             showEmptyForm: false,
-            mobileMenuActivated: false
-        }
+            mobileMenuActivated: false,
+        };
     }
 
-    TAB = {
-        PRODUCTS: 'products',
-        LOTS: 'lots',
-        TENDERS: 'tenders',
-        DEALS: 'deals',
-        PRODUCTS_ADMIN: 'productsAdmin',
-        COMPANY: 'company',
-        TESTS: 'tests',
-        LABELS: 'labels'
+    getAddButton = (visible) => {
+        const {t} = this.props;
+        if (visible) {
+            return <div className="add-button" onClick={() => this.setState({showEmptyForm: true})}>
+                <div className="plus"/>
+                <p>{t('label.button.create')}</p>
+            </div>;
+        } else {
+            return '';
+        }
+    };
+
+    getTabMap = () => {
+        const {t} = this.props;
+        return {
+            PRODUCTS: {
+                id: 'products',
+                getTitle: () => t('label.pageNames.products'),
+                addButton: false,
+                getContent: () =>
+                    <ProductsStatistics
+                        onDetails={(pId =>
+                            this.setState({activeTab: this.tabMap.PRODUCT_DETAILS, productId: pId})
+                        )}
+                    />
+            },
+            PRODUCT_DETAILS: {
+                id: 'productDetails',
+                getTitle: () => t('label.pageNames.tradeOffers'),
+                addButton: false,
+                getContent: () =>
+                    <ProductStatisticsDetails
+                        productId={this.state.productId}
+                        onBack={() => this.setState({activeTab: this.tabMap.PRODUCTS})}
+                    />
+            },
+            LOTS: {
+                id: 'lots',
+                getTitle: () => t('label.pageNames.myLots'),
+                addButton: true,
+                getContent: () =>
+                    <Lots
+                        showEmptyForm={this.state.showEmptyForm}
+                        onCloseForm={() => this.setState({showEmptyForm: false})}
+                    />
+            },
+            TENDERS: {
+                id: 'tenders',
+                getTitle: () => t('label.pageNames.myTenders'),
+                addButton: true,
+                getContent: () =>
+                    <Tenders
+                        showEmptyForm={this.state.showEmptyForm}
+                        onCloseForm={() => this.setState({showEmptyForm: false})}
+                    />
+            },
+            DEALS: {
+                id: 'deals',
+                getTitle: () => t('label.pageNames.myDeals'),
+                addButton: false,
+                getContent: () => 'test'
+            },
+            PRODUCTS_ADMIN: {
+                id: 'productsAdmin',
+                getTitle: () => t('label.pageNames.productsForAdmin'),
+                addButton: true,
+                getContent: () =>
+                    <Products
+                        showEmptyForm={this.state.showEmptyForm}
+                        onCloseForm={() => this.setState({showEmptyForm: false})}
+                        onToDetails={(pId) =>
+                            this.setState({activeTab: this.tabMap.PRODUCT_CATEGORIES_ADMIN, productId: pId})
+                        }
+                    />
+            },
+            PRODUCT_CATEGORIES_ADMIN: {
+                id: 'productCategoriesAdmin',
+                getTitle: () => t('label.pageNames.productsForAdmin'),
+                addButton: true,
+                getContent: () =>
+                    <Categories
+                        productId={this.state.productId}
+                        showEmptyForm={this.state.showEmptyForm}
+                        onCloseForm={() => this.setState({showEmptyForm: false})}
+                    />
+            },
+            COMPANY: {
+                id: 'company',
+                getTitle: () => t('label.pageNames.companies'),
+                addButton: false,
+                getContent: () => <Companies/>
+            },
+            TESTS: {
+                id: 'tests',
+                getTitle: () => t('label.navigation.testBG'),
+                addButton: false,
+                getContent: () => <Trade/>
+            },
+            LABELS: {
+                id: 'labels',
+                getTitle: () => t('label.pageNames.lables'),
+                addButton: true,
+                getContent: () =>
+                    <Labels
+                        showEmptyForm={this.state.showEmptyForm}
+                        onCloseForm={() => this.setState({showEmptyForm: false})}
+                    />
+            }
+        }
     };
 
     setActiveTab = (e, tab) => {
@@ -57,25 +161,29 @@ class UserMain extends React.Component {
     getUserTabs = () => {
         const {t} = this.props;
         return <React.Fragment>
-            <li className={this.state.activeTab === this.TAB.PRODUCTS ? 'active' : ''}>
-                <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.PRODUCTS)}>
+            <li className={this.state.activeTab === this.tabMap.PRODUCTS
+                || this.state.activeTab === this.tabMap.PRODUCT_DETAILS
+                ? 'active'
+                : ''
+            }>
+                <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.PRODUCTS)}>
                     {t('label.navigation.products')}
                 </a>
             </li>
-            <li className={this.state.activeTab === this.TAB.LOTS ? 'active' : ''}>
-                <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.LOTS)}>
+            <li className={this.state.activeTab === this.tabMap.LOTS ? 'active' : ''}>
+                <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.LOTS)}>
                     {t('label.navigation.lots')}
                     <span id='lot-alerts' style={{display: 'none'}} className='bid-alert'/>
                 </a>
             </li>
-            <li className={this.state.activeTab === this.TAB.TENDERS ? 'active' : ''}>
-                <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.TENDERS)}>
+            <li className={this.state.activeTab === this.tabMap.TENDERS ? 'active' : ''}>
+                <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.TENDERS)}>
                     {t('label.navigation.tenders')}
                     <span id='tender-alerts' style={{display: 'none'}} className='bid-alert'/>
                 </a>
             </li>
-            <li className={this.state.activeTab === this.TAB.DEALS ? 'active' : ''}>
-                <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.DEALS)}>
+            <li className={this.state.activeTab === this.tabMap.DEALS ? 'active' : ''}>
+                <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.DEALS)}>
                     {t('label.navigation.deals')}
                     <span id='deal-alerts' style={{display: 'none'}} className='deal-alert'/>
                     <span id='deal-on-approve' style={{display: 'none'}} className='deal-on-approve'/>
@@ -88,23 +196,28 @@ class UserMain extends React.Component {
         if (LocalStorage.hasRole("ADMIN")) {
             const {t} = this.props;
             return <React.Fragment>
-                <li className={this.state.activeTab === this.TAB.PRODUCTS_ADMIN ? 'active' : ''}>
-                    <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.PRODUCTS_ADMIN)}>
+                <li className={
+                    this.state.activeTab === this.tabMap.PRODUCTS_ADMIN
+                        || this.state.activeTab === this.tabMap.PRODUCT_CATEGORIES_ADMIN
+                        ? 'active'
+                        : ''
+                }>
+                    <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.PRODUCTS_ADMIN)}>
                         {t('label.navigation.productsExt')}
                     </a>
                 </li>
-                <li className={this.state.activeTab === this.TAB.COMPANY ? 'active' : ''}>
-                    <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.COMPANY)}>
+                <li className={this.state.activeTab === this.tabMap.COMPANY ? 'active' : ''}>
+                    <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.COMPANY)}>
                         {t('label.navigation.company')}
                     </a>
                 </li>
-                <li className={this.state.activeTab === this.TAB.TESTS ? 'active' : ''}>
-                    <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.TESTS)}>
+                <li className={this.state.activeTab === this.tabMap.TESTS ? 'active' : ''}>
+                    <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.TESTS)}>
                         {t('label.navigation.testBG')}
                     </a>
                 </li>
-                <li className={this.state.activeTab === this.TAB.LABELS ? 'active' : ''}>
-                    <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.LABELS)}>
+                <li className={this.state.activeTab === this.tabMap.LABELS ? 'active' : ''}>
+                    <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.LABELS)}>
                         {t('label.navigation.labels')}
                     </a>
                 </li>
@@ -139,13 +252,13 @@ class UserMain extends React.Component {
 
     getLogo = () => {
         return <div className='logo-pages'>
-            <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.PRODUCTS)}>
+            <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.PRODUCTS)}>
                 <img className='big-logo' src='/img/logo-pages.png' alt='YourTrader' title='YourTrader'/>
             </a>
             <div className=' small-logo'>
                 <div className='burger-close' onClick={() => this.setState({mobileMenuActivated: false})}/>
                 <div className='logo-mobile'>
-                    <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.PRODUCTS)}/>
+                    <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.PRODUCTS)}/>
                 </div>
             </div>
         </div>
@@ -155,34 +268,11 @@ class UserMain extends React.Component {
         return <div className='burger-logo'>
             <div className='burger' onClick={() => this.setState({mobileMenuActivated: true})}/>
             <div className='logo-mobile'>
-                <a href='#' onClick={(e) => this.setActiveTab(e, this.TAB.PRODUCTS)}/>
+                <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.PRODUCTS)}/>
             </div>
         </div>
     };
 
-    getTabTitle = () => {
-        const {t} = this.props;
-        switch (this.state.activeTab) {
-            case this.TAB.PRODUCTS:
-                return t('label.pageNames.products');
-            case this.TAB.LOTS:
-                return t('label.pageNames.myLots');
-            case this.TAB.TENDERS:
-                return t('label.pageNames.myTenders');
-            case this.TAB.DEALS:
-                return t('label.pageNames.myDeals');
-            case this.TAB.PRODUCTS_ADMIN:
-                return t('label.pageNames.productsForAdmin');
-            case this.TAB.COMPANY:
-                return t('label.pageNames.companies');
-            case this.TAB.TESTS:
-                return t('label.navigation.testBG');
-            case this.TAB.LABELS:
-                return t('label.pageNames.lables');
-            default:
-                return '';
-        }
-    };
 
     getAccountButton = () => {
         return <div className={`login-box ${this.state.accountPopupActive ? '' : 'login-box-shadow'}`}>
@@ -226,53 +316,6 @@ class UserMain extends React.Component {
         }
     };
 
-    getTabContent = () => {
-        switch (this.state.activeTab) {
-            case this.TAB.LOTS:
-                return <Lots
-                    showEmptyForm={this.state.showEmptyForm}
-                    onCloseForm={() => this.setState({showEmptyForm: false})}
-                />;
-            case this.TAB.TENDERS:
-                return <Tenders
-                    showEmptyForm={this.state.showEmptyForm}
-                    onCloseForm={() => this.setState({showEmptyForm: false})}
-                />;
-            case this.TAB.PRODUCTS_ADMIN:
-                return <Products
-                    showEmptyForm={this.state.showEmptyForm}
-                    onCloseForm={() => this.setState({showEmptyForm: false})}
-                />;
-            case this.TAB.COMPANY:
-                return <Companies/>;
-            case this.TAB.LABELS:
-                return <Labels
-                    showEmptyForm={this.state.showEmptyForm}
-                    onCloseForm={() => this.setState({showEmptyForm: false})}
-                />;
-            case this.TAB.TESTS:
-                return <Trade/>
-            default:
-                return 'test';
-        }
-    };
-
-    getAddButton = () => {
-        const {t} = this.props;
-        switch (this.state.activeTab) {
-            case this.TAB.LABELS:
-            case this.TAB.PRODUCTS_ADMIN:
-            case this.TAB.TENDERS:
-            case this.TAB.LOTS:
-                return <div className="add-button" onClick={() => this.setState({showEmptyForm: true})}>
-                    <div className="plus"/>
-                    <p>{t('label.button.create')}</p>
-                </div>;
-            default:
-                return '';
-        }
-    };
-
     getAsideFooter = () => {
         const {t} = this.props;
         return <div className='aside-footer'>
@@ -295,7 +338,7 @@ class UserMain extends React.Component {
     };
 
     render() {
-        const addButton = this.getAddButton();
+        const addButton = this.getAddButton(this.state.activeTab.addButton);
         return <React.Fragment>
             {this.getFeedBackForm()}
             {this.getAccountForm()}
@@ -311,14 +354,14 @@ class UserMain extends React.Component {
             {this.state.mobileMenuActivated ? <div className='bgdark'/> : ''}
             <div className='section'>
                 <div className='table-header'>
-                    <h1>{this.getTabTitle()}</h1>
+                    <h1>{this.state.activeTab.getTitle()}</h1>
                     <div className={`table-header-button ${addButton === '' ? 'thb' : ''}`}>
                         {addButton}
                         {this.getAccountButton()}
                     </div>
                 </div>
                 <div className='content'>
-                    {this.getTabContent()}
+                    {this.state.activeTab.getContent()}
                 </div>
             </div>
 

@@ -29,8 +29,9 @@ class Table extends React.Component {
         }
     }
 
-    getPaginator = () => {
-        if (this.props.data.length > this.getPageSize()) {
+    getPaginator = (data) => {
+        console.log(data);
+        if (data.length > this.getPageSize()) {
             return <div className="dataTables_paginate paging_simple_numbers" id="main-table_paginate"
                         style={{display: 'block'}}>
                 <a className="paginate_button previous disabled"
@@ -45,7 +46,7 @@ class Table extends React.Component {
                 <a className="paginate_button next disabled"
                    id="main-table_next"
                    onClick={() => {
-                       if (this.state.pageNumber < this.props.data.length / 10) {
+                       if (this.state.pageNumber < data.length / 10) {
                            this.setState({pageNumber: this.state.pageNumber + 1});
                        }
                    }}
@@ -67,12 +68,8 @@ class Table extends React.Component {
                 typeof field === 'string' && field.toLowerCase().indexOf(this.state.search.toLowerCase()) >= 0));
     };
 
-    getTableRows = () => {
+    getTableRows = (data) => {
         const {t} = this.props;
-        const data = this.filterData().slice(
-            (this.state.pageNumber - 1) * this.getPageSize(),
-            this.state.pageNumber * this.getPageSize()
-        );
         if (data.length === 0) {
             return <tr>
                 <td valign="top" colSpan={this.props.header.length} className="dataTables_empty">
@@ -110,6 +107,11 @@ class Table extends React.Component {
 
     render() {
         const {t} = this.props;
+        const filteredData = this.filterData();
+        const data = filteredData.slice(
+            (this.state.pageNumber - 1) * this.getPageSize(),
+            this.state.pageNumber * this.getPageSize()
+        );
 
         return <div id="table-container">
             <div id="main-table_wrapper" className="dataTables_wrapper no-footer">
@@ -131,10 +133,10 @@ class Table extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.getTableRows()}
+                    {this.getTableRows(data)}
                     </tbody>
                 </table>
-                {this.getPaginator()}
+                {this.getPaginator(filteredData)}
             </div>
         </div>
     }

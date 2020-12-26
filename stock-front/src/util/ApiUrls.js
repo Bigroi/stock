@@ -9,6 +9,8 @@ const urls = {
     LABELS: 'public/label/{{lng}}',
     FEED_BACK: 'public/feedback',
     PRODUCT_LIST: 'public/products/categories',
+    PRODUCTS_STATISTICS: 'public/statistics/products',
+    PRODUCTS_STATISTICS_DETAILS: 'public/statistics/product/{id}/details',
 
     //user
     ACCOUNT_MANAGEMENT: 'user/account',

@@ -76,7 +76,7 @@ public interface LotDao {
             "ON C.ID = L.CATEGORY_ID " +
             "JOIN ADDRESS A " +
             "ON A.ID = L.ADDRESS_ID " +
-            "WHERE  PRODUCT_ID = :productId")
+            "WHERE PRODUCT_ID = :productId AND L.STATUS = 'ACTIVE'")
     @RegisterBeanMapper(LotTradeRecord.class)
     List<LotTradeRecord> getByProductId(@Bind("productId") UUID productId);
 }

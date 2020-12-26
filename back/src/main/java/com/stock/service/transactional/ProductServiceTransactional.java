@@ -3,9 +3,12 @@ package com.stock.service.transactional;
 import com.stock.dao.Transactional;
 import com.stock.entity.business.ProductRecord;
 import com.stock.entity.ui.Product;
+import com.stock.entity.ui.ProductStatistics;
+import com.stock.entity.ui.ProductStatisticsDetails;
 import com.stock.service.ProductService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class ProductServiceTransactional implements ProductService {
@@ -41,5 +44,15 @@ public class ProductServiceTransactional implements ProductService {
     @Override
     public boolean activate(UUID id) {
         return service.activate(id);
+    }
+
+    @Override
+    public List<ProductStatistics> getProductsStatistics() {
+        return service.getProductsStatistics();
+    }
+
+    @Override
+    public Optional<ProductStatisticsDetails> getProductStatisticsDetails(UUID productId) {
+        return service.getProductStatisticsDetails(productId);
     }
 }

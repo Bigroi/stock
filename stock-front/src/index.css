@@ -1969,7 +1969,6 @@ button:hover,
     width: calc(100% - 170px);
     margin: 0 auto;
     padding-top: 5px;
-    background-image: url(img/apple.png);
     background-size: 93px;
     background-position: left top 25px;
     background-repeat: no-repeat;

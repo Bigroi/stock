@@ -31,7 +31,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<ProductCategoryRecord> getCategories(UUID productId) {
-        return productCategoryDao.getByproductId(productId);
+        return productCategoryDao.getByProductId(productId);
     }
 
     @Override

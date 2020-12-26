@@ -2,6 +2,7 @@ package com.stock.dao;
 
 import com.stock.entity.business.ProductCategoryRecord;
 import com.stock.entity.business.ProductRecord;
+import com.stock.entity.ui.Product;
 import org.jdbi.v3.core.mapper.JoinRow;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.config.RegisterJoinRowMapper;
@@ -12,6 +13,7 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -22,7 +24,7 @@ public interface ProductDao {
     @RegisterBeanMapper(value = ProductRecord.class, prefix = "P")
     @RegisterBeanMapper(value = ProductCategoryRecord.class, prefix = "C")
     @RegisterJoinRowMapper({ProductRecord.class, ProductCategoryRecord.class})
-    @SqlQuery("SELECT P.ID P_ID, P.NAME P_NAME, C.ID C_ID, C.CATEGORY_NAME C_CATEGORY_NAME " +
+    @SqlQuery("SELECT P.ID P_ID, P.NAME P_NAME, C.ID C_ID, P.PICTURE P_PICTURE, C.CATEGORY_NAME C_CATEGORY_NAME " +
             "FROM PRODUCT P " +
             "JOIN PRODUCT_CATEGORY C " +
             "ON P.ID = C.PRODUCT_ID " +
@@ -60,4 +62,7 @@ public interface ProductDao {
             "SET REMOVED = :removed " +
             "WHERE ID = :id")
     boolean setRemovedById(@Bind("id") UUID id, @Bind("removed") boolean removed);
+
+    @SqlQuery("SELECT * FROM PRODUCT P WHERE ID = :id AND REMOVED = FALSE")
+    Optional<ProductRecord> getById(@Bind("id") UUID id);
 }

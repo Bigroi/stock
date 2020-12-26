@@ -71,7 +71,7 @@ public interface TenderDao {
             "FROM TENDER T " +
             "JOIN ADDRESS A " +
             "ON A.ID = T.ADDRESS_ID " +
-            "WHERE PRODUCT_ID = :productId")
+            "WHERE PRODUCT_ID = :productId ANd T.STATUS = 'ACTIVE'")
     @RegisterBeanMapper(TenderTradeRecord.class)
     List<TenderTradeRecord> getByProductId(@Bind("productId") UUID productId);
 }
