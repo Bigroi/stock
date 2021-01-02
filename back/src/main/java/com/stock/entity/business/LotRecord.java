@@ -137,4 +137,50 @@ public class LotRecord {
     public boolean isExpired() {
         return expirationDate.before(new Date());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LotRecord lotRecord = (LotRecord) o;
+
+        if (Double.compare(lotRecord.price, price) != 0) return false;
+        if (minVolume != lotRecord.minVolume) return false;
+        if (maxVolume != lotRecord.maxVolume) return false;
+        if (distance != lotRecord.distance) return false;
+        if (alert != lotRecord.alert) return false;
+        if (!id.equals(lotRecord.id)) return false;
+        if (description != null ? !description.equals(lotRecord.description) : lotRecord.description != null)
+            return false;
+        if (!companyId.equals(lotRecord.companyId)) return false;
+        if (status != lotRecord.status) return false;
+        if (!creationDate.equals(lotRecord.creationDate)) return false;
+        if (!expirationDate.equals(lotRecord.expirationDate)) return false;
+        if (!addressId.equals(lotRecord.addressId)) return false;
+        if (!categoryId.equals(lotRecord.categoryId)) return false;
+        return photo != null ? photo.equals(lotRecord.photo) : lotRecord.photo == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id.hashCode();
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + minVolume;
+        result = 31 * result + maxVolume;
+        result = 31 * result + companyId.hashCode();
+        result = 31 * result + status.hashCode();
+        result = 31 * result + creationDate.hashCode();
+        result = 31 * result + expirationDate.hashCode();
+        result = 31 * result + addressId.hashCode();
+        result = 31 * result + distance;
+        result = 31 * result + categoryId.hashCode();
+        result = 31 * result + (alert ? 1 : 0);
+        result = 31 * result + (photo != null ? photo.hashCode() : 0);
+        return result;
+    }
 }

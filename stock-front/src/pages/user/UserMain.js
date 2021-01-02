@@ -14,6 +14,8 @@ import Trade from "./tab/Trade";
 import ProductsStatistics from "./tab/ProductsStatistics";
 import Categories from "./tab/Categories";
 import ProductStatisticsDetails from "./tab/ProductStatisticsDetails";
+import Deals from "./tab/Deals";
+import DealDetails from "./tab/DealDetails";
 
 class UserMain extends React.Component {
 
@@ -52,7 +54,7 @@ class UserMain extends React.Component {
                 getContent: () =>
                     <ProductsStatistics
                         onDetails={(pId =>
-                            this.setState({activeTab: this.tabMap.PRODUCT_DETAILS, productId: pId})
+                                this.setState({activeTab: this.tabMap.PRODUCT_DETAILS, productId: pId})
                         )}
                     />
             },
@@ -90,7 +92,20 @@ class UserMain extends React.Component {
                 id: 'deals',
                 getTitle: () => t('label.pageNames.myDeals'),
                 addButton: false,
-                getContent: () => 'test'
+                getContent: () =>
+                    <Deals
+                        onDetails={(dealId => this.setState({activeTab: this.tabMap.DEAL_DETAILS, dealId: dealId}))}
+                    />
+            },
+            DEAL_DETAILS: {
+                id: 'dealDetails',
+                getTitle: () => t('label.pageNames.deal'),
+                addButton: false,
+                getContent: () =>
+                    <DealDetails
+                        dealId={this.state.dealId}
+                        onBack={() => this.setState({activeTab: this.tabMap.DEALS})}
+                    />
             },
             PRODUCTS_ADMIN: {
                 id: 'productsAdmin',
@@ -162,7 +177,7 @@ class UserMain extends React.Component {
         const {t} = this.props;
         return <React.Fragment>
             <li className={this.state.activeTab === this.tabMap.PRODUCTS
-                || this.state.activeTab === this.tabMap.PRODUCT_DETAILS
+            || this.state.activeTab === this.tabMap.PRODUCT_DETAILS
                 ? 'active'
                 : ''
             }>
@@ -182,7 +197,11 @@ class UserMain extends React.Component {
                     <span id='tender-alerts' style={{display: 'none'}} className='bid-alert'/>
                 </a>
             </li>
-            <li className={this.state.activeTab === this.tabMap.DEALS ? 'active' : ''}>
+            <li className={this.state.activeTab === this.tabMap.DEALS
+            || this.state.activeTab === this.tabMap.DEAL_DETAILS
+                ? 'active'
+                : ''
+            }>
                 <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.DEALS)}>
                     {t('label.navigation.deals')}
                     <span id='deal-alerts' style={{display: 'none'}} className='deal-alert'/>
@@ -198,7 +217,7 @@ class UserMain extends React.Component {
             return <React.Fragment>
                 <li className={
                     this.state.activeTab === this.tabMap.PRODUCTS_ADMIN
-                        || this.state.activeTab === this.tabMap.PRODUCT_CATEGORIES_ADMIN
+                    || this.state.activeTab === this.tabMap.PRODUCT_CATEGORIES_ADMIN
                         ? 'active'
                         : ''
                 }>

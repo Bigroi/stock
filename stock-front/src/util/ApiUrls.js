@@ -27,6 +27,11 @@ const urls = {
 
     ADDRESS_LIST: 'user/addresses',
 
+    DEAL_LIST: 'user/deals',
+    DEAL: 'user/deal/{id}',
+    DEAL_CHOICE: 'user/deal/{id}/choice/{choice}',
+    DEAL_FEED_BACK: 'user/deal/{id}/comment',
+
     //admin
     PRODUCTS_ADMIN: 'admin/products',
     PRODUCT_ADMIN: 'admin/product',

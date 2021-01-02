@@ -18,6 +18,9 @@ import java.util.stream.Collectors;
 
 public class TradeSession {
 
+    private static Predicate<Line> SAME_USER = line ->
+            line.getLotElement().getElement().getCompanyId().equals(line.getTenderElement().getElement().getCompanyId());
+
     private static Predicate<Line> DISTANCE_RULE = line ->
             line.getLength() > line.getLotElement().getElement().getDistance()
                     && line.getLength() > line.getTenderElement().getElement().getDistance();
@@ -25,19 +28,21 @@ public class TradeSession {
     private static BiPredicate<List<BidBlackListRecord>, Line> BLACKLIST_RULE = (bl, line) ->
             bl.stream().anyMatch(e ->
                     line.getTenderElement().getElement().getId().equals(e.getTenderId())
-                            && line.getLotElement().getElement().getId().equals(e.getLotId())
-            );
+                            && line.getLotElement().getElement().getId().equals(e.getLotId()));
 
-    private static Predicate<Line> CATEGORY_RULE = line ->
-            !line.getLotElement().getElement().getCategoryId().equals(line.getTenderElement().getElement().getCategoryId())
-                    && line.getTenderElement().getElement().getCategoryId() != null;
+    private static Predicate<Line> CATEGORY_RULE = line -> {
+        var r = line.getTenderElement().getElement().getCategoryId() != null
+                && !line.getLotElement().getElement().getCategoryId().equals(line.getTenderElement().getElement().getCategoryId());
+        if (r) System.out.println("CATEGORY_RULE");
+        return r;
+    };
 
     private static Predicate<Line> MAX_MIN_RULE = line ->
             line.getTenderElement().getElement().getMaxVolume() < line.getLotElement().getElement().getMinVolume()
                     || line.getLotElement().getElement().getMaxVolume() < line.getTenderElement().getElement().getMinVolume();
 
     private static Predicate<Line> PRICE_RULE = line ->
-            line.getTenderElement().getElement().getPrice() > line.getLotElement().getElement().getPrice();
+            line.getTenderElement().getElement().getPrice() < line.getLotElement().getElement().getPrice();
 
 
     private final DealDao dealDao;
@@ -80,10 +85,31 @@ public class TradeSession {
         var graph = Graph.GraphBuilder.createGraph(lots, tenders);
         graph.acceptLineRules(
                 CATEGORY_RULE
-                        .or(l -> BLACKLIST_RULE.test(blackList, l))
-                        .or(DISTANCE_RULE)
-                        .or(MAX_MIN_RULE)
-                        .or(PRICE_RULE)
+                        .or(l -> {
+                            var r = SAME_USER.test(l);
+                            if (r) System.out.println("SAME_USER");
+                            return r;
+                        })
+                        .or(l -> {
+                            var r = BLACKLIST_RULE.test(blackList, l);
+                            if (r) System.out.println("BLACKLIST_RULE");
+                            return r;
+                        })
+                        .or(l -> {
+                            var r = DISTANCE_RULE.test(l);
+                            if (r) System.out.println("DISTANCE_RULE");
+                            return r;
+                        })
+                        .or(l -> {
+                            var r = MAX_MIN_RULE.test(l);
+                            if (r) System.out.println("MAX_MIN_RULE");
+                            return r;
+                        })
+                        .or(l -> {
+                            var r = PRICE_RULE.test(l);
+                            if (r) System.out.println("PRICE_RULE");
+                            return r;
+                        })
         );
 
         while (!graph.getLotNodes().isEmpty() && !graph.getTenderNodes().isEmpty()) {

@@ -1,8 +1,6 @@
 package com.stock.config;
 
 import com.stock.dao.*;
-import com.stock.generator.Generator;
-import com.stock.generator.impl.FreeMakerGeneratorImpl;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.jackson2.Jackson2Plugin;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
@@ -103,5 +101,10 @@ public class DaoConfig {
     @Bean
     public BidBlackListDao createBidBlackListDao(Jdbi jdbi) {
         return jdbi.onDemand(BidBlackListDao.class);
+    }
+
+    @Bean
+    public UserCommentDao createUserCommentDao(Jdbi jdbi) {
+        return jdbi.onDemand(UserCommentDao.class);
     }
 }

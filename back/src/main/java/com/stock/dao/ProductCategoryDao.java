@@ -36,4 +36,7 @@ public interface ProductCategoryDao {
             @Bind("productId") UUID productId,
             @Bind("removed") boolean removed
     );
+
+    @SqlQuery("SELECT * FROM PRODUCT_CATEGORY")
+    List<ProductCategoryRecord> getAll();
 }

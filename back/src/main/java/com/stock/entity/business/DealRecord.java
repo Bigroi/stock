@@ -191,6 +191,63 @@ public class DealRecord {
         this.buyerAlert = buyerAlert;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DealRecord that = (DealRecord) o;
+
+        if (Double.compare(that.price, price) != 0) return false;
+        if (volume != that.volume) return false;
+        if (sellerAlert != that.sellerAlert) return false;
+        if (buyerAlert != that.buyerAlert) return false;
+        if (!id.equals(that.id)) return false;
+        if (!lotId.equals(that.lotId)) return false;
+        if (!tenderId.equals(that.tenderId)) return false;
+        if (!sellerCompanyId.equals(that.sellerCompanyId)) return false;
+        if (!buyerCompanyId.equals(that.buyerCompanyId)) return false;
+        if (!sellerAddress.equals(that.sellerAddress)) return false;
+        if (!buyerAddress.equals(that.buyerAddress)) return false;
+        if (!creationDate.equals(that.creationDate)) return false;
+        if (sellerChoice != that.sellerChoice) return false;
+        if (buyerChoice != that.buyerChoice) return false;
+        if (!categoryId.equals(that.categoryId)) return false;
+        if (!photo.equals(that.photo)) return false;
+        if (!sellerDescription.equals(that.sellerDescription)) return false;
+        if (!buyerDescription.equals(that.buyerDescription)) return false;
+        if (!processing.equals(that.processing)) return false;
+        return packaging.equals(that.packaging);
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id.hashCode();
+        result = 31 * result + lotId.hashCode();
+        result = 31 * result + tenderId.hashCode();
+        result = 31 * result + sellerCompanyId.hashCode();
+        result = 31 * result + buyerCompanyId.hashCode();
+        result = 31 * result + sellerAddress.hashCode();
+        result = 31 * result + buyerAddress.hashCode();
+        result = 31 * result + creationDate.hashCode();
+        result = 31 * result + sellerChoice.hashCode();
+        result = 31 * result + buyerChoice.hashCode();
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + volume;
+        result = 31 * result + categoryId.hashCode();
+        result = 31 * result + (photo == null ? 0 : photo.hashCode());
+        result = 31 * result + (sellerDescription == null ? 0 : sellerDescription.hashCode());
+        result = 31 * result + (buyerDescription == null ? 0 : buyerDescription.hashCode());
+        result = 31 * result + (processing == null ? 0 : processing.hashCode());
+        result = 31 * result + (packaging == null ? 0 : packaging.hashCode());
+        result = 31 * result + (sellerAlert ? 1 : 0);
+        result = 31 * result + (buyerAlert ? 1 : 0);
+        return result;
+    }
+
     public static class DealAddress {
 
         private String address;
@@ -229,6 +286,30 @@ public class DealRecord {
 
         public void setLongitude(double longitude) {
             this.longitude = longitude;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            DealAddress that = (DealAddress) o;
+
+            if (Double.compare(that.latitude, latitude) != 0) return false;
+            if (Double.compare(that.longitude, longitude) != 0) return false;
+            return address.equals(that.address);
+        }
+
+        @Override
+        public int hashCode() {
+            int result;
+            long temp;
+            result = address.hashCode();
+            temp = Double.doubleToLongBits(latitude);
+            result = 31 * result + (int) (temp ^ (temp >>> 32));
+            temp = Double.doubleToLongBits(longitude);
+            result = 31 * result + (int) (temp ^ (temp >>> 32));
+            return result;
         }
     }
 }

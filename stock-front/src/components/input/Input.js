@@ -23,7 +23,7 @@ export default class Input extends React.Component {
     };
 
     render() {
-        return <div>
+        return <div className={this.props.containerClassName || ''}>
             <label htmlFor={`for-${this.props.id}`}>{this.props.label}</label>
             <input
                 className={`${this.props.className || ''} ${this.props.error ? 'input-error' : ''}`}

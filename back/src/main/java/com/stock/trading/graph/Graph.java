@@ -28,19 +28,33 @@ public class Graph {
     }
 
     public void acceptLineRules(Predicate<Line> predicate) {
-        lotNodes.forEach(l -> l.getLines().removeIf(predicate));
+        var linesRoRemove = lotNodes.stream()
+                .map(Node::getLines)
+                .flatMap(List::stream)
+                .filter(predicate)
+                .collect(Collectors.toList());
+
+        linesRoRemove.forEach(Line::remove);
     }
 
     public void removeEmptyNotes() {
-        var emptyLotNotes = lotNodes.stream()
+        lotNodes.stream()
                 .filter(l -> l.getElement().getMaxVolume() < l.getElement().getMinVolume())
-                .collect(Collectors.toList());
-        emptyLotNotes.forEach(l -> l.getLines().forEach(Line::remove));
+                .collect(Collectors.toList())
+                .stream()
+                .map(Node::getLines)
+                .flatMap(List::stream)
+                .collect(Collectors.toList())
+                .forEach(Line::remove);
 
-        var emptyTenderNotes = tenderNodes.stream()
+        tenderNodes.stream()
                 .filter(t -> t.getElement().getMaxVolume() < t.getElement().getMinVolume())
-                .collect(Collectors.toList());
-        emptyTenderNotes.forEach(l -> l.getLines().forEach(Line::remove));
+                .collect(Collectors.toList())
+                .stream()
+                .map(Node::getLines)
+                .flatMap(List::stream)
+                .collect(Collectors.toList())
+                .forEach(Line::remove);
 
         lotNodes = lotNodes.stream()
                 .filter(l -> !l.getLines().isEmpty())

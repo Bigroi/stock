@@ -4,6 +4,7 @@ import com.stock.client.email.EmailClient;
 import com.stock.dao.*;
 import com.stock.entity.business.LotRecord;
 import com.stock.entity.business.TenderRecord;
+import com.stock.mapper.DealMapper;
 import com.stock.security.JwtTokenProcessor;
 import com.stock.service.*;
 import com.stock.service.impl.*;
@@ -137,5 +138,28 @@ public class ServiceConfig {
             EmailClient emailClient
     ) {
         return new TradeSession(dealDao, lotDao, tenderDao, labelDao, bidBlackListDao, userDao, emailClient);
+    }
+
+    @Bean()
+    public DealService createDealService(
+            DealDao dealDao,
+            ProductDao productDao,
+            ProductCategoryDao categoryDao,
+            CompanyDao companyDao,
+            UserCommentDao userCommentDao,
+            DealMapper dealMapper,
+            BidBlackListDao bidBlackListDao,
+            Transactional transactional
+    ) {
+        var service = new DealServiceImpl(
+                dealDao,
+                productDao,
+                categoryDao,
+                companyDao,
+                userCommentDao,
+                bidBlackListDao,
+                dealMapper
+        );
+        return new DealServiceTransactional(transactional, service);
     }
 }

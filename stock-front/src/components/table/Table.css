@@ -125,3 +125,7 @@ table.dataTable, table.dataTable th, table.dataTable td {
     clear: both;
     height: 0;
 }
+
+.dataTable td {
+    color: black;
+}

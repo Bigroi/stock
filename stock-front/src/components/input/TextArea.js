@@ -23,6 +23,7 @@ export default class TextArea extends React.Component {
             <textarea
                 name={this.props.name}
                 id={`for-${this.props.id}`}
+                className={this.props.className || ''}
                 value={this.props.value || ''}
                 onChange={this.onChange}
             />

@@ -25,6 +25,7 @@ body {
     -ms-flex-direction: column;
     flex-direction: column;
     height: 100%;
+    width: 100%;
 }
 
 .content {
@@ -3028,7 +3029,8 @@ table.dataTable > tbody > tr.child span {
 
 /*sprite with stars*/
 .reviewStarsFeed input:checked ~ label,
-.reviewStarsFeed label, .reviewStarsFeed label:hover,
+.reviewStarsFeed label,
+.reviewStarsFeed label:hover,
 .reviewStarsFeed label:hover ~ label {
     background: url('img/star.png') no-repeat;
 }
@@ -3062,25 +3064,16 @@ table.dataTable > tbody > tr.child span {
     margin-top: 0;
 }
 
-.reviewStarsFeed input,
-.reviewStarsDeal input {
-    opacity: 0;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    position: absolute;
-    top: 0;
-    z-index: 0;
+.reviewStarsFeed-start-checked {
+    background-position: 0 -28px !important;
+    height: 28px !important;
+    width: 30px !important;
 }
 
-.reviewStarsFeed input:checked ~ label {
-    background-position: 0 -28px;
-    height: 28px;
-    width: 30px;
-}
-
-.reviewStarsDeal input:checked ~ label {
-    background-position: 0 -18px;
-    height: 19px;
-    width: 20px;
+.reviewStarsDeal-start-checked {
+    background-position: 0 -18px !important;
+    height: 19px !important;
+    width: 20px !important;
 }
 
 .reviewStarsFeed label,
@@ -3105,13 +3098,6 @@ table.dataTable > tbody > tr.child span {
     width: 20px;
     cursor: default;
     margin-right: 5px;
-}
-
-.reviewStarsFeed label:hover,
-.reviewStarsFeed label:hover ~ label {
-    background-position: 0 -28px;
-    height: 28px;
-    width: 30px;
 }
 
 .account-dialogbox .languages {
