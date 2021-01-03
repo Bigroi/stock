@@ -1,4 +1,4 @@
-const urls = {
+const ApiUrls = {
     //authentication
     AUTHENTICATE: 'public/authenticate',
     REGISTRATION: 'public/registration',
@@ -57,4 +57,4 @@ const urls = {
     TRADE_ADMIN_RUN: 'admin/trade/run'
 };
 
-export default urls;
+export default ApiUrls;

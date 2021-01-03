@@ -2,14 +2,11 @@ import React from 'react';
 import {withTranslation} from 'react-i18next';
 import Request from "../../../util/Request";
 import ApiUrls from "../../../util/ApiUrls";
-import Table from "../../../components/table/Table";
 import Message from "../../../components/message/Message";
 import Input from "../../../components/input/Input";
-import {Map} from "google-maps-react";
 import Button from "../../../components/input/Button";
 import MapContainer from "../../../components/map/Map";
 import Form from "../../../components/form/Form";
-import LotForm from "../../../forms/lot/LotForm";
 import CompanyFeedBackForm from "../../../forms/company-feed-back/CompanyFeedBackForm";
 
 class DealDetails extends React.Component {

@@ -6,6 +6,9 @@ import Button from '../../components/input/Button';
 import Form from '../../components/form/Form';
 import LoginForm from '../../forms/login/LoginForm';
 import RegistrationForm from "../../forms/registration/RegistrationForm";
+import Request from "../../util/Request";
+import ApiUrls from '../../util/ApiUrls';
+import Slider from "../../components/Slider";
 
 /**
  * onLoginSuccess: function
@@ -15,8 +18,18 @@ class Landing extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            form: null
+            form: null,
+            products: []
         }
+    }
+
+    componentDidMount() {
+        Request.doGet(ApiUrls.PRODUCTS_STATISTICS)
+            .then(async response => {
+                if (response.ok) {
+                    this.setState({products: JSON.parse(await response.text())});
+                }
+            });
     }
 
     getForm = () => {
@@ -42,6 +55,43 @@ class Landing extends React.Component {
                 />
             </Form>
         }
+    };
+
+    renderProducts = () => {
+        const {t} = this.props;
+        return this.state.products.map(p =>
+            <div className="product"
+                 style={{
+                     backgroundImage: `url("${p.picture}")`,
+                     float: 'left',
+                     listStyle: 'none',
+                     position: 'relative',
+                 }}>
+                <h4>{t(`label.${p.name}.name`)}</h4>
+                <div className="about-product">
+                    <div className="sell-product">
+                        <h5>{t('label.index.sell')}</h5>
+                        <p className="count">{p.sell.volume}</p><p
+                        className="desc-count">{t('label.index.requests_volume')}</p>
+                        <p className="count">{p.sell.price}</p><p
+                        className="desc-count">{t('label.index.average_price')}</p>
+                        <Button className="background-green" onClick={() => this.setState({form: 'registration'})}>
+                            {t('label.index.sell')} {t(`label.${p.name}.name`)}
+                        </Button>
+                    </div>
+                    <div className="buy-product">
+                        <h5>{t('label.index.buy')}</h5>
+                        <p className="count">{p.buy.volume}</p><p
+                        className="desc-count">{t('label.index.requests_volume')}</p>
+                        <p className="count">{p.buy.price}</p><p
+                        className="desc-count">{t('label.index.average_price')}</p>
+                        <Button className="background-blue" onClick={() => this.setState({form: 'registration'})}>
+                            {t('label.index.buy')} {t(`label.${p.name}.name`)}
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        );
     };
 
     render() {
@@ -134,7 +184,7 @@ class Landing extends React.Component {
                     <div className='products' id='ex3'>
                         <div className='container'>
                             <span className='span_h3'>{t('label.index.products')}</span>
-                            <div className='product-cont unauthorised slider'/>
+                            <Slider elements={this.renderProducts()}/>
                         </div>
                     </div>
                     <div className='for-whom' id='ex4'>
