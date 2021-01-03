@@ -318,7 +318,7 @@ class Landing extends React.Component {
                         {t('label.index.copyright')}
                     </div>
                 </div>
-                <div className='button_up'/>
+                <div className='button_up' onClick={() => window.scrollTo(0, 0)}/>
             </footer>
         </div>
     }

@@ -19,6 +19,12 @@ class Deals extends React.Component {
                 if (response.ok) {
                     this.setState({data: JSON.parse(await response.text()).sort(this.sortDeals)});
                 }
+                Request.doPut(ApiUrls.ALERTS_DEALS)
+                    .then(response => {
+                        if (response.ok) {
+                            this.props.resetAlerts();
+                        }
+                    });
             });
     }
 

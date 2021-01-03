@@ -17,6 +17,8 @@ import ProductStatisticsDetails from "./tab/ProductStatisticsDetails";
 import Deals from "./tab/Deals";
 import DealDetails from "./tab/DealDetails";
 import Addresses from "./tab/Addresses";
+import ApiUrls from "../../util/ApiUrls";
+import Request from "../../util/Request";
 
 class UserMain extends React.Component {
 
@@ -30,7 +32,36 @@ class UserMain extends React.Component {
             accountFormActive: false,
             showEmptyForm: false,
             mobileMenuActivated: false,
+            alerts: {
+                lastUpdate: null,
+                lotAlerts: 0,
+                tenderAlerts: 0,
+                dealOnApprove: 0,
+                canceledDeal: 0
+            }
         };
+    }
+
+    componentDidMount() {
+        window.onmousemove = () => {
+            if (this.state.alerts.lastUpdate < new Date(new Date().getTime() - 5 * 60000)) {
+                Request.doGet(ApiUrls.ALERTS)
+                    .then(async response => {
+                        if (response.ok) {
+                            this.setState({
+                                alerts: {
+                                    ...JSON.parse(await response.text()),
+                                    lastUpdate: new Date()
+                                }
+                            });
+                        }
+                    })
+            }
+        };
+    }
+
+    componentWillUnmount() {
+        window.onmousemove = null;
     }
 
     getAddButton = (visible) => {
@@ -85,6 +116,7 @@ class UserMain extends React.Component {
                 addButton: true,
                 getContent: () =>
                     <Lots
+                        resetAlerts={() => this.setState({alerts: {...this.state.alerts, lotAlerts: 0}})}
                         showEmptyForm={this.state.showEmptyForm}
                         onCloseForm={() => this.setState({showEmptyForm: false})}
                     />
@@ -95,6 +127,7 @@ class UserMain extends React.Component {
                 addButton: true,
                 getContent: () =>
                     <Tenders
+                        resetAlerts={() => this.setState({alerts: {...this.state.alerts, tenderAlerts: 0}})}
                         showEmptyForm={this.state.showEmptyForm}
                         onCloseForm={() => this.setState({showEmptyForm: false})}
                     />
@@ -105,6 +138,7 @@ class UserMain extends React.Component {
                 addButton: false,
                 getContent: () =>
                     <Deals
+                        resetAlerts={() => this.setState({alerts: {...this.state.alerts, canceledDeal: 0}})}
                         onDetails={(dealId => this.setState({activeTab: this.tabMap.DEAL_DETAILS, dealId: dealId}))}
                     />
             },
@@ -114,6 +148,10 @@ class UserMain extends React.Component {
                 addButton: false,
                 getContent: () =>
                     <DealDetails
+                        resetDealAlert={() => this.setState({
+                            alerts:
+                                {...this.state.alerts, dealOnApprove: this.state.alerts.dealOnApprove - 1}
+                        })}
                         dealId={this.state.dealId}
                         onBack={() => this.setState({activeTab: this.tabMap.DEALS})}
                     />
@@ -199,13 +237,19 @@ class UserMain extends React.Component {
             <li className={this.state.activeTab === this.tabMap.LOTS ? 'active' : ''}>
                 <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.LOTS)}>
                     {t('label.navigation.lots')}
-                    <span id='lot-alerts' style={{display: 'none'}} className='bid-alert'/>
+                    {this.state.alerts.lotAlerts
+                        ? <span id='lot-alerts' className='bid-alert'>{this.state.alerts.lotAlerts}</span>
+                        : ''
+                    }
                 </a>
             </li>
             <li className={this.state.activeTab === this.tabMap.TENDERS ? 'active' : ''}>
                 <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.TENDERS)}>
                     {t('label.navigation.tenders')}
-                    <span id='tender-alerts' style={{display: 'none'}} className='bid-alert'/>
+                    {this.state.alerts.tenderAlerts
+                        ? <span id='tender-alerts' className='bid-alert'>{this.state.alerts.tenderAlerts}</span>
+                        : ''
+                    }
                 </a>
             </li>
             <li className={this.state.activeTab === this.tabMap.DEALS
@@ -215,8 +259,15 @@ class UserMain extends React.Component {
             }>
                 <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.DEALS)}>
                     {t('label.navigation.deals')}
-                    <span id='deal-alerts' style={{display: 'none'}} className='deal-alert'/>
-                    <span id='deal-on-approve' style={{display: 'none'}} className='deal-on-approve'/>
+                    {this.state.alerts.canceledDeal
+                        ? <span id='deal-alerts' className='deal-alert'>{this.state.alerts.canceledDeal}</span>
+                        : ''
+                    }
+                    {this.state.alerts.dealOnApprove
+                        ? <span id='deal-on-approve' className='deal-on-approve'>
+                            {this.state.alerts.dealOnApprove}</span>
+                        : ''
+                    }
                 </a>
             </li>
         </React.Fragment>

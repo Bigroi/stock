@@ -15,6 +15,11 @@ const ApiUrls = {
     //user
     ACCOUNT_MANAGEMENT: 'user/account',
 
+    ALERTS: 'user/alerts',
+    ALERTS_LOTS: 'user/alerts/lots',
+    ALERTS_TENDERS: 'user/alerts/tenders',
+    ALERTS_DEALS: 'user/alerts/deals',
+
     LOT_LIST: 'user/lots',
     LOT:'user/lot/{id}',
     LOT_ACTIVATE: 'user/lot/{id}/activate',

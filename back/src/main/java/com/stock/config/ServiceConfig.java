@@ -162,4 +162,13 @@ public class ServiceConfig {
         );
         return new DealServiceTransactional(transactional, service);
     }
+
+    @Bean()
+    public AlertsService createAlertsService(
+            DealDao dealDao,
+            LotDao lotDao,
+            TenderDao tenderDao
+    ) {
+        return new AlertsServiceImpl(lotDao, tenderDao, dealDao);
+    }
 }

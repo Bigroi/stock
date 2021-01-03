@@ -63,6 +63,7 @@ class DealDetails extends React.Component {
                         status: JSON.parse(await response.text())
                     }
                 });
+                this.props.resetDealAlert();
             }
         });
     };

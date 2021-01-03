@@ -22,9 +22,9 @@ class Tenders extends React.Component {
 
     loadData = (url) => {
         return Request.doGet(url)
-            .then(async responce => {
-                if (responce.ok) {
-                    return JSON.parse(await responce.text());
+            .then(async response => {
+                if (response.ok) {
+                    return JSON.parse(await response.text());
                 }
             })
     };
@@ -41,6 +41,12 @@ class Tenders extends React.Component {
                     products: values[1],
                     addresses: values[2]
                 });
+                Request.doPut(ApiUrls.ALERTS_TENDERS)
+                    .then(response => {
+                        if (response.ok) {
+                            this.props.resetAlerts();
+                        }
+                    });
             });
     }
 

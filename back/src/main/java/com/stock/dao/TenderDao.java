@@ -74,4 +74,12 @@ public interface TenderDao {
             "WHERE PRODUCT_ID = :productId ANd T.STATUS = 'ACTIVE'")
     @RegisterBeanMapper(TenderTradeRecord.class)
     List<TenderTradeRecord> getByProductId(@Bind("productId") UUID productId);
+
+    @SqlQuery("SELECT COUNT(*) FROM TENDER WHERE COMPANY_ID = :companyId AND ALERT = TRUE")
+    long getAlertCountForCompanyId(@Bind("companyId") UUID companyId);
+
+    @SqlUpdate("UPDATE TENDER " +
+            "SET ALERT = FALSE " +
+            "WHERE COMPANY_ID = :companyId")
+    boolean resetAlertsForCompanyId(@Bind("companyId") UUID companyId);
 }

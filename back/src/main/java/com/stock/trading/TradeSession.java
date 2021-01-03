@@ -260,8 +260,8 @@ public class TradeSession {
         dealRecord.setBuyerDescription(tender.getDescription());
         dealRecord.setProcessing(tender.getPackaging());
         dealRecord.setPackaging(tender.getPackaging());
-        dealRecord.setSellerAlert(true);
-        dealRecord.setBuyerAlert(true);
+        dealRecord.setSellerAlert(false);
+        dealRecord.setBuyerAlert(false);
         return dealRecord;
     }
 

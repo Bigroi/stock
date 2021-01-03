@@ -26,7 +26,7 @@ export default class Slider extends Component {
         };
         return (
             <SlickSlider {...settings}>
-                {this.props.elements.map((e, index) => <div>{e}</div>)}
+                {this.props.elements.map((e, index) => <div key={`slide-${index}`}>{e}</div>)}
             </SlickSlider>
         );
     }

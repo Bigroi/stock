@@ -79,4 +79,12 @@ public interface LotDao {
             "WHERE PRODUCT_ID = :productId AND L.STATUS = 'ACTIVE'")
     @RegisterBeanMapper(LotTradeRecord.class)
     List<LotTradeRecord> getByProductId(@Bind("productId") UUID productId);
+
+    @SqlQuery("SELECT COUNT(*) FROM LOT WHERE COMPANY_ID = :companyId AND ALERT = TRUE")
+    long getAlertCountForCompanyId(@Bind("companyId") UUID companyId);
+
+    @SqlUpdate("UPDATE LOT " +
+            "SET ALERT = FALSE " +
+            "WHERE COMPANY_ID = :companyId")
+    boolean resetAlertsForCompanyId(@Bind("companyId") UUID companyId);
 }

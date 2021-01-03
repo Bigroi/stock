@@ -58,4 +58,14 @@ public interface DealDao {
             @Bind("companyId") UUID companyId,
             @Bind("choice") PartnerChoice choice
     );
+
+    @SqlUpdate("UPDATE DEAL " +
+            "SET BUYER_ALERT = FALSE " +
+            "WHERE BUYER_COMPANY_ID = :companyId")
+    void resetAlertsForSeller(@Bind("companyId") UUID companyId);
+
+    @SqlUpdate("UPDATE DEAL " +
+            "SET SELLER_ALERT = FALSE " +
+            "WHERE SELLER_COMPANY_ID = :companyId")
+    void resetAlertsForBuyer(@Bind("companyId") UUID companyId);
 }
