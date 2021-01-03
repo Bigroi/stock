@@ -1,7 +1,5 @@
 package com.stock.service;
 
-import com.stock.entity.business.LotRecord;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

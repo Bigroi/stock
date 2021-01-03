@@ -1,13 +1,7 @@
 package com.stock.service.transactional;
 
 import com.stock.dao.Transactional;
-import com.stock.entity.business.AddressRecord;
-import com.stock.service.AddressService;
 import com.stock.service.TradeService;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 public class TradeServiceTransactional implements TradeService {
 

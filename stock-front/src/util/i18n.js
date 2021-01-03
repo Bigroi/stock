@@ -4,26 +4,24 @@ import HttpBackend from 'i18next-http-backend'
 import config from './Config'
 import ApiUrls from '../util/ApiUrls';
 
-console.log(config.getConfig().apiUrl + "/" + ApiUrls.LABELS);
-
 i18n.use(HttpBackend).use(LanguageDetector).init({
-    ns: ["translations"],
-    defaultNS: "translations",
+    ns: ['translations'],
+    defaultNS: 'translations',
 
-    fallbackLng: "EN",
+    fallbackLng: 'EN',
     debug: false,
 
     keySeparator: false, // we use content as keys
 
     interpolation: {
         escapeValue: false,
-        formatSeparator: ","
+        formatSeparator: ','
     },
 
     preload: ['EN', 'RU', 'PL'],
 
     backend: {
-        loadPath: config.getConfig().apiUrl + "/" + ApiUrls.LABELS
+        loadPath: config.getConfig().apiUrl + '/' + ApiUrls.LABELS
     },
 
     react: {

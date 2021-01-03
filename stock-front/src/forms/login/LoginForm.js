@@ -2,9 +2,9 @@ import React from 'react';
 import {withTranslation} from 'react-i18next';
 import Input from '../../components/input/Input';
 import Button from '../../components/input/Button';
-import Request from "../../util/Request";
+import Request from '../../util/Request';
 import ApiUrls from '../../util/ApiUrls';
-import Message, {TYPES} from "../../components/message/Message";
+import Message, {TYPES} from '../../components/message/Message';
 
 /**
  * toRegistration: function

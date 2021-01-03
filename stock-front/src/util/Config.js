@@ -2,7 +2,7 @@ import ProdConfig from '../config-prod.json';
 import TestConfig from '../config-test.json';
 import DevConfig from '../local-config.json';
 
-export default {
+const Config = {
     getConfig: () => {
         if (process.env.NODE_ENV === 'production') {
             if (window && window.location && window.location.href
@@ -17,4 +17,6 @@ export default {
             return DevConfig;
         }
     }
-}
+};
+
+export default Config;

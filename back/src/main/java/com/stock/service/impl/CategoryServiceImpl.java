@@ -56,7 +56,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public boolean activate(UUID productId, UUID id) {
-        if (productCategoryDao.setRemovedByIdAndProductId(id, productId, false)){
+        if (productCategoryDao.setRemovedByIdAndProductId(id, productId, false)) {
             productDao.setRemovedById(productId, false);
             return true;
         } else {

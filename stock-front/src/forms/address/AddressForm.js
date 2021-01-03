@@ -1,7 +1,7 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Input from "../../components/input/Input";
-import Button from "../../components/input/Button";
+import Input from '../../components/input/Input';
+import Button from '../../components/input/Button';
 import ApiUrls from '../../util/ApiUrls';
 import Request from '../../util/Request';
 
@@ -95,49 +95,49 @@ class AddressForm extends React.Component {
                 })
             ), 1000);
 
-        this.setState({timer : timer})
+        this.setState({timer: timer})
     };
 
     render() {
         const {t} = this.props;
-        return <form className="form" name="form">
+        return <form className='form' name='form'>
             <h3>{t('label.address.title')}</h3>
-            <div className="flex-input">
+            <div className='flex-input'>
                 <Input
                     id='Country'
                     name='country'
-                    className="country"
+                    className='country'
                     label={t('label.address.country')}
                     error={this.state.error.country}
                     value={this.state.address.country}
                     maxLength={50}
-                    onChange={(newValue) => this.changeAddress("country", newValue)}
+                    onChange={(newValue) => this.changeAddress('country', newValue)}
                 />
 
                 <Input
                     id='City'
                     name='city'
-                    className="city"
+                    className='city'
                     label={t('label.address.city')}
                     error={this.state.error.city}
                     value={this.state.address.city}
                     maxLength={50}
-                    onChange={(newValue) => this.changeAddress("city", newValue)}
+                    onChange={(newValue) => this.changeAddress('city', newValue)}
                 />
 
                 <Input
                     id='Address'
                     name='address'
-                    className="address"
+                    className='address'
                     label={t('label.address.address')}
                     error={this.state.error.address}
                     value={this.state.address.address}
                     maxLength={50}
-                    onChange={(newValue) => this.changeAddress("address", newValue)}
+                    onChange={(newValue) => this.changeAddress('address', newValue)}
                 />
 
-                <div id="form-list">
-                    <Button className="submit button" id="save" onClick={this.save}>
+                <div id='form-list'>
+                    <Button className='submit button' id='save' onClick={this.save}>
                         {t('label.button.save')}
                     </Button>
                 </div>

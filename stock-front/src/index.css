@@ -3217,7 +3217,7 @@ table.dataTable > tbody > tr.child span {
     margin: auto 0;
 }
 
-.ui-menu .ui-menu-item-wrapper:hover{
+.ui-menu .ui-menu-item-wrapper:hover {
     border: 1px solid #003eff;
     background: #007fff;
 }
@@ -3413,7 +3413,7 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
 }
 
 .slick-slider .slick-next:hover,
-.slick-slider .slick-prev:hover{
+.slick-slider .slick-prev:hover {
     box-shadow: none !important;
 }
 

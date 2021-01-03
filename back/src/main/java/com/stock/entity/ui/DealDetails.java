@@ -5,7 +5,7 @@ import com.stock.entity.DealStatus;
 import java.util.Date;
 import java.util.UUID;
 
-public class DealDetails  extends Deal{
+public class DealDetails extends Deal {
 
     private final double price;
     private final int volume;

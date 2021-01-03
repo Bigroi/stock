@@ -1,13 +1,10 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Request from "../../../util/Request";
-import ApiUrls from "../../../util/ApiUrls";
-import Table from "../../../components/table/Table";
-import Form from "../../../components/form/Form";
-import LotForm from "../../../forms/lot/LotForm"
-import Message, {TYPES} from "../../../components/message/Message";
-import ProductForm from "../../../forms/product/ProductForm";
-import CategoryForm from "../../../forms/category/CategoryForm";
+import Request from '../../../util/Request';
+import ApiUrls from '../../../util/ApiUrls';
+import Table from '../../../components/table/Table';
+import Form from '../../../components/form/Form';
+import CategoryForm from '../../../forms/category/CategoryForm';
 
 class Categories extends React.Component {
 
@@ -22,7 +19,7 @@ class Categories extends React.Component {
         return Request.doGet(ApiUrls.PRODUCT_CATEGORIES_ADMIN.replace('{productId}', this.props.productId))
             .then(async response => {
                 if (response.ok) {
-                    this.setState({ data: JSON.parse(await response.text())});
+                    this.setState({data: JSON.parse(await response.text())});
                 }
             });
     }

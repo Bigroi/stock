@@ -1,11 +1,10 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Request from "../../../util/Request";
-import ApiUrls from "../../../util/ApiUrls";
-import Table from "../../../components/table/Table";
-import Form from "../../../components/form/Form";
-import LotForm from "../../../forms/lot/LotForm"
-import LabelForm from "../../../forms/label/LabelForm";
+import Request from '../../../util/Request';
+import ApiUrls from '../../../util/ApiUrls';
+import Table from '../../../components/table/Table';
+import Form from '../../../components/form/Form';
+import LabelForm from '../../../forms/label/LabelForm';
 
 class Categories extends React.Component {
 
@@ -38,7 +37,7 @@ class Categories extends React.Component {
     };
 
     remove = (name) => {
-        Request.doDelete(ApiUrls.LABEL_ADMIN.replace("{name}", name))
+        Request.doDelete(ApiUrls.LABEL_ADMIN.replace('{name}', name))
             .then(response => {
                 if (response.ok) {
                     this.setState({data: this.state.data.filter(l => l.name !== name)});

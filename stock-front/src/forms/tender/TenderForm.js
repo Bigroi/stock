@@ -1,14 +1,14 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Dropdown from "../../components/input/Dropdown";
-import Input from "../../components/input/Input";
-import Calendar from "../../components/input/Calendar";
-import TextArea from "../../components/input/TextArea";
-import Button from "../../components/input/Button";
+import Dropdown from '../../components/input/Dropdown';
+import Input from '../../components/input/Input';
+import Calendar from '../../components/input/Calendar';
+import TextArea from '../../components/input/TextArea';
+import Button from '../../components/input/Button';
 import ApiUrls from '../../util/ApiUrls';
-import Map from "../../components/map/Map";
+import Map from '../../components/map/Map';
 import Request from '../../util/Request';
-import Message, {TYPES} from "../../components/message/Message";
+import Message, {TYPES} from '../../components/message/Message';
 
 class TenderForm extends React.Component {
 
@@ -201,12 +201,12 @@ class TenderForm extends React.Component {
 
     render() {
         const {t} = this.props;
-        return <form className="form" action="#" method="post" name="form">
+        return <form className='form' name='form'>
             <h3>{t('label.tender.tenderForm')}</h3>
             <div>
                 <Message message={this.state.message}/>
             </div>
-            <div className="flex-two-input">
+            <div className='flex-two-input'>
                 <div>
                     <Dropdown
                         id='ProductId'
@@ -268,7 +268,7 @@ class TenderForm extends React.Component {
                             <Dropdown
                                 id='AddressId'
                                 name='addressId'
-                                className="address-selector"
+                                className='address-selector'
                                 elements={this.getAddresses()}
                                 label={t('label.tender.address')}
                                 error={this.state.error.addressId}
@@ -278,7 +278,7 @@ class TenderForm extends React.Component {
                             <Dropdown
                                 id='Distance'
                                 name='distance'
-                                className="address-selector"
+                                className='address-selector'
                                 elements={this.getDistances()}
                                 label={t('label.tender.distance')}
                                 error={this.state.error.distance}
@@ -312,16 +312,16 @@ class TenderForm extends React.Component {
                                 onChange={(value) => this.changeTender('description', value)}
                             />
                         </div>
-                        <div className="forMapTendersTender google-map-container"
+                        <div className='forMapTendersTender google-map-container'
                              style={{position: 'relative', overflow: 'hidden'}}>
                             <Map coords={this.getCoords()}/>
                         </div>
                     </div>
-                    <div id="form-list">
-                        <Button className="submit button gray-button" id="save" onClick={() => this.save('INACTIVE')}>
+                    <div id='form-list'>
+                        <Button className='submit button gray-button' id='save' onClick={() => this.save('INACTIVE')}>
                             {t('label.button.save')}
                         </Button>
-                        <Button className="submit button" id="save-start-trading" onClick={() => this.save('ACTIVE')}>
+                        <Button className='submit button' id='save-start-trading' onClick={() => this.save('ACTIVE')}>
                             {t('label.button.save_start_trading')}
                         </Button>
                     </div>

@@ -1,8 +1,8 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Request from "../../../util/Request";
-import ApiUrls from "../../../util/ApiUrls";
-import Table from "../../../components/table/Table";
+import Request from '../../../util/Request';
+import ApiUrls from '../../../util/ApiUrls';
+import Table from '../../../components/table/Table';
 
 class Companies extends React.Component {
 
@@ -17,7 +17,7 @@ class Companies extends React.Component {
         return Request.doGet(ApiUrls.COMPANIES_ADMIN)
             .then(async response => {
                 if (response.ok) {
-                    this.setState({ data: JSON.parse(await response.text())});
+                    this.setState({data: JSON.parse(await response.text())});
                 }
             });
     }
@@ -61,10 +61,10 @@ class Companies extends React.Component {
 
     render() {
         return <Table
-                data={this.getData()}
-                header={this.getHeader()}
-                pageSize={10}
-            />
+            data={this.getData()}
+            header={this.getHeader()}
+            pageSize={10}
+        />
     }
 }
 

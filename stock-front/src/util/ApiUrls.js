@@ -21,7 +21,7 @@ const ApiUrls = {
     ALERTS_DEALS: 'user/alerts/deals',
 
     LOT_LIST: 'user/lots',
-    LOT:'user/lot/{id}',
+    LOT: 'user/lot/{id}',
     LOT_ACTIVATE: 'user/lot/{id}/activate',
     LOT_DEACTIVATE: 'user/lot/{id}/deactivate',
 

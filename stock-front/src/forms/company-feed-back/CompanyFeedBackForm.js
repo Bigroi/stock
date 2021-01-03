@@ -1,13 +1,9 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
 import Button from '../../components/input/Button';
-import LocalStorage from '../../util/LocalStorage';
-import Input from '../../components/input/Input';
 import TextArea from '../../components/input/TextArea';
-import VerificationUtils from '../../util/VerificationUtils';
 import ApiUrls from '../../util/ApiUrls';
 import Request from '../../util/Request';
-import Message, {TYPES} from '../../components/message/Message';
 
 class CompanyFeedBackForm extends React.Component {
 
@@ -22,7 +18,7 @@ class CompanyFeedBackForm extends React.Component {
     }
 
     componentDidMount() {
-        Request.doGet(ApiUrls.DEAL_FEED_BACK.replace("{id}", this.props.dealId))
+        Request.doGet(ApiUrls.DEAL_FEED_BACK.replace('{id}', this.props.dealId))
             .then(async response => {
                 if (response.ok) {
                     this.setState({...JSON.parse(await response.text()), isNew: false});
@@ -40,7 +36,7 @@ class CompanyFeedBackForm extends React.Component {
     };
 
     renderMark = () => {
-        return <div className="reviewStarsFeed">
+        return <div className='reviewStarsFeed'>
             {[5, 4, 3, 2, 1]
                 .map(mark =>
                     <label
@@ -58,7 +54,7 @@ class CompanyFeedBackForm extends React.Component {
         const method = this.state.isNew
             ? Request.doPost
             : Request.doPut;
-        method(ApiUrls.DEAL_FEED_BACK.replace("{id}", this.props.dealId),
+        method(ApiUrls.DEAL_FEED_BACK.replace('{id}', this.props.dealId),
             null,
             {
                 mark: this.state.mark,

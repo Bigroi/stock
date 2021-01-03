@@ -1,12 +1,11 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Request from "../../../util/Request";
-import ApiUrls from "../../../util/ApiUrls";
-import Table from "../../../components/table/Table";
-import Form from "../../../components/form/Form";
-import LotForm from "../../../forms/lot/LotForm"
-import Message, {TYPES} from "../../../components/message/Message";
-import TenderForm from "../../../forms/tender/TenderForm";
+import Request from '../../../util/Request';
+import ApiUrls from '../../../util/ApiUrls';
+import Table from '../../../components/table/Table';
+import Form from '../../../components/form/Form';
+import {TYPES} from '../../../components/message/Message';
+import TenderForm from '../../../forms/tender/TenderForm';
 
 class Tenders extends React.Component {
 
@@ -64,7 +63,7 @@ class Tenders extends React.Component {
     };
 
     remove = (id) => {
-        Request.doDelete(ApiUrls.TENDER.replace("{id}", id))
+        Request.doDelete(ApiUrls.TENDER.replace('{id}', id))
             .then(responce => {
                 if (responce.ok) {
                     this.setState({data: this.state.data.filter(l => l.id !== id)});

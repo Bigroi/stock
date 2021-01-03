@@ -1,14 +1,9 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Dropdown from "../../components/input/Dropdown";
-import Input from "../../components/input/Input";
-import Calendar from "../../components/input/Calendar";
-import TextArea from "../../components/input/TextArea";
-import Button from "../../components/input/Button";
+import Input from '../../components/input/Input';
+import Button from '../../components/input/Button';
 import ApiUrls from '../../util/ApiUrls';
-import Map from "../../components/map/Map";
 import Request from '../../util/Request';
-import Message, {TYPES} from "../../components/message/Message";
 
 class ProductForm extends React.Component {
 
@@ -37,9 +32,9 @@ class ProductForm extends React.Component {
 
     render() {
         const {t} = this.props;
-        return <form className="form" name="form">
+        return <form className='form' name='form'>
             <h3>{t('label.product.productForm')}</h3>
-            <div className="flex-input">
+            <div className='flex-input'>
                 <Input
                     id='Name'
                     label={t('label.product.name')}
@@ -56,8 +51,8 @@ class ProductForm extends React.Component {
                     onChange={(newValue) => this.setState({product: {...this.state.product, picture: newValue}})}
                 />
 
-                <div id="form-list">
-                    <Button className="submit button" id="save" onClick={this.save}>
+                <div id='form-list'>
+                    <Button className='submit button' id='save' onClick={this.save}>
                         {t('label.button.save')}
                     </Button>
                 </div>

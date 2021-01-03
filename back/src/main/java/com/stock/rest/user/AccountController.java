@@ -1,6 +1,5 @@
 package com.stock.rest.user;
 
-import com.stock.entity.Language;
 import com.stock.entity.business.UserRecord;
 import com.stock.entity.ui.AccountData;
 import com.stock.service.UserService;

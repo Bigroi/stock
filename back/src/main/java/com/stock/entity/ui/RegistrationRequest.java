@@ -1,9 +1,6 @@
 package com.stock.entity.ui;
 
-import com.stock.entity.CompanyStatus;
 import com.stock.entity.Language;
-
-import java.util.UUID;
 
 public class RegistrationRequest {
 

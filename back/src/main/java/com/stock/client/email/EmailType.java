@@ -3,7 +3,7 @@ package com.stock.client.email;
 public enum EmailType {
 
     //DEAL
-    BUYER_CANCELED( "dealCancelled"),
+    BUYER_CANCELED("dealCancelled"),
     SELLER_CANCELED("dealCancelled"),
     DEAL_CONFIRMATION_FOR_BUYER("confirmationForBuyer"),
     DEAL_CONFIRMATION_FOR_SELLER("confirmationForSeller"),

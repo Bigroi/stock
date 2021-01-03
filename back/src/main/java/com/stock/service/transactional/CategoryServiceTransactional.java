@@ -2,10 +2,7 @@ package com.stock.service.transactional;
 
 import com.stock.dao.Transactional;
 import com.stock.entity.business.ProductCategoryRecord;
-import com.stock.entity.business.ProductRecord;
-import com.stock.entity.ui.Product;
 import com.stock.service.CategoryService;
-import com.stock.service.ProductService;
 
 import java.util.List;
 import java.util.UUID;

@@ -2,7 +2,6 @@ package com.stock.dao;
 
 import com.stock.entity.CompanyStatus;
 import com.stock.entity.business.CompanyRecord;
-import com.stock.entity.business.UserRecord;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;

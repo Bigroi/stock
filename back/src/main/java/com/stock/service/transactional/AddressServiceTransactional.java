@@ -2,12 +2,7 @@ package com.stock.service.transactional;
 
 import com.stock.dao.Transactional;
 import com.stock.entity.business.AddressRecord;
-import com.stock.entity.business.UserRecord;
-import com.stock.entity.ui.AccountData;
-import com.stock.entity.ui.LoginResponse;
-import com.stock.entity.ui.RegistrationRequest;
 import com.stock.service.AddressService;
-import com.stock.service.UserService;
 
 import java.util.List;
 import java.util.Optional;

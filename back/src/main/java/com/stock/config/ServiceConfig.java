@@ -12,7 +12,6 @@ import com.stock.service.transactional.*;
 import com.stock.trading.TradeSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration

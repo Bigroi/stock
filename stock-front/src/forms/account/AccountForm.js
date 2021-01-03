@@ -1,15 +1,12 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
 import Button from '../../components/input/Button';
-import LocalStorage from '../../util/LocalStorage';
 import Input from '../../components/input/Input';
-import TextArea from '../../components/input/TextArea';
 import VerificationUtils from '../../util/VerificationUtils';
 import ApiUrls from '../../util/ApiUrls';
 import Request from '../../util/Request';
 import Message, {TYPES} from '../../components/message/Message';
-import LanguageSwitcher from "../../components/language-switcher/LanguageSwitcher";
-import i18next from "i18next";
+import LanguageSwitcher from '../../components/language-switcher/LanguageSwitcher';
 
 class AccountForm extends React.Component {
 
@@ -110,12 +107,12 @@ class AccountForm extends React.Component {
 
     render() {
         const {t} = this.props;
-        return <form className="form" name="form" id="account-form">
+        return <form className='form' name='form' id='account-form'>
             <h3>{t('label.account.edit')}</h3>
             <div>
                 <Message message={this.state.message}/>
             </div>
-            <div className="flex-input">
+            <div className='flex-input'>
                 <Input
                     id='Login'
                     label={t('label.account.login')}
@@ -177,11 +174,11 @@ class AccountForm extends React.Component {
                     maxLength={50}
                     onChange={(newValue) => this.changeValue('repeatPassword', newValue)}
                 />
-                <div id="form-list">
-                    <Button className="submit button" onClick={this.props.onAddress}>
+                <div id='form-list'>
+                    <Button className='submit button' onClick={this.props.onAddress}>
                         {t('label.button.addAddress')}
                     </Button>
-                    <Button className="submit button" onClick={this.submitAccount}>
+                    <Button className='submit button' onClick={this.submitAccount}>
                         {t('label.button.save')}
                     </Button>
                 </div>

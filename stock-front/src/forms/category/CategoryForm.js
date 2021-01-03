@@ -1,7 +1,7 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Input from "../../components/input/Input";
-import Button from "../../components/input/Button";
+import Input from '../../components/input/Input';
+import Button from '../../components/input/Button';
 import ApiUrls from '../../util/ApiUrls';
 import Request from '../../util/Request';
 
@@ -31,9 +31,9 @@ class CategoryForm extends React.Component {
 
     render() {
         const {t} = this.props;
-        return <form className="form" name="form">
+        return <form className='form' name='form'>
             <h3>{t('label.product_category.category_form')}</h3>
-            <div className="flex-input">
+            <div className='flex-input'>
                 <Input
                     id='Name'
                     label={t('label.product_category.name')}
@@ -44,8 +44,8 @@ class CategoryForm extends React.Component {
                     })}
                 />
 
-                <div id="form-list">
-                    <Button className="submit button" id="save" onClick={this.save}>
+                <div id='form-list'>
+                    <Button className='submit button' id='save' onClick={this.save}>
                         {t('label.button.save')}
                     </Button>
                 </div>

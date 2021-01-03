@@ -5,10 +5,10 @@ import i18n from 'i18next';
 import Button from '../../components/input/Button';
 import Form from '../../components/form/Form';
 import LoginForm from '../../forms/login/LoginForm';
-import RegistrationForm from "../../forms/registration/RegistrationForm";
-import Request from "../../util/Request";
+import RegistrationForm from '../../forms/registration/RegistrationForm';
+import Request from '../../util/Request';
 import ApiUrls from '../../util/ApiUrls';
-import Slider from "../../components/Slider";
+import Slider from '../../components/Slider';
 
 /**
  * onLoginSuccess: function
@@ -60,7 +60,7 @@ class Landing extends React.Component {
     renderProducts = () => {
         const {t} = this.props;
         return this.state.products.map(p =>
-            <div className="product"
+            <div className='product'
                  style={{
                      backgroundImage: `url("${p.picture}")`,
                      float: 'left',
@@ -68,24 +68,24 @@ class Landing extends React.Component {
                      position: 'relative',
                  }}>
                 <h4>{t(`label.${p.name}.name`)}</h4>
-                <div className="about-product">
-                    <div className="sell-product">
+                <div className='about-product'>
+                    <div className='sell-product'>
                         <h5>{t('label.index.sell')}</h5>
-                        <p className="count">{p.sell.volume}</p><p
-                        className="desc-count">{t('label.index.requests_volume')}</p>
-                        <p className="count">{p.sell.price}</p><p
-                        className="desc-count">{t('label.index.average_price')}</p>
-                        <Button className="background-green" onClick={() => this.setState({form: 'registration'})}>
+                        <p className='count'>{p.sell.volume}</p><p
+                        className='desc-count'>{t('label.index.requests_volume')}</p>
+                        <p className='count'>{p.sell.price}</p><p
+                        className='desc-count'>{t('label.index.average_price')}</p>
+                        <Button className='background-green' onClick={() => this.setState({form: 'registration'})}>
                             {t('label.index.sell')} {t(`label.${p.name}.name`)}
                         </Button>
                     </div>
-                    <div className="buy-product">
+                    <div className='buy-product'>
                         <h5>{t('label.index.buy')}</h5>
-                        <p className="count">{p.buy.volume}</p><p
-                        className="desc-count">{t('label.index.requests_volume')}</p>
-                        <p className="count">{p.buy.price}</p><p
-                        className="desc-count">{t('label.index.average_price')}</p>
-                        <Button className="background-blue" onClick={() => this.setState({form: 'registration'})}>
+                        <p className='count'>{p.buy.volume}</p><p
+                        className='desc-count'>{t('label.index.requests_volume')}</p>
+                        <p className='count'>{p.buy.price}</p><p
+                        className='desc-count'>{t('label.index.average_price')}</p>
+                        <Button className='background-blue' onClick={() => this.setState({form: 'registration'})}>
                             {t('label.index.buy')} {t(`label.${p.name}.name`)}
                         </Button>
                     </div>

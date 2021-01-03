@@ -1,10 +1,10 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Request from "../../../util/Request";
-import ApiUrls from "../../../util/ApiUrls";
-import Table from "../../../components/table/Table";
-import Form from "../../../components/form/Form";
-import AddressForm from "../../../forms/address/AddressForm";
+import Request from '../../../util/Request';
+import ApiUrls from '../../../util/ApiUrls';
+import Table from '../../../components/table/Table';
+import Form from '../../../components/form/Form';
+import AddressForm from '../../../forms/address/AddressForm';
 
 class Addresses extends React.Component {
 

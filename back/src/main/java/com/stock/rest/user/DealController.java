@@ -1,7 +1,6 @@
 package com.stock.rest.user;
 
 import com.stock.entity.PartnerChoice;
-import com.stock.entity.business.UserCommentRecord;
 import com.stock.entity.business.UserRecord;
 import com.stock.entity.ui.UserComment;
 import com.stock.service.DealService;

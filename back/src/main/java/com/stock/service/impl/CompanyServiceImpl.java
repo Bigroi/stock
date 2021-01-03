@@ -2,7 +2,6 @@ package com.stock.service.impl;
 
 import com.stock.dao.CompanyDao;
 import com.stock.dao.LotDao;
-import com.stock.dao.ProductDao;
 import com.stock.dao.TenderDao;
 import com.stock.entity.BidStatus;
 import com.stock.entity.CompanyStatus;

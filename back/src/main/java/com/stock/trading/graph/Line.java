@@ -1,7 +1,5 @@
 package com.stock.trading.graph;
 
-import com.stock.entity.business.LotRecord;
-import com.stock.entity.business.TenderRecord;
 import com.stock.trading.entity.LotTradeRecord;
 import com.stock.trading.entity.TenderTradeRecord;
 

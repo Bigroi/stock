@@ -1,13 +1,13 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Request from "../../../util/Request";
-import ApiUrls from "../../../util/ApiUrls";
-import Message from "../../../components/message/Message";
-import Input from "../../../components/input/Input";
-import Button from "../../../components/input/Button";
-import MapContainer from "../../../components/map/Map";
-import Form from "../../../components/form/Form";
-import CompanyFeedBackForm from "../../../forms/company-feed-back/CompanyFeedBackForm";
+import Request from '../../../util/Request';
+import ApiUrls from '../../../util/ApiUrls';
+import Message from '../../../components/message/Message';
+import Input from '../../../components/input/Input';
+import Button from '../../../components/input/Button';
+import MapContainer from '../../../components/map/Map';
+import Form from '../../../components/form/Form';
+import CompanyFeedBackForm from '../../../forms/company-feed-back/CompanyFeedBackForm';
 
 class DealDetails extends React.Component {
 
@@ -42,7 +42,7 @@ class DealDetails extends React.Component {
     }
 
     componentDidMount() {
-        Request.doGet(ApiUrls.DEAL.replace("{id}", this.props.dealId))
+        Request.doGet(ApiUrls.DEAL.replace('{id}', this.props.dealId))
             .then(async response => {
                 if (response.ok) {
                     this.setState({deal: JSON.parse(await response.text())});
@@ -53,8 +53,8 @@ class DealDetails extends React.Component {
     updateChoice = (choice) => {
         Request.doPut(
             ApiUrls.DEAL_CHOICE
-                .replace("{id}", this.props.dealId)
-                .replace("{choice}", choice)
+                .replace('{id}', this.props.dealId)
+                .replace('{choice}', choice)
         ).then(async response => {
             if (response.ok) {
                 this.setState({
@@ -89,7 +89,7 @@ class DealDetails extends React.Component {
     };
 
     getMark = () => {
-        return <div className="reviewStarsDeal">
+        return <div className='reviewStarsDeal'>
             {[5, 4, 3, 2, 1]
                 .map(mark =>
                     <label
@@ -102,31 +102,31 @@ class DealDetails extends React.Component {
 
     getButtons = () => {
         const {t} = this.props;
-        return <div className="footer-deal-form">
+        return <div className='footer-deal-form'>
             <div>
-                <Button className="submit gray-button" id="back-deals" onClick={this.props.onBack}>
+                <Button className='submit gray-button' id='back-deals' onClick={this.props.onBack}>
                     {t('label.button.back')}
                 </Button>
             </div>
             <div>
                 {this.state.deal.status === 'ON_APPROVE'
                     ? <React.Fragment>
-                        <Button className="submit blue-button deal-button"
-                                id="approve-button"
+                        <Button className='submit blue-button deal-button'
+                                id='approve-button'
                                 onClick={() => this.updateChoice('APPROVED')}
                         >
                             {t('label.deal.approve')}
                         </Button>
 
-                        <Button className="submit blue-button deal-button"
-                                id="reject-button"
+                        <Button className='submit blue-button deal-button'
+                                id='reject-button'
                                 onClick={() => this.updateChoice('REJECTED')}
                         >
                             {t('label.deal.reject')}
                         </Button>
                     </React.Fragment>
-                    : <Button className="submit blue-button deal-feedback"
-                              id="feedback-button"
+                    : <Button className='submit blue-button deal-feedback'
+                              id='feedback-button'
                               onClick={() => this.setState({feedBackForm: true})}>
                         {t('label.button.feedback')}
                     </Button>
@@ -137,13 +137,13 @@ class DealDetails extends React.Component {
 
     render() {
         const {t} = this.props;
-        return <div className="white-div white-div-deal">
+        return <div className='white-div white-div-deal'>
             {this.getForm()}
-            <form className="form" id="deal-form">
+            <form className='form' id='deal-form'>
                 <div>
                     <Message message={this.state.message}/>
                 </div>
-                <div className="header-white-div">
+                <div className='header-white-div'>
                     <ul>
                         <li>
                             <Input
@@ -194,7 +194,7 @@ class DealDetails extends React.Component {
                     value={t(`label.deal.${this.state.deal.status.toLowerCase()}`)}
                     disabled={true}
                 />
-                <div className="body-deal-form">
+                <div className='body-deal-form'>
                     <div>
                         <ul>
                             <li>
@@ -272,9 +272,9 @@ class DealDetails extends React.Component {
                                 />
                             </li>
                         </ul>
-                        <div className="map-deal-form">
-                            <div style={{bottom: 0, top: 0, right: 0, left: 0, position: 'absolute'}} id="map-mob-deal">
-                                <div id="map" style={{width: '100%', height: '100%'}}>
+                        <div className='map-deal-form'>
+                            <div style={{bottom: 0, top: 0, right: 0, left: 0, position: 'absolute'}} id='map-mob-deal'>
+                                <div id='map' style={{width: '100%', height: '100%'}}>
                                     <MapContainer coords={{
                                         latitude: this.state.deal.latitude,
                                         longitude: this.state.deal.longitude

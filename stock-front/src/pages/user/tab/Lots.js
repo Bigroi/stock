@@ -1,11 +1,11 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Request from "../../../util/Request";
-import ApiUrls from "../../../util/ApiUrls";
-import Table from "../../../components/table/Table";
-import Form from "../../../components/form/Form";
-import LotForm from "../../../forms/lot/LotForm"
-import Message, {TYPES} from "../../../components/message/Message";
+import Request from '../../../util/Request';
+import ApiUrls from '../../../util/ApiUrls';
+import Table from '../../../components/table/Table';
+import Form from '../../../components/form/Form';
+import LotForm from '../../../forms/lot/LotForm'
+import {TYPES} from '../../../components/message/Message';
 
 class Lots extends React.Component {
 
@@ -63,7 +63,7 @@ class Lots extends React.Component {
     };
 
     remove = (id) => {
-        Request.doDelete(ApiUrls.LOT.replace("{id}", id))
+        Request.doDelete(ApiUrls.LOT.replace('{id}', id))
             .then(responce => {
                 if (responce.ok) {
                     this.setState({data: this.state.data.filter(l => l.id !== id)});
@@ -77,7 +77,7 @@ class Lots extends React.Component {
 
     formatDate = (date) => {
         let month = '' + (date.getMonth() + 1);
-        let day = '' + date.getDate()
+        let day = '' + date.getDate();
         let year = date.getFullYear();
 
         if (month.length < 2)

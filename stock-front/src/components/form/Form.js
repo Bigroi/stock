@@ -1,6 +1,6 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Map, {geocode} from "../map/Map";
+import Map, {geocode} from '../map/Map';
 
 /**
  * map: boolean
@@ -29,7 +29,7 @@ class Form extends React.Component {
     render() {
         const childrenWithProps = React.Children.map(this.props.children, child => {
             if (React.isValidElement(child)) {
-                return React.cloneElement(child, { onAddressChanged: this.changeAddress });
+                return React.cloneElement(child, {onAddressChanged: this.changeAddress});
             }
             return child;
         });

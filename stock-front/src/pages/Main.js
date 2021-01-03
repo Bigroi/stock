@@ -1,9 +1,9 @@
 import React from 'react';
-import i18n from "i18next";
-import Landing from "./public/Landing";
-import LocalStorageParams from "../util/LocalStrorageParams";
-import Request from "../util/Request";
-import UserMain from "./user/UserMain";
+import i18n from 'i18next';
+import Landing from './public/Landing';
+import LocalStorageParams from '../util/LocalStrorageParams';
+import Request from '../util/Request';
+import UserMain from './user/UserMain';
 
 export default class Main extends React.Component {
 

@@ -1,4 +1,4 @@
-import LocalStorageParams from "./LocalStrorageParams";
+import LocalStorageParams from './LocalStrorageParams';
 
 const hasRole = (role) => {
     const roles = JSON.parse(localStorage.getItem(LocalStorageParams.ROLES));

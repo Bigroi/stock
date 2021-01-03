@@ -1,7 +1,6 @@
 package com.stock.dao;
 
 import com.stock.entity.BidStatus;
-import com.stock.entity.business.LotRecord;
 import com.stock.entity.business.TenderRecord;
 import com.stock.trading.entity.TenderTradeRecord;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
@@ -11,7 +10,10 @@ import org.jdbi.v3.sqlobject.statement.SqlBatch;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RegisterBeanMapper(TenderRecord.class)
 public interface TenderDao {

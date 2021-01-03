@@ -2,11 +2,6 @@ package com.stock.trading.entity;
 
 import com.stock.entity.business.LotRecord;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Random;
-import java.util.UUID;
-import java.util.stream.Stream;
-
 public class LotTradeRecord extends LotRecord {
 
     private String addressLine;

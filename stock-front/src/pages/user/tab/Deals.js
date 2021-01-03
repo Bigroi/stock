@@ -1,8 +1,8 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Request from "../../../util/Request";
-import ApiUrls from "../../../util/ApiUrls";
-import Table from "../../../components/table/Table";
+import Request from '../../../util/Request';
+import ApiUrls from '../../../util/ApiUrls';
+import Table from '../../../components/table/Table';
 
 class Deals extends React.Component {
 
@@ -31,11 +31,16 @@ class Deals extends React.Component {
     sortDeals = (deal1, deal2) => {
         const statusToInt = (status) => {
             switch (status) {
-                case 'ON_APPROVE': return 0;
-                case 'ON_PARTNER_APPROVE': return 1;
-                case 'APPROVED': return 2;
-                case 'REJECTED': return 2;
-                default: throw new Error();
+                case 'ON_APPROVE':
+                    return 0;
+                case 'ON_PARTNER_APPROVE':
+                    return 1;
+                case 'APPROVED':
+                    return 2;
+                case 'REJECTED':
+                    return 2;
+                default:
+                    throw new Error();
             }
         };
         return statusToInt(deal1.status) - statusToInt(deal2.status)
@@ -61,7 +66,7 @@ class Deals extends React.Component {
                 t(`label.${d.categoryName}.name`),
                 d.creationDate,
                 t(`label.deal.${d.status.toLowerCase()}`),
-                <div className="details" onClick={() => this.props.onDetails(d.id)}>
+                <div className='details' onClick={() => this.props.onDetails(d.id)}>
                     {t('label.table.details')}
                 </div>
             ]

@@ -2,7 +2,6 @@ package com.stock.client.email;
 
 import com.stock.entity.Language;
 
-import java.util.Locale;
 import java.util.Map;
 
 public interface EmailClient {
@@ -12,7 +11,7 @@ public interface EmailClient {
             String emailTo,
             EmailType emailType,
             Map<String, Object> messageParams
-    ){
+    ) {
         sendMessage(language, emailTo, emailType, messageParams, null, null);
     }
 

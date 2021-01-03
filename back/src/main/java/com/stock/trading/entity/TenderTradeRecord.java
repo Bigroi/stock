@@ -1,6 +1,5 @@
 package com.stock.trading.entity;
 
-import com.stock.entity.business.LotRecord;
 import com.stock.entity.business.TenderRecord;
 
 public class TenderTradeRecord extends TenderRecord {

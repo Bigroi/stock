@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.UUID;
 
 public class DealRecord {
-    
+
     private UUID id;
     private UUID lotId;
     private UUID tenderId;

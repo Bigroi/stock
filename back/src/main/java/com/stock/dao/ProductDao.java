@@ -2,7 +2,6 @@ package com.stock.dao;
 
 import com.stock.entity.business.ProductCategoryRecord;
 import com.stock.entity.business.ProductRecord;
-import com.stock.entity.ui.Product;
 import org.jdbi.v3.core.mapper.JoinRow;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.config.RegisterJoinRowMapper;

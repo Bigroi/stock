@@ -1,7 +1,7 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
 import './Table.css';
-import Message from "../message/Message";
+import Message from '../message/Message';
 
 /**
  * pageSize: number
@@ -32,19 +32,19 @@ class Table extends React.Component {
     getPaginator = (data) => {
         console.log(data);
         if (data.length > this.getPageSize()) {
-            return <div className="dataTables_paginate paging_simple_numbers" id="main-table_paginate"
+            return <div className='dataTables_paginate paging_simple_numbers' id='main-table_paginate'
                         style={{display: 'block'}}>
-                <a className="paginate_button previous disabled"
-                   id="main-table_previous"
+                <a className='paginate_button previous disabled'
+                   id='main-table_previous'
                    onClick={() => {
                        if (this.state.pageNumber > 1) {
                            this.setState({pageNumber: this.state.pageNumber - 1});
                        }
                    }}
                 > </a>
-                <span><a className="paginate_button current">{this.state.pageNumber}</a></span>
-                <a className="paginate_button next disabled"
-                   id="main-table_next"
+                <span><a className='paginate_button current'>{this.state.pageNumber}</a></span>
+                <a className='paginate_button next disabled'
+                   id='main-table_next'
                    onClick={() => {
                        if (this.state.pageNumber < data.length / 10) {
                            this.setState({pageNumber: this.state.pageNumber + 1});
@@ -72,13 +72,13 @@ class Table extends React.Component {
         const {t} = this.props;
         if (data.length === 0) {
             return <tr>
-                <td valign="top" colSpan={this.props.header.length} className="dataTables_empty">
+                <td valign='top' colSpan={this.props.header.length} className='dataTables_empty'>
                     {t('label.table.emptyTable')}
                 </td>
             </tr>
         } else {
             return data.map((d, rowIndex) =>
-                <tr role="row" className="odd inactive-row" key={`table-row-${rowIndex}`}>
+                <tr role='row' className='odd inactive-row' key={`table-row-${rowIndex}`}>
                     {d.map((cell, cellIndex) =>
                         <td className={`column-weight-${this.props.header[cellIndex].weight}`}
                             key={`table-row-${rowIndex}-cell-${cellIndex}`}
@@ -113,22 +113,22 @@ class Table extends React.Component {
             this.state.pageNumber * this.getPageSize()
         );
 
-        return <div id="table-container">
-            <div id="main-table_wrapper" className="dataTables_wrapper no-footer">
-                <div id="main-table_filter" className="dataTables_filter">
+        return <div id='table-container'>
+            <div id='main-table_wrapper' className='dataTables_wrapper no-footer'>
+                <div id='main-table_filter' className='dataTables_filter'>
                     <label>
                         <input
-                            type="text"
+                            type='text'
                             placeholder={t('label.table.searchPlaceholder')}
                             onChange={this.onSearchChange}
                             value={this.state.search}
                         />
                     </label>
                 </div>
-                <table id="main-table" className="display responsive nowrap dataTable no-footer dtr-inline collapsed"
+                <table id='main-table' className='display responsive nowrap dataTable no-footer dtr-inline collapsed'
                        style={{width: '100%'}}>
                     <thead>
-                    <tr role="row">
+                    <tr role='row'>
                         {this.getHeader()}
                     </tr>
                     </thead>

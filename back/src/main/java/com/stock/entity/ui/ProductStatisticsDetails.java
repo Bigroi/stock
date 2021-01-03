@@ -36,7 +36,7 @@ public class ProductStatisticsDetails {
     public static class DetailsRow {
         private final String price;
         private final int lotVolume;
-        private final  int tenderVolume;
+        private final int tenderVolume;
 
         public DetailsRow(String price, int lotVolume, int tenderVolume) {
             this.price = price;

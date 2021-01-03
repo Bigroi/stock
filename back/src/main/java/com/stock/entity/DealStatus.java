@@ -10,7 +10,7 @@ public enum DealStatus {
     public static DealStatus calculateStatus(PartnerChoice userChoice, PartnerChoice partnerChoice) {
         if (userChoice == PartnerChoice.REJECTED || partnerChoice == PartnerChoice.REJECTED) {
             return REJECTED;
-        } else if (userChoice == PartnerChoice.ON_APPROVE){
+        } else if (userChoice == PartnerChoice.ON_APPROVE) {
             return ON_APPROVE;
         } else if (partnerChoice == PartnerChoice.ON_APPROVE) {
             return ON_PARTNER_APPROVE;

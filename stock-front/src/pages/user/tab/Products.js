@@ -1,13 +1,10 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Request from "../../../util/Request";
-import ApiUrls from "../../../util/ApiUrls";
-import Table from "../../../components/table/Table";
-import Form from "../../../components/form/Form";
-import LotForm from "../../../forms/lot/LotForm"
-import Message, {TYPES} from "../../../components/message/Message";
-import ProductForm from "../../../forms/product/ProductForm";
-import Categories from "./Categories";
+import Request from '../../../util/Request';
+import ApiUrls from '../../../util/ApiUrls';
+import Table from '../../../components/table/Table';
+import Form from '../../../components/form/Form';
+import ProductForm from '../../../forms/product/ProductForm';
 
 class Products extends React.Component {
 

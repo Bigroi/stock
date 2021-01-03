@@ -1,14 +1,8 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Request from "../../../util/Request";
-import ApiUrls from "../../../util/ApiUrls";
-import Table from "../../../components/table/Table";
-import Form from "../../../components/form/Form";
-import LotForm from "../../../forms/lot/LotForm"
-import Message, {TYPES} from "../../../components/message/Message";
-import ProductForm from "../../../forms/product/ProductForm";
-import CategoryForm from "../../../forms/category/CategoryForm";
-import Button from "../../../components/input/Button";
+import Request from '../../../util/Request';
+import ApiUrls from '../../../util/ApiUrls';
+import Button from '../../../components/input/Button';
 
 class ProductsStatistics extends React.Component {
 
@@ -30,15 +24,15 @@ class ProductsStatistics extends React.Component {
 
     getCard = (product) => {
         const {t} = this.props;
-        return <div className="product"
+        return <div className='product'
                     style={{backgroundImage: `url("${product.picture}")`}}
                     key={`product-card-for-${product.id}`}
         >
             <h4>{t(`label.${product.name}.name`)}</h4>
-            <Button className="background-blue" onClick={() => this.props.onDetails(product.id)}>
+            <Button className='background-blue' onClick={() => this.props.onDetails(product.id)}>
                 {t('label.product.details')}
             </Button>
-            <div className="about-product">
+            <div className='about-product'>
                 <table>
                     <thead>
                     <tr>
@@ -48,12 +42,12 @@ class ProductsStatistics extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr className="sell-tr">
+                    <tr className='sell-tr'>
                         <td>{t('label.index.sell')}</td>
                         <td>{product.sell.price}</td>
                         <td>{product.sell.volume}</td>
                     </tr>
-                    <tr className="buy-tr">
+                    <tr className='buy-tr'>
                         <td>{t('label.index.buy')}</td>
                         <td>{product.buy.price}</td>
                         <td>{product.sell.volume}</td>
@@ -65,7 +59,7 @@ class ProductsStatistics extends React.Component {
     };
 
     render() {
-        return <div className="product-cont authorised product-page">
+        return <div className='product-cont authorised product-page'>
             {this.state.data.map(this.getCard)}
         </div>
     }

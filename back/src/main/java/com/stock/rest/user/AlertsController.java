@@ -1,14 +1,15 @@
 package com.stock.rest.user;
 
 import com.stock.entity.business.UserRecord;
-import com.stock.entity.ui.AccountData;
 import com.stock.service.AlertsService;
-import com.stock.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("api/user/alerts")

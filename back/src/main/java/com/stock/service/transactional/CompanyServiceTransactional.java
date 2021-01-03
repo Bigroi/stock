@@ -2,8 +2,6 @@ package com.stock.service.transactional;
 
 import com.stock.dao.Transactional;
 import com.stock.entity.business.CompanyRecord;
-import com.stock.entity.business.ProductCategoryRecord;
-import com.stock.service.CategoryService;
 import com.stock.service.CompanyService;
 
 import java.util.List;

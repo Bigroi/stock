@@ -1,7 +1,5 @@
 package com.stock.entity.ui;
 
-import java.util.UUID;
-
 public class UserComment {
 
     private int mark;

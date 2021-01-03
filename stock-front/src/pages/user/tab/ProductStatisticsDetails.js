@@ -1,14 +1,8 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Request from "../../../util/Request";
-import ApiUrls from "../../../util/ApiUrls";
-import Table from "../../../components/table/Table";
-import Form from "../../../components/form/Form";
-import LotForm from "../../../forms/lot/LotForm"
-import Message, {TYPES} from "../../../components/message/Message";
-import ProductForm from "../../../forms/product/ProductForm";
-import CategoryForm from "../../../forms/category/CategoryForm";
-import Button from "../../../components/input/Button";
+import Request from '../../../util/Request';
+import ApiUrls from '../../../util/ApiUrls';
+import Button from '../../../components/input/Button';
 
 class ProductsStatistics extends React.Component {
 
@@ -34,22 +28,22 @@ class ProductsStatistics extends React.Component {
 
     render() {
         const {t} = this.props;
-        return <div className="white-div">
-            <div className="header-white-div" style={{backgroundImage: `url('${this.state.product.picture}')`}}>
-                <form className="form form-tradeOffers" name="form">
+        return <div className='white-div'>
+            <div className='header-white-div' style={{backgroundImage: `url('${this.state.product.picture}')`}}>
+                <form className='form form-tradeOffers' name='form'>
                     <ul>
                         <li>
-                            <input type="text" disabled={true} value={t(`label.${this.state.product.name}.name`)}/>
+                            <input type='text' disabled={true} value={t(`label.${this.state.product.name}.name`)}/>
                         </li>
                     </ul>
                 </form>
             </div>
 
-            <div className="table-tradeOffers">
-                <div id="main-table_wrapper" className="dataTables_wrapper no-footer">
-                    <table id="main-table" className="display responsive nowrap dataTable no-footer dtr-inline">
+            <div className='table-tradeOffers'>
+                <div id='main-table_wrapper' className='dataTables_wrapper no-footer'>
+                    <table id='main-table' className='display responsive nowrap dataTable no-footer dtr-inline'>
                         <thead>
-                        <tr role="row">
+                        <tr role='row'>
                             <th>{t('label.product.price')}</th>
                             <th>{t('label.product.lot_volume')}</th>
                             <th>{t('label.product.tender_volume')}</th>
@@ -68,10 +62,10 @@ class ProductsStatistics extends React.Component {
                 </div>
             </div>
 
-            <form className="form form-tradeOffers-button ">
+            <form className='form form-tradeOffers-button '>
                 <ul>
                     <li>
-                        <Button className="submit fs-submit gray-button" onClick={this.props.onBack}>
+                        <Button className='submit fs-submit gray-button' onClick={this.props.onBack}>
                             {t('label.button.back')}
                         </Button>
                     </li>

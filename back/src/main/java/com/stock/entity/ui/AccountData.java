@@ -13,7 +13,7 @@ public class AccountData {
     private double latitude;
     private double longitude;
 
-    public AccountData(){
+    public AccountData() {
 
     }
 

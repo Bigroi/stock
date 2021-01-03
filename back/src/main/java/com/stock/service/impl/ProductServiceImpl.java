@@ -178,7 +178,7 @@ public class ProductServiceImpl implements ProductService {
             Map<Double, List<LotTradeRecord>> lotMap,
             Map<Double, List<TenderTradeRecord>> tenderMap,
             ProductRecord product
-            ) {
+    ) {
         var rows = prices.stream()
                 .map(p -> new ProductStatisticsDetails.DetailsRow(
                                 p + "",

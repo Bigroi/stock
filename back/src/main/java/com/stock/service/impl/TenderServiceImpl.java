@@ -1,9 +1,7 @@
 package com.stock.service.impl;
 
-import com.stock.dao.LotDao;
 import com.stock.dao.TenderDao;
 import com.stock.entity.BidStatus;
-import com.stock.entity.business.LotRecord;
 import com.stock.entity.business.TenderRecord;
 import com.stock.service.BidService;
 

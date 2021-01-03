@@ -2,23 +2,23 @@ import React from 'react';
 import {withTranslation} from 'react-i18next';
 import Button from '../../components/input/Button';
 import Form from '../../components/form/Form';
-import LocalStorage from "../../util/LocalStorage";
-import FeedBackForm from "../../forms/feed-back/FeedBackForm";
-import AccountForm from "../../forms/account/AccountForm";
-import Lots from "./tab/Lots";
-import Tenders from "./tab/Tenders";
-import Products from "./tab/Products";
-import Companies from "./tab/Companies";
-import Labels from "./tab/Labels";
-import Trade from "./tab/Trade";
-import ProductsStatistics from "./tab/ProductsStatistics";
-import Categories from "./tab/Categories";
-import ProductStatisticsDetails from "./tab/ProductStatisticsDetails";
-import Deals from "./tab/Deals";
-import DealDetails from "./tab/DealDetails";
-import Addresses from "./tab/Addresses";
-import ApiUrls from "../../util/ApiUrls";
-import Request from "../../util/Request";
+import LocalStorage from '../../util/LocalStorage';
+import FeedBackForm from '../../forms/feed-back/FeedBackForm';
+import AccountForm from '../../forms/account/AccountForm';
+import Lots from './tab/Lots';
+import Tenders from './tab/Tenders';
+import Products from './tab/Products';
+import Companies from './tab/Companies';
+import Labels from './tab/Labels';
+import Trade from './tab/Trade';
+import ProductsStatistics from './tab/ProductsStatistics';
+import Categories from './tab/Categories';
+import ProductStatisticsDetails from './tab/ProductStatisticsDetails';
+import Deals from './tab/Deals';
+import DealDetails from './tab/DealDetails';
+import Addresses from './tab/Addresses';
+import ApiUrls from '../../util/ApiUrls';
+import Request from '../../util/Request';
 
 class UserMain extends React.Component {
 
@@ -67,8 +67,8 @@ class UserMain extends React.Component {
     getAddButton = (visible) => {
         const {t} = this.props;
         if (visible) {
-            return <div className="add-button" onClick={() => this.setState({showEmptyForm: true})}>
-                <div className="plus"/>
+            return <div className='add-button' onClick={() => this.setState({showEmptyForm: true})}>
+                <div className='plus'/>
                 <p>{t('label.button.create')}</p>
             </div>;
         } else {
@@ -274,7 +274,7 @@ class UserMain extends React.Component {
     };
 
     getAdminTabs = () => {
-        if (LocalStorage.hasRole("ADMIN")) {
+        if (LocalStorage.hasRole('ADMIN')) {
             const {t} = this.props;
             return <React.Fragment>
                 <li className={

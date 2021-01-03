@@ -1,15 +1,15 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import Dropdown from "../../components/input/Dropdown";
-import Input from "../../components/input/Input";
-import Calendar from "../../components/input/Calendar";
-import File from "../../components/input/File";
-import TextArea from "../../components/input/TextArea";
-import Button from "../../components/input/Button";
+import Dropdown from '../../components/input/Dropdown';
+import Input from '../../components/input/Input';
+import Calendar from '../../components/input/Calendar';
+import File from '../../components/input/File';
+import TextArea from '../../components/input/TextArea';
+import Button from '../../components/input/Button';
 import ApiUrls from '../../util/ApiUrls';
-import Map from "../../components/map/Map";
+import Map from '../../components/map/Map';
 import Request from '../../util/Request';
-import Message, {TYPES} from "../../components/message/Message";
+import Message, {TYPES} from '../../components/message/Message';
 
 class LotForm extends React.Component {
 
@@ -202,12 +202,12 @@ class LotForm extends React.Component {
 
     render() {
         const {t} = this.props;
-        return <form className="form" action="#" method="post" name="form">
+        return <form className='form' name='form'>
             <h3>{t('label.lot.lotForm')}</h3>
             <div>
                 <Message message={this.state.message}/>
             </div>
-            <div className="flex-two-input">
+            <div className='flex-two-input'>
                 <div>
                     <Dropdown
                         id='ProductId'
@@ -270,7 +270,7 @@ class LotForm extends React.Component {
                             <Dropdown
                                 id='AddressId'
                                 name='addressId'
-                                className="address-selector"
+                                className='address-selector'
                                 elements={this.getAddresses()}
                                 label={t('label.lot.address')}
                                 error={this.state.error.addressId}
@@ -280,7 +280,7 @@ class LotForm extends React.Component {
                             <Dropdown
                                 id='Distance'
                                 name='distance'
-                                className="address-selector"
+                                className='address-selector'
                                 elements={this.getDistances()}
                                 label={t('label.lot.distance')}
                                 error={this.state.error.distance}
@@ -309,16 +309,16 @@ class LotForm extends React.Component {
                                 onChange={(value) => this.changeLot('description', value)}
                             />
                         </div>
-                        <div className="forMapLotsTender google-map-container"
+                        <div className='forMapLotsTender google-map-container'
                              style={{position: 'relative', overflow: 'hidden'}}>
                             <Map coords={this.getCoords()}/>
                         </div>
                     </div>
-                    <div id="form-list">
-                        <Button className="submit button gray-button" id="save" onClick={() => this.save('INACTIVE')}>
+                    <div id='form-list'>
+                        <Button className='submit button gray-button' id='save' onClick={() => this.save('INACTIVE')}>
                             {t('label.button.save')}
                         </Button>
-                        <Button className="submit button" id="save-start-trading" onClick={() => this.save('ACTIVE')}>
+                        <Button className='submit button' id='save-start-trading' onClick={() => this.save('ACTIVE')}>
                             {t('label.button.save_start_trading')}
                         </Button>
                     </div>

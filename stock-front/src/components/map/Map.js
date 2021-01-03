@@ -1,5 +1,5 @@
 import React from 'react';
-import {withGoogleMap, withScriptjs, GoogleMap, Marker, DirectionsRenderer} from "react-google-maps";
+import {withGoogleMap, withScriptjs, GoogleMap, Marker, DirectionsRenderer} from 'react-google-maps';
 import Geocode from 'react-geocode';
 import Config from '../../util/Config';
 
