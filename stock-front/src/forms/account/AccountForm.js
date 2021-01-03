@@ -178,7 +178,7 @@ class AccountForm extends React.Component {
                     onChange={(newValue) => this.changeValue('repeatPassword', newValue)}
                 />
                 <div id="form-list">
-                    <Button className="submit button">
+                    <Button className="submit button" onClick={this.props.onAddress}>
                         {t('label.button.addAddress')}
                     </Button>
                     <Button className="submit button" onClick={this.submitAccount}>

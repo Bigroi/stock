@@ -60,7 +60,7 @@ public class AddressController {
         }
     }
 
-    @DeleteMapping("/address/{id}/primary")
+    @PutMapping("/address/{id}/primary")
     public ResponseEntity<?> setPrimaryAddress(@PathVariable("id") UUID addressId) {
         var user = (UserRecord) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (addressService.setPrimary(addressId, user.getCompanyId())) {

@@ -26,6 +26,8 @@ const urls = {
     TENDER_DEACTIVATE: 'user/tender/{id}/deactivate',
 
     ADDRESS_LIST: 'user/addresses',
+    ADDRESS_PRIMARY: 'user/address/{id}/primary',
+    ADDRESS: 'user/address/{id}',
 
     DEAL_LIST: 'user/deals',
     DEAL: 'user/deal/{id}',

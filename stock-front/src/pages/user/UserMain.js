@@ -16,6 +16,7 @@ import Categories from "./tab/Categories";
 import ProductStatisticsDetails from "./tab/ProductStatisticsDetails";
 import Deals from "./tab/Deals";
 import DealDetails from "./tab/DealDetails";
+import Addresses from "./tab/Addresses";
 
 class UserMain extends React.Component {
 
@@ -47,6 +48,16 @@ class UserMain extends React.Component {
     getTabMap = () => {
         const {t} = this.props;
         return {
+            ADDRESSES: {
+                id: 'addresses',
+                getTitle: () => t('label.pageNames.myAddresses'),
+                addButton: true,
+                getContent: () =>
+                    <Addresses
+                        showEmptyForm={this.state.showEmptyForm}
+                        onCloseForm={() => this.setState({showEmptyForm: false})}
+                    />
+            },
             PRODUCTS: {
                 id: 'products',
                 getTitle: () => t('label.pageNames.products'),
@@ -264,7 +275,9 @@ class UserMain extends React.Component {
                 className='account-dialogbox'
                 onClose={() => this.setState({accountFormActive: false})}
             >
-                <AccountForm/>
+                <AccountForm
+                    onAddress={() => this.setState({activeTab: this.tabMap.ADDRESSES, accountFormActive: false})}
+                />
             </Form>
         }
     };
@@ -317,7 +330,7 @@ class UserMain extends React.Component {
                        className='edit-account'
                        onClick={(e) => {
                            e.preventDefault();
-                           this.setState({accountFormActive: true});
+                           this.setState({accountFormActive: true, accountPopupActive: false});
                        }}
                     >
                         {t('label.navigation.account')}

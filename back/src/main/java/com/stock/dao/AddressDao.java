@@ -27,7 +27,7 @@ public interface AddressDao {
 
     @SqlUpdate("UPDATE ADDRESS " +
             "SET CITY = :city, COUNTRY = :country, ADDRESS = :address, LATITUDE = :latitude, LONGITUDE = :longitude " +
-            " WHERE ID = :id ADN COMPANY_ID = :companyId")
+            " WHERE ID = :id AND COMPANY_ID = :companyId")
     boolean update(@BindBean AddressRecord address);
 
     @SqlUpdate("UPDATE ADDRESS " +
