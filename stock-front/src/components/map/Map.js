@@ -17,7 +17,7 @@ export const geocode = (address) => {
     );
 };
 
-export class MapContainer extends React.Component {
+class MapContainer extends React.Component {
 
     constructor(props) {
         super(props);
@@ -60,13 +60,13 @@ export class MapContainer extends React.Component {
     render() {
         if (this.state.directions) {
             return (
-                <GoogleMap>
+                <GoogleMap center={this.getPosition()}>
                     {<DirectionsRenderer directions={this.state.directions}/>}
                 </GoogleMap>
             );
         } else {
             return (
-                <GoogleMap zoom={10} defaultCenter={this.getPosition()}>
+                <GoogleMap zoom={10} center={this.getPosition()}>
                     <Marker position={this.getPosition()}/>
                 </GoogleMap>
             );

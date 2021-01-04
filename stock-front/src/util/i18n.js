@@ -4,6 +4,8 @@ import HttpBackend from 'i18next-http-backend'
 import config from './Config'
 import ApiUrls from '../util/ApiUrls';
 
+const supportedLanguages = ['EN', 'RU', 'PL'];
+
 i18n.use(HttpBackend).use(LanguageDetector).init({
     ns: ['translations'],
     defaultNS: 'translations',
@@ -18,7 +20,7 @@ i18n.use(HttpBackend).use(LanguageDetector).init({
         formatSeparator: ','
     },
 
-    preload: ['EN', 'RU', 'PL'],
+    preload: supportedLanguages,
 
     backend: {
         loadPath: config.getConfig().apiUrl + '/' + ApiUrls.LABELS
@@ -29,5 +31,9 @@ i18n.use(HttpBackend).use(LanguageDetector).init({
         useSuspense: false
     }
 });
+
+export const languageTranslator = () => {
+    return i18n.languages.map(l => l.toUpperCase()).find(l => supportedLanguages.find(sl => sl === l));
+};
 
 export default i18n;

@@ -7,6 +7,7 @@ import ApiUrls from '../../util/ApiUrls';
 import Message, {TYPES} from '../../components/message/Message';
 import i18next from 'i18next';
 import CheckBox from '../../components/checkbox/CheckBox';
+import Map from '../../components/map/Map';
 
 /**
  * toLogin: function
@@ -166,13 +167,13 @@ class RegistrationForm extends React.Component {
                 this.setState({
                     userData: {
                         ...this.state.userData,
-                        language: coords.language,
+                        latitude: coords.latitude,
                         longitude: coords.longitude
                     }
                 })
             ), 1000);
 
-        this.setState({timer : timer})
+        this.setState({timer: timer})
     };
 
     getFirstPart = () => {
@@ -296,6 +297,10 @@ class RegistrationForm extends React.Component {
                     onChange={(newValue) => this.setFieldValue('address', newValue)}
                 />
 
+                <div className="forMap google-map-container">
+                    <Map coords={{latitude: this.state.userData.latitude, longitude: this.state.userData.longitude}}/>
+                </div>
+
                 <CheckBox
                     value={this.state.agree}
                     error={this.state.agreeError}
@@ -305,7 +310,6 @@ class RegistrationForm extends React.Component {
                         <span>{t('label.account.termsOfUse')}</span>
                     </a></span>
                 </CheckBox>
-
             </div>
             <Button id='go-back' onClick={() => this.setState({step: 1})}>
                 {t('label.button.back')}

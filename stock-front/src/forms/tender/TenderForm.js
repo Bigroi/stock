@@ -312,7 +312,7 @@ class TenderForm extends React.Component {
                                 onChange={(value) => this.changeTender('description', value)}
                             />
                         </div>
-                        <div className='forMapTendersTender google-map-container'
+                        <div className='forMapLotsTender google-map-container'
                              style={{position: 'relative', overflow: 'hidden'}}>
                             <Map coords={this.getCoords()}/>
                         </div>

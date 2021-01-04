@@ -4,6 +4,7 @@ import Input from '../../components/input/Input';
 import Button from '../../components/input/Button';
 import ApiUrls from '../../util/ApiUrls';
 import Request from '../../util/Request';
+import Map from '../../components/map/Map';
 
 class AddressForm extends React.Component {
 
@@ -89,7 +90,7 @@ class AddressForm extends React.Component {
                 this.setState({
                     address: {
                         ...this.state.address,
-                        language: coords.language,
+                        latitude: coords.latitude,
                         longitude: coords.longitude
                     }
                 })
@@ -135,6 +136,10 @@ class AddressForm extends React.Component {
                     maxLength={50}
                     onChange={(newValue) => this.changeAddress('address', newValue)}
                 />
+
+                <div className="forMap google-map-container">
+                    <Map coords={{latitude: this.state.address.latitude, longitude: this.state.address.longitude}}/>
+                </div>
 
                 <div id='form-list'>
                     <Button className='submit button' id='save' onClick={this.save}>
