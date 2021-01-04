@@ -3610,12 +3610,11 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
     width: calc(100% - 45px);
     min-height: 25px;
     margin-bottom: 6px;
-    display: flex;
     align-items: center;
     padding: 10px 30px 10px 15px;
     color: #96999d;
     line-height: 28px;
-    display: none;
+    display: block;
 }
 
 .question-close {
