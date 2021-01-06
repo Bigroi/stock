@@ -1,5 +1,6 @@
 {
   "apiUrl": "/api",
   "test": false,
-  "apiServer": "https://yourtrader.eu/api"
+  "apiServer": "https://yourtrader.eu/api",
+  "googleMapsApiKey": "AIzaSyBap-4uJppMooA91S4pXWULgQDasYF1rY0"
 }

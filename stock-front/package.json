@@ -20,8 +20,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy-test": "npm run build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy-test": "aws s3 sync build/ s3://your-trader-test --profile stock-test"
   },
   "eslintConfig": {
     "extends": [
