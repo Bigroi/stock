@@ -1,0 +1,17 @@
+version: "3"
+services:
+  dp-checker:
+    image: "postgres:11"
+    container_name: "stock"
+    restart: always
+    ports:
+      - "7433:5432"
+    environment:
+      - POSTGRES_USER:'postgres'
+      - POSTGRES_PASSWORD:'P4ssw0rd'
+      - POSTGRES_DB:'stock-dev'
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - D:\docker\volumes\postgres\:/var/lib/postgresql/data62
+volumes:
+  my_dbdata:
