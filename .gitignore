@@ -1,2 +1,9 @@
 /web/
 /es5/
+.idea/
+back/target/
+stock-front/.eslintcache
+back/src/main/resources/application.yml
+back/src/main/resources/liquibase/liquibase-dev.yml
+back/src/main/resources/liquibase/liquibase-prod.yml
+back/src/main/resources/liquibase/liquibase-test.yml
