@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="1" author="Pavel">
+        <sql>
+            CREATE TABLE "address" (
+            "id" UUID NOT NULL,
+            "city" VARCHAR NOT NULL,
+            "country" VARCHAR NOT NULL,
+            "address" VARCHAR NOT NULL,
+            "latitude" REAL NOT NULL,
+            "longitude" REAL NOT NULL,
+            "company_id" UUID NOT NULL,
+            "primary_address" BOOLEAN NOT NULL
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="Pavel">
+        <sql>
+            CREATE TABLE "black_list" (
+            "tender_id" UUID NOT NULL,
+            "lot_id" UUID NOT NULL
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="Pavel">
+        <sql>
+            CREATE TABLE "company" (
+            "id" UUID NOT NULL,
+            "name" VARCHAR NOT NULL,
+            "phone" VARCHAR NOT NULL,
+            "reg_number" VARCHAR NOT NULL,
+            "status" VARCHAR NOT NULL
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="4" author="Pavel">
+        <sql>
+            CREATE TABLE "deal" (
+            "id" UUID NOT NULL,
+            "lot_id" UUID NOT NULL,
+            "tender_id" UUID NOT NULL,
+            "seller_company_id" UUID NOT NULL,
+            "buyer_company_id" UUID NOT NULL,
+            "seller_address" JSON NOT NULL,
+            "buyer_address" JSON NOT NULL,
+            "creation_date" TIMESTAMP NOT NULL,
+            "seller_choice" VARCHAR NOT NULL,
+            "buyer_choice" VARCHAR NOT NULL,
+            "price" REAL NOT NULL,
+            "volume" INTEGER NOT NULL,
+            "category_id" UUID NOT NULL,
+            "photo" VARCHAR NULL DEFAULT NULL,
+            "seller_description" VARCHAR NULL DEFAULT NULL,
+            "buyer_description" VARCHAR NULL DEFAULT NULL,
+            "processing" VARCHAR NULL DEFAULT NULL,
+            "packaging" VARCHAR NULL DEFAULT NULL,
+            "seller_alert" BOOLEAN NOT NULL,
+            "buyer_alert" BOOLEAN NOT NULL
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="5" author="Pavel">
+        <sql>
+            CREATE TABLE "label" (
+            "name" VARCHAR NOT NULL,
+            "language" VARCHAR(5) NOT NULL,
+            "value" VARCHAR NOT NULL
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="6" author="Pavel">
+        <sql>
+            CREATE TABLE "lot" (
+            "id" UUID NOT NULL,
+            "description" VARCHAR(1000) NOT NULL,
+            "price" NUMERIC(10,2) NOT NULL,
+            "min_volume" INTEGER NOT NULL,
+            "max_volume" INTEGER NOT NULL,
+            "company_id" UUID NOT NULL,
+            "status" VARCHAR(50) NOT NULL,
+            "creation_date" DATE NOT NULL,
+            "expiration_date" DATE NOT NULL,
+            "address_id" UUID NOT NULL,
+            "distance" INTEGER NOT NULL,
+            "category_id" UUID NOT NULL,
+            "alert" BOOLEAN NOT NULL,
+            "photo" VARCHAR NULL DEFAULT NULL
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="7" author="Pavel">
+        <sql>
+            CREATE TABLE "product" (
+            "id" UUID NOT NULL,
+            "name" VARCHAR(100) NOT NULL,
+            "removed" BOOLEAN NOT NULL,
+            "picture" VARCHAR(50) NOT NULL
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="8" author="Pavel">
+        <sql>
+            CREATE TABLE "product_category" (
+            "id" UUID NOT NULL,
+            "product_id" UUID NOT NULL,
+            "category_name" VARCHAR(500) NOT NULL,
+            "removed" BOOLEAN NOT NULL
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="9" author="Pavel">
+        <sql>
+            CREATE TABLE "system_user" (
+            "user_name" VARCHAR(300) NOT NULL,
+            "password" VARCHAR(300) NOT NULL,
+            "company_id" UUID NOT NULL,
+            "roles" JSON NOT NULL,
+            "refresh_token_issued" TIMESTAMP NULL DEFAULT NULL,
+            "language" VARCHAR(5) NOT NULL DEFAULT 'EN'
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="10" author="Pavel">
+        <sql>
+            CREATE TABLE "tender" (
+            "id" UUID NOT NULL,
+            "description" VARCHAR(1000) NOT NULL,
+            "price" NUMERIC(10,2) NOT NULL,
+            "min_volume" INTEGER NOT NULL,
+            "max_volume" INTEGER NOT NULL,
+            "company_id" UUID NULL DEFAULT NULL,
+            "status" VARCHAR(50) NOT NULL,
+            "creation_date" DATE NOT NULL,
+            "expiration_date" DATE NOT NULL,
+            "address_id" UUID NOT NULL,
+            "packaging" VARCHAR(500) NULL DEFAULT NULL,
+            "processing" VARCHAR(500) NULL DEFAULT NULL,
+            "distance" INTEGER NULL DEFAULT NULL,
+            "category_id" VARCHAR NULL DEFAULT NULL,
+            "alert" BOOLEAN NOT NULL,
+            "product_id" UUID NOT NULL
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="11" author="Pavel">
+        <sql>
+            CREATE TABLE "user_comment" (
+            "id" UUID NOT NULL,
+            "company_id" UUID NOT NULL,
+            "reporter_id" UUID NOT NULL,
+            "mark" INTEGER NOT NULL,
+            "comment" VARCHAR NOT NULL,
+            "comment_date" TIMESTAMP NOT NULL,
+            "deal_id" UUID NOT NULL
+            )
+        </sql>
+    </changeSet>
+</databaseChangeLog>
