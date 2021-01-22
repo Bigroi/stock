@@ -70,7 +70,7 @@ public class DealForUI {
         this.sellerLongitude = deal.getSellerLongitude();
         this.buyerLatitude = deal.getBuyerLatitude();
         this.buyerLongitude = deal.getBuyerLongitude();
-        if (deal.getBuyerCompanyId() == companyId) {
+        if (deal.getSellerCompanyId() == companyId) {
             this.partnerAddress = deal.getBuyerCountry() + ", " +
                     deal.getBuyerCity() + ", " +
                     deal.getBuyerAddress();
