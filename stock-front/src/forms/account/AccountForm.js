@@ -2,11 +2,14 @@ import React from 'react';
 import {withTranslation} from 'react-i18next';
 import Button from '../../components/input/Button';
 import Input from '../../components/input/Input';
+import Form from '../../components/form/Form';
+import TelegramForm from '../../forms/bots/TelegramForm';
 import VerificationUtils from '../../util/VerificationUtils';
 import ApiUrls from '../../util/ApiUrls';
 import Request from '../../util/Request';
 import Message, {TYPES} from '../../components/message/Message';
 import LanguageSwitcher from '../../components/language-switcher/LanguageSwitcher';
+
 
 class AccountForm extends React.Component {
 
@@ -15,7 +18,8 @@ class AccountForm extends React.Component {
         this.state = {
             account: {},
             error: {},
-            message: null
+            message: null,
+            form: null
         }
     }
 
@@ -104,10 +108,28 @@ class AccountForm extends React.Component {
         })
     };
 
+    getForm = () => {
+        if (this.state.form === 'bot') {
+            return(
+                <Form
+                    className='bot-dialogbox'
+                    onClose={() => this.setState({form: null})}
+                >
+                    <TelegramForm/>
+                </Form>
+            ) 
+        }
+    };
+
+    onBindTelegramBot = () => {
+        this.setState({form: 'bot'});
+    }
+
 
     render() {
         const {t} = this.props;
         return <form className='form' name='form' id='account-form'>
+            {this.getForm()}
             <h3>{t('label.account.edit')}</h3>
             <div>
                 <Message message={this.state.message}/>
@@ -177,6 +199,9 @@ class AccountForm extends React.Component {
                 <div id='form-list'>
                     <Button className='submit button' onClick={this.props.onAddress}>
                         {t('label.button.addAddress')}
+                    </Button>
+                    <Button className='submit button' onClick={this.onBindTelegramBot}>
+                        {t('label.button.bindTelegramBot')}
                     </Button>
                     <Button className='submit button' onClick={this.submitAccount}>
                         {t('label.button.save')}

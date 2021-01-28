@@ -170,4 +170,9 @@ public class ServiceConfig {
     ) {
         return new AlertsServiceImpl(lotDao, tenderDao, dealDao);
     }
+
+    @Bean
+    public TelegramBotService createTelegramBotService(TelegramBotDao telegramBotDao) {
+        return new TelegramBotServiceImpl(telegramBotDao);
+    }
 }

@@ -107,4 +107,9 @@ public class DaoConfig {
     public UserCommentDao createUserCommentDao(Jdbi jdbi) {
         return jdbi.onDemand(UserCommentDao.class);
     }
+
+    @Bean
+    public TelegramBotDao createTelegramBotDao(Jdbi jdbi) {
+        return jdbi.onDemand(TelegramBotDao.class);
+    }
 }

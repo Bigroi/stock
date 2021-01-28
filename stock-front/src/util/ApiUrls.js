@@ -14,6 +14,9 @@ const ApiUrls = {
 
     //user
     ACCOUNT_MANAGEMENT: 'user/account',
+    BOTS_MANAGEMENT: {
+        TELEGRAM_BOT_BINDING: 'user/telegramBot/binding'
+    },
 
     ALERTS: 'user/alerts',
     ALERTS_LOTS: 'user/alerts/lots',

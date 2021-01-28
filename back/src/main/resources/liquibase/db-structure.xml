@@ -157,4 +157,14 @@
             )
         </sql>
     </changeSet>
+    <changeSet id="12" author="Evgen">
+        <sql>
+            CREATE TABLE "telegram_bot" (
+            "id" UUID NOT NULL,
+            "telegram_user_name" VARCHAR(300) NULL DEFAULT 'NULL::character varying',
+            "chat_id" BIGINT NULL DEFAULT NULL
+            )
+        </sql>
+    </changeSet>
 </databaseChangeLog>
+
