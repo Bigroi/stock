@@ -1,5 +1,6 @@
 package com.stock.config;
 
+import com.pengrad.telegrambot.TelegramBot;
 import com.stock.client.email.EmailClient;
 import com.stock.dao.*;
 import com.stock.entity.business.LotRecord;
@@ -10,12 +11,16 @@ import com.stock.service.*;
 import com.stock.service.impl.*;
 import com.stock.service.transactional.*;
 import com.stock.trading.TradeSession;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class ServiceConfig {
+
+    @Value("${telegram.token}")
+    private String telegramBotToken;
 
     @Bean
     public UserService createUserService(
@@ -173,6 +178,7 @@ public class ServiceConfig {
 
     @Bean
     public TelegramBotService createTelegramBotService(TelegramBotDao telegramBotDao) {
-        return new TelegramBotServiceImpl(telegramBotDao);
+        final TelegramBot bot = new TelegramBot(telegramBotToken);
+        return new TelegramBotServiceImpl(telegramBotDao, bot);
     }
 }

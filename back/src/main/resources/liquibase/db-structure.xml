@@ -161,10 +161,12 @@
         <sql>
             CREATE TABLE "telegram_bot" (
             "id" UUID NOT NULL,
-            "telegram_user_name" VARCHAR(300) NULL DEFAULT 'NULL::character varying',
-            "chat_id" BIGINT NULL DEFAULT NULL
+            "telegram_user_name" VARCHAR(300) NOT NULL,
+            "chat_id" BIGINT NOT NULL
             )
         </sql>
     </changeSet>
 </databaseChangeLog>
+
+<!--telegram_user_name NULL chat_id nuLll ????-->
 

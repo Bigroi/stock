@@ -22,6 +22,7 @@
         <org.jdbi.version>3.12.0</org.jdbi.version>
         <junit.version>4.13.1</junit.version>
         <org.mockito.version>3.6.28</org.mockito.version>
+        <telegram.bot.version>5.0.1</telegram.bot.version>
 
         <docker-repository-url>localhost</docker-repository-url>
         <docker-dir>docker-dev</docker-dir>
@@ -144,7 +145,7 @@
         <dependency>
             <groupId>com.github.pengrad</groupId>
             <artifactId>java-telegram-bot-api</artifactId>
-            <version>5.0.1</version>
+            <version>${telegram.bot.version}</version>
         </dependency>
 
     </dependencies>
