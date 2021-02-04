@@ -167,6 +167,3 @@
         </sql>
     </changeSet>
 </databaseChangeLog>
-
-<!--telegram_user_name NULL chat_id nuLll ????-->
-

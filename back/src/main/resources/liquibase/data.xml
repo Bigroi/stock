@@ -2464,6 +2464,36 @@
             INSERT INTO "label" VALUES ('label.Anulka.name', 'RU', 'Anulka');
             INSERT INTO "label" VALUES ('label.Anulka.name', 'EN', 'Anulka');
             INSERT INTO "label" VALUES ('label.Anulka.name', 'PL', 'Anulka');
+            INSERT INTO "label" VALUES ('label.bot.telegramBind', 'RU', 'Связать');
+            INSERT INTO "label" VALUES ('label.bot.telegramBind', 'EN', 'Bind');
+            INSERT INTO "label" VALUES ('label.bot.telegramBind', 'PL', '...some text...');
+            INSERT INTO "label" VALUES ('label.bot.activation', 'RU', 'Активация бота');
+            INSERT INTO "label" VALUES ('label.bot.activation', 'EN', 'Activation bot');
+            INSERT INTO "label" VALUES ('label.bot.activation', 'PL', '...some text...');
+            INSERT INTO "label" VALUES ('label.bot.formActivation', 'RU', 'Форма активации');
+            INSERT INTO "label" VALUES ('label.bot.formActivation', 'EN', 'Form activation');
+            INSERT INTO "label" VALUES ('label.bot.formActivation', 'PL', '...some text...');
+            INSERT INTO "label" VALUES ('label.bot.steps', 'RU', 'Для привязки бота к аккаунту нужно сделать 4 шага:');
+            INSERT INTO "label" VALUES ('label.bot.steps', 'EN', 'For bind bot with account you need do 4 simple steps:');
+            INSERT INTO "label" VALUES ('label.bot.steps', 'PL', '...some text...');
+            INSERT INTO "label" VALUES ('label.bot.step-one', 'RU', 'Нужно найти бота "testYourTrader_bot" в telegram');
+            INSERT INTO "label" VALUES ('label.bot.step-one', 'EN', 'Need found this bot "testYourTrader_bot" in telegram');
+            INSERT INTO "label" VALUES ('label.bot.step-one', 'PL', '...some text...');
+            INSERT INTO "label" VALUES ('label.bot.step-two', 'RU', 'Написать комманду боту "/start"');
+            INSERT INTO "label" VALUES ('label.bot.step-two', 'EN', 'Send command to bot: "/start"');
+            INSERT INTO "label" VALUES ('label.bot.step-two', 'PL', '...some text...');
+            INSERT INTO "label" VALUES ('label.bot.step-three', 'RU', 'После, напишите любое сообщение боту');
+            INSERT INTO "label" VALUES ('label.bot.step-three', 'EN', 'Need write any message to bot');
+            INSERT INTO "label" VALUES ('label.bot.step-three', 'PL', '...some text...');
+            INSERT INTO "label" VALUES ('label.bot.step-four', 'RU', 'Ниже напишете имя пользователя от telegram');
+            INSERT INTO "label" VALUES ('label.bot.step-four', 'EN', 'Below need write user name from telegram');
+            INSERT INTO "label" VALUES ('label.bot.step-four', 'PL', '...some text...');
+            INSERT INTO "label" VALUES ('label.bot.telegramUserName', 'RU', 'Имя пользователя от telegram');
+            INSERT INTO "label" VALUES ('label.bot.telegramUserName', 'EN', 'User name from telegram');
+            INSERT INTO "label" VALUES ('label.bot.telegramUserName', 'PL', '...some text...');
+            INSERT INTO "label" VALUES ('label.bot.gratitude', 'RU', 'Если Вы выполнили все шаги, нажмите кнопку ниже, после чего Ваш аккаунт будет связан с telegram ботом. Спасибо, приятной торговли');
+            INSERT INTO "label" VALUES ('label.bot.gratitude', 'EN', 'If you completed steps you need press button below and after that your account will be bind with telegram bot. Thanks a lot and have a nice a trade.');
+            INSERT INTO "label" VALUES ('label.bot.gratitude', 'PL', '...some text...');
         </sql>
     </changeSet>
 </databaseChangeLog>

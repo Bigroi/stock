@@ -19,6 +19,7 @@ import DealDetails from './tab/DealDetails';
 import Addresses from './tab/Addresses';
 import ApiUrls from '../../util/ApiUrls';
 import Request from '../../util/Request';
+import TelegramForm from '../../forms/bots/TelegramForm';
 
 class UserMain extends React.Component {
 
@@ -30,6 +31,8 @@ class UserMain extends React.Component {
             feedBackFormActive: false,
             accountPopupActive: false,
             accountFormActive: false,
+            botPopupActive: false,
+            botFormActive: false,
             showEmptyForm: false,
             mobileMenuActivated: false,
             alerts: {
@@ -333,6 +336,19 @@ class UserMain extends React.Component {
         }
     };
 
+    
+    getBotForm = () => {
+        debugger
+        if (this.state.botFormActive) {
+            return <Form
+                className='bot-dialogbox'
+                onClose={() => this.setState({botFormActive: false})}
+            >
+                <TelegramForm/>
+            </Form>
+        }
+    };
+
     getLogo = () => {
         return <div className='logo-pages'>
             <a href='#' onClick={(e) => this.setActiveTab(e, this.tabMap.PRODUCTS)}>
@@ -386,6 +402,17 @@ class UserMain extends React.Component {
                     >
                         {t('label.navigation.account')}
                     </a>
+
+                    <a href='#'
+                       className='edit-bot'
+                       onClick={(e) => {
+                           e.preventDefault();
+                           this.setState({botFormActive: true, botPopupActive: false});
+                       }}
+                    >
+                        {t('label.bot.activation')}
+                    </a>
+
                     <a href='#'
                        onClick={(e) => {
                            e.preventDefault();
@@ -425,6 +452,7 @@ class UserMain extends React.Component {
         return <React.Fragment>
             {this.getFeedBackForm()}
             {this.getAccountForm()}
+            {this.getBotForm()}
             <div className={`aside ${this.state.mobileMenuActivated ? 'aside-adaptive' : ''}`}>
                 {this.getLogo()}
                 {this.getMenu()}
