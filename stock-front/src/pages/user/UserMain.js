@@ -31,7 +31,6 @@ class UserMain extends React.Component {
             feedBackFormActive: false,
             accountPopupActive: false,
             accountFormActive: false,
-            botPopupActive: false,
             botFormActive: false,
             showEmptyForm: false,
             mobileMenuActivated: false,
@@ -338,7 +337,6 @@ class UserMain extends React.Component {
 
     
     getBotForm = () => {
-        debugger
         if (this.state.botFormActive) {
             return <Form
                 className='bot-dialogbox'
@@ -407,7 +405,7 @@ class UserMain extends React.Component {
                        className='edit-bot'
                        onClick={(e) => {
                            e.preventDefault();
-                           this.setState({botFormActive: true, botPopupActive: false});
+                           this.setState({botFormActive: true});
                        }}
                     >
                         {t('label.bot.activation')}

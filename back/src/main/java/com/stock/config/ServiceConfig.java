@@ -177,8 +177,12 @@ public class ServiceConfig {
     }
 
     @Bean
-    public TelegramBotService createTelegramBotService(TelegramBotDao telegramBotDao) {
-        final TelegramBot bot = new TelegramBot(telegramBotToken);
+    public TelegramBot getTelegramBot() {
+        return new TelegramBot(telegramBotToken);
+    }
+
+    @Bean
+    public TelegramBotService createTelegramBotService(TelegramBotDao telegramBotDao, TelegramBot bot) {
         return new TelegramBotServiceImpl(telegramBotDao, bot);
     }
 }

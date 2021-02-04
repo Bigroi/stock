@@ -2464,6 +2464,11 @@
             INSERT INTO "label" VALUES ('label.Anulka.name', 'RU', 'Anulka');
             INSERT INTO "label" VALUES ('label.Anulka.name', 'EN', 'Anulka');
             INSERT INTO "label" VALUES ('label.Anulka.name', 'PL', 'Anulka');
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="Evgen">
+        <sql>
             INSERT INTO "label" VALUES ('label.bot.telegramBind', 'RU', 'Связать');
             INSERT INTO "label" VALUES ('label.bot.telegramBind', 'EN', 'Bind');
             INSERT INTO "label" VALUES ('label.bot.telegramBind', 'PL', '...some text...');
@@ -2496,4 +2501,5 @@
             INSERT INTO "label" VALUES ('label.bot.gratitude', 'PL', '...some text...');
         </sql>
     </changeSet>
+
 </databaseChangeLog>
