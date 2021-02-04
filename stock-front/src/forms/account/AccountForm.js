@@ -200,9 +200,6 @@ class AccountForm extends React.Component {
                     <Button className='submit button' onClick={this.props.onAddress}>
                         {t('label.button.addAddress')}
                     </Button>
-                    {/* <Button className='submit button' onClick={this.onBindTelegramBot}>
-                        {t('label.button.bindTelegramBot')}
-                    </Button> */}
                     <Button className='submit button' onClick={this.submitAccount}>
                         {t('label.button.save')}
                     </Button>
