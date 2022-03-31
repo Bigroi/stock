@@ -11,7 +11,7 @@
     <properties>
         <project-version>1.0-SNAPSHOT</project-version>
         <postgresql.version>42.2.9</postgresql.version>
-        <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
+        <spring.boot.version>2.5.12</spring.boot.version>
         <springdoc.version>1.2.26</springdoc.version>
         <com.amazonaws.version>1.11.731</com.amazonaws.version>
         <com.sun.mail.version>1.6.2</com.sun.mail.version>
